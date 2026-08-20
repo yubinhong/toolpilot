@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+.wrangler/
+.wrangler-dry-run/
+.env*.local
+.env
+dist/
+*.tsbuildinfo
+npm-debug.log*
+.DS_Store
