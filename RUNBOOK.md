@@ -29,7 +29,7 @@
 - [x] `TESTING.md` 中的 Lint、类型、测试和构建命令已填入并通过。
 - [x] 生成路由、站点地图、robots、法律页面和 50 条目录链接已审查；工具事实、来源和商业关系仍是 Draft，未完成正式内容审核。
 - [x] TASK-003 的内容发布门槛已写入 `docs/adr/0006-content-review-gate.md`；链接可达只作为访问证据，不能替代事实核验。
-- [x] TASK-004 的 CI、生产监控和 immutable reviewed commit SHA 发布/回滚入口已写入 `.github/workflows/` 和 `docs/adr/0007-ci-monitoring-release-gate.md`；外部运行记录仍待确认。
+- [x] TASK-004 的 CI、生产监控和 immutable reviewed commit SHA 发布/回滚入口已写入 `.github/workflows/` 和 `docs/adr/0007-ci-monitoring-release-gate.md`；GitHub CI run `32442524361` 已成功，生产监控/发布 workflow 外部记录仍待确认。
 - [x] `npm run release:check` 已接入发布 workflow；GitHub origin 已配置，干净的 `4776027` checkout 实际检查已通过。
 - [x] 旧 Crypto/DeFi 生成内容按用户确认不迁移，当前源码未生成相关页面。
 - [x] Cloudflare Pages 当前 Production 部署 source 为 `4776027`，预览地址为 `https://be8ecb81.toolpilot-2cy.pages.dev`，生产 smoke 已通过；旧部署没有作为回滚目标验收。

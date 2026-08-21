@@ -56,7 +56,7 @@
 
 - CI、生产 smoke、定时监控和手动 immutable reviewed commit SHA 发布/回滚 workflow 已加入 `.github/workflows/`。
 - `npm run release:check` 已加入并由 4 个测试覆盖；`4776027` 上的真实工作区检查已通过。
-- `4776027` 已作为可复现 source 部署并通过生产 smoke；`TODO-004`、`TODO-302` 仍等待 GitHub Actions 首次成功运行、Secrets/通知配置和真实回滚演练。
+- `4776027` 已作为可复现 source 部署并通过生产 smoke，GitHub CI run `32442524361` 已成功；`TODO-004`、`TODO-302` 仍等待 production Environment/Secrets、通知、分支保护、生产监控/发布运行证据和真实回滚演练。
 
 ## Completed in TASK-004
 

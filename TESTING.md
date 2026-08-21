@@ -4,7 +4,7 @@
 
 - 核心用户路径：从开发任务进入决策页，读取工具事实、比较和商业标记，再安全访问厂商站点。
 - 不可接受的失败：发布无来源或过期事实、隐藏 Affiliate/Sponsor 关系、错误的自然排序、将旧 Crypto/DeFi 页面当作当前 ToolPilot 内容、泄露密钥或个人数据。
-- 目标覆盖范围：`TBD`；当前单测覆盖目录数据和发布门槛不变量，页面质量以类型、Lint、静态构建和本地 HTTP smoke 为主，CI 和生产 smoke 入口已加入但外部运行记录仍待确认。
+- 目标覆盖范围：`TBD`；当前单测覆盖目录数据和发布门槛不变量，页面质量以类型、Lint、静态构建和本地 HTTP smoke 为主，GitHub CI 已有成功运行，生产 smoke 入口已加入但定时监控外部运行记录仍待确认。
 - 当前验证状态：Node 22.23.0/npm 10.9.8 下目录审核字段、TASK-004 smoke 和 release readiness 变更已通过 `typecheck`、`lint`、7 个测试、生产构建和高危级别依赖审计；最新外部检查为 50 个产品官网中 42 个返回 2xx/3xx、8 个返回可达但受防护/限流影响的 403/429，45 个研究来源中 39 个返回 2xx/3xx、6 个 403；5 个条目没有研究来源 URL。2026-08-21 新 smoke 对 `toolpilot.cc` 的 7 个路径均返回 HTTP 200，sitemap 包含 50 个工具 URL。
 
 ## 2. 标准命令
@@ -75,7 +75,7 @@
 
 ## 6. CI 质量门槛
 
-- `.github/workflows/ci.yml` 已建立仓库级 CI；`main` 与 `origin/main` 已同步到 `4776027`，但本机没有 GitHub CLI，匿名 API 返回 404，不能宣称外部 CI 已上线或通过。
+- `.github/workflows/ci.yml` 已建立仓库级 CI；公开仓库 `main` 与 `origin/main` 已同步到 `a9db0fc`，GitHub CI run `32442524361` 已成功。
 - [x] Node 22 与 `.nvmrc` 一致（Node 22.23.0）。
 - [x] Lint、类型检查通过；格式化工具仍未配置。
 - [x] 最小相关测试通过（7 个 Node test，其中 4 个覆盖 release readiness）。
@@ -86,7 +86,7 @@
 - [x] 2026-08-21 Wrangler 认证、Pages 发布和部署历史读取通过；最新 Production source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，另一个较早部署没有 source ref，因此不作为已确认回滚目标。
 - [x] 手动发布 workflow 的 commit gate 已直接执行：完整 40 位 SHA 通过，7 位短 SHA 被拒绝。
 - [x] `npm run release:check` 正向/反向单测通过；`4776027` 上的实际 checkout 检查通过。
-- [ ] GitHub Actions `CI / quality` 成功运行并绑定分支保护；等待 GitHub Owner 配置。
+- [x] GitHub Actions `CI / quality` 成功运行（run `32442524361`）；[ ] 分支保护仍等待 GitHub Owner 配置。
 - [ ] 定时生产 smoke 首次运行并配置失败通知；等待 GitHub Owner 配置。
 - [x] 旧 Crypto/DeFi 页面不在当前源码中，按用户确认不迁移。
 - [ ] Flaky test 不通过重跑掩盖；必须记录根因或隔离审批。
