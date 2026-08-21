@@ -75,7 +75,7 @@
 
 ## 6. CI 质量门槛
 
-- `.github/workflows/ci.yml` 已建立仓库级 CI；公开仓库 `main` 与 `origin/main` 已同步到 `a9db0fc`，GitHub CI run `32442524361` 已成功。
+- `.github/workflows/ci.yml` 已建立仓库级 CI；公开仓库 `main` 与 `origin/main` 已同步，GitHub CI run `32442681654` 已成功。
 - [x] Node 22 与 `.nvmrc` 一致（Node 22.23.0）。
 - [x] Lint、类型检查通过；格式化工具仍未配置。
 - [x] 最小相关测试通过（7 个 Node test，其中 4 个覆盖 release readiness）。

@@ -223,7 +223,7 @@ HTTP smoke: / /tools/ /tools/cursor/ /compare/ /guides/ /robots.txt /sitemap.xml
 
 ### 未完成与阻塞
 
-- reviewed commit `4776027` 已推送、通过干净 checkout 的 `release:check` 并部署；GitHub CI run `32442524361` 成功，但 `production` Environment、分支保护、Cloudflare Secrets 和失败通知尚未配置或验证。
+- reviewed commit `4776027` 已推送、通过干净 checkout 的 `release:check` 并部署；GitHub CI run `32442681654` 成功，但 `production` Environment、分支保护、Cloudflare Secrets 和失败通知尚未配置或验证。
 - 当前生产部署元数据已显示 source `4776027`，并通过 `https://toolpilot.cc` 公网 smoke；旧部署仍未验收为可复现回滚目标。
 - 尚未在明确生产操作窗口执行实际 Pages 回滚/域名恢复演练；跟踪 `TODO-302`。
 - 任务保持 `IN_PROGRESS`，直到外部 Owner 完成激活并提供运行/回滚证据。

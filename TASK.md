@@ -44,7 +44,7 @@
 - [x] 回滚策略明确为 immutable reviewed commit SHA 重建发布，Cloudflare Dashboard 作为紧急 fallback；没有伪造不存在的 Pages CLI rollback 命令。
 - [x] YAML、Node 脚本、现有类型/Lint/测试/构建和 smoke 已完成本地验证。
 - [x] `npm run release:check` 已接入手动发布 workflow；正向/反向单测通过，干净的 `4776027` checkout 实际检查通过。
-- [x] GitHub CI 至少成功运行一次：公开仓库 run `32442524361` 对提交 `a9db0fc` 的结论为 `success`。
+- [x] GitHub CI 至少成功运行一次：公开仓库 run `32442681654` 对提交 `7e0932d` 的结论为 `success`。
 - [ ] GitHub `production` environment、Cloudflare Secrets、通知收件人和分支保护由 Owner 配置并验证。
 - [x] 当前生产内容能由 reviewed commit `4776027` 重建并部署；Cloudflare Production source 已核对为 `4776027`，生产 smoke 通过。
 - [ ] 在生产窗口内完成上一份 reviewed artifact 的实际 Pages 回滚演练；本任务不自动切换回滚版本。
@@ -91,7 +91,7 @@ ruby -e 'require "yaml"; ARGV.each { |path| YAML.load_file(path); puts "#{path}:
 - 新增 `npm run release:check` 和 4 个发布门槛测试；完整测试集为 7/7。`4776027` 上的实际发布检查已通过。
 - 2026-08-21 生产 smoke：7/7 路径 HTTP 200，审核状态标记和 sitemap 50 条工具 URL 检查通过。
 - 2026-08-21 Cloudflare 发布核验：Wrangler OAuth 登录和 Pages 写入权限有效；项目 `toolpilot` 的最新 Production 部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，source 为 `4776027`，生产 smoke 7/7 通过；较早部署没有 source ref，不作为已确认回滚基线。
-- 2026-08-21 GitHub 外部核验：仓库公开可读；CI run `32442524361` 对 `a9db0fc` 完成且成功。生产监控和手动 Pages 发布 workflow 尚无外部运行证据。
+- 2026-08-21 GitHub 外部核验：仓库公开可读；CI run `32442681654` 对 `7e0932d` 完成且成功。生产监控和手动 Pages 发布 workflow 尚无外部运行证据。
 
 ### 外部待办
 

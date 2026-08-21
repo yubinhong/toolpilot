@@ -16,8 +16,8 @@
 
 - 最近完成任务：`TASK-003` — 50 条目录内容审核与来源记录
 - 任务状态：`IN_PROGRESS`
-- 当前分支：`main`（`HEAD` 与 `origin/main` 同步于提交 `4776027`；该提交工作区干净且 `release:check` 已通过）
-- 当前重点：TASK-004 已加入 CI、生产 smoke、定时监控、`release:check` 和不可变 reviewed commit SHA 发布/回滚 workflow；`4776027` 已推送并部署，生产 smoke 已通过，最新 GitHub CI run `32442524361` 已成功
+- 当前分支：`main`（`HEAD` 与 `origin/main` 已同步；工作区干净且 `release:check` 已通过；生产 reviewed source 为 `4776027`）
+- 当前重点：TASK-004 已加入 CI、生产 smoke、定时监控、`release:check` 和不可变 reviewed commit SHA 发布/回滚 workflow；`4776027` 已推送并部署，生产 smoke 已通过，GitHub CI run `32442681654` 已成功
 - 阻塞项：GitHub `production` Environment、Cloudflare Secrets、通知渠道和分支保护仍为 `TBD`，生产监控/发布 workflow 尚无外部运行证据，真实 Pages 回滚演练也未完成
 - Cloudflare 快照：2026-08-21 Wrangler 认证、Pages 发布和部署历史读取已验证；`toolpilot` 当前 Production 部署 source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，预览地址为 `https://be8ecb81.toolpilot-2cy.pages.dev`；`https://toolpilot.cc` 公网 smoke 已通过。旧部署 `f65b5a7` 和无 source 的部署仍不作为已确认回滚目标
 - 内容风险仍在：8 个官网和 6 个来源链接受 403/429 或其他访问限制；5 条记录缺少研究来源；产品/商业/法务 Owner 仍为 `TBD`
@@ -92,7 +92,7 @@
 - `2026-08-20`：当前 50 条目录数据全部显式标为 Draft/Research snapshot；正式内容仍必须完成来源、更新时间、商业关系和评价审核。
 - `2026-08-20`：`TASK-002` 接入 50 条研究快照；Node 22 质量门槛通过；Cloudflare Pages 项目 `toolpilot` 部署 332 个静态文件并绑定 `toolpilot.cc`，生产关键路径返回 200。
 - `2026-08-20`：`TASK-003` 记录 50 条产品链接检查、45 条来源状态、5 条来源缺失和编辑审核门槛；链接可达不等于产品事实已核验。
-- `2026-08-21`：`TASK-004` 加入 `scripts/smoke.mjs`、`scripts/release-readiness.mjs`、CI、生产定时监控和手动不可变 commit SHA 发布/回滚 workflow；`4776027` 已推送并部署，release check、7 个测试、本地验证、生产 smoke、Cloudflare 认证和部署历史读取已通过；GitHub CI run `32442524361` 成功，生产监控/发布 workflow 和真实回滚演练待确认。
+- `2026-08-21`：`TASK-004` 加入 `scripts/smoke.mjs`、`scripts/release-readiness.mjs`、CI、生产定时监控和手动不可变 commit SHA 发布/回滚 workflow；`4776027` 已推送并部署，release check、7 个测试、本地验证、生产 smoke、Cloudflare 认证和部署历史读取已通过；GitHub CI run `32442681654` 成功，生产监控/发布 workflow 和真实回滚演练待确认。
 
 ## 9. 已知风险与技术债
 
