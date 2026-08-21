@@ -29,6 +29,17 @@ test("catalog contains the 50 research snapshot products", () => {
   assert.ok(tools.every((tool) => tool.source === "Research snapshot 2026-08-20"));
   assert.ok(tools.every((tool) => ["cash-affiliate", "partner", "referral", "popular", "pending"].includes(tool.affiliateStatus)));
   assert.ok(tools.every((tool) => tool.verifiedAt === null));
+  assert.ok(tools.every((tool) => tool.researchSnapshotDate === "2026-08-20"));
+  assert.ok(tools.every((tool) => tool.reviewStatus === "pending-editorial"));
+  assert.ok(tools.every((tool) => tool.reviewOwner === "TBD"));
+  assert.ok(tools.every((tool) => tool.reviewedAt === null));
+  assert.equal(tools.filter((tool) => tool.productLinkCheck.status === "http-ok").length, 42);
+  assert.equal(tools.filter((tool) => tool.productLinkCheck.status === "reachable-restricted").length, 8);
+  assert.equal(tools.filter((tool) => tool.sourceStatus === "provided").length, 45);
+  assert.equal(tools.filter((tool) => tool.sourceStatus === "missing").length, 5);
+  assert.equal(tools.filter((tool) => tool.sourceLinkCheck.status === "http-ok").length, 39);
+  assert.equal(tools.filter((tool) => tool.sourceLinkCheck.status === "reachable-restricted").length, 6);
+  assert.equal(tools.filter((tool) => tool.sourceLinkCheck.status === "missing").length, 5);
   assert.deepEqual(
     tools.filter((tool) => !tool.sourceUrl).map((tool) => tool.slug),
     ["docker", "neon", "railway", "render", "sentry"],

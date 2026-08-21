@@ -6,7 +6,7 @@
 - Owner：`TBD`
 - 最后更新：`2026-08-20`
 - 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`
-- 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Wrangler 发布输出和 `toolpilot.cc` 公网 smoke；内容正式审核、CI 和监控仍未确认
+- 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Wrangler 发布输出和 `toolpilot.cc` 公网 smoke；TASK-004 的 CI/监控/发布入口已存在于源码，但 GitHub 外部运行记录和 Secrets 仍未确认
 
 ## 1. 架构目标
 
@@ -31,16 +31,18 @@ flowchart LR
 - 当前 Web 形态是 Next 静态导出；源码和构建产物均可复核。
 - 厂商站点是出站依赖；Affiliate、Featured 和 Sponsor 的关系必须在页面上披露。
 - 内容源当前是 `lib/catalog.mjs` 的 50 条研究草稿数据；静态托管为 Cloudflare Pages，生产域名为 `toolpilot.cc`；分析平台和管理入口均未配置。
+- 交付控制面由 `.github/workflows/ci.yml`、`.github/workflows/production-monitor.yml` 和 `.github/workflows/pages-release.yml` 构成；它们只提供仓库级入口，不代表 GitHub Environment、通知或 Cloudflare Secrets 已激活。
 
 ## 3. 组件与责任
 
 | 组件 | 路径/服务 | 责任 | 数据所有权 | 上游/下游 | Owner |
 | --- | --- | --- | --- | --- | --- |
 | Web 页面 | `app/`、`components/` | 首页、工具、指南、法律和决策页 | ToolPilot 草稿内容 | Next 配置、目录数据、Cloudflare Pages | `TBD` |
-| 内容模型 | `lib/catalog.mjs` | 50 条分类、草稿工具、`productUrl`、`sourceUrl`、研究商业状态、决策页和指南 | ToolPilot 草稿 | 编辑、公开来源 | `TBD` |
+| 内容模型 | `lib/catalog.mjs` | 50 条分类、草稿工具、`productUrl`、`sourceUrl`、链接检查、来源状态、编辑审核和正式核验字段、决策页和指南 | ToolPilot 草稿 | 编辑、公开来源 | `TBD` |
 | 构建输出 | `.next/`、`out/` | Next 中间产物和最终静态 HTML/CSS/JS | 不拥有业务数据 | `npm run build` -> Cloudflare Pages | `TBD` |
 | 出站链接 | 页面中的产品官网/研究来源 URL | 将用户带到工具厂商或研究来源，并区分官网、来源和研究商业状态 | 第三方厂商/公开来源 | ToolPilot -> 外部站点 | `TBD` |
 | 分析 | 服务 `TBD` | 记录最小化的决策页浏览和出站点击 | `TBD` | 浏览器 -> 分析服务 | `TBD` |
+| CI/运维控制面 | `.github/workflows/`、`scripts/smoke.mjs`、`scripts/release-readiness.mjs` | 质量门槛、仓库发布状态检查、生产可用性检查、immutable reviewed commit SHA 发布/回滚 | 不拥有业务数据；仅消费 Git 元数据、构建产物和公开 HTTP 响应；不读取 Secret | GitHub Actions -> npm/Cloudflare Pages/`toolpilot.cc` | `TBD` |
 
 当前未实现独立 API、数据库、CMS、认证服务、后台或任务队列。
 
@@ -54,8 +56,8 @@ flowchart LR
 4. 发布前检查来源、更新时间、商业披露、链接和页面主题。
 
 - 信任边界：提交者/外部来源 -> 审核系统 -> 公开静态页面。
-- 一致性要求：页面事实、来源、更新时间和商业标记必须同一版本可追溯。
-- 失败处理：校验失败拒绝发布；来源缺失显示待核实或不发布，不使用默认编造值。
+- 一致性要求：页面事实、来源、更新时间、链接检查、编辑审核和商业标记必须同一版本可追溯。
+- 失败处理：链接检查失败或来源缺失显示待核实；`reviewStatus=pending-editorial` 或 `verifiedAt=null` 的条目不能作为正式事实发布，不使用默认编造值。
 - 幂等/重试：构建和发布策略 `TBD`；内容版本应使用稳定 ID 或 slug。
 
 ### 4.2 用户出站流（目标设计，未实现）
@@ -84,7 +86,7 @@ flowchart LR
 
 | 数据域 | 存储 | 主键/分区 | 保留策略 | 备份/恢复 | 敏感级别 |
 | --- | --- | --- | --- | --- | --- |
-| 工具公开事实 | `lib/catalog.mjs` 草稿数据 | 工具 slug | 当前随代码版本发布；正式复核策略 `TBD` | Git/构建产物备份 `TBD` | Public / 可能含 Internal 编辑字段 |
+| 工具公开事实 | `lib/catalog.mjs` 草稿数据 | 工具 slug | 当前随代码版本发布；正式复核策略由 ADR-006 约束 | Git/构建产物备份 `TBD` | Public / 可能含 Internal 编辑字段 |
 | 来源与编辑记录 | `TBD` | 工具 ID + 版本/时间 `TBD` | `TBD` | `TBD` | Internal |
 | 厂商提交 | `TBD` | 提交 ID `TBD` | `TBD` | `TBD` | Internal，可能含个人或商务信息 |
 | 分析事件 | `TBD` | 事件 ID/时间 `TBD` | 最小化保留，期限 `TBD` | `TBD` | Internal / Confidential |
@@ -96,7 +98,7 @@ flowchart LR
 
 ### 可靠性
 
-- SLO/SLA：`TBD`；Cloudflare Pages 生产可用性已做一次关键路径 smoke，但尚未配置持续监控或告警。
+- SLO/SLA：`TBD`；仓库已配置每 15 分钟生产 smoke 和手动触发入口，但 GitHub Actions 运行记录、通知路由和 Cloudflare 内部指标仍未确认。
 - 降级策略：静态页面优先；分析不可用不应阻塞页面访问；厂商链接失败应进入内容复核。
 - 灾难恢复：RPO `TBD` / RTO `TBD`；需确认静态产物、内容源和部署平台的备份方式。
 
@@ -116,21 +118,21 @@ flowchart LR
 ### 可观测性
 
 - 日志：当前没有应用日志配置；禁止记录原始个人数据、令牌和厂商敏感信息。
-- 指标：页面可用性、构建成功、链接有效性、内容新鲜度和出站点击 `TBD`。
+- 指标：仓库 smoke 覆盖页面可用性、审核标记和 sitemap 完整性；构建成功、链接有效性、内容新鲜度和出站点击仍需独立指标。
 - Trace：`TBD`；静态站点当前没有服务端 Trace 证据。
-- 告警：`TBD`；至少需要部署失败、站点不可用、链接失效和内容过期告警方案。
+- 告警：生产 smoke 失败会使 GitHub Actions workflow 失败；邮件/聊天/PagerDuty 等通知路由为 `TBD`，内容过期和链接失效不由该 smoke 自动判定。
 
 ## 8. 部署拓扑
 
 ```mermaid
 flowchart TD
-    R[工作区源码] --> CI[TBD CI]
+    R[工作区源码] --> CI[GitHub Actions CI]
     CI --> B[Next static export]
     B --> H[Cloudflare Pages: toolpilot]
     H --> D[toolpilot.cc]
 ```
 
-当前部署拓扑已验证到 Cloudflare Pages：`npx wrangler pages deploy out --project-name toolpilot --branch main` 上传静态产物，Pages 自定义域将 `toolpilot.cc` 指向项目域名；CI、监控和自动化回滚仍未配置。
+当前部署拓扑已验证到 Cloudflare Pages：`npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main` 上传静态产物，Pages 自定义域将 `toolpilot.cc` 指向项目域名。TASK-004 已加入 GitHub Actions CI、定时生产 smoke、`release:check` 和手动 immutable reviewed commit SHA 发布/回滚入口；发布门槛在部署前读取 Git 状态并拒绝 dirty/untracked/无 GitHub origin 的 checkout，外部 Environment、Secrets、通知和真实回滚演练仍待配置。
 
 ## 9. 架构边界与禁止模式
 
@@ -144,7 +146,7 @@ flowchart TD
 
 | 项目 | 当前影响 | 触发改造的阈值 | 目标方向 | 跟踪 |
 | --- | --- | --- | --- | --- |
-| 研究草稿尚未完成正式来源和审核版本 | 不能发布可信工具事实 | 完成 50 条内容核验和审核清单 | 可追溯的内容版本/审核流程 | `TODO-005`、`TODO-006` |
+| 研究草稿尚未完成正式来源和审核版本 | 不能发布可信工具事实 | 产品/内容 Owner 完成 50 条内容核验和审核清单 | 可追溯的内容版本/审核流程 | `TODO-005`、`TODO-006`、`ADR-006` |
 | Node 22 要求与 Node 20 shell 不一致 | 直接运行命令可能结果不同 | 固定 CI/本地 Node 22 | 统一运行时和工具链 | `TODO-002` |
 | 无数据层和内容版本方案 | 无法维护来源和审核状态 | 内容规模或多人编辑需求出现 | 选择静态数据、CMS 或数据库 | `TODO-006` |
-| 无 CI、监控和自动化回滚入口 | 只能手动发布和验证 | 下一次工程迭代 | 建立 CI、告警、部署审计和回滚演练 | `TODO-004` |
+| GitHub 外部设置和实际回滚演练未完成 | 仓库有入口但生产恢复仍依赖 Owner 激活配置 | 远端 refs/upstream、Secrets 和生产窗口确认 | 启用 CI、告警通知、部署审计和回滚演练 | `TODO-004`、`TODO-302`、`ADR-007` |

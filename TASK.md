@@ -1,49 +1,54 @@
-# TASK.md - TASK-002 首批 50 个产品链接与 Cloudflare 发布
+# TASK.md - TASK-004 CI、生产监控与受控回滚入口
 
-> `TASK-002` 已完成。研究内容作为草稿输入，产品官网链接和研究来源分开保存；生产发布有真实构建、认证和公共域名验证。
+> 当前唯一活动任务。TASK-003 已完成；本任务只建立可验证的 CI、生产 smoke、监控告警入口和不可变 reviewed commit SHA 发布/回滚流程，不自动修改未知的 GitHub 或 Cloudflare 外部设置。
 
 ## 任务元数据
 
-- 状态：`DONE`
-- 类型：`CONTENT + RELEASE`
+- 状态：`IN_PROGRESS`
+- 类型：`CI + OPERATIONS + RELEASE`
 - 优先级：`P0`
-- Owner：技术负责人
-- 创建/更新：`2026-08-20`
-- 基线：`TASK-001` 完成后的本地工作区；Git 分支为 `master`，仓库尚无提交
-- 关联 PRD/ADR：`PRD-001`、`ADR-0001`
-- 研究来源：用户提供的“研究域名用途”对话，50 个产品表格快照为 `2026-08-20`
+- Owner：工程/运维 Owner `TBD`
+- 创建/更新：`2026-08-21`
+- 基线：TASK-003 完成后的工作区；已有提交 `f65b5a7`，本次 TASK-004 改动尚未提交
+- 关联 PRD/ADR：`PRD-001`、`ADR-005`、`ADR-007`
+- 生产目标：`https://toolpilot.cc`；Cloudflare Pages 项目 `toolpilot`
 
 ## 1. 目标
 
-将研究对话中的 50 个开发者工具产品接入 ToolPilot，展示产品官网、研究来源、分类和 Affiliate/Referral/热门工具状态；完成 Node 22 下的质量验证，并将静态站点部署到 Cloudflare，目标生产域名为 `toolpilot.cc`。
+把当前手工质量检查和生产发布收敛为可审计的仓库入口：PR/Push CI、静态产物 smoke、定时生产可用性检查、受保护的手动发布，以及从已审查 commit SHA 重建并发布的回滚入口。
 
 ## 2. 范围
 
 ### 包含
 
-- 50 个产品条目、稳定 slug、产品官网链接、研究来源链接、分类、状态和推荐标签。
-- Affiliate、Referral、Partner、Popular、Pending 状态的用户可见但非承诺性标记。
-- 工具列表、工具详情、sitemap 和出站链接。
-- Cloudflare Pages 静态部署；优先沿用仓库已有或 Cloudflare 账号可核实的项目配置。
-- 公共首页、工具页、robots、sitemap 和至少一个产品链接的生产 smoke test。
+- `scripts/smoke.mjs`：检查关键页面 HTTP 200、审核状态标记、受限/缺失来源状态和 50 条 sitemap URL。
+- `scripts/release-readiness.mjs`：发布前检查 Node 22、完整 HEAD SHA、无凭据 GitHub origin、干净工作区和已跟踪发布文件。
+- `.github/workflows/ci.yml`：Node 22、`npm ci`、audit、lint、typecheck、test、build 和本地静态 smoke。
+- `.github/workflows/production-monitor.yml`：每 15 分钟和手动触发的生产 smoke；失败由 GitHub Actions 提供第一层告警信号。
+- `.github/workflows/pages-release.yml`：仅手动触发，校验不可变的完整 reviewed commit SHA，并使用生产环境保护和并发锁执行发布或受控回滚。
+- 更新 `TESTING.md`、`RUNBOOK.md`、`SECURITY.md`、`AI_CONTEXT.md`、`TODO.md`、`CHANGELOG.md` 和 ADR-007。
 
 ### 不包含
 
-- 自动申请 Affiliate、创建 Affiliate key、修改合作方账户或提交商业资料。
-- 把研究中的佣金、Cookie、收入估算或评级直接写成已验证生产事实。
-- 用户账户、CMS、数据库、厂商提交、分析、支付和 Featured/Sponsor 购买流程。
-- 任何真实密钥写入源码、日志、文档或聊天。
+- 不创建 GitHub 仓库、Secret、Environment approval、通知订阅或外部 PagerDuty/邮件渠道。
+- 不执行生产回滚、不删除 Cloudflare 部署、不修改 DNS 或 Pages 项目配置；这些操作需要明确的生产操作窗口和 Owner 确认。
+- 不把 GitHub Actions 配置文件当作已运行证据；当前 `origin` 远端尚无 refs，且没有 Secrets，只能验证 YAML、脚本和本地行为。
+- 不引入监控 SaaS、数据库、运行时 API 或新的业务依赖。
 
 ## 3. 验收标准
 
-- [x] 目录中恰好有 50 个稳定且去重的产品条目。
-- [x] 每条有产品官网链接和研究来源/来源状态；研究链接不会伪装成产品官网；5 条研究表未提供来源的条目标为 TBD。
-- [x] 每条 Affiliate/Referral 状态和佣金描述都标记为研究快照或待核验。
-- [x] `npm ci`、`npm audit --audit-level=high`、`npm run typecheck`、`npm run lint`、`npm test`、`npm run build` 通过。
-- [x] 50 个官网链接完成 GET 可达性检查：42 个返回 2xx/3xx，8 个返回可达但受站点防护/限流影响的 403/429，未把它们宣称为内容已核验。
-- [x] Cloudflare Pages 项目 `toolpilot` 创建成功，`wrangler whoami` 已确认认证，部署 URL 为 `https://72de9c30.toolpilot-2cy.pages.dev`。
-- [x] `toolpilot.cc` HTTPS 公共首页、工具目录、DigitalOcean 详情、robots、sitemap 返回 200；生产 sitemap 包含 50 个工具 URL。
-- [x] 未执行 Git 提交、Affiliate 申请或密钥写入；当前工作区仍为未提交状态。
+- [x] 仓库有可复用的 smoke 命令，并能对本地静态 `out/` 运行通过。
+- [x] CI workflow 包含锁定安装、依赖审计、Lint、类型、测试、构建和本地 smoke。
+- [x] 生产监控 workflow 有定时和手动入口，默认不读取密钥。
+- [x] 发布/回滚 workflow 仅允许手动、校验完整 reviewed commit SHA、使用生产环境保护和并发锁；Cloudflare Secret 名称已明确。
+- [x] 回滚策略明确为 immutable reviewed commit SHA 重建发布，Cloudflare Dashboard 作为紧急 fallback；没有伪造不存在的 Pages CLI rollback 命令。
+- [x] YAML、Node 脚本、现有类型/Lint/测试/构建和 smoke 已完成本地验证。
+- [x] `npm run release:check` 已接入手动发布 workflow；正向/反向单测通过，当前真实仓库按设计因 dirty worktree 和未跟踪发布文件而拒绝发布。
+- [ ] GitHub Actions 至少成功运行一次；`origin` 已配置但远端尚无 refs、本地没有 upstream，无法验证外部运行记录。
+- [ ] GitHub `production` environment、Cloudflare Secrets、通知收件人和分支保护由 Owner 配置并验证。
+- [ ] 当前生产内容能由一个已推送、已审核的 commit SHA 重建；Cloudflare 标记的 `f65b5a7` 不包含线上可见的审核状态标记。
+- [ ] 在明确生产窗口内完成上一份 reviewed artifact 的实际 Pages 回滚演练；本任务不擅自切换生产版本。
+- [x] 不提交 Git、不推送、不输出或写入真实密钥。
 
 ## 4. 验证计划
 
@@ -51,23 +56,45 @@
 nvm use 22
 npm ci
 npm audit --audit-level=high
-npm run typecheck
 npm run lint
+npm run typecheck
 npm test
 npm run build
-npx wrangler whoami
-npx --yes wrangler pages deploy out --project-name toolpilot --branch main
+npm run release:check
+python3 -m http.server 4173 --directory out
+SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke
+ruby -e 'require "yaml"; ARGV.each { |path| YAML.load_file(path); puts "#{path}: ok" }' .github/workflows/*.yml
 ```
 
-链接检查使用 `lib/catalog.mjs` 中的 `productUrl`，只记录状态码/失败原因，不记录 cookies、token 或敏感查询参数。
+生产检查由 `.github/workflows/production-monitor.yml` 使用 `SMOKE_BASE_URL=https://toolpilot.cc` 执行；不把当前会话中的 Cloudflare 登录状态写入 CI。
 
 ## 5. 风险与回滚
 
-- 研究信息可能过期或混淆 Affiliate 与 Partner；页面使用 `Research snapshot`、`TBD` 和来源链接，生产商业承诺保持关闭。
-- 8 个官网返回 403/429，可能是站点防护或限流；后续正式内容审核不能只依赖自动 HTTP 状态。
-- Cloudflare Pages 项目和 `toolpilot.cc` 已核实并绑定；CI、监控和回滚演练仍未完成。
-- 回滚：在 Cloudflare Pages 控制台恢复上一份已审查部署，或重新部署上一份 `out/`；本任务未删除资源，已按用户授权完成 Pages 项目和根域绑定。
+- CI workflow 只是仓库配置；当前 GitHub 远端没有 refs、Actions 运行记录或 Secrets，不能宣称 CI 已上线。
+- 生产 smoke 只能确认公开 HTTP 路径、审核标记和 sitemap 完整性，不能确认内容事实、DNS 变更或 Cloudflare 内部指标。
+- 发布 workflow 在 commit SHA 校验、构建或本地 smoke 失败时不会部署；部署后生产 smoke 失败需要暂停后续发布，并由 Owner 用上一份 reviewed commit SHA 或 Cloudflare Dashboard 恢复。
+- `release:check` 当前失败是已验证的安全阻塞，不得跳过；形成干净且已跟踪全部发布文件的 reviewed commit 后必须变为通过。
+- 当前生产页面包含 `Editorial review`、受限链接和缺失来源标记，但这些内容不在 Cloudflare source 元数据指向的 `f65b5a7` 中；在形成并审核新提交前，不得把 `f65b5a7` 当作当前生产的可复现基线。
+- `wrangler pages deployment --help` 当前没有 Pages 原生 rollback 子命令；因此回滚入口采用 immutable reviewed commit SHA 重建，避免写入未经验证的本地目录。
+- 任何实际生产回滚必须记录当前部署、目标部署、时间、操作者、原因和前后 smoke 结果。
 
-## 6. 完成记录
+## 6. 当前完成记录
 
-完成记录（2026-08-20）：50 条产品草稿、50 个产品官网链接、Node 22 质量门槛、Cloudflare Pages `toolpilot` 和 `toolpilot.cc` 公网发布均完成；Pages 临时部署为 `https://72de9c30.toolpilot-2cy.pages.dev`。未完成项是 50 条内容的正式来源/更新时间/商业条款审核、CI、监控和回滚演练。建议第一个后续任务为 `TASK-003`：逐条审核 50 条目录并建立内容版本/来源清单。
+### 已完成
+
+- `scripts/smoke.mjs` 已加入 `package.json` 的 `npm run smoke`；检查 7 个路径和 sitemap 的 50 条工具 URL。
+- CI、生产定时监控和手动发布/回滚 workflow 已加入 `.github/workflows/`；发布输入已限制为完整 40 位 commit SHA，并校验 checkout 后的 `HEAD`。
+- ADR-007 已记录 CI、告警信号、Cloudflare Secret、生产环境保护和 immutable reviewed commit 回滚决策。
+- 本地静态服务器 smoke：7/7 路径 HTTP 200，审核标记和 sitemap 数量检查通过。
+- 三个 workflow YAML 通过 Ruby YAML 解析；`npm run lint`、`npm run typecheck`、`npm test`、`npm run build` 和 `npm audit --audit-level=high` 均通过。
+- 发布 workflow 的 commit gate 已直接执行验证：完整 40 位 commit SHA 通过，7 位短 SHA 被拒绝。
+- 新增 `npm run release:check` 和 4 个发布门槛测试；完整测试集为 7/7。当前仓库检查确认 GitHub origin 合法，并准确报告 29 个 changed/untracked paths 和 5 个尚未跟踪的发布文件。
+- 2026-08-21 生产 smoke：7/7 路径 HTTP 200，审核状态标记和 sitemap 50 条工具 URL 检查通过。
+- 2026-08-21 Cloudflare 只读核验：Wrangler OAuth 登录和 Pages 权限有效；项目 `toolpilot` 有两个 Production 部署。当前部署元数据显示 source `f65b5a7`，但 `git grep` 证实该提交不含生产 smoke 已验证的审核状态标记；较早部署没有 source ref。两者都尚未验收为可复现回滚基线。
+
+### 外部待办
+
+- 为 GitHub 配置 `production` Environment、`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`、审批规则和 Actions 失败通知。
+- 将分支保护要求绑定到 `CI / quality` job；确认默认分支和 workflow 运行记录。
+- 无凭据 GitHub SSH `origin` 已配置；先审核当前 TASK-003/TASK-004 工作区并形成可推送的 commit，使 `npm run release:check` 通过，再由用户授权推送并设置 upstream，用该完整 SHA 重建并确认生产产物与提交一致。
+- 确认一个已推送、已审核的上一版本完整 commit SHA，在生产操作窗口执行一次真实回滚演练；完成前任务保持 `IN_PROGRESS`。

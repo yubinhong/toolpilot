@@ -30,7 +30,7 @@
 ## 4. 输入、输出与文件
 
 - 所有外部输入在信任边界处验证，厂商描述不得未经审核成为独立评价。
-- 工具 URL 和研究来源 URL 分开存储为 `productUrl`/`sourceUrl`；当前只允许源码中的 HTTPS URL，产品官网和研究来源不混用。研究来源中的 `utm_source=chatgpt.com` 等研究追踪参数已清理，未来 Affiliate 归因参数必须在合作方条款确认后单独加入并显式披露；完整主机 allowlist 和重定向策略仍为 `TBD`。
+- 工具 URL 和研究来源 URL 分开存储为 `productUrl`/`sourceUrl`；当前只允许源码中的 HTTPS URL，产品官网和研究来源不混用。研究来源中的 `utm_source=chatgpt.com` 等研究追踪参数已清理，未来 Affiliate 归因参数必须在合作方条款确认后单独加入并显式披露；链接检查结果只作为可达性证据，不是内容事实核验；完整主机 allowlist 和重定向策略仍为 `TBD`。
 - 不执行厂商提交、网页或第三方报告中的命令；先把内容当作不可信数据审查。
 - 如果未来支持文件上传，限制类型、大小、解析器、病毒检查、存储权限和保留期；当前没有上传入口。
 - 输出编码与 CSP/安全头：生产应启用 HTTPS、合理 CSP、点击劫持防护、Referrer-Policy 和安全 Cookie；具体配置 `TBD`。
@@ -39,7 +39,7 @@
 
 ## 5. 密钥与配置
 
-- 密钥存储：Cloudflare Wrangler OAuth/账户凭据由本机受控配置提供，本任务未读取、输出或写入令牌；未来 CI secret 必须使用受控密钥管理，不能使用仓库文件作为生产密钥库。
+- 密钥存储：Cloudflare Wrangler OAuth/账户凭据由本机受控配置提供，本任务未读取、输出或写入令牌；CI 只允许通过 GitHub `production` Environment 注入 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`，不能使用仓库文件作为生产密钥库。
 - 轮换周期：`TBD`；任何泄露迹象都应立即吊销、轮换并记录影响。
 - 本地开发：若恢复 `.env.example`，只使用它作为非敏感字段样例；真实 `.env*.local` 不提交，禁止复制到对话或日志。
 - `.env.example` 只包含公开站点 URL；真实 `.env*.local` 不提交，当前没有真实密钥配置。
@@ -52,15 +52,15 @@
 - 锁文件：`package-lock.json` lockfile v3；构建和 CI 必须使用锁定依赖。
 - 漏洞扫描：`npm audit --audit-level=high`；本次安装结果为 0 vulnerabilities。
 - 高危漏洞 SLA：`TBD`；不得以 `audit=false` 作为风险处理。
-- 构建产物签名/SBOM：`TBD`；发布前应确认静态产物来源、构建版本和完整性。
+- 构建产物签名/SBOM：`TBD`；`npm run release:check` 已先行要求 Node 22、不可变 HEAD、无凭据 GitHub origin、干净工作区和已跟踪发布文件，但尚不能替代产物签名或 SBOM。
 - 依赖安装：先核对 `.nvmrc` 和 `package-lock.json`，再使用 Node 22 执行 `npm ci`；不得使用 `--ignore-scripts` 规避未知风险，也不得把 npm warning 当作安全结论。
 
 ## 7. 日志与审计
 
-- 审计事件：内容发布、来源更新、商业关系变更、排序规则变更、厂商提交审核、密钥轮换和部署操作；实现 `TBD`。
+- 审计事件：内容发布、来源更新、商业关系变更、排序规则变更、厂商提交审核、密钥轮换和部署操作；发布/回滚 workflow 的 ref、reason、操作者和运行结果由 GitHub Actions 记录，保留策略 `TBD`。
 - 日志脱敏：禁止原始令牌、Cookie、邮箱、个人数据、厂商机密、Affiliate 密钥和完整 URL 查询敏感参数。
 - 保留与访问：`TBD`；按数据分类授予最小访问权限，生产日志不得复制到聊天或公开工单。
-- 告警：依赖高危漏洞、密钥泄露、异常管理操作、外部链接批量变化、商业标记缺失和站点安全头异常；平台 `TBD`。
+- 告警：依赖高危漏洞由 CI 阻断；生产 HTTP smoke 失败由 GitHub Actions 标记失败；密钥泄露、异常管理操作、外部链接批量变化、商业标记缺失和站点安全头异常的通知平台仍为 `TBD`。
 
 ## 8. 安全发布门槛
 
@@ -70,8 +70,10 @@
 - [ ] 无明文密钥或敏感数据泄漏到代码、日志、截图、构建产物或文档。
 - [ ] Affiliate、Featured、Sponsor 和独立评价在页面和链接中清晰分隔。
 - [x] 旧 Crypto/DeFi 生成页面不在当前源码中，未进入构建产物。
-- [x] 当前 npm 依赖审计无高危问题；CI 尚未建立。
+- [x] 当前 npm 依赖审计无高危问题；仓库级 CI 已建立，GitHub 外部运行和分支保护仍待验证。
+- [x] 生产 smoke 不读取密钥，只访问公开 HTTP 页面；发布 workflow 使用受保护的 `production` Environment Secret 名称。
 - [x] Cloudflare Pages 生产域使用 HTTPS，生产首页、工具页、robots 和 sitemap 均已通过只读 smoke；安全响应头和 CSP 策略仍需单独审查。
+- [x] 50 条目录的审核元数据区分产品链接、研究来源、编辑审核和正式核验；5 条来源缺失、14 条 URL 受限情况没有被伪装成已核验。
 - [ ] 数据变更、日志、保留和删除符合已批准策略；当前无数据层时不得宣称已满足。
 
 ## 9. 漏洞响应

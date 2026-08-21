@@ -91,7 +91,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 客户端 | Next.js App Router / React | Next.js `16.3.1` / React `19.2.8` | `app/` 路由和 `components/` 共享 UI；当前是静态页面应用 |
 | 服务端 | Next 静态导出 | `output: export` | `next.config.mjs` 已确认；当前没有独立 API、认证或数据库 |
 | 语言 | TypeScript / TSX | TypeScript `5.9.3` | 共享目录数据暂存于 `lib/catalog.mjs`，正式内容模型尚未确定 |
-| 数据 | 静态研究快照目录 | 50 条 Draft | `lib/catalog.mjs` 分离 `productUrl`、`sourceUrl`、`affiliateStatus`、`commission` 和 `verifiedAt`；研究信息不得直接作为已核验事实 |
+| 数据 | 静态研究快照目录 | 50 条 Draft | `lib/catalog.mjs` 分离 `productUrl`、`sourceUrl`、链接检查、审核状态、`affiliateStatus`、`commission` 和 `verifiedAt`；研究信息不得直接作为已核验事实 |
 | 基础设施 | Cloudflare Pages 静态站点 | 项目 `toolpilot` | `npm run build` 生成 `out/`，已部署到 Pages，并绑定 `https://toolpilot.cc`；CI、监控和回滚自动化仍为 `TBD` |
 | 运行时 | Node.js / npm | Node `22` / npm lockfile v3 | `.nvmrc` 固定 Node 22；Node 22.23.0/npm 10.9.8 下已完成安装和验证 |
 
@@ -112,7 +112,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 产品上下文 | `PROJECT.md`、`PRD.md`、`AI_CONTEXT.md` | 维护目标、边界和当前状态 | `TBD` | 需求与研究结论 |
 | 工程规则 | `AGENTS.md`、`TESTING.md`、`SECURITY.md` | 约束变更、验证和安全行为 | `TBD` | 代码仓库和 CI |
 | Web 应用 | `app/`、`components/` | 首页、工具目录/详情、指南、Compare、Alternatives、Stacks、法律页和 robots/sitemap | `TBD` | Next.js、静态研究快照数据、Cloudflare Pages |
-| 内容与来源 | `lib/catalog.mjs`（当前内容源） | 管理 50 条分类、产品官网、研究来源、研究商业状态和草稿审核字段；正式内容审核流程待确认 | `TBD` | 厂商资料、公开来源、人工审核 |
+| 内容与来源 | `lib/catalog.mjs`（当前内容源） | 管理 50 条分类、产品官网、研究来源、链接检查、研究商业状态和草稿审核字段；正式内容 Owner 和复核流程待确认 | `TBD` | 厂商资料、公开来源、人工审核 |
 | 商业与分析 | 集成位置 `TBD` | 管理 Affiliate、商业曝光标注和转化统计 | `TBD` | 合作方报告、隐私合规分析 |
 
 `.next/` 和 `out/` 都是构建产物，不是内容事实来源。用户已确认旧 Crypto/DeFi 生成内容是主动删除内容，本次不迁移；当前源码只生成开发者工具方向页面。Cloudflare Pages 项目和 `toolpilot.cc` 已完成部署及公网验证，但 50 条内容仍是研究草稿，不能当作正式评价或佣金承诺。
@@ -145,6 +145,8 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 决策页 MVP | 发布首页、分类、工具详情、指南、对比、替代方案和技术栈页面 | `TBD` | `TBD` | `PLANNED` |
 | 工程骨架 MVP | Node 22、Next 静态导出、目录数据、测试和本地 smoke test | 技术负责人 | `2026-08-20` | `DONE` |
 | 首批 50 条目录与生产发布 | 研究快照接入、产品/来源链接分离、Cloudflare Pages 和 `toolpilot.cc` 公网验证 | 技术负责人 | `2026-08-20` | `DONE` |
+| 50 条目录内容审核记录 | 逐条产品/来源链接检查、来源缺口、编辑审核字段和正式发布门槛；正式事实仍为 TBD | 技术负责人 | `2026-08-20` | `DONE` |
+| CI、生产监控与受控回滚入口 | 仓库级质量门槛、生产 smoke、定时检查、release readiness gate 和 immutable reviewed commit SHA 发布/回滚 workflow；外部激活仍为 TBD | 技术负责人 | `2026-08-21` | `IN_PROGRESS` |
 | 商业准备 | 完成 Affiliate 披露、免费收录和付费曝光规则 | `TBD` | `TBD` | `PLANNED` |
 | 数据验证 | 建立出站点击、联盟转化和商业履约的合规分析 | `TBD` | `TBD` | `PLANNED` |
 
@@ -156,8 +158,9 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 付费曝光损害用户信任 | M | H | 免费收录、独立评价、强制商业标注和评价/商业流程隔离 | `TBD` |
 | 工具价格和功能快速过期 | H | M | 记录来源和更新时间，设置复核周期和失效链接检查 | `TBD` |
 | Affiliate 条款、归因或佣金不稳定 | M | M | 采用合作方可核验报告，不把示例佣金写成保证收入，保留非联盟链接 | `TBD` |
-| 当前没有 CI、监控和自动化回滚入口 | H | H | Cloudflare Pages 已可发布和手动回滚；后续建立 CI、告警和回滚演练 | `TBD` |
-| 50 条研究快照尚未完成正式内容审核 | H | H | 逐条核验官网、价格、功能、来源、更新时间和商业关系；草稿不得作为正式评价 | `TBD` |
+| GitHub 外部 CI、通知和实际回滚演练尚未激活 | H | H | 仓库已有 CI、生产 smoke 和 immutable reviewed commit SHA 发布/回滚入口；等待 remote、Secrets、通知和生产窗口确认 | `TBD` |
+| 当前生产产物不能由 Cloudflare 标记的 source `f65b5a7` 复现 | H | H | `npm run release:check` 阻止 dirty/untracked/不安全 remote 发布；先审核并提交当前内容/运维变更，再用完整 commit SHA 重建发布并核对生产 smoke | 工程/运维 Owner `TBD` |
+| 50 条研究快照尚未完成正式内容审核 | H | H | 逐条核验官网、价格、功能、来源、更新时间和商业关系；链接检查记录不等于正式评价 | `TBD` |
 | `.nvmrc` 要求 Node 22 但默认 shell 是 Node 20.17.0 | M | M | 开发命令前执行 `nvm use 22`，CI 固定 Node 22 | `TBD` |
 
 ## 12. 相关文档

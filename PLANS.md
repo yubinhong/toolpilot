@@ -1,6 +1,6 @@
 # PLANS.md - Execution Plan
 
-> 用于跨模块、长时间、高风险或需要阶段交付的任务。顶部为 `DOC-001` 历史计划，当前 `TASK-001` 计划和收尾记录在文末。
+> 用于跨模块、长时间、高风险或需要阶段交付的任务。顶部为 `DOC-001` 历史计划，`TASK-001` 至 `TASK-004` 的计划与收尾记录在文末。
 
 ## 计划元数据
 
@@ -168,3 +168,62 @@ HTTP smoke: / /tools/ /tools/cursor/ /compare/ /guides/ /robots.txt /sitemap.xml
 - 8 个官网的自动检查被 403/429 防护或限流影响，不能替代人工/浏览器内容复核。
 - CI、监控、告警、自动化回滚和回滚演练仍未建立，跟踪 `TODO-004`、`TODO-302`。
 - 建议第一个后续任务：`TASK-003`，建立 50 条内容审核清单和版本化来源记录。
+
+## TASK-003 - Content Review and Source Record
+
+### 计划元数据
+
+- 计划 ID：`TASK-003`
+- 状态：`COMPLETE`
+- 日期：`2026-08-20`
+- 基线：`TASK-002` 已部署的 50 条研究快照目录
+
+### 目标与范围
+
+建立 50 条目录的可追溯审核记录，分离产品链接可达性、研究来源状态、编辑审核状态、正式事实核验和商业关系核验；继续把未核验内容显示为 Draft/TBD。范围不包含 Affiliate 申请、密钥、CMS、数据库或正式事实的自动批准。
+
+### 完成项
+
+- [x] `lib/catalog.mjs` 为 50 条记录增加研究快照日期、产品/来源链接检查、来源状态、编辑审核 Owner/日期和正式核验日期。
+- [x] `docs/content-review/TASK-003-2026-08-20.md` 列出全部 50 条记录、当前访问统计、来源缺口、受限 URL 和正式发布清单。
+- [x] `docs/adr/0006-content-review-gate.md` 固化“HTTP 可达不等于事实核验”的发布门槛。
+- [x] 目录卡片和详情页显示链接检查、来源状态和编辑审核状态；所有条目仍为 Draft/Pending。
+- [x] 通过 Node 22 的 typecheck、lint、3 项测试、build 和高危级别 npm audit。
+- [x] 发布 Cloudflare Pages，生产域名 `toolpilot.cc` 关键路径返回 200，sitemap 包含 50 条工具 URL。
+
+### 证据与未决事项
+
+- 产品官网检查：42 个 2xx/3xx，8 个 403/429 受限；研究来源检查：39 个 2xx/3xx，6 个 403 受限，5 个缺失。
+- 50 条内容的价格、功能、限制、来源新鲜度、编辑评价和商业条款仍需产品/内容/商业 Owner 人工确认；这些内容没有被本任务自动标记为已验证。
+- CI、监控、告警和回滚演练仍跟踪 `TODO-004`、`TODO-302`；下一执行计划建议为 `TASK-004`。
+
+## TASK-004 - CI, Production Monitoring, and Controlled Rollback
+
+### 计划元数据
+
+- 计划 ID：`TASK-004`
+- 状态：`IN_PROGRESS`
+- 日期：`2026-08-21`
+- 基线：TASK-003 完成后的静态站点；已有初始提交 `f65b5a7`，本任务改动未提交
+
+### 目标与范围
+
+建立仓库级 CI、可复用生产 smoke、定时生产监控和 immutable reviewed commit SHA 发布/回滚入口。只修改仓库配置和文档，不自动创建 GitHub/Cloudflare 外部设置，不在未确认生产窗口时切换线上版本。
+
+### 已完成
+
+- [x] `scripts/smoke.mjs` 和 `npm run smoke`：检查 7 个关键路径、审核标记和 50 条 sitemap 工具 URL。
+- [x] `.github/workflows/ci.yml`：Node 22、`npm ci`、audit、lint、typecheck、test、build、本地静态 smoke。
+- [x] `.github/workflows/production-monitor.yml`：每 15 分钟和手动触发的生产 smoke。
+- [x] `.github/workflows/pages-release.yml`：手动 immutable reviewed commit SHA 发布/回滚、生产 Environment、Cloudflare Secret 名称和并发锁。
+- [x] `scripts/release-readiness.mjs` 和 `npm run release:check`：在发布前拒绝错误 Node、短 SHA、不安全/缺失 remote、dirty worktree 和未跟踪发布文件；4 个门槛测试通过。
+- [x] `docs/adr/0007-ci-monitoring-release-gate.md` 记录 workflow 边界和 Pages 没有原生 CLI rollback 命令的事实。
+- [x] 本地静态服务器 smoke 通过；三个 workflow YAML 通过 Ruby YAML 解析。
+- [x] Node 22 下 `npm run lint`、`npm run typecheck`、`npm test`、`npm run build`、`npm audit --audit-level=high` 通过；2026-08-21 生产 smoke 7/7 路径通过。
+
+### 未完成与阻塞
+
+- 无凭据 GitHub SSH `origin` 已在执行期间配置，但远端没有 refs、本地没有 upstream；Actions 运行记录、`production` Environment、分支保护、Cloudflare Secrets 和失败通知尚未配置或验证，`release:check` 因 dirty/untracked 状态保持预期失败。
+- 当前生产部署元数据显示 source `f65b5a7`，但线上审核标记不在该提交中；必须先形成并推送可复现当前产物的 reviewed commit。
+- 尚未在明确生产操作窗口执行实际 Pages 回滚/域名恢复演练；跟踪 `TODO-302`。
+- 任务保持 `IN_PROGRESS`，直到外部 Owner 完成激活并提供运行/回滚证据。

@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Serve static output
+        run: |
+          python3 -m http.server 4173 --directory out >/tmp/toolpilot-http.log 2>&1 &
+          echo $! >/tmp/toolpilot-http.pid
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/toolpilot-http.log
+          exit 1
+
+      - name: Smoke test static output
+        run: npm run smoke
+        env:
+          SMOKE_BASE_URL: http://127.0.0.1:4173
+
+      - name: Stop static server
+        if: ${{ always() }}
+        run: kill "$(cat /tmp/toolpilot-http.pid)" 2>/dev/null || true

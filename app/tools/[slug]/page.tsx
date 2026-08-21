@@ -57,6 +57,9 @@ export default async function ToolDetailPage({ params }: { params: Promise<{ slu
                   <tr><th scope="row">Research snapshot</th><td>{tool.source}</td></tr>
                   <tr><th scope="row">Commercial status</th><td>{tool.affiliateLabel}</td></tr>
                   <tr><th scope="row">Commission note</th><td>{tool.commission}</td></tr>
+                  <tr><th scope="row">Product link check</th><td>{tool.productLinkCheck.status === "http-ok" ? `HTTP checked ${tool.productLinkCheck.checkedAt}` : `Reachable but restricted ${tool.productLinkCheck.checkedAt}`}</td></tr>
+                  <tr><th scope="row">Source status</th><td>{tool.sourceStatus === "provided" ? `Provided; ${tool.sourceLinkCheck.status === "http-ok" ? "HTTP checked" : "reachable but restricted"}` : "Missing from research snapshot"}</td></tr>
+                  <tr><th scope="row">Editorial review</th><td>{tool.reviewStatus === "pending-editorial" ? "Pending; owner TBD" : tool.reviewStatus}</td></tr>
                   <tr><th scope="row">Verified at</th><td>{tool.verifiedAt || "TBD - editorial review required"}</td></tr>
                 </tbody>
               </table>

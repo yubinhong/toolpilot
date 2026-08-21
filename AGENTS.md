@@ -79,7 +79,7 @@
 - 主语言与版本：`TypeScript/TSX`，`typescript@5.9.3`；页面源码位于 `app/`，共享 UI 位于 `components/`，目录数据位于 `lib/catalog.mjs`。
 - Web 框架：`Next.js 16.3.1 App Router`；`next.config.mjs` 已确认 `output: export`、`trailingSlash: true`，当前没有独立服务端、API 或数据库。
 - 运行时要求：`Node.js 22`，由根目录 `.nvmrc` 固定；依赖由 npm 管理，锁文件为 `package-lock.json` lockfile v3。
-- 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`，ESLint 为 `9.39.5`。
+- 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`、`smoke`、`release:check`，ESLint 为 `9.39.5`。
 - 域名配置：`.env.example` 提供 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`；已在 Cloudflare Pages 项目 `toolpilot` 绑定并通过公网 smoke 验证 `https://toolpilot.cc`。
 
 ### 5.2 命令与验证
@@ -89,13 +89,15 @@
 | 格式化 | `TBD` | 当前没有格式化工具或 npm script；不要自行引入格式化器 |
 | 静态检查 | `npm run lint` | 使用仓库中的 ESLint flat config |
 | 类型检查 | `npm run typecheck` | 使用 `tsconfig.json`，禁止绕过错误 |
-| 单元测试 | `npm test` | Node 22 内置 test runner，当前覆盖目录数据不变量 |
+| 单元测试 | `npm test` | Node 22 内置 test runner，当前覆盖目录数据和发布门槛不变量 |
+| HTTP smoke | `npm run smoke` | 检查本地或 `SMOKE_BASE_URL` 指定的公开静态站点 |
+| 发布前检查 | `npm run release:check` | 必须在 Node 22、完整 HEAD SHA、无凭据 GitHub origin、干净工作区和发布文件均被跟踪时通过 |
 | 集成/E2E | `TBD` | 尚未引入浏览器测试框架；页面 smoke test 用本地 HTTP 检查替代 |
 | 构建 | `npm run build` | 生成静态 `out/`；构建后审查路由、`robots.txt` 和 `sitemap.xml` |
 | 依赖安装 | `nvm use 22 && npm ci` | 使用锁文件恢复可复现依赖，不升级版本 |
 | 依赖审计 | `nvm use 22 && npm audit --audit-level=high` | 发布前必须通过；本次结果为 0 vulnerabilities |
-| Cloudflare 认证 | `npx --yes wrangler whoami` | Pages 发布前确认账户；不得输出令牌 |
-| Cloudflare Pages 发布 | `npx --yes wrangler pages deploy out --project-name toolpilot --branch main` | 仅发布已通过本地构建的 `out/`；发布后必须做公网 smoke |
+| Cloudflare 认证 | `npx --yes wrangler@4.124.0 whoami` | Pages 发布前确认账户；不得输出令牌 |
+| Cloudflare Pages 发布 | `npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main` | 仅发布已通过本地构建的 `out/`；发布后必须做公网 smoke |
 
 代码要求：
 
@@ -125,7 +127,7 @@
 | 部署、告警、回滚 | `RUNBOOK.md` |
 | 当前状态或活动任务变化 | `AI_CONTEXT.md`、`TASK.md`、`TODO.md` |
 
-`TASK-002` 已同步目录数据、Cloudflare Pages 发布和公网域名事实；后续进入需求、内容审核、商业关系或实现阶段时，仍必须按变更类型同步对应文档，不得把摘要复制成第二事实来源。
+`TASK-004` 已同步 CI、生产 smoke、监控和 immutable reviewed commit SHA 发布/回滚入口；后续进入需求、内容审核、商业关系或实现阶段时，仍必须按变更类型同步对应文档，不得把摘要复制成第二事实来源。
 
 ## 8. Definition of Done
 

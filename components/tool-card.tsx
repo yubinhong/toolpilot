@@ -12,6 +12,9 @@ type Tool = {
   productUrl: string;
   sourceUrl: string | null;
   affiliateLabel: string;
+  reviewStatus: string;
+  productLinkCheck: { status: string };
+  sourceLinkCheck: { status: string };
 };
 
 export function ToolCard({ tool }: { tool: Tool }) {
@@ -37,6 +40,12 @@ export function ToolCard({ tool }: { tool: Tool }) {
       <div className="tool-card-meta">
         <span>Best for</span>
         <strong>{tool.bestFor}</strong>
+      </div>
+      <div className="tool-card-audit">
+        <span>Editorial review</span>
+        <strong>{tool.reviewStatus === "pending-editorial" ? "Pending" : tool.reviewStatus}</strong>
+        <span>Link check</span>
+        <strong>{tool.productLinkCheck.status === "http-ok" ? "Official link checked" : "Official link restricted"}</strong>
       </div>
       <div className="tool-card-footer">
         <span className="tool-source">

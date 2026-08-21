@@ -4,8 +4,8 @@
 
 - 核心用户路径：从开发任务进入决策页，读取工具事实、比较和商业标记，再安全访问厂商站点。
 - 不可接受的失败：发布无来源或过期事实、隐藏 Affiliate/Sponsor 关系、错误的自然排序、将旧 Crypto/DeFi 页面当作当前 ToolPilot 内容、泄露密钥或个人数据。
-- 目标覆盖范围：`TBD`；当前单测覆盖目录数据不变量，页面质量以类型、Lint、静态构建和本地 HTTP smoke 为主。
-- 当前验证状态：Node 22.23.0/npm 10.9.8 下 `npm ci`、`npm audit`、`typecheck`、`lint`、`test`、`build` 均通过；50 个产品官网中 42 个返回 2xx/3xx，8 个返回可达但受防护/限流影响的 403/429；`toolpilot.cc` 生产关键路径均返回 HTTP 200。
+- 目标覆盖范围：`TBD`；当前单测覆盖目录数据和发布门槛不变量，页面质量以类型、Lint、静态构建和本地 HTTP smoke 为主，CI 和生产 smoke 入口已加入但外部运行记录仍待确认。
+- 当前验证状态：Node 22.23.0/npm 10.9.8 下目录审核字段、TASK-004 smoke 和 release readiness 变更已通过 `typecheck`、`lint`、7 个测试、生产构建和高危级别依赖审计；最新外部检查为 50 个产品官网中 42 个返回 2xx/3xx、8 个返回可达但受防护/限流影响的 403/429，45 个研究来源中 39 个返回 2xx/3xx、6 个 403；5 个条目没有研究来源 URL。2026-08-21 新 smoke 对 `toolpilot.cc` 的 7 个路径均返回 HTTP 200，sitemap 包含 50 个工具 URL。
 
 ## 2. 标准命令
 
@@ -31,10 +31,14 @@
 | E2E | `TBD - no browser harness` | 用户流程变更后 | `TBD` |
 | 构建 | `nvm use 22 && npm run build` | 合并前、发布前 | 秒级 |
 | 安全检查 | `nvm use 22 && npm audit --audit-level=high` | 合并前、发布前 | 秒级 |
+| 发布前仓库检查 | `nvm use 22 && npm run release:check` | 提交审核后、Pages 发布前 | 秒级 |
 | 50 个官网链接 | `node --input-type=module -e "import {tools} from './lib/catalog.mjs'; /* 对 tools.productUrl 执行 GET */"` | 目录链接变更、发布前 | 数十秒 |
-| Cloudflare 认证 | `npx --yes wrangler whoami` | Pages 发布前 | 秒级 |
-| Cloudflare Pages 发布 | `npx --yes wrangler pages deploy out --project-name toolpilot --branch main` | 发布已审查的 `out/` | 分钟级 |
+| Cloudflare 认证 | `npx --yes wrangler@4.124.0 whoami` | Pages 发布前 | 秒级 |
+| Cloudflare 部署历史 | `npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot` | 发布/回滚前确认当前和候选部署 | 秒级 |
+| Cloudflare Pages 发布 | `npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main` | 发布已审查的 `out/` | 分钟级 |
 | 生产 smoke | `for path in / /tools/ /tools/digitalocean/ /robots.txt /sitemap.xml; do /usr/bin/curl -sS -L --max-time 20 -o /dev/null -w ... https://toolpilot.cc${path}; done` | 每次生产发布 | 分钟级 |
+| 内容审核不变量 | `npm test` | `lib/catalog.mjs` 审核字段或来源变更 | 秒级 |
+| 本地/生产 smoke | `npm run smoke` | 构建产物或生产发布后 | 秒级/分钟级 |
 
 不要把 `npm run build`、`npm test`、`npm run lint` 等猜测命令写成通过；恢复 `package.json` 后先读取实际 scripts 和锁文件，再更新本表。
 
@@ -45,9 +49,10 @@
 - 修改数据模型：验证迁移、回滚/前滚、旧数据和并发路径；当前没有数据库或迁移文件。
 - 修改 UI：验证目标设备、响应式、键盘、错误状态、外部链接和可访问性。
 - 修复缺陷：先建立失败复现，再添加回归测试。
-- 修改内容：核对来源、更新时间、事实字段、链接、商业标记和页面主题。
+- 修改内容：核对来源、更新时间、事实字段、链接、链接检查结果、审核 Owner、商业标记和页面主题；HTTP 可达不能替代内容核验。
 - 修改 Affiliate/Featured/Sponsor：检查用户可见披露、链接关系、分析属性和评价排序隔离。
 - 修改 AI 提示或模型逻辑：当前没有 AI 运行时；若未来引入，运行固定评测集并比较质量、成本、延迟和安全指标。
+- 修改发布 workflow 或 Git 边界：运行发布门槛单测，并直接运行 `npm run release:check`；缺 remote、dirty worktree 或未跟踪发布文件必须导致非零退出。
 
 ## 4. 测试矩阵
 
@@ -55,7 +60,8 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | 文档和项目上下文 | 不适用 | 文件清单/占位符检查 | 不适用 | 敏感文件名检查 | 不适用 | `TBD` |
 | 静态页面构建 | `TBD` | `TBD` | `TBD` | 依赖和密钥扫描 `TBD` | 页面预算 `TBD` | `TBD` |
-| 工具事实与来源 | `TBD` | 内容审查 | 页面/链接检查 `TBD` | 外部输入校验 `TBD` | 新鲜度检查 `TBD` | `TBD` |
+| 发布仓库状态 | Node 版本、SHA、remote、dirty/tracked 不变量 | workflow YAML | 手动 dispatch `TBD` | 不打印 remote/Secret | 不适用 | 工程/运维 Owner `TBD` |
+| 工具事实与来源 | 目录不变量 | 内容审查 | 页面/链接检查 | 外部输入校验 | 新鲜度检查 `TBD` | `TBD` |
 | 商业披露与出站链接 | `TBD` | `TBD` | 点击和跳转检查 `TBD` | 关系与日志脱敏 `TBD` | `TBD` | `TBD` |
 
 ## 5. 测试数据
@@ -69,12 +75,19 @@
 
 ## 6. CI 质量门槛
 
-- 当前未发现 `.github/`、CI workflow、依赖清单或构建脚本，不能宣称 CI 存在或通过。
+- `.github/workflows/ci.yml` 已建立仓库级 CI；GitHub `origin` 已配置，但远端没有 refs且未有 GitHub Actions 运行记录，不能宣称外部 CI 已上线或通过。
 - [x] Node 22 与 `.nvmrc` 一致（Node 22.23.0）。
 - [x] Lint、类型检查通过；格式化工具仍未配置。
-- [x] 最小相关测试通过（3 个 Node test）。
+- [x] 最小相关测试通过（7 个 Node test，其中 4 个覆盖 release readiness）。
 - [x] 无新增高危安全问题，授权网络下 `npm audit --audit-level=high` 返回 0 vulnerabilities。
 - [x] 构建产物可生成，内容路由、robots 和站点地图可审查。
+- [x] 本地 `out/` 静态服务器的 `npm run smoke` 通过 7 个路径和 50 条工具 sitemap URL。
+- [x] 2026-08-21 `SMOKE_BASE_URL=https://toolpilot.cc npm run smoke` 通过 7 个生产路径和 50 条工具 sitemap URL。
+- [x] 2026-08-21 Wrangler 认证和 Pages 部署历史读取通过；当前部署元数据显示 source `f65b5a7`，但 `git grep` 证实该提交没有生产 smoke 所需的审核标记；另一个较早部署没有 source ref，因此两者尚未验收为回滚目标。
+- [x] 手动发布 workflow 的 commit gate 已直接执行：完整 40 位 SHA 通过，7 位短 SHA 被拒绝。
+- [x] `npm run release:check` 正向/反向单测通过；当前 checkout 直接运行确认 origin 合法，并按设计以非零退出报告 dirty worktree 和未跟踪发布文件。
+- [ ] GitHub Actions `CI / quality` 成功运行并绑定分支保护；等待 GitHub Owner 配置。
+- [ ] 定时生产 smoke 首次运行并配置失败通知；等待 GitHub Owner 配置。
 - [x] 旧 Crypto/DeFi 页面不在当前源码中，按用户确认不迁移。
 - [ ] Flaky test 不通过重跑掩盖；必须记录根因或隔离审批。
 
@@ -84,6 +97,6 @@
 
 - 未运行的命令：格式化、集成、E2E；仓库尚未配置对应工具或外部服务。
 - 已完成验证：Node 22.23.0/npm 10.9.8、`npm run typecheck`、`npm run lint`、`npm test`、`npm run build`；本地 `127.0.0.1:3001` 的 `/`、`/tools/`、`/tools/cursor/`、`/compare/`、`/guides/`、`/robots.txt`、`/sitemap.xml` 均返回 200。
-- 残余风险：没有 CI、浏览器 E2E、性能预算或正式来源审核；8 个官网可达但返回 403/429，不能据此完成页面内容核验。
-- 已完成生产验证：Cloudflare Pages 项目 `toolpilot` 的部署 URL 和 `https://toolpilot.cc` 的首页、目录、DigitalOcean 详情、robots、sitemap 均返回 200；生产 sitemap 包含 50 个工具 URL。
-- 下一位执行者：先完成 `TODO-005`、`TODO-006` 和 `TODO-008`，再把研究草稿转为正式内容发布。
+- 残余风险：没有 GitHub Actions 外部运行记录、浏览器 E2E、性能预算或正式来源审核；8 个官网可达但返回 403/429，不能据此完成页面内容核验。
+- 已完成生产验证：Cloudflare Pages 新部署 URL 为 `https://a888f675.toolpilot-2cy.pages.dev`；`https://toolpilot.cc` 的首页、目录、Cloudways/DigitalOcean 详情、robots、sitemap 均返回 200；生产 sitemap 包含 50 个工具 URL，页面显示审核状态标记。
+- 下一位执行者：审核并提交当前工作区，使 `npm run release:check` 通过；获得推送授权后推送 `main` 并设置 upstream，再配置 GitHub `production` Environment、Cloudflare Secrets、失败通知和分支保护，首次运行 `CI` 与生产监控，随后在生产窗口完成 `TODO-302` 回滚演练。

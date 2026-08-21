@@ -8,7 +8,7 @@
 - 依赖：`package.json`/`package-lock.json`、Node 22、Next 静态构建、Cloudflare Pages 项目 `toolpilot`、厂商站点和未来可选分析服务。
 - Dashboard：Cloudflare Dashboard 的 Workers & Pages > `toolpilot`；当前未配置应用监控或告警。
 - 日志：`TBD`；当前没有应用、部署或访问日志入口。
-- 当前状态：`out/` 已部署到 Cloudflare Pages，生产域名为 `https://toolpilot.cc`；生产关键路径已验证 200，但没有 CI、监控或自动化回滚演练。
+- 当前状态：`out/` 已部署到 Cloudflare Pages，生产域名为 `https://toolpilot.cc`；TASK-003 新部署 URL 为 `https://a888f675.toolpilot-2cy.pages.dev`，生产关键路径和审核状态标记已复核。2026-08-21 只读查询确认项目保留两个 Production 部署；当前部署元数据显示 source `f65b5a7`，但该提交不含线上审核标记，较早部署则没有 source ref，因此两者都不是已确认的可复现回滚基线。TASK-004 已加入仓库级 CI、生产 smoke 和受控发布/回滚入口，但 GitHub 外部激活和真实回滚演练仍未完成。
 
 ## 2. SLO 与关键指标
 
@@ -28,22 +28,30 @@
 - [x] 使用 Node 22；当前工程验证使用 Node 22.23.0。
 - [x] `TESTING.md` 中的 Lint、类型、测试和构建命令已填入并通过。
 - [x] 生成路由、站点地图、robots、法律页面和 50 条目录链接已审查；工具事实、来源和商业关系仍是 Draft，未完成正式内容审核。
+- [x] TASK-003 的内容发布门槛已写入 `docs/adr/0006-content-review-gate.md`；链接可达只作为访问证据，不能替代事实核验。
+- [x] TASK-004 的 CI、生产监控和 immutable reviewed commit SHA 发布/回滚入口已写入 `.github/workflows/` 和 `docs/adr/0007-ci-monitoring-release-gate.md`；外部运行记录仍待确认。
+- [x] `npm run release:check` 已接入发布 workflow；GitHub origin 已配置，当前仍因 dirty worktree 和未跟踪发布文件而按设计失败，不能跳过。
 - [x] 旧 Crypto/DeFi 生成内容按用户确认不迁移，当前源码未生成相关页面。
-- [x] Cloudflare Pages 保留部署版本；本次生产部署 ID 为 `72de9c30-7c71-4944-acaa-54ee474c4fbe`，回滚 Owner 和演练仍需确认。
+- [x] Cloudflare Pages 保留两个 Production 部署；当前部署元数据指向 `f65b5a7` 但产物不能由该提交复现，较早部署没有 source ref，不能在未确认来源和内容时直接回滚；回滚 Owner 和演练仍需确认。
 - [ ] Affiliate/Featured/Sponsor 条款、归因、退款和披露文案已批准。
+- [ ] 50 条目录已由产品/内容 Owner 完成事实、来源新鲜度和商业条款审核。
 
 ### 命令/流程
 
 ```bash
 nvm use 22
+npm run release:check
 npm ci
 npm run lint
 npm run typecheck
 npm test
 npm run build
-npx --yes wrangler whoami
-npx --yes wrangler pages deploy out --project-name toolpilot --branch main
+npx --yes wrangler@4.124.0 whoami
+npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot
+npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main
 ```
+
+`release:check` 只有在 GitHub `origin` 已配置、HEAD 为完整 commit、工作区干净且发布文件都已被 Git 跟踪时才应通过。当前 `origin` 已配置但远端没有 refs，仍需审核并提交工作区；不要使用 `--no-verify` 或临时删除检查绕过。
 
 ### 部署后验证
 
@@ -59,7 +67,7 @@ done
 ## 4. 回滚
 
 - 触发条件：站点不可用、构建产物与源码不一致、工具事实错误、关键链接失效、商业标记缺失、安全门槛失败或旧 Crypto/DeFi 内容误发布。
-- 应用回滚：在 Cloudflare Dashboard > Workers & Pages > `toolpilot` > Deployments 选择上一份已审查部署并执行 Rollback；需要保留当前部署 URL 和验证结果。也可重新运行 `npx --yes wrangler pages deploy <reviewed-out> --project-name toolpilot --branch main`。
+- 应用回滚：优先通过 `.github/workflows/pages-release.yml` 输入上一份已审核的完整 40 位 commit SHA 重建并发布；可移动分支名和来源不明的部署都不能作为已审核回滚目标。紧急情况下在 Cloudflare Dashboard > Workers & Pages > `toolpilot` > Deployments 选择上一份已审查部署并执行 Rollback。需要保留当前部署 URL 和验证结果；也可重新运行 `npx --yes wrangler@4.124.0 pages deploy <reviewed-out> --project-name toolpilot --branch main`。
 - 数据回滚/前滚：当前没有已确认数据库或迁移；若未来引入数据层，必须使用向前迁移和已验证备份恢复，不直接回滚生产数据。
 - 验证：重新检查公共首页、关键决策页、法律页、站点地图、robots、外部链接、商业披露和安全头。
 
@@ -76,8 +84,8 @@ done
 ### 内容或商业标记异常
 
 - 含义：页面缺少来源、更新时间、Affiliate/Sponsor 标记或包含不符合定位的旧内容。
-- 首先检查：页面内容版本、来源记录、商业关系、路由主题和出站 URL。
-- 查询/命令：内容审查清单和恢复后的链接检查命令 `TBD`。
+- 首先检查：页面内容版本、`docs/content-review/TASK-003-2026-08-20.md`、来源记录、商业关系、路由主题和出站 URL。
+- 查询/命令：`npm test`、内容审查清单和 `/usr/bin/curl -sS -L --max-time 20 -o /dev/null -w '%{http_code} %{url_effective}\\n' <url>`；HTTP 可达不等于事实已验证。
 - 临时缓解：下线或隐藏受影响页面，保留事实证据，暂停相关商业曝光。
 - 升级条件：涉及大量页面、已产生错误商业归因或用户投诉时升级给产品/商业 Owner。
 
@@ -102,4 +110,4 @@ done
 - RPO：`TBD`；需要确定内容源、静态产物和订单/分析数据的备份策略。
 - RTO：`TBD`；需要确认静态托管、DNS 和上一版本产物的恢复时间。
 - 备份位置：`TBD`；不得把备份放在公开仓库或聊天中。
-- 恢复演练：尚未完成；下一次运维任务必须用上一份已审查 `out/` 做一次 Pages 回滚，并重新验证生产关键路径。
+- 恢复演练：尚未完成；必须先把当前生产内容固定到一个已推送、已审核且能重建相同产物的完整 commit SHA，再确认上一份可回退 commit，通过受保护 workflow 做一次 Pages 回滚，并重新验证生产关键路径。

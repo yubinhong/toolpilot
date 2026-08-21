@@ -5,8 +5,8 @@ export function CatalogNotice() {
       <div>
         <strong>50-product research catalog</strong>
         <span>
-          These entries are research-derived drafts. Product links and commercial relationship
-          notes are visible for review; pricing, claims, and commission terms are not yet verified.
+          These entries are research-derived drafts. Link checks are recorded for review; pricing,
+          claims, source freshness, and commission terms are not yet editorially verified.
         </span>
       </div>
     </div>

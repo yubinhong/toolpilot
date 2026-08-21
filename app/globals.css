@@ -504,6 +504,22 @@ h3 {
   font-size: 13px;
 }
 
+.tool-card-audit {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.tool-card-audit strong {
+  color: var(--ink);
+  font-size: 12px;
+  text-align: right;
+}
+
 .tool-card-footer {
   align-items: center;
   margin-top: auto;

@@ -20,6 +20,7 @@
 | --- | --- | --- | --- | --- | --- |
 | ADR-001 | 静态导出 MVP 与内容边界 | Accepted for MVP | 2026-08-20 | 技术负责人 | `app/`、`lib/catalog.mjs`、静态构建和发布边界 |
 | ADR-005 | Cloudflare Pages 生产托管与 `toolpilot.cc` | Accepted for current MVP | 2026-08-20 | 技术负责人 | `out/`、Pages 项目 `toolpilot`、DNS、HTTPS 和回滚边界 |
+| ADR-007 | CI、生产 smoke 和受控 Pages 发布 | Accepted for current static MVP | 2026-08-20 | 技术负责人 | `.github/workflows/`、`scripts/smoke.mjs`、生产发布与回滚入口 |
 
 ## 建议创建的 ADR
 
@@ -27,7 +28,7 @@
 | --- | --- | --- | --- | --- |
 | ADR-002 | 独立评价与 Affiliate/Featured/Sponsor 隔离 | Proposed | 产品 Owner、商业/法务 Owner 确认条款和披露 | 内容模型、排序、链接、分析和审核 |
 | ADR-004 | 工具内容存储、版本和审核模型 | Proposed | PRD 批准并确认是否需要 CMS、后台或数据库 | 数据、权限、迁移和审计 |
-| ADR-006 | 50 条研究快照的来源、更新时间和正式发布准入 | Proposed | 产品/内容 Owner 完成逐条核验 | `lib/catalog.mjs`、内容审核和公开事实 |
+| ADR-006 | 50 条研究快照的来源、更新时间和正式发布准入 | Accepted for current draft catalog | 2026-08-20 | 技术负责人 | `lib/catalog.mjs`、内容审核和公开事实 |
 
 ## 已废弃/被替代决策
 
