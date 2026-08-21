@@ -159,7 +159,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 工具价格和功能快速过期 | H | M | 记录来源和更新时间，设置复核周期和失效链接检查 | `TBD` |
 | Affiliate 条款、归因或佣金不稳定 | M | M | 采用合作方可核验报告，不把示例佣金写成保证收入，保留非联盟链接 | `TBD` |
 | GitHub 外部 CI、通知和实际回滚演练尚未激活 | H | H | 仓库已有 CI、生产 smoke 和 immutable reviewed commit SHA 发布/回滚入口；等待 remote、Secrets、通知和生产窗口确认 | `TBD` |
-| 当前生产产物不能由 Cloudflare 标记的 source `f65b5a7` 复现 | H | H | `npm run release:check` 阻止 dirty/untracked/不安全 remote 发布；先审核并提交当前内容/运维变更，再用完整 commit SHA 重建发布并核对生产 smoke | 工程/运维 Owner `TBD` |
+| 最新 reviewed commit `6908245` 尚未部署到生产 | H | H | `npm run release:check` 已通过；获得生产授权后用完整 commit SHA 发布，核对 Cloudflare source 和生产 smoke | 工程/运维 Owner `TBD` |
 | 50 条研究快照尚未完成正式内容审核 | H | H | 逐条核验官网、价格、功能、来源、更新时间和商业关系；链接检查记录不等于正式评价 | `TBD` |
 | `.nvmrc` 要求 Node 22 但默认 shell 是 Node 20.17.0 | M | M | 开发命令前执行 `nvm use 22`，CI 固定 Node 22 | `TBD` |
 

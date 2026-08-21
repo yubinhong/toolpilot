@@ -22,5 +22,5 @@ The static site was deployed successfully, but releases were manual and there wa
 - CI and smoke behavior is reproducible without introducing a new runtime dependency or a monitoring service.
 - Production monitoring can detect public availability, required review markers, and sitemap completeness, but it cannot detect stale or incorrect editorial facts.
 - Live workflow activation still requires a GitHub repository, production environment approval rules, Cloudflare secrets, and notification recipients. None of those external settings are asserted by repository files.
-- The local checkout intentionally fails `release:check` until the reviewed TASK-003/TASK-004 state and release-control files are committed; the GitHub `origin` is now configured but has no refs. This is a release block, not a test failure to bypass.
+- Reviewed commit `6908245` is now pushed to `origin/main` and passes `release:check`. Production deployment remains a separately authorized operation; the currently deployed source `f65b5a7` is not a reproducible baseline for the updated content.
 - A rollback requires an immutable reviewed commit SHA and a successful rebuild; this is safer and more auditable for a static site than deploying an unknown local directory or a movable branch name.

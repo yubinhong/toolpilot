@@ -8,7 +8,7 @@
 - 依赖：`package.json`/`package-lock.json`、Node 22、Next 静态构建、Cloudflare Pages 项目 `toolpilot`、厂商站点和未来可选分析服务。
 - Dashboard：Cloudflare Dashboard 的 Workers & Pages > `toolpilot`；当前未配置应用监控或告警。
 - 日志：`TBD`；当前没有应用、部署或访问日志入口。
-- 当前状态：`out/` 已部署到 Cloudflare Pages，生产域名为 `https://toolpilot.cc`；TASK-003 新部署 URL 为 `https://a888f675.toolpilot-2cy.pages.dev`，生产关键路径和审核状态标记已复核。2026-08-21 只读查询确认项目保留两个 Production 部署；当前部署元数据显示 source `f65b5a7`，但该提交不含线上审核标记，较早部署则没有 source ref，因此两者都不是已确认的可复现回滚基线。TASK-004 已加入仓库级 CI、生产 smoke 和受控发布/回滚入口，但 GitHub 外部激活和真实回滚演练仍未完成。
+- 当前状态：`out/` 已部署到 Cloudflare Pages，生产域名为 `https://toolpilot.cc`；最新 reviewed commit `6908245` 已推送且本地发布检查通过，但尚未部署。2026-08-21 只读查询确认项目保留两个 Production 部署；当前部署元数据显示 source `f65b5a7`，但该提交不含线上审核标记，较早部署则没有 source ref，因此两者都不是最新内容的可复现回滚基线。TASK-004 已加入仓库级 CI、生产 smoke 和受控发布/回滚入口，生产发布和真实回滚演练仍需授权。
 
 ## 2. SLO 与关键指标
 
@@ -30,9 +30,9 @@
 - [x] 生成路由、站点地图、robots、法律页面和 50 条目录链接已审查；工具事实、来源和商业关系仍是 Draft，未完成正式内容审核。
 - [x] TASK-003 的内容发布门槛已写入 `docs/adr/0006-content-review-gate.md`；链接可达只作为访问证据，不能替代事实核验。
 - [x] TASK-004 的 CI、生产监控和 immutable reviewed commit SHA 发布/回滚入口已写入 `.github/workflows/` 和 `docs/adr/0007-ci-monitoring-release-gate.md`；外部运行记录仍待确认。
-- [x] `npm run release:check` 已接入发布 workflow；GitHub origin 已配置，当前仍因 dirty worktree 和未跟踪发布文件而按设计失败，不能跳过。
+- [x] `npm run release:check` 已接入发布 workflow；GitHub origin 已配置，干净的 `6908245` checkout 实际检查已通过；当前仅文档状态更新未提交，不能跳过。
 - [x] 旧 Crypto/DeFi 生成内容按用户确认不迁移，当前源码未生成相关页面。
-- [x] Cloudflare Pages 保留两个 Production 部署；当前部署元数据指向 `f65b5a7` 但产物不能由该提交复现，较早部署没有 source ref，不能在未确认来源和内容时直接回滚；回滚 Owner 和演练仍需确认。
+- [x] Cloudflare Pages 保留两个 Production 部署；当前部署元数据指向 `f65b5a7` 但产物不能由该提交复现，较早部署没有 source ref；`6908245` 已推送但尚未发布，不能在未授权生产窗口时切换版本。
 - [ ] Affiliate/Featured/Sponsor 条款、归因、退款和披露文案已批准。
 - [ ] 50 条目录已由产品/内容 Owner 完成事实、来源新鲜度和商业条款审核。
 
@@ -51,7 +51,7 @@ npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot
 npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main
 ```
 
-`release:check` 只有在 GitHub `origin` 已配置、HEAD 为完整 commit、工作区干净且发布文件都已被 Git 跟踪时才应通过。当前 `origin` 已配置但远端没有 refs，仍需审核并提交工作区；不要使用 `--no-verify` 或临时删除检查绕过。
+`release:check` 只有在 GitHub `origin` 已配置、HEAD 为完整 commit、工作区干净且发布文件都已被 Git 跟踪时才应通过。`6908245` 已通过该检查；当前 9 个文档状态更新需经授权提交后，本地检查才会再次通过。不要使用 `--no-verify` 或临时删除检查绕过。
 
 ### 部署后验证
 
