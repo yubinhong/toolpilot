@@ -27,7 +27,6 @@
 | ID | 事项 | 阻塞原因 | 等待对象 | 下一次检查 |
 | --- | --- | --- | --- | --- |
 | TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | TASK-004 已提供 immutable reviewed commit SHA 回滚入口，但尚未在生产窗口执行实际恢复 | 运维/项目 Owner | 完成 GitHub 外部配置后 |
-| TODO-303 | 建立可复现的生产 commit 基线 | reviewed commit `6908245` 已推送且 `release:check` 通过；当前部署元数据仍指向不含线上审核标记的 `f65b5a7`，需获得生产授权并由完整 SHA 重建生产 | 工程/运维 Owner | 激活发布 workflow 和回滚演练前 |
 
 ## 发现问题记录规则
 
@@ -56,5 +55,9 @@
 ## In progress in TASK-004
 
 - CI、生产 smoke、定时监控和手动 immutable reviewed commit SHA 发布/回滚 workflow 已加入 `.github/workflows/`。
-- `npm run release:check` 已加入并由 4 个测试覆盖；`6908245` 上的真实工作区检查已通过。
-- `TODO-004`、`TODO-302` 和 `TODO-303` 只有在形成可复现生产 commit、GitHub Actions 首次成功运行、Secrets/通知配置完成并执行真实回滚演练后才能关闭。
+- `npm run release:check` 已加入并由 4 个测试覆盖；`4776027` 上的真实工作区检查已通过。
+- `4776027` 已作为可复现 source 部署并通过生产 smoke；`TODO-004`、`TODO-302` 仍等待 GitHub Actions 首次成功运行、Secrets/通知配置和真实回滚演练。
+
+## Completed in TASK-004
+
+- `TODO-303`：`4776027` 已推送、通过 `release:check`，并以 Cloudflare Production source 部署；部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，生产 smoke 已通过。

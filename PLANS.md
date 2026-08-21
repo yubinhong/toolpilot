@@ -204,7 +204,7 @@ HTTP smoke: / /tools/ /tools/cursor/ /compare/ /guides/ /robots.txt /sitemap.xml
 - 计划 ID：`TASK-004`
 - 状态：`IN_PROGRESS`
 - 日期：`2026-08-21`
-- 基线：TASK-003 完成后的静态站点；reviewed commit `6908245` 已推送到 `origin/main`，工作区干净
+- 基线：TASK-003 完成后的静态站点；reviewed commit `4776027` 已推送到 `origin/main`，工作区干净并已部署
 
 ### 目标与范围
 
@@ -223,7 +223,7 @@ HTTP smoke: / /tools/ /tools/cursor/ /compare/ /guides/ /robots.txt /sitemap.xml
 
 ### 未完成与阻塞
 
-- reviewed commit `6908245` 已推送到 `origin/main`，干净 checkout 的 `release:check` 已通过；当前有 9 个仅文档状态更新尚未提交。本机没有 GitHub CLI，匿名 API 返回 404，Actions 运行记录、`production` Environment、分支保护、Cloudflare Secrets 和失败通知尚未配置或验证，生产发布仍待授权。
-- 当前生产部署元数据显示 source `f65b5a7`，但线上审核标记不在该提交中；必须先形成并推送可复现当前产物的 reviewed commit。
+- reviewed commit `4776027` 已推送、通过干净 checkout 的 `release:check` 并部署；本机没有 GitHub CLI，匿名 API 返回 404，Actions 运行记录、`production` Environment、分支保护、Cloudflare Secrets 和失败通知尚未配置或验证。
+- 当前生产部署元数据已显示 source `4776027`，并通过 `https://toolpilot.cc` 公网 smoke；旧部署仍未验收为可复现回滚目标。
 - 尚未在明确生产操作窗口执行实际 Pages 回滚/域名恢复演练；跟踪 `TODO-302`。
 - 任务保持 `IN_PROGRESS`，直到外部 Owner 完成激活并提供运行/回滚证据。

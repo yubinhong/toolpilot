@@ -22,5 +22,5 @@ The static site was deployed successfully, but releases were manual and there wa
 - CI and smoke behavior is reproducible without introducing a new runtime dependency or a monitoring service.
 - Production monitoring can detect public availability, required review markers, and sitemap completeness, but it cannot detect stale or incorrect editorial facts.
 - Live workflow activation still requires a GitHub repository, production environment approval rules, Cloudflare secrets, and notification recipients. None of those external settings are asserted by repository files.
-- Reviewed commit `6908245` is now pushed to `origin/main` and passes `release:check`. Production deployment remains a separately authorized operation; the currently deployed source `f65b5a7` is not a reproducible baseline for the updated content.
+- Reviewed commit `4776027` is pushed to `origin/main`, passes `release:check`, and is deployed as the current Cloudflare Production source. The deployment ID is `be8ecb81-fcad-4058-8909-e80befb441ab`; public smoke passed. GitHub external activation and a real rollback exercise remain pending.
 - A rollback requires an immutable reviewed commit SHA and a successful rebuild; this is safer and more auditable for a static site than deploying an unknown local directory or a movable branch name.

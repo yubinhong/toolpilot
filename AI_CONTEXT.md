@@ -16,10 +16,10 @@
 
 - 最近完成任务：`TASK-003` — 50 条目录内容审核与来源记录
 - 任务状态：`IN_PROGRESS`
-- 当前分支：`main`（`HEAD` 与 `origin/main` 同步于提交 `6908245`；该提交工作区干净且 `release:check` 已通过；当前有 9 个仅文档状态更新尚未提交）
-- 当前重点：TASK-004 已加入 CI、生产 smoke、定时监控、`release:check` 和不可变 reviewed commit SHA 发布/回滚 workflow；最新提交已推送，生产部署和 GitHub 外部运行证据仍待确认
-- 阻塞项：本机没有 GitHub CLI，匿名 GitHub API 返回 404，无法验证私有仓库的 Actions 运行记录；GitHub production environment、Cloudflare Secrets、通知渠道仍为 `TBD`；将 `6908245` 发布到生产需要明确生产授权/窗口
-- Cloudflare 快照：2026-08-21 Wrangler 认证和 Pages 读取已验证；`toolpilot` 有两个 Production 部署，当前部署元数据显示 source `f65b5a7`，而线上审核标记来自更新后的内容；最新 Git commit `6908245` 尚未部署；较早部署没有 source ref，同样不能直接认定为安全回滚目标
+- 当前分支：`main`（`HEAD` 与 `origin/main` 同步于提交 `4776027`；该提交工作区干净且 `release:check` 已通过）
+- 当前重点：TASK-004 已加入 CI、生产 smoke、定时监控、`release:check` 和不可变 reviewed commit SHA 发布/回滚 workflow；`4776027` 已推送并部署，生产 smoke 已通过，GitHub 外部运行证据仍待确认
+- 阻塞项：本机没有 GitHub CLI，匿名 GitHub API 返回 404，无法验证 GitHub Actions 的运行记录；GitHub production environment、Cloudflare Secrets、通知渠道仍为 `TBD`，真实 Pages 回滚演练也未完成
+- Cloudflare 快照：2026-08-21 Wrangler 认证、Pages 发布和部署历史读取已验证；`toolpilot` 当前 Production 部署 source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，预览地址为 `https://be8ecb81.toolpilot-2cy.pages.dev`；`https://toolpilot.cc` 公网 smoke 已通过。旧部署 `f65b5a7` 和无 source 的部署仍不作为已确认回滚目标
 - 内容风险仍在：8 个官网和 6 个来源链接受 403/429 或其他访问限制；5 条记录缺少研究来源；产品/商业/法务 Owner 仍为 `TBD`
 
 ## 3. 主文档索引
@@ -92,11 +92,11 @@
 - `2026-08-20`：当前 50 条目录数据全部显式标为 Draft/Research snapshot；正式内容仍必须完成来源、更新时间、商业关系和评价审核。
 - `2026-08-20`：`TASK-002` 接入 50 条研究快照；Node 22 质量门槛通过；Cloudflare Pages 项目 `toolpilot` 部署 332 个静态文件并绑定 `toolpilot.cc`，生产关键路径返回 200。
 - `2026-08-20`：`TASK-003` 记录 50 条产品链接检查、45 条来源状态、5 条来源缺失和编辑审核门槛；链接可达不等于产品事实已核验。
-- `2026-08-21`：`TASK-004` 加入 `scripts/smoke.mjs`、`scripts/release-readiness.mjs`、CI、生产定时监控和手动不可变 commit SHA 发布/回滚 workflow；最新提交 `6908245` 已推送，release check、7 个测试、本地验证、生产 smoke、Cloudflare 认证和部署历史读取已通过，生产发布、GitHub Actions 外部激活和真实回滚演练待确认。
+- `2026-08-21`：`TASK-004` 加入 `scripts/smoke.mjs`、`scripts/release-readiness.mjs`、CI、生产定时监控和手动不可变 commit SHA 发布/回滚 workflow；`4776027` 已推送并部署，release check、7 个测试、本地验证、生产 smoke、Cloudflare 认证和部署历史读取已通过，GitHub Actions 外部激活和真实回滚演练待确认。
 
 ## 9. 已知风险与技术债
 
-- CI、生产监控和受控发布入口已写入仓库，最新 commit `6908245` 已推送但尚未部署；Cloudflare 当前仍为旧 source `f65b5a7`，较早部署没有 source ref，且没有 GitHub 运行记录、Secrets、通知和实际回滚演练 — 影响：生产恢复没有已确认的最新 commit 基线 — 跟踪：`TODO-004`、`TODO-302`、`TODO-303`
+- CI、生产监控和受控发布入口已写入仓库，`4776027` 已作为 source 部署并通过公网 smoke；仍没有可验证的 GitHub 运行记录、Secrets、通知和实际回滚演练 — 影响：自动发布/告警与恢复流程尚未完整验收 — 跟踪：`TODO-004`、`TODO-302`
 - 50 条研究草稿尚未完成正式来源、更新时间和评价审核 — 影响：不能当作正式评价或佣金承诺 — 跟踪：`TODO-005`、`TODO-006`、`TODO-008`；逐条快照见 `docs/content-review/TASK-003-2026-08-20.md`
 - 静态导出和内容存储尚未完成正式 ADR — 影响：后续引入 CMS/API 时可能出现边界漂移 — 跟踪：`ADR-001`、`TODO-007`
 - 当前默认 shell 为 Node 20 而项目要求 Node 22 — 影响：直接运行 npm 命令可能复现不同结果 — 跟踪：`TODO-002`
