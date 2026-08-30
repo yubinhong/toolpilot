@@ -17,9 +17,9 @@
 - 最近完成任务：`TASK-003` — 50 条目录内容审核与来源记录
 - 任务状态：`IN_PROGRESS`
 - 当前分支：`main`（`HEAD` 与 `origin/main` 已同步；工作区干净且 `release:check` 已通过；生产 reviewed source 为 `4776027`）
-- 当前重点：TASK-004 已加入 CI、生产 smoke、定时监控、`release:check` 和不可变 reviewed commit SHA 发布/回滚 workflow；`4776027` 已推送并部署，生产 smoke 已通过，GitHub CI run `32442681654` 已成功
-- 阻塞项：GitHub `production` Environment、Cloudflare Secrets、通知渠道和分支保护仍为 `TBD`，生产监控/发布 workflow 尚无外部运行证据，真实 Pages 回滚演练也未完成
-- Cloudflare 快照：2026-08-21 Wrangler 认证、Pages 发布和部署历史读取已验证；`toolpilot` 当前 Production 部署 source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，预览地址为 `https://be8ecb81.toolpilot-2cy.pages.dev`；`https://toolpilot.cc` 公网 smoke 已通过。旧部署 `f65b5a7` 和无 source 的部署仍不作为已确认回滚目标
+- 当前重点：TASK-004 已完成 GitHub CI、生产 smoke 和定时监控基础；当前改造目标是 Cloudflare Pages Git Integration 自动构建，仓库已加入 `cloudflare:build` 并移除手动 Pages 发布 workflow
+- 阻塞项：当前 `toolpilot` Pages 项目仍为 Direct Upload（Wrangler 显示 `Git Provider: No`）；必须在 Cloudflare Dashboard 新建 Git-integrated Pages 项目并迁移 `toolpilot.cc`，GitHub App 授权、构建设置和域名迁移仍待完成
+- Cloudflare 快照：2026-08-21 Wrangler 认证和部署历史读取已验证；当前 Direct Upload Production source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，预览地址为 `https://be8ecb81.toolpilot-2cy.pages.dev`；`https://toolpilot.cc` 公网 smoke 已通过。旧项目在新 Git-integrated 项目完成验证前不得删除
 - 内容风险仍在：8 个官网和 6 个来源链接受 403/429 或其他访问限制；5 条记录缺少研究来源；产品/商业/法务 Owner 仍为 `TBD`
 
 ## 3. 主文档索引
@@ -44,7 +44,7 @@
 - 前端：`Next.js 16.3.1 App Router`、React 19.2.8、TypeScript 5.9.3；源码在 `app/`、`components/`、`lib/`
 - 后端：当前没有独立 API 或服务端逻辑；Next 配置为静态导出
 - 数据：当前为 `lib/catalog.mjs` 中的 50 条受标记研究草稿；每条分离 `productUrl`、`sourceUrl`、链接检查、来源状态、编辑审核字段、`affiliateStatus`、`commission` 和 `verifiedAt`；没有 CMS、数据库、迁移或厂商提交
-- 基础设施：`next build` 已生成 `out/` 静态站点并部署到 Cloudflare Pages 项目 `toolpilot`；生产域名为 `https://toolpilot.cc`
+- 基础设施：`next build` 已生成 `out/` 静态站点并部署到当前 Direct Upload Pages 项目 `toolpilot`；目标改为 Cloudflare Pages Git Integration，生产域名为 `https://toolpilot.cc`
 - 外部服务：Cloudflare Pages 已由 Wrangler 创建/部署；产品官网和研究来源作为外部链接依赖；没有分析、支付或运行时 API
 - 认证授权：当前未实现账户、管理端或身份提供方
 - 可观测性：仓库已有生产 smoke 和 GitHub Actions 定时监控配置；通知渠道、历史运行记录和 Cloudflare 内部指标仍为 `TBD`
@@ -92,11 +92,11 @@
 - `2026-08-20`：当前 50 条目录数据全部显式标为 Draft/Research snapshot；正式内容仍必须完成来源、更新时间、商业关系和评价审核。
 - `2026-08-20`：`TASK-002` 接入 50 条研究快照；Node 22 质量门槛通过；Cloudflare Pages 项目 `toolpilot` 部署 332 个静态文件并绑定 `toolpilot.cc`，生产关键路径返回 200。
 - `2026-08-20`：`TASK-003` 记录 50 条产品链接检查、45 条来源状态、5 条来源缺失和编辑审核门槛；链接可达不等于产品事实已核验。
-- `2026-08-21`：`TASK-004` 加入 `scripts/smoke.mjs`、`scripts/release-readiness.mjs`、CI、生产定时监控和手动不可变 commit SHA 发布/回滚 workflow；`4776027` 已推送并部署，release check、7 个测试、本地验证、生产 smoke、Cloudflare 认证和部署历史读取已通过；GitHub CI run `32442681654` 成功，生产监控/发布 workflow 和真实回滚演练待确认。
+- `2026-08-21`：`TASK-004` 完成 CI、生产 smoke 和定时监控基础；当前改造采用 ADR-0008，将 Direct Upload 迁移为 Cloudflare Pages Git Integration，`cloudflare:build` 已接入 lint、typecheck、test 和静态构建，外部新项目与域名迁移待完成。
 
 ## 9. 已知风险与技术债
 
-- CI、生产监控和受控发布入口已写入仓库，`4776027` 已作为 source 部署并通过公网 smoke，GitHub CI 已成功运行；仍没有 production Environment/Secrets、通知、分支保护、生产监控/发布运行证据和实际回滚演练 — 影响：自动发布/告警与恢复流程尚未完整验收 — 跟踪：`TODO-004`、`TODO-302`
+- GitHub CI 和生产 smoke 已写入仓库，但当前 Cloudflare 项目仍是 Direct Upload，尚未完成 Git Integration 新项目、GitHub App 授权、`toolpilot.cc` 迁移和新部署验证 — 影响：自动生产部署路径尚未生效 — 跟踪：`TODO-004`、`TODO-304`、`TODO-302`
 - 50 条研究草稿尚未完成正式来源、更新时间和评价审核 — 影响：不能当作正式评价或佣金承诺 — 跟踪：`TODO-005`、`TODO-006`、`TODO-008`；逐条快照见 `docs/content-review/TASK-003-2026-08-20.md`
 - 静态导出和内容存储尚未完成正式 ADR — 影响：后续引入 CMS/API 时可能出现边界漂移 — 跟踪：`ADR-001`、`TODO-007`
 - 当前默认 shell 为 Node 20 而项目要求 Node 22 — 影响：直接运行 npm 命令可能复现不同结果 — 跟踪：`TODO-002`

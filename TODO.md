@@ -6,7 +6,8 @@
 
 | ID | 事项 | 价值/原因 | 优先级 | Owner | 依赖 | 状态 |
 | --- | --- | --- | --- | --- | --- | --- |
-| TODO-004 | 建立 CI、监控、告警和自动化回滚入口 | 仓库入口已实现；GitHub 外部配置、通知和真实回滚演练仍未完成 | P0 | 工程/运维 Owner | TASK-004 | In progress |
+| TODO-004 | 建立 CI、监控、告警和自动化回滚入口 | CI、生产 smoke 和监控入口已实现；GitHub 外部配置、通知和真实回滚演练仍未完成 | P0 | 工程/运维 Owner | TASK-004 | In progress |
+| TODO-304 | 将 Cloudflare Pages Direct Upload 迁移为 Git Integration | 当前项目 `toolpilot` 的 `Git Provider: No`；需要新建 Git-integrated 项目、授权 GitHub App、验证构建并迁移 `toolpilot.cc` | P0 | 工程/运维 Owner | ADR-0008、Cloudflare Dashboard | In progress |
 
 ## Next - 近期候选
 
@@ -26,7 +27,7 @@
 
 | ID | 事项 | 阻塞原因 | 等待对象 | 下一次检查 |
 | --- | --- | --- | --- | --- |
-| TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | TASK-004 已提供 immutable reviewed commit SHA 回滚入口，但尚未在生产窗口执行实际恢复 | 运维/项目 Owner | 完成 GitHub 外部配置后 |
+| TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 新项目和域名迁移后，尚未在生产窗口执行上一份 verified deployment 恢复 | 运维/项目 Owner | 完成 Git Integration 迁移后 |
 
 ## 发现问题记录规则
 
@@ -54,9 +55,9 @@
 
 ## In progress in TASK-004
 
-- CI、生产 smoke、定时监控和手动 immutable reviewed commit SHA 发布/回滚 workflow 已加入 `.github/workflows/`。
+- CI、生产 smoke、定时监控入口已加入 `.github/workflows/`；手动 Pages 发布 workflow 已移除，目标改为 Cloudflare Pages Git Integration。
 - `npm run release:check` 已加入并由 4 个测试覆盖；`4776027` 上的真实工作区检查已通过。
-- `4776027` 已作为可复现 source 部署并通过生产 smoke，GitHub CI run `32442524361` 已成功；`TODO-004`、`TODO-302` 仍等待 production Environment/Secrets、通知、分支保护、生产监控/发布运行证据和真实回滚演练。
+- 当前 Direct Upload source `4776027` 已通过生产 smoke；`TODO-004`、`TODO-302` 和 `TODO-304` 仍等待 GitHub/Cloudflare 外部配置、Git Integration 新项目、域名迁移和真实回滚演练。
 
 ## Completed in TASK-004
 

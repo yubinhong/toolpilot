@@ -39,7 +39,7 @@
 
 ## 5. 密钥与配置
 
-- 密钥存储：Cloudflare Wrangler OAuth/账户凭据由本机受控配置提供，本任务未读取、输出或写入令牌；CI 只允许通过 GitHub `production` Environment 注入 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`，不能使用仓库文件作为生产密钥库。
+- 密钥存储：正常生产发布由 Cloudflare Pages Git Integration 的 GitHub App 授权和 Pages 构建环境承担，不在仓库或 GitHub Actions 中保存 Cloudflare API Token。Cloudflare Wrangler OAuth/账户凭据只用于本机只读核验或经明确授权的恢复操作；本任务未读取、输出或写入令牌。
 - 轮换周期：`TBD`；任何泄露迹象都应立即吊销、轮换并记录影响。
 - 本地开发：若恢复 `.env.example`，只使用它作为非敏感字段样例；真实 `.env*.local` 不提交，禁止复制到对话或日志。
 - `.env.example` 只包含公开站点 URL；真实 `.env*.local` 不提交，当前没有真实密钥配置。
@@ -57,7 +57,7 @@
 
 ## 7. 日志与审计
 
-- 审计事件：内容发布、来源更新、商业关系变更、排序规则变更、厂商提交审核、密钥轮换和部署操作；发布/回滚 workflow 的 ref、reason、操作者和运行结果由 GitHub Actions 记录，保留策略 `TBD`。
+- 审计事件：内容发布、来源更新、商业关系变更、排序规则变更、厂商提交审核、密钥轮换和部署操作；GitHub commit、Cloudflare Pages 构建/部署来源、操作者和运行结果由对应平台记录，保留策略 `TBD`。
 - 日志脱敏：禁止原始令牌、Cookie、邮箱、个人数据、厂商机密、Affiliate 密钥和完整 URL 查询敏感参数。
 - 保留与访问：`TBD`；按数据分类授予最小访问权限，生产日志不得复制到聊天或公开工单。
 - 告警：依赖高危漏洞由 CI 阻断；生产 HTTP smoke 失败由 GitHub Actions 标记失败；密钥泄露、异常管理操作、外部链接批量变化、商业标记缺失和站点安全头异常的通知平台仍为 `TBD`。
@@ -71,7 +71,7 @@
 - [ ] Affiliate、Featured、Sponsor 和独立评价在页面和链接中清晰分隔。
 - [x] 旧 Crypto/DeFi 生成页面不在当前源码中，未进入构建产物。
 - [x] 当前 npm 依赖审计无高危问题；仓库级 CI 已建立，GitHub 外部运行和分支保护仍待验证。
-- [x] 生产 smoke 不读取密钥，只访问公开 HTTP 页面；发布 workflow 使用受保护的 `production` Environment Secret 名称。
+- [x] 生产 smoke 不读取密钥，只访问公开 HTTP 页面；正常 Cloudflare Pages 发布不使用仓库或 GitHub Actions Cloudflare Secret。
 - [x] Cloudflare Pages 生产域使用 HTTPS，生产首页、工具页、robots 和 sitemap 均已通过只读 smoke；安全响应头和 CSP 策略仍需单独审查。
 - [x] 50 条目录的审核元数据区分产品链接、研究来源、编辑审核和正式核验；5 条来源缺失、14 条 URL 受限情况没有被伪装成已核验。
 - [ ] 数据变更、日志、保留和删除符合已批准策略；当前无数据层时不得宣称已满足。

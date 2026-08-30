@@ -197,7 +197,7 @@ HTTP smoke: / /tools/ /tools/cursor/ /compare/ /guides/ /robots.txt /sitemap.xml
 - 50 条内容的价格、功能、限制、来源新鲜度、编辑评价和商业条款仍需产品/内容/商业 Owner 人工确认；这些内容没有被本任务自动标记为已验证。
 - CI、监控、告警和回滚演练仍跟踪 `TODO-004`、`TODO-302`；下一执行计划建议为 `TASK-004`。
 
-## TASK-004 - CI, Production Monitoring, and Controlled Rollback
+## TASK-004 - CI, Production Monitoring, and Cloudflare Pages Git Integration
 
 ### 计划元数据
 
@@ -208,22 +208,24 @@ HTTP smoke: / /tools/ /tools/cursor/ /compare/ /guides/ /robots.txt /sitemap.xml
 
 ### 目标与范围
 
-建立仓库级 CI、可复用生产 smoke、定时生产监控和 immutable reviewed commit SHA 发布/回滚入口。只修改仓库配置和文档，不自动创建 GitHub/Cloudflare 外部设置，不在未确认生产窗口时切换线上版本。
+建立仓库级 CI、可复用生产 smoke、定时生产监控，并将正常生产发布目标切换为 Cloudflare Pages Git Integration。旧 Direct Upload 项目在新项目和域名验证完成前保留为恢复目标；不在未确认生产窗口时切换线上版本。
 
 ### 已完成
 
 - [x] `scripts/smoke.mjs` 和 `npm run smoke`：检查 7 个关键路径、审核标记和 50 条 sitemap 工具 URL。
 - [x] `.github/workflows/ci.yml`：Node 22、`npm ci`、audit、lint、typecheck、test、build、本地静态 smoke。
 - [x] `.github/workflows/production-monitor.yml`：每 15 分钟和手动触发的生产 smoke。
-- [x] `.github/workflows/pages-release.yml`：手动 immutable reviewed commit SHA 发布/回滚、生产 Environment、Cloudflare Secret 名称和并发锁。
-- [x] `scripts/release-readiness.mjs` 和 `npm run release:check`：在发布前拒绝错误 Node、短 SHA、不安全/缺失 remote、dirty worktree 和未跟踪发布文件；4 个门槛测试通过。
-- [x] `docs/adr/0007-ci-monitoring-release-gate.md` 记录 workflow 边界和 Pages 没有原生 CLI rollback 命令的事实。
-- [x] 本地静态服务器 smoke 通过；三个 workflow YAML 通过 Ruby YAML 解析。
+- [x] `package.json`：新增 `cloudflare:build`，执行 lint、typecheck、test 和静态构建，供 Pages Git Integration 使用。
+- [x] `.github/workflows/pages-release.yml`：已移除旧的手动 Cloudflare API-token 发布路径。
+- [x] `scripts/release-readiness.mjs` 和 `npm run release:check`：作为本地/提交审核门槛拒绝错误 Node、短 SHA、不安全/缺失 remote、dirty worktree 和未跟踪发布文件；4 个门槛测试通过。
+- [x] `docs/adr/0007-ci-monitoring-release-gate.md` 保留 CI/监控决策并标记旧手动发布路径已被 ADR-0008 取代。
+- [x] `docs/adr/0008-cloudflare-pages-git-integration.md`：记录 Direct Upload 到 Git Integration 的迁移目标和回滚边界。
+- [x] 本地静态服务器 smoke 通过；现存 workflow YAML 通过 Ruby YAML 解析。
 - [x] Node 22 下 `npm run lint`、`npm run typecheck`、`npm test`、`npm run build`、`npm audit --audit-level=high` 通过；2026-08-21 生产 smoke 7/7 路径通过。
 
 ### 未完成与阻塞
 
-- reviewed commit `4776027` 已推送、通过干净 checkout 的 `release:check` 并部署；GitHub CI run `32442681654` 成功，但 `production` Environment、分支保护、Cloudflare Secrets 和失败通知尚未配置或验证。
+- reviewed commit `4776027` 已推送、通过干净 checkout 的 `release:check` 并部署到旧 Direct Upload 项目；GitHub CI run `32442681654` 成功，但新 Git-integrated Pages 项目、GitHub App 授权、构建和域名迁移尚未完成。
 - 当前生产部署元数据已显示 source `4776027`，并通过 `https://toolpilot.cc` 公网 smoke；旧部署仍未验收为可复现回滚目标。
 - 尚未在明确生产操作窗口执行实际 Pages 回滚/域名恢复演练；跟踪 `TODO-302`。
 - 任务保持 `IN_PROGRESS`，直到外部 Owner 完成激活并提供运行/回滚证据。

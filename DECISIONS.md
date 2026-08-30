@@ -21,6 +21,7 @@
 | ADR-001 | 静态导出 MVP 与内容边界 | Accepted for MVP | 2026-08-20 | 技术负责人 | `app/`、`lib/catalog.mjs`、静态构建和发布边界 |
 | ADR-005 | Cloudflare Pages 生产托管与 `toolpilot.cc` | Accepted for current MVP | 2026-08-20 | 技术负责人 | `out/`、Pages 项目 `toolpilot`、DNS、HTTPS 和回滚边界 |
 | ADR-007 | CI、生产 smoke 和受控 Pages 发布 | Accepted for current static MVP | 2026-08-20 | 技术负责人 | `.github/workflows/`、`scripts/smoke.mjs`、生产发布与回滚入口 |
+| ADR-008 | Cloudflare Pages Git Integration 自动部署 | Accepted as target; external migration pending | 2026-08-21 | 技术负责人 | GitHub `main`、Pages 构建、预览、生产域名和迁移边界 |
 
 ## 建议创建的 ADR
 

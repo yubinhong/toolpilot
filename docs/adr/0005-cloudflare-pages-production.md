@@ -1,6 +1,6 @@
 # ADR-0005: Cloudflare Pages Production Hosting
 
-- Status: Accepted for current MVP
+- Status: Accepted for current MVP; superseded as the normal release path by ADR-0008
 - Date: 2026-08-20
 - Owner: Technical lead
 
@@ -13,6 +13,10 @@ The ToolPilot MVP is a Next.js static export with no server runtime, database, A
 Deploy the generated `out/` directory to the Cloudflare Pages project `toolpilot` using Wrangler and serve it on the custom apex domain `toolpilot.cc`. Cloudflare manages the Pages deployment URL, custom-domain DNS record, and HTTPS certificate lifecycle. Production deploys must run only after the Node 22 quality gate and must be followed by public checks for the homepage, tools directory, representative detail page, `robots.txt`, and `sitemap.xml`.
 
 The current release remains content-draft only. Cloudflare hosting does not make product facts, research claims, affiliate terms, or commission notes verified.
+
+## Supersession note
+
+The `toolpilot` project created by this decision is a Direct Upload project and remains the current recovery target during migration. Cloudflare does not convert an existing Direct Upload project to Git Integration in place. ADR-0008 defines the new Git-integrated project, build settings, verification order, and later `toolpilot.cc` migration. Do not delete this project as part of the migration.
 
 ## Consequences
 

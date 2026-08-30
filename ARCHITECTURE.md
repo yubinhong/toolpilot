@@ -4,9 +4,9 @@
 
 - 状态：`MVP IMPLEMENTED / ADR PENDING`
 - Owner：`TBD`
-- 最后更新：`2026-08-20`
-- 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`
-- 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Wrangler 发布输出和 `toolpilot.cc` 公网 smoke；TASK-004 的 CI/监控/发布入口已存在于源码，但 GitHub 外部运行记录和 Secrets 仍未确认
+- 最后更新：`2026-08-21`
+- 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`、`docs/adr/0008-cloudflare-pages-git-integration.md`
+- 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Wrangler 项目状态、Cloudflare Dashboard 配置和 `toolpilot.cc` 公网 smoke；当前 Direct Upload 项目尚未迁移为 Git Integration
 
 ## 1. 架构目标
 
@@ -31,7 +31,7 @@ flowchart LR
 - 当前 Web 形态是 Next 静态导出；源码和构建产物均可复核。
 - 厂商站点是出站依赖；Affiliate、Featured 和 Sponsor 的关系必须在页面上披露。
 - 内容源当前是 `lib/catalog.mjs` 的 50 条研究草稿数据；静态托管为 Cloudflare Pages，生产域名为 `toolpilot.cc`；分析平台和管理入口均未配置。
-- 交付控制面由 `.github/workflows/ci.yml`、`.github/workflows/production-monitor.yml` 和 `.github/workflows/pages-release.yml` 构成；它们只提供仓库级入口，不代表 GitHub Environment、通知或 Cloudflare Secrets 已激活。
+- 交付控制面由 GitHub `.github/workflows/ci.yml`、`.github/workflows/production-monitor.yml` 和 Cloudflare Pages Git Integration 构成；GitHub Actions 负责质量和生产 smoke，Cloudflare 负责从 `main` 构建/部署，GitHub App 授权和 Pages 外部构建设置仍待完成。
 
 ## 3. 组件与责任
 
@@ -42,7 +42,7 @@ flowchart LR
 | 构建输出 | `.next/`、`out/` | Next 中间产物和最终静态 HTML/CSS/JS | 不拥有业务数据 | `npm run build` -> Cloudflare Pages | `TBD` |
 | 出站链接 | 页面中的产品官网/研究来源 URL | 将用户带到工具厂商或研究来源，并区分官网、来源和研究商业状态 | 第三方厂商/公开来源 | ToolPilot -> 外部站点 | `TBD` |
 | 分析 | 服务 `TBD` | 记录最小化的决策页浏览和出站点击 | `TBD` | 浏览器 -> 分析服务 | `TBD` |
-| CI/运维控制面 | `.github/workflows/`、`scripts/smoke.mjs`、`scripts/release-readiness.mjs` | 质量门槛、仓库发布状态检查、生产可用性检查、immutable reviewed commit SHA 发布/回滚 | 不拥有业务数据；仅消费 Git 元数据、构建产物和公开 HTTP 响应；不读取 Secret | GitHub Actions -> npm/Cloudflare Pages/`toolpilot.cc` | `TBD` |
+| CI/运维控制面 | `.github/workflows/`、`scripts/smoke.mjs`、`scripts/release-readiness.mjs`、Cloudflare Pages Git Integration | 质量门槛、仓库状态检查、生产可用性检查、Git 提交触发 Pages 构建 | 不拥有业务数据；CI/Smoke 只消费 Git 元数据、构建产物和公开 HTTP 响应；正常 Pages 构建不需要仓库 Secret | GitHub -> CI/Cloudflare Pages -> `toolpilot.cc` | `TBD` |
 
 当前未实现独立 API、数据库、CMS、认证服务、后台或任务队列。
 
@@ -98,7 +98,7 @@ flowchart LR
 
 ### 可靠性
 
-- SLO/SLA：`TBD`；仓库已配置每 15 分钟生产 smoke 和手动触发入口，但 GitHub Actions 运行记录、通知路由和 Cloudflare 内部指标仍未确认。
+- SLO/SLA：`TBD`；仓库已配置每 15 分钟生产 smoke 和手动触发入口，Git Integration 新项目、通知路由和 Cloudflare 内部指标仍未确认。
 - 降级策略：静态页面优先；分析不可用不应阻塞页面访问；厂商链接失败应进入内容复核。
 - 灾难恢复：RPO `TBD` / RTO `TBD`；需确认静态产物、内容源和部署平台的备份方式。
 
@@ -126,13 +126,15 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    R[工作区源码] --> CI[GitHub Actions CI]
-    CI --> B[Next static export]
-    B --> H[Cloudflare Pages: toolpilot]
+    R[GitHub main] --> CI[GitHub Actions CI]
+    R --> CF[Cloudflare Pages Git Integration]
+    CF --> B[cloudflare:build]
+    B --> H[Cloudflare Pages Git project]
     H --> D[toolpilot.cc]
+    M[GitHub scheduled smoke] --> D
 ```
 
-当前部署拓扑已验证到 Cloudflare Pages：`npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main` 上传静态产物，Pages 自定义域将 `toolpilot.cc` 指向项目域名。TASK-004 已加入 GitHub Actions CI、定时生产 smoke、`release:check` 和手动 immutable reviewed commit SHA 发布/回滚入口；发布门槛在部署前读取 Git 状态并拒绝 dirty/untracked/无 GitHub origin 的 checkout，外部 Environment、Secrets、通知和真实回滚演练仍待配置。
+当前生产仍由 Direct Upload 项目承载：`npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main` 已上传静态产物。目标拓扑是 Cloudflare Pages Git Integration 从 `yubinhong/toolpilot` 的 `main` 自动运行 `npm run cloudflare:build` 并发布 `out/`；新项目和 `toolpilot.cc` 迁移完成前，不能把目标拓扑宣称为已生效。
 
 ## 9. 架构边界与禁止模式
 
@@ -149,4 +151,5 @@ flowchart TD
 | 研究草稿尚未完成正式来源和审核版本 | 不能发布可信工具事实 | 产品/内容 Owner 完成 50 条内容核验和审核清单 | 可追溯的内容版本/审核流程 | `TODO-005`、`TODO-006`、`ADR-006` |
 | Node 22 要求与 Node 20 shell 不一致 | 直接运行命令可能结果不同 | 固定 CI/本地 Node 22 | 统一运行时和工具链 | `TODO-002` |
 | 无数据层和内容版本方案 | 无法维护来源和审核状态 | 内容规模或多人编辑需求出现 | 选择静态数据、CMS 或数据库 | `TODO-006` |
-| GitHub 外部设置和实际回滚演练未完成 | 仓库有入口但生产恢复仍依赖 Owner 激活配置 | 远端 refs/upstream、Secrets 和生产窗口确认 | 启用 CI、告警通知、部署审计和回滚演练 | `TODO-004`、`TODO-302`、`ADR-007` |
+| Cloudflare Pages Git Integration 尚未启用 | 当前 Direct Upload 项目不能直接转换，自动生产部署尚未生效 | 新建 Git-integrated 项目、GitHub App 授权、构建验证和域名迁移 | 保留旧项目，完成新项目 smoke 后再迁移域名 | `TODO-304`、`ADR-0008` |
+| GitHub 外部设置和实际回滚演练未完成 | 仓库有 CI/Smoke 入口但生产恢复仍依赖 Owner 激活配置 | GitHub 通知、分支保护和生产窗口确认 | 启用告警通知、部署审计和回滚演练 | `TODO-004`、`TODO-302`、`ADR-007` |

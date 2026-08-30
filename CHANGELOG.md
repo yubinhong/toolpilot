@@ -44,3 +44,5 @@
 - 没有删除业务代码、依赖、数据或部署资源；本次只从当前空工作区创建新代码和配置。
 
 版本：本地未发布的 `0.1.0`；生产发布链接：`https://toolpilot.cc`；TASK-004 reviewed commit `4776027` 已推送并部署，Cloudflare source 与仓库提交一致，生产 smoke 已通过；GitHub CI run `32442681654` 成功。
+
+2026-08-21：开始将 Cloudflare Pages 生产发布从 Direct Upload 迁移到 Git Integration；仓库新增 `npm run cloudflare:build`，正常发布不再依赖 GitHub Actions Cloudflare API Token，外部新 Pages 项目和域名迁移待完成。

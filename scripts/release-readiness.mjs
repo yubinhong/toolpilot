@@ -4,7 +4,6 @@ import { pathToFileURL } from "node:url";
 
 export const REQUIRED_RELEASE_FILES = Object.freeze([
   ".github/workflows/ci.yml",
-  ".github/workflows/pages-release.yml",
   ".github/workflows/production-monitor.yml",
   ".nvmrc",
   "package-lock.json",
@@ -120,7 +119,7 @@ function run() {
     return;
   }
 
-  console.log("Release readiness passed: Node 22, immutable HEAD, GitHub origin, clean worktree, and tracked release files.");
+  console.log("Repository readiness passed: Node 22, immutable HEAD, GitHub origin, clean worktree, and tracked release files.");
 }
 
 const entryPath = process.argv[1] ? pathToFileURL(resolve(process.argv[1])).href : "";

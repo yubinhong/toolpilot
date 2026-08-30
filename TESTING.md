@@ -30,12 +30,13 @@
 | 集成测试 | `TBD - no external service or integration harness` | 引入服务端/内容服务后 | `TBD` |
 | E2E | `TBD - no browser harness` | 用户流程变更后 | `TBD` |
 | 构建 | `nvm use 22 && npm run build` | 合并前、发布前 | 秒级 |
+| Cloudflare Pages 构建 | `nvm use 22 && npm run cloudflare:build` | Cloudflare Git Integration 构建和发布前 | 秒级 |
 | 安全检查 | `nvm use 22 && npm audit --audit-level=high` | 合并前、发布前 | 秒级 |
 | 发布前仓库检查 | `nvm use 22 && npm run release:check` | 提交审核后、Pages 发布前 | 秒级 |
 | 50 个官网链接 | `node --input-type=module -e "import {tools} from './lib/catalog.mjs'; /* 对 tools.productUrl 执行 GET */"` | 目录链接变更、发布前 | 数十秒 |
-| Cloudflare 认证 | `npx --yes wrangler@4.124.0 whoami` | Pages 发布前 | 秒级 |
-| Cloudflare 部署历史 | `npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot` | 发布/回滚前确认当前和候选部署 | 秒级 |
-| Cloudflare Pages 发布 | `npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main` | 发布已审查的 `out/` | 分钟级 |
+| Cloudflare 项目类型 | `npx --yes wrangler@4.124.0 pages project list` | Git Integration 迁移前后确认 Git Provider | 秒级 |
+| Cloudflare 部署历史 | `npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot` | 迁移/回滚前确认当前和候选部署 | 秒级 |
+| Cloudflare Pages 发布 | Cloudflare Dashboard Git Integration | `main` push 后自动构建 `out/`；正常发布不使用 Wrangler API Token | 分钟级 |
 | 生产 smoke | `for path in / /tools/ /tools/digitalocean/ /robots.txt /sitemap.xml; do /usr/bin/curl -sS -L --max-time 20 -o /dev/null -w ... https://toolpilot.cc${path}; done` | 每次生产发布 | 分钟级 |
 | 内容审核不变量 | `npm test` | `lib/catalog.mjs` 审核字段或来源变更 | 秒级 |
 | 本地/生产 smoke | `npm run smoke` | 构建产物或生产发布后 | 秒级/分钟级 |
@@ -75,7 +76,7 @@
 
 ## 6. CI 质量门槛
 
-- `.github/workflows/ci.yml` 已建立仓库级 CI；公开仓库 `main` 与 `origin/main` 已同步，GitHub CI run `32442681654` 已成功。
+- `.github/workflows/ci.yml` 已建立仓库级 CI；公开仓库 `main` 与 `origin/main` 已同步，GitHub CI run `32442681654` 已成功；Cloudflare Git Integration 尚待新项目验证。
 - [x] Node 22 与 `.nvmrc` 一致（Node 22.23.0）。
 - [x] Lint、类型检查通过；格式化工具仍未配置。
 - [x] 最小相关测试通过（7 个 Node test，其中 4 个覆盖 release readiness）。
@@ -83,10 +84,10 @@
 - [x] 构建产物可生成，内容路由、robots 和站点地图可审查。
 - [x] 本地 `out/` 静态服务器的 `npm run smoke` 通过 7 个路径和 50 条工具 sitemap URL。
 - [x] 2026-08-21 `SMOKE_BASE_URL=https://toolpilot.cc npm run smoke` 通过 7 个生产路径和 50 条工具 sitemap URL。
-- [x] 2026-08-21 Wrangler 认证、Pages 发布和部署历史读取通过；最新 Production source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，另一个较早部署没有 source ref，因此不作为已确认回滚目标。
-- [x] 手动发布 workflow 的 commit gate 已直接执行：完整 40 位 SHA 通过，7 位短 SHA 被拒绝。
+- [x] 2026-08-21 Wrangler 认证、旧 Direct Upload Pages 发布和部署历史读取通过；最新 Production source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，另一个较早部署没有 source ref，因此不作为已确认回滚目标。
+- [x] `release:check` 的 commit gate 已直接执行：完整 40 位 SHA 通过，7 位短 SHA 被拒绝；它是本地/提交审核门槛，不是 Cloudflare 发布 workflow。
 - [x] `npm run release:check` 正向/反向单测通过；`4776027` 上的实际 checkout 检查通过。
-- [x] GitHub Actions `CI / quality` 成功运行（run `32442524361`）；[ ] 分支保护仍等待 GitHub Owner 配置。
+- [x] GitHub Actions `CI / quality` 成功运行（run `32442681654`）；[ ] 分支保护仍等待 GitHub Owner 配置。
 - [ ] 定时生产 smoke 首次运行并配置失败通知；等待 GitHub Owner 配置。
 - [x] 旧 Crypto/DeFi 页面不在当前源码中，按用户确认不迁移。
 - [ ] Flaky test 不通过重跑掩盖；必须记录根因或隔离审批。
@@ -97,6 +98,6 @@
 
 - 未运行的命令：格式化、集成、E2E；仓库尚未配置对应工具或外部服务。
 - 已完成验证：Node 22.23.0/npm 10.9.8、`npm run typecheck`、`npm run lint`、`npm test`、`npm run build`；本地 `127.0.0.1:3001` 的 `/`、`/tools/`、`/tools/cursor/`、`/compare/`、`/guides/`、`/robots.txt`、`/sitemap.xml` 均返回 200。
-- 残余风险：没有 GitHub Actions 外部运行记录、浏览器 E2E、性能预算或正式来源审核；8 个官网可达但返回 403/429，不能据此完成页面内容核验。
+- 残余风险：Cloudflare Git Integration 新项目/域名迁移、浏览器 E2E、性能预算和正式来源审核仍未完成；8 个官网可达但返回 403/429，不能据此完成页面内容核验。
 - 已完成生产验证：Cloudflare Pages 部署 URL 为 `https://be8ecb81.toolpilot-2cy.pages.dev`，source 为 `4776027`；`https://toolpilot.cc` 的首页、目录、DigitalOcean/Cloudways/Docker 详情、robots、sitemap 均返回 200，生产 sitemap 包含 50 个工具 URL，页面显示审核状态标记。
-- 下一位执行者：配置/验证 GitHub `production` Environment、Cloudflare Secrets、失败通知和分支保护，确认首次 `CI` 与生产监控运行；随后在生产窗口完成 `TODO-302` 回滚演练。
+- 下一位执行者：在 Cloudflare Dashboard 新建 Git-integrated Pages 项目，配置构建设置并验证 preview；完成 `toolpilot.cc` 迁移和生产 smoke 后，再配置分支保护、通知并完成 `TODO-302` 回滚演练。
