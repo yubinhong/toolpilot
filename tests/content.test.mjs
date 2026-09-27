@@ -7,6 +7,7 @@ import { validateContent, contentDigest, isIndexable, vendorLink, freshness, isH
 import { getRoutes } from '../lib/routes.mjs';
 import { getEvidenceHubGroups } from '../lib/evidence-hubs.mjs';
 import { verificationStatusLabel } from '../lib/content-labels.mjs';
+import { findDuplicateMetadata } from '../scripts/metadata-audit.mjs';
 function tool(slug='synthetic-tool') {
   const r = structuredClone(content.find(r => r.slug === 'cursor' && r.kind === 'tools'));
   r.slug = slug; r.name='Synthetic fixture'; r.title='Synthetic fixture';
@@ -277,6 +278,20 @@ test('verification status displays the bound date only for approved content',()=
   approve(r);
   assert.equal(verificationStatusLabel(r,true),'Last verified 2026-09-27');
   assert.equal(verificationStatusLabel(r,false),'Not yet formally verified');
+});
+test('static route metadata must be unique by title and description',()=> {
+  assert.deepEqual(findDuplicateMetadata([
+    {path:'/a/',title:'Same title',description:'First description'},
+    {path:'/b/',title:'Same title',description:'Second description'},
+    {path:'/c/',title:'Third title',description:'Second description'},
+  ]),[
+    {field:'title',firstPath:'/a/',path:'/b/'},
+    {field:'description',firstPath:'/b/',path:'/c/'},
+  ]);
+  assert.deepEqual(findDuplicateMetadata([
+    {path:'/a/',title:'First',description:'First'},
+    {path:'/b/',title:'Second',description:'Second'},
+  ]),[]);
 });
 test('vendor link is ordinary until a valid commercial relationship is approved',()=> {
   const r=tool();assert.equal(vendorLink(r,r).href,r.productUrl);assert.equal(vendorLink(r,r).label,null);assert.equal(vendorLink(r,r).disclosure,null);

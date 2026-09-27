@@ -7,6 +7,7 @@ import { getBreadcrumbItems } from '../lib/breadcrumbs.mjs';
 import { content } from '../lib/content.mjs';
 import { isIndexable } from '../lib/content-policy.mjs';
 import { verificationStatusLabel } from '../lib/content-labels.mjs';
+import { findDuplicateMetadata } from './metadata-audit.mjs';
 import { categoryAnchor, HOME_CATEGORY_SHORTCUTS } from '../lib/homepage.mjs';
 import { generateHeadersFile, injectFallbackCspMeta } from './generate-security-headers.mjs';
 const failures = [];
@@ -17,6 +18,7 @@ const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 const expected = routes.filter(r => r.index).map(r => site+r.path).sort();
 const expectedOgImage = `${site}/og-default.png`;
 const ogImagePath = 'out/og-default.png';
+const routeMetadata = [];
 if (!existsSync(ogImagePath)) {
   failures.push('missing static Open Graph image');
 } else {
@@ -35,7 +37,10 @@ for (const r of routes) {
   if (!canonical?.includes(`href="${site}${r.path}"`)) failures.push(`${r.path}: incorrect canonical`);
   const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
   if (r.index ? !/content="index,/.test(robots) : !/content="noindex,/.test(robots)) failures.push(`${r.path}: robots mismatch`);
-  if (!/<title>[^<]+<\/title>/.test(html) || !/<meta name="description" content="[^"]+"/.test(html)) failures.push(`${r.path}: missing metadata`);
+  const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+  const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1];
+  if (!title || !description) failures.push(`${r.path}: missing metadata`);
+  routeMetadata.push({ path: r.path, title, description });
   if (!html.includes('<meta name="twitter:card" content="summary_large_image"')) failures.push(`${r.path}: missing Twitter large-image metadata`);
   if (!html.includes(`<meta property="og:image" content="${expectedOgImage}"`)) failures.push(`${r.path}: missing first-party Open Graph image`);
   if (!html.includes('<meta property="og:image:width" content="1200"') || !html.includes('<meta property="og:image:height" content="630"')) failures.push(`${r.path}: incorrect Open Graph image dimensions`);
@@ -59,6 +64,9 @@ for (const r of routes) {
     if (!existsSync(join('out',href,href.endsWith('/') ? 'index.html' : ''))) failures.push(`${r.path}: broken local link ${href}`);
   }
   if (/Approximately 20%|Cash affiliate|Commission note|commission terms|approvedDigest/.test(html)) failures.push(`${r.path}: historical commercial research exposed`);
+}
+for (const duplicate of findDuplicateMetadata(routeMetadata)) {
+  failures.push(`${duplicate.path}: duplicate ${duplicate.field} also used by ${duplicate.firstPath}`);
 }
 
 for (const kind of ['mcp', 'self-hosted']) {
