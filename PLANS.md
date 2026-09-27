@@ -260,14 +260,14 @@ Completed on `2026-08-30`. The cleanup added shared `ContentSection` and configu
 
 ## TASK-005 — Approved remediation execution (2026-09-27)
 
-Status: IN_PROGRESS. Keep Next.js static export, English first, AI coding/app builders first. Owner alone approves formal content. Draft URLs remain accessible with noindex and outside sitemap. Preserve all existing worktree edits and TASK-004 external migration obligations.
+Status: COMPLETE (implementation and release handoff; owner gates remain open). Keep Next.js static export, English first, AI coding/app builders first. Owner alone approves formal content. Draft URLs remain accessible with noindex and outside sitemap. Preserve TASK-004 recovery, notification and rollback obligations.
 
 | Step | Deliverable | Acceptance |
 | --- | --- | --- |
 | TP-R00 | Baseline, isolated report extraction, task archive | Existing changes preserved; estimates labeled |
 | TP-R01 | Public HTTP and historical URL audit | Restricted access distinguished from outage; no guessed redirects |
 | TP-R02 | JSON content, TS types, validation, public projections | Exact revision approval, field sources, separate commercial relations |
-| TP-R03 | Shared route/index registry, metadata, migrated tests | Draft excluded; canonical self-references; production legacy smoke retained |
+| TP-R03 | Shared route/index registry, metadata, migrated tests | Draft excluded; canonical self-references; current production smoke verified after owner-reported cutover |
 | TP-R04 | Tools/Compare/Alternatives/Pricing/Best/Guides templates | Static export, accessible tables, unknown values explicit |
 | TP-R05 | Cursor, Copilot, Windsurf, Lovable, Replit, Bolt.new, Claude Code, Cline evidence | Official sources/date and gaps; no fabricated tests |
 | TP-R06 | 8 tools + 6 comparisons + 6 alternatives + 4 pricing + 2 best + 2 guides | Distinct decision intent; owner approval pending |
@@ -277,6 +277,8 @@ Status: IN_PROGRESS. Keep Next.js static export, English first, AI coding/app bu
 
 Dependencies: R00 → R02 → R03/R04 → R06/R07 → R08/R09; R01 and R05 can proceed independently without external mutation. Source failures block relevant claims only. Contact/legal facts block final trust approval only. Release requires explicit authorization and clean full SHA; release:check must continue rejecting dirty worktrees.
 
-Delivery cadence update (2026-09-27): the user explicitly authorized production deployment and requires online verification for every deliverable progress. Each release must pass the current dependency audit, `release:check`, and a production `SMOKE_PROFILE=current` check against the deployed source. Do not infer deployment from a Git push or successful build. This authorization does not approve draft content, activate commercial relationships, migrate/delete the legacy Pages project, or weaken release gates.
+Delivery cadence update (2026-09-27): the user explicitly authorized production deployment and requires online verification for every deliverable progress. Each release must pass the current dependency audit, `release:check`, and a production `SMOKE_PROFILE=current` check against the deployed source. Do not infer deployment from a Git push or successful build. This authorization does not approve draft content, activate commercial relationships, authorize this agent to edit DNS/delete the recovery Pages project, or weaken release gates. The owner later reported completing the CNAME switch.
+
+TP-R09 closeout (2026-09-27): commit `4fb09bca29619032588d152e7b971e69fab1f4ad` passed `release:check`, GitHub CI `36299689412`, Cloudflare Pages deployment `76a9ace8-375f-40fd-b31a-acdb22661512`, immutable-preview and production current smoke, and manual production-monitor run `36299788937`. Engineering handoff is complete. Owner content approval, operator/legal/contact facts, independent GSC and broad crawler-access checks, notification setup and the production rollback exercise remain separate gates.
 
 90-day follow-up: weeks 1–2 foundation; 3–4 templates/evidence; 5–6 decisions; 7–8 guides/internal links; 9–10 GSC review; 11–13 evidence-driven expansion. No automatic MCP/Chinese/calculator/ads expansion. Weekly compare 28-day GSC windows; no available data means unknown.

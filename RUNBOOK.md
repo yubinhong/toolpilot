@@ -8,7 +8,7 @@
 - 依赖：`package.json`/`package-lock.json`、Node 22、Next 静态构建、Cloudflare Pages 项目 `toolpilot-git` 与恢复项目 `toolpilot`、厂商站点和未来可选分析服务。
 - Dashboard：Cloudflare Dashboard 的 Workers & Pages > `toolpilot-git` / `toolpilot`；当前未配置应用监控或告警。
 - 日志：`TBD`；当前没有应用、部署或访问日志入口。
-- 当前状态：Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot` 的 `main`，构建命令 `npm run cloudflare:build`、输出 `out`、Node 22。用户报告已将 `toolpilot.cc` CNAME 切换至该项目；本次 `SMOKE_PROFILE=current npm run smoke` 对正式域名检查 88 个页面、robots、sitemap 和真实 404 均通过。生产监控配置已切到 current，仍需在部署后手动运行 workflow 并记录成功结果。旧 Direct Upload 项目 `toolpilot` 及部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留为恢复目标；尚未执行生产回滚演练。此 Agent 未更改 DNS 或 Pages 自定义域绑定。
+- 当前状态：Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot` 的 `main`，构建命令 `npm run cloudflare:build`、输出 `out`、Node 22。用户报告已将 `toolpilot.cc` CNAME 切换至该项目；部署 source `4fb09bca29619032588d152e7b971e69fab1f4ad` / Pages deployment `76a9ace8-375f-40fd-b31a-acdb22661512` 已通过 Cloudflare 检查。该 preview 和正式域名 current smoke 均检查 88 个页面、robots、sitemap 和真实 404 并通过。生产监控 current profile 手动 run `36299788937` 成功。旧 Direct Upload 项目 `toolpilot` 及部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留为恢复目标；尚未执行生产回滚演练。此 Agent 未更改 DNS 或 Pages 自定义域绑定。
 
 ## 2. SLO 与关键指标
 
@@ -35,7 +35,7 @@
 - [x] Direct Upload 恢复项目 `toolpilot` 的部署 `be8ecb81-fcad-4058-8909-e80befb441ab`（`https://be8ecb81.toolpilot-2cy.pages.dev`）通过 legacy smoke。
 - [x] Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot`，生产分支为 `main`，构建命令为 `npm run cloudflare:build`，输出目录为 `out`；部署 `000a4a88` / source `fc139ca1` 的 88 路由 current smoke 通过。
 - [x] 用户报告已将 `toolpilot.cc` CNAME 切换到 `toolpilot-git`；正式域名 `SMOKE_PROFILE=current npm run smoke` 检查 88 个页面、robots、sitemap 和真实 404 通过。
-- [ ] 部署 `.github/workflows/production-monitor.yml` 的 current profile 配置，并手动运行 workflow 验证正式域名。
+- [x] 部署 `.github/workflows/production-monitor.yml` 的 current profile 配置；workflow run `36299788937` 手动检查正式域名并通过。
 - [ ] Affiliate/Featured/Sponsor 条款、归因、退款和披露文案已批准。
 - [ ] 50 条目录已由产品/内容 Owner 完成事实、来源新鲜度和商业条款审核。
 
@@ -80,7 +80,7 @@ done
 
 ### `toolpilot.cc` 域名切换（2026-09-27，已完成）
 
-用户报告已完成 CNAME 切换。独立线上证据为 `SMOKE_PROFILE=current npm run smoke` 对 `https://toolpilot.cc` 检查 88 个页面、robots、sitemap 和真实 404 通过。DNS 变更由用户完成，本 Agent 未写入 DNS。生产监控工作流必须保持 `SMOKE_PROFILE: current`，切换配置的提交部署后还要手动运行一次并保留 workflow 结果。
+用户报告已完成 CNAME 切换。独立线上证据为 `SMOKE_PROFILE=current npm run smoke` 对 `https://toolpilot.cc` 检查 88 个页面、robots、sitemap 和真实 404 通过。DNS 变更由用户完成，本 Agent 未写入 DNS。生产监控工作流保持 `SMOKE_PROFILE: current`；配置由 commit `4fb09bca29619032588d152e7b971e69fab1f4ad` 部署，手动 workflow run `36299788937` 成功。
 
 常规迁移步骤留档：先验证 `toolpilot-git` 最新 `main` 部署和 `pages.dev` smoke，再在 Cloudflare Pages 将自定义域绑定到 Git-integrated 项目，并确认正式域名 current smoke。Cloudflare 托管 DNS 时应按 Pages Dashboard 的验证流程确认域名关联，避免在 Pages 项目关联前独立创建不匹配记录。旧项目不得删除。
 
@@ -135,14 +135,13 @@ done
 
 ## TASK-005 release handoff (2026-09-27)
 
-The user has authorized deployment and online verification for each deliverable progress. The owner reports that `toolpilot.cc` CNAME now points to Git-integrated Pages project `toolpilot-git`; current-profile smoke passed for all 88 pages, robots, sitemap and a real 404. The production monitor is configured for the current profile; its deployed manual workflow run is still pending. The old Direct Upload project and deployment remain the recovery target. Pending content remains noindex; deployment authorization is not editorial approval.
+The user has authorized deployment and online verification for each deliverable progress. The owner reports that `toolpilot.cc` CNAME now points to Git-integrated Pages project `toolpilot-git`; preview and production current-profile smoke passed for all 88 pages, robots, sitemap and a real 404. Commit `4fb09bca29619032588d152e7b971e69fab1f4ad` deployed successfully, and manual production-monitor run `36299788937` passed. The old Direct Upload project and deployment remain the recovery target. Pending content remains noindex; deployment authorization is not editorial approval.
 
-1. Resolve the security audit and review final operator/contact/privacy details.
-2. Obtain owner decisions for exact content revisions/digests. Pending records remain noindex, including on a preview; do not switch all records to published.
-3. Run Node 22 locked install, audit, cloudflare:build and local current smoke.
-4. With separate commit/push authorization, review a clean full SHA and run release:check. Never weaken the dirty-worktree gate.
-5. Record each Git Integration deployment ID/source SHA and verify the `pages.dev` current smoke; deployment `000a4a88` / source `fc139ca1` is verified.
-6. The owner-reported DNS cutover is complete and formal-domain current smoke passed. Deploy the `production-monitor.yml` current-profile change, run the workflow manually, and record the result. Keep current as the scheduled profile; use legacy only for an explicit recovery check.
-7. Retain the old project. Rollback requires authorization, a known verified deployment/source and before/after smoke. No blanket URL redirects, WAF disabling or emergency token publication.
+1. Release `4fb09bca29619032588d152e7b971e69fab1f4ad` passed Node 22 `npm audit --audit-level=high` with 0 vulnerabilities and `npm run release:check` on a clean full SHA.
+2. GitHub CI run `36299689412` passed; Cloudflare deployed source `4fb09bc` as deployment `76a9ace8-375f-40fd-b31a-acdb22661512`.
+3. Immutable-preview and formal-domain current smoke each passed for 88 pages, robots, sitemap and a real 404. Production-monitor run `36299788937` passed with `SMOKE_PROFILE=current` against `https://toolpilot.cc`.
+4. The owner reports completing the DNS CNAME switch; this agent made no DNS changes. Keep current as the scheduled production profile and use legacy only for an explicit recovery check.
+5. Owner content approval, final operator/contact/privacy/legal facts, independent GSC and broad crawler-access review, GitHub notification setup and the production rollback exercise remain open. Pending records stay noindex until exact revisions are approved.
+6. Retain the old project. Rollback requires an authorized operator, a known verified deployment/source and before/after smoke. No blanket URL redirects, WAF disabling or emergency token publication.
 
 Maintenance reports run daily via content-maintenance.yml after deployment of the workflow; configuration alone is not execution evidence. Inspect restricted/broken links and freshness without treating link checks as factual approval. Artifact retention is 14 days. No external message or issue is sent automatically.

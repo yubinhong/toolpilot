@@ -3,7 +3,7 @@
 ## 当前快照 — 2026-09-27
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
-- 当前活动任务：TASK-005（用户批准的研究整改）；状态 IN_PROGRESS，R00–R08、本地工程验证和依赖修复已完成；`toolpilot.cc` CNAME 已切换至 Git-integrated Pages，88 路由正式域名 current smoke 已通过。生产监控已改为 current profile，本次部署后的 workflow 验证待完成，详见 TASK.md。
+- 当前活动任务：无。TASK-005 研究整改与 R09 发布交接已完成；commit `4fb09bca` 成功部署，preview/正式域名 88 路由 current smoke 和 production-monitor run `36299788937` 均通过。内容审批、运营资料、GSC、告警通知和生产回滚演练仍是独立后续门槛，详见 TASK.md、TODO.md 和 RUNBOOK.md。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；加入 Claude Code/Cline 后有 52 个工具身份。首批 28 个结构化内容记录全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。
@@ -17,8 +17,8 @@
 - 用户尚未批准具体内容修订；真实运营主体和公开联系渠道未提供。
 - 早前对生产关键路径的抽样曾返回 403，见 docs/research/public-audit-2026-09-27.json；本轮 CNAME 切换后的正式域名 current smoke 已通过。任一环境的访问结果都不能单独推断全球可达性或 Googlebot 状态。
 - Node 22 下 `npm ci` 和 `npm audit --audit-level=high` 当前通过，0 vulnerabilities；每次发布仍须重新审计。
-- TASK-004 的 Git-integrated Pages 项目、CNAME 切换和正式域名 smoke 已完成；监控通知和生产回滚演练仍未完成。归档任务不是完成记录。
-- 用户已将 `toolpilot.cc` CNAME 切换到 `toolpilot-git`；正式域名 current smoke 检查 88 个页面、robots、sitemap 和真实 404 均通过。生产监控现配置为 current，需在本次部署后确认手动 workflow 执行成功。旧 Direct Upload 项目仍保留作恢复目标。
+- TASK-004 的 Git-integrated Pages 项目、CNAME 切换、正式域名 current smoke 和当前 production-monitor run 已完成；监控通知和生产回滚演练仍未完成。归档任务不是完成记录。
+- 用户报告已将 `toolpilot.cc` CNAME 切换到 `toolpilot-git`；正式域名与 immutable preview 均通过 88 页 current smoke，production-monitor run `36299788937` 成功。旧 Direct Upload 项目仍保留作恢复目标。
 - 没有原始 GSC、PV、转化或收入数据。90 天运营不能从本地构建推断为完成。
 
 ## 阅读路径

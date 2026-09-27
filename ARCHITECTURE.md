@@ -149,7 +149,7 @@ flowchart TD
     M[GitHub scheduled smoke] --> D
 ```
 
-Cloudflare Pages Git Integration 已连接 `yubinhong/toolpilot` 的 `main`，成功运行 `npm run cloudflare:build` 并向 `toolpilot-git.pages.dev` 发布；用户已将 `toolpilot.cc` CNAME 切换至新项目，正式域名 current smoke 覆盖 88 个页面、robots、sitemap 和真实 404。生产监控配置已改为 current，等待本次提交部署后手动 workflow 执行证据。旧 Direct Upload 项目保留作恢复目标。
+Cloudflare Pages Git Integration 已连接 `yubinhong/toolpilot` 的 `main`，成功运行 `npm run cloudflare:build` 并向 `toolpilot-git.pages.dev` 发布；用户已将 `toolpilot.cc` CNAME 切换至新项目，commit `4fb09bca` 部署至 Pages deployment `76a9ace8-375f-40fd-b31a-acdb22661512`。该 immutable preview 和正式域名 current smoke 均覆盖 88 个页面、robots、sitemap 和真实 404 并通过；production-monitor current-profile run `36299788937` 也通过。旧 Direct Upload 项目保留作恢复目标。
 
 ## 9. 架构边界与禁止模式
 

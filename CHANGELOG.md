@@ -6,9 +6,9 @@
 - Add version/digest approval and dependency checks, ordinary/commercial link separation and allowlisted client catalog data.
 - Add comparison, alternatives, pricing and best detail templates; rewrite the decision guide, add an interaction-style guide and trust pages.
 - Exclude pending content from sitemap, add per-page metadata/canonical and keep original URLs available.
-- Add content, artifact, freshness and safe outbound-link checks; preserve explicit legacy production smoke until authorized cutover.
+- Add content, artifact, freshness and safe outbound-link checks; keep legacy smoke available for explicit recovery checks after the authorized cutover.
 - Patch Next.js/eslint-config-next to 16.3.6, sharp to 0.35.4 and js-yaml to 4.3.2; locked audit now passes locally.
-- Production deployment and online verification are authorized for each progress. After the CNAME cutover, `toolpilot.cc` passed current-profile smoke across 88 pages, robots, sitemap and a real 404; the production monitor is configured for current, with its deployed manual run pending. Editorial drafts remain noindex and unapproved.
+- Production deployment and online verification are authorized for each progress. After the CNAME cutover, commit `4fb09bca` deployed successfully; the immutable preview and `toolpilot.cc` passed current-profile smoke across 88 pages, robots, sitemap and a real 404, and manual production-monitor run `36299788937` passed. Editorial drafts remain noindex and unapproved.
 
 
 本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；工作区当前包含未提交的代码整理，Cloudflare Pages 发布证据按条目记录。

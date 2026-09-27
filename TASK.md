@@ -1,6 +1,6 @@
 # TASK-005 — ToolPilot decision content remediation
 
-- Status: IN_PROGRESS
+- Status: COMPLETE (engineering remediation and release handoff; external owner gates remain open)
 - Date: 2026-09-27
 - Authorization: user requested implementation and then explicitly authorized production deployment with online verification for each deliverable progress.
 - Content approver: project owner (user); no formal content approval granted yet.
@@ -20,7 +20,7 @@ Implement TP-R00–TP-R09 from PLANS.md: preserve historical research, add revie
 - [x] R06 First-batch content
 - [x] R07 Home, navigation and trust pages
 - [x] R08 Maintenance automation
-- [ ] R09 Engineering verification and release handoff
+- [x] R09 Engineering verification and release handoff
 
 ## Boundaries
 
@@ -28,7 +28,7 @@ Production deployment and online verification are authorized for each deliverabl
 
 ## Remaining external gates
 
-Owner content approval, operator/contact/legal details, unrestricted production/GSC checks, production-monitor workflow execution, and the TASK-004 production rollback exercise remain separate gates. The owner has switched the `toolpilot.cc` CNAME; this agent made no DNS changes. Pending content must remain noindex.
+Owner content approval, operator/contact/legal details, independent GSC and broad crawler-access review, GitHub notification setup, and the TASK-004 production rollback exercise remain separate gates. The owner has switched the `toolpilot.cc` CNAME; this agent made no DNS changes. Pending content must remain noindex.
 
 ## Verification and rollback
 
@@ -44,6 +44,11 @@ Owner content approval, operator/contact/legal details, unrestricted production/
 - Stored outbound-link audit checked 115 URLs: 91 HTTP-ok, 14 restricted, 6 blocked by policy and 4 temporary errors. See `docs/research/link-check-2026-09-27.json`; reachability is not fact verification.
 - `git diff --check`: passed. Playwright evidence covers 8 routes at 375/768/1440px (24 checks), plus search, empty state, filter accessibility and keyboard states; see `docs/tasks/TASK-005-browser-check.json`.
 - `npm run release:check`: passed on reviewed full-SHA release commit `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9`; GitHub CI passed at `https://github.com/yubinhong/toolpilot/actions/runs/36288456469`.
+- Current handoff release `4fb09bca29619032588d152e7b971e69fab1f4ad`: `npm audit --audit-level=high` found 0 vulnerabilities; `npm run release:check` passed with Node 22, a clean worktree and full SHA. Workflow YAML parsed with `workflow_dispatch` enabled and `SMOKE_PROFILE: current`.
+- GitHub CI run `36299689412` passed audit, lint, typecheck, tests, static build and local smoke. Cloudflare Pages check passed and deployed source `4fb09bc` as deployment `76a9ace8-375f-40fd-b31a-acdb22661512`; immutable preview: `https://76a9ace8.toolpilot-git.pages.dev`.
+- `SMOKE_BASE_URL=https://76a9ace8.toolpilot-git.pages.dev SMOKE_PROFILE=current npm run smoke`: passed for 88 pages, robots, sitemap and a real 404. After deployment, `SMOKE_PROFILE=current npm run smoke` against `https://toolpilot.cc` passed the same checks.
+- Manual production-monitor workflow run `36299788937` passed on source SHA `4fb09bca29619032588d152e7b971e69fab1f4ad`: GitHub Actions ran `SMOKE_PROFILE=current` against `https://toolpilot.cc`; see `https://github.com/yubinhong/toolpilot/actions/runs/36299788937`.
+- The immediately previous scheduled monitor run `36298017064` failed under its old `legacy` profile because the cutover site no longer contained the legacy markers or 50-tool sitemap. The new current-profile manual run passed; this historical failure does not describe the current monitor configuration.
 - Cloudflare Pages Git Integration is confirmed by project `toolpilot-git`, connected to `yubinhong/toolpilot` on `main` with `npm run cloudflare:build`, output `out`, and Node 22. Deployment `000a4a88-b061-4f48-afe7-d7bc3d78d202` completed from the full source SHA above.
 - `SMOKE_BASE_URL=https://000a4a88.toolpilot-git.pages.dev SMOKE_PROFILE=current npm run smoke`: passed online for 88 pages, robots, sitemap and a real 404.
 - Before the owner-reported CNAME cutover, the formal-domain current smoke failed against the then-current legacy release; that result is historical and has been superseded. After the owner-reported cutover, `SMOKE_PROFILE=current npm run smoke` against `https://toolpilot.cc` passed for 88 pages, robots, sitemap and a real 404. This agent did not change DNS records.
@@ -53,6 +58,6 @@ Owner content approval, operator/contact/legal details, unrestricted production/
 
 ### Remaining gates
 
-Production-monitor workflow execution after the current-profile configuration is deployed; owner approval of exact content revisions; operator/contact/privacy/legal facts; independent GSC checks; TASK-004 production rollback exercise. The owner-reported CNAME cutover and formal-domain current smoke are complete. R09 remains incomplete until the monitor workflow has an observed successful run and this handoff records its result.
+R09 engineering verification and release handoff are complete. Remaining independent gates are owner approval of exact content revisions, operator/contact/privacy/legal facts, independent GSC and broad crawler-access review, GitHub notification setup, and the TASK-004 production rollback exercise. These gates do not change the `in-review`/noindex state of content.
 
 Rollback must preserve the pre-existing baseline. After a live release, use the verified previous Pages deployment or revert the reviewed release commit, then repeat the current-profile online smoke. No data migration is involved.

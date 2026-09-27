@@ -46,4 +46,4 @@ For rollback, select a previous verified deployment in the Git-integrated Pages 
 
 - Git-integrated project `toolpilot-git` is connected to `yubinhong/toolpilot` on `main`; deployments from commits `fc139ca1`, `a626a16`, `9e249c3`, and `1f20af4` passed Cloudflare Pages checks and current-profile smoke.
 - The owner reports that `toolpilot.cc` CNAME has been switched to the new project. The public domain now passes current-profile smoke for all 88 pages, robots, sitemap, and a real 404.
-- The Direct Upload project remains as the recovery target. Production monitoring is configured for current; its deployed manual run, an actual production rollback exercise and notification setup remain outstanding.
+- Commit `4fb09bca` deployed as Pages deployment `76a9ace8-375f-40fd-b31a-acdb22661512`; both its immutable preview and `toolpilot.cc` passed current-profile smoke for 88 pages, robots, sitemap and a real 404. Production-monitor run `36299788937` passed on the current profile. The Direct Upload project remains as the recovery target; an actual production rollback exercise and notification setup remain outstanding.
