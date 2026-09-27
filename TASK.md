@@ -1,6 +1,6 @@
 # TASK-006 — ToolPilot rebuild plan: P0 foundation and P1 content
 
-- Status: IN_PROGRESS (source-backed URL inventory, first P0 template/SEO tranche, one P1 draft batch, contextual comparison citations, all 12 tool-level evidence blocks, all 26 dependency-backed decision-page evidence blocks, structured-content link checks and P0.4 design-system audit/theme implemented; TODO-305 CI runtime/runner migration verified; historical URL evidence and owner gates remain open)
+- Status: IN_PROGRESS (source-backed URL inventory, first P0 template/SEO tranche, one P1 draft batch, contextual comparison citations, all 12 tool-level evidence blocks, all 26 dependency-backed decision-page evidence blocks, structured-content link checks, homepage source-backed navigation and P0.4 design-system audit/theme implemented; TODO-305 CI runtime/runner migration verified; historical URL evidence and owner gates remain open)
 - Date: 2026-09-27
 - Input: user-provided `TOOLPILOT_REBUILD_PLAN.md` (currently untracked; preserve it as supplied)
 - Baseline: branch `main`, HEAD `a419cab0891802f786c61dd4343fe5aeda75c6c7`; only the supplied untracked plan was present before edits. Do not infer live/indexed status from repository code.
@@ -73,6 +73,7 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - [x] Audit P0.4 typography: use fixed h1/h2 sizes with 900px and 620px breakpoints, set all letter spacing to zero, and inspect the homepage at 375/768/1440px.
 - [x] Implement P0.4 light/dark themes: follow system preference by default, allow a manual header selection saved only in local storage, theme all shared surfaces and controls, and verify keyboard/persistence behavior.
 - [x] Add a generic first-party 1200x630 share card with editable SVG source and checked-in PNG; reference it from every registered route's Open Graph and Twitter large-image metadata, and enforce those references in static artifact checks.
+- [x] Build source-backed homepage navigation for AI Coding, AI App Builders and Automation & Agents; add stable anchors to the existing tool directory, plan-listed comparison drafts, dated pricing research updates and a truthful recently-verified empty state. Preserve pending review labels and indexing state.
 - [ ] Resolve alternatives route/target-set and Cursor/Windsurf slug mappings, historical URL evidence and owner-dependent gates before marking TASK-006 complete.
 
 ### P1 draft status
@@ -120,6 +121,18 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - `node scripts/check-content.mjs --review` matched all 28 TASK-005 and 11 TASK-006 manifest rows by path, revision, digest, state and gaps. The Replit evidence pack matches profile revision 3/digest; all affected content remains `in-review` and noindex.
 - The source link scan completed. Replit pricing returned HTTP 200; Make's pricing domain and article returned HTTP 403 to automated access, so reachability was not treated as fact verification. Official source pages were separately inspected; no owner approval or hands-on test is claimed.
 - Local static smoke passed for 97 pages, robots, sitemap and a real 404. Immutable preview `https://ae4c6e18.toolpilot-git.pages.dev` and `https://toolpilot.cc` each passed current-profile smoke for the same 97-page contract. Direct HTML checks on both environments confirmed the Make USD 9 / month annual-billed 10,000-credit basis, the Replit USD 18 / month annual-billed Core basis, linked official sources and `noindex` (8 assertions per environment).
+
+#### Homepage information architecture tranche — 2026-09-27
+
+- Added category shortcuts for AI Coding, AI App Builders and Automation & Agents, linked to stable category anchors in the existing `/tools/` route. The directory now groups profiles by category; no new route was introduced.
+- Added the plan-listed Cursor vs Claude Code, Bolt vs Replit and Make vs n8n comparison drafts with their actual review state. They are presented as research under review, not as popular or recommended winners.
+- Added pricing research entries sorted by content `updatedAt`, with dates and review state visible. These dates identify record changes and do not assert current vendor prices.
+- Added Recently Verified Tools eligibility limited to published tool content with a verification date. No current record qualifies; the page shows an explicit empty state.
+- MCP and self-hosted modules remain deferred under TODO-310. No record's review state, route indexability, canonical or sitemap membership changed.
+- Node.js 22.23.2 / npm 10.9.8: `npm run cloudflare:build` passed lint, typecheck, 62 tests, 39-record content validation, static export and artifact checks (97 pages / 4 indexable URLs). The artifact check verifies category shortcuts/targets, comparison links/status, pricing links/dates and the verified-profile empty state.
+- `npm audit --audit-level=high`: 0 vulnerabilities. `SMOKE_BASE_URL=http://127.0.0.1:3001 SMOKE_PROFILE=current npm run smoke`: passed 97 pages, robots, sitemap and real 404. `git diff --check` passed.
+- Playwright Chromium at 375x812, 768x1024 and 1440x1000: document width matched each viewport and no page errors occurred. The mobile category heading is visible in the first viewport. Clicking its CTA reached `/tools/#category-ai-coding`; after smooth scrolling the anchor was 92px below the viewport top.
+- Rollback: revert the homepage/directory implementation commit and redeploy the previous reviewed Pages source; rerun preview and production current-profile smoke. No data migration is involved.
 - Commit `a458f4c34b1c8656b312f26f7efa7ae121c538b9` passed `npm run release:check` in a clean detached worktree, GitHub CI run `36327141595` and the Cloudflare Pages check for deployment `ae4c6e18-7a74-4851-a34d-d58109e85807`. Rollback: revert this commit and let Git-integrated Pages rebuild the prior reviewed content; then rerun current-profile smoke on preview and production. No data migration is involved.
 
 #### Current P1 draft tranche — 2026-09-27

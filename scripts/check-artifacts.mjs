@@ -4,6 +4,7 @@ import { getRoutes } from '../lib/routes.mjs';
 import { getSiteUrl } from '../lib/site-config.mjs';
 import { getBreadcrumbItems } from '../lib/breadcrumbs.mjs';
 import { content } from '../lib/content.mjs';
+import { categoryAnchor, HOME_CATEGORY_SHORTCUTS } from '../lib/homepage.mjs';
 const failures = [];
 const routes = getRoutes();
 const site = getSiteUrl();
@@ -56,6 +57,26 @@ for (const r of routes) {
 }
 const tools = new Map(content.filter(record => record.kind === 'tools').map(record => [record.slug,record]));
 const structuredPaths = new Set(content.map(record => `/${record.kind}/${record.slug}/`));
+const homepage = readFileSync('out/index.html','utf8');
+const toolIndex = readFileSync('out/tools/index.html','utf8');
+for (const item of HOME_CATEGORY_SHORTCUTS) {
+  const anchor = categoryAnchor(item.category);
+  if (!homepage.includes(`href="/tools/#${anchor}"`)) failures.push(`homepage: missing category shortcut for ${item.category}`);
+  if (!toolIndex.includes(`id="${anchor}"`)) failures.push(`tools index: missing category anchor ${item.category}`);
+}
+for (const slug of ['cursor-vs-claude-code', 'bolt-vs-replit', 'make-vs-n8n']) {
+  const record = content.find(item => item.kind === 'compare' && item.slug === slug);
+  if (!record || !homepage.includes(`href="/compare/${slug}/"`) || !homepage.includes(record.title)) failures.push(`homepage: missing existing comparison research ${slug}`);
+  if (record && record.review.state !== 'published' && !homepage.includes('In review')) failures.push(`homepage: missing pending review state for ${slug}`);
+}
+for (const record of content.filter(item => item.kind === 'pricing')) {
+  if (!homepage.includes(`href="/pricing/${record.slug}/"`) || !homepage.includes(record.updatedAt)) failures.push(`homepage: pricing update date or link missing for ${record.slug}`);
+}
+const verifiedToolRecords = content.filter(item => item.kind === 'tools' && item.review.state === 'published' && item.verifiedAt);
+if (!verifiedToolRecords.length && !homepage.includes('No tool profile currently has both an approved review and a verification date.')) failures.push('homepage: missing truthful empty state for recently verified tools');
+for (const record of verifiedToolRecords) {
+  if (!homepage.includes(`href="/tools/${record.slug}/"`) || !homepage.includes(record.verifiedAt)) failures.push(`homepage: verified tool missing from recent verification section: ${record.slug}`);
+}
 function escapeHtml(value) {
   return value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;' })[char]);
 }

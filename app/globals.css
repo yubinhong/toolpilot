@@ -833,6 +833,37 @@ h3 {
   font-size: 13px;
 }
 
+.home-category-links li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-category-links strong {
+  margin-bottom: 0;
+}
+
+.home-category-links small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.category-catalog-section {
+  scroll-margin-top: 88px;
+  padding-top: 26px;
+}
+
+.category-catalog-section + .category-catalog-section {
+  margin-top: 38px;
+  border-top: 1px solid var(--line);
+}
+
+.category-catalog-section h3 {
+  margin-bottom: 16px;
+  font-size: 28px;
+}
+
 .guide-list a {
   display: block;
 }
@@ -951,8 +982,28 @@ h3 {
 
   .home-hero {
     grid-template-columns: 1fr;
-    gap: 44px;
-    padding-top: 64px;
+    gap: 0;
+    padding-top: 48px;
+    padding-bottom: 46px;
+  }
+
+  .hero-signal {
+    min-height: 0;
+    margin-top: 28px;
+    border-top: 1px solid var(--line);
+    background: transparent;
+    box-shadow: none;
+    padding: 16px 0 0;
+  }
+
+  .hero-signal h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .hero-signal p {
+    margin-bottom: 6px;
+    font-size: 13px;
   }
 
   .tool-grid,
@@ -997,7 +1048,20 @@ h3 {
   }
 
   .hero-summary {
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .home-hero {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .home-hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-signal {
+    display: none;
   }
 
   .hero-actions {

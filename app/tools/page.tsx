@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { pageMetadata } from "../../lib/metadata";
 import { publicTool } from "../../lib/content.mjs";
 import { CatalogNotice } from "../../components/catalog-notice";
@@ -6,6 +7,7 @@ import { PageFrame } from "../../components/page-frame";
 import { PageIntro } from "../../components/page-intro";
 import { ToolCard } from "../../components/tool-card";
 import { categories, tools } from "../../lib/catalog.mjs";
+import { categoryAnchor } from "../../lib/homepage.mjs";
 
 export const metadata = pageMetadata("/tools/");
 
@@ -34,7 +36,7 @@ export default function ToolsPage() {
         <ul className="category-list">
           {categories.map((category) => (
             <li key={category}>
-              <strong>{category}</strong>
+              <strong><Link href={`#${categoryAnchor(category)}`}>{category}</Link></strong>
               <span>
                 {tools.filter((tool) => tool.category === category).length} entries.
               </span>
@@ -49,11 +51,19 @@ export default function ToolsPage() {
             <h2>Inspect the current working set.</h2>
           </div>
         </div>
-        <div className="tool-grid">
-          {tools.map((tool) => (
-            <ToolCard key={tool.slug} tool={publicTool(tool)} />
-          ))}
-        </div>
+        {categories.map((category) => {
+          const categoryTools = tools.filter((tool) => tool.category === category);
+          return (
+            <section className="category-catalog-section" id={categoryAnchor(category)} key={category} aria-labelledby={`${categoryAnchor(category)}-title`}>
+              <h3 id={`${categoryAnchor(category)}-title`}>{category}</h3>
+              <div className="tool-grid">
+                {categoryTools.map((tool) => (
+                  <ToolCard key={tool.slug} tool={publicTool(tool)} />
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </ContentSection>
     </PageFrame>
   );
