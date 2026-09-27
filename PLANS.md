@@ -333,7 +333,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Show selected plan-listed comparisons as comparison research, not as "popular"; show pricing records with their content `updatedAt` and current review state; render recently verified profiles only when a tool record is published and has `verifiedAt`, otherwise use a truthful empty state.
 - Keep MCP/self-hosted modules deferred under TODO-310 and keep all pending records noindex/out of the sitemap. Do not add analytics or infer popularity from research snapshots.
 - Acceptance: focused tests cover category-anchor consistency, exact existing comparison records, pricing update dates and verification eligibility; Node 22 quality/build/artifact checks, dependency audit, local current smoke and authorized release checks pass. Record external preview/production smoke separately from local verification.
-- Local implementation acceptance passed: 62 tests, Node 22 Cloudflare build (97 pages / 4 indexable URLs), 0 audit findings, 97-page local smoke, and 375/768/1440px Chromium checks including anchor activation. Production release and online smoke evidence will be appended after they pass.
+- Acceptance passed: 62 tests, Node 22 Cloudflare build (97 pages / 4 indexable URLs), 0 audit findings, 97-page local smoke, and 375/768/1440px Chromium checks including anchor activation. Commit `c6031b9e8f99a35bc1d8c48738b8671133d90c77` passed clean-worktree release readiness and CI `36333519641`; Pages deployment/check `2084b5da-14dc-4863-9049-edaa4a46ec0a`, preview and production smoke, and HTML/indexability assertions passed.
 
 ### Execution phases
 
