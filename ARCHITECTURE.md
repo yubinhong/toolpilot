@@ -4,9 +4,9 @@
 
 - 状态：`MVP IMPLEMENTED / ADR PENDING`
 - Owner：`TBD`
-- 最后更新：`2026-08-21`
+- 最后更新：`2026-09-27`
 - 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`、`docs/adr/0008-cloudflare-pages-git-integration.md`
-- 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Wrangler 项目状态、Cloudflare Dashboard 配置和 `toolpilot.cc` 公网 smoke；当前 Direct Upload 项目尚未迁移为 Git Integration
+- 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Cloudflare Pages GitHub check 和公网 smoke；`toolpilot-git` 已通过 `pages.dev` current smoke，`toolpilot.cc` 仍由旧 Direct Upload 项目提供
 
 ## TASK-005 当前架构（2026-09-27）
 
@@ -44,7 +44,7 @@ flowchart LR
 - 当前 Web 形态是 Next 静态导出；源码和构建产物均可复核。
 - 厂商站点是出站依赖；Affiliate、Featured 和 Sponsor 的关系必须在页面上披露。
 - 内容源当前是 `lib/catalog.mjs` 的 50 条研究草稿数据；静态托管为 Cloudflare Pages，生产域名为 `toolpilot.cc`；分析平台和管理入口均未配置。
-- 交付控制面由 GitHub `.github/workflows/ci.yml`、`.github/workflows/production-monitor.yml` 和 Cloudflare Pages Git Integration 构成；GitHub Actions 负责质量和生产 smoke，Cloudflare 负责从 `main` 构建/部署，GitHub App 授权和 Pages 外部构建设置仍待完成。
+- 交付控制面由 GitHub `.github/workflows/ci.yml`、`.github/workflows/production-monitor.yml` 和 Cloudflare Pages Git Integration 构成；GitHub Actions 负责质量和生产 smoke，Cloudflare 已从 `main` 构建/部署 `toolpilot-git`。正式域名切换仍待单独授权，生产监控暂时使用 legacy profile。
 
 ## 3. 组件与责任
 
@@ -112,7 +112,7 @@ flowchart LR
 
 ### 可靠性
 
-- SLO/SLA：`TBD`；仓库已配置每 15 分钟生产 smoke 和手动触发入口，Git Integration 新项目、通知路由和 Cloudflare 内部指标仍未确认。
+- SLO/SLA：`TBD`；仓库已配置每 15 分钟生产 smoke 和手动触发入口，Git Integration 构建已验证；通知路由和 Cloudflare 内部指标仍未确认。
 - 降级策略：静态页面优先；分析不可用不应阻塞页面访问；厂商链接失败应进入内容复核。
 - 灾难恢复：RPO `TBD` / RTO `TBD`；需确认静态产物、内容源和部署平台的备份方式。
 
@@ -143,12 +143,13 @@ flowchart TD
     R[GitHub main] --> CI[GitHub Actions CI]
     R --> CF[Cloudflare Pages Git Integration]
     CF --> B[cloudflare:build]
-    B --> H[Cloudflare Pages Git project]
-    H --> D[toolpilot.cc]
+    B --> H[toolpilot-git.pages.dev]
+    H -. after authorized cutover .-> D[toolpilot.cc]
+    L[legacy Direct Upload toolpilot] --> D
     M[GitHub scheduled smoke] --> D
 ```
 
-当前生产仍由 Direct Upload 项目承载：`npx --yes wrangler@4.124.0 pages deploy out --project-name toolpilot --branch main` 已上传静态产物。目标拓扑是 Cloudflare Pages Git Integration 从 `yubinhong/toolpilot` 的 `main` 自动运行 `npm run cloudflare:build` 并发布 `out/`；新项目和 `toolpilot.cc` 迁移完成前，不能把目标拓扑宣称为已生效。
+Cloudflare Pages Git Integration 已连接 `yubinhong/toolpilot` 的 `main`，成功运行 `npm run cloudflare:build` 并向 `toolpilot-git.pages.dev` 发布；最近的文档提交 `9e249c3` 对应 GitHub CI 和 Cloudflare Pages checks 均成功，线上 current smoke 覆盖 88 个页面。`toolpilot.cc` 仍由 Direct Upload 项目 `toolpilot` 提供，current smoke 证明它仍是旧内容。TASK-005 的当前边界不包含域名迁移；须在获得单独授权并完成 ADR-0008 前保留旧项目和 legacy monitor。
 
 ## 9. 架构边界与禁止模式
 
@@ -165,5 +166,5 @@ flowchart TD
 | 研究草稿尚未完成正式来源和审核版本 | 不能发布可信工具事实 | 产品/内容 Owner 完成 50 条内容核验和审核清单 | 可追溯的内容版本/审核流程 | `TODO-005`、`TODO-006`、`ADR-006` |
 | Node 22 要求与 Node 20 shell 不一致 | 直接运行命令可能结果不同 | 固定 CI/本地 Node 22 | 统一运行时和工具链 | `TODO-002` |
 | 无数据层和内容版本方案 | 无法维护来源和审核状态 | 内容规模或多人编辑需求出现 | 选择静态数据、CMS 或数据库 | `TODO-006` |
-| Cloudflare Pages Git Integration 尚未启用 | 当前 Direct Upload 项目不能直接转换，自动生产部署尚未生效 | 新建 Git-integrated 项目、GitHub App 授权、构建验证和域名迁移 | 保留旧项目，完成新项目 smoke 后再迁移域名 | `TODO-304`、`ADR-0008` |
+| Cloudflare Pages 双项目迁移未完成 | Git-integrated `toolpilot-git` 已自动构建，但 `toolpilot.cc` 仍由 Direct Upload 提供 | 获得域名切换授权并通过正式域名 current smoke | 保留旧项目作恢复目标，确认 CNAME 与 Pages 域名关联后迁移 | `TODO-304`、`ADR-0008` |
 | GitHub 外部设置和实际回滚演练未完成 | 仓库有 CI/Smoke 入口但生产恢复仍依赖 Owner 激活配置 | GitHub 通知、分支保护和生产窗口确认 | 启用告警通知、部署审计和回滚演练 | `TODO-004`、`TODO-302`、`ADR-007` |

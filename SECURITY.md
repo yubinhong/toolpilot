@@ -48,7 +48,7 @@
 
 ## 5. 密钥与配置
 
-- 密钥存储：正常生产发布由 Cloudflare Pages Git Integration 的 GitHub App 授权和 Pages 构建环境承担，不在仓库或 GitHub Actions 中保存 Cloudflare API Token。Cloudflare Wrangler OAuth/账户凭据只用于本机只读核验或经明确授权的恢复操作；本任务未读取、输出或写入令牌。
+- 密钥存储：正常生产发布由 Cloudflare Pages Git Integration 的 GitHub App 授权和 Pages 构建环境承担，不在仓库或 GitHub Actions 中保存 Cloudflare API Token。2026-09-27 按用户部署授权，通过 Wrangler 设备登录并仅授予 `account:read`、`pages:write`；OAuth 凭据用于检查/创建 `toolpilot-git`、触发 Pages 部署和尝试 Pages 域名关联。凭据没有打印或提交；由于本机无 keyring，Wrangler 暂存于用户配置文件，任务结束时已 logout 并验证文件移除。该授权不含 DNS 写入；没有修改 DNS zone 记录。
 - 轮换周期：`TBD`；任何泄露迹象都应立即吊销、轮换并记录影响。
 - 本地开发：若恢复 `.env.example`，只使用它作为非敏感字段样例；真实 `.env*.local` 不提交，禁止复制到对话或日志。
 - `.env.example` 只包含公开站点 URL；真实 `.env*.local` 不提交，当前没有真实密钥配置。
