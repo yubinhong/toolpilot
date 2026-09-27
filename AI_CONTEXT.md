@@ -3,7 +3,7 @@
 ## 当前快照 — 2026-09-27
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
-- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的差异并准备 P1 审核批次。当前有 39 条结构化记录、97 条注册路由；所有内容均为 `in-review`、noindex，只有 4 个非内容 URL 在 sitemap。12 个工具档案都具备来源绑定的优势、限制和 FAQ；所有结构化内容页至少链接到三个唯一的站内内容目标。当前待发布工作区已通过 55 项测试、Node 22 Cloudflare 构建（97 页/4 个可索引 URL）、依赖审计（0 漏洞）、内容 freshness 检查和本地 current smoke。最新已部署提交仍为 `eee8485fec0628a09d19aa7adc774c84a06a3183`，本轮改动的 CI/Cloudflare 部署与线上 smoke 尚待执行。TASK-006 基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；用户计划文件仍未跟踪且保持原样。决策页证据块、Alternatives/slug 映射、内容审批、历史 URL/GSC/外链证据、运营资料、告警通知和生产回滚演练仍是独立门槛；详见 TASK.md、TODO.md 和 PLANS.md。
+- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的差异并准备 P1 审核批次。当前有 39 条结构化记录、97 条注册路由；所有内容均为 `in-review`、noindex，只有 4 个非内容 URL 在 sitemap。12 个工具档案都具备来源绑定的优势、限制和 FAQ；所有结构化内容页至少链接到三个唯一的站内内容目标。提交 `4c4af35d1750d166afe75aae838f1593cd7e810e` 已通过 55 项测试、Node 22 Cloudflare 构建（97 页/4 个可索引 URL）、依赖审计（0 漏洞）、内容 freshness 检查和本地 current smoke；GitHub CI run `36316430513` 与 Cloudflare Pages deployment `47c45f5c-3f47-4183-b85a-2267f16d148f` 成功，预览和 `toolpilot.cc` current smoke 均通过 97 页、robots、sitemap 和 404。TASK-006 基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；用户计划文件仍未跟踪且保持原样。决策页证据块、Alternatives/slug 映射、内容审批、历史 URL/GSC/外链证据、运营资料、告警通知和生产回滚演练仍是独立门槛；详见 TASK.md、TODO.md 和 PLANS.md。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 39 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 3 guides）全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。

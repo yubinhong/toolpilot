@@ -175,7 +175,7 @@ Owner content approval, operator/contact/legal details, independent GSC and broa
 - `npm run links:check` completed; reachable sources, restricted 403 hosts, policy-blocked hosts and transient network failures are reported as reachability outcomes only. They do not change source or editorial status.
 - `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke` passed on the generated output: 97 pages, robots, sitemap and a real 404. The user-supplied `TOOLPILOT_REBUILD_PLAN.md` remains untracked and untouched.
 - `git diff --check` passed. All 39 records remain `in-review` and noindex; the sitemap remains at 4 URLs. No content approval, hands-on benchmark, commercial activation or indexing change was made.
-- Release, CI and online preview/production verification for this tranche are pending below; the current deployed baseline is still commit `eee8485fec0628a09d19aa7adc774c84a06a3183` until the new release is verified.
+- Commit `4c4af35d1750d166afe75aae838f1593cd7e810e` passed clean-worktree `npm run release:check`; GitHub CI run `36316430513` and Cloudflare Pages check both succeeded. Deployment `47c45f5c-3f47-4183-b85a-2267f16d148f` passed current-profile smoke at `https://47c45f5c.toolpilot-git.pages.dev` and `https://toolpilot.cc`, each covering 97 pages, robots, sitemap and a real 404.
 - `nvm use 22 && npm ci`: passed after dependency updates; runtime is Node `v22.23.2`, npm `10.9.8`, 0 vulnerabilities.
 - Dependency fixes: Next.js and eslint-config-next `16.3.6`, sharp `0.35.4`, js-yaml `4.3.2`; no force install or audit suppression.
 - `npm audit --audit-level=high`: passed after clean locked install, 0 vulnerabilities.
