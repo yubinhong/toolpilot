@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "How to choose a workflow automation platform",
   "summary": "Compare an automation workflow by its real execution pattern, billing unit, hosting needs and recovery path.",
-  "revision": 5,
+  "revision": 6,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -29,7 +29,7 @@
     {
       "heading": "Choose who operates the workflow",
       "paragraphs": [
-        "Make presents a hosted visual scenario workflow. n8n documents both Cloud and self-hosted options. For self-hosting, include the operator's work for deployment, credentials, updates, backups, monitoring and security. Review the current license and plan entitlements for the exact use case before choosing a deployment path."
+        "Make presents a hosted visual scenario workflow. n8n documents both Cloud and self-hosted options. For self-hosting, include the operator's work for deployment, credentials, updates, backups, monitoring, TLS and encryption at rest. n8n also documents usage-data processing from self-hosted deployments unless users opt out. Review the current license and plan entitlements for the exact use case before choosing a deployment path."
       ]
     },
     {
@@ -45,7 +45,7 @@
   ],
   "cons": [
     { "text": "Make's dynamic modules can consume credits based on tokens, file size, pages or processing time, which makes workload measurement important.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
-    { "text": "The self-host option in n8n documentation does not establish lower total cost; deployment and ongoing operation still need a use-case-specific estimate.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] }
+    { "text": "The self-host option in n8n documentation does not establish lower total cost; deployment and ongoing operation still need a use-case-specific estimate, including TLS and at-rest encryption.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "security" }] }
   ],
   "faqs": [
     {
@@ -69,6 +69,16 @@
         {
           "toolSlug": "n8n",
           "sourceId": "hosting"
+        }
+      ]
+    },
+    {
+      "question": "Does self-hosting eliminate n8n usage data processing?",
+      "answer": "No. n8n's privacy policy says certain usage data is processed unless users opt out. Verify the selected instance's setting and connected-service terms.",
+      "sourceRefs": [
+        {
+          "toolSlug": "n8n",
+          "sourceId": "privacy"
         }
       ]
     },
@@ -99,8 +109,8 @@
     },
     {
       "slug": "n8n",
-      "revision": 2,
-      "digest": "528b17776b364ef924debb196ad9e0be7495a66f2949c8ca134e02e026d6d5bb"
+      "revision": 3,
+      "digest": "36b3ced2b31f1398fb594eb35129cda9170a55194d2ad4235a1ea5b6b68727df"
     }
   ],
   "relatedLinks": [
@@ -110,7 +120,8 @@
     }
   ],
   "gaps": [
-    "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes, customer data residency, privacy, and retention/deletion terms beyond the listed Core 30-day execution-log period. No hands-on workflow or recovery test was run."
+    "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes, customer data residency, privacy, and retention/deletion terms beyond the listed Core 30-day execution-log period. No hands-on workflow or recovery test was run.",
+    "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected."
   ],
   "changes": [
     {
@@ -132,6 +143,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed Make dependency after official plan-location, retention and transfer facts; owner re-review remains required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed n8n dependency after official self-hosted privacy/security facts; owner re-review remains required."
     }
   ],
   "commercial": {

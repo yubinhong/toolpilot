@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Make vs n8n",
   "summary": "Compare Make and n8n by workflow billing unit, hosting responsibility and the operational work your automation requires.",
-  "revision": 6,
+  "revision": 7,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -55,11 +55,12 @@
   ],
   "cons": [
     { "text": "Make credit use can vary for AI and advanced modules with tokens, file size, pages or processing time.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
-    { "text": "n8n documents self-hosting as an option, but this profile does not establish its total operating cost or the work required by a specific deployment.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] }
+    { "text": "n8n self-hosting does not establish lower operating cost; the operator must also configure transport and at-rest encryption.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "security" }] }
   ],
   "faqs": [
     { "question": "Can I compare one Make credit directly with one n8n execution?", "answer": "No. Make credits can depend on the module and workload, while n8n Cloud counts a workflow execution once per complete run. Map the same trigger, steps and retries into both units.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }, { "toolSlug": "n8n", "sourceId": "pricing" }] },
-    { "question": "Does n8n self-hosting establish a lower total cost?", "answer": "No. The documentation establishes a self-hosted deployment option, not a cost conclusion; confirm license fit and operating requirements for the intended deployment.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] }
+    { "question": "Does n8n self-hosting establish a lower total cost?", "answer": "No. The documentation establishes a self-hosted deployment option, not a cost conclusion; confirm license fit and operating requirements for the intended deployment.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] },
+    { "question": "Does self-hosting mean no data is processed by n8n?", "answer": "No. n8n's policy says it processes certain usage data from self-hosted deployments unless users opt out. Check the instance setting and the terms of connected services separately.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "privacy" }] }
   ],
   "verdict": "Choose from the measured workload and hosting requirement. Make's credit unit and n8n's execution unit are not directly comparable without mapping the same automation into each billing model.",
   "bestFor": "Automation builders comparing task-based visual scenarios with API-oriented workflows",
@@ -73,13 +74,14 @@
     },
     {
       "slug": "n8n",
-      "revision": 2,
-      "digest": "528b17776b364ef924debb196ad9e0be7495a66f2949c8ca134e02e026d6d5bb"
+      "revision": 3,
+      "digest": "36b3ced2b31f1398fb594eb35129cda9170a55194d2ad4235a1ea5b6b68727df"
     }
   ],
   "gaps": [
     "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
-    "Confirm license compatibility and the self-hosted operating cost for the intended n8n use."
+    "Confirm license compatibility and the self-hosted operating cost for the intended n8n use.",
+    "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected."
   ],
   "changes": [
     {
@@ -105,6 +107,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed Make dependency after official plan-location, retention and transfer facts; owner re-review remains required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed n8n dependency after official self-hosted privacy/security facts; owner re-review remains required."
     }
   ],
   "commercial": {

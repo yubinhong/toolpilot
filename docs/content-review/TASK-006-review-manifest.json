@@ -25,12 +25,13 @@
   },
   {
     "path": "/tools/n8n/",
-    "revision": 2,
-    "digest": "528b17776b364ef924debb196ad9e0be7495a66f2949c8ca134e02e026d6d5bb",
+    "revision": 3,
+    "digest": "36b3ced2b31f1398fb594eb35129cda9170a55194d2ad4235a1ea5b6b68727df",
     "state": "in-review",
     "gaps": [
       "Confirm license compatibility, current feature entitlement and exact regional checkout price before a business recommendation.",
-      "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile."
+      "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile.",
+      "Verify the selected instance's telemetry opt-out, connected-service and model-provider data terms, and actual TLS/at-rest encryption configuration; no account or deployment was inspected."
     ]
   },
   {
@@ -45,12 +46,13 @@
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 6,
-    "digest": "e76af48d1885f653565cf241abea31ee549d8925dbf1bfe043d89bc8201f9332",
+    "revision": 7,
+    "digest": "3f823f9304c0f1ae71303c716b7b2095febc8991b3ac6f2b943bb50dd4838e71",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
-      "Confirm license compatibility and the self-hosted operating cost for the intended n8n use."
+      "Confirm license compatibility and the self-hosted operating cost for the intended n8n use.",
+      "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected."
     ]
   },
   {
@@ -106,11 +108,12 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 5,
-    "digest": "e59090b4a185c39fde67d4d5306f8ae5870d216047ef678dbab07fcbde7ecdcc",
+    "revision": 6,
+    "digest": "a4e8053df5027aab300adf4efb743abc838c4f0dff417d77604fdae336a2bbd4",
     "state": "in-review",
     "gaps": [
-      "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes, customer data residency, privacy, and retention/deletion terms beyond the listed Core 30-day execution-log period. No hands-on workflow or recovery test was run."
+      "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes, customer data residency, privacy, and retention/deletion terms beyond the listed Core 30-day execution-log period. No hands-on workflow or recovery test was run.",
+      "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected."
     ]
   }
 ]

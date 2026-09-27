@@ -143,6 +143,36 @@ test('Aider Docker support distinguishes a containerized client from local model
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('n8n self-hosting evidence keeps telemetry and operator security responsibilities explicit',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'n8n');
+  const privacy = record?.facts.find(item => item.key === 'privacy');
+  const deployment = record?.facts.find(item => item.key === 'deployment');
+  assert.ok(record);
+  assert.equal(record.revision, 3);
+  assert.deepEqual(privacy?.sourceIds, ['privacy']);
+  assert.match(privacy?.value ?? '', /Usage Data for self-hosted deployments unless users opt out/);
+  assert.match(privacy?.value ?? '', /workflow usage metrics and enabled integrations/);
+  assert.deepEqual(deployment?.sourceIds, ['product', 'security']);
+  assert.match(deployment?.value ?? '', /configure TLS termination and handle encryption at rest/);
+  assert.equal(record.sources.find(item => item.id === 'privacy')?.url, 'https://n8n.io/legal/privacy/');
+  assert.equal(record.sources.find(item => item.id === 'security')?.url, 'https://n8n.io/legal/security/');
+  assert.ok(record.gaps.some(gap => gap.includes('telemetry opt-out')));
+  const selfHostedEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'n8n');
+  assert.equal(selfHostedEntry?.fact.key, 'deployment');
+  assert.match(selfHostedEntry?.fact.value ?? '', /TLS termination and handle encryption at rest/);
+  for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
+    const decision = content.find(item => item.slug === slug);
+    const dependency = decision?.dependencies.find(item => item.slug === 'n8n');
+    assert.ok(dependency);
+    assert.equal(dependency.revision, 3);
+    assert.equal(dependency.digest, contentDigest(record));
+    assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'privacy')));
+    assert.equal(decision?.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('GitHub Copilot training-use policy distinguishes individual opt-out from organization plans',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');
   const fact = record?.facts.find(item => item.key === 'privacy');

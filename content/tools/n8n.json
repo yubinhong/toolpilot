@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "n8n",
   "summary": "A workflow automation platform with cloud and self-hosting paths and execution-based cloud pricing.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -12,13 +12,15 @@
   "sources": [
     { "id": "product", "url": "https://docs.n8n.io/", "title": "n8n documentation", "publisher": "n8n", "accessedAt": "2026-09-27" },
     { "id": "pricing", "url": "https://n8n.io/pricing/", "title": "Plans and pricing", "publisher": "n8n", "accessedAt": "2026-09-27" },
-    { "id": "hosting", "url": "https://docs.n8n.io/choose-how-to-use-n8n.md", "title": "Choose how to use n8n", "publisher": "n8n", "accessedAt": "2026-09-27" }
+    { "id": "hosting", "url": "https://docs.n8n.io/choose-how-to-use-n8n.md", "title": "Choose how to use n8n", "publisher": "n8n", "accessedAt": "2026-09-27" },
+    { "id": "privacy", "url": "https://n8n.io/legal/privacy/", "title": "Privacy Policy", "publisher": "n8n", "accessedAt": "2026-09-27" },
+    { "id": "security", "url": "https://n8n.io/legal/security/", "title": "Security at n8n", "publisher": "n8n", "accessedAt": "2026-09-27" }
   ],
   "facts": [
     { "key": "workflow", "label": "Workflow", "value": "Connects applications and APIs in customizable, low-code workflows; supports custom nodes and AI functionality.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
-    { "key": "deployment", "label": "Deployment", "value": "Official docs describe n8n Cloud and self-hosted installation options such as npm and Docker.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "deployment", "label": "Deployment", "value": "Official docs describe n8n Cloud and self-hosted installation options such as npm and Docker. n8n's security guidance says operators must configure TLS termination and handle encryption at rest.", "sourceIds": ["product", "security"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "license", "label": "License model", "value": "Official documentation describes n8n as fair-code licensed; review the applicable license terms for the intended use.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": false },
-    { "key": "privacy", "label": "Privacy / data handling", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "privacy", "label": "Privacy / data handling", "value": "n8n's Privacy Policy says it processes certain Usage Data for self-hosted deployments unless users opt out, including user identifiers, account settings, user events, workflow usage metrics and enabled integrations. It says users can object with future effect; an email address may be submitted for usage-related contact. This does not verify a specific instance's setting or data handled by connected services.", "sourceIds": ["privacy"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "localModels", "label": "Local model inference", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
     { "key": "portability", "label": "Workflow portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false }
   ],
@@ -50,8 +52,8 @@
   "notFor": "Teams that have not checked the fair-code terms or cannot own the chosen hosting path",
   "migration": "Export representative workflows and credentials separately. Test node availability, error handling, schedules and secrets in a non-production instance before cutover.",
   "dependencies": [],
-  "gaps": ["Confirm license compatibility, current feature entitlement and exact regional checkout price before a business recommendation.", "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }, { "date": "2026-09-27", "summary": "Added current hosting source, cited strengths, constraints, FAQs and related guides; owner review remains pending." }],
+  "gaps": ["Confirm license compatibility, current feature entitlement and exact regional checkout price before a business recommendation.", "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile.", "Verify the selected instance's telemetry opt-out, connected-service and model-provider data terms, and actual TLS/at-rest encryption configuration; no account or deployment was inspected."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }, { "date": "2026-09-27", "summary": "Added current hosting source, cited strengths, constraints, FAQs and related guides; owner review remains pending." }, { "date": "2026-09-27", "summary": "Added official self-hosted telemetry and operator encryption responsibilities; instance configuration and connected-service data handling remain unverified." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
