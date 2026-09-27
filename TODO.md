@@ -16,6 +16,7 @@
 | TODO-006 | 选择工具内容源、版本模型和编辑/厂商审核流程 | TASK-003 已记录当前快照和链接状态，但来源版本、事实证据和正式更新时间策略仍未确认 | P1 | 产品/工程 Owner | PRD-001 批准 |
 | TODO-007 | 完成 ADR：静态导出、内容存储和部署拓扑 | Cloudflare Pages 已用于当前发布，但静态内容长期维护和 CI 拓扑仍未正式记录 | P1 | 技术负责人 | TASK-002 |
 | TODO-008 | 创建 ADR：独立评价与 Affiliate/Featured/Sponsor 隔离 | 固化用户信任和商业合规边界 | P1 | 产品/法务 Owner | 合作方条款和披露规则确认 |
+| TODO-305 | 评估 GitHub Actions Node 运行时弃用警告 | 最新 CI run 提示 `actions/checkout@v4` 与 `actions/setup-node@v4` 的 Node 20 运行时将由 runner 强制使用 Node 24；当前检查通过，后续需按兼容性评估更新 Actions major 或 runner 策略 | P2 | 工程 Owner | CI |
 
 ## Later - 暂不承诺
 
