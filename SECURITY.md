@@ -9,6 +9,7 @@
 - 检查日志只记录公开 origin/path、状态和固定错误类别，不记录查询参数、响应正文或原始异常。403/429 记为 restricted，不绕过限制；外部网络异常不自动编辑来源或审批。
 - 仍无分析、广告、表单或账户；托管请求数据处理仍待运营主体确认，不能宣称零数据处理。
 - GitHub 仓库控制项只读核验（2026-09-27）：branch-protection endpoint 返回 404，repository rulesets 列表为空；仓库 API 报告 Dependabot security updates、secret scanning、non-provider pattern scanning 和 push protection 为 `disabled`。个人通知订阅查询因当前 CLI 授权缺少 `notifications` scope 未能读取。未更改设置；Owner 需确认组织策略和功能适用性，见 TODO-004/TODO-314。
+- Cloudflare Pages 响应头只读核验（2026-09-27）：production `https://toolpilot.cc/` 与 immutable preview 均返回 `X-Content-Type-Options: nosniff` 和 `Referrer-Policy: strict-origin-when-cross-origin`；未观察到 CSP、HSTS、`X-Frame-Options` 或 `Permissions-Policy`。`public/` 中没有 `_headers` 配置。记录于 TODO-315；CSP 需要先验证 Next.js 静态产物的内联脚本与样式兼容性，不能未经测试直接启用。
 
 ## 1. 安全目标与范围
 

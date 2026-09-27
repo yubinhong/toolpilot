@@ -20,6 +20,7 @@
 | TODO-311 | 验证重建计划剩余 SEO/性能目标 | canonical、robots、sitemap、自有通用 OG 图/Twitter large-image、面包屑/JSON-LD、逐事实来源链接和三条站内结构化内容链接覆盖已由构建产物检查；P0.4 排版及浅/深主题已对 8 类页面、3 个视口、2 种主题完成 48 项浏览器检查，含系统偏好、键盘切换、持久化、对比度与溢出。真实 Core Web Vitals 和 GSC 表现仍未测量；2026-09-27 无密钥 PSI mobile 请求返回 429 `RESOURCE_EXHAUSTED`（每日查询配额），需 Owner 提供 PSI API key 或 CrUX/GSC 导出及指标窗口。 | P2 | 工程/SEO Owner | Owner 提供 GSC/CrUX 权限或导出并记录带日期的真实窗口与指标；仅在规划独立厂商/比较图时取得第三方素材许可 |
 | TODO-312 | 评估目录多维过滤及参数 URL 索引策略 | 当前首页仅支持搜索和类别过滤，状态留在客户端；计划提出免费、自托管、MCP、API、平台等过滤项 | P2 | 产品/工程 Owner | 新过滤维度有已核验数据、用户需求和 noindex 测试设计 |
 | TODO-314 | 审查 GitHub 仓库级依赖与凭据保护控制 | 2026-09-27 只读仓库 API 报告 Dependabot security updates、secret scanning、non-provider pattern scanning 和 push protection 均为 `disabled`。需要 Owner 确认仓库计划/组织策略是否支持并决定启用范围；当前没有修改 GitHub 设置，也没有据此断言仓库存在泄漏。 | P1 | Repository/Security Owner | 确认组织策略、功能可用性和发布安全要求；按授权配置并验证 | Owner 决定控制项与启用范围 |
+| TODO-315 | 审核并补齐 Cloudflare Pages 安全响应头 | 2026-09-27 对 production 与 immutable preview 的只读 HEAD 检查发现 `nosniff` 和 `strict-origin-when-cross-origin` 已返回，但未观察到 CSP、HSTS、`X-Frame-Options` 或 `Permissions-Policy`；`public/_headers` 不存在。先核实 Next.js inline hydration/style 对 CSP 的要求，并测试浏览器行为，再决定 Pages `_headers` 配置及 HSTS 范围。 | P1 | Engineering/Security Owner | 在本地构建和浏览器中验证 CSP，不得误阻断页面 hydration；审查 HSTS 对域名范围的影响 | 安全策略审查后建立独立实施 TASK |
 
 ## Later - 暂不承诺
 
