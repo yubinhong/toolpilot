@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Bolt vs Replit",
   "summary": "Compare two AI app-building workflows by project fit, handoff, operating ownership and the real cost of a working release.",
-  "revision": 5,
+  "revision": 6,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -63,13 +63,13 @@
     },
     {
       "slug": "replit",
-      "revision": 4,
-      "digest": "b111f881f3d3b9ab07dbdd42afd04fe78356d4c8d836cf79e23de07291d88dc0"
+      "revision": 5,
+      "digest": "9710902b59f27d4fa6a5312210fe68756fe16128fcbd6eccd70e01538afc2b9e"
     }
   ],
   "gaps": [
     "Replit's public monthly and annual-billed Core base prices are recorded; confirm account eligibility, location-based checkout taxes, included usage and full application costs before a budget comparison.",
-    "No clean export, independent deployment, data-residency or performance test has been performed."
+    "No clean export, independent deployment, account-level geography selection or performance test has been performed."
   ],
   "changes": [
     {
@@ -91,6 +91,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed replit source dependencies after official pricing updates; owner re-review remains required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed Replit source dependency after official privacy and geography evidence; owner re-review remains required."
     }
   ],
   "commercial": {

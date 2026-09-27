@@ -45,12 +45,14 @@
   },
   {
     "path": "/tools/replit/",
-    "revision": 4,
-    "digest": "b111f881f3d3b9ab07dbdd42afd04fe78356d4c8d836cf79e23de07291d88dc0",
+    "revision": 5,
+    "digest": "9710902b59f27d4fa6a5312210fe68756fe16128fcbd6eccd70e01538afc2b9e",
     "state": "in-review",
     "gaps": [
       "Confirm current account eligibility, location-based taxes and total application costs; public Core base prices are not a regional checkout quote or full operating budget.",
-      "Confirm data residency and export requirements for the proposed deployment."
+      "Confirm whether the documented workspace and publishing geography settings meet the proposed residency requirement across pre-existing storage, other platform resources and connected services; no account or deployment was checked, and published-region selection is permanent.",
+      "Review the applicable data-processing terms for the intended use; the general privacy policy is not an account-specific service-location map or a legal review.",
+      "No independent export or deployment test established code and data portability outside Replit."
     ]
   },
   {
@@ -64,8 +66,8 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 7,
-    "digest": "033152b25d6b1161d077976d00e05a5a2e26f3cf3ba18e11dad94b9472dac5e4",
+    "revision": 8,
+    "digest": "c40494c55c0c2da9c498fd553081e3023c513082b69ba9b4c3ca527d5c732f29",
     "state": "in-review",
     "gaps": []
   },
@@ -85,15 +87,15 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 7,
-    "digest": "6db4852e83475965c01daa587b287f5a0a4b489348072d2e7eec53f5b2c9b716",
+    "revision": 8,
+    "digest": "1b64c86377d1480e7a76d26c906e465a9e781d512fef2c9acf0dfffb01853f81",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 7,
-    "digest": "7db988c3c8903f8c66b871a43618069650f63a8139933feef3541c0888e68e22",
+    "revision": 8,
+    "digest": "fa3d4c1a40571e08a4734101f13c7e0b71626cb7cd76a1de7938860d8c6b02fb",
     "state": "in-review",
     "gaps": []
   },
@@ -106,8 +108,8 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 5,
-    "digest": "6b35a0a19e349f93789e2d71116ec4924529316b48828167c0351d013ab5bbbf",
+    "revision": 6,
+    "digest": "4e7bb93214905351a961a7ec32f0c6b02287165c3c3ccde8299f9f0810a776ff",
     "state": "in-review",
     "gaps": []
   },
@@ -148,8 +150,8 @@
   },
   {
     "path": "/compare/replit-vs-lovable/",
-    "revision": 5,
-    "digest": "ffd47653fac2102bda968df739eb69bc8dd8f741bb7b413999efb2228c540a70",
+    "revision": 6,
+    "digest": "bc679f9779ab50d04ad061bdc72a887ab3a3954211deb2bf439f2da563add55a",
     "state": "in-review",
     "gaps": []
   },
@@ -197,8 +199,8 @@
   },
   {
     "path": "/pricing/replit/",
-    "revision": 5,
-    "digest": "2e6ad636fae37284195d36399cde12641d902ace9e27157576d7cf5782c65b77",
+    "revision": 6,
+    "digest": "2a7ce2cc68176c0b74dc9d3d8c9c468c409c90738a25e2c3f49c794e75f2c115",
     "state": "in-review",
     "gaps": [
       "Confirm account eligibility and location-based checkout taxes and total; the published base prices do not establish included usage or the full application operating budget."

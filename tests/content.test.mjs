@@ -75,6 +75,41 @@ test('Make plan limits cite its official pricing page without claiming account d
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('Replit privacy and geography facts keep workspace and published-app residency distinct',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'replit');
+  const expected = {
+    privacy: {
+      source: 'privacy-policy',
+      value: "Replit's privacy policy says its Services are primarily hosted in the United States and may also be hosted elsewhere; using the Services can transfer data to the United States and other hosting jurisdictions. This does not identify every project resource or an account's geography settings.",
+    },
+    publishingGeography: {
+      source: 'geography',
+      value: 'Replit documents publishing-region selection for Core, Pro and Enterprise across North America, Europe (EU), Asia, South America and Australia; Free customers publish to North America by default. Published compute, database and Object Storage are colocated. The choice cannot be changed after publishing, and pre-publish resources may remain elsewhere.',
+    },
+    workspaceGeography: {
+      source: 'geography',
+      value: 'Workspace geography is separate from publishing geography, is selected when a workspace is created, is available only on Pro and cannot be changed later. The workspace and published app regions do not need to match.',
+    },
+  };
+
+  assert.ok(record);
+  assert.equal(record.revision, 5);
+  for (const [key, expectedFact] of Object.entries(expected)) {
+    const fact = record.facts.find(item => item.key === key);
+    const source = record.sources.find(item => item.id === expectedFact.source);
+    assert.ok(fact, `Replit has ${key}`);
+    assert.equal(fact.value, expectedFact.value);
+    assert.deepEqual(fact.sourceIds, [expectedFact.source]);
+    assert.equal(fact.checkedAt, '2026-09-27');
+    assert.equal(source?.accessedAt, fact.checkedAt);
+  }
+  assert.equal(record.sources.find(item => item.id === 'geography')?.url, 'https://docs.replit.com/features/security/geography');
+  assert.equal(record.sources.find(item => item.id === 'privacy-policy')?.url, 'https://replit.com/privacy-policy');
+  assert.ok(record.gaps.some(gap => gap.includes('no account or deployment was checked')));
+  assert.ok(record.gaps.some(gap => gap.includes('No independent export or deployment test')));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('MCP capability claims cite official docs and remain pending exact owner review',() => {
   const expected = new Map([
     ['claude-code','https://code.claude.com/docs/en/mcp'],

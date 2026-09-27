@@ -83,12 +83,12 @@
   },
   {
     "path": "/compare/bolt-vs-replit/",
-    "revision": 5,
-    "digest": "c8429a5d015a198fc205d74edf65f765ae8a54e9305665df2ccfbe1c7bdc2892",
+    "revision": 6,
+    "digest": "22654bb55f4bf2e9c9e72d921e323d964fbdca6b01720bdc79dc6e39df69436e",
     "state": "in-review",
     "gaps": [
       "Replit's public monthly and annual-billed Core base prices are recorded; confirm account eligibility, location-based checkout taxes, included usage and full application costs before a budget comparison.",
-      "No clean export, independent deployment, data-residency or performance test has been performed."
+      "No clean export, independent deployment, account-level geography selection or performance test has been performed."
     ]
   },
   {

@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Replit pricing: billing basis and cost boundaries",
   "summary": "Replit pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 5,
+  "revision": 6,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "replit",
-      "revision": 4,
-      "digest": "b111f881f3d3b9ab07dbdd42afd04fe78356d4c8d836cf79e23de07291d88dc0"
+      "revision": 5,
+      "digest": "9710902b59f27d4fa6a5312210fe68756fe16128fcbd6eccd70e01538afc2b9e"
     }
   ],
   "gaps": [
@@ -77,6 +77,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed replit source dependencies after official pricing updates; owner re-review remains required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed Replit source dependency after official privacy and geography evidence; owner re-review remains required."
     }
   ],
   "commercial": {

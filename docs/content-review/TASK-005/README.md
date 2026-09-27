@@ -26,7 +26,7 @@ For a material edit, increment revision, reset review fields and verifiedAt, upd
 | /tools/cursor/ | 3 | in-review | MCP capability, transports and default approval have cited strengths/constraints/FAQs; review against the current canonical documentation URL. |
 | /tools/github-copilot/ | 3 | in-review | MCP prerequisites, organization-policy scope and individual-plan distinction have cited strengths/constraints/FAQs; confirm privacy settings before a team recommendation. |
 | /tools/lovable/ | 2 | in-review | Review sourced workspace, credit usage and deployment ownership; confirm current plan and ongoing runtime costs. |
-| /tools/replit/ | 4 | in-review | Replit Core is USD 20/month monthly or USD 18/month equivalent billed annually; verify account eligibility, checkout taxes, full app costs, data residency and export requirements. |
+| /tools/replit/ | 5 | in-review | Core/Pro/Enterprise can choose a published-app geography; Free defaults to North America. Pro-only workspace geography is separate; verify account settings, existing resources, connected services, checkout taxes, full app costs and independent export. |
 | /tools/windsurf/ | 3 | in-review | Official FAQ says Devin Desktop is the new name for Windsurf and describes the standard account transition; exact account quote and an account-specific migration test remain open. |
 | /alternatives/bolt-new/ | 7 | in-review | Cited app-builder handoff and stack-scope evidence; refreshed Replit dependency; owner review pending. |
 | /alternatives/claude-code/ | 4 | in-review | Cited client surfaces, provider options and Copilot policy conditions; owner review pending. |

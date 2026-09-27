@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Replit",
   "summary": "An app-building workflow to assess together with its operating costs.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -51,6 +51,20 @@
       "title": "Checkpoints and rollbacks",
       "publisher": "Replit",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "geography",
+      "url": "https://docs.replit.com/features/security/geography",
+      "title": "Geography",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "privacy-policy",
+      "url": "https://replit.com/privacy-policy",
+      "title": "Privacy Policy",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-27"
     }
   ],
   "facts": [
@@ -67,9 +81,9 @@
     {
       "key": "privacy",
       "label": "Privacy / data handling",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Replit's privacy policy says its Services are primarily hosted in the United States and may also be hosted elsewhere; using the Services can transfer data to the United States and other hosting jurisdictions. This does not identify every project resource or an account's geography settings.",
+      "sourceIds": ["privacy-policy"],
+      "checkedAt": "2026-09-27",
       "critical": false
     },
     {
@@ -94,6 +108,22 @@
       "value": null,
       "sourceIds": [],
       "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "publishingGeography",
+      "label": "Published app geography",
+      "value": "Replit documents publishing-region selection for Core, Pro and Enterprise across North America, Europe (EU), Asia, South America and Australia; Free customers publish to North America by default. Published compute, database and Object Storage are colocated. The choice cannot be changed after publishing, and pre-publish resources may remain elsewhere.",
+      "sourceIds": ["geography"],
+      "checkedAt": "2026-09-27",
+      "critical": false
+    },
+    {
+      "key": "workspaceGeography",
+      "label": "Development workspace geography",
+      "value": "Workspace geography is separate from publishing geography, is selected when a workspace is created, is available only on Pro and cannot be changed later. The workspace and published app regions do not need to match.",
+      "sourceIds": ["geography"],
+      "checkedAt": "2026-09-27",
       "critical": false
     }
   ],
@@ -163,7 +193,9 @@
   "dependencies": [],
   "gaps": [
     "Confirm current account eligibility, location-based taxes and total application costs; public Core base prices are not a regional checkout quote or full operating budget.",
-    "Confirm data residency and export requirements for the proposed deployment."
+    "Confirm whether the documented workspace and publishing geography settings meet the proposed residency requirement across pre-existing storage, other platform resources and connected services; no account or deployment was checked, and published-region selection is permanent.",
+    "Review the applicable data-processing terms for the intended use; the general privacy policy is not an account-specific service-location map or a legal review.",
+    "No independent export or deployment test established code and data portability outside Replit."
   ],
   "changes": [
     {
@@ -181,6 +213,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added the monthly Core base price from Replit's pricing update; regional checkout, taxes and full operating costs remain open."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added official privacy-policy and separate workspace/publishing geography evidence; account configuration, full resource scope, data-processing review and export tests remain open."
     }
   ],
   "commercial": {

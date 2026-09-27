@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 4. Digest: `b111f881f3d3b9ab07dbdd42afd04fe78356d4c8d836cf79e23de07291d88dc0`.
+Revision: 5. Digest: `9710902b59f27d4fa6a5312210fe68756fe16128fcbd6eccd70e01538afc2b9e`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -18,17 +18,23 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Checkpoints and rollbacks](https://docs.replit.com/features/version-control/checkpoints-and-rollbacks) — Replit; accessed 2026-09-27
 
+- [Geography](https://docs.replit.com/features/security/geography) — Replit; accessed 2026-09-27
+
+- [Privacy Policy](https://replit.com/privacy-policy) — Replit; accessed 2026-09-27
+
 ## Field evidence
 
 - **Workflow**: Natural-language agent for building applications Sources: product; checked: 2026-09-27.
 
-- **Privacy / data handling**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Privacy / data handling**: Replit's policy says its Services are primarily hosted in the United States and may also be hosted elsewhere; use can transfer data to the United States and other hosting jurisdictions. This does not identify every project resource or account setting. Source: privacy-policy; checked: 2026-09-27.
 
 - **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Published app geography**: Core, Pro and Enterprise can select North America, Europe (EU), Asia, South America or Australia; Free publishes to North America by default. Published compute, database and Object Storage are colocated. Selection is permanent after publish and pre-publish resources may remain elsewhere. Source: geography; checked: 2026-09-27.
+- **Development workspace geography**: Separate from publishing geography, selected at workspace creation, Pro-only and immutable; it need not match the published app region. Source: geography; checked: 2026-09-27.
 
 ## Pricing basis
 
@@ -52,7 +58,9 @@ Keep application code, database backups and environment-variable names portable.
 
 - Confirm account eligibility, location-based checkout taxes and total application costs.
 
-- Confirm data residency and export requirements for the proposed deployment.
+- Confirm that workspace, publishing, pre-existing storage and connected-service locations meet the proposed residency requirement; no account or deployment was checked, and publishing geography cannot be changed after release.
+- Review applicable data-processing terms; the general privacy policy is not an account-specific service-location map or a legal review.
+- Test a separate code/data export and independent deployment path outside Replit.
 
 ## Owner checklist
 
