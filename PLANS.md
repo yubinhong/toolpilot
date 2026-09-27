@@ -316,7 +316,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - [x] Follow-up `b7e9b0d` final mobile breadcrumb wrapping refinement; fresh build, preview/production smoke and 375x812/1440x1000 screenshots passed.
 - [x] Phase 4 source-backed P1 draft tranche: Aider, Continue, n8n and Make profiles; five missing plan comparisons; and `open-source-ai-coding-tools`. All remain `in-review`; Continue's read-only upstream status and dynamic/unknown billing fields are explicit review gaps.
 - [x] Regenerated the route inventory to 96 source-registered URLs and added a regression check that the ten additions remain noindex with current dependency digests.
-- [x] Phase 3 follow-up: source citations appear on known comparison values; contextual internal links are limited to directly related decisions, capped at five and covered by tests. Local build and smoke pass; CI/Pages verification is pending.
+- [x] Phase 3 follow-up: source citations appear on known comparison values; contextual internal links are limited to directly related decisions, capped at five and covered by tests. Local build/smoke, release check, GitHub CI, Cloudflare deployment, preview smoke and production smoke all pass on commit `98d0be0`.
 - [ ] Remaining Phase 1 historical evidence, Phase 2 route-priority decision, source-backed pros/cons/FAQ contracts and authored per-page internal-link coverage, P1 alternative/slug reconciliation and exact Owner review, plus external operating gates.
 
 ### Execution phases

@@ -63,7 +63,7 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - [x] Follow-up commit `b7e9b0d` keeps each mobile breadcrumb separator with its path item; CI, preview, production and final 375x812/1440x1000 screenshots passed on the deployed revision.
 - [x] Added four source-backed tool drafts, five missing named comparison topics and one plan-listed Best draft. All 38 records remain `in-review`; Continue's official upstream read-only/no-maintenance notice is disclosed as a publication/adoption gap.
 - [x] Regenerated `docs/url-audit.csv` for 96 registered routes and added regression coverage for the new paths, exact dependency digests and noindex state.
-- [x] Tightened related-decision links to page-type-specific evidence overlap, capped each list at five and linked every known comparison value to its source; all 47 tests, Cloudflare build, audit and local 96-page smoke passed. Release verification is pending.
+- [x] Tightened related-decision links to page-type-specific evidence overlap, capped each list at five and linked every known comparison value to its source; all 47 tests, Cloudflare build, audit and local 96-page smoke passed.
 - [ ] Complete the old-route inventory and decide route migration only after TODO-306 evidence is provided.
 - [ ] Resolve alternatives route/target-set and Cursor/Windsurf slug mappings; finish remaining source-backed content-contract and page-level internal-link checks plus owner-dependent gates before marking TASK-006 complete.
 
@@ -92,7 +92,8 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 
 - `npm run cloudflare:build`: passed lint, typecheck, 47 tests, content validation, static build and artifact checks; 96 pages and 4 indexable URLs.
 - `npm audit --audit-level=high`: passed with 0 vulnerabilities. Built comparison output was checked for inline official source links and related decision links; the pending comparison remains outside the sitemap.
-- `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke`: passed for 96 pages, robots, sitemap and a real 404. CI and Pages deployment for this tranche are pending.
+- `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke`: passed for 96 pages, robots, sitemap and a real 404.
+- Commit `98d0be02df01b8322c23a5ab947c7f65e278c4a1` passed `npm run release:check` in a clean temporary worktree and GitHub CI run `36308661143`. Cloudflare Pages deployment `f552840a-c154-4086-9bb5-ec5c5061e2a1` succeeded; `https://f552840a.toolpilot-git.pages.dev` and `https://toolpilot.cc` each passed current-profile smoke for 96 pages, robots, sitemap and a real 404.
 - All 38 content records remain unchanged and `in-review`; no content approval or indexability change was made.
 
 #### Initial P0 technical tranche verification
