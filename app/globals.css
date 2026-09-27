@@ -71,6 +71,12 @@ input:focus-visible {
   list-style: none;
 }
 
+.breadcrumb-nav li {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
 .breadcrumb-nav a:hover {
   color: var(--green);
   text-decoration: underline;
