@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Claude Code",
   "summary": "A coding agent with terminal and IDE entry points for repository work.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -43,6 +43,13 @@
       "url": "https://claude.com/pricing",
       "title": "Claude subscription pricing",
       "publisher": "Anthropic",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "mcp",
+      "url": "https://code.claude.com/docs/en/mcp",
+      "title": "Connect Claude Code to tools via MCP",
+      "publisher": "Claude Code",
       "accessedAt": "2026-09-27"
     }
   ],
@@ -89,6 +96,14 @@
       "value": null,
       "sourceIds": [],
       "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "mcp",
+      "label": "MCP support",
+      "value": "Claude Code documents local stdio and remote HTTP, SSE and WebSocket MCP server connections; project-scoped servers require workspace trust and approval.",
+      "sourceIds": ["mcp"],
+      "checkedAt": "2026-09-27",
       "critical": false
     }
   ],
@@ -160,6 +175,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added official-source MCP configuration and project-approval details; owner review pending."
     }
   ],
   "commercial": {

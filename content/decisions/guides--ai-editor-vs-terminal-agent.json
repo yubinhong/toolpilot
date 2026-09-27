@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "AI editor vs terminal agent: choose a review loop",
   "summary": "Compare interaction styles without assuming products fit only one category.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -52,18 +52,18 @@
   "dependencies": [
     {
       "slug": "cursor",
-      "revision": 1,
-      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+      "revision": 2,
+      "digest": "0b4c09ef05fef4afa43a0d911e4c86c7a958a1d63ed7e93ef5e69297e66cb284"
     },
     {
       "slug": "claude-code",
-      "revision": 1,
-      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+      "revision": 2,
+      "digest": "3ecafec2cf2745b3b01301e6766d5a58488f26dcc266cc6bdb77cc91a4064974"
     },
     {
       "slug": "cline",
-      "revision": 1,
-      "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696"
+      "revision": 2,
+      "digest": "78db7f8a57375ed8151e955f37659b1aa2e2a77129a8400f9a7ebddf804abf5b"
     }
   ],
   "gaps": [],
@@ -71,6 +71,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
     }
   ],
   "commercial": {

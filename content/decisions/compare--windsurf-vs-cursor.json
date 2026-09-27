@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Windsurf vs Cursor",
   "summary": "Windsurf vs Cursor: existing Windsurf users reviewing product continuity and an editor alternative.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -51,8 +51,8 @@
     },
     {
       "slug": "cursor",
-      "revision": 1,
-      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+      "revision": 2,
+      "digest": "0b4c09ef05fef4afa43a0d911e4c86c7a958a1d63ed7e93ef5e69297e66cb284"
     }
   ],
   "gaps": [],
@@ -60,6 +60,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
     }
   ],
   "commercial": {

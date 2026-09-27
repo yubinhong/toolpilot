@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cursor vs GitHub Copilot",
   "summary": "Cursor vs GitHub Copilot: teams balancing editor change against existing GitHub policies.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -46,13 +46,13 @@
   "dependencies": [
     {
       "slug": "cursor",
-      "revision": 1,
-      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+      "revision": 2,
+      "digest": "0b4c09ef05fef4afa43a0d911e4c86c7a958a1d63ed7e93ef5e69297e66cb284"
     },
     {
       "slug": "github-copilot",
-      "revision": 1,
-      "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e"
+      "revision": 2,
+      "digest": "012f8a03c2500d5f4ef1235dc5dc81c72ffd00d165c0cd65acc2792e414d58ea"
     }
   ],
   "gaps": [],
@@ -60,6 +60,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
     }
   ],
   "commercial": {

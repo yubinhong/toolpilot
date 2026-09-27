@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Continue",
   "summary": "An open-source coding assistant with IDE, CLI and model-configuration paths; current upstream maintenance needs review.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -13,7 +13,8 @@
     { "id": "product", "url": "https://docs.continue.dev/", "title": "What is Continue?", "publisher": "Continue", "accessedAt": "2026-09-27" },
     { "id": "agent", "url": "https://docs.continue.dev/ide-extensions/agent/quick-start", "title": "Agent mode quick start", "publisher": "Continue", "accessedAt": "2026-09-27" },
     { "id": "selfHost", "url": "https://docs.continue.dev/guides/how-to-self-host-a-model", "title": "How to self-host a model", "publisher": "Continue", "accessedAt": "2026-09-27" },
-    { "id": "repository", "url": "https://github.com/continuedev/continue", "title": "Continue upstream repository", "publisher": "Continue Dev", "accessedAt": "2026-09-27" }
+    { "id": "repository", "url": "https://github.com/continuedev/continue", "title": "Continue upstream repository", "publisher": "Continue Dev", "accessedAt": "2026-09-27" },
+    { "id": "mcp", "url": "https://docs.continue.dev/customize/deep-dives/mcp", "title": "How to set up MCP in Continue", "publisher": "Continue", "accessedAt": "2026-09-27" }
   ],
   "facts": [
     { "key": "workflow", "label": "Workflow", "value": "AI coding assistant for VS Code and JetBrains, with Agent, Chat, Edit, autocomplete and CLI surfaces documented.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
@@ -22,7 +23,8 @@
     { "key": "localModels", "label": "Local model inference", "value": "The documentation describes local model providers; model quality and local data flow need separate validation.", "sourceIds": ["selfHost"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "maintenance", "label": "Upstream maintenance", "value": "The upstream repository says it is read-only and no longer actively maintained.", "sourceIds": ["repository"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "privacy", "label": "Privacy / data handling", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
-    { "key": "portability", "label": "Code / data portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false }
+    { "key": "portability", "label": "Code / data portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "mcp", "label": "MCP support", "value": "Continue docs describe configurable MCP servers as tools for Agent mode; upstream distribution and maintenance remain separate open questions.", "sourceIds": ["mcp"], "checkedAt": "2026-09-27", "critical": false }
   ],
   "prices": [
     { "name": "Model and account usage", "amount": null, "currency": "USD", "interval": "month", "billing": "Confirm the current Continue account or model-provider route and its usage terms.", "allowance": null, "overage": null, "taxes": null, "sourceIds": [], "checkedAt": null }
@@ -37,7 +39,7 @@
   "migration": "Pin the exact extension or CLI version, export its configuration and model endpoints, and retain a tested fallback before rollout.",
   "dependencies": [],
   "gaps": ["The upstream repository is read-only; confirm package distribution, publisher, security response and support lifecycle before publication or adoption.", "Confirm current pricing, account requirements, telemetry and model-provider data terms."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; upstream maintenance caveat requires owner review." }],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; upstream maintenance caveat requires owner review." }, { "date": "2026-09-27", "summary": "Added an official-documentation MCP capability fact; upstream maintenance caveat remains." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

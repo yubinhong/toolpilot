@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Replit alternatives",
   "summary": "Replit alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -61,8 +61,8 @@
     },
     {
       "slug": "claude-code",
-      "revision": 1,
-      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+      "revision": 2,
+      "digest": "3ecafec2cf2745b3b01301e6766d5a58488f26dcc266cc6bdb77cc91a4064974"
     }
   ],
   "gaps": [],
@@ -70,6 +70,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
     }
   ],
   "commercial": {

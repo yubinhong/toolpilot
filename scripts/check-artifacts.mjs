@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { getRoutes } from '../lib/routes.mjs';
 import { getSiteUrl } from '../lib/site-config.mjs';
 import { getBreadcrumbItems } from '../lib/breadcrumbs.mjs';
+import { content } from '../lib/content.mjs';
 const failures = [];
 const routes = getRoutes();
 const site = getSiteUrl();
@@ -38,6 +39,32 @@ for (const r of routes) {
     if (!existsSync(join('out',href,href.endsWith('/') ? 'index.html' : ''))) failures.push(`${r.path}: broken local link ${href}`);
   }
   if (/Approximately 20%|Cash affiliate|Commission note|commission terms|approvedDigest/.test(html)) failures.push(`${r.path}: historical commercial research exposed`);
+}
+const tools = new Map(content.filter(record => record.kind === 'tools').map(record => [record.slug,record]));
+for (const record of content.filter(item => item.kind === 'tools' && item.facts.some(fact => fact.key === 'mcp'))) {
+  const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');
+  const fact = record.facts.find(item => item.key === 'mcp');
+  if (!html.includes(fact.value)) failures.push(`${record.kind}/${record.slug}: MCP fact missing from rendered page`);
+  for (const id of fact.sourceIds) {
+    const source = record.sources.find(item => item.id === id);
+    if (source && !html.includes(source.url)) failures.push(`${record.kind}/${record.slug}: MCP source ${id} missing from rendered page`);
+  }
+}
+for (const record of content.filter(item => item.kind === 'compare')) {
+  const facts = record.dependencies.flatMap(dependency => {
+    const fact = tools.get(dependency.slug)?.facts.find(item => item.key === 'mcp');
+    return fact ? [{ fact, tool: tools.get(dependency.slug) }] : [];
+  });
+  if (!facts.length) continue;
+  const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');
+  if (!html.includes('MCP support')) failures.push(`${record.kind}/${record.slug}: MCP comparison dimension missing from rendered page`);
+  for (const { fact, tool } of facts) {
+    if (!html.includes(fact.value)) failures.push(`${record.kind}/${record.slug}: ${tool.slug} MCP fact missing from comparison`);
+    for (const id of fact.sourceIds) {
+      const source = tool.sources.find(item => item.id === id);
+      if (source && !html.includes(source.url)) failures.push(`${record.kind}/${record.slug}: ${tool.slug} MCP source ${id} missing from comparison`);
+    }
+  }
 }
 function files(dir) { return readdirSync(dir,{withFileTypes:true}).flatMap(e => e.isDirectory() ? files(join(dir,e.name)) : [join(dir,e.name)]); }
 for (const file of files('out/_next/static').filter(f => f.endsWith('.js'))) {

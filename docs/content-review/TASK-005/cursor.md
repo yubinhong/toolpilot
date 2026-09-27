@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 1. Digest: `a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729`.
+Revision: 2. Digest: `0b4c09ef05fef4afa43a0d911e4c86c7a958a1d63ed7e93ef5e69297e66cb284`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -13,6 +13,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - [Plans and billing](https://cursor.com/pricing) — Cursor; accessed 2026-09-27
 
 - [Security](https://cursor.com/security) — Cursor; accessed 2026-09-27
+
+- [Model Context Protocol (MCP)](https://docs.cursor.com/context/model-context-protocol) — Cursor; accessed 2026-09-27
 
 ## Field evidence
 
@@ -25,6 +27,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+
+- **MCP support**: Cursor documents local stdio and remote SSE or Streamable HTTP MCP servers; its Agent can use configured and enabled MCP tools. Sources: mcp; checked: 2026-09-27.
 
 ## Pricing basis
 

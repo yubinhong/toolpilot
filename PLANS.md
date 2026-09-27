@@ -370,6 +370,15 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Preserve the existing `/alternatives/bolt-new/` route. This tranche adds no alternative record until an approved route map resolves `/alternatives/bolt/`.
 - After content edits, regenerate dependency digests and the review handoff manifest, then verify all drafts remain noindex and absent from sitemap. The tranche manifest is recorded in `docs/content-review/TASK-006-review-manifest.json`; owner review of exact revision/digest remains required before any indexing.
 
+##### Active MCP capability evidence tranche — 2026-09-27
+
+- Add source-backed MCP facts only to the five profiles whose official docs explicitly describe the capability: Cursor, Claude Code, GitHub Copilot, Cline and Continue. Preserve Copilot's organization-policy/plan nuance and Continue's separate upstream-maintenance warning; leave other products unknown rather than inferring non-support.
+- Increment each edited tool revision, update all 18 dependent decision records to the new tool digests/revisions, increment those decision revisions, and append a dated change entry. Keep every record in-review, noindex and outside the sitemap.
+- Add `docs.cursor.com` to the exact outbound-host allowlist only after reviewing the source URL; existing official hosts remain exact entries.
+- Refresh the TASK-006 review manifest and handoff instructions for changed P1 records; inspect whether TASK-005 review notes refer to any changed exact revisions.
+- Acceptance: content validator and tests confirm source/date attribution, current dependency digests and pending review state; build/artifacts confirm 96 routes and unchanged indexable URL count; link checks may classify network restrictions without treating them as source failures. Run Node 22 quality, audit, local smoke, clean release check, CI, Pages deployment and preview/production smoke.
+- Local acceptance completed: five official source URLs are recorded and rendered, 18 dependent decision records validate against current digests, 48 tests pass, static artifacts contain 96 routes and 4 indexable URLs, audit reports zero vulnerabilities, and local current-profile smoke passes. CI, deployment and online smoke remain pending release.
+
 #### Phase 5 — External operating and commercial gates
 
 - Obtain operator/contact/legal facts before final trust copy; do not invent a company, address, team or legal relationship.

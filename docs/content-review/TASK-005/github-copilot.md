@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 1. Digest: `30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e`.
+Revision: 2. Digest: `012f8a03c2500d5f4ef1235dc5dc81c72ffd00d165c0cd65acc2792e414d58ea`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -11,6 +11,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - [Copilot plans](https://docs.github.com/en/copilot/get-started/plans) — GitHub Copilot; accessed 2026-09-27
 
 - [Plans and billing](https://docs.github.com/en/copilot/get-started/plans) — GitHub Copilot; accessed 2026-09-27
+
+- [Extend Copilot Chat with MCP servers](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp) — GitHub Copilot; accessed 2026-09-27
 
 ## Field evidence
 
@@ -23,6 +25,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+
+- **MCP support**: Copilot Chat documents MCP servers for IDE use; GitHub lists VS Code 1.99+ as a prerequisite and requires organization policy enablement for Business or Enterprise members. Sources: mcp; checked: 2026-09-27.
 
 ## Pricing basis
 

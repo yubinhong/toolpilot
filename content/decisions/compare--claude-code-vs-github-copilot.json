@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Claude Code vs GitHub Copilot",
   "summary": "Choose between coding workflows by testing the same repository task, account policy and review loop.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -22,11 +22,11 @@
   "notFor": "Teams requiring an already-verified account-specific privacy, entitlement or cost conclusion",
   "migration": "Trial the replacement on a branch while preserving the current review workflow. Recheck organization policy, account access and repository instructions before moving team usage.",
   "dependencies": [
-    { "slug": "claude-code", "revision": 1, "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd" },
-    { "slug": "github-copilot", "revision": 1, "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e" }
+    { "slug": "claude-code", "revision": 2, "digest": "3ecafec2cf2745b3b01301e6766d5a58488f26dcc266cc6bdb77cc91a4064974" },
+    { "slug": "github-copilot", "revision": 2, "digest": "012f8a03c2500d5f4ef1235dc5dc81c72ffd00d165c0cd65acc2792e414d58ea" }
   ],
   "gaps": ["GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.", "This comparison contains no hands-on benchmark or measured task result."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; exact account constraints and owner review remain open." }],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; exact account constraints and owner review remain open." }, { "date": "2026-09-27", "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

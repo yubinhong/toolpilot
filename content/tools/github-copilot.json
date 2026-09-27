@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "GitHub Copilot",
   "summary": "Coding assistance for evaluating an existing GitHub and IDE workflow.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -28,6 +28,13 @@
       "id": "pricing",
       "url": "https://docs.github.com/en/copilot/get-started/plans",
       "title": "Plans and billing",
+      "publisher": "GitHub Copilot",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "mcp",
+      "url": "https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp",
+      "title": "Extend Copilot Chat with MCP servers",
       "publisher": "GitHub Copilot",
       "accessedAt": "2026-09-27"
     }
@@ -73,6 +80,14 @@
       "value": null,
       "sourceIds": [],
       "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "mcp",
+      "label": "MCP support",
+      "value": "Copilot Chat documents MCP servers for IDE use; GitHub lists VS Code 1.99+ as a prerequisite and requires organization policy enablement for Business or Enterprise members.",
+      "sourceIds": ["mcp"],
+      "checkedAt": "2026-09-27",
       "critical": false
     }
   ],
@@ -132,6 +147,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added official-source MCP support and organization-policy conditions; owner review pending."
     }
   ],
   "commercial": {

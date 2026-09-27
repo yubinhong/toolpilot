@@ -13,8 +13,8 @@
   },
   {
     "path": "/tools/continue/",
-    "revision": 1,
-    "digest": "c8faa7c3666c8e4fd4b24ec7c0f82b63a6795ea9dd61c9ac22616b2a830fa5bc",
+    "revision": 2,
+    "digest": "b5da4fef4875747083848e1d234471c21dbfca9c445c450e0cfcee245822f7dd",
     "state": "in-review",
     "gaps": [
       "The upstream repository is read-only; confirm package distribution, publisher, security response and support lifecycle before publication or adoption.",
@@ -53,8 +53,8 @@
   },
   {
     "path": "/compare/claude-code-vs-github-copilot/",
-    "revision": 1,
-    "digest": "83a22e572657e804ac15e8677afcb0fac150889f0837b81fdee8ba510089e327",
+    "revision": 2,
+    "digest": "016163a0062324e288b68b80c37113685b08a063072a01f4935f27e1d64908da",
     "state": "in-review",
     "gaps": [
       "GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.",
@@ -63,8 +63,8 @@
   },
   {
     "path": "/compare/cline-vs-continue/",
-    "revision": 1,
-    "digest": "79bdbafb3c63dbe9a6aa52e01fc618515432a7f01f8f997523b73383e00208fa",
+    "revision": 2,
+    "digest": "3e639d0701c0c5aba3036af55d9381a5c24af8795c454137b8c55645aca79521",
     "state": "in-review",
     "gaps": [
       "Continue package distribution, publisher, security response and current support lifecycle require confirmation.",
@@ -73,8 +73,8 @@
   },
   {
     "path": "/compare/aider-vs-claude-code/",
-    "revision": 1,
-    "digest": "81e2c2562ccf5bf1fe8896373ea6d20ebae915b33cee780ebac1d082fd908110",
+    "revision": 2,
+    "digest": "1470a0f299e89b6aed527fac56b2c21ae0f8fe4719bf65c53420e1e65823e79d",
     "state": "in-review",
     "gaps": [
       "Provider and account-specific billing and privacy terms need current verification.",
@@ -93,8 +93,8 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 1,
-    "digest": "9492723932352967fb72b09c4a75838ed6f79546258de2acfa2de16aaec4836f",
+    "revision": 2,
+    "digest": "fb0e50cce3ee1f2ceebece0da1919cb741652295ec99e3e3182f56649d4fccbf",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",

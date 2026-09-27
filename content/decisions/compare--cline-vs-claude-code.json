@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cline vs Claude Code",
   "summary": "Cline vs Claude Code: developers deciding whether provider configuration is a core requirement.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -46,13 +46,13 @@
   "dependencies": [
     {
       "slug": "cline",
-      "revision": 1,
-      "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696"
+      "revision": 2,
+      "digest": "78db7f8a57375ed8151e955f37659b1aa2e2a77129a8400f9a7ebddf804abf5b"
     },
     {
       "slug": "claude-code",
-      "revision": 1,
-      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+      "revision": 2,
+      "digest": "3ecafec2cf2745b3b01301e6766d5a58488f26dcc266cc6bdb77cc91a4064974"
     }
   ],
   "gaps": [],
@@ -60,6 +60,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
     }
   ],
   "commercial": {

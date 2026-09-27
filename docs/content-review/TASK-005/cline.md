@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 1. Digest: `75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696`.
+Revision: 2. Digest: `78db7f8a57375ed8151e955f37659b1aa2e2a77129a8400f9a7ebddf804abf5b`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -11,6 +11,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - [Cline official repository](https://github.com/cline/cline) — Cline; accessed 2026-09-27
 
 - [Plans and billing](https://docs.cline.bot/getting-started/authorizing-with-cline) — Cline; accessed 2026-09-27
+
+- [MCP overview](https://docs.cline.bot/mcp/mcp-overview) — Cline; accessed 2026-09-27
 
 ## Field evidence
 
@@ -25,6 +27,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **Provider configuration**: Provider sign-in and bring-your-own-key configurations are documented. Sources: pricing; checked: 2026-09-27.
+
+- **MCP support**: Cline documents MCP servers for connecting external tools and data, with local stdio and remote server configuration paths. Sources: mcp; checked: 2026-09-27.
 
 ## Pricing basis
 

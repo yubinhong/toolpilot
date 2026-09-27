@@ -20,6 +20,33 @@ test('content is valid and includes the planned first-batch kinds',() => {
   assert.ok(content.length >= 28);
   for (const [kind,count] of Object.entries({tools:12,compare:11,alternatives:6,pricing:4,best:3,guides:2})) assert.ok(content.filter(r=>r.kind===kind).length >= count);
 });
+test('MCP capability claims cite official docs and remain pending exact owner review',() => {
+  const expected = new Map([
+    ['claude-code','https://code.claude.com/docs/en/mcp'],
+    ['cline','https://docs.cline.bot/mcp/mcp-overview'],
+    ['continue','https://docs.continue.dev/customize/deep-dives/mcp'],
+    ['cursor','https://docs.cursor.com/context/model-context-protocol'],
+    ['github-copilot','https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp'],
+  ]);
+  const profiles = content.filter(record=>record.kind==='tools');
+  const claims = profiles.filter(record=>record.facts.some(fact=>fact.key==='mcp'));
+  assert.deepEqual(claims.map(record=>record.slug).sort(),[...expected.keys()].sort());
+  for (const record of claims) {
+    const fact=record.facts.find(item=>item.key==='mcp');
+    const source=record.sources.find(item=>item.id==='mcp');
+    assert.equal(record.revision,2,`${record.slug} revision was bumped`);
+    assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
+    assert.equal(fact.critical,false);
+    assert.deepEqual(fact.sourceIds,['mcp']);
+    assert.equal(source.url,expected.get(record.slug));
+    assert.equal(source.accessedAt,fact.checkedAt);
+    assert.equal(record.review.state,'in-review');
+    for (const field of ['owner','reviewedAt','approvedRevision','approvedDigest','evidence']) assert.equal(record.review[field],null);
+    assert.equal(record.verifiedAt,null);
+    assert.equal(record.testedAt,null);
+  }
+  assert.ok(profiles.filter(record=>!expected.has(record.slug)).every(record=>!record.facts.some(fact=>fact.key==='mcp')));
+});
 test('TASK-006 P1 additions exist as in-review noindex routes with valid dependencies',() => {
   const required = [
     ...['aider','continue','n8n','make'].map(slug=>`tools/${slug}`),

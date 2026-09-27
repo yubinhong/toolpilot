@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "Open-source AI coding tools to evaluate",
   "summary": "A conditional shortlist based on project license evidence, model boundaries and current maintenance signals.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -32,11 +32,11 @@
   "migration": "Pin the client version and model endpoint, preserve a human-reviewed fallback, and recheck license and maintenance evidence before upgrading.",
   "dependencies": [
     { "slug": "aider", "revision": 1, "digest": "c2a970c532824750680559447eafa98c122b1d63292df23c36c1940cff20435c" },
-    { "slug": "cline", "revision": 1, "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696" },
-    { "slug": "continue", "revision": 1, "digest": "c8faa7c3666c8e4fd4b24ec7c0f82b63a6795ea9dd61c9ac22616b2a830fa5bc" }
+    { "slug": "cline", "revision": 2, "digest": "78db7f8a57375ed8151e955f37659b1aa2e2a77129a8400f9a7ebddf804abf5b" },
+    { "slug": "continue", "revision": 2, "digest": "b5da4fef4875747083848e1d234471c21dbfca9c445c450e0cfcee245822f7dd" }
   ],
   "gaps": ["Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.", "Continue's distribution, current maintenance, publisher and security response need confirmation before any production recommendation.", "No hands-on comparison or model performance test has been performed."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-repository shortlist draft; owner approval and maintenance checks remain open." }],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-repository shortlist draft; owner approval and maintenance checks remain open." }, { "date": "2026-09-27", "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

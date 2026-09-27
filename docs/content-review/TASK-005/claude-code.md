@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 1. Digest: `266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd`.
+Revision: 2. Digest: `3ecafec2cf2745b3b01301e6766d5a58488f26dcc266cc6bdb77cc91a4064974`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -16,6 +16,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Claude subscription pricing](https://claude.com/pricing) — Anthropic; accessed 2026-09-27
 
+- [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp) — Claude Code; accessed 2026-09-27
+
 ## Field evidence
 
 - **Workflow**: Terminal, IDE, desktop and web coding agent Sources: product; checked: 2026-09-27.
@@ -27,6 +29,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+
+- **MCP support**: Claude Code documents local stdio and remote HTTP, SSE and WebSocket MCP server connections; project-scoped servers require workspace trust and approval. Sources: mcp; checked: 2026-09-27.
 
 ## Pricing basis
 

@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Cline",
   "summary": "A coding-agent candidate for users who want to choose the model provider.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -28,6 +28,13 @@
       "id": "pricing",
       "url": "https://docs.cline.bot/getting-started/authorizing-with-cline",
       "title": "Plans and billing",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "mcp",
+      "url": "https://docs.cline.bot/mcp/mcp-overview",
+      "title": "MCP overview",
       "publisher": "Cline",
       "accessedAt": "2026-09-27"
     }
@@ -86,6 +93,14 @@
       ],
       "checkedAt": "2026-09-27",
       "critical": false
+    },
+    {
+      "key": "mcp",
+      "label": "MCP support",
+      "value": "Cline documents MCP servers for connecting external tools and data, with local stdio and remote server configuration paths.",
+      "sourceIds": ["mcp"],
+      "checkedAt": "2026-09-27",
+      "critical": false
     }
   ],
   "prices": [
@@ -128,6 +143,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added an official-documentation MCP capability fact; owner review pending."
     }
   ],
   "commercial": {
