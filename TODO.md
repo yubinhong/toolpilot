@@ -6,7 +6,7 @@
 
 | ID | 事项 | 价值/原因 | 优先级 | Owner | 依赖 | 状态 |
 | --- | --- | --- | --- | --- | --- | --- |
-| TODO-004 | 完成 GitHub 通知配置核对并保留生产监控运维入口 | CI、current production smoke 和 Pages Git Integration 已实现。2026-09-27 只读核验：`main` 未启用 branch protection（GitHub API 404），Actions 已启用且默认 workflow 权限为 read，仓库 hooks 列表为空；个人通知订阅及 Cloudflare 侧部署通知仍不能由仓库检查证明。生产回滚演练另跟踪 TODO-302。 | P0 | 工程/运维 Owner | TASK-004 | Owner 配置/确认 branch protection 与通知路由 |
+| TODO-004 | 完成 GitHub 通知配置核对并保留生产监控运维入口 | CI、current production smoke 和 Pages Git Integration 已实现。2026-09-27 只读核验：branch-protection endpoint 返回 404，仓库 rulesets 列表为空；Actions 已启用且默认 workflow 权限为 read，仓库 hooks 列表为空。个人订阅 endpoint 因当前 GitHub CLI 授权缺少 `notifications` scope 无法读取；Cloudflare 侧部署通知也未核验。未更改任何设置。生产回滚演练另跟踪 TODO-302。 | P0 | 工程/运维 Owner | TASK-004 | Owner 确认有效分支规则并核验 GitHub 与 Cloudflare 通知路由 |
 
 ## Next - 近期候选
 
@@ -19,6 +19,7 @@
 | TODO-310 | 决定 MCP 与 self-hosted 路由优先级和第一批页面边界 | 重建计划 §5/§49 列作 P0，§43/§44/§51 又列为未来/P2；代码目前没有这两个路由 | P1 | 产品 Owner | 在 PRD/TASK 中确认优先级、内容价值和维护 Owner；确认前不建空页、不进 sitemap |
 | TODO-311 | 验证重建计划剩余 SEO/性能目标 | canonical、robots、sitemap、自有通用 OG 图/Twitter large-image、面包屑/JSON-LD、逐事实来源链接和三条站内结构化内容链接覆盖已由构建产物检查；P0.4 排版及浅/深主题已对 8 类页面、3 个视口、2 种主题完成 48 项浏览器检查，含系统偏好、键盘切换、持久化、对比度与溢出。真实 Core Web Vitals 和 GSC 表现仍未测量；2026-09-27 无密钥 PSI mobile 请求返回 429 `RESOURCE_EXHAUSTED`（每日查询配额），需 Owner 提供 PSI API key 或 CrUX/GSC 导出及指标窗口。 | P2 | 工程/SEO Owner | Owner 提供 GSC/CrUX 权限或导出并记录带日期的真实窗口与指标；仅在规划独立厂商/比较图时取得第三方素材许可 |
 | TODO-312 | 评估目录多维过滤及参数 URL 索引策略 | 当前首页仅支持搜索和类别过滤，状态留在客户端；计划提出免费、自托管、MCP、API、平台等过滤项 | P2 | 产品/工程 Owner | 新过滤维度有已核验数据、用户需求和 noindex 测试设计 |
+| TODO-314 | 审查 GitHub 仓库级依赖与凭据保护控制 | 2026-09-27 只读仓库 API 报告 Dependabot security updates、secret scanning、non-provider pattern scanning 和 push protection 均为 `disabled`。需要 Owner 确认仓库计划/组织策略是否支持并决定启用范围；当前没有修改 GitHub 设置，也没有据此断言仓库存在泄漏。 | P1 | Repository/Security Owner | 确认组织策略、功能可用性和发布安全要求；按授权配置并验证 | Owner 决定控制项与启用范围 |
 
 ## Later - 暂不承诺
 

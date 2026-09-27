@@ -8,6 +8,7 @@
 - 批处理出站检查只消费仓库公开 URL；固定域名 allowlist、拒绝 IP/凭据/非 HTTPS/自定义端口；所有 DNS 结果必须为公网地址，并把验证地址固定到 TLS 请求，阻止二次解析重绑定。每跳再校验，最多 3 次，15 秒请求预算，并发 3，不带 Cookie/Token。
 - 检查日志只记录公开 origin/path、状态和固定错误类别，不记录查询参数、响应正文或原始异常。403/429 记为 restricted，不绕过限制；外部网络异常不自动编辑来源或审批。
 - 仍无分析、广告、表单或账户；托管请求数据处理仍待运营主体确认，不能宣称零数据处理。
+- GitHub 仓库控制项只读核验（2026-09-27）：branch-protection endpoint 返回 404，repository rulesets 列表为空；仓库 API 报告 Dependabot security updates、secret scanning、non-provider pattern scanning 和 push protection 为 `disabled`。个人通知订阅查询因当前 CLI 授权缺少 `notifications` scope 未能读取。未更改设置；Owner 需确认组织策略和功能适用性，见 TODO-004/TODO-314。
 
 ## 1. 安全目标与范围
 
