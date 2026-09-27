@@ -3,7 +3,7 @@
 ## 当前快照 — 2026-09-27
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
-- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的 P0 差异。源码路由清单、比较事实维度并集、可见面包屑/route-only JSON-LD、Twitter card 和产物检查已在 `800a817` 首次部署；Cloudflare Pages preview 与正式域 smoke 通过。当前工作区另有一项面包屑移动端换行微调，正在复验后发布。基线为 `main` / `a419cab0891802f786c61dd4343fe5aeda75c6c7`。计划文件仍为用户提供的未跟踪文件，必须保留。历史 URL/GSC/外链证据、内容批准、运营资料、告警通知和生产回滚演练仍是独立门槛；TASK-006 仍在进行，详见 TASK.md、TODO.md 和 PLANS.md。
+- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的 P0 差异。源码路由清单、比较事实维度并集、可见面包屑/route-only JSON-LD、Twitter card 和产物检查已在 `b7e9b0d` 部署；最终 Cloudflare Pages preview 与正式域 current smoke 通过。基线为 `main` / `a419cab0891802f786c61dd4343fe5aeda75c6c7`。计划文件仍为用户提供的未跟踪文件，必须保留。历史 URL/GSC/外链证据、内容批准、运营资料、告警通知和生产回滚演练仍是独立门槛；TASK-006 仍在进行，详见 TASK.md、TODO.md 和 PLANS.md。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；加入 Claude Code/Cline 后有 52 个工具身份。首批 28 个结构化内容记录全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。

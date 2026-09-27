@@ -313,7 +313,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - [x] Phase 1 current-source URL inventory delivered with the requested columns and explicit unknowns; historical route collection and migration remain blocked.
 - [x] Phase 3 first implementation slice: comparison fact union, visible breadcrumb/route JSON-LD, Twitter card metadata and generated-artifact checks.
 - [x] Initial implementation commit `800a817` passed CI and deployed as `12e9bb9d-b905-47e1-9e98-716988f2bb2f`; preview and production current smoke passed. Comparison-template screenshots were inspected at 375x812 and 1440x1000.
-- [ ] Final mobile breadcrumb wrapping refinement in the follow-up commit still requires a fresh build and online smoke.
+- [x] Follow-up `b7e9b0d` final mobile breadcrumb wrapping refinement; fresh build, preview/production smoke and 375x812/1440x1000 screenshots passed.
 - [ ] Remaining Phase 1 historical evidence, Phase 2 route-priority decision, rest of Phase 3 content/internal-link coverage, P1 content and external operating gates.
 
 ### Execution phases
@@ -374,7 +374,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Run preview and production `SMOKE_PROFILE=current` only after an authorized deployment; a successful local build or Git push is not deployment evidence.
 - Record code/doc changes, routes added/retained/removed, redirects (if any), tests, owner inputs still needed, risks and rollback in TASK.md.
 
-Current tranche verification (2026-09-27): `npm run cloudflare:build` passed with 42 tests and 88 generated pages; local current smoke passed for 88 pages/robots/sitemap/404; `npm audit --audit-level=high` reported 0 vulnerabilities. Initial preview/production smoke and Playwright screenshot inspection passed; repeat online checks after the final wrapping refinement.
+Current tranche verification (2026-09-27): `npm run cloudflare:build` passed with 42 tests and 88 generated pages; local current smoke passed for 88 pages/robots/sitemap/404; `npm audit --audit-level=high` reported 0 vulnerabilities. Follow-up CI run `36304533365` passed, Cloudflare deployment `3c4b4d7a-4b7b-47e0-a384-8d06353218c0` preview and production smoke passed, and final Playwright screenshots were inspected at 375x812 and 1440x1000.
 
 ### Stop conditions and rollback
 

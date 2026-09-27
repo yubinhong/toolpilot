@@ -60,6 +60,7 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - [x] Added source-driven comparison dimension union, visible route breadcrumbs, matching `BreadcrumbList` JSON-LD, Twitter summary metadata and generated-artifact regression checks.
 - [x] Initial implementation commit `800a817` passed GitHub CI and deployed as Cloudflare Pages deployment `12e9bb9d-b905-47e1-9e98-716988f2bb2f`; preview and production current smoke each passed 88 pages, robots, sitemap and 404 checks.
 - [x] Playwright screenshots inspected at 375x812 and 1440x1000 for the comparison template; content and breadcrumb remain within the viewport.
+- [x] Follow-up commit `b7e9b0d` keeps each mobile breadcrumb separator with its path item; CI, preview, production and final 375x812/1440x1000 screenshots passed on the deployed revision.
 - [ ] Complete the old-route inventory and decide route migration only after TODO-306 evidence is provided.
 - [ ] Finish the supported template/content audit, owner-dependent gates and remaining P0 acceptance work before marking TASK-006 complete.
 
@@ -70,7 +71,7 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - `npm audit --audit-level=high`: passed, 0 vulnerabilities.
 - `npm run urls:audit`: generated the 88-route source inventory; the regression test requires it to remain synchronized with the route registry.
 - `gh run 36303851871`: audit, lint, type check, 42 tests, build and CI static smoke all passed. Cloudflare deployment `12e9bb9d-b905-47e1-9e98-716988f2bb2f` preview (`https://12e9bb9d.toolpilot-git.pages.dev`) and `https://toolpilot.cc` current smoke passed. The source was checked for Twitter, breadcrumb and JSON-LD markers on production.
-- A final breadcrumb wrapping refinement is being checked locally after the initial release; deploy and smoke its follow-up commit before closing this tranche.
+- Follow-up commit `b7e9b0dea41efae2c024c1c85cccdeef4781190d` passed CI run `36304533365` and deployed as Cloudflare Pages deployment `3c4b4d7a-4b7b-47e0-a384-8d06353218c0`. Preview (`https://3c4b4d7a.toolpilot-git.pages.dev`) and `https://toolpilot.cc` current smoke passed for 88 pages, robots, sitemap and a real 404. Final Playwright screenshots at 375x812 and 1440x1000 show the comparison page and breadcrumb fit without overlap.
 
 # TASK-005 — ToolPilot decision content remediation
 
