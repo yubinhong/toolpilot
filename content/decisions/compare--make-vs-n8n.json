@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Make vs n8n",
   "summary": "Compare Make and n8n by workflow billing unit, hosting responsibility and the operational work your automation requires.",
-  "revision": 5,
+  "revision": 6,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -68,8 +68,8 @@
   "dependencies": [
     {
       "slug": "make",
-      "revision": 4,
-      "digest": "af6bb8173237bc723d9fe50148914cb0e7759c2057ca2da7fdbeb4d049f904e4"
+      "revision": 5,
+      "digest": "ab77bd4ae4962120b344465c0a8465dbdc2f3c9609b0667cedf6f590cc23c245"
     },
     {
       "slug": "n8n",
@@ -101,6 +101,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed make source dependencies after official pricing updates; owner re-review remains required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed Make dependency after official plan-location, retention and transfer facts; owner re-review remains required."
     }
   ],
   "commercial": {

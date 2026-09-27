@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Make",
   "summary": "A visual automation platform built around scenarios, module actions and monthly credits.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -21,7 +21,10 @@
     { "key": "privacy", "label": "Privacy / data handling", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
     { "key": "selfHosting", "label": "Product self-hosting", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
     { "key": "localModels", "label": "Local model inference", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
-    { "key": "portability", "label": "Scenario portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false }
+    { "key": "portability", "label": "Scenario portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "hostingRegions", "label": "Infrastructure hosting locations", "value": "The pricing table lists AWS (EU/North America) for each plan. This does not establish customer-selectable regions or account-level data residency.", "sourceIds": ["pricing"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "executionLogRetention", "label": "Core execution log storage", "value": "The plan comparison lists 30 days of execution log storage for Core. Deletion semantics and retention of other data are not specified here.", "sourceIds": ["pricing"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "dataTransferAllowance", "label": "Core data transfer allowance", "value": "The plan table lists 5 GB of data transfer per 10,000 monthly credits; this is an allowance, not a measured workload estimate.", "sourceIds": ["pricing"], "checkedAt": "2026-09-27", "critical": false }
   ],
   "prices": [
     { "name": "Free", "amount": 0, "currency": "USD", "interval": "month", "billing": "Free plan; official page says there is no time limit.", "allowance": "Up to 1,000 credits per month.", "overage": null, "taxes": null, "sourceIds": ["pricing"], "checkedAt": "2026-09-27" },
@@ -54,8 +57,8 @@
   "notFor": "Teams that need a verified self-hosted deployment or a fixed cost without a usage estimate",
   "migration": "Export scenario definitions where supported, inventory connections and credentials separately, then replay representative events in a test organization before replacing the source workflow.",
   "dependencies": [],
-  "gaps": ["Confirm location-dependent checkout taxes and total, data retention, privacy, regional hosting and scenario export behavior for the intended plan.", "A representative workflow has not been measured; credit use can vary by module and usage."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; dynamic paid pricing remains explicitly unresolved." }, { "date": "2026-09-27", "summary": "Added official credit evidence, cited strengths, constraints, FAQs and related guides; owner review remains pending." }, { "date": "2026-09-27", "summary": "Recorded the documented annual-billed Core baseline for 10,000 monthly credits; monthly billing and regional checkout remain open." }, { "date": "2026-09-27", "summary": "Added the official monthly-payment price for the 10,000-credit Core tier; tax, checkout, workload and owner-review gaps remain." }],
+  "gaps": ["Confirm location-dependent checkout taxes and total; customer-selectable regions or account-level data residency; privacy and retention/deletion terms beyond the listed Core execution-log period; and scenario export behavior for the intended plan.", "A representative workflow has not been measured; credit use can vary by module and usage."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; dynamic paid pricing remains explicitly unresolved." }, { "date": "2026-09-27", "summary": "Added official credit evidence, cited strengths, constraints, FAQs and related guides; owner review remains pending." }, { "date": "2026-09-27", "summary": "Recorded the documented annual-billed Core baseline for 10,000 monthly credits; monthly billing and regional checkout remain open." }, { "date": "2026-09-27", "summary": "Added the official monthly-payment price for the 10,000-credit Core tier; tax, checkout, workload and owner-review gaps remain." }, { "date": "2026-09-27", "summary": "Added official Core infrastructure-location, execution-log retention and data-transfer facts; account data residency, broader retention and owner review remain open." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

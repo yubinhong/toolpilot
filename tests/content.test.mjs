@@ -53,6 +53,28 @@ test('Make and Replit price cadences are source-backed and remain pending owner 
     assert.equal(isIndexable(record, content), false);
   }
 });
+test('Make plan limits cite its official pricing page without claiming account data residency',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'make');
+  const expected = {
+    hostingRegions: 'The pricing table lists AWS (EU/North America) for each plan. This does not establish customer-selectable regions or account-level data residency.',
+    executionLogRetention: 'The plan comparison lists 30 days of execution log storage for Core. Deletion semantics and retention of other data are not specified here.',
+    dataTransferAllowance: 'The plan table lists 5 GB of data transfer per 10,000 monthly credits; this is an allowance, not a measured workload estimate.',
+  };
+
+  assert.ok(record);
+  assert.equal(record.revision, 5);
+  for (const [key, value] of Object.entries(expected)) {
+    const fact = record.facts.find(item => item.key === key);
+    assert.ok(fact, `Make has ${key}`);
+    assert.equal(fact.value, value);
+    assert.deepEqual(fact.sourceIds, ['pricing']);
+    assert.equal(fact.checkedAt, '2026-09-27');
+    assert.equal(fact.critical, false);
+  }
+  assert.ok(record.gaps.some(gap => gap.includes('customer-selectable regions or account-level data residency')));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('MCP capability claims cite official docs and remain pending exact owner review',() => {
   const expected = new Map([
     ['claude-code','https://code.claude.com/docs/en/mcp'],

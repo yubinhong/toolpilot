@@ -33,18 +33,18 @@
   },
   {
     "path": "/tools/make/",
-    "revision": 4,
-    "digest": "af6bb8173237bc723d9fe50148914cb0e7759c2057ca2da7fdbeb4d049f904e4",
+    "revision": 5,
+    "digest": "ab77bd4ae4962120b344465c0a8465dbdc2f3c9609b0667cedf6f590cc23c245",
     "state": "in-review",
     "gaps": [
-      "Confirm location-dependent checkout taxes and total, data retention, privacy, regional hosting and scenario export behavior for the intended plan.",
+      "Confirm location-dependent checkout taxes and total; customer-selectable regions or account-level data residency; privacy and retention/deletion terms beyond the listed Core execution-log period; and scenario export behavior for the intended plan.",
       "A representative workflow has not been measured; credit use can vary by module and usage."
     ]
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 5,
-    "digest": "df396c0ba73d7eb9b2075bf87fb889d33a77ce94f6a57be0b274b21cec4dbd72",
+    "revision": 6,
+    "digest": "e76af48d1885f653565cf241abea31ee549d8925dbf1bfe043d89bc8201f9332",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
@@ -104,11 +104,11 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 4,
-    "digest": "33631297d9c95231c31c86dac4f1b9faad4180ee470223e8b189e124cb2b69ad",
+    "revision": 5,
+    "digest": "e59090b4a185c39fde67d4d5306f8ae5870d216047ef678dbab07fcbde7ecdcc",
     "state": "in-review",
     "gaps": [
-      "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout, retention and privacy for the selected plans. No hands-on workflow or recovery test was run."
+      "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes, customer data residency, privacy, and retention/deletion terms beyond the listed Core 30-day execution-log period. No hands-on workflow or recovery test was run."
     ]
   }
 ]
