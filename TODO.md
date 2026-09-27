@@ -6,7 +6,7 @@
 
 | ID | 事项 | 价值/原因 | 优先级 | Owner | 依赖 | 状态 |
 | --- | --- | --- | --- | --- | --- | --- |
-| TODO-004 | 完成 GitHub 通知配置核对并保留生产监控运维入口 | CI、current production smoke 和 Pages Git Integration 已实现；GitHub 通知路由仍未核验，生产回滚演练单独跟踪 TODO-302 | P0 | 工程/运维 Owner | TASK-004 | Waiting on repository Owner |
+| TODO-004 | 完成 GitHub 通知配置核对并保留生产监控运维入口 | CI、current production smoke 和 Pages Git Integration 已实现。2026-09-27 只读核验：`main` 未启用 branch protection（GitHub API 404），Actions 已启用且默认 workflow 权限为 read，仓库 hooks 列表为空；个人通知订阅及 Cloudflare 侧部署通知仍不能由仓库检查证明。生产回滚演练另跟踪 TODO-302。 | P0 | 工程/运维 Owner | TASK-004 | Owner 配置/确认 branch protection 与通知路由 |
 
 ## Next - 近期候选
 
@@ -17,7 +17,7 @@
 | TODO-008 | 完成商业关系与独立评价隔离的业务/法务决策 | 当前模型和 disclosure 分离 Affiliate/Featured/Sponsor，但合作条款、排序规则、归因、退款和披露文案未确认 | P1 | 产品/商业/法务 Owner | 正式条款与关系证据；当前不得激活商业链接 |
 | TODO-309 | 审核并确定重建计划 P1 内容批次的正式页面集合 | 已按官方来源将结构化内容扩至 12/11/6/4/3/3（tools/compare/alternatives/pricing/best/guides，共 39 条，全部 in-review）；计划列出的 10 个比较主题均有草稿，另保留 1 个清单外比较。12 个工具档案和 26 个依赖型决策页现有来源绑定的优势、限制和 FAQ。Make Core 的 USD 9/月（10,000 credits，年付）和 Replit Core 的 USD 18/月（年付折算）已记录官方基线；月付金额、数量/地区结账税费和完整运行成本仍需核对。`/compare/windsurf-vs-cursor/` 与计划顺序相反；Alternatives 数量 6 但 `/alternatives/bolt-new/` vs `/alternatives/bolt/` 和 n8n 替代候选仍未核定。Continue 上游仓库只读/停止维护，Windsurf 账号级迁移/报价仍待核实。 | P1 | 产品/内容 Owner | 逐条审核 `docs/content-review/TASK-006/README.md` 与 TASK-005 清单的 revision/digest、目标搜索意图、依赖、来源、法律/维护风险和路由映射；明确责任人与通过标准。审批前不得索引或改商业状态 |
 | TODO-310 | 决定 MCP 与 self-hosted 路由优先级和第一批页面边界 | 重建计划 §5/§49 列作 P0，§43/§44/§51 又列为未来/P2；代码目前没有这两个路由 | P1 | 产品 Owner | 在 PRD/TASK 中确认优先级、内容价值和维护 Owner；确认前不建空页、不进 sitemap |
-| TODO-311 | 验证重建计划剩余 SEO/性能目标 | canonical、robots、sitemap、自有通用 OG 图/Twitter large-image、面包屑/JSON-LD、逐事实来源链接和三条站内结构化内容链接覆盖已由构建产物检查；P0.4 排版及浅/深主题已对 8 类页面、3 个视口、2 种主题完成 48 项浏览器检查，含系统偏好、键盘切换、持久化、对比度与溢出。真实 Core Web Vitals 和 GSC 表现仍未测量；无密钥 PSI API 请求受配额限制，CrUX API 现场数据需项目 API key。 | P2 | 工程/SEO Owner | Owner 提供 GSC/CrUX 权限或导出并记录带日期的真实窗口与指标；仅在规划独立厂商/比较图时取得第三方素材许可 |
+| TODO-311 | 验证重建计划剩余 SEO/性能目标 | canonical、robots、sitemap、自有通用 OG 图/Twitter large-image、面包屑/JSON-LD、逐事实来源链接和三条站内结构化内容链接覆盖已由构建产物检查；P0.4 排版及浅/深主题已对 8 类页面、3 个视口、2 种主题完成 48 项浏览器检查，含系统偏好、键盘切换、持久化、对比度与溢出。真实 Core Web Vitals 和 GSC 表现仍未测量；2026-09-27 无密钥 PSI mobile 请求返回 429 `RESOURCE_EXHAUSTED`（每日查询配额），需 Owner 提供 PSI API key 或 CrUX/GSC 导出及指标窗口。 | P2 | 工程/SEO Owner | Owner 提供 GSC/CrUX 权限或导出并记录带日期的真实窗口与指标；仅在规划独立厂商/比较图时取得第三方素材许可 |
 | TODO-312 | 评估目录多维过滤及参数 URL 索引策略 | 当前首页仅支持搜索和类别过滤，状态留在客户端；计划提出免费、自托管、MCP、API、平台等过滤项 | P2 | 产品/工程 Owner | 新过滤维度有已核验数据、用户需求和 noindex 测试设计 |
 
 ## Later - 暂不承诺
@@ -30,7 +30,7 @@
 | ID | 事项 | 阻塞原因 | 等待对象 | 下一次检查 |
 | --- | --- | --- | --- | --- |
 | TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 与域名迁移已完成；尚未在生产窗口执行上一份 verified deployment 恢复，需 Owner 安排并授权操作窗口 | 运维/项目 Owner | Owner 确认生产演练窗口和操作人 |
-| TODO-306 | 完成旧 URL 的索引、外链和迁移证据采集 | `docs/url-audit.csv` 已列出当前源码的 97 个注册路由，但不是历史 URL 清单；代码路由不能证明旧 URL 是否索引或有外链，不能据此作批量 301/410 | 项目/SEO Owner | 提供 Search Console 导出、旧 sitemap、可核验外链/日志和受影响域名清单 |
+| TODO-306 | 完成旧 URL 的索引、外链和迁移证据采集 | `docs/url-audit.csv` 已列出当前源码的 97 个注册路由，但不是历史 URL 清单。2026-09-27 公开档案核查不完整：Wayback CDX 临时离线；Common Crawl wildcard 查询被规范化为根路径，改用 domain 匹配后遇到 502/504，其他三个索引 503。这些失败不能证明旧 URL 不存在、未索引或无外链，也不能据此作批量 301/410。 | 项目/SEO Owner | 提供 Search Console 导出、旧 sitemap、可核验外链/日志和受影响域名清单 |
 | TODO-307 | 补全公开运营主体、监控联系渠道和法律事实 | About/Contact/Privacy/Terms 页面结构存在；真实运营者、联系邮箱和最终法律文字尚未提供 | 项目 Owner/法务 | 提供准确资料并审核用户可见版本；不得编造地址或团队 |
 | TODO-308 | 批准 GA4、AdSense、Affiliate 或其他追踪/商业上线 | 当前均未集成；计划提出收入优先级但没有隐私主体、CMP/同意要求、合作方条款、归因及退款规则 | 项目/隐私/法务/商业 Owner | 单独批准数据字段/保留期、适用同意机制、合作条款、披露与可见标识；之前不得加脚本或商业承诺 |
 

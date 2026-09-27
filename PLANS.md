@@ -337,6 +337,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 
 - Build the requested URL audit from current route definitions and every recoverable legacy URL source in the repository.
 - Current-source portion is implemented by `npm run urls:audit`; the output is not a historical census.
+- Supplemental archive checks on 2026-09-27 were inconclusive: Internet Archive CDX returned a temporary offline page; Common Crawl wildcard requests normalized to the root URL and corrected domain-wide requests timed out/failed, while three other queried indexes returned 503. Keep historical URLs, GSC indexing and backlinks unknown; this does not satisfy TODO-306.
 - Use the plan's fields: `url`, `status`, `title`, `page_type`, `indexed`, `has_backlink`, `action`, `redirect_target`, `notes`.
 - Represent unavailable external facts explicitly as `unknown`; do not convert absence of evidence into `false`.
 - Do not ship bulk deletion, homepage redirects, 301s or 410s. Each action needs the exact old URL, evidence, semantically justified destination or 410 reason, and automated smoke coverage.

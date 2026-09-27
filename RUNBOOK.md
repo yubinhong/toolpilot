@@ -8,7 +8,8 @@
 - 依赖：`package.json`/`package-lock.json`、Node 22、Next 静态构建、Cloudflare Pages 项目 `toolpilot-git` 与恢复项目 `toolpilot`、厂商站点和未来可选分析服务。
 - Dashboard：Cloudflare Dashboard 的 Workers & Pages > `toolpilot-git` / `toolpilot`；当前未配置应用监控或告警。
 - 日志：`TBD`；当前没有应用、部署或访问日志入口。
-- 当前状态：Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot` 的 `main`，构建命令 `npm run cloudflare:build`、输出 `out`、Node 22。用户报告已将 `toolpilot.cc` CNAME 切换至该项目；部署 source `4fb09bca29619032588d152e7b971e69fab1f4ad` / Pages deployment `76a9ace8-375f-40fd-b31a-acdb22661512` 已通过 Cloudflare 检查。该 preview 和正式域名 current smoke 均检查 88 个页面、robots、sitemap 和真实 404 并通过。生产监控 current profile 手动 run `36299788937` 成功。旧 Direct Upload 项目 `toolpilot` 及部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留为恢复目标；尚未执行生产回滚演练。此 Agent 未更改 DNS 或 Pages 自定义域绑定。
+- 当前状态：Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot` 的 `main`，构建命令 `npm run cloudflare:build`、输出 `out`、Node 22。用户报告已将 `toolpilot.cc` CNAME 切换至该项目；最新核验 source `a71c7da6aab215dc390361a80ee63505efc1b1c` 对应 Pages deployment `adb838ee-51be-44c3-b11d-e33e0eca5f2c`，immutable preview 为 `https://adb838ee.toolpilot-git.pages.dev`。该 preview 和正式域名 current smoke 均检查 97 个页面、robots、sitemap 和真实 404 并通过；生产监控 current profile run `36320017826` 成功。旧 Direct Upload 项目 `toolpilot` 及部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留为恢复目标；尚未执行生产回滚演练。此 Agent 未更改 DNS 或 Pages 自定义域绑定。
+- GitHub 控制项只读核验（2026-09-27）：`main` branch-protection endpoint 返回 404；Actions 已启用，默认 workflow 权限为 `read`，仓库 webhook 列表为空。Personal notification subscriptions 与 Cloudflare-side deployment notifications 未由这些仓库 API 检查覆盖；Owner 必须确认并配置，当前未更改外部设置。
 
 ## 2. SLO 与关键指标
 
