@@ -28,6 +28,14 @@ test("trust pages use the rebuild plan names without adding duplicate routes", (
   assert.equal(routes.some(route => ["/methodology/", "/affiliate-disclosure/"].includes(route.path)), false);
 });
 
+test("MCP and self-hosted overview routes are registered and remain noindex", () => {
+  const routes = getRoutes();
+  for (const path of ["/mcp/", "/self-hosted/"]) {
+    assert.equal(routes.filter(route => route.path === path).length, 1);
+    assert.equal(routes.find(route => route.path === path)?.index, false);
+  }
+});
+
 test("site config removes trailing slashes from the public site URL", () => {
   const previousUrl = process.env.NEXT_PUBLIC_SITE_URL;
   process.env.NEXT_PUBLIC_SITE_URL = "https://example.test///";

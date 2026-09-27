@@ -34,6 +34,8 @@
 
 ### Added
 
+- Add noindex `/mcp/` and `/self-hosted/` evidence overview routes to global navigation. Render source-bound draft facts, exact official source links and explicit review status; defer deep directories and filters to P2.
+
 - 初始化 ToolPilot 项目上下文、产品草案、架构观察、安全边界、测试阻塞和运行手册。
 - 增加源码恢复、Node 22、旧 Crypto/DeFi 内容迁移、CI/部署/监控等后续 TODO。
 - 记录早期检查读到的生成物和配置样例在最终复核时消失；后续项目 Owner 确认这些文件是主动删除内容，本次重建不做恢复。

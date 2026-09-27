@@ -7,6 +7,8 @@ const primaryLinks = [
   ["Alternatives", "/alternatives/"],
   ["Pricing", "/pricing/"],
   ["Best for", "/best/"],
+  ["MCP", "/mcp/"],
+  ["Self-hosted", "/self-hosted/"],
   ["Guides", "/guides/"],
 ] as const;
 

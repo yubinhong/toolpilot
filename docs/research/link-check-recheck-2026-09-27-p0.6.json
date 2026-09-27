@@ -1,0 +1,1104 @@
+{
+  "checkedAt": "2026-09-27T20:23:33.407Z",
+  "note": "HTTP reachability only; never changes editorial approval.",
+  "results": [
+    {
+      "origin": "https://aider.chat",
+      "path": "/docs/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://aider.chat",
+      "finalPath": "/docs/"
+    },
+    {
+      "origin": "https://aider.chat",
+      "path": "/docs/git.html",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://aider.chat",
+      "finalPath": "/docs/git.html"
+    },
+    {
+      "origin": "https://aider.chat",
+      "path": "/docs/llms.html",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://aider.chat",
+      "finalPath": "/docs/llms.html"
+    },
+    {
+      "origin": "https://albato.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://albato.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://albato.com",
+      "path": "/en/wiki/affiliate-program",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://albato.com",
+      "finalPath": "/en/wiki/affiliate-program"
+    },
+    {
+      "origin": "https://betterstack.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://betterstack.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://betterstack.com",
+      "path": "/affiliates",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://betterstack.com",
+      "finalPath": "/affiliates"
+    },
+    {
+      "origin": "https://bolt.new",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://bolt.new",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://bolt.new",
+      "path": "/pricing",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://bolt.new",
+      "finalPath": "/pricing"
+    },
+    {
+      "origin": "https://bunny.net",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://bunny.net",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://claude.com",
+      "path": "/pricing",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://claude.com",
+      "finalPath": "/pricing"
+    },
+    {
+      "origin": "https://clerk.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://clerk.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://clerk.com",
+      "path": "/creators",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://clerk.com",
+      "finalPath": "/creators"
+    },
+    {
+      "origin": "https://code.claude.com",
+      "path": "/docs/en/costs",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://code.claude.com",
+      "finalPath": "/docs/en/costs"
+    },
+    {
+      "origin": "https://code.claude.com",
+      "path": "/docs/en/data-usage",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://code.claude.com",
+      "finalPath": "/docs/en/data-usage"
+    },
+    {
+      "origin": "https://code.claude.com",
+      "path": "/docs/en/mcp",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://code.claude.com",
+      "finalPath": "/docs/en/mcp"
+    },
+    {
+      "origin": "https://code.claude.com",
+      "path": "/docs/en/overview",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://code.claude.com",
+      "finalPath": "/docs/en/overview"
+    },
+    {
+      "origin": "https://cursor.com",
+      "path": "/docs",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://cursor.com",
+      "finalPath": "/docs"
+    },
+    {
+      "origin": "https://cursor.com",
+      "path": "/docs/mcp",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://cursor.com",
+      "finalPath": "/docs/mcp"
+    },
+    {
+      "origin": "https://cursor.com",
+      "path": "/pricing",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://cursor.com",
+      "finalPath": "/pricing"
+    },
+    {
+      "origin": "https://cursor.com",
+      "path": "/security",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://cursor.com",
+      "finalPath": "/security"
+    },
+    {
+      "origin": "https://devin.ai",
+      "path": "/desktop",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://devin.ai",
+      "finalPath": "/desktop"
+    },
+    {
+      "origin": "https://devin.ai",
+      "path": "/pricing",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://devin.ai",
+      "finalPath": "/pricing"
+    },
+    {
+      "origin": "https://docs.bunny.net",
+      "path": "/billing/affiliate-program",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://bunny.net",
+      "finalPath": "/docs/billing/affiliate-program"
+    },
+    {
+      "origin": "https://docs.cline.bot",
+      "path": "/getting-started/authorizing-with-cline",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.cline.bot",
+      "finalPath": "/getting-started/authorizing-with-cline"
+    },
+    {
+      "origin": "https://docs.cline.bot",
+      "path": "/mcp/mcp-overview",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.cline.bot",
+      "finalPath": "/mcp/mcp-overview"
+    },
+    {
+      "origin": "https://docs.continue.dev",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.continue.dev",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://docs.continue.dev",
+      "path": "/customize/deep-dives/mcp",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.continue.dev",
+      "finalPath": "/customize/deep-dives/mcp"
+    },
+    {
+      "origin": "https://docs.continue.dev",
+      "path": "/guides/how-to-self-host-a-model",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.continue.dev",
+      "finalPath": "/guides/how-to-self-host-a-model"
+    },
+    {
+      "origin": "https://docs.continue.dev",
+      "path": "/ide-extensions/agent/quick-start",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.continue.dev",
+      "finalPath": "/ide-extensions/agent/quick-start"
+    },
+    {
+      "origin": "https://docs.devin.ai",
+      "path": "/desktop/cascade/cascade",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.devin.ai",
+      "finalPath": "/desktop/cascade/cascade"
+    },
+    {
+      "origin": "https://docs.github.com",
+      "path": "/en/copilot/get-started/plans",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.github.com",
+      "finalPath": "/en/copilot/get-started/plans"
+    },
+    {
+      "origin": "https://docs.github.com",
+      "path": "/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.github.com",
+      "finalPath": "/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp"
+    },
+    {
+      "origin": "https://docs.lovable.dev",
+      "path": "/introduction/credits-and-usage",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.lovable.dev",
+      "finalPath": "/introduction/credits-and-usage"
+    },
+    {
+      "origin": "https://docs.lovable.dev",
+      "path": "/introduction/subscription-plans",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.lovable.dev",
+      "finalPath": "/introduction/subscription-plans"
+    },
+    {
+      "origin": "https://docs.lovable.dev",
+      "path": "/introduction/welcome",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.lovable.dev",
+      "finalPath": "/introduction/welcome"
+    },
+    {
+      "origin": "https://docs.lovable.dev",
+      "path": "/tips-tricks/deployment-hosting-ownership",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.lovable.dev",
+      "finalPath": "/tips-tricks/deployment-hosting-ownership"
+    },
+    {
+      "origin": "https://docs.n8n.io",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.n8n.io",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://docs.n8n.io",
+      "path": "/choose-how-to-use-n8n.md",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.n8n.io",
+      "finalPath": "/choose-how-to-use-n8n.md"
+    },
+    {
+      "origin": "https://docs.replit.com",
+      "path": "/billing/plans/replit-core",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.replit.com",
+      "finalPath": "/billing/plans/replit-core"
+    },
+    {
+      "origin": "https://docs.replit.com",
+      "path": "/features/agent/overview",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.replit.com",
+      "finalPath": "/features/agent/overview"
+    },
+    {
+      "origin": "https://docs.replit.com",
+      "path": "/features/version-control/checkpoints-and-rollbacks",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://docs.replit.com",
+      "finalPath": "/features/version-control/checkpoints-and-rollbacks"
+    },
+    {
+      "origin": "https://elementor.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://elementor.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://elementor.com",
+      "path": "/affiliates/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://elementor.com",
+      "finalPath": "/affiliates/"
+    },
+    {
+      "origin": "https://forum.cursor.com",
+      "path": "/t/referral-feature-availability-differs-between-accounts/167333/5",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://forum.cursor.com",
+      "finalPath": "/t/referral-feature-availability-differs-between-accounts/167333/5"
+    },
+    {
+      "origin": "https://github.com",
+      "path": "/Aider-AI/aider",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://github.com",
+      "finalPath": "/Aider-AI/aider"
+    },
+    {
+      "origin": "https://github.com",
+      "path": "/cline/cline",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://github.com",
+      "finalPath": "/cline/cline"
+    },
+    {
+      "origin": "https://github.com",
+      "path": "/continuedev/continue",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://github.com",
+      "finalPath": "/continuedev/continue"
+    },
+    {
+      "origin": "https://github.com",
+      "path": "/features/copilot",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://github.com",
+      "finalPath": "/features/copilot"
+    },
+    {
+      "origin": "https://gitlab.com",
+      "path": "/",
+      "status": "blocked",
+      "reason": "blocked-host"
+    },
+    {
+      "origin": "https://handbook.gitlab.com",
+      "path": "/handbook/resellers/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://handbook.gitlab.com",
+      "finalPath": "/handbook/resellers/"
+    },
+    {
+      "origin": "https://help.activecampaign.com",
+      "path": "/hc/en-us/articles/115000065864-Affiliate-program",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://help.activecampaign.com",
+      "finalPath": "/hc/en-us/articles/115000065864-Affiliate-program"
+    },
+    {
+      "origin": "https://help.brevo.com",
+      "path": "/hc/en-us/articles/16487784994322-The-Brevo-Affiliate-program",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://help.brevo.com",
+      "finalPath": "/hc/en-us/articles/16487784994322-The-Brevo-Affiliate-program"
+    },
+    {
+      "origin": "https://help.dreamhost.com",
+      "path": "/hc/en-us/articles/4402640732308-DreamHost-s-Affiliate-Program-TUNE",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://help.dreamhost.com",
+      "finalPath": "/hc/en-us/articles/4402640732308-DreamHost-s-Affiliate-Program-TUNE"
+    },
+    {
+      "origin": "https://help.make.com",
+      "path": "/affiliate-program",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://help.make.com",
+      "finalPath": "/affiliate-program"
+    },
+    {
+      "origin": "https://help.make.com",
+      "path": "/credits",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://help.make.com",
+      "finalPath": "/credits"
+    },
+    {
+      "origin": "https://help.make.com",
+      "path": "/step-1-plan-your-scenario",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://help.make.com",
+      "finalPath": "/step-1-plan-your-scenario"
+    },
+    {
+      "origin": "https://kinsta.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://kinsta.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://kinsta.com",
+      "path": "/affiliates/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://kinsta.com",
+      "finalPath": "/affiliates/"
+    },
+    {
+      "origin": "https://kit.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://kit.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://kit.com",
+      "path": "/affiliate",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://kit.com",
+      "finalPath": "/affiliate"
+    },
+    {
+      "origin": "https://lovable.dev",
+      "path": "/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://lovable.dev",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://lovable.dev",
+      "path": "/partners",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://lovable.dev",
+      "finalPath": "/partners"
+    },
+    {
+      "origin": "https://mangools.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://mangools.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://mangools.com",
+      "path": "/affiliate-program",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://mangools.com",
+      "finalPath": "/affiliate-program"
+    },
+    {
+      "origin": "https://n8n.io",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://n8n.io",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://n8n.io",
+      "path": "/affiliates/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://n8n.io",
+      "finalPath": "/affiliates/"
+    },
+    {
+      "origin": "https://n8n.io",
+      "path": "/pricing/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://n8n.io",
+      "finalPath": "/pricing/"
+    },
+    {
+      "origin": "https://neon.tech",
+      "path": "/",
+      "status": "blocked",
+      "reason": "blocked-host"
+    },
+    {
+      "origin": "https://partner.github.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://github.com",
+      "finalPath": "/partners/"
+    },
+    {
+      "origin": "https://posthog.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://posthog.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://railway.com",
+      "path": "/",
+      "status": "temporary-error",
+      "reason": "timeout"
+    },
+    {
+      "origin": "https://render.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://render.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://replit.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://replit.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://replit.com",
+      "path": "/pricing",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://replit.com",
+      "finalPath": "/pricing"
+    },
+    {
+      "origin": "https://replit.com",
+      "path": "/refer",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://replit.com",
+      "finalPath": "/refer"
+    },
+    {
+      "origin": "https://sentry.io",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://sentry.io",
+      "finalPath": "/welcome/"
+    },
+    {
+      "origin": "https://seranking.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://seranking.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://seranking.com",
+      "path": "/affiliate.html",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://seranking.com",
+      "finalPath": "/affiliate.html"
+    },
+    {
+      "origin": "https://supabase.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://supabase.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://supabase.com",
+      "path": "/docs/guides/integrations/partner-catalog",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://supabase.com",
+      "finalPath": "/docs/guides/integrations/partner-catalog"
+    },
+    {
+      "origin": "https://support.bolt.new",
+      "path": "/account-and-subscription/corporate-commercial",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://support.bolt.new",
+      "finalPath": "/account-and-subscription/corporate-commercial"
+    },
+    {
+      "origin": "https://support.bolt.new",
+      "path": "/get-started/intro-bolt",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://support.bolt.new",
+      "finalPath": "/get-started/intro-bolt"
+    },
+    {
+      "origin": "https://support.bolt.new",
+      "path": "/integrations/git",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://support.bolt.new",
+      "finalPath": "/integrations/git"
+    },
+    {
+      "origin": "https://support.cloudways.com",
+      "path": "/en/articles/5134056-how-to-join-cloudways-affiliate-program-faqs-benefits",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://support.cloudways.com",
+      "finalPath": "/en/articles/5134056-how-to-join-cloudways-affiliate-program-faqs-benefits"
+    },
+    {
+      "origin": "https://surferseo.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://surferseo.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://surferseo.com",
+      "path": "/affiliate-program/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://surferseo.com",
+      "finalPath": "/affiliate-program/"
+    },
+    {
+      "origin": "https://tailscale.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://tailscale.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://tailscale.com",
+      "path": "/partnerships",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://tailscale.com",
+      "finalPath": "/partnerships"
+    },
+    {
+      "origin": "https://uptimerobot.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://uptimerobot.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://uptimerobot.com",
+      "path": "/affiliate/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://uptimerobot.com",
+      "finalPath": "/affiliate/"
+    },
+    {
+      "origin": "https://vercel.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://vercel.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://vercel.com",
+      "path": "/legal/affiliate-marketing-terms",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://vercel.com",
+      "finalPath": "/legal/affiliate-marketing-terms"
+    },
+    {
+      "origin": "https://windsurf.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://devin.ai",
+      "finalPath": "/desktop"
+    },
+    {
+      "origin": "https://windsurf.com",
+      "path": "/editor",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://devin.ai",
+      "finalPath": "/desktop"
+    },
+    {
+      "origin": "https://windsurf.com",
+      "path": "/refer",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://windsurf.com",
+      "finalPath": "/refer"
+    },
+    {
+      "origin": "https://wp-rocket.me",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://wp-rocket.me",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://wp-rocket.me",
+      "path": "/wp-rocket-affiliate-program/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://wp-rocket.me",
+      "finalPath": "/wp-rocket-affiliate-program/"
+    },
+    {
+      "origin": "https://www.activecampaign.com",
+      "path": "/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.activecampaign.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.beehiiv.com",
+      "path": "/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.beehiiv.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.beehiiv.com",
+      "path": "/partners",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.beehiiv.com",
+      "finalPath": "/partners"
+    },
+    {
+      "origin": "https://www.bluehost.com",
+      "path": "/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.bluehost.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.bluehost.com",
+      "path": "/affiliates",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.bluehost.com",
+      "finalPath": "/affiliates"
+    },
+    {
+      "origin": "https://www.brevo.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.brevo.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.cloudflare.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.cloudflare.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.cloudflare.com",
+      "path": "/partners/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.cloudflare.com",
+      "finalPath": "/partners/"
+    },
+    {
+      "origin": "https://www.cloudways.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.cloudways.com",
+      "finalPath": "/en/"
+    },
+    {
+      "origin": "https://www.cursor.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://cursor.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.datadoghq.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.datadoghq.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.datadoghq.com",
+      "path": "/partner/network/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.datadoghq.com",
+      "finalPath": "/partner/network/"
+    },
+    {
+      "origin": "https://www.digitalocean.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.digitalocean.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.digitalocean.com",
+      "path": "/affiliates",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.digitalocean.com",
+      "finalPath": "/affiliates"
+    },
+    {
+      "origin": "https://www.docker.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.docker.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.dreamhost.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.dreamhost.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.getresponse.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.getresponse.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.getresponse.com",
+      "path": "/affiliate-programs",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.getresponse.com",
+      "finalPath": "/affiliate-programs"
+    },
+    {
+      "origin": "https://www.gitkraken.com",
+      "path": "/",
+      "status": "blocked",
+      "reason": "blocked-host"
+    },
+    {
+      "origin": "https://www.gitkraken.com",
+      "path": "/referral-program",
+      "status": "blocked",
+      "reason": "blocked-host"
+    },
+    {
+      "origin": "https://www.hostinger.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.hostinger.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.hostinger.com",
+      "path": "/support/1583642-how-to-join-the-hostinger-affiliate-program/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.hostinger.com",
+      "finalPath": "/support/1583642-how-to-join-the-hostinger-affiliate-program/"
+    },
+    {
+      "origin": "https://www.liquidweb.com",
+      "path": "/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.liquidweb.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.liquidweb.com",
+      "path": "/partner-programs/hosting-affiliate-program/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.liquidweb.com",
+      "finalPath": "/partner-programs/hosting-affiliate-program/"
+    },
+    {
+      "origin": "https://www.mailerlite.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.mailerlite.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.mailerlite.com",
+      "path": "/affiliate",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.mailerlite.com",
+      "finalPath": "/affiliate"
+    },
+    {
+      "origin": "https://www.make.com",
+      "path": "/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.make.com",
+      "finalPath": "/en"
+    },
+    {
+      "origin": "https://www.make.com",
+      "path": "/en/blog/make-vs-zapier",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.make.com",
+      "finalPath": "/en/blog/make-vs-zapier"
+    },
+    {
+      "origin": "https://www.make.com",
+      "path": "/en/pricing",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.make.com",
+      "finalPath": "/en/pricing"
+    },
+    {
+      "origin": "https://www.namecheap.com",
+      "path": "/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.namecheap.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.namecheap.com",
+      "path": "/affiliates/",
+      "status": "restricted",
+      "httpStatus": 403,
+      "finalOrigin": "https://www.namecheap.com",
+      "finalPath": "/affiliates/"
+    },
+    {
+      "origin": "https://www.netlify.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.netlify.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.netlify.com",
+      "path": "/partners/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.netlify.com",
+      "finalPath": "/partners/"
+    },
+    {
+      "origin": "https://www.pabbly.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.pabbly.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.pabbly.com",
+      "path": "/affiliates/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.pabbly.com",
+      "finalPath": "/affiliates/"
+    },
+    {
+      "origin": "https://www.postman.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.postman.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.postman.com",
+      "path": "/partner-program/channel/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.postman.com",
+      "finalPath": "/partner-program/channel/"
+    },
+    {
+      "origin": "https://www.semrush.com",
+      "path": "/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.semrush.com",
+      "finalPath": "/"
+    },
+    {
+      "origin": "https://www.semrush.com",
+      "path": "/lp/affiliate-program/en/",
+      "status": "http-ok",
+      "httpStatus": 200,
+      "finalOrigin": "https://www.semrush.com",
+      "finalPath": "/lp/affiliate-program/en/"
+    },
+    {
+      "origin": "https://www.siteground.com",
+      "path": "/",
+      "status": "blocked",
+      "reason": "blocked-host"
+    },
+    {
+      "origin": "https://www.siteground.com",
+      "path": "/affiliates",
+      "status": "blocked",
+      "reason": "blocked-host"
+    }
+  ]
+}

@@ -872,6 +872,42 @@ h3 {
   color: var(--green);
 }
 
+.evidence-hub-list li {
+  min-height: 0;
+}
+
+.evidence-hub-group + .evidence-hub-group {
+  margin-top: 54px;
+  border-top: 1px solid var(--line);
+  padding-top: 40px;
+}
+
+.evidence-hub-list h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.evidence-hub-fact {
+  margin: 0 0 16px;
+}
+
+.evidence-hub-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.evidence-hub-sources strong {
+  color: var(--ink);
+}
+
+.evidence-hub-sources a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .source-table {
   width: 100%;
   max-width: 820px;

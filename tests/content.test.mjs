@@ -5,6 +5,7 @@ import { content, publicTool } from '../lib/content.mjs';
 import { tools, researchTools } from '../lib/catalog.mjs';
 import { validateContent, contentDigest, isIndexable, vendorLink, freshness, isHttpsUrl } from '../lib/content-policy.mjs';
 import { getRoutes } from '../lib/routes.mjs';
+import { getEvidenceHubGroups } from '../lib/evidence-hubs.mjs';
 function tool(slug='synthetic-tool') {
   const r = structuredClone(content.find(r => r.slug === 'cursor' && r.kind === 'tools'));
   r.slug = slug; r.name='Synthetic fixture'; r.title='Synthetic fixture';
@@ -100,6 +101,25 @@ test('TASK-006 P1 additions exist as in-review noindex routes with valid depende
     assert.equal(routes.find(r=>r.path===`/${path}/`)?.index,false);
   }
   assert.ok(routes.some(r=>r.path==='/alternatives/bolt-new/'));
+});
+test('MCP and self-hosted hubs render only facts with resolvable source evidence', () => {
+  const expectedProfiles = {
+    mcp: ['cursor', 'claude-code', 'github-copilot', 'cline', 'continue'],
+    'self-hosted': ['n8n', 'continue', 'aider'],
+  };
+
+  for (const [kind, slugs] of Object.entries(expectedProfiles)) {
+    const groups = getEvidenceHubGroups(kind);
+    const entries = groups.flatMap(group => group.entries);
+    assert.deepEqual([...new Set(entries.map(entry => entry.tool.slug))].sort(), [...slugs].sort());
+    for (const { tool, fact, sources } of entries) {
+      assert.equal(tool.review.state, 'in-review');
+      assert.ok(fact.value);
+      assert.ok(fact.sourceIds.length > 0);
+      assert.equal(sources.length, fact.sourceIds.length);
+      assert.ok(sources.every(source => source.publisher && source.accessedAt));
+    }
+  }
 });
 test('TASK-006 decision pages expose cited strengths, constraints and FAQs while pending review',() => {
   const required = [

@@ -1,6 +1,7 @@
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { getRoutes } from '../lib/routes.mjs';
+import { getEvidenceHubGroups } from '../lib/evidence-hubs.mjs';
 import { getSiteUrl } from '../lib/site-config.mjs';
 import { getBreadcrumbItems } from '../lib/breadcrumbs.mjs';
 import { content } from '../lib/content.mjs';
@@ -56,6 +57,23 @@ for (const r of routes) {
     if (!existsSync(join('out',href,href.endsWith('/') ? 'index.html' : ''))) failures.push(`${r.path}: broken local link ${href}`);
   }
   if (/Approximately 20%|Cash affiliate|Commission note|commission terms|approvedDigest/.test(html)) failures.push(`${r.path}: historical commercial research exposed`);
+}
+
+for (const kind of ['mcp', 'self-hosted']) {
+  const htmlPath = `out/${kind}/index.html`;
+  if (!existsSync(htmlPath)) {
+    failures.push(`/${kind}/: evidence hub artifact is missing`);
+    continue;
+  }
+  const html = readFileSync(htmlPath, 'utf8');
+  if (!html.includes(`href="/${kind}/"`)) failures.push(`/${kind}/: primary navigation link is missing`);
+  for (const { tool, fact, sources } of getEvidenceHubGroups(kind).flatMap(group => group.entries)) {
+    if (!html.includes(`/tools/${tool.slug}/`)) failures.push(`/${kind}/: ${tool.slug} profile link is missing`);
+    if (!html.includes(fact.value)) failures.push(`/${kind}/: ${tool.slug}.${fact.key} fact is missing`);
+    for (const source of sources) {
+      if (!html.includes(source.url)) failures.push(`/${kind}/: source ${source.id} for ${tool.slug}.${fact.key} is missing`);
+    }
+  }
 }
 const tools = new Map(content.filter(record => record.kind === 'tools').map(record => [record.slug,record]));
 const structuredPaths = new Set(content.map(record => `/${record.kind}/${record.slug}/`));
