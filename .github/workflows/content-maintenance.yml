@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
       - name: Check content
@@ -20,7 +20,7 @@ jobs:
         run: node scripts/check-content.mjs --freshness > freshness-report.json
       - name: Check public links without modifying content
         run: node scripts/check-links.mjs > link-report.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: content-maintenance
           path: |
