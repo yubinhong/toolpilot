@@ -2,6 +2,7 @@
 
 ## Unreleased — TASK-006 implementation (2026-09-27)
 
+- Label an approved Affiliate destination explicitly beside its CTA and disclosure; incomplete or unapproved relationships continue to use the ordinary product URL.
 - Preserve 50 historical snapshots; add Claude Code/Cline identities and 28 owner-review drafts with field sources and explicit gaps.
 - Add version/digest approval and dependency checks, ordinary/commercial link separation and allowlisted client catalog data.
 - Add comparison, alternatives, pricing and best detail templates; rewrite the decision guide, add an interaction-style guide and trust pages.

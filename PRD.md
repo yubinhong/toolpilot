@@ -103,7 +103,7 @@ flowchart TD
 | FR-001 | 用户可按开发任务和工具分类浏览工具 | Must | 首批分类至少覆盖 AI Coding、Databases、Deployment、Authentication、Email、Payments、Automation；最终分类待确认 | 页面和导航测试 |
 | FR-002 | 用户可查看工具详情、价格/限制、适用场景、来源时间和有来源的优势/限制/FAQ | Must | 未核实字段显示 `TBD` 或待核实，不得编造；每条优势、限制与 FAQ 必须链接到官方来源 | 内容审查清单、来源引用校验和产物检查 |
 | FR-003 | 用户可查看 Best、Compare、Alternatives 和 Stacks 决策页 | Must | 页面必须说明比较维度和适用边界；每个结构化决策页至少提供三个唯一、相关的站内内容去向 | 路由、内容和生成 HTML 链接检查 |
-| FR-004 | 商业关系在用户可见位置披露 | Must | Affiliate、Featured、Sponsor 分开标记；商业关系不得改变独立评价 | 手工审查和自动标记检查 |
+| FR-004 | 商业关系在用户可见位置披露 | Must | Affiliate CTA 显示明确的 Affiliate link 标签和相邻披露；Featured、Sponsor 分开标记；商业关系不得改变独立评价 | 手工审查、审批门槛测试和生成页面检查 |
 | FR-005 | 厂商可提交免费基础条目 | Should | 外部输入先校验和审核；收费提交、付款和履约流程另行评审 | 提交流程和审核记录 |
 | FR-006 | 记录工具事实的来源、更新时间和编辑状态 | Must | 数据模型和存储方式待源码恢复后确定 | 数据结构和内容审计 |
 | FR-007 | 记录隐私合规的出站点击事件 | Should | 只采集必要字段，不在日志中记录敏感个人数据 | 分析事件文档和测试 |

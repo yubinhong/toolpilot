@@ -271,12 +271,14 @@ test('pending record cannot impersonate formal review or hands-on testing',()=> 
   const b=tool();b.testedAt='2026-09-27';assert.ok(validateContent([b]).some(e=>e.includes('test evidence')));
 });
 test('vendor link is ordinary until a valid commercial relationship is approved',()=> {
-  const r=tool();assert.equal(vendorLink(r,r).href,r.productUrl);assert.equal(vendorLink(r,r).disclosure,null);
+  const r=tool();assert.equal(vendorLink(r,r).href,r.productUrl);assert.equal(vendorLink(r,r).label,null);assert.equal(vendorLink(r,r).disclosure,null);
   r.commercial.affiliate={status:'active',url:'https://example.com/refer',disclosure:'Synthetic affiliate disclosure',evidence:'Synthetic contract'};
   assert.equal(vendorLink(r,r).href,r.productUrl);approve(r);
+  assert.equal(vendorLink(r,r).label,'Affiliate link');
+  assert.equal(vendorLink(r,r).href,'https://example.com/refer');
   assert.equal(vendorLink(r,r).rel,'sponsored noopener noreferrer');
   assert.equal(vendorLink(r,r).disclosure,'Synthetic affiliate disclosure');
-  r.commercial.affiliate.evidence=null;assert.ok(validateContent([r]).some(e=>e.includes('affiliate')));
+  r.commercial.affiliate.evidence=null;assert.ok(validateContent([r]).some(e=>e.includes('affiliate')));assert.equal(vendorLink(r,r).label,null);assert.equal(vendorLink(r,r).href,r.productUrl);
 });
 test('commercial statuses cannot silently carry an affiliate URL',()=> {
   const r=tool();r.commercial.affiliate.url='https://example.com/ref';assert.ok(validateContent([r]).some(e=>e.includes('inactive')));
