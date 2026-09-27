@@ -114,7 +114,8 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - The shared content detail template now displays `Last verified <date>` only for content accepted by the existing approval gate; pending records explicitly say `Not yet formally verified`. The date comes from `verifiedAt`, which ADR-0009 binds to the reviewed date and exact digest.
 - Added a shared display-label helper and synthetic approved/pending unit assertions. `scripts/check-artifacts.mjs` checks the correct verification label for every generated structured-content route.
 - Node `v22.23.2`: `npm run cloudflare:build` passed lint, typecheck, 73 tests, 39-record content validation and artifact checks (99 pages / 4 indexable URLs). `npm audit --audit-level=high` found 0 vulnerabilities. Wrangler Pages local smoke passed 99 pages, robots, sitemap and a real 404; a separate assertion confirmed all 39 structured pages render their expected status.
-- There are no approved content records, so no page displays a fabricated last-verified date. Release verification will follow CI and Pages deployment.
+- There are no approved content records, so no page displays a fabricated last-verified date; the synthetic approved fixture verifies the approved label branch without changing production content or review state.
+- Release verification: commit `5057ab8d62a81137ce5078137af5850c01c01827` passed clean-worktree `npm run release:check`, GitHub CI run `36350165202` and Cloudflare Pages deployment/check `6e614c18-2f53-4f3c-9365-7109fb331d66`. Preview `https://6e614c18.toolpilot-git.pages.dev` and production passed current smoke (99 pages, robots, sitemap, real 404); direct HTML checks confirmed pending status and no fabricated date. Rollback: revert this commit, redeploy the previous verified source and rerun current-profile smoke. No content approval or indexability changed.
 
 #### P0.6 MCP and self-hosted overview routes — 2026-09-27
 
