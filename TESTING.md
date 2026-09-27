@@ -43,6 +43,7 @@ Node 22（.nvmrc）、npm 锁文件恢复。核心不变量：历史快照保留
 - 普通链接与 synthetic Affiliate fixture：有效批准及披露缺一不可；Featured、Sponsor 单独判断。
 - 原 50 条快照的历史断言继续存在；当前目录允许增量和审核，不再要求全站永久 Draft。
 - HTML 中每页 title、description、self canonical、robots 与 registry 一致；sitemap 不包含草稿；未知 URL HTTP 404。
+- 每条已注册路由的 Open Graph image 与 Twitter image 指向 `${NEXT_PUBLIC_SITE_URL}/og-default.png`，Twitter card 为 `summary_large_image`；`out/og-default.png` 必须存在，且 metadata 包含 1200x630 尺寸和替代文本。
 - 站内链接目标存在；客户端 JS 不携带内部研究/审核字段。
 - 网络使用 mock 验证 HTTPS/域名、私网 DNS、DNS pin、未知重定向、3 次跳转限制、403/429/404/410/5xx/超时分类。
 - 实际浏览器 375/768/1440px：首页、详情、对比、替代、价格、场景、指南、联系；键盘、搜索、空状态、aria-pressed、页面无横向溢出。

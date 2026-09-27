@@ -10,6 +10,16 @@ const site = getSiteUrl();
 const xml = readFileSync('out/sitemap.xml','utf8');
 const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 const expected = routes.filter(r => r.index).map(r => site+r.path).sort();
+const expectedOgImage = `${site}/og-default.png`;
+const ogImagePath = 'out/og-default.png';
+if (!existsSync(ogImagePath)) {
+  failures.push('missing static Open Graph image');
+} else {
+  const png = readFileSync(ogImagePath);
+  if (png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a' || png.readUInt32BE(16) !== 1200 || png.readUInt32BE(20) !== 630) {
+    failures.push('Open Graph image must be a 1200x630 PNG');
+  }
+}
 if (JSON.stringify(urls.sort()) !== JSON.stringify(expected)) failures.push('sitemap differs from indexable route registry');
 for (const r of routes) {
   const file = join('out', r.path, 'index.html');
@@ -20,7 +30,11 @@ for (const r of routes) {
   const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
   if (r.index ? !/content="index,/.test(robots) : !/content="noindex,/.test(robots)) failures.push(`${r.path}: robots mismatch`);
   if (!/<title>[^<]+<\/title>/.test(html) || !/<meta name="description" content="[^"]+"/.test(html)) failures.push(`${r.path}: missing metadata`);
-  if (!html.includes('<meta name="twitter:card" content="summary"')) failures.push(`${r.path}: missing Twitter summary metadata`);
+  if (!html.includes('<meta name="twitter:card" content="summary_large_image"')) failures.push(`${r.path}: missing Twitter large-image metadata`);
+  if (!html.includes(`<meta property="og:image" content="${expectedOgImage}"`)) failures.push(`${r.path}: missing first-party Open Graph image`);
+  if (!html.includes('<meta property="og:image:width" content="1200"') || !html.includes('<meta property="og:image:height" content="630"')) failures.push(`${r.path}: incorrect Open Graph image dimensions`);
+  if (!html.includes('<meta property="og:image:alt" content="ToolPilot developer tool decision guide"')) failures.push(`${r.path}: missing Open Graph image alt text`);
+  if (!html.includes(`<meta name="twitter:image" content="${expectedOgImage}"`)) failures.push(`${r.path}: missing Twitter image`);
   const breadcrumbItems = getBreadcrumbItems(r.path);
   const breadcrumbScript = html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1];
   if (breadcrumbItems.length) {
