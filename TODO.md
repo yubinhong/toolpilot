@@ -15,7 +15,6 @@
 | TODO-005 | 审核并批准首批内容的精确 revision/digest 与决策标准 | TASK-005 的 28 条记录仍是 `in-review`；批准必须核对依赖、官方来源、关键未知项和用户可见结论 | P1 | 产品/内容 Owner | 提供逐版本书面审核；不以部署替代内容批准 |
 | TODO-006 | 确认新增内容所用的官方来源、事实核验频率和编辑审核责任 | 版本/digest、sources、freshness 和审批机制已在代码/ADR-0009 实现；尚需为后续内容选定来源和实际维护 Owner | P1 | 产品/内容 Owner | TODO-309 内容清单及来源可用 |
 | TODO-008 | 完成商业关系与独立评价隔离的业务/法务决策 | 当前模型和 disclosure 分离 Affiliate/Featured/Sponsor，但合作条款、排序规则、归因、退款和披露文案未确认 | P1 | 产品/商业/法务 Owner | 正式条款与关系证据；当前不得激活商业链接 |
-| TODO-305 | 评估 GitHub Actions Node 运行时弃用警告 | 最新记录提示 `actions/checkout@v4` 与 `actions/setup-node@v4` 的 Node 20 运行时需按 runner 兼容策略复核；更新前在 CI 验证兼容性 | P2 | 工程 Owner | 官方兼容说明与可复现 CI |
 | TODO-309 | 审核并确定重建计划 P1 内容批次的正式页面集合 | 已按官方来源将结构化内容扩至 12/11/6/4/3/3（tools/compare/alternatives/pricing/best/guides，共 39 条，全部 in-review）；计划列出的 10 个比较主题均有草稿，另保留 1 个清单外比较。12 个工具档案和 26 个依赖型决策页现有来源绑定的优势、限制和 FAQ。`/compare/windsurf-vs-cursor/` 与计划顺序相反；Alternatives 数量 6 但 `/alternatives/bolt-new/` vs `/alternatives/bolt/` 和 n8n 替代候选仍未核定。Continue 上游仓库只读/停止维护；Make 当前付费金额的月/年选择、Replit 计划价格和 Windsurf 账号级迁移/报价仍待核实。 | P1 | 产品/内容 Owner | 逐条审核 `docs/content-review/TASK-006/README.md` 与 TASK-005 清单的 revision/digest、目标搜索意图、依赖、来源、法律/维护风险和路由映射；明确责任人与通过标准。审批前不得索引或改商业状态 |
 | TODO-310 | 决定 MCP 与 self-hosted 路由优先级和第一批页面边界 | 重建计划 §5/§49 列作 P0，§43/§44/§51 又列为未来/P2；代码目前没有这两个路由 | P1 | 产品 Owner | 在 PRD/TASK 中确认优先级、内容价值和维护 Owner；确认前不建空页、不进 sitemap |
 | TODO-311 | 验证重建计划剩余 SEO/性能目标 | canonical、robots、sitemap、OG title/description、Twitter card、面包屑/JSON-LD、逐事实来源链接和三条站内结构化内容链接覆盖已由构建产物检查；OG 图仍需获批素材，真实 Core Web Vitals 和 GSC 表现仍未测量 | P2 | 工程/SEO Owner | TASK-006 技术差异审查；外部指标需真实测量，OG 素材需取得使用许可 |
@@ -88,3 +87,4 @@
 ## Completed in TASK-006
 
 - `TODO-313`: added source-bound Pros/Cons/FAQs to all 26 decision records with declared tool dependencies, refreshed affected revisions and both review manifests, and added regression coverage. The general guide `/guides/how-to-choose-a-developer-tool/` has no tool dependency and intentionally receives no product-evidence block under ADR-0009. Exact owner review remains under TODO-005/TODO-309; records remain `in-review` and noindex.
+- `TODO-305`: moved checkout/setup-node/upload-artifact to Node 24-capable action releases and pinned all GitHub workflows to `ubuntu-24.04`; CI run `36320003473`, maintenance artifact run `36320017843`, and current production-monitor run `36320017826` passed. The Cloudflare Pages deployment and preview/production smoke are recorded in `TASK.md`.

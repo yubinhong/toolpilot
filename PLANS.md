@@ -317,7 +317,8 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - [x] Phase 4 source-backed P1 draft tranche: Aider, Continue, n8n and Make profiles; five missing plan comparisons; and `open-source-ai-coding-tools`. All remain `in-review`; Continue's read-only upstream status and dynamic/unknown billing fields are explicit review gaps.
 - [x] Regenerated the route inventory to 96 source-registered URLs and added a regression check that the ten additions remain noindex with current dependency digests.
 - [x] Phase 3 follow-up: source citations appear on known comparison values; contextual internal links are limited to directly related decisions, capped at five and covered by tests. Local build/smoke, release check, GitHub CI, Cloudflare deployment, preview smoke and production smoke all pass on commit `98d0be0`.
-- [ ] Remaining work: Phase 1 historical evidence, Phase 2 route-priority decision, decision-page source-backed pros/cons/FAQ contracts, P1 alternative/slug reconciliation and exact Owner review, plus external operating gates. Tool-profile evidence blocks and the authored internal-link coverage gate are complete.
+- [x] Close TODO-305: move GitHub Actions to Node 24-capable action releases and pin the workflows to `ubuntu-24.04`; retain Node 22 for the application. CI, maintenance artifact upload, production smoke, Pages deployment and preview/production current smoke all passed on `344bd9f`.
+- [ ] Remaining work: Phase 1 historical evidence, Phase 2 route-priority decision, P1 alternative/slug reconciliation and exact Owner review, plus external operating gates. Tool-profile evidence blocks, authored internal links and all 26 dependency-backed decision evidence contracts are complete.
 
 ### Execution phases
 

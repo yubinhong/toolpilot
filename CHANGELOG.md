@@ -19,9 +19,10 @@
 - Extend source-bound strengths, constraints and FAQs to all 12 tool profiles; add current official Make credit, n8n hosting, Replit checkpoint and Devin Desktop evidence. Add a workflow-automation selection guide and validated curated internal links; enforce at least three unique structured-content destinations per structured page. All 39 records remain in-review/noindex pending exact owner approval. Commit `4c4af35` passed CI run `36316430513` and deployed as Pages deployment `47c45f5c-3f47-4183-b85a-2267f16d148f`; preview and `toolpilot.cc` each passed 97-page current smoke.
 - Add source-bound strengths, constraints and FAQs to the five TASK-006 comparisons, open-source coding shortlist and workflow-automation guide; refresh exact revisions and handoff digests while keeping all drafts noindex. Commit `1374c70` passed CI run `36317440965` and deployed as Pages deployment `0872ba3f-9f8b-4f2c-9fab-ac0c98d8e340`; preview and `toolpilot.cc` each passed 97-page current smoke.
 - Add source-bound Pros/Cons/FAQs to the remaining 19 dependency-backed decision drafts, completing all 26 eligible decision pages; keep the dependency-free selection guide outside the product-evidence contract. Update the Windsurf record from the current Devin Desktop FAQ while preserving account-specific pricing/migration gaps. All drafts remain in-review/noindex. Commit `953f40f` passed CI run `36319265195` and deployed as Pages deployment `4853fdac-190c-4ba7-bc13-4809e6adf85d`; preview and `toolpilot.cc` each passed 97-page current smoke.
+- Upgrade GitHub Actions checkout/setup-node/upload-artifact to Node 24-capable releases and pin CI, content-maintenance and production-monitor runners to `ubuntu-24.04`; the site build continues to use Node 22. Commit `344bd9f` passed release readiness and CI run `36320003473`; manual content-maintenance run `36320017843` uploaded its report artifact, production-monitor run `36320017826` passed, and Pages deployment `9b49edf9-c90b-4ada-ac42-cc87a0855153` passed preview and production current smoke.
 
 
-本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；工作区当前包含未提交的代码整理，Cloudflare Pages 发布证据按条目记录。
+本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 保持未跟踪且未修改，Cloudflare Pages 发布证据按条目记录。
 
 ## [Unreleased]
 
