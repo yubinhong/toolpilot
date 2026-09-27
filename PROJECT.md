@@ -96,8 +96,8 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | --- | --- | --- | --- |
 | 客户端 | Next.js App Router / React | Next.js `16.3.6` / React `19.2.8` | `app/` 路由和 `components/` 共享 UI；当前是静态页面应用 |
 | 服务端 | Next 静态导出 | `output: export` | `next.config.mjs` 已确认；当前没有独立 API、认证或数据库 |
-| 语言 | TypeScript / TSX | TypeScript `5.9.3` | 共享目录数据暂存于 `lib/catalog.mjs`，正式模型见 lib/content-types.ts 和 ADR-0009 |
-| 数据 | 静态研究快照目录 | 50 条 Draft | `lib/catalog.mjs` 分离 `productUrl`、`sourceUrl`、链接检查、审核状态、`affiliateStatus`、`commission` 和 `verifiedAt`；研究信息不得直接作为已核验事实 |
+| 语言 | TypeScript / TSX | TypeScript `5.9.3` | 当前结构化内容类型见 `lib/content-types.ts` 和 ADR-0009；`lib/catalog.mjs` 保留历史快照与兼容视图 |
+| 数据 | 结构化 JSON 内容 + 历史研究快照 | 39 条待审内容 + 50 条保留快照 | `content/tools/`、`content/decisions/` 是当前结构化来源；所有 39 条仍为 `in-review`/noindex。`lib/catalog.mjs` 的 `researchTools` 快照不得直接作为已核实事实 |
 | 基础设施 | Cloudflare Pages 静态站点 | Git-integrated 项目 `toolpilot-git` 连接 `yubinhong/toolpilot` 的 `main`；Direct Upload 项目 `toolpilot` 保留作恢复目标 | `npm run cloudflare:build` 生成 `out/`；CNAME 已切换，`toolpilot.cc` current smoke 已通过 |
 | 运行时 | Node.js / npm | Node `22` / npm lockfile v3 | `.nvmrc` 固定 Node 22；Node 22.23.2/npm 10.9.8 下已完成安装和验证 |
 
@@ -117,11 +117,11 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | --- | --- | --- | --- | --- |
 | 产品上下文 | `PROJECT.md`、`PRD.md`、`AI_CONTEXT.md` | 维护目标、边界和当前状态 | `TBD` | 需求与研究结论 |
 | 工程规则 | `AGENTS.md`、`TESTING.md`、`SECURITY.md` | 约束变更、验证和安全行为 | `TBD` | 代码仓库和 CI |
-| Web 应用 | `app/`、`components/` | 首页、工具目录/详情、指南、Compare、Alternatives、Stacks、法律页和 robots/sitemap | `TBD` | Next.js、静态研究快照数据、Cloudflare Pages |
-| 内容与来源 | `lib/catalog.mjs`（当前内容源） | 管理 50 条分类、产品官网、研究来源、链接检查、研究商业状态和草稿审核字段；本轮正式内容由用户审批，机制见 ADR-0009 | `TBD` | 厂商资料、公开来源、人工审核 |
+| Web 应用 | `app/`、`components/` | 首页、工具目录/详情、指南、Compare、Alternatives、Stacks、法律页和 robots/sitemap | `TBD` | Next.js、结构化 JSON 草稿和历史研究快照、Cloudflare Pages |
+| 内容与来源 | `content/tools/`、`content/decisions/`、`lib/content.mjs`、`lib/content-policy.mjs`、`lib/catalog.mjs` | 管理当前 39 条带来源和审核状态的结构化草稿；保留 `lib/catalog.mjs` 中 50 条研究快照和兼容字段，审核流程见 ADR-0009 | `TBD` | 厂商资料、公开来源、人工审核 |
 | 商业与分析 | 集成位置 `TBD` | 管理 Affiliate、商业曝光标注和转化统计 | `TBD` | 合作方报告、隐私合规分析 |
 
-`.next/` 和 `out/` 都是构建产物，不是内容事实来源。用户已确认旧 Crypto/DeFi 生成内容是主动删除内容，本次不迁移；当前源码只生成开发者工具方向页面。Cloudflare Pages 项目和 `toolpilot.cc` 已完成部署及公网验证，但 50 条内容仍是研究草稿，不能当作正式评价或佣金承诺。
+`.next/` 和 `out/` 都是构建产物，不是内容事实来源。用户已确认旧 Crypto/DeFi 生成内容是主动删除内容，本次不迁移；当前源码只生成开发者工具方向页面。Cloudflare Pages 项目和 `toolpilot.cc` 已完成部署及公网验证，但当前 39 条结构化内容和原 50 条研究快照均未通过正式内容审核，不能当作正式评价或佣金承诺。
 
 ## 9. 约束与假设
 
