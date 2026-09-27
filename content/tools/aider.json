@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Aider",
   "summary": "A terminal-based AI pair-programming tool whose Git workflow and model-provider costs need separate review.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -15,6 +15,7 @@
     { "id": "models", "url": "https://aider.chat/docs/llms.html", "title": "Connecting to language models", "publisher": "Aider", "accessedAt": "2026-09-27" },
     { "id": "analytics", "url": "https://aider.chat/docs/more/analytics.html", "title": "Analytics", "publisher": "Aider", "accessedAt": "2026-09-27" },
     { "id": "privacy", "url": "https://aider.chat/docs/legal/privacy.html", "title": "Privacy policy", "publisher": "Aider", "accessedAt": "2026-09-27" },
+    { "id": "docker", "url": "https://aider.chat/docs/install/docker.html", "title": "Aider with Docker", "publisher": "Aider", "accessedAt": "2026-09-27" },
     { "id": "repository", "url": "https://github.com/Aider-AI/aider", "title": "Aider source repository and license", "publisher": "Aider-AI", "accessedAt": "2026-09-27" }
   ],
   "facts": [
@@ -23,7 +24,7 @@
     { "key": "modelProviders", "label": "Model providers", "value": "Connects to multiple cloud providers and can use local models; provider and model capability vary.", "sourceIds": ["models"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "localModels", "label": "Local model inference", "value": "Local models are supported through compatible model providers; validate capability and hardware independently.", "sourceIds": ["models"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "privacy", "label": "Privacy / data handling", "value": "Aider's analytics documentation says it asks a random subset of users to opt in when neither analytics switch is supplied; collection begins only after agreement. It lists selected LLMs and token counts, edit formats, feature/command use and errors linked to a random UUID4, and says these analytics exclude code, prompts/chat messages, API keys and personal information. Users can disable a session with --no-analytics or permanently with --analytics-disable. This describes Aider's product analytics only; review the selected model provider's data terms separately.", "sourceIds": ["analytics", "privacy"], "checkedAt": "2026-09-27", "critical": false },
-    { "key": "selfHosting", "label": "Product self-hosting", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "selfHosting", "label": "Product self-hosting", "value": "Aider documents Docker images for running its terminal client in a container with the repository mounted into /app. The official example configures an OpenAI API key; containerized client execution does not by itself make model inference local or remove the selected provider's data terms.", "sourceIds": ["docker", "models"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "portability", "label": "Code / data portability", "value": "Git-managed repository changes can be inspected and reverted with Git.", "sourceIds": ["git"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "license", "label": "Repository license", "value": "The public Aider repository identifies an Apache-2.0 license; model and provider terms are separate.", "sourceIds": ["repository"], "checkedAt": "2026-09-27", "critical": false }
   ],
@@ -52,8 +53,8 @@
   "notFor": "Teams expecting a single fixed product price or unreviewed autonomous changes",
   "migration": "Preserve repository instructions and provider configuration separately. Trial on a branch, keep credentials in the approved secret store and verify the resulting diff before merging.",
   "dependencies": [],
-  "gaps": ["Confirm current provider billing and whether any separate hosted or commercial offering applies to the intended use.", "Confirm the installed Aider version and analytics consent/configuration; no local settings were inspected.", "Review privacy, retention, training and jurisdiction terms for the selected model provider; Aider's analytics policy does not determine provider handling.", "Confirm Git hook behavior and protect pre-existing dirty changes before a trial.", "Do not treat repository license as a license for model weights or provider services."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }, { "date": "2026-09-27", "summary": "Added cited strengths, constraints, FAQs and a contextual guide link; owner review remains pending." }, { "date": "2026-09-27", "summary": "Added official product-analytics opt-in and data-scope boundaries; model-provider handling and the installed configuration remain unverified." }],
+  "gaps": ["Confirm current provider billing and whether any separate hosted or commercial offering applies to the intended use.", "Confirm the installed Aider version and analytics consent/configuration; no local settings were inspected.", "Review privacy, retention, training and jurisdiction terms for the selected model provider; Aider's analytics policy does not determine provider handling.", "Verify the container and model-endpoint configuration meet the intended isolation requirement; no deployment or endpoint was tested.", "Confirm Git hook behavior and protect pre-existing dirty changes before a trial.", "Do not treat repository license as a license for model weights or provider services."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }, { "date": "2026-09-27", "summary": "Added cited strengths, constraints, FAQs and a contextual guide link; owner review remains pending." }, { "date": "2026-09-27", "summary": "Added official product-analytics opt-in and data-scope boundaries; model-provider handling and the installed configuration remain unverified." }, { "date": "2026-09-27", "summary": "Documented the official Docker client workflow while keeping local inference and provider-isolation limits explicit." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

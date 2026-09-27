@@ -1,13 +1,14 @@
 [
   {
     "path": "/tools/aider/",
-    "revision": 3,
-    "digest": "60b68d9e6aeb234eed9d52ee935a117651a382de0761025c7fa09373ad7c39f6",
+    "revision": 4,
+    "digest": "16dacb91a81282013d422d90476051c7b1c0db8c1df4450c2618df0ddf072582",
     "state": "in-review",
     "gaps": [
       "Confirm current provider billing and whether any separate hosted or commercial offering applies to the intended use.",
       "Confirm the installed Aider version and analytics consent/configuration; no local settings were inspected.",
       "Review privacy, retention, training and jurisdiction terms for the selected model provider; Aider's analytics policy does not determine provider handling.",
+      "Verify the container and model-endpoint configuration meet the intended isolation requirement; no deployment or endpoint was tested.",
       "Confirm Git hook behavior and protect pre-existing dirty changes before a trial.",
       "Do not treat repository license as a license for model weights or provider services."
     ]
@@ -74,8 +75,8 @@
   },
   {
     "path": "/compare/aider-vs-claude-code/",
-    "revision": 6,
-    "digest": "387b8eee7174dafbbbba1e314acc0955b7ac9e6af605f5517dd080925269304d",
+    "revision": 7,
+    "digest": "8d49efa87b90bdb69ae7f05d9f4aa2c1f495d9fdfaa3cae6a6f6cb9453604d52",
     "state": "in-review",
     "gaps": [
       "Provider and account-specific billing and privacy terms need current verification.",
@@ -94,8 +95,8 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 6,
-    "digest": "481ad4ff12cecfec1af0bc77bd86496ccd7c7edc726df59223db3419d67dff22",
+    "revision": 7,
+    "digest": "a7cc8f0d15da99aa59b6e83639d0ba67acea73bb865c659ef921225e32b25e6e",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",

@@ -114,7 +114,7 @@ test('Aider analytics policy distinguishes opt-in telemetry from model-provider 
   const record = content.find(item => item.kind === 'tools' && item.slug === 'aider');
   const fact = record?.facts.find(item => item.key === 'privacy');
   assert.ok(record);
-  assert.equal(record.revision, 3);
+  assert.equal(record.revision, 4);
   assert.equal(fact?.checkedAt, '2026-09-27');
   assert.deepEqual(fact?.sourceIds, ['analytics', 'privacy']);
   assert.match(fact?.value ?? '', /random subset of users to opt in/);
@@ -125,6 +125,21 @@ test('Aider analytics policy distinguishes opt-in telemetry from model-provider 
   assert.equal(record.sources.find(item => item.id === 'privacy')?.url, 'https://aider.chat/docs/legal/privacy.html');
   assert.ok(record.gaps.some(gap => gap.includes('no local settings were inspected')));
   assert.ok(record.gaps.some(gap => gap.includes('selected model provider')));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
+test('Aider Docker support distinguishes a containerized client from local model inference',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'aider');
+  const fact = record?.facts.find(item => item.key === 'selfHosting');
+  assert.ok(record);
+  assert.equal(record.revision, 4);
+  assert.equal(fact?.checkedAt, '2026-09-27');
+  assert.deepEqual(fact?.sourceIds, ['docker', 'models']);
+  assert.match(fact?.value ?? '', /Docker images/);
+  assert.match(fact?.value ?? '', /mounted into \/app/);
+  assert.match(fact?.value ?? '', /does not by itself make model inference local/);
+  assert.equal(record.sources.find(item => item.id === 'docker')?.url, 'https://aider.chat/docs/install/docker.html');
+  assert.ok(record.gaps.some(gap => gap.includes('no deployment or endpoint was tested')));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
@@ -241,6 +256,9 @@ test('MCP and self-hosted hubs render only facts with resolvable source evidence
       assert.ok(sources.every(source => source.publisher && source.accessedAt));
     }
   }
+  const aiderLocalEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'aider');
+  assert.equal(aiderLocalEntry?.fact.key, 'localModels');
+  assert.deepEqual(aiderLocalEntry?.fact.sourceIds, ['models']);
 });
 test('TASK-006 decision pages expose cited strengths, constraints and FAQs while pending review',() => {
   const required = [
