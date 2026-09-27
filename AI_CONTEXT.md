@@ -23,6 +23,7 @@
 - 用户报告已将 `toolpilot.cc` CNAME 切换到 `toolpilot-git`；最新提交的正式域名与 immutable preview 均通过 97 页 current smoke。production-monitor run `36320017826` 成功；旧 Direct Upload 项目仍保留作恢复目标。
 - 没有原始 GSC、PV、转化或收入数据。90 天运营不能从本地构建推断为完成。
 - 2026-09-27 现网证据尝试：免密 PSI mobile 请求返回 429 `RESOURCE_EXHAUSTED`（每日查询配额）；Wayback CDX 临时离线，Common Crawl wildcard 查询被规范化为根路径、domain 查询 502/504，其他部分索引 503，不能据此否定历史 URL。GitHub branch-protection endpoint 返回 404、repository rulesets 列表为空；Actions 默认 workflow 权限为 read。通知订阅查询因 CLI 缺少 `notifications` scope 未完成；仓库 API 报告 Dependabot security updates、secret scanning、pattern scanning 与 push protection disabled，均待 Owner 审核，未更改设置。生产与预览响应头仅观察到 `nosniff`、`strict-origin-when-cross-origin`；未观察到 CSP、HSTS、X-Frame-Options、Permissions-Policy，转 TODO-315 做兼容性验证。
+- Homepage metadata fix `62d0c76` aligns the root title and description with the supplied rebuild plan; Node 22 build passed with 58 tests, 97 pages and 4 indexable URLs. CI `36331166927`, Pages deployment `fa15fe18-e160-4ca0-ba67-5e5e2f9bfa97`, preview/production HTML assertions and 97-page smoke passed. No content approval or indexability state changed.
 
 ## 阅读路径
 
