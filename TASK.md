@@ -22,6 +22,12 @@ Implement TP-R00–TP-R09 from PLANS.md: preserve historical research, add revie
 - [x] R08 Maintenance automation
 - [x] R09 Engineering verification and release handoff
 
+## Research report comparison
+
+Compared the user's three-domain research report with TASK-005, TODO and the operating handoff. Core ToolPilot decision pages and review/source gates are covered; the detailed marked matrix is in [toolpilot-task-gap-analysis-2026-09-27.md](docs/research/toolpilot-task-gap-analysis-2026-09-27.md). Key differences: 28 first-batch pages remain drafts versus the report's unverified 40–60-page operating target; static pricing pages do not satisfy its calculator recommendation; Stacks is not an explicit TASK-005 acceptance item; MCP, self-hosted, changelog, Chinese and commercial experiments were deferred. This comparison does not reopen TASK-005 or authorize those deferred items.
+
+Validation: the matrix was checked against the 544-line attachment; a Node check confirmed 15 four-column rows, referenced files resolve, and `git diff --check` passes. No application tests were run because this update changes documentation only.
+
 ## Boundaries
 
 Production deployment and online verification are authorized for each deliverable progress. This does not approve editorial content or commercial relationships. No analytics, advertising, affiliate activation, additional DNS changes or deletion of the legacy Pages project. All new editorial content stays draft/in-review until owner approval of the exact revision.

@@ -27,9 +27,10 @@
 2. PRD.md、ARCHITECTURE.md、TESTING.md、SECURITY.md。
 3. PLANS.md TASK-005、docs/adr/0009-reviewed-decision-content.md。
 4. docs/research/toolpilot-report-extract.md：报告抽取和采用/暂缓决策。
-5. docs/content-review/TASK-005/README.md：8 份证据包、28 页清单及逐版本审核流程。
-6. docs/operations/90-day-review.md：真实数据运营模板。
-7. RUNBOOK.md、docs/tasks/TASK-004-before-remediation.md、ADR-0008：生产授权和迁移。
+5. docs/research/toolpilot-task-gap-analysis-2026-09-27.md：原始报告与 TASK/TODO 的逐项差异标记。
+6. docs/content-review/TASK-005/README.md：8 份证据包、28 页清单及逐版本审核流程。
+7. docs/operations/90-day-review.md：真实数据运营模板。
+8. RUNBOOK.md、docs/tasks/TASK-004-before-remediation.md、ADR-0008：生产授权和迁移。
 
 ## 仓库地图
 

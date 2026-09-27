@@ -1,6 +1,6 @@
 # TODO.md
 
-> 这里是工作队列，不是当前任务的实施说明。进入执行的事项必须移入 `TASK.md`。`TASK-005` 当前进行中；后续事项进入执行前先更新 `TASK.md`。
+> 这里是工作队列，不是当前任务的实施说明。进入执行的事项必须移入 `TASK.md`。`TASK-005` 已完成；候选事项进入执行前先更新 `TASK.md`。
 
 ## Now - 已确认，等待进入执行
 
@@ -27,7 +27,7 @@
 
 | ID | 事项 | 阻塞原因 | 等待对象 | 下一次检查 |
 | --- | --- | --- | --- | --- |
-| TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 新项目和域名迁移后，尚未在生产窗口执行上一份 verified deployment 恢复 | 运维/项目 Owner | 完成 Git Integration 迁移后 |
+| TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 与域名迁移已完成；仍未在生产窗口执行上一份 verified deployment 恢复，需 Owner 安排并授权操作窗口 | 运维/项目 Owner | Owner 确认生产演练窗口和操作人 |
 
 ## 发现问题记录规则
 

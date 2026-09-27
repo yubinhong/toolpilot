@@ -45,7 +45,7 @@ Node 22（.nvmrc）、npm 锁文件恢复。核心不变量：历史快照保留
 
 ## CI 与生产过渡
 
-CI 的 npm run build 自动运行内容/产物检查，HTTP smoke 用 current。生产定时 workflow 显式保留 legacy，只有实际新部署完成并确认 source SHA 后才切换为 current。不能根据响应自动选择更宽松的断言。
+CI 的 npm run build 自动运行内容/产物检查，HTTP smoke 和 production-monitor workflow 均使用 current。legacy profile 仅用于显式验证旧部署或回滚结果；不能根据响应自动选择更宽松的断言。
 
 content-maintenance 每日或手动生成 freshness/link artifacts；网络异常是报告结果，不是代码 CI 的随机失败。报告保留 14 天，不写入源码、不自动批准、不创建工单或发送消息。
 

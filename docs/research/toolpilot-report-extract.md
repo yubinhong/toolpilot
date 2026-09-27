@@ -7,8 +7,8 @@
 - 报告转述：原文称 ToolPilot 在其 GSC 导出期为 0 点击、0 展示；本会话未获得原始导出，不能独立复核。
 - 研究判断：ToolPilot 应优先投入，定位为 AI & Developer Tool Decision Engine。
 - 待验证假设：搜索量、CPC、竞争度、收入和 RPM 模型。附件内部引用标记无法还原为可独立核对的原始来源；正式产品事实重新查官方来源。
-- 本次仓库事实：50 条历史研究快照，现有 Compare/Alternatives 缺少详情，全部草稿进入 sitemap，商业研究标签有误解风险。基线与工作区见 ../tasks/remediation-baseline.md。
-- 本次线上事实：五个路径在当前环境返回 403；无法判断其他访问环境或 Googlebot 可达性。见 public-audit-2026-09-27.json。
+- 整改前基线：50 条历史研究快照，Compare/Alternatives 缺少决策正文，草稿曾进入 sitemap，商业研究标签有误解风险。基线见 ../tasks/remediation-baseline.md。
+- 当前状态（2026-09-27）：28 条首批正文保持 `in-review`/noindex 并退出 sitemap；用户报告 CNAME 已切至 Git-integrated Pages，正式域名和 immutable preview 的 current smoke 均通过 88 页、robots、sitemap 和真实 404。更早五路径 403 记录见 public-audit-2026-09-27.json，只描述当时测试环境，不能推断全球可达性或 Googlebot 状态。
 
 ## 采用的结论
 
