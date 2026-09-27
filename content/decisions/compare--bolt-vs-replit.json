@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Bolt vs Replit",
   "summary": "Compare two AI app-building workflows by project fit, handoff, operating ownership and the real cost of a working release.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -39,6 +39,18 @@
       ]
     }
   ],
+  "pros": [
+    { "text": "Bolt documents a JavaScript-based web-app workflow and a separate Expo path for mobile apps.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
+    { "text": "Replit describes Agent as a plain-language workflow that plans, creates, checks, fixes and deploys applications.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] }
+  ],
+  "cons": [
+    { "text": "Bolt's documented web-app path is JavaScript-based, so confirm the exact framework and dependencies before selecting it for a project.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
+    { "text": "Replit checkpoints are platform recovery snapshots; the documentation does not establish an independently tested export or recovery path.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] }
+  ],
+  "faqs": [
+    { "question": "What application paths does Bolt document?", "answer": "The official introduction describes JavaScript-based web frameworks and an Expo route for mobile applications; verify your specific stack before starting.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
+    { "question": "Do Replit checkpoints demonstrate recovery outside Replit?", "answer": "No. The documentation describes checkpoints within Replit; test a separate export and recovery path if the project must run outside that platform.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] }
+  ],
   "verdict": "Choose after a clean handoff and operating-cost trial. The current evidence is not sufficient to declare a universal winner or a fixed Replit price.",
   "bestFor": "Indie builders comparing a quick application workflow with the cost of owning its production lifecycle",
   "notFor": "Projects with unverified portability, data-residency or production-budget requirements",
@@ -67,6 +79,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending."
     }
   ],
   "commercial": {

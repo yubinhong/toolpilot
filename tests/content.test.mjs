@@ -101,6 +101,33 @@ test('TASK-006 P1 additions exist as in-review noindex routes with valid depende
   }
   assert.ok(routes.some(r=>r.path==='/alternatives/bolt-new/'));
 });
+test('TASK-006 decision pages expose cited strengths, constraints and FAQs while pending review',() => {
+  const required = [
+    'compare/make-vs-n8n',
+    'compare/claude-code-vs-github-copilot',
+    'compare/cline-vs-continue',
+    'compare/aider-vs-claude-code',
+    'compare/bolt-vs-replit',
+    'best/open-source-ai-coding-tools',
+    'guides/workflow-automation-selection',
+  ];
+  for (const path of required) {
+    const [kind,slug]=path.split('/');
+    const record=content.find(r=>r.kind===kind&&r.slug===slug);
+    assert.ok(record,`${path} exists`);
+    for (const field of ['pros','cons','faqs']) {
+      assert.ok(record[field]?.length,`${path} has ${field}`);
+      for (const item of record[field]) {
+        for (const ref of item.sourceRefs) {
+          assert.ok(record.dependencies.some(dependency=>dependency.slug===ref.toolSlug),`${path} cites a declared dependency`);
+          assert.ok(content.find(tool=>tool.kind==='tools'&&tool.slug===ref.toolSlug)?.sources.some(source=>source.id===ref.sourceId),`${path} source ${ref.toolSlug}/${ref.sourceId} resolves`);
+        }
+      }
+    }
+    assert.equal(record.review.state,'in-review');
+    assert.equal(isIndexable(record,content),false);
+  }
+});
 test('TASK-006 review manifest matches each exact in-review revision and digest',() => {
   const manifest=JSON.parse(readFileSync(new URL('../docs/content-review/TASK-006-review-manifest.json',import.meta.url),'utf8'));
   assert.equal(manifest.length,11);

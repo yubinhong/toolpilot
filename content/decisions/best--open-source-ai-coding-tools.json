@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "Open-source AI coding tools to evaluate",
   "summary": "A conditional shortlist based on project license evidence, model boundaries and current maintenance signals.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -98,6 +98,18 @@
       ]
     }
   ],
+  "pros": [
+    { "text": "Aider's public source repository identifies the project license as Apache-2.0.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
+    { "text": "Cline's public repository provides source that can be inspected as part of a tool and license review.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "product" }] }
+  ],
+  "cons": [
+    { "text": "Continue's upstream repository says it is read-only and no longer actively maintained, so its distribution and security response need confirmation.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }] },
+    { "text": "An open client repository license does not by itself establish the terms of a selected model or provider service.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] }
+  ],
+  "faqs": [
+    { "question": "Is Continue's upstream repository actively maintained?", "answer": "The repository notice says it is read-only and no longer actively maintained. Confirm the exact package, publisher and security response before relying on it.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }] },
+    { "question": "Does an Apache-2.0 client license also license model weights or hosted providers?", "answer": "No. Aider's repository identifies the client project license and distinguishes model or provider terms; check each external component separately.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] }
+  ],
   "verdict": "Aider and Cline are conditional candidates for evaluation based on the linked repository evidence. Continue remains a maintenance-risk exception; no comparative performance result has been measured.",
   "bestFor": "Developers who want to inspect source and license terms while evaluating AI coding workflows",
   "notFor": "Teams treating an open-source client license as proof that every model, service or data path is open or offline",
@@ -140,6 +152,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending."
     }
   ],
   "commercial": {

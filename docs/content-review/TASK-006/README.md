@@ -1,6 +1,6 @@
 # TASK-006 P1 draft review handoff
 
-Eleven TASK-006 structured content records now form the owner review batch, including a source-based workflow-automation guide. The tool-level profiles have cited strengths, constraints and FAQs; affected dependencies were refreshed. Every record remains `in-review`, not owner-approved, noindex and excluded from the sitemap. Exact current revisions, digests and review gaps are recorded in the sibling `TASK-006-review-manifest.json`.
+Eleven TASK-006 structured content records now form the owner review batch, including a source-based workflow-automation guide. All tool-level profiles and seven TASK-006 decision pages have cited strengths, constraints and FAQs; affected dependencies and exact review handoffs were refreshed. Every record remains `in-review`, not owner-approved, noindex and excluded from the sitemap. Exact current revisions, digests and review gaps are recorded in the sibling `TASK-006-review-manifest.json`.
 
 ## Inventory
 
@@ -10,13 +10,13 @@ Eleven TASK-006 structured content records now form the owner review batch, incl
 | `/tools/continue/` | 4 | IDE/CLI workflow, configurable models, MCP in Agent mode, sourced constraints and FAQs | Upstream repository says read-only/no longer maintained; verify current package, publisher, security response and pricing. |
 | `/tools/n8n/` | 2 | Automation, Cloud/self-host options, license and execution billing | Confirm fair-code compatibility, regional checkout and self-host operational cost. |
 | `/tools/make/` | 2 | Visual scenarios, fixed/dynamic credit behavior and usage questions | Confirm current paid price selector, cadence, regional terms and data handling. |
-| `/compare/make-vs-n8n/` | 2 | Credits vs workflow executions; hosting ownership | Confirm exact Make paid selection and n8n license fit. |
-| `/compare/claude-code-vs-github-copilot/` | 3 | Same-task workflow, MCP access and account-policy evaluation | Verify actual Copilot account entitlements/privacy; no benchmark was run. |
-| `/compare/cline-vs-continue/` | 4 | Model configuration, MCP setup, permissions and maintenance lifecycle | Verify Continue distribution and supported package; no local-model trial was run. |
-| `/compare/aider-vs-claude-code/` | 4 | Git effects, MCP capability, model/account route and review controls | Verify model/account terms; no benchmark was run. |
-| `/compare/bolt-vs-replit/` | 2 | App fit, handoff and production ownership | Replit pricing/export/data residency remain unresolved; no deployment test was run. |
-| `/best/open-source-ai-coding-tools/` | 4 | Repository license evidence, MCP capability and project lifecycle | Confirm exact package/model licenses and Continue's support lifecycle; no performance comparison was run. |
-| `/guides/workflow-automation-selection/` | 1 | Measure triggers, actions, retries, billing units, hosting and recovery | Confirm regional price, privacy/retention and a representative workflow; no product trial was run. |
+| `/compare/make-vs-n8n/` | 3 | Credits vs workflow executions; hosting ownership | Confirm exact Make paid selection and n8n license fit. |
+| `/compare/claude-code-vs-github-copilot/` | 4 | Same-task workflow, MCP access and account-policy evaluation | Verify actual Copilot account entitlements/privacy; no benchmark was run. |
+| `/compare/cline-vs-continue/` | 5 | Model configuration, MCP setup, permissions and maintenance lifecycle | Verify Continue distribution and supported package; no local-model trial was run. |
+| `/compare/aider-vs-claude-code/` | 5 | Git effects, MCP capability, model/account route and review controls | Verify model/account terms; no benchmark was run. |
+| `/compare/bolt-vs-replit/` | 3 | App fit, handoff and production ownership | Replit pricing/export/data residency remain unresolved; no deployment test was run. |
+| `/best/open-source-ai-coding-tools/` | 5 | Repository license evidence, MCP capability and project lifecycle | Confirm exact package/model licenses and Continue's support lifecycle; no performance comparison was run. |
+| `/guides/workflow-automation-selection/` | 2 | Measure triggers, actions, retries, billing units, hosting and recovery | Confirm regional price, privacy/retention and a representative workflow; no product trial was run. |
 
 ## Research boundaries
 
@@ -27,6 +27,7 @@ Eleven TASK-006 structured content records now form the owner review batch, incl
 - The five MCP profiles now render sourced strengths, constraints and FAQs using official documentation links. Cursor's current canonical reference is `https://cursor.com/docs/mcp`; all added content remains an unapproved draft.
 - All 12 tool profiles now have source-cited strengths, constraints and FAQs. The first seven non-MCP profiles cite Aider's Git/model documentation, Bolt's introduction/Git docs, Lovable's workspace/usage docs, Replit Agent/checkpoint docs, Make's credit rules, n8n's hosting/license guidance, and the current Devin Desktop destination reached from the Windsurf editor URL.
 - The new workflow-automation guide distinguishes measured workload from vendor billing units and treats self-hosting as an operating choice, not a claim of lower cost. It is an editorial draft, not hands-on evaluation.
+- The five TASK-006 comparison pages, the open-source shortlist and the workflow-automation guide now render source-bound strengths, constraints and FAQs from their declared tool dependencies. These are documented capability and review claims, not benchmark results or owner-approved recommendations.
 - n8n's Starter price is recorded as EUR 20/month billed annually and 2,500 workflow executions/month, as displayed on its official pricing page when checked. This is not a checkout quote.
 - Make's Free allowance is recorded; the paid amount is null because the pricing UI exposes monthly/annual cadence and credit-quantity controls and the selected checkout basis was not established.
 - HTTP reachability never changes editorial approval. In the current link scan, Cursor, Claude Code, GitHub Copilot and Cline MCP URLs returned 200; Continue's MCP endpoint had a transient network error, although its current official docs page was reviewed directly. Make's official site returned 403. These statuses do not establish product facts or approval.

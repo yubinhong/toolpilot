@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cline vs Continue",
   "summary": "Compare IDE coding assistants by model control, permission behavior and upstream maintenance evidence.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -38,6 +38,18 @@
         "Both profiles contain model-configuration information, but configuration support does not prove that a particular local model will meet quality, latency or hardware needs. Test a representative change and inspect the resulting diff."
       ]
     }
+  ],
+  "pros": [
+    { "text": "Cline documents local STDIO and remote MCP servers and supports server management in its IDE extension and CLI.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "mcp" }] },
+    { "text": "Continue documents configurable MCP servers as custom tools in Agent mode.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] }
+  ],
+  "cons": [
+    { "text": "Continue's documentation limits MCP use to Agent mode, so this capability is not documented across all modes.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
+    { "text": "Continue's upstream repository says it is read-only and no longer actively maintained; its package and support path need confirmation.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }] }
+  ],
+  "faqs": [
+    { "question": "Can Continue use MCP outside Agent mode?", "answer": "No. Continue's MCP documentation says MCP tools are available only in Agent mode.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
+    { "question": "Which MCP transport does Cline recommend?", "answer": "Cline marks Streamable HTTP as recommended and SSE as legacy; match the transport to the server you intend to use.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "mcp" }] }
   ],
   "verdict": "Cline and Continue should not be treated as equivalent maintenance choices today: Continue's upstream read-only notice is a decision-critical caveat. Verify distribution and support before evaluating feature fit.",
   "bestFor": "Developers deciding how much model configuration and maintenance risk they can own",
@@ -75,6 +87,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending."
     }
   ],
   "commercial": {

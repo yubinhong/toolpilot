@@ -401,6 +401,15 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Local acceptance: `npm run content:check`, 55 tests, `npm run cloudflare:build` (97 pages / 4 indexable URLs), `npm audit --audit-level=high` (0 vulnerabilities), freshness review and local current smoke passed. External link scan completed with restricted hosts and temporary network failures recorded as reachability limits.
 - Release acceptance: commit `4c4af35d1750d166afe75aae838f1593cd7e810e` passed clean-worktree `npm run release:check`; GitHub CI run `36316430513` and the Cloudflare Pages check succeeded. Deployment `47c45f5c-3f47-4183-b85a-2267f16d148f`; preview `https://47c45f5c.toolpilot-git.pages.dev` and `https://toolpilot.cc` each passed current-profile smoke for 97 pages, robots, sitemap and a real 404.
 
+##### Decision-page evidence coverage tranche — 2026-09-27
+
+- Add source-bound Pros, Cons and decision-relevant FAQs to the seven TASK-006 decision pages: five planned comparisons, the open-source AI coding shortlist and workflow-automation guide.
+- Use only source IDs from each page's declared tool dependencies or its own sources. Phrase supported product behavior as documented evidence; leave cost, quality, privacy and product-fit conclusions unresolved where current evidence is incomplete.
+- Bump each edited record revision, preserve `in-review`/noindex, refresh the TASK-006 manifest and handoff table, and add regression coverage for evidence presence, reference validity and rendered source links.
+- Completed scope: the five TASK-006 comparisons, open-source Best page and workflow-automation guide now expose source-bound strengths, constraints and FAQs; revisions and review manifest match; every record remains `in-review` and noindex.
+- Local acceptance: 56 tests pass; `npm run content:check`, Node 22 Cloudflare build/artifact checks (97 pages / 4 indexable URLs), `npm audit --audit-level=high` (0 vulnerabilities), `git diff --check` and local current smoke pass. Deployment evidence will be added after release.
+- TASK-005 decision pages outside this tranche, remaining TODO-313 coverage and exact Owner approval remain open.
+
 #### Phase 5 — External operating and commercial gates
 
 - Obtain operator/contact/legal facts before final trust copy; do not invent a company, address, team or legal relationship.

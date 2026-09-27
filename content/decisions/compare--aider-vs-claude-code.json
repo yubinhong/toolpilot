@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Aider vs Claude Code",
   "summary": "Compare two repository-oriented coding agents by Git behavior, model access and review controls.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -38,6 +38,18 @@
         "Do not test with production credentials or weaken repository checks to improve a result. Include permission review and recovery time in the comparison, not only the initial edit speed."
       ]
     }
+  ],
+  "pros": [
+    { "text": "Aider documents multiple hosted model providers and local-model routes through Ollama or OpenAI-compatible APIs.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "models" }] },
+    { "text": "Claude Code documents MCP connections to local stdio and remote HTTP or WebSocket servers.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "mcp" }] }
+  ],
+  "cons": [
+    { "text": "Aider commits pre-existing dirty changes and skips Git pre-commit hooks by default unless configured otherwise.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "git" }] },
+    { "text": "Claude Code project MCP server settings require a trusted workspace and explicit approval.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "mcp" }] }
+  ],
+  "faqs": [
+    { "question": "What should I inspect before running Aider in an established repository?", "answer": "Review its dirty-file commit and Git hook defaults, then trial on a disposable branch and inspect the resulting history.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "git" }] },
+    { "question": "Do the two clients imply one shared model billing price?", "answer": "No. Aider supports multiple providers and Claude Code documents separate subscription and API usage routes; compare the exact provider, account and usage basis you will use.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "models" }, { "toolSlug": "claude-code", "sourceId": "pricing" }] }
   ],
   "verdict": "Compare the complete repository loop, including Git side effects, model/provider cost and command review. The profiles do not establish a performance winner.",
   "bestFor": "Developers comfortable running a bounded, measured coding-agent trial",
@@ -75,6 +87,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending."
     }
   ],
   "commercial": {

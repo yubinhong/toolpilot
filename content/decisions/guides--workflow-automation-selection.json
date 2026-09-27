@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "How to choose a workflow automation platform",
   "summary": "Compare an automation workflow by its real execution pattern, billing unit, hosting needs and recovery path.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -38,6 +38,14 @@
         "Run a bounded test with representative but non-sensitive data. Force a timeout or malformed response, inspect retry and duplicate behavior, and verify how credentials are stored. Export or recover the workflow in a separate environment before depending on it for a production process."
       ]
     }
+  ],
+  "pros": [
+    { "text": "Make documents fixed and dynamic credits, giving teams billing rules they can apply to a measured workflow.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
+    { "text": "n8n documents both Cloud and self-hosted deployment paths, so teams can evaluate different operating models.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] }
+  ],
+  "cons": [
+    { "text": "Make's dynamic modules can consume credits based on tokens, file size, pages or processing time, which makes workload measurement important.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
+    { "text": "The self-host option in n8n documentation does not establish lower total cost; deployment and ongoing operation still need a use-case-specific estimate.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] }
   ],
   "faqs": [
     {
@@ -108,6 +116,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based selection guide; owner approval and a representative workflow trial remain pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound strengths and constraints; exact owner review remains pending."
     }
   ],
   "commercial": {

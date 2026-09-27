@@ -43,8 +43,8 @@
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 2,
-    "digest": "6436d4097620701863083fe468945b41ff1ab6ac1397aab07962bad21d7c5e59",
+    "revision": 3,
+    "digest": "ad38e0b551dac6ea3d7b4ba40a5e1424286711b23d2c74cfdd7f46ba6818569d",
     "state": "in-review",
     "gaps": [
       "Confirm Make's selected paid-plan amount and billing cadence; the official pricing page has interactive billing and credit-quantity selectors.",
@@ -53,8 +53,8 @@
   },
   {
     "path": "/compare/claude-code-vs-github-copilot/",
-    "revision": 3,
-    "digest": "394602e0623b2dec2dfe1a2fb26d940b070e59bb6598a2a23514f8a9e621ffb3",
+    "revision": 4,
+    "digest": "03e2096b4c0db578fd5a132915bdb0157048bc8ea2f6e403e11359ba0ee4df2b",
     "state": "in-review",
     "gaps": [
       "GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.",
@@ -63,8 +63,8 @@
   },
   {
     "path": "/compare/cline-vs-continue/",
-    "revision": 4,
-    "digest": "ecf50aa1363095d591139b7bb0cc7a4503b76286e5af4090f9d926a12326cc58",
+    "revision": 5,
+    "digest": "a584e91ed4edf66d60af2de9068fd50f86ebdd7ff8b59e3700e492d9481a627e",
     "state": "in-review",
     "gaps": [
       "Continue package distribution, publisher, security response and current support lifecycle require confirmation.",
@@ -73,8 +73,8 @@
   },
   {
     "path": "/compare/aider-vs-claude-code/",
-    "revision": 4,
-    "digest": "4341304cca391ddf23754c339ac2738c0e72a5b72c29a315053f15db79073fc5",
+    "revision": 5,
+    "digest": "b1611c760a38ba9cccec8bc68524d46747da09506161e3eb01c677dfb9527e98",
     "state": "in-review",
     "gaps": [
       "Provider and account-specific billing and privacy terms need current verification.",
@@ -83,8 +83,8 @@
   },
   {
     "path": "/compare/bolt-vs-replit/",
-    "revision": 2,
-    "digest": "1dd6e15392962f8197718a3a26141fde083c6ad2571f123530318a45680507f9",
+    "revision": 3,
+    "digest": "b438a6b2d0c685b09b93928e68ad21be1f49161450a9c3f4594653e843b94455",
     "state": "in-review",
     "gaps": [
       "Replit plan amount and included allowance remain unresolved in its source profile.",
@@ -93,8 +93,8 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 4,
-    "digest": "e23b5eb81c428e783767673bdc60149846c4ea957672772e14d0408667450aa1",
+    "revision": 5,
+    "digest": "a17d621aa7e9daa885f895e68a683d1a06dbe1123fd4766ab5392db1f5584788",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
@@ -104,8 +104,8 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 1,
-    "digest": "558543fb90d5f7f0d1df6b1a6638135dbebe23b12a4713815eea3c90c6c68e54",
+    "revision": 2,
+    "digest": "88f071a2a7935621d0a97bccb214464716a4a8d89555e10f3ba025aad76e2e57",
     "state": "in-review",
     "gaps": [
       "Confirm current regional pricing, retention and privacy terms for the selected plans; no hands-on workflow or recovery test was run."

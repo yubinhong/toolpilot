@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Claude Code vs GitHub Copilot",
   "summary": "Choose between coding workflows by testing the same repository task, account policy and review loop.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -17,6 +17,18 @@
     { "heading": "Separate workflow fit from account policy", "paragraphs": ["The current profiles describe different entry points and plan-dependent features. Confirm the actual IDE, terminal, organization policy and account type you will use; do not combine a feature from one plan with the price or privacy terms of another."] },
     { "heading": "Compare total review effort", "paragraphs": ["Measure accepted and rejected changes, repair time and command review. Keep tests and permission boundaries identical. A faster first response does not establish a safer or less expensive result."] }
   ],
+  "pros": [
+    { "text": "Claude Code documents local stdio and remote HTTP or WebSocket MCP servers.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "mcp" }] },
+    { "text": "GitHub documents both manual MCP server configuration and installation through the GitHub MCP Registry for VS Code.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "mcp" }] }
+  ],
+  "cons": [
+    { "text": "Claude Code project-scoped MCP servers require workspace trust and approval; a cloned repository cannot approve its own servers.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "mcp" }] },
+    { "text": "The documented Copilot MCP path requires VS Code 1.99 or later, and Business or Enterprise organization members need the MCP policy enabled.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "mcp" }] }
+  ],
+  "faqs": [
+    { "question": "Does GitHub's MCP organization policy govern individual Copilot plans?", "answer": "No. GitHub scopes that policy to organization or enterprise members on Business or Enterprise plans, not Free, Pro, Pro+ or Max plans.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "mcp" }] },
+    { "question": "Can a cloned repository approve its own Claude Code MCP servers?", "answer": "No. Project server settings are not approved until the workspace is trusted; review and approve the server in the trusted workspace.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "mcp" }] }
+  ],
   "verdict": "Let your real repository task and account requirements decide. Confirm current plan entitlements and privacy settings before making a team-level recommendation.",
   "bestFor": "Developers comparing a coding-agent workflow with IDE assistance and GitHub features",
   "notFor": "Teams requiring an already-verified account-specific privacy, entitlement or cost conclusion",
@@ -26,7 +38,7 @@
     { "slug": "github-copilot", "revision": 3, "digest": "fa15289cff82a8df849e4ec79de954cd382eaec625afc789a8fbaf1a445eac20" }
   ],
   "gaps": ["GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.", "This comparison contains no hands-on benchmark or measured task result."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; exact account constraints and owner review remain open." }, { "date": "2026-09-27", "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required." }, { "date": "2026-09-27", "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required." }],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; exact account constraints and owner review remain open." }, { "date": "2026-09-27", "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required." }, { "date": "2026-09-27", "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required." }, { "date": "2026-09-27", "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
