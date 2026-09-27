@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Bolt.new alternatives",
   "summary": "Bolt.new alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 6,
+  "revision": 7,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -56,8 +56,8 @@
     },
     {
       "slug": "replit",
-      "revision": 3,
-      "digest": "7fe3593827469388dbddb76f4082fa0877ea48434c52eab5622f6a023a409f61"
+      "revision": 4,
+      "digest": "b111f881f3d3b9ab07dbdd42afd04fe78356d4c8d836cf79e23de07291d88dc0"
     },
     {
       "slug": "cursor",
@@ -90,6 +90,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed Replit's dependency revision and digest after pricing source verification; owner re-review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed replit source dependencies after official pricing updates; owner re-review remains required."
     }
   ],
   "commercial": {

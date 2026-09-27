@@ -33,21 +33,21 @@
   },
   {
     "path": "/tools/make/",
-    "revision": 3,
-    "digest": "c23e96e0ec4ea3646b4b95df00cec0b099c9c224eacd54e9dc2b5e6f4e8cfa62",
+    "revision": 4,
+    "digest": "af6bb8173237bc723d9fe50148914cb0e7759c2057ca2da7fdbeb4d049f904e4",
     "state": "in-review",
     "gaps": [
-      "The documented USD 9/month Core amount is for 10,000 credits on annual billing; confirm the monthly-payment amount, selected quantity and regional checkout total before publication.",
-      "Confirm data retention, privacy, regional hosting and scenario export behavior for the intended plan."
+      "Confirm location-dependent checkout taxes and total, data retention, privacy, regional hosting and scenario export behavior for the intended plan.",
+      "A representative workflow has not been measured; credit use can vary by module and usage."
     ]
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 4,
-    "digest": "6a76c5b25916de463ed7a6dd6204e60e7da8985153e3545904f969c109a08bca",
+    "revision": 5,
+    "digest": "df396c0ba73d7eb9b2075bf87fb889d33a77ce94f6a57be0b274b21cec4dbd72",
     "state": "in-review",
     "gaps": [
-      "Make's documented USD 9/month Core baseline is for 10,000 credits on annual billing; confirm the monthly-payment option, chosen quantity and regional checkout total for a specific budget.",
+      "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
       "Confirm license compatibility and the self-hosted operating cost for the intended n8n use."
     ]
   },
@@ -83,11 +83,11 @@
   },
   {
     "path": "/compare/bolt-vs-replit/",
-    "revision": 4,
-    "digest": "ecae73d9f4507d91fef5385e2b4dbd6af3edd7c68c6acabc9320e288f8b62ec5",
+    "revision": 5,
+    "digest": "c8429a5d015a198fc205d74edf65f765ae8a54e9305665df2ccfbe1c7bdc2892",
     "state": "in-review",
     "gaps": [
-      "Replit Core's annual-billed base price is recorded; confirm monthly billing, location-based taxes, included usage and full application costs before a budget comparison.",
+      "Replit's public monthly and annual-billed Core base prices are recorded; confirm account eligibility, location-based checkout taxes, included usage and full application costs before a budget comparison.",
       "No clean export, independent deployment, data-residency or performance test has been performed."
     ]
   },
@@ -104,11 +104,11 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 3,
-    "digest": "40cc5b7d6d6908ac18687e544a0d2683a508ec327c9b70f4f2491f07e185ed4e",
+    "revision": 4,
+    "digest": "33631297d9c95231c31c86dac4f1b9faad4180ee470223e8b189e124cb2b69ad",
     "state": "in-review",
     "gaps": [
-      "Make's documented Core price is USD 9/month for 10,000 credits on annual billing; confirm monthly pricing, regional checkout, retention and privacy for the selected plans. No hands-on workflow or recovery test was run."
+      "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout, retention and privacy for the selected plans. No hands-on workflow or recovery test was run."
     ]
   }
 ]

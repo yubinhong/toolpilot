@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Replit pricing: billing basis and cost boundaries",
   "summary": "Replit pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -23,7 +23,7 @@
     {
       "heading": "Prototype budget",
       "paragraphs": [
-        "Record the plan name, billing period and included allowance directly from the current checkout. Preserve a dated review note. The absence of an amount here means unknown, not free."
+        "Replit's current public sources list Core at USD 20/month and USD 18/month equivalent on annual billing. Record the applicable cadence, account terms, location-dependent taxes and checkout total; those base prices do not establish a full application budget."
       ]
     },
     {
@@ -39,19 +39,19 @@
       ]
     }
   ],
-  "verdict": "The current pricing extract is incomplete; use a cost checklist until a plan quote is confirmed.",
+  "verdict": "The current public sources list Core monthly and annual-billed base prices; use a cost checklist until account, region and workload-specific costs are confirmed.",
   "bestFor": "Buyers checking Replit subscription and usage assumptions",
   "notFor": "Readers seeking a guaranteed workload total without measuring usage",
   "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
   "dependencies": [
     {
       "slug": "replit",
-      "revision": 3,
-      "digest": "7fe3593827469388dbddb76f4082fa0877ea48434c52eab5622f6a023a409f61"
+      "revision": 4,
+      "digest": "b111f881f3d3b9ab07dbdd42afd04fe78356d4c8d836cf79e23de07291d88dc0"
     }
   ],
   "gaps": [
-    "Confirm the regular monthly-payment option, account eligibility and location-based checkout total; the annual-billed base amount is not a full application operating budget."
+    "Confirm account eligibility and location-based checkout taxes and total; the published base prices do not establish included usage or the full application operating budget."
   ],
   "changes": [
     {
@@ -69,6 +69,14 @@
     {
       "date": "2026-09-27",
       "summary": "Recorded Replit Core's current annual-billed price from its official pricing page; monthly billing and total operating cost remain open."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added the public USD 20 monthly Core price from Replit's September pricing update; checkout, tax and complete usage costs remain open."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed replit source dependencies after official pricing updates; owner re-review remains required."
     }
   ],
   "commercial": {
@@ -113,7 +121,7 @@
   ],
   "cons": [
     {
-      "text": "This content record does not contain a confirmed current plan amount or included allowance; the live selector and account checkout must be reviewed before publication.",
+      "text": "The public pricing sources list Core base prices, but this draft does not confirm account-specific checkout, total taxes or a representative application's included and additional usage.",
       "sourceRefs": [
         {
           "toolSlug": "replit",
@@ -137,8 +145,8 @@
   ],
   "faqs": [
     {
-      "question": "What exact Replit plan price should I use?",
-      "answer": "The public page displays Replit Core at USD 18 per month billed annually, discounted from USD 20, with taxes depending on location. Confirm the live billing selection and account checkout; this base plan price is not the full application operating budget.",
+      "question": "What Replit Core billing bases are publicly listed?",
+      "answer": "Replit lists USD 20/month with monthly billing and USD 18/month equivalent billed annually. Taxes depend on location; confirm account checkout and budget runtime, database and agent usage separately.",
       "sourceRefs": [
         {
           "toolSlug": "replit",

@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Bolt vs Replit",
   "summary": "Compare two AI app-building workflows by project fit, handoff, operating ownership and the real cost of a working release.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -35,7 +35,7 @@
     {
       "heading": "Estimate a live service separately",
       "paragraphs": [
-        "The Replit profile records an annual-billed Core base-plan equivalent, not a complete production budget. Include runtime, database, model usage, backups and support only when each item has evidence for the intended plan."
+        "Replit's public sources list USD 20/month with monthly billing and USD 18/month equivalent billed annually. These are base-plan amounts, not a complete production budget; include runtime, database, model usage, backups and support only when each item has evidence for the intended plan."
       ]
     }
   ],
@@ -63,12 +63,12 @@
     },
     {
       "slug": "replit",
-      "revision": 3,
-      "digest": "7fe3593827469388dbddb76f4082fa0877ea48434c52eab5622f6a023a409f61"
+      "revision": 4,
+      "digest": "b111f881f3d3b9ab07dbdd42afd04fe78356d4c8d836cf79e23de07291d88dc0"
     }
   ],
   "gaps": [
-    "Replit Core's annual-billed base price is recorded; confirm monthly billing, location-based taxes, included usage and full application costs before a budget comparison.",
+    "Replit's public monthly and annual-billed Core base prices are recorded; confirm account eligibility, location-based checkout taxes, included usage and full application costs before a budget comparison.",
     "No clean export, independent deployment, data-residency or performance test has been performed."
   ],
   "changes": [
@@ -87,6 +87,10 @@
     {
       "date": "2026-09-27",
       "summary": "Updated Replit price context and dependency digest after official pricing review; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed replit source dependencies after official pricing updates; owner re-review remains required."
     }
   ],
   "commercial": {

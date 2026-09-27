@@ -24,6 +24,35 @@ test('content is valid and includes the planned first-batch kinds',() => {
   assert.ok(content.length >= 28);
   for (const [kind,count] of Object.entries({tools:12,compare:11,alternatives:6,pricing:4,best:3,guides:3})) assert.ok(content.filter(r=>r.kind===kind).length >= count);
 });
+test('Make and Replit price cadences are source-backed and remain pending owner review',() => {
+  const expectations = {
+    make: [
+      { name: 'Core (10,000 credits/month; monthly billing)', amount: 12, sources: ['pricing'] },
+      { name: 'Core (10,000 credits/month; annual billing)', amount: 9, sources: ['pricing', 'pricing-annual'] },
+    ],
+    replit: [
+      { name: 'Replit Core (monthly billing)', amount: 20, sources: ['core-pricing-update', 'pricing'] },
+      { name: 'Replit Core (annual billing equivalent)', amount: 18, sources: ['pricing', 'core-pricing-update'] },
+    ],
+  };
+
+  for (const [slug, prices] of Object.entries(expectations)) {
+    const record = content.find(item => item.kind === 'tools' && item.slug === slug);
+    assert.ok(record, `${slug} profile exists`);
+    for (const expected of prices) {
+      const price = record.prices.find(item => item.name === expected.name);
+      assert.ok(price, `${slug} has ${expected.name}`);
+      assert.equal(price.amount, expected.amount);
+      assert.equal(price.interval, 'month');
+      assert.equal(price.currency, 'USD');
+      assert.equal(price.checkedAt, '2026-09-27');
+      assert.deepEqual(price.sourceIds, expected.sources);
+      assert.ok(price.sourceIds.every(id => record.sources.some(source => source.id === id)));
+    }
+    assert.equal(record.review.state, 'in-review');
+    assert.equal(isIndexable(record, content), false);
+  }
+});
 test('MCP capability claims cite official docs and remain pending exact owner review',() => {
   const expected = new Map([
     ['claude-code','https://code.claude.com/docs/en/mcp'],

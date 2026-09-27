@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 3. Digest: `7fe3593827469388dbddb76f4082fa0877ea48434c52eab5622f6a023a409f61`.
+Revision: 4. Digest: `b111f881f3d3b9ab07dbdd42afd04fe78356d4c8d836cf79e23de07291d88dc0`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -11,6 +11,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - [Replit Agent overview](https://docs.replit.com/features/agent/overview) — Replit; accessed 2026-09-27
 
 - [Plans and billing](https://replit.com/pricing) — Replit; accessed 2026-09-27
+
+- [Core pricing update](https://replit.com/blog/pro-plan) — Replit; updated 2026-09-15, accessed 2026-09-27
 
 - [Replit Core](https://docs.replit.com/billing/plans/replit-core) — Replit; accessed 2026-09-27
 
@@ -30,7 +32,7 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 ## Pricing basis
 
-- Replit Core: USD 18/month billed annually, displayed as discounted from USD 20/month. The page also lists USD 20/month toward its most powerful models. This is a base-plan equivalent, not a regional checkout or complete application budget; the regular monthly-payment option and location-dependent tax total remain unconfirmed. Source: pricing; accessed 2026-09-27.
+- Replit Core: USD 20/month with monthly billing, or USD 18/month equivalent billed annually. The plan also lists USD 20/month toward its most powerful models. These are base-plan amounts, not a regional checkout or complete application budget; account eligibility, location-dependent tax total, runtime and usage costs remain unconfirmed. Sources: pricing, core-pricing-update; accessed 2026-09-27.
 
 ## Proposed judgment
 
@@ -48,7 +50,7 @@ Keep application code, database backups and environment-variable names portable.
 
 ## Gaps
 
-- Confirm the regular monthly-payment option, account eligibility, location-based checkout taxes and total application costs.
+- Confirm account eligibility, location-based checkout taxes and total application costs.
 
 - Confirm data residency and export requirements for the proposed deployment.
 
