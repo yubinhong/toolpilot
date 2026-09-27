@@ -27,6 +27,7 @@
 - 主题必须覆盖文本、页面/卡片表面、输入控件、提示框、焦点和选中状态，并在移动与桌面视口可用；核心文本和控件状态满足至少 4.5:1 对比度。
 - 页面分享预览使用统一的自有通用 1200x630 图；不得放入未经许可的厂商标志、未经核验的排名/指标或比较结论。所有注册路由的 Open Graph 和 Twitter large-image 标签由静态产物检查覆盖。
 - 首页提供 AI Coding、AI App Builders 和 Automation & Agents 分类入口，并展示带实际审核状态的比较研究与定价记录更新时间。只有已发布且有 `verifiedAt` 的工具档案才进入“Recently Verified”；无记录时显示空状态。“Popular”比较必须等到有可复核的真实使用信号及获批的数据/隐私依据，不从目录快照推断；MCP/self-hosted 首页入口仍受 TODO-310 路由优先级裁决约束。
+- P0.7 继续使用既有 `/editorial-policy/` 与 `/disclosure/` canonical 路径，用户可见名称分别为 Methodology 和 Affiliate Disclosure，不创建重复索引路由。方法说明按字段来源呈现价格/功能核验、实测门槛、条件化选择标准和 freshness review 阈值；阈值不是发布承诺。披露页必须按当前代码状态说明 Affiliate、Featured、Sponsor 均未激活，并保持普通链接与各商业关系可见区分。真实运营主体、联系渠道和最终法律文案仍待 Owner 提供。
 
 历史基线与已发布记录见归档 TASK-004；以下 2026-08 需求保留作背景，当前实现状态以 TASK-005 和 ADR-0009 为准。
 

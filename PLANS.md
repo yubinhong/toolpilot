@@ -335,6 +335,14 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Acceptance: focused tests cover category-anchor consistency, exact existing comparison records, pricing update dates and verification eligibility; Node 22 quality/build/artifact checks, dependency audit, local current smoke and authorized release checks pass. Record external preview/production smoke separately from local verification.
 - Acceptance passed: 62 tests, Node 22 Cloudflare build (97 pages / 4 indexable URLs), 0 audit findings, 97-page local smoke, and 375/768/1440px Chromium checks including anchor activation. Commit `c6031b9e8f99a35bc1d8c48738b8671133d90c77` passed clean-worktree release readiness and CI `36333519641`; Pages deployment/check `2084b5da-14dc-4863-9049-edaa4a46ec0a`, preview and production smoke, and HTML/indexability assertions passed.
 
+#### Trust-page route mapping tranche
+
+- Preserve `/editorial-policy/` and `/disclosure/` as their canonical paths; align their visible names and metadata with the rebuild plan's Methodology and Affiliate Disclosure concepts instead of creating duplicate routes.
+- Methodology copy must accurately cover source-based price/feature checks, documented hands-on testing only, conditional selection/ranking rules, and the absence of a fixed update cadence or active benchmarks.
+- Affiliate Disclosure must state the current no-active-commercial-links state and clearly distinguish ordinary links, Affiliate, Featured and Sponsor relationships and their visible labels.
+- Acceptance: source text, navigation/footer labels, route metadata, URL inventory and generated artifacts agree; route count and indexable sitemap membership do not increase. Run Node 22 checks, audit, smoke, release readiness, CI, Pages and preview/production smoke.
+- Source implementation complete: both existing routes retain their canonical paths; all shared trust links use the plan labels; metadata and generated URL audit use the new names. Rendered-artifact assertions cover review thresholds, methodology sections and current inactive commercial state. No testing performance, fixed update schedule, universal rank or live partnership is claimed. External acceptance remains pending local verification and release evidence below.
+
 ### Execution phases
 
 #### Phase 0 — Preserve the baseline and audit source

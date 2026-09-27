@@ -16,6 +16,18 @@ test("home metadata matches the rebuild plan", () => {
   assert.equal(home?.description, "Compare AI coding tools, developer platforms and AI agents by pricing, features, self-hosting, MCP support and real-world use cases.");
 });
 
+test("trust pages use the rebuild plan names without adding duplicate routes", () => {
+  const routes = getRoutes();
+  assert.deepEqual(
+    routes.filter(route => ["/editorial-policy/", "/disclosure/"].includes(route.path)).map(({ path, title, index }) => ({ path, title, index })),
+    [
+      { path: "/editorial-policy/", title: "Methodology", index: true },
+      { path: "/disclosure/", title: "Affiliate Disclosure", index: true },
+    ],
+  );
+  assert.equal(routes.some(route => ["/methodology/", "/affiliate-disclosure/"].includes(route.path)), false);
+});
+
 test("site config removes trailing slashes from the public site URL", () => {
   const previousUrl = process.env.NEXT_PUBLIC_SITE_URL;
   process.env.NEXT_PUBLIC_SITE_URL = "https://example.test///";

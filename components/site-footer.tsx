@@ -23,8 +23,8 @@ export function SiteFooter() {
           <p className="footer-label">Trust</p>
           <div className="footer-links">
             <Link href="/about/">About</Link>
-            <Link href="/editorial-policy/">Editorial policy</Link>
-            <Link href="/disclosure/">Disclosure</Link>
+            <Link href="/editorial-policy/">Methodology</Link>
+            <Link href="/disclosure/">Affiliate Disclosure</Link>
             <Link href="/contact/">Contact</Link>
             <Link href="/privacy/">Privacy</Link>
             <Link href="/terms/">Terms</Link>

@@ -77,6 +77,17 @@ if (!verifiedToolRecords.length && !homepage.includes('No tool profile currently
 for (const record of verifiedToolRecords) {
   if (!homepage.includes(`href="/tools/${record.slug}/"`) || !homepage.includes(record.verifiedAt)) failures.push(`homepage: verified tool missing from recent verification section: ${record.slug}`);
 }
+const methodology = readFileSync('out/editorial-policy/index.html','utf8').replaceAll(/<!--[\s\S]*?-->/g,'');
+for (const phrase of ['<title>Methodology | ToolPilot</title>', 'Pricing verification', 'Feature verification', 'Testing methodology', 'publishes no benchmark results or hands-on test claims', 'Selection and rankings', 'not a universal score or measured performance ranking', 'after 30 days', 'after 90 days', 'not a fixed publishing cadence']) {
+  if (!methodology.includes(phrase)) failures.push(`methodology page: missing ${phrase}`);
+}
+const disclosure = readFileSync('out/disclosure/index.html','utf8').replaceAll(/<!--[\s\S]*?-->/g,'');
+for (const phrase of ['<title>Affiliate Disclosure | ToolPilot</title>', 'Ordinary links', 'Affiliate recommendations', 'Featured and Sponsor placements', 'No affiliate destination, Featured placement or Sponsor placement is active in this version.']) {
+  if (!disclosure.includes(phrase)) failures.push(`affiliate disclosure page: missing ${phrase}`);
+}
+for (const html of [methodology, disclosure]) {
+  if (!html.includes('>Methodology</a>') || !html.includes('>Affiliate Disclosure</a>')) failures.push('trust pages: footer must link to both methodology and affiliate disclosure');
+}
 function escapeHtml(value) {
   return value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;' })[char]);
 }
