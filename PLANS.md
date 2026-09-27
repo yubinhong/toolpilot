@@ -452,6 +452,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Keep both routes noindex and outside the sitemap while their derivative content consists of unapproved tool records. Show review status and direct links to the cited tool/source pages; make no popularity, privacy, performance or completeness claim.
 - Add the hubs to the route registry, URL audit, navigation and generated-artifact assertions. Keep `/mcp/servers/`, `/mcp/tools/`, vendor MCP directories, faceted filters, and any separate self-hosted directory deferred.
 - Acceptance: tests verify route registration/noindex, fact-to-source rendering, and sitemap exclusion; Node 22 lint, typecheck, tests, content checks, static export/artifact checks, local current-profile smoke, dependency audit, link scan where reachable, and `git diff --check` pass. No Owner approval is implied; retain TODO-005/TODO-309/TODO-310 publication review gates.
+- Acceptance completed: Node 22 build passed 72 tests and artifact checks for 99 pages/4 indexable URLs; the fresh 139-URL scan reported 116 HTTP-ok, 16 restricted, 6 policy-blocked, 1 temporary error and no 404/410. `npm audit --audit-level=high` found 0 vulnerabilities. Commit `1843969916c80e4239277f64556d297485abbb1b` passed `release:check`, CI `36348360212`, Pages deployment/check `5da54123-8908-4d47-80e9-5ccbd3e35824`, and preview/production current smoke. Exact evidence is in TASK.md. Owner review and maintenance responsibility remain open.
 
 #### Phase 5 — External operating and commercial gates
 

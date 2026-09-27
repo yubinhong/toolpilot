@@ -6,6 +6,7 @@
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
 - 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的差异并准备 P1 审核批次。当前有 39 条结构化记录、99 条注册路由；所有内容均为 `in-review`、noindex，只有 4 个非内容 URL 在 sitemap。`/mcp/` 与 `/self-hosted/` 已按 §49 实现来源证据综述，深层目录/筛选仍是 P2，TODO-310 还需 Owner 确认页面价值及维护责任。12 个工具档案和全部 26 个声明了工具依赖的决策页有来源绑定的优势、限制和 FAQ；Make/Replit 价格基线及未知的月付、税费、完整成本见 TASK.md。无依赖的 `/guides/how-to-choose-a-developer-tool/` 按 ADR-0009 不附会产品引用。Alternatives/slug 映射、内容审批、历史 URL/GSC/外链证据、运营资料、通知配置、生产回滚演练以及 TASK-007 analytics/HSTS 决策仍未关闭。TASK-006 基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；用户计划文件仍未跟踪且保持原样；详见 TASK.md、TODO.md 和 PLANS.md。
+- 最新 P0.6 发布由 commit `1843969916c80e4239277f64556d297485abbb1b` 完成：GitHub CI `36348360212`、Cloudflare Pages check `5da54123-8908-4d47-80e9-5ccbd3e35824`、immutable preview 和 `toolpilot.cc` current smoke 均通过 99 页、robots、sitemap 和真实 404。正式 HTML 核验两 hub 的 noindex、档案事实和官方来源链接；发布不等于内容审批。
 - P0.4 已完成排版与主题审计：h1/h2 使用固定响应式断点字号，字距归零；浅/深主题默认跟随系统，页头可手动切换并保存在浏览器本地。8 类页面 x 3 个视口 x 2 种主题共 48 项检查无横向溢出或页面错误，刷新后偏好仍在；核心文本/控件最低对比度为浅色 4.93:1、深色 7.30:1。默认自有 OG 分享图已接入所有路由且构建产物检查通过，不使用第三方厂商标志。Commit `4aea803` 的 CI `36324864383`、Cloudflare Pages 检查、预览 `https://1a5cc8e2.toolpilot-git.pages.dev` 与 `toolpilot.cc` current smoke 全部通过 97 页；TODO-311 仍开放：真实 CWV/GSC 数据尚未取得。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 39 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 3 guides）全部待用户审核，未冒充正式评价。

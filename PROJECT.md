@@ -12,7 +12,7 @@
 
 TASK-006 按用户提供的重建计划持续推进；每个已授权的可交付进展均须部署并线上验证。继续 Next.js 静态导出；原 50 条快照不可覆盖，现有 54 个工具身份。`content/` 是 39 条结构化待审核正文的事实源（12 tools / 11 comparisons / 6 alternatives / 4 pricing / 3 Best / 3 guides）；全部仍为 `in-review`、noindex，`lib/catalog.mjs` 保留历史快照和兼容入口。用户负责最终内容审批。
 
-依赖更新为 Next.js/eslint-config-next 16.3.6、sharp 0.35.4、js-yaml 4.3.2；Node 22 下锁定安装和审计通过。Git-integrated Pages 项目 `toolpilot-git` 已连接 `main` 并承载 `toolpilot.cc`；当前源码登记 99 个路由，其中 MCP/self-hosted 证据综述为 noindex，当前线上部署证据仍对应既有 97 路由。旧 Direct Upload 项目保留为恢复目标；具体发布证据和未决门槛统一见 TASK.md 和 RUNBOOK.md。
+依赖更新为 Next.js/eslint-config-next 16.3.6、sharp 0.35.4、js-yaml 4.3.2；Node 22 下锁定安装和审计通过。Git-integrated Pages 项目 `toolpilot-git` 已连接 `main` 并承载 `toolpilot.cc`；当前源码登记 99 个路由，MCP/self-hosted 证据综述为 noindex。commit `1843969916c80e4239277f64556d297485abbb1b` 的预览与正式域名 current smoke 已通过 99 页、robots、sitemap 和真实 404。旧 Direct Upload 项目保留为恢复目标；具体发布证据和未决门槛统一见 TASK.md 和 RUNBOOK.md。
 
 ## 1. 项目概述
 

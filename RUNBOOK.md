@@ -89,6 +89,10 @@ TASK-007 发布后，先在 immutable Pages preview，再在 `https://toolpilot.
 
 常规迁移步骤留档：先验证 `toolpilot-git` 最新 `main` 部署和 `pages.dev` smoke，再在 Cloudflare Pages 将自定义域绑定到 Git-integrated 项目，并确认正式域名 current smoke。Cloudflare 托管 DNS 时应按 Pages Dashboard 的验证流程确认域名关联，避免在 Pages 项目关联前独立创建不匹配记录。旧项目不得删除。
 
+### TASK-006 P0.6 release handoff (2026-09-27)
+
+Commit `1843969916c80e4239277f64556d297485abbb1b` added noindex MCP and self-hosted evidence overview routes. GitHub CI run `36348360212` and Cloudflare Pages deployment/check `5da54123-8908-4d47-80e9-5ccbd3e35824` succeeded. Immutable preview `https://5da54123.toolpilot-git.pages.dev` and `https://toolpilot.cc` both passed `SMOKE_PROFILE=current npm run smoke`: 99 routes, robots, four sitemap URLs and a real 404. Production HTML checks verified each hub's `noindex` meta, profile facts and official source links. The first request to the custom domain briefly returned 404 while deployment propagated; later both new routes returned 200 and the full production smoke passed. No Pages, DNS, CSP or indexing settings were changed. Underlying drafts remain `in-review`; this release is not content approval.
+
 ## 4. 回滚
 
 - 触发条件：站点不可用、构建产物与源码不一致、工具事实错误、关键链接失效、商业标记缺失、安全门槛失败或旧 Crypto/DeFi 内容误发布。
