@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Claude Code pricing: billing basis and cost boundaries",
   "summary": "Claude Code pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -63,6 +63,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -84,5 +88,75 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Anthropic documents separate subscription usage and API token billing routes for Claude Code, with account-specific cost tracking.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "subscription"
+        }
+      ]
+    },
+    {
+      "text": "The `/usage` view provides usage information and supports a small pilot to establish a workload baseline before wider rollout.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "The vendor says API cost varies with model selection, codebase size and usage patterns, so a subscription price alone is not a task-cost estimate.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "text": "The displayed API session cost is an estimate; the documentation directs users to the Console Usage page for authoritative billing.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is Claude Code always billed per API token?",
+      "answer": "No. The docs distinguish API token billing from Pro, Max, Team and Enterprise subscription usage; confirm the sign-in and billing route for the account.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "subscription"
+        }
+      ]
+    },
+    {
+      "question": "Can `/usage` be treated as an invoice?",
+      "answer": "No. The documentation calls the API session dollar figure an estimate and points to the Console Usage page for authoritative API billing.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ]
 }

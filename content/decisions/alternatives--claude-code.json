@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Claude Code alternatives",
   "summary": "Claude Code alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -78,6 +78,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -99,5 +103,71 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Cursor documents an editor and coding-agent workflow for developers who want to keep editing and review in an IDE.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Cline documents IDE extension, CLI and desktop entry points, plus configurable provider options.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "The documented Copilot MCP route has a VS Code version requirement, and organization or enterprise policy can control availability on Business and Enterprise plans.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "Claude Code project-scoped MCP servers require a trusted workspace and approval, so replacing the client does not remove the need to review tool permissions.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which alternative documents local-model options?",
+      "answer": "Cline documents Ollama and LM Studio options. Hardware and model suitability still need a workload-specific trial.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "question": "Does the Copilot MCP policy apply to every individual plan?",
+      "answer": "GitHub scopes that policy to organization or enterprise users on Business or Enterprise plans; verify the actual account and organization configuration.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ]
 }

@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "AI coding tools for solo founders",
   "summary": "Select a sustainable development workflow around your constraints.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -78,6 +78,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -99,5 +103,75 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Cursor documents an editor and coding-agent workflow for founders who want to inspect repository changes in the editing surface.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Claude Code documents several working surfaces and usage tracking, allowing a founder to evaluate a command loop without assuming a fixed workload cost.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Copilot MCP availability can depend on VS Code version and Business or Enterprise organization policy; confirm personal versus managed account entitlements.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "Cline documents provider sign-in and bring-your-own-key paths, which leave model/provider selection and its terms as a separate decision.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Does GitHub’s MCP organization policy govern an individual Copilot plan?",
+      "answer": "GitHub says the policy applies to organization or enterprise users on Business or Enterprise, not individual Free, Pro, Pro+ or Max plans.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "question": "Can a posted plan amount predict solo-founder coding cost?",
+      "answer": "Not by itself. Claude Code documents token-based API billing and usage that varies by model and work pattern; Cursor documents included model usage followed by optional on-demand billing.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ]
 }

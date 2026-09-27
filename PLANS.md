@@ -407,8 +407,18 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Use only source IDs from each page's declared tool dependencies or its own sources. Phrase supported product behavior as documented evidence; leave cost, quality, privacy and product-fit conclusions unresolved where current evidence is incomplete.
 - Bump each edited record revision, preserve `in-review`/noindex, refresh the TASK-006 manifest and handoff table, and add regression coverage for evidence presence, reference validity and rendered source links.
 - Completed scope: the five TASK-006 comparisons, open-source Best page and workflow-automation guide now expose source-bound strengths, constraints and FAQs; revisions and review manifest match; every record remains `in-review` and noindex.
-- Local acceptance: 56 tests pass; `npm run content:check`, Node 22 Cloudflare build/artifact checks (97 pages / 4 indexable URLs), `npm audit --audit-level=high` (0 vulnerabilities), `git diff --check` and local current smoke pass. Deployment evidence will be added after release.
-- TASK-005 decision pages outside this tranche, remaining TODO-313 coverage and exact Owner approval remain open.
+- Local acceptance: 56 tests pass; `npm run content:check`, Node 22 Cloudflare build/artifact checks (97 pages / 4 indexable URLs), `npm audit --audit-level=high` (0 vulnerabilities), `git diff --check` and local current smoke pass.
+- Release acceptance: commit `1374c707d87d0ab4281ec1b6fe92dcbc707fffde` passed clean-worktree `npm run release:check`; GitHub CI run `36317440965` and Cloudflare Pages check succeeded. Deployment `0872ba3f-9f8b-4f2c-9fab-ac0c98d8e340`; preview `https://0872ba3f.toolpilot-git.pages.dev` and `https://toolpilot.cc` each passed current-profile smoke for 97 pages, robots, sitemap and a real 404.
+- Exact Owner approval remains open under TODO-005/TODO-309; no product claims were added to the dependency-free general guide.
+
+##### Remaining dependency-backed decision evidence tranche — 2026-09-27
+
+- Cover the 19 remaining decision records that declare tool dependencies: six alternatives, six comparisons, two Best pages, one tool-selection guide, and four pricing pages. Do not add product claims to `/guides/how-to-choose-a-developer-tool/` while it has no tool dependencies; preserve the ADR-0009 rule that decision evidence cites only declared dependencies.
+- Derive each Pros/Cons/FAQ statement from existing official-source records on its declared tool dependencies. Keep vendor capability claims distinct from editorial questions/checklists; do not claim comparative performance, fixed cost, privacy, portability or product continuity where the sources do not establish it.
+- Increment each edited decision revision, append its dated change entry, preserve `in-review`/noindex, refresh both TASK-005 and TASK-006 exact review manifests where applicable, and expand regression coverage to the newly covered records.
+- Completed scope: all 19 remaining records with declared dependencies now have cited Pros/Cons/FAQs, bringing coverage to 26/26 dependency-backed decision pages. The general selection guide remains without product-evidence blocks because it has no tool dependencies; no product dependency was invented. The official Devin Desktop FAQ now identifies Devin Desktop as Windsurf's new name and describes a standard account transition; exact account pricing and migration were not independently tested.
+- Local acceptance: 57 tests pass; `npm run content:check` and `npm run content:review` pass; Node 22 Cloudflare build passes lint, typecheck, tests, static export and artifact checks (97 pages / 4 indexable URLs); `npm audit --audit-level=high` finds 0 vulnerabilities; `npm run smoke` passes for 97 pages, robots, sitemap and a real 404. `npm run links:check` reports 91 HTTP-ok, 14 restricted, 6 policy-blocked and 4 temporary network errors; reachability is not fact verification. `git diff --check` passes.
+- Release acceptance: pending clean-worktree release check, CI, Pages deployment, preview smoke and production current-profile smoke.
 
 #### Phase 5 — External operating and commercial gates
 

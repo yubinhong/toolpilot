@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cursor vs Claude Code",
   "summary": "Cursor vs Claude Code: developers choosing an editor-centered or command-oriented repository workflow.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -68,6 +68,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -89,5 +93,75 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Cursor documents an editor and coding-agent workflow, with MCP support for local stdio and remote transports.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "Claude Code documents terminal, IDE, desktop and web surfaces, so the choice is not limited to an editor versus a shell.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Cursor requests approval before MCP tool calls by default; configured run modes can change handling for allowlisted tools.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "Claude Code project MCP server configuration is not trusted until the workspace is trusted and its servers are approved.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MCP transports do their docs list?",
+      "answer": "Cursor documents local stdio and local or remote SSE and Streamable HTTP; Claude Code documents local stdio and remote HTTP or WebSocket, with SSE deprecated.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "mcp"
+        },
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "question": "Does terminal-oriented mean Claude Code has no editor option?",
+      "answer": "No. Its docs list IDE, desktop and web surfaces as well as terminal use; test the surface available to your account.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ]
 }

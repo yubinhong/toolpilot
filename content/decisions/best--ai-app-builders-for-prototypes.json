@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "AI app builders for prototypes",
   "summary": "Evaluate a demo together with its handoff and operating responsibilities.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -69,6 +69,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -90,5 +94,79 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Bolt documents JavaScript-based web app creation plus a distinct Expo path for mobile prototypes.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Lovable documents code synchronization with Git providers, which gives a prototype a documented repository handoff path.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Lovable code synchronization is not the same as moving a database, hosting setup or connected services; those need a separate migration plan.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        }
+      ]
+    },
+    {
+      "text": "Replit checkpoints cover an in-platform recovery path; they do not demonstrate independent deployment or recovery from an exported project.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which documented path fits a JavaScript web or Expo prototype?",
+      "answer": "Bolt describes JavaScript-based web frameworks and an Expo mobile route. Confirm the exact framework, dependencies and external services before starting.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "question": "What should a prototype handoff test prove?",
+      "answer": "Verify that another developer can obtain the code and reproduce the app, then check databases and runtime services separately. Lovable documents Git sync but separates that from service migration.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        }
+      ]
+    }
+  ]
 }

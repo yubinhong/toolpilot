@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 2. Digest: `a7c4bf03221774d71b76567b862f69b57d01c5656808305736f1b2b05af7e391`.
+Revision: 3. Digest: `7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -18,7 +18,7 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 ## Field evidence
 
-- **Workflow**: Historical Windsurf documentation redirects to Devin Desktop Sources: product; checked: 2026-09-27.
+- **Workflow**: The vendor says Devin Desktop is the new name for Windsurf; the IDE remains available alongside an Agent Command Center. Sources: desktop; checked: 2026-09-27.
 
 - **Privacy / data handling**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
@@ -30,25 +30,25 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 ## Documented strengths, constraints and FAQs
 
-- Strength: the current Devin Desktop page describes a full IDE with syntax highlighting, autocomplete and debugging tools. Source: desktop.
-- Constraint: the official Windsurf editor URL redirects to a Devin Desktop page; confirm the current purchase destination and existing entitlements. Sources: windsurf-editor, desktop.
-- FAQ: the inspected editor destination identifies Devin Desktop. Verify account history, plan entitlements and pricing before acting on a legacy Windsurf plan. Sources: windsurf-editor, desktop, pricing.
+- Strength: the official FAQ identifies Devin Desktop as the new name for Windsurf and says the IDE remains available. Source: desktop.
+- Constraint: the vendor describes a standard transition, but this review has not tested an individual account or entitlement. Source: desktop.
+- FAQ: the vendor says plans, pricing, extensions, settings and in-progress work carry over with the standard over-the-air update; confirm the specific account path and quote. Sources: desktop, pricing.
 
 ## Pricing basis
 
-- Legacy Windsurf entitlement: Unknown; Unresolved after official redirect. Allowance: unknown. Overage: unknown. Taxes: unknown. Sources: none.
+- Legacy Windsurf entitlement: Unknown; current account quote not recorded; confirm plan and usage terms. Allowance: unknown. Overage: unknown. Taxes: unknown. Sources: pricing.
 
 ## Proposed judgment
 
-Pause a new purchase decision until the current product identity and account migration terms are confirmed. This entry preserves the existing Windsurf URL.
+Treat Devin Desktop as the documented continuation of Windsurf; confirm the account-specific update path and current plan terms before acting. This entry preserves the existing Windsurf URL.
 
 Consider for: Existing users checking continuity of their editor workflow. Not for: New buyers relying on old Windsurf prices.
 
-Record your current account entitlement and editor settings. Ask the vendor to confirm what transfers; do not assume a redirect preserves a subscription.
+Record the current account and editor settings, confirm the official update applies, and rehearse the workflow before changing a production setup.
 
 ## Gaps
 
-- The official editor destination identifies Devin Desktop as the current page; verify account history, plan entitlements and current pricing before publication.
+- No account-specific transition was tested; the exact current plan amount and usage terms are not captured for a quote.
 
 ## Owner checklist
 

@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Replit alternatives",
   "summary": "Replit alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -82,6 +82,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -103,5 +107,75 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Lovable documents code synchronization to GitHub, GitLab and Bitbucket for teams evaluating a repository-centered handoff.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Bolt documents importing an existing GitHub repository as well as its JavaScript web-app and Expo paths.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "git"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Replit checkpoints are described as in-platform recovery snapshots; they do not establish a tested independent export or recovery route.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        }
+      ]
+    },
+    {
+      "text": "Lovable credits cover different build and runtime activities, so a credit total alone is not a comparable estimate of the full application lifecycle.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "usage"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do Replit checkpoints replace an external backup?",
+      "answer": "The documentation describes checkpoints inside Replit. Test a separate code export and recovery process if the project must operate outside the platform.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        }
+      ]
+    },
+    {
+      "question": "Which candidates document Git-based project movement?",
+      "answer": "Lovable documents sync with GitHub, GitLab and Bitbucket; Bolt documents GitHub repository import and version control. Test runtime services separately.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "git"
+        }
+      ]
+    }
+  ]
 }

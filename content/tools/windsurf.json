@@ -1,9 +1,9 @@
 {
   "slug": "windsurf",
   "kind": "tools",
-  "title": "Windsurf",
-  "summary": "A historical editor entry whose official sources now point to Devin.",
-  "revision": 2,
+  "title": "Windsurf / Devin Desktop",
+  "summary": "Windsurf, now named Devin Desktop, retains a full IDE and adds an agent command center.",
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -34,7 +34,7 @@
     {
       "id": "desktop",
       "url": "https://devin.ai/desktop",
-      "title": "Devin Desktop",
+      "title": "Devin Desktop FAQ and Windsurf transition",
       "publisher": "Devin",
       "accessedAt": "2026-09-27"
     },
@@ -50,9 +50,9 @@
     {
       "key": "workflow",
       "label": "Workflow",
-      "value": "Historical Windsurf documentation redirects to Devin Desktop",
+      "value": "The vendor says Devin Desktop is the new name for Windsurf; the IDE remains available alongside an Agent Command Center.",
       "sourceIds": [
-        "product"
+        "desktop"
       ],
       "checkedAt": "2026-09-27",
       "critical": true
@@ -96,7 +96,7 @@
       "amount": null,
       "currency": "USD",
       "interval": "month",
-      "billing": "Unresolved after official redirect",
+      "billing": "Current account quote not recorded; confirm plan and usage terms",
       "allowance": null,
       "overage": null,
       "taxes": null,
@@ -106,34 +106,91 @@
   ],
   "sections": [
     {
-      "heading": "Establish the current entitlement",
+      "heading": "Product name and transition",
       "paragraphs": [
-        "The official URLs inspected during this research redirected to Devin. Do not copy a historic Windsurf price into a new budget. Ask the vendor which product and plan a new purchase now buys and what happens to an existing account."
+        "The current official FAQ calls Devin Desktop the new name for Windsurf. It says the IDE remains available and plans, pricing, extensions, settings and in-progress work carry over with the standard over-the-air update. This record has not tested an individual account transition."
       ]
     },
     {
-      "heading": "Rehearse a reversible move",
+      "heading": "Keep price and account scope separate",
       "paragraphs": [
-        "Export a record of your extensions, settings and repository rules before testing another editor. Keep the old environment available until build, test and review tasks can be reproduced. Migration difficulty remains a question for your installation, not a measured score here."
+        "The vendor describes continuity for an existing account, but this record does not capture a current checkout amount or verify account-specific entitlements. Confirm the plan and usage terms before budgeting or changing a working environment."
       ]
     }
   ],
   "pros": [
-    { "text": "The current Devin Desktop product page describes a full IDE with syntax highlighting, autocomplete and debugging tools.", "sourceRefs": [{ "toolSlug": "windsurf", "sourceId": "desktop" }] }
+    {
+      "text": "The vendor identifies Devin Desktop as the new name for Windsurf and says the IDE experience remains available.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "text": "Devin Desktop describes a full IDE with syntax highlighting, autocomplete and debugging tools.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    }
   ],
   "cons": [
-    { "text": "The official Windsurf editor URL redirects to a Devin Desktop page, so the current product name and new-purchase destination should be confirmed before selection.", "sourceRefs": [{ "toolSlug": "windsurf", "sourceId": "windsurf-editor" }, { "toolSlug": "windsurf", "sourceId": "desktop" }] }
+    {
+      "text": "The standard transition is documented by the vendor, but no account-specific migration or entitlement was independently tested for this review.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "text": "The exact current plan quote is not recorded here; check the current plan page and the account’s usage terms before budgeting.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        }
+      ]
+    }
   ],
   "faqs": [
-    { "question": "What does the Windsurf editor page identify as the current desktop product?", "answer": "The inspected Windsurf editor URL redirects to Devin Desktop, whose page describes a full IDE. Confirm account history, entitlements and current pricing with the vendor before acting on a legacy Windsurf plan.", "sourceRefs": [{ "toolSlug": "windsurf", "sourceId": "windsurf-editor" }, { "toolSlug": "windsurf", "sourceId": "desktop" }, { "toolSlug": "windsurf", "sourceId": "pricing" }] }
+    {
+      "question": "Is Devin Desktop the new name for Windsurf?",
+      "answer": "Yes. The official FAQ describes Devin Desktop as the new name for Windsurf and says the full IDE remains accessible.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "question": "What does the vendor say carries over during the standard update?",
+      "answer": "The FAQ says plans, pricing, extensions, settings and in-progress work carry over with the over-the-air update. Confirm the applicable path and quote for the specific account.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        }
+      ]
+    }
   ],
-  "verdict": "Pause a new purchase decision until the current product identity and account migration terms are confirmed. This entry preserves the existing Windsurf URL.",
-  "bestFor": "Existing users checking continuity of their editor workflow",
-  "notFor": "New buyers relying on old Windsurf prices",
-  "migration": "Record your current account entitlement and editor settings. Ask the vendor to confirm what transfers; do not assume a redirect preserves a subscription.",
+  "verdict": "Treat Devin Desktop as the documented continuation of Windsurf; confirm the account-specific update path and current plan terms before acting.",
+  "bestFor": "Existing Windsurf users assessing the documented transition or current editor workflow",
+  "notFor": "Buyers treating historical Windsurf prices as a current quote",
+  "migration": "Record the current account and editor settings, confirm the official update applies, and rehearse the workflow before changing a production setup.",
   "dependencies": [],
   "gaps": [
-    "The official editor destination identifies Devin Desktop as the current page; verify account history, plan entitlements and pricing before publication."
+    "No account-specific transition was tested; the exact current plan amount and usage terms are not captured for a quote."
   ],
   "changes": [
     {
@@ -143,6 +200,10 @@
     {
       "date": "2026-09-27",
       "summary": "Verified the current official editor destination and added cited strengths, constraints and FAQs; account entitlements remain unresolved."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Updated the Windsurf identity and transition facts from the current Devin Desktop FAQ; exact account pricing and migration remain unverified."
     }
   ],
   "commercial": {
@@ -165,7 +226,7 @@
       "evidence": null
     }
   },
-  "name": "Windsurf",
+  "name": "Devin Desktop (Windsurf)",
   "category": "AI Coding",
   "productUrl": "https://windsurf.com/"
 }

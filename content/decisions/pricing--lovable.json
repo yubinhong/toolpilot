@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Lovable pricing: billing basis and cost boundaries",
   "summary": "Lovable pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -59,6 +59,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -80,5 +84,79 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Lovable’s plan documentation separates subscription credits from daily build credits and monthly Cloud and AI grants.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "text": "The usage page breaks activity into Build and Run credits and provides project-level usage views for review.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "usage"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Run credits can include Cloud, AI gateway and connector usage, so the plan amount alone does not describe the full deployed-app cost.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "usage"
+        }
+      ]
+    },
+    {
+      "text": "Credit availability and behavior vary by plan and credit type; avoid converting a credit allowance into a fixed number of completed features.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "usage"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do Lovable credits cover only building the app?",
+      "answer": "No. The usage documentation distinguishes Build credits from Run credits, including Cloud, AI gateway and connector activity.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "usage"
+        }
+      ]
+    },
+    {
+      "question": "How should I estimate a monthly Lovable budget?",
+      "answer": "Record the plan and its included credits, then measure representative build and runtime activity in the workspace usage view; price infrastructure and connected services separately.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "usage"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        }
+      ]
+    }
+  ]
 }

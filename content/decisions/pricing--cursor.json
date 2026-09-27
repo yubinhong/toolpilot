@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Cursor pricing: billing basis and cost boundaries",
   "summary": "Cursor pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -63,6 +63,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -84,5 +88,67 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Cursor says every plan includes a set amount of model usage and documents on-demand usage after that amount is consumed.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "text": "The pricing page distinguishes self-serve card payments from invoice-based Enterprise billing, which helps define the quote to request.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "On-demand model usage is billed in arrears, so the plan base amount alone does not represent total spend for a high-usage month.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "text": "The included model allowance and applicable taxes depend on current plan and billing details; verify the chosen plan before budgeting.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What happens after the included model usage is consumed?",
+      "answer": "Cursor documents optional on-demand usage billed in arrears. Check its current terms and spending controls before relying on continued usage.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "question": "Does the listed plan price guarantee a fixed monthly total?",
+      "answer": "No. The pricing page describes included model usage and additional on-demand billing; estimate workload separately and verify tax and plan terms.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ]
 }

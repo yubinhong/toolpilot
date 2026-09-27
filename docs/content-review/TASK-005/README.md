@@ -4,7 +4,7 @@
 
 ## Review sequence
 
-1. Resolve product identity/pricing gaps and review eight product packs.
+1. Review eight product packs, including the official Windsurf-to-Devin Desktop naming and transition note; confirm account-specific pricing and entitlements.
 2. Review comparison, alternative, pricing and best-page conclusions against the approved tools.
 3. Review the two guides.
 4. Supply operator identity, monitored contact channel and final privacy/terms information.
@@ -27,28 +27,28 @@ For a material edit, increment revision, reset review fields and verifiedAt, upd
 | /tools/github-copilot/ | 3 | in-review | MCP prerequisites, organization-policy scope and individual-plan distinction have cited strengths/constraints/FAQs; confirm privacy settings before a team recommendation. |
 | /tools/lovable/ | 2 | in-review | Review sourced workspace, credit usage and deployment ownership; confirm current plan and ongoing runtime costs. |
 | /tools/replit/ | 2 | in-review | Public pricing extract did not expose reliable plan amounts; confirm the current plan, included allowance, data residency and export requirements. |
-| /tools/windsurf/ | 2 | in-review | Official Windsurf editor URL redirects to Devin Desktop; verify product identity, existing entitlements and current pricing before publication. |
-| /alternatives/bolt-new/ | 3 | in-review | Depends on reviewed product evidence; Cursor MCP facts were refreshed. |
-| /alternatives/claude-code/ | 3 | in-review | Depends on reviewed product evidence, including Claude Code MCP configuration. |
-| /alternatives/cursor/ | 3 | in-review | Depends on reviewed product evidence, including Cursor MCP transports. |
-| /alternatives/lovable/ | 3 | in-review | Depends on reviewed product evidence; a candidate's MCP facts were refreshed. |
-| /alternatives/replit/ | 3 | in-review | Depends on reviewed product evidence; a candidate's MCP facts were refreshed. |
-| /alternatives/windsurf/ | 3 | in-review | Depends on reviewed product evidence, including Cursor and Cline MCP facts. |
-| /best/ai-app-builders-for-prototypes/ | 1 | in-review | Depends on reviewed product evidence |
-| /best/ai-coding-tools-for-solo-founders/ | 3 | in-review | Depends on reviewed product evidence, including refreshed MCP facts. |
-| /compare/cline-vs-claude-code/ | 3 | in-review | Compare MCP setup and approvals from cited profile facts; no hands-on benchmark was run. |
-| /compare/cursor-vs-claude-code/ | 3 | in-review | Compare documented MCP transports and project approval; no hands-on benchmark was run. |
-| /compare/cursor-vs-github-copilot/ | 3 | in-review | Copilot MCP availability depends on IDE and organization policy; no hands-on benchmark was run. |
-| /compare/lovable-vs-bolt/ | 1 | in-review | Depends on reviewed product evidence |
-| /compare/replit-vs-lovable/ | 1 | in-review | Depends on reviewed product evidence |
-| /compare/windsurf-vs-cursor/ | 3 | in-review | Depends on reviewed product evidence, including Cursor MCP support. |
-| /guides/ai-editor-vs-terminal-agent/ | 3 | in-review | Depends on refreshed MCP capability evidence; no hands-on comparison is claimed. |
-| /guides/how-to-choose-a-developer-tool/ | 1 | in-review | Owner review pending |
-| /pricing/claude-code/ | 3 | in-review | Depends on reviewed product evidence, including Claude Code MCP configuration. |
-| /pricing/cursor/ | 3 | in-review | Depends on reviewed product evidence, including Cursor MCP configuration. |
-| /pricing/lovable/ | 1 | in-review | Depends on reviewed product evidence |
-| /pricing/replit/ | 1 | in-review | Depends on reviewed product evidence |
+| /tools/windsurf/ | 3 | in-review | Official FAQ says Devin Desktop is the new name for Windsurf and describes the standard account transition; exact account quote and an account-specific migration test remain open. |
+| /alternatives/bolt-new/ | 5 | in-review | Cited app-builder handoff and stack-scope evidence; owner review pending. |
+| /alternatives/claude-code/ | 4 | in-review | Cited client surfaces, provider options and Copilot policy conditions; owner review pending. |
+| /alternatives/cursor/ | 5 | in-review | Cited multi-surface alternatives and current Devin Desktop transition; owner review pending. |
+| /alternatives/lovable/ | 5 | in-review | Cited prototype workflows, credit usage and service-migration limits; owner review pending. |
+| /alternatives/replit/ | 5 | in-review | Cited Git handoff and in-platform checkpoint boundaries; owner review pending. |
+| /alternatives/windsurf/ | 5 | in-review | Cited Devin Desktop naming, standard migration statement and unresolved account quote; owner review pending. |
+| /best/ai-app-builders-for-prototypes/ | 3 | in-review | Cited app scope, repository handoff and recovery limits; no production-readiness claim. |
+| /best/ai-coding-tools-for-solo-founders/ | 4 | in-review | Cited editor/agent surfaces and account-dependent billing or policy details; owner review pending. |
+| /compare/cline-vs-claude-code/ | 4 | in-review | Cited local-model options, MCP controls and separate billing routes; no benchmark was run. |
+| /compare/cursor-vs-claude-code/ | 4 | in-review | Cited product surfaces, MCP transports and approval controls; no benchmark was run. |
+| /compare/cursor-vs-github-copilot/ | 4 | in-review | Cited setup differences and Copilot policy scope; no benchmark was run. |
+| /compare/lovable-vs-bolt/ | 3 | in-review | Cited JavaScript/Expo scope, repository handoff and credit usage; owner review pending. |
+| /compare/replit-vs-lovable/ | 3 | in-review | Cited checkpoint, Git sync and build/runtime credit boundaries; no portability test was run. |
+| /compare/windsurf-vs-cursor/ | 5 | in-review | Cited current Windsurf-to-Devin Desktop naming and account quote boundary; no benchmark was run. |
+| /guides/ai-editor-vs-terminal-agent/ | 4 | in-review | Cited overlapping product surfaces; no comparative speed or quality claim. |
+| /guides/how-to-choose-a-developer-tool/ | 2 | in-review | General methodology page has no tool dependencies; source-bound product blocks remain intentionally absent under ADR-0009. |
+| /pricing/claude-code/ | 4 | in-review | Cited subscription/API billing distinction and cost-estimate limits; owner review pending. |
+| /pricing/cursor/ | 4 | in-review | Cited included model usage and on-demand billing in arrears; owner review pending. |
+| /pricing/lovable/ | 3 | in-review | Cited Build/Run credit categories; exact usage remains workload-specific. |
+| /pricing/replit/ | 3 | in-review | No fixed price claimed; checkout cadence, location tax and current allowance need confirmation. |
 
 ## Operational gates
 
-GSC data is unavailable; some vendor hosts are restricted and some checks return transient network errors. Link reachability does not establish editorial approval. TASK-004 Pages migration and deployment are complete; GitHub notification routing and the production rollback exercise remain open under TODO-004/TODO-302. No commercial or tracking integration is activated.
+GSC data is unavailable; some vendor hosts are restricted and some checks return transient network errors. Link reachability does not establish editorial approval. TASK-004 Pages migration and deployment are complete; GitHub notification routing and the production rollback exercise remain open under TODO-004/TODO-302. No commercial or tracking integration is activated. All 26 decision records with declared tool dependencies now carry cited Pros/Cons/FAQs; the one general guide without tool dependencies remains intentionally outside that contract.

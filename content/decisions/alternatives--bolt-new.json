@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Bolt.new alternatives",
   "summary": "Bolt.new alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -82,6 +82,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -103,5 +107,95 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Lovable documents code synchronization with GitHub, GitLab and Bitbucket for teams that want a repository handoff.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Replit describes Agent as a plain-language path that plans, creates, checks, fixes and deploys applications.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Bolt documents JavaScript-based web application frameworks and a separate Expo path; confirm the project stack before treating it as a broad language-neutral builder.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "The candidates document different starting workflows, so a comparable prototype and handoff test is needed before ranking their output.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do these alternatives start from the same kind of workflow?",
+      "answer": "No. The cited docs describe Bolt JavaScript app building, Lovable natural-language web app building, Replit Agent app creation, and Cursor as an editor and coding agent. Choose the workflow that matches the prototype you need to hand off.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "question": "Does changing builders automatically move a complete application?",
+      "answer": "Do not assume that it does. Lovable documents code sync, while its ownership guidance calls for a separate plan for databases and services; rehearse the specific export and runtime migration.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        }
+      ]
+    }
+  ]
 }

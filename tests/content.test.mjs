@@ -128,6 +128,27 @@ test('TASK-006 decision pages expose cited strengths, constraints and FAQs while
     assert.equal(isIndexable(record,content),false);
   }
 });
+test('TODO-313 covers every dependency-backed decision page and leaves the general guide unclaimed',() => {
+  const decisions=content.filter(record=>record.kind!=='tools');
+  const covered=decisions.filter(record=>record.dependencies.length>0);
+  assert.equal(covered.length,26);
+  for (const record of covered) {
+    for (const field of ['pros','cons','faqs']) {
+      assert.ok(record[field]?.length,`${record.kind}/${record.slug} has ${field}`);
+      for (const item of record[field]) {
+        for (const ref of item.sourceRefs) {
+          assert.ok(record.dependencies.some(dependency=>dependency.slug===ref.toolSlug),`${record.kind}/${record.slug} cites a declared dependency`);
+          assert.ok(content.find(tool=>tool.kind==='tools'&&tool.slug===ref.toolSlug)?.sources.some(source=>source.id===ref.sourceId),`${record.kind}/${record.slug} source ${ref.toolSlug}/${ref.sourceId} resolves`);
+        }
+      }
+    }
+    assert.equal(record.review.state,'in-review');
+    assert.equal(isIndexable(record,content),false);
+  }
+  const generalGuide=content.find(record=>record.kind==='guides'&&record.slug==='how-to-choose-a-developer-tool');
+  assert.deepEqual(generalGuide.dependencies,[]);
+  for (const field of ['pros','cons','faqs']) assert.equal(generalGuide[field],undefined);
+});
 test('TASK-006 review manifest matches each exact in-review revision and digest',() => {
   const manifest=JSON.parse(readFileSync(new URL('../docs/content-review/TASK-006-review-manifest.json',import.meta.url),'utf8'));
   assert.equal(manifest.length,11);
@@ -189,7 +210,9 @@ test('editing a price or verdict without bumping the revision invalidates approv
 test('approved comparison needs current approved dependencies including digest',() => {
   const a=approve(tool()), b=approve(tool('second-fixture'));approve(b);
   const r=structuredClone(content.find(r=>r.kind==='compare'&&r.slug==='cursor-vs-claude-code'));r.slug='fixture-comparison';
-  r.dependencies=[a,b].map(t=>({slug:t.slug,revision:t.revision,digest:contentDigest(t)}));approve(r);
+  r.dependencies=[a,b].map(t=>({slug:t.slug,revision:t.revision,digest:contentDigest(t)}));
+  for(const field of ['pros','cons','faqs']) r[field]=r[field].map(item=>({...item,sourceRefs:item.sourceRefs.map(ref=>({...ref,toolSlug:ref.toolSlug==='cursor'?a.slug:b.slug}))}));
+  approve(r);
   assert.deepEqual(validateContent([a,b,r]),[]);assert.equal(isIndexable(r,[a,b,r]),true);
   b.summary='Materially changed';approve(b);
   assert.equal(isIndexable(r,[a,b,r]),false);

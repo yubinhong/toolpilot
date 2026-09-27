@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Replit vs Lovable",
   "summary": "Replit vs Lovable: builders evaluating development and live-app operating responsibility together.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -64,6 +64,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -85,5 +89,83 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Replit describes Agent as a workflow for planning, creating, checking, fixing and deploying an application, with project checkpoints documented separately.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        }
+      ]
+    },
+    {
+      "text": "Lovable documents code synchronization with GitHub, GitLab and Bitbucket for a repository-based handoff.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Replit checkpoints are in-platform snapshots and do not demonstrate a separate export, deployment or recovery path.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        }
+      ]
+    },
+    {
+      "text": "Lovable credit usage covers build and runtime categories; a complete budget needs the actual project’s build, hosting and service usage.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "usage"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Are Replit checkpoints and Lovable Git sync the same kind of handoff?",
+      "answer": "No. Replit describes checkpoints for rollback inside its platform; Lovable describes code sync to Git providers and separately calls for service migration planning.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        }
+      ]
+    },
+    {
+      "question": "Does syncing Lovable code move its database and hosted services?",
+      "answer": "The documentation treats database and service migration as separate work. Include those systems in an export and recovery rehearsal.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        }
+      ]
+    }
+  ]
 }

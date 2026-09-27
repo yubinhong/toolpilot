@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cursor vs GitHub Copilot",
   "summary": "Cursor vs GitHub Copilot: teams balancing editor change against existing GitHub policies.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -68,6 +68,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -89,5 +93,75 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Cursor documents local and remote MCP server setup and an approval step before tool calls by default.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "GitHub documents manual MCP configuration and installation through the GitHub MCP Registry in VS Code.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "The Copilot MCP route described here requires VS Code 1.99 or later, and Business or Enterprise organizations must enable the relevant policy.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "The products document different setup and approval paths; verify each tool against the team’s editor, server and policy requirements.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "mcp"
+        },
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Does the Copilot MCP policy apply to every account?",
+      "answer": "No. GitHub scopes this policy to organization or enterprise users on Business or Enterprise; it does not govern individual Free, Pro, Pro+ or Max plans.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "question": "Can both connect to a local MCP server?",
+      "answer": "The cited docs describe local stdio for Cursor and manual MCP server configuration for Copilot in VS Code. Confirm the exact server transport supported by your chosen client and version.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "mcp"
+        },
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ]
 }

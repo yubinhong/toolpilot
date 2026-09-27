@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "AI editor vs terminal agent: choose a review loop",
   "summary": "Compare interaction styles without assuming products fit only one category.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -79,6 +79,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -100,5 +104,95 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Cursor documents an editor and coding-agent workflow; Claude Code documents terminal, IDE, desktop and web surfaces for agent work.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Cline documents both an IDE extension and CLI, giving a concrete example of a product that spans the editor and terminal lenses.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "The editor-versus-terminal labels are not exclusive product categories: official docs describe Claude Code and Cline across multiple surfaces.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "An interface description does not establish review quality or speed; measure the same task and inspect the resulting changes in your own repository.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Are editor and terminal agents mutually exclusive?",
+      "answer": "No. Claude Code documents terminal, IDE, desktop and web surfaces, and Cline documents IDE and CLI paths. Compare the actual interaction available to your account.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "question": "What is a fair way to compare the interaction styles?",
+      "answer": "Use the same repository task, acceptance test and starting state, then record review effort and whether you can reproduce the checks. Vendor pages document surfaces, not comparative task results.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ]
 }

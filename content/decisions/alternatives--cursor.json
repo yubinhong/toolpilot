@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Cursor alternatives",
   "summary": "Cursor alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -66,8 +66,8 @@
     },
     {
       "slug": "windsurf",
-      "revision": 2,
-      "digest": "a7c4bf03221774d71b76567b862f69b57d01c5656808305736f1b2b05af7e391"
+      "revision": 3,
+      "digest": "7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0"
     }
   ],
   "gaps": [],
@@ -87,6 +87,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -108,5 +112,71 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Claude Code documents terminal, IDE, desktop and web surfaces for users considering a command-oriented agent with other entry points.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Cline documents IDE extension, CLI and desktop paths, alongside local-model configuration options.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "For Copilot MCP in VS Code, the documentation lists VS Code 1.99 or later and organization-policy prerequisites for Business and Enterprise users.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "The official Windsurf editor page identifies Devin Desktop as the new name and describes a standard migration path; it does not establish the entitlements of a particular account.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "windsurf-editor"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is Devin Desktop a separate product from Windsurf?",
+      "answer": "The current official FAQ calls Devin Desktop the new name for Windsurf and says the IDE remains available. Confirm that the documented update applies to the account being reviewed.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "question": "Does moving to a terminal-oriented option mean giving up an IDE?",
+      "answer": "Not necessarily: Claude Code documents terminal, IDE, desktop and web surfaces. Compare the exact supported surface for the intended account and workflow.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ]
 }

@@ -55,115 +55,115 @@
   },
   {
     "path": "/tools/windsurf/",
-    "revision": 2,
-    "digest": "a7c4bf03221774d71b76567b862f69b57d01c5656808305736f1b2b05af7e391",
+    "revision": 3,
+    "digest": "7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0",
     "state": "in-review",
     "gaps": [
-      "The official editor destination identifies Devin Desktop as the current page; verify account history, plan entitlements and pricing before publication."
+      "No account-specific transition was tested; the exact current plan amount and usage terms are not captured for a quote."
     ]
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 4,
-    "digest": "1e2090d06b41a6cbbbc9ecfcf5c0d5a939fdb8f1a39b0a9991b07c38fd24d1e9",
+    "revision": 5,
+    "digest": "c18675b1bde95e1fbcb009f8c531f50dffae1ad40883db064d2ea8fc3c8bf675",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 3,
-    "digest": "aae3bc4335887454ed217d313097c7394cce4f542d8aa2776adf818e6c4e37f5",
+    "revision": 4,
+    "digest": "d29e7d91860a5061fcb810fcab32765dfa8ac57eedd3477c6c3762e1b0dcab45",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 4,
-    "digest": "eb4a8aa0d85351a530d7d039902b3296bd42d4f643b1fcdeb2f9d672b708db31",
+    "revision": 5,
+    "digest": "329271c5f78e9c88d930135b261c24ab18283d5727b63407d56a56e18f2dd6c8",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 4,
-    "digest": "482f73bb7fa1ba5804e3fdc4c8a90c1cb1dcd93af45cfb67d2db0acda13b60c6",
+    "revision": 5,
+    "digest": "8953fb1184f6ea566d60d2f73283236a7fb9ec860eea3cf5d98241c86726e8e3",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 4,
-    "digest": "56efaa58ffaec82f94f95c343761e567cbcee769f3021115acd9d4dfee63c62a",
+    "revision": 5,
+    "digest": "a9fb9aadaf11add70487cf96158c19bbfa2143444980672db33a47f7f8f711b3",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 4,
-    "digest": "90e864ff039a17cf76903e00d86a9a59ba5f1bbab512b6ac9a0c1a9646b48f8a",
+    "revision": 5,
+    "digest": "678ed3a68ae3681ddc68b928028f549902f7cb5bceea1579fdf46fe976eec1f4",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 2,
-    "digest": "57f58cd15927776c7fff0e5fa2f3b722c93e5a3074428cafe7c8fe9862249851",
+    "revision": 3,
+    "digest": "c43c10811a092eaf0b93d8afd030234de6f28e7e37ba512f80514e832dc61c67",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 3,
-    "digest": "e6c7982d7a88f0e54d2d8eed28427ecc4beddeb637ed2113d6cadb33a4bde3d2",
+    "revision": 4,
+    "digest": "f420f0e3f7e8c8c4dfc1c4bdfef9eb24d5368d2380ebc09daf47f53d1fa966fc",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/cline-vs-claude-code/",
-    "revision": 3,
-    "digest": "ae81d8376664670ec5bbb45c03636477382bbed89517448712bff5104c99a45b",
+    "revision": 4,
+    "digest": "ccf30b632cfdecf114158fefc6c77e3e231b20fdb0f50c6524073df92d3af205",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/cursor-vs-claude-code/",
-    "revision": 3,
-    "digest": "49ebb1bad0c4699374a6aef7b5dd5e116f22a169973cea5692829b81d72f809a",
+    "revision": 4,
+    "digest": "2d93cb98f1b9a0615fbb2d25b7862d699c20a5c12f255b1b3ac1c065a5ea626e",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/cursor-vs-github-copilot/",
-    "revision": 3,
-    "digest": "27cbd99203562dd105ffcb429886256bd6067769c14ed095238315b31021ba64",
+    "revision": 4,
+    "digest": "e7a2e0f0e596376e41fb066ba9f7be39e8e0d5509f6a43fedd3c57c64f1ebda8",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/lovable-vs-bolt/",
-    "revision": 2,
-    "digest": "5318c363b43d48ed821df57a854b9320b4244af4c87a33a80f4eb4fa24666939",
+    "revision": 3,
+    "digest": "72106c5164e17399ed18b7b15bc6672f3b73713ee0aa147ae995638b7138b200",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/replit-vs-lovable/",
-    "revision": 2,
-    "digest": "8c249968d91c56d4810708edeb1a63f04406988ecb288fe895dec1bcebd9b985",
+    "revision": 3,
+    "digest": "aab510f81716734d2dcd5c69dbd34d9988972c44ef9760d58af87b8a63bebef5",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/windsurf-vs-cursor/",
-    "revision": 4,
-    "digest": "117373a62fe102285fc20d1e69a051cf9b86ab3bb59d2b261b7f3f3aaec98d4f",
+    "revision": 5,
+    "digest": "dc31168445700dbd810ad438435aebb8dcc86d31c8b49f115751d9a79167556c",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/guides/ai-editor-vs-terminal-agent/",
-    "revision": 3,
-    "digest": "63977aeff6a90556bbfbdc911bd8810f24b9ca8a66aeafd55d7cfefc2ccc0857",
+    "revision": 4,
+    "digest": "ec7d77ef114c4cafc57aa7a32ba6309aafce7b11fb66a3bd17b3a86775182564",
     "state": "in-review",
     "gaps": []
   },
@@ -176,29 +176,29 @@
   },
   {
     "path": "/pricing/claude-code/",
-    "revision": 3,
-    "digest": "d074b7629c432ef6d02879982f32c490fdaa5b631b049c0b034e6766b522da8b",
+    "revision": 4,
+    "digest": "e25ff26b3c06d6cefc9593728f4a6fc53d73667e86e5c62530d782bb4637cfab",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/pricing/cursor/",
-    "revision": 3,
-    "digest": "cf8c2608cfc618f60cf724ac8d32846c95d349a4b7780c3e5ef7cc701fed3827",
+    "revision": 4,
+    "digest": "d5bf0cb105a863ade04e1e7eca91a20720dbca1d72ee210a9708f2741e2fc7c9",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/pricing/lovable/",
-    "revision": 2,
-    "digest": "f049861f203e8b5b35f81290b3da1a2f9268978989c44bce2ca7d620f51241ea",
+    "revision": 3,
+    "digest": "fdc0b81e01dec7764f67a3242eae57bb1a90285ee955d47b1270d36187cb6db9",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/pricing/replit/",
-    "revision": 2,
-    "digest": "4c4bbf1bd695ee31c3ba8fcdcacd832310931f98f45927e362bc54504a0a6195",
+    "revision": 3,
+    "digest": "d973636e5ffdf9d68c49fd127f34cde3443749e5bbecdb1040559478f43aeec1",
     "state": "in-review",
     "gaps": []
   }

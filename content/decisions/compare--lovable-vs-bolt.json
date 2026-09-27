@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Lovable vs Bolt",
   "summary": "Lovable vs Bolt: founders comparing a web prototype and its eventual code handoff.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -64,6 +64,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -85,5 +89,79 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Lovable documents project-code sync with GitHub, GitLab and Bitbucket.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Bolt documents JavaScript-based web app frameworks, Expo for mobile and GitHub repository import/version control.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "git"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Lovable usage spans credit-based build and runtime activities, so prompt counts alone do not establish the full app cost.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "usage"
+        }
+      ]
+    },
+    {
+      "text": "Bolt’s documented web application path is JavaScript-based; confirm support for the project’s exact stack before treating the candidates as interchangeable.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Can Bolt work with an existing GitHub repository?",
+      "answer": "Bolt’s official introduction and Git guide document importing an existing repository and using GitHub version control. Rehearse the actual app and services.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "git"
+        }
+      ]
+    },
+    {
+      "question": "Does Lovable Git sync include the production backend?",
+      "answer": "The docs describe code synchronization, while ownership guidance calls for a separate database and service migration plan.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        }
+      ]
+    }
+  ]
 }

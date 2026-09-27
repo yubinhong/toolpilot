@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Windsurf alternatives",
   "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "windsurf",
-      "revision": 2,
-      "digest": "a7c4bf03221774d71b76567b862f69b57d01c5656808305736f1b2b05af7e391"
+      "revision": 3,
+      "digest": "7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0"
     },
     {
       "slug": "cursor",
@@ -82,6 +82,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -103,5 +107,71 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "The current official FAQ identifies Devin Desktop as the new name for Windsurf and says its IDE experience remains available.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "text": "Cline documents local-model options and multiple client surfaces for users comparing a different provider-configurable workflow.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "The vendor describes a standard over-the-air transition, but no account-specific migration was tested for this review; confirm the actual entitlement before changing a working setup.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "text": "The exact current plan quote is not captured in this content record; use the current plan page and account terms rather than carrying forward a historical amount.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is the current official product name for Windsurf Desktop?",
+      "answer": "The vendor calls Devin Desktop the new name for Windsurf and says the full IDE remains accessible.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "question": "Does the vendor describe a migration for existing users?",
+      "answer": "The FAQ says a standard over-the-air update carries plans, pricing, extensions, settings and in-progress work. Confirm the update path and current quote for the specific account.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ]
 }

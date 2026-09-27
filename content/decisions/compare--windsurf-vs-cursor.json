@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Windsurf vs Cursor",
   "summary": "Windsurf vs Cursor: existing Windsurf users reviewing product continuity and an editor alternative.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "windsurf",
-      "revision": 2,
-      "digest": "a7c4bf03221774d71b76567b862f69b57d01c5656808305736f1b2b05af7e391"
+      "revision": 3,
+      "digest": "7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0"
     },
     {
       "slug": "cursor",
@@ -72,6 +72,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -93,5 +97,83 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "The vendor identifies Devin Desktop as the new name for Windsurf and says the full IDE remains available after the standard update.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "text": "Cursor documents an editor and coding-agent workflow with its own MCP setup and approval controls.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "The product page describes a standard Windsurf-to-Devin Desktop transition, but this review has not tested an individual account or its entitlement.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "text": "A current plan quote is still needed before comparing spend; do not transfer a historic Windsurf amount or a Cursor base plan into a workload estimate.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is Devin Desktop the new name for Windsurf?",
+      "answer": "Yes. The current official FAQ says Devin Desktop is the new name for Windsurf and describes plans, pricing, extensions and settings as carrying over with the standard over-the-air update.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "question": "Does that establish the exact monthly cost of a Windsurf-to-Cursor switch?",
+      "answer": "No. The vendor describes account continuity, not a shared price basis. Confirm the current plan and usage terms for each account before comparing.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ]
 }

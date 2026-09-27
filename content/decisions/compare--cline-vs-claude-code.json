@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cline vs Claude Code",
   "summary": "Cline vs Claude Code: developers deciding whether provider configuration is a core requirement.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -68,6 +68,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
     }
   ],
   "commercial": {
@@ -89,5 +93,71 @@
       "disclosure": null,
       "evidence": null
     }
-  }
+  },
+  "pros": [
+    {
+      "text": "Cline documents Ollama and LM Studio options for local model inference, with hardware and model fit left to the user to evaluate.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Claude Code documents terminal, IDE, desktop and web surfaces for a repository task loop.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "product"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "Cline recommends Streamable HTTP for remote MCP and marks SSE as legacy; server trust and tool-call review remain operator responsibilities.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "Claude Code project-scoped MCP servers require workspace trust and approval before they are used.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which local model options does Cline document?",
+      "answer": "Its official documentation lists Ollama and LM Studio. That establishes configuration options, not model quality, hardware suitability or a fully offline workflow.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "question": "Do the two tools imply the same model billing route?",
+      "answer": "No. Cline documents provider sign-in and bring-your-own-key configurations; Claude Code distinguishes subscription usage from API token billing. Compare the account and provider you will actually use.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "pricing"
+        }
+      ]
+    }
+  ]
 }
