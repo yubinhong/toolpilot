@@ -7,11 +7,11 @@
 - 客户端只接收 allowlist DTO，内部佣金、研究商业计划和批准证据不序列化到浏览器。
 - 批处理出站检查只消费仓库公开 URL；固定域名 allowlist、拒绝 IP/凭据/非 HTTPS/自定义端口；所有 DNS 结果必须为公网地址，并把验证地址固定到 TLS 请求，阻止二次解析重绑定。每跳再校验，最多 3 次，15 秒请求预算，并发 3，不带 Cookie/Token。
 - 检查日志只记录公开 origin/path、状态和固定错误类别，不记录查询参数、响应正文或原始异常。403/429 记为 restricted，不绕过限制；外部网络异常不自动编辑来源或审批。
-- 仍无分析、广告、表单或账户；托管请求数据处理仍待运营主体确认，不能宣称零数据处理。
+- 应用源码没有 GA4、AdSense、表单或账户。TASK-007 部署后，正式域名浏览器响应额外尝试加载 `static.cloudflareinsights.com/beacon.min.js`，immutable preview 未观察到该行为；CSP 已阻止它，产生一条生产侧 CSP violation，而应用 hydration/主题/搜索/导航仍正常。Cloudflare 说明开启 [Pages Web Analytics](https://developers.cloudflare.com/pages/how-to/web-analytics/) 后会在后续部署自动注入该脚本，当前 Dashboard 状态未核实也未变更；未经 Owner 的分析/隐私批准不得把它加入 CSP。托管请求数据处理仍待运营主体确认，不能宣称零数据处理。跟踪 TODO-308/TODO-315。
 - GitHub 仓库控制项只读核验（2026-09-27）：branch-protection endpoint 返回 404，repository rulesets 列表为空；仓库 API 报告 Dependabot security updates、secret scanning、non-provider pattern scanning 和 push protection 为 `disabled`。个人通知订阅查询因当前 CLI 授权缺少 `notifications` scope 未能读取。未更改设置；Owner 需确认组织策略和功能适用性，见 TODO-004/TODO-314。
-- Cloudflare Pages 响应头只读核验（2026-09-27）：production `https://toolpilot.cc/` 与 immutable preview 均返回 `X-Content-Type-Options: nosniff` 和 `Referrer-Policy: strict-origin-when-cross-origin`；未观察到 CSP、HSTS、`X-Frame-Options` 或 `Permissions-Policy`。`public/` 中没有 `_headers` 配置。记录于 TODO-315；CSP 需要先验证 Next.js 静态产物的内联脚本与样式兼容性，不能未经测试直接启用。
+- Cloudflare Pages 响应头预发布基线核验（2026-09-27）：TASK-007 前 production `https://toolpilot.cc/` 与 immutable preview 均返回 `X-Content-Type-Options: nosniff` 和 `Referrer-Policy: strict-origin-when-cross-origin`；未观察到 CSP、HSTS、`X-Frame-Options` 或 `Permissions-Policy`。`public/` 中没有 `_headers` 配置。实施和线上当前状态见下方 TASK-007/TODO-315 记录。
 - TODO-315 安全策略审查（2026-09-27）：浏览当前静态导出的每个注册路由，允许其真实 inline-script SHA-256 哈希，默认限制资源为同源并拒绝 inline event handlers；计划加 `X-Frame-Options: DENY`、关闭当前不使用的 camera/microphone/geolocation。Cloudflare Pages 将叠加匹配规则；97 条逐路由规则加 1 条共享兜底规则，共 98/100 条。具体实施和浏览器证据见 TASK-007。HSTS 尚未获 Owner 对主机/子域范围的确认，禁止在此任务中设置。
-- TASK-007 本地实施验证（2026-09-27）：每次静态构建生成 `out/_headers`，以共享 `/*` 规则应用基线 CSP、frame、MIME、referrer 和 permissions 头，并为每条注册路由从构建后 HTML 精确允许 inline-script SHA-256。Cloudflare Pages 本地预览在 97 条路由上通过 CSP 强制浏览器检查，无策略违规；部署到 immutable preview 和 production 前仍不得声称线上头已更新。未设置 HSTS。
+- TASK-007 实施与线上结果（2026-09-27）：每次静态构建生成 `out/_headers`，以共享 `/*` 规则应用基线 CSP、frame、MIME、referrer 和 permissions 头，并为每条注册路由从构建后 HTML 精确允许 inline-script SHA-256。正式 commit/CI/Pages 发布已通过；immutable preview 97 路由 Chromium 零错误/零 CSP violation，production 应用交互通过但 Cloudflare Insights 外部 beacon 被该 CSP 有意阻止并产生一条 violation。Owner 决定是否关闭 Pages Web Analytics 注入，或先正式批准该分析处理和隐私文案；在此之前不放宽策略。未设置 HSTS。
 
 ## 1. 安全目标与范围
 

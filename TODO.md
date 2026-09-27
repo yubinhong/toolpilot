@@ -20,7 +20,7 @@
 | TODO-311 | 验证重建计划剩余 SEO/性能目标 | canonical、robots、sitemap、自有通用 OG 图/Twitter large-image、面包屑/JSON-LD、逐事实来源链接和三条站内结构化内容链接覆盖已由构建产物检查；P0.4 排版及浅/深主题已对 8 类页面、3 个视口、2 种主题完成 48 项浏览器检查，含系统偏好、键盘切换、持久化、对比度与溢出。真实 Core Web Vitals 和 GSC 表现仍未测量；2026-09-27 无密钥 PSI mobile 请求返回 429 `RESOURCE_EXHAUSTED`（每日查询配额），需 Owner 提供 PSI API key 或 CrUX/GSC 导出及指标窗口。 | P2 | 工程/SEO Owner | Owner 提供 GSC/CrUX 权限或导出并记录带日期的真实窗口与指标；仅在规划独立厂商/比较图时取得第三方素材许可 |
 | TODO-312 | 评估目录多维过滤及参数 URL 索引策略 | 当前首页仅支持搜索和类别过滤，状态留在客户端；计划提出免费、自托管、MCP、API、平台等过滤项 | P2 | 产品/工程 Owner | 新过滤维度有已核验数据、用户需求和 noindex 测试设计 |
 | TODO-314 | 审查 GitHub 仓库级依赖与凭据保护控制 | 2026-09-27 只读仓库 API 报告 Dependabot security updates、secret scanning、non-provider pattern scanning 和 push protection 均为 `disabled`。需要 Owner 确认仓库计划/组织策略是否支持并决定启用范围；当前没有修改 GitHub 设置，也没有据此断言仓库存在泄漏。 | P1 | Repository/Security Owner | 确认组织策略、功能可用性和发布安全要求；按授权配置并验证 | Owner 决定控制项与启用范围 |
-| TODO-315 | 审核并补齐 Cloudflare Pages 安全响应头 | TASK-007 已生成每路由 inline-script SHA-256 CSP 与共享兜底保护头；Node 22 构建/产物检查通过（97 页/4 个可索引 URL、69 tests），高危级审计 0 漏洞；本地 Chromium CSP 强制覆盖 97 路由且 0 浏览器错误/策略违规，Wrangler Pages smoke 通过 97 页、robots、sitemap 和真实 404。部署后 immutable preview/production 响应头和线上 smoke 尚待确认。 | P1 | Engineering/Security Owner | TASK-007：本地证据完整；发布后逐项核验 headers 和 current smoke。Owner 确认 HSTS `max-age` / `includeSubDomains` 范围前不启用 HSTS | Pages 预览与 production 验证后关闭非 HSTS 部分；HSTS 保持待 Owner 决策 |
+| TODO-315 | 审核并补齐 Cloudflare Pages 安全响应头 | TASK-007 的 strict per-route CSP/hash、共享保护头已发布为 `f4c9798`；CI 与 Pages deployment `f1c07c52-1928-41be-9d41-24e2bfc4b581` 成功。Immutable preview 与 production 均通过 97 页 current smoke，首页/工具详情/404 的响应头符合预期且无 HSTS。CSP-enforced Chromium 在 preview 零 violation；production 额外出现 Cloudflare Insights beacon，被 CSP 阻止并报一条 violation，ToolPilot app 交互通过。 | P1 | Engineering/Security Owner | Owner 决定禁用 Pages Web Analytics 自动注入（推荐保留当前无分析集成边界），或正式批准隐私/分析范围后再允许外部脚本；HSTS scope 单独确认前不启用 | Analytics 决策和 0 生产 CSP violations 核验后关闭非 HSTS 部分；HSTS 留待 Owner |
 
 ## Later - 暂不承诺
 
@@ -34,7 +34,7 @@
 | TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 与域名迁移已完成；尚未在生产窗口执行上一份 verified deployment 恢复，需 Owner 安排并授权操作窗口 | 运维/项目 Owner | Owner 确认生产演练窗口和操作人 |
 | TODO-306 | 完成旧 URL 的索引、外链和迁移证据采集 | `docs/url-audit.csv` 已列出当前源码的 97 个注册路由，但不是历史 URL 清单。2026-09-27 公开档案核查不完整：Wayback CDX 临时离线；Common Crawl wildcard 查询被规范化为根路径，改用 domain 匹配后遇到 502/504，其他三个索引 503。这些失败不能证明旧 URL 不存在、未索引或无外链，也不能据此作批量 301/410。 | 项目/SEO Owner | 提供 Search Console 导出、旧 sitemap、可核验外链/日志和受影响域名清单 |
 | TODO-307 | 补全公开运营主体、监控联系渠道和法律事实 | About/Contact/Privacy/Terms 页面结构存在；真实运营者、联系邮箱和最终法律文字尚未提供 | 项目 Owner/法务 | 提供准确资料并审核用户可见版本；不得编造地址或团队 |
-| TODO-308 | 批准 GA4、AdSense、Affiliate 或其他追踪/商业上线 | 当前均未集成；计划提出收入优先级但没有隐私主体、CMP/同意要求、合作方条款、归因及退款规则。首页比较研究没有真实使用量依据，因此不宣称“Popular”；任何后续热度信号必须有经批准的隐私/数据依据和可复核的统计口径。 | 项目/隐私/法务/商业 Owner | 单独批准数据字段/保留期、适用同意机制、合作条款、披露与可见标识；之前不得加脚本或商业承诺 |
+| TODO-308 | 批准 GA4、AdSense、Affiliate 或其他追踪/商业上线 | 源码未集成 GA4/AdSense/Affiliate；TASK-007 生产浏览器却观察到 Cloudflare Insights beacon 被 CSP 阻止，提示 Pages Web Analytics 可能已在 Dashboard 启用。Cloudflare 官方说明该设置可自动注入 beacon（[Pages Web Analytics](https://developers.cloudflare.com/pages/how-to/web-analytics/)）；当前 Dashboard 未读取或更改，不能将其视为已批准。首页比较研究没有真实使用量依据，因此不宣称“Popular”。 | P1 | 项目/隐私/法务/商业 Owner | Owner 核实/决定 Pages Web Analytics；批准前保持 CSP 阻止外部 beacon。若批准需记录采集范围、保留/同意/隐私文案，并单独批准 CSP 允许的脚本与 beacon 端点 |
 
 ## 发现问题记录规则
 
