@@ -1,0 +1,153 @@
+{
+  "slug": "cursor",
+  "kind": "tools",
+  "title": "Cursor",
+  "summary": "An editor-centered starting point for reviewing AI changes in an existing repository.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://cursor.com/docs",
+      "title": "Cursor documentation",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "pricing",
+      "url": "https://cursor.com/pricing",
+      "title": "Plans and billing",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "security",
+      "url": "https://cursor.com/security",
+      "title": "Security",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-27"
+    }
+  ],
+  "facts": [
+    {
+      "key": "workflow",
+      "label": "Workflow",
+      "value": "Editor and coding agent",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": true
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy / data handling",
+      "value": "Privacy mode states that code is not used for training; this is not an offline guarantee.",
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": false
+    },
+    {
+      "key": "selfHosting",
+      "label": "Product self-hosting",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "localModels",
+      "label": "Local model inference",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "portability",
+      "label": "Code / data portability",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    }
+  ],
+  "prices": [
+    {
+      "name": "Individual Pro",
+      "amount": 20,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Displayed monthly price; confirm billing toggle at checkout",
+      "allowance": null,
+      "overage": "On-demand usage is billed after included usage is consumed.",
+      "taxes": "Listed prices exclude applicable taxes.",
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Review an existing codebase",
+      "paragraphs": [
+        "Choose a change that touches both implementation and tests. Check whether you can identify which repository context the agent used and whether the final diff is limited to the task. The relevant benefit is a reviewable change, not the amount of generated code."
+      ]
+    },
+    {
+      "heading": "Define the spending boundary",
+      "paragraphs": [
+        "Before increasing the plan, inspect the current included usage and on-demand controls. Separate the cost of an individual workflow from team administration requirements. The recorded base price is not an unlimited-use claim."
+      ]
+    }
+  ],
+  "verdict": "Shortlist Cursor when reading and revising diffs alongside the code is your main loop. Validate the usage allowance against your own workload.",
+  "bestFor": "Developers iterating on an existing repository",
+  "notFor": "Teams requiring a fully offline workflow without further verification",
+  "migration": "Export your rules and record editor settings before trying another tool. Keep the repository and its tests as the portable source of truth.",
+  "dependencies": [],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  },
+  "name": "Cursor",
+  "category": "AI Coding",
+  "productUrl": "https://www.cursor.com/"
+}

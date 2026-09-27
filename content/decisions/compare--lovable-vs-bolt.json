@@ -1,0 +1,85 @@
+{
+  "slug": "lovable-vs-bolt",
+  "kind": "compare",
+  "title": "Lovable vs Bolt",
+  "summary": "Lovable vs Bolt: founders comparing a web prototype and its eventual code handoff.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Make the prototype comparable",
+      "paragraphs": [
+        "Specify one form, one authenticated path and one persisted record. Check validation, access control and error states manually before comparing appearance. Do not treat a generated login screen as proof of secure authorization."
+      ]
+    },
+    {
+      "heading": "Test an exit before committing",
+      "paragraphs": [
+        "Review the code handoff, database export and independent deployment path. Track build credits or tokens separately from live-app costs. These are different billing units and cannot be converted with a universal exchange rate."
+      ]
+    },
+    {
+      "heading": "When neither is a fit",
+      "paragraphs": [
+        "If your required security, data location or operating environment is not supported by current evidence, pause the purchase. Use the sources below to resolve the missing constraint before accepting a recommendation."
+      ]
+    }
+  ],
+  "verdict": "Compare the handoff and operating requirements of your prototype, not the number of prompts in a demo.",
+  "bestFor": "Founders comparing a web prototype and its eventual code handoff",
+  "notFor": "Teams treating a working demo as a security or production-readiness test",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "lovable",
+      "revision": 1,
+      "digest": "cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533"
+    },
+    {
+      "slug": "bolt-new",
+      "revision": 1,
+      "digest": "4e824ce73ddbad29528f82f18e83dd0c4565766315dff628c97a1863d4f5cba7"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

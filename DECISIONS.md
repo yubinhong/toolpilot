@@ -36,3 +36,7 @@
 | ADR | 被什么替代 | 原因 |
 | --- | --- | --- |
 | ADR-003 | 不迁移旧生成内容 | 项目 Owner 已确认旧 Crypto/DeFi 文件主动删除，当前 ToolPilot 重新建立开发者工具内容 |
+
+## ADR-0009 — Reviewed decision content
+
+2026-09-27: 用户批准静态 JSON 内容、精确版本/依赖审批、草稿 noindex、商业研究隔离。见 [ADR-0009](docs/adr/0009-reviewed-decision-content.md)。沿用 ADR-0008 发布授权与外部迁移边界。

@@ -8,6 +8,12 @@
 - 项目仓库：`TBD`
 - 研究输入：用户提供的“研究域名用途”对话；已接入 50 条 `2026-08-20` 研究快照，商业模型仍需通过 PRD、数据和实际转化验证
 
+## 2026-09-27 当前整改基线
+
+TASK-005 已获用户授权实施；用户已要求每个可交付进展都部署并线上验证。继续 Next.js 静态导出；原 50 条快照不可覆盖，现有 52 个工具身份，其中 8 个进入深入研究。content/ 是 28 条首批待审核正文的事实源，lib/catalog.mjs 保留历史和兼容入口。用户负责最终内容审批。
+
+依赖更新为 Next.js/eslint-config-next 16.3.6、sharp 0.35.4、js-yaml 4.3.2；Node 22 下锁定安装和审计通过。生产部署与线上 smoke 尚待本轮完成；历史生产和 CI 成功记录不等于当前复验。TASK-004 外部 Git Integration 迁移仍待确认。具体状态统一见 TASK.md。
+
 ## 1. 项目概述
 
 ### 一句话说明
@@ -88,12 +94,12 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 
 | 层 | 选型 | 版本 | 说明 |
 | --- | --- | --- | --- |
-| 客户端 | Next.js App Router / React | Next.js `16.3.1` / React `19.2.8` | `app/` 路由和 `components/` 共享 UI；当前是静态页面应用 |
+| 客户端 | Next.js App Router / React | Next.js `16.3.6` / React `19.2.8` | `app/` 路由和 `components/` 共享 UI；当前是静态页面应用 |
 | 服务端 | Next 静态导出 | `output: export` | `next.config.mjs` 已确认；当前没有独立 API、认证或数据库 |
-| 语言 | TypeScript / TSX | TypeScript `5.9.3` | 共享目录数据暂存于 `lib/catalog.mjs`，正式内容模型尚未确定 |
+| 语言 | TypeScript / TSX | TypeScript `5.9.3` | 共享目录数据暂存于 `lib/catalog.mjs`，正式模型见 lib/content-types.ts 和 ADR-0009 |
 | 数据 | 静态研究快照目录 | 50 条 Draft | `lib/catalog.mjs` 分离 `productUrl`、`sourceUrl`、链接检查、审核状态、`affiliateStatus`、`commission` 和 `verifiedAt`；研究信息不得直接作为已核验事实 |
 | 基础设施 | Cloudflare Pages 静态站点 | 当前 Direct Upload 项目 `toolpilot`；目标 Git Integration 项目 `TBD` | `npm run build` 生成 `out/`，当前已绑定 `https://toolpilot.cc`；Git Integration 新项目和域名迁移待完成 |
-| 运行时 | Node.js / npm | Node `22` / npm lockfile v3 | `.nvmrc` 固定 Node 22；Node 22.23.0/npm 10.9.8 下已完成安装和验证 |
+| 运行时 | Node.js / npm | Node `22` / npm lockfile v3 | `.nvmrc` 固定 Node 22；Node 22.23.2/npm 10.9.8 下已完成安装和验证 |
 
 ## 7. 环境
 
@@ -112,7 +118,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 产品上下文 | `PROJECT.md`、`PRD.md`、`AI_CONTEXT.md` | 维护目标、边界和当前状态 | `TBD` | 需求与研究结论 |
 | 工程规则 | `AGENTS.md`、`TESTING.md`、`SECURITY.md` | 约束变更、验证和安全行为 | `TBD` | 代码仓库和 CI |
 | Web 应用 | `app/`、`components/` | 首页、工具目录/详情、指南、Compare、Alternatives、Stacks、法律页和 robots/sitemap | `TBD` | Next.js、静态研究快照数据、Cloudflare Pages |
-| 内容与来源 | `lib/catalog.mjs`（当前内容源） | 管理 50 条分类、产品官网、研究来源、链接检查、研究商业状态和草稿审核字段；正式内容 Owner 和复核流程待确认 | `TBD` | 厂商资料、公开来源、人工审核 |
+| 内容与来源 | `lib/catalog.mjs`（当前内容源） | 管理 50 条分类、产品官网、研究来源、链接检查、研究商业状态和草稿审核字段；本轮正式内容由用户审批，机制见 ADR-0009 | `TBD` | 厂商资料、公开来源、人工审核 |
 | 商业与分析 | 集成位置 `TBD` | 管理 Affiliate、商业曝光标注和转化统计 | `TBD` | 合作方报告、隐私合规分析 |
 
 `.next/` 和 `out/` 都是构建产物，不是内容事实来源。用户已确认旧 Crypto/DeFi 生成内容是主动删除内容，本次不迁移；当前源码只生成开发者工具方向页面。Cloudflare Pages 项目和 `toolpilot.cc` 已完成部署及公网验证，但 50 条内容仍是研究草稿，不能当作正式评价或佣金承诺。
@@ -161,7 +167,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | Cloudflare Pages Git Integration 尚未激活 | H | H | 当前 `toolpilot` 是 Direct Upload；新建 Git-integrated 项目、授权 GitHub App、验证构建后再迁移域名，旧项目保留作恢复目标 | 工程/运维 Owner `TBD` |
 | 最新 reviewed commit `4776027` 已部署到旧 Direct Upload 生产项目 | H | M | Cloudflare source 已核对，`https://toolpilot.cc` 公网 smoke 已通过；新项目验证和域名迁移仍未完成 | 工程/运维 Owner `TBD` |
 | 50 条研究快照尚未完成正式内容审核 | H | H | 逐条核验官网、价格、功能、来源、更新时间和商业关系；链接检查记录不等于正式评价 | `TBD` |
-| `.nvmrc` 要求 Node 22 但默认 shell 是 Node 20.17.0 | M | M | 开发命令前执行 `nvm use 22`，CI 固定 Node 22 | `TBD` |
+| `.nvmrc` 要求 Node 22 但默认 shell 是 Node 18.19.1 | M | M | 开发命令前执行 `nvm use 22`，CI 固定 Node 22 | `TBD` |
 
 ## 12. 相关文档
 

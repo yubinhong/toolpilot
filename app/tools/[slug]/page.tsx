@@ -1,73 +1,32 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { PageFrame } from "../../../components/page-frame";
-import { PageIntro } from "../../../components/page-intro";
-import { tools } from "../../../lib/catalog.mjs";
-
-export function generateStaticParams() {
-  return tools.map((tool) => ({ slug: tool.slug }));
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { tools } from '../../../lib/catalog.mjs';
+import { findContent } from '../../../lib/content.mjs';
+import { pageMetadata } from '../../../lib/metadata';
+import { ContentDetail } from '../../../components/content-detail';
+import { PageFrame } from '../../../components/page-frame';
+import { PageIntro } from '../../../components/page-intro';
+import { ContentSection } from '../../../components/content-section';
+import { CatalogNotice } from '../../../components/catalog-notice';
+export const dynamicParams = false;
+export function generateStaticParams() { return tools.map(t => ({ slug:t.slug })); }
+export async function generateMetadata({ params }: { params:Promise<{slug:string}> }) {
+  const {slug} = await params; return pageMetadata(`/tools/${slug}/`);
 }
-
-export function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  return params.then(({ slug }) => {
-    const tool = tools.find((candidate) => candidate.slug === slug);
-    return { title: tool ? tool.name : "Draft tool" };
-  });
-}
-
-export default async function ToolDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const tool = tools.find((candidate) => candidate.slug === slug);
-
-  if (!tool) {
-    notFound();
-  }
-
-  return (
-    <PageFrame>
-      <PageIntro
-        eyebrow={`${tool.category} / draft entry`}
-        title={tool.name}
-        summary={tool.summary}
-      />
-      <section className="content-section">
-        <div className="shell">
-          <div className="catalog-notice">
-            <span className="notice-dot" aria-hidden="true" />
-            <div>
-              <strong>Not a published evaluation</strong>
-              <span>This page is a content-model placeholder. Pricing, feature claims, links, and commercial relationships still need source review.</span>
-            </div>
-          </div>
-          <div className="detail-grid">
-            <div>
-              <p className="eyebrow">Working brief</p>
-              <h2>Where this candidate may fit</h2>
-              <p>{tool.bestFor}</p>
-            </div>
-            <div>
-              <p className="eyebrow">Review status</p>
-              <table className="source-table">
-                <tbody>
-                  <tr><th scope="row">Category</th><td>{tool.category}</td></tr>
-                  <tr><th scope="row">Decision signal</th><td>{tool.signal}</td></tr>
-                  <tr><th scope="row">Official site</th><td><a href={tool.productUrl} target="_blank" rel="noopener noreferrer">{tool.productUrl}</a></td></tr>
-                  <tr><th scope="row">Research source</th><td>{tool.sourceUrl ? <a href={tool.sourceUrl} target="_blank" rel="noopener noreferrer">{tool.sourceUrl}</a> : "TBD - source link not supplied"}</td></tr>
-                  <tr><th scope="row">Research snapshot</th><td>{tool.source}</td></tr>
-                  <tr><th scope="row">Commercial status</th><td>{tool.affiliateLabel}</td></tr>
-                  <tr><th scope="row">Commission note</th><td>{tool.commission}</td></tr>
-                  <tr><th scope="row">Product link check</th><td>{tool.productLinkCheck.status === "http-ok" ? `HTTP checked ${tool.productLinkCheck.checkedAt}` : `Reachable but restricted ${tool.productLinkCheck.checkedAt}`}</td></tr>
-                  <tr><th scope="row">Source status</th><td>{tool.sourceStatus === "provided" ? `Provided; ${tool.sourceLinkCheck.status === "http-ok" ? "HTTP checked" : "reachable but restricted"}` : "Missing from research snapshot"}</td></tr>
-                  <tr><th scope="row">Editorial review</th><td>{tool.reviewStatus === "pending-editorial" ? "Pending; owner TBD" : tool.reviewStatus}</td></tr>
-                  <tr><th scope="row">Verified at</th><td>{tool.verifiedAt || "TBD - editorial review required"}</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <Link className="text-link" href="/tools/">&lt;- Back to all draft tools</Link>
-        </div>
-      </section>
-    </PageFrame>
-  );
+export default async function ToolPage({ params }: { params:Promise<{slug:string}> }) {
+  const {slug} = await params;
+  const tool = tools.find(t => t.slug === slug);
+  if (!tool) notFound();
+  const record = findContent('tools',slug);
+  if (record) return <ContentDetail record={record}/>;
+  return <PageFrame><PageIntro eyebrow={`${tool.category} / Draft`} title={tool.name} summary={tool.summary}/>
+    <ContentSection><CatalogNotice title="Editorial review pending" message="Historical research draft. Product facts, pricing and suitability have not been formally verified."/>
+      <h2>Research candidate</h2><p>{tool.bestFor}</p>
+      <p>Research snapshot: {tool.researchSnapshotDate}. A link check is not a fact check.</p>
+      <p>Historical official link: {tool.productLinkCheck.status === 'http-ok' ? 'HTTP checked' : 'Reachable but restricted'} {tool.productLinkCheck.checkedAt}</p>
+      <p>Historical research source: {tool.sourceUrl ? 'Recorded in the research archive; not treated as product evidence.' : 'Missing from research snapshot'}</p>
+      <p>Pricing, privacy and migration evidence: not yet verified.</p>
+      <a className="primary-button" href={tool.productUrl} rel="noopener noreferrer" target="_blank">Visit official site ↗</a>
+      <p><Link href="/tools/">Back to tools</Link></p>
+    </ContentSection></PageFrame>;
 }

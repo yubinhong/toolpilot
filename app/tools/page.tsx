@@ -1,8 +1,13 @@
+import { pageMetadata } from "../../lib/metadata";
+import { publicTool } from "../../lib/content.mjs";
 import { CatalogNotice } from "../../components/catalog-notice";
+import { ContentSection } from "../../components/content-section";
 import { PageFrame } from "../../components/page-frame";
 import { PageIntro } from "../../components/page-intro";
 import { ToolCard } from "../../components/tool-card";
 import { categories, tools } from "../../lib/catalog.mjs";
+
+export const metadata = pageMetadata("/tools/");
 
 export default function ToolsPage() {
   return (
@@ -16,40 +21,40 @@ export default function ToolsPage() {
           <CatalogNotice />
         </div>
       </PageIntro>
-      <section className="content-section">
-        <div className="shell">
-          <div className="section-heading-row">
-            <div>
-              <p className="eyebrow">First coverage</p>
-              <h2>{categories.length} categories for common product decisions.</h2>
-            </div>
-            <p>{tools.length} product links are live as draft seeds. Source review is a prerequisite for publishing tool facts.</p>
+      <ContentSection>
+        <div className="section-heading-row">
+          <div>
+            <p className="eyebrow">First coverage</p>
+            <h2>{categories.length} categories for common product decisions.</h2>
           </div>
-          <ul className="category-list">
-            {categories.map((category) => (
-              <li key={category}>
-                <strong>{category}</strong>
-                <span>{tools.filter((tool) => tool.category === category).length} draft entries in the first set.</span>
-              </li>
-            ))}
-          </ul>
+          <p>
+            {tools.length} product profiles, with individual review states. Only owner-approved content is treated as a published evaluation.
+          </p>
         </div>
-      </section>
-      <section className="content-section">
-        <div className="shell">
-          <div className="section-heading-row">
-            <div>
-              <p className="eyebrow">Draft entries</p>
-              <h2>Inspect the current working set.</h2>
-            </div>
-          </div>
-          <div className="tool-grid">
-            {tools.map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
+        <ul className="category-list">
+          {categories.map((category) => (
+            <li key={category}>
+              <strong>{category}</strong>
+              <span>
+                {tools.filter((tool) => tool.category === category).length} entries.
+              </span>
+            </li>
+          ))}
+        </ul>
+      </ContentSection>
+      <ContentSection>
+        <div className="section-heading-row">
+          <div>
+            <p className="eyebrow">Draft entries</p>
+            <h2>Inspect the current working set.</h2>
           </div>
         </div>
-      </section>
+        <div className="tool-grid">
+          {tools.map((tool) => (
+            <ToolCard key={tool.slug} tool={publicTool(tool)} />
+          ))}
+        </div>
+      </ContentSection>
     </PageFrame>
   );
 }

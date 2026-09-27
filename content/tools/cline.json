@@ -1,0 +1,156 @@
+{
+  "slug": "cline",
+  "kind": "tools",
+  "title": "Cline",
+  "summary": "A coding-agent candidate for users who want to choose the model provider.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://github.com/cline/cline",
+      "title": "Cline official repository",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "pricing",
+      "url": "https://docs.cline.bot/getting-started/authorizing-with-cline",
+      "title": "Plans and billing",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-27"
+    }
+  ],
+  "facts": [
+    {
+      "key": "workflow",
+      "label": "Workflow",
+      "value": "IDE extension, CLI and desktop coding agent",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": true
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy / data handling",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "selfHosting",
+      "label": "Product self-hosting",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "localModels",
+      "label": "Local model inference",
+      "value": "Yes \u2014 documented Ollama and LM Studio options; hardware and model suitability require evaluation.",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": false
+    },
+    {
+      "key": "portability",
+      "label": "Code / data portability",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "providers",
+      "label": "Provider configuration",
+      "value": "Provider sign-in and bring-your-own-key configurations are documented.",
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": false
+    }
+  ],
+  "prices": [
+    {
+      "name": "Provider usage",
+      "amount": null,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Depends on provider and authentication route",
+      "allowance": null,
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Make provider choice explicit",
+      "paragraphs": [
+        "List the configured model provider, the owner of its credentials and the spending controls. Changing the client does not itself change the provider\u2019s data policy. If using a local model, inspect external tools and plugins as separate network boundaries."
+      ]
+    },
+    {
+      "heading": "Evaluate local-model suitability",
+      "paragraphs": [
+        "Use a representative change and measure whether the chosen model produces an acceptable diff on your hardware. Documented local-runtime support is not proof of sufficient model capability or a fully offline workflow in every configuration."
+      ]
+    }
+  ],
+  "verdict": "Shortlist Cline when model/provider choice is a requirement and you can manage its cost and access controls. Local inference needs a separate capability trial.",
+  "bestFor": "Developers evaluating provider choice or local models",
+  "notFor": "Buyers equating a local client with no external data transfer",
+  "migration": "Preserve repository instructions and rotate provider credentials where appropriate. Check each configured provider and tool independently when changing clients.",
+  "dependencies": [],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  },
+  "name": "Cline",
+  "category": "AI Coding",
+  "productUrl": "https://cline.bot/"
+}

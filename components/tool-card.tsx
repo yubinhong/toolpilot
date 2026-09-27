@@ -1,71 +1,13 @@
-import Link from "next/link";
-
-type Tool = {
-  slug: string;
-  name: string;
-  category: string;
-  summary: string;
-  bestFor: string;
-  signal: string;
-  status: string;
-  source: string;
-  productUrl: string;
-  sourceUrl: string | null;
-  affiliateLabel: string;
-  reviewStatus: string;
-  productLinkCheck: { status: string };
-  sourceLinkCheck: { status: string };
-};
-
-export function ToolCard({ tool }: { tool: Tool }) {
-  return (
-    <article className="tool-card">
-      <div className="tool-card-topline">
-        <span className="signal-mark" aria-hidden="true">
-          {tool.signal.slice(0, 1)}
-        </span>
-        <div className="tool-card-labels">
-          <span className="draft-label">{tool.status}</span>
-          <span className="affiliate-label">{tool.affiliateLabel}</span>
-        </div>
-      </div>
-      <div className="tool-card-heading">
-        <div>
-          <p className="card-kicker">{tool.category}</p>
-        <h3>{tool.name}</h3>
-        </div>
-        <span className="tool-index">{tool.signal}</span>
-      </div>
-      <p className="tool-summary">{tool.summary}</p>
-      <div className="tool-card-meta">
-        <span>Best for</span>
-        <strong>{tool.bestFor}</strong>
-      </div>
-      <div className="tool-card-audit">
-        <span>Editorial review</span>
-        <strong>{tool.reviewStatus === "pending-editorial" ? "Pending" : tool.reviewStatus}</strong>
-        <span>Link check</span>
-        <strong>{tool.productLinkCheck.status === "http-ok" ? "Official link checked" : "Official link restricted"}</strong>
-      </div>
-      <div className="tool-card-footer">
-        <span className="tool-source">
-          {tool.sourceUrl ? (
-            <a href={tool.sourceUrl} target="_blank" rel="noopener noreferrer">
-              Research source
-            </a>
-          ) : (
-            "Source link TBD"
-          )}
-        </span>
-        <span className="tool-card-actions">
-          <a href={tool.productUrl} target="_blank" rel="noopener noreferrer">
-            Official site <span aria-hidden="true">-&gt;</span>
-          </a>
-          <Link href={`/tools/${tool.slug}/`} aria-label={`Open ${tool.name} draft page`}>
-            Draft <span aria-hidden="true">-&gt;</span>
-          </Link>
-        </span>
-      </div>
-    </article>
-  );
+import Link from 'next/link';
+import type { PublicTool } from '../lib/content-types';
+export function ToolCard({ tool }: { tool: PublicTool }) {
+  return <article className="tool-card">
+    <p className="card-kicker">{tool.category} · {tool.status}</p>
+    <h3><Link href={`/tools/${tool.slug}/`}>{tool.name}</Link></h3>
+    <p className="tool-summary">{tool.summary}</p>
+    <div className="tool-card-meta"><span>Consider for</span><strong>{tool.bestFor}</strong></div>
+    <div className="tool-card-footer"><Link href={`/tools/${tool.slug}/`}>Read profile →</Link>
+      <a href={tool.productUrl} target="_blank" rel="noopener noreferrer">Official site ↗</a>
+    </div>
+  </article>;
 }

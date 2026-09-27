@@ -5,17 +5,22 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run content:check && next build && npm run artifacts:check",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --test --experimental-strip-types tests/*.test.ts tests/*.test.mjs",
     "smoke": "node scripts/smoke.mjs",
     "release:check": "node scripts/release-readiness.mjs",
-    "cloudflare:build": "npm run lint && npm run typecheck && npm test && npm run build"
+    "cloudflare:build": "npm run lint && npm run typecheck && npm test && npm run build",
+    "content:check": "node scripts/check-content.mjs",
+    "content:review": "node scripts/check-content.mjs --review",
+    "content:freshness": "node scripts/check-content.mjs --freshness",
+    "artifacts:check": "node scripts/check-artifacts.mjs",
+    "links:check": "node scripts/check-links.mjs"
   },
   "dependencies": {
-    "next": "16.3.1",
+    "next": "16.3.6",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -24,7 +29,7 @@
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.3.1",
+    "eslint-config-next": "16.3.6",
     "typescript": "5.9.3"
   }
 }

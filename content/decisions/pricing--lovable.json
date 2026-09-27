@@ -1,0 +1,80 @@
+{
+  "slug": "lovable",
+  "kind": "pricing",
+  "title": "Lovable pricing: billing basis and cost boundaries",
+  "summary": "Lovable pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Monthly versus annual commitment",
+      "paragraphs": [
+        "The recorded annual amount is a total commitment, not a monthly invoice. Compare the same allowance and cancellation terms before deciding whether the annual commitment is appropriate for a prototype."
+      ]
+    },
+    {
+      "heading": "After the prototype launches",
+      "paragraphs": [
+        "Measure both editing and live-application usage. A quiet month of development can still have database, network or AI-feature demand. Do not assume the subscription alone is the lifetime cost of the app."
+      ]
+    },
+    {
+      "heading": "No task-to-credit exchange rate",
+      "paragraphs": [
+        "A request, a credit and a token are not interchangeable. ToolPilot has not measured a representative workload across these products, so this guide does not invent a shared usage conversion or promise a fixed number of completed tasks."
+      ]
+    }
+  ],
+  "verdict": "Separate the subscription commitment from how the workspace consumes credits.",
+  "bestFor": "Buyers checking Lovable subscription and usage assumptions",
+  "notFor": "Readers seeking a guaranteed workload total without measuring usage",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "lovable",
+      "revision": 1,
+      "digest": "cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

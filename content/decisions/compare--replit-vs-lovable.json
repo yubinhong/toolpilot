@@ -1,0 +1,85 @@
+{
+  "slug": "replit-vs-lovable",
+  "kind": "compare",
+  "title": "Replit vs Lovable",
+  "summary": "Replit vs Lovable: builders evaluating development and live-app operating responsibility together.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Include day-two work",
+      "paragraphs": [
+        "After the first prototype, add a migration, fix a failing request and rehearse a rollback. Record which operational responsibilities remain yours. A successful first build is only one part of this evaluation."
+      ]
+    },
+    {
+      "heading": "Budget the running application",
+      "paragraphs": [
+        "List database, compute, storage, traffic and third-party services separately. Ask for the same billing period and expected workload in both candidates before using cost as the deciding factor."
+      ]
+    },
+    {
+      "heading": "When neither is a fit",
+      "paragraphs": [
+        "If your required security, data location or operating environment is not supported by current evidence, pause the purchase. Use the sources below to resolve the missing constraint before accepting a recommendation."
+      ]
+    }
+  ],
+  "verdict": "Trial the complete app lifecycle in each candidate. Replit pricing is unresolved in this evidence pack, so no fixed-price winner is justified.",
+  "bestFor": "Builders evaluating development and live-app operating responsibility together",
+  "notFor": "Buyers needing a fixed-price winner before Replit plan amounts are confirmed",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "replit",
+      "revision": 1,
+      "digest": "c65a52483a6e64b8435350e212ecdfa4885dcf1fb97a73cead852a23ca4d519f"
+    },
+    {
+      "slug": "lovable",
+      "revision": 1,
+      "digest": "cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

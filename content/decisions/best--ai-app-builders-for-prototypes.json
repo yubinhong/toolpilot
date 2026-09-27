@@ -1,0 +1,90 @@
+{
+  "slug": "ai-app-builders-for-prototypes",
+  "kind": "best",
+  "title": "AI app builders for prototypes",
+  "summary": "Evaluate a demo together with its handoff and operating responsibilities.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Define a prototype that can fail",
+      "paragraphs": [
+        "Use a form, a stored record and an authenticated route. Specify invalid inputs and unauthorized access as well as the happy path. A convincing screenshot does not demonstrate that any of these constraints hold."
+      ]
+    },
+    {
+      "heading": "Choose a trial path",
+      "paragraphs": [
+        "Inspect Lovable for a natural-language web workflow, Bolt for its documented JavaScript path, and Replit for an agent-assisted app workflow. Confirm the actual framework and operating requirements in the sources rather than assuming interchangeability."
+      ]
+    },
+    {
+      "heading": "Handoff is an acceptance criterion",
+      "paragraphs": [
+        "Ask another developer to build from the exported code and configuration instructions. Inventory databases, domains, secrets and service accounts. If the project cannot be handed over, count that as a constraint even when the initial demo is impressive."
+      ]
+    }
+  ],
+  "verdict": "Pick the builder whose output you can inspect, export and operate after the demo.",
+  "bestFor": "Founders testing an app idea with an explicit code handoff",
+  "notFor": "Teams with unresolved mandatory data, security or deployment requirements",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "lovable",
+      "revision": 1,
+      "digest": "cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533"
+    },
+    {
+      "slug": "bolt-new",
+      "revision": 1,
+      "digest": "4e824ce73ddbad29528f82f18e83dd0c4565766315dff628c97a1863d4f5cba7"
+    },
+    {
+      "slug": "replit",
+      "revision": 1,
+      "digest": "c65a52483a6e64b8435350e212ecdfa4885dcf1fb97a73cead852a23ca4d519f"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

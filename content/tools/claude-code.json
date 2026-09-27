@@ -1,0 +1,188 @@
+{
+  "slug": "claude-code",
+  "kind": "tools",
+  "title": "Claude Code",
+  "summary": "A coding agent with terminal and IDE entry points for repository work.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://code.claude.com/docs/en/overview",
+      "title": "Claude Code overview",
+      "publisher": "Claude Code",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "pricing",
+      "url": "https://code.claude.com/docs/en/costs",
+      "title": "Plans and billing",
+      "publisher": "Claude Code",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "privacy",
+      "url": "https://code.claude.com/docs/en/data-usage",
+      "title": "Data usage",
+      "publisher": "Anthropic",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "subscription",
+      "url": "https://claude.com/pricing",
+      "title": "Claude subscription pricing",
+      "publisher": "Anthropic",
+      "accessedAt": "2026-09-27"
+    }
+  ],
+  "facts": [
+    {
+      "key": "workflow",
+      "label": "Workflow",
+      "value": "Terminal, IDE, desktop and web coding agent",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": true
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy / data handling",
+      "value": "Consumer training settings and commercial terms differ; confirm the account type and opt-in settings.",
+      "sourceIds": [
+        "privacy"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": false
+    },
+    {
+      "key": "selfHosting",
+      "label": "Product self-hosting",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "localModels",
+      "label": "Local model inference",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "portability",
+      "label": "Code / data portability",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    }
+  ],
+  "prices": [
+    {
+      "name": "Pro",
+      "amount": 20,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Monthly subscription; includes Claude Code",
+      "allowance": "Shared plan usage limits; not a fixed number of completed tasks",
+      "overage": null,
+      "taxes": "Excludes applicable taxes",
+      "sourceIds": [
+        "subscription"
+      ],
+      "checkedAt": "2026-09-27"
+    },
+    {
+      "name": "Pro \u2014 annual commitment",
+      "amount": 200,
+      "currency": "USD",
+      "interval": "year",
+      "billing": "Annual amount paid up front, not a monthly invoice",
+      "allowance": "Shared plan usage limits",
+      "overage": null,
+      "taxes": "Excludes applicable taxes",
+      "sourceIds": [
+        "subscription"
+      ],
+      "checkedAt": "2026-09-27"
+    },
+    {
+      "name": "Subscription or API usage",
+      "amount": null,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Account-dependent; subscription and API billing are separate",
+      "allowance": null,
+      "overage": "API usage depends on token consumption; do not infer it from a subscription allowance.",
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Constrain command execution",
+      "paragraphs": [
+        "Start with a repository branch and a specific acceptance test. Inspect proposed commands, file changes and network access before accepting a result. Keep production credentials outside the trial and verify that the task can be rolled back."
+      ]
+    },
+    {
+      "heading": "Check the account route",
+      "paragraphs": [
+        "Determine whether the session uses a subscription, direct API billing or another supported provider. The applicable spending and data policies follow that account route. A displayed token estimate is not automatically a subscription invoice."
+      ]
+    }
+  ],
+  "verdict": "Shortlist Claude Code when an explicit repository task and command-based verification fit your workflow. Review command permissions and the account billing route first.",
+  "bestFor": "Developers comfortable inspecting changes and command results",
+  "notFor": "Users expecting autonomous changes to be safe without review",
+  "migration": "Keep build instructions and acceptance tests in the repository. Port tool-specific rules deliberately and review permissions again in the replacement.",
+  "dependencies": [],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  },
+  "name": "Claude Code",
+  "category": "AI Coding",
+  "productUrl": "https://code.claude.com/docs/en/overview"
+}

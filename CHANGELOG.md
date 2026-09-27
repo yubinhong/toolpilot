@@ -1,6 +1,17 @@
 # Changelog
 
-本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；已有初始提交，TASK-004 改动仍未提交，Cloudflare Pages 发布证据按条目记录。
+## Unreleased — TASK-005 (2026-09-27)
+
+- Preserve 50 historical snapshots; add Claude Code/Cline identities and 28 owner-review drafts with field sources and explicit gaps.
+- Add version/digest approval and dependency checks, ordinary/commercial link separation and allowlisted client catalog data.
+- Add comparison, alternatives, pricing and best detail templates; rewrite the decision guide, add an interaction-style guide and trust pages.
+- Exclude pending content from sitemap, add per-page metadata/canonical and keep original URLs available.
+- Add content, artifact, freshness and safe outbound-link checks; preserve explicit legacy production smoke until authorized cutover.
+- Patch Next.js/eslint-config-next to 16.3.6, sharp to 0.35.4 and js-yaml to 4.3.2; locked audit now passes locally.
+- Production deployment and online verification are authorized for each progress. This release remains pending until the actual Pages deployment and current-profile smoke are verified; editorial drafts remain noindex and unapproved.
+
+
+本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；工作区当前包含未提交的代码整理，Cloudflare Pages 发布证据按条目记录。
 
 ## [Unreleased]
 
@@ -26,6 +37,7 @@
 - 明确免费基础收录、Affiliate、Featured 和 Sponsor 的信任与披露边界；本次没有上线商业功能。
 - 旧 Crypto/DeFi 生成内容按项目 Owner 确认不迁移；当前 50 条目录条目均标记为 Draft/Research snapshot，不能视为正式事实或佣金承诺。
 - 明确产品/来源 URL 的 HTTP 可达证据不等于价格、功能、限制、更新时间或商业条款已核验；受限链接和缺少来源的条目继续保留 Draft/TBD。
+- 整理静态页面的共享内容区段、目录审核提示和站点 URL 配置；分类筛选按钮补充可访问的选中状态，未改变目录事实或公开路由。
 
 ### Fixed
 
@@ -37,7 +49,7 @@
 
 ### Deprecated
 
-- 没有已确认的运行时弃用项；静态托管、CI、分析和商业能力仍未上线。
+- 没有已确认的运行时弃用项；分析和商业能力仍未上线。
 
 ### Removed
 

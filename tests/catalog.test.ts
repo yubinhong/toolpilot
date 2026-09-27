@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { categories, decisionPages, tools } from "../lib/catalog.mjs";
+import { categories, decisionPages, researchTools as tools } from "../lib/catalog.mjs";
 
 test("catalog covers the initial ToolPilot categories", () => {
   assert.deepEqual(categories, [

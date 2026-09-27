@@ -1,11 +1,14 @@
-import { PageFrame } from "../../components/page-frame";
-import { PageIntro } from "../../components/page-intro";
-
-export default function TermsPage() {
-  return (
-    <PageFrame>
-      <PageIntro eyebrow="Terms" title="The public catalog is an editorial work in progress." summary="This placeholder records that draft pages are informational and should not be treated as a guarantee, endorsement, or current pricing statement." />
-      <section className="content-section"><div className="shell"><h2>Before public launch</h2><p>Final terms, disclaimers, commercial disclosures, contact details, and vendor submission rules require confirmation by the project owner and applicable legal reviewer.</p></div></section>
-    </PageFrame>
-  );
+import Link from 'next/link';
+import { ContentSection } from '../../components/content-section';
+import { PageFrame } from '../../components/page-frame';
+import { PageIntro } from '../../components/page-intro';
+import { pageMetadata } from '../../lib/metadata';
+export const metadata = pageMetadata('/terms/');
+export default function Page() {
+  return <PageFrame><PageIntro eyebrow="ToolPilot / Trust" title={"Terms and research limitations"} summary={"A clear boundary for the current research site."}/>
+      <ContentSection><h2>Research scope</h2><p>ToolPilot helps readers inspect tool choices and trade-offs. Draft content is not a formally approved recommendation. Dated product facts can change, and the vendor’s current terms and checkout determine the offer available to you.</p></ContentSection>
+      <ContentSection><h2>Your evaluation</h2><p>Use a reversible trial and inspect the result before adopting a tool. A suggested test procedure is not a claim that ToolPilot has performed it. This site does not guarantee a result, product availability, price or compatibility.</p></ContentSection>
+      <ContentSection><h2>Operator review pending</h2><p>The legal operator, contact channel and final operating terms remain unconfirmed. No paid listing, checkout, account service or commercial performance commitment is offered in this version. These statements describe the implementation and do not replace final operator review.</p></ContentSection>
+      <ContentSection><p><Link href="/editorial-policy/">Editorial policy</Link> · <Link href="/disclosure/">Disclosure</Link> · <Link href="/contact/">Contact</Link></p></ContentSection>
+    </PageFrame>;
 }

@@ -220,8 +220,7 @@ h3 {
 .tool-card-topline,
 .tool-card-footer,
 .section-heading-row,
-.explorer-heading,
-.signal-row {
+.explorer-heading {
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -903,3 +902,18 @@ h3 {
     overflow-x: auto;
   }
 }
+
+/* Decision evidence remains readable without making the page itself scroll. */
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+.table-scroll:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+.table-scroll table { min-width: 36rem; width: 100%; }
+.table-scroll caption { text-align: left; padding: .75rem 0; font-weight: 600; }
+.source-citation { display: block; margin-bottom: .35rem; }
+.source-table small { display: block; }
+.candidate-evidence { margin-block: 2.5rem; }
+.review-date { font-size: .9rem; }
+.vendor-cta { margin-block: 1.5rem; }
+.detail-grid > *, .tool-card, .hero-copy, .hero-signal { min-width: 0; }
+.content-section p, .source-table td { overflow-wrap: anywhere; }
+.historical-guides { padding-block: 1.5rem; }
+@media (max-width: 767px) { .primary-nav { flex-wrap: wrap; } .header-inner { flex-wrap: wrap; } }

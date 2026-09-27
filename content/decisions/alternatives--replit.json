@@ -1,0 +1,95 @@
+{
+  "slug": "replit",
+  "kind": "alternatives",
+  "title": "Replit alternatives",
+  "summary": "Replit alternatives: candidate paths, switching costs and reasons to keep the original.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Match the reason to a candidate",
+      "paragraphs": [
+        "Lovable and Bolt can be evaluated for another app-building workflow. Claude Code is a repository-work alternative for someone prepared to choose and manage hosting separately."
+      ]
+    },
+    {
+      "heading": "When to keep the original",
+      "paragraphs": [
+        "Keep Replit if operational convenience is valuable and current billing is acceptable after verification. Moving only the code does not move secrets, data or domain configuration."
+      ]
+    },
+    {
+      "heading": "Migration rehearsal",
+      "paragraphs": [
+        "Create a copy of the project, remove production secrets, export data using a documented method and run the tests in the candidate workflow. Compare the work needed to restore service after a failed change. Keep the original until the rehearsal succeeds."
+      ]
+    }
+  ],
+  "verdict": "Separate replacing the builder from replacing the hosting and development environment.",
+  "bestFor": "Existing Replit users with a specific workflow, budget or ownership constraint",
+  "notFor": "Readers expecting a replacement to move code, data and infrastructure automatically",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "replit",
+      "revision": 1,
+      "digest": "c65a52483a6e64b8435350e212ecdfa4885dcf1fb97a73cead852a23ca4d519f"
+    },
+    {
+      "slug": "lovable",
+      "revision": 1,
+      "digest": "cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533"
+    },
+    {
+      "slug": "bolt-new",
+      "revision": 1,
+      "digest": "4e824ce73ddbad29528f82f18e83dd0c4565766315dff628c97a1863d4f5cba7"
+    },
+    {
+      "slug": "claude-code",
+      "revision": 1,
+      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

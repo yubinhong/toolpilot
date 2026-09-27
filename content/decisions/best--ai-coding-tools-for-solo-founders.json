@@ -1,0 +1,95 @@
+{
+  "slug": "ai-coding-tools-for-solo-founders",
+  "kind": "best",
+  "title": "AI coding tools for solo founders",
+  "summary": "Select a sustainable development workflow around your constraints.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Three constraints before a shortlist",
+      "paragraphs": [
+        "Write down your existing editor, the repository task and a spending limit. Decide whether provider choice is essential or simply interesting. If you cannot explain how you will verify a change, improve the project tests before paying for more autonomy."
+      ]
+    },
+    {
+      "heading": "Conditional shortlist",
+      "paragraphs": [
+        "Evaluate Cursor for editor-centered iteration, Claude Code for a command-based task loop, Copilot for an existing GitHub workflow and Cline for provider configuration. These are editorial trial directions based on the profiles below, not benchmark results."
+      ]
+    },
+    {
+      "heading": "A one-week decision log",
+      "paragraphs": [
+        "For each trial, record accepted changes, rejected changes, review effort and observed cost in your own environment. Select the tool that improves the whole loop rather than only the generation step. Stop if it requires weakening safety checks."
+      ]
+    }
+  ],
+  "verdict": "Start with the workflow you can review and maintain alone. Prefer a small trial over a blanket winner.",
+  "bestFor": "Solo developers maintaining an existing repository",
+  "notFor": "Teams with unresolved mandatory data, security or deployment requirements",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    },
+    {
+      "slug": "claude-code",
+      "revision": 1,
+      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+    },
+    {
+      "slug": "github-copilot",
+      "revision": 1,
+      "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e"
+    },
+    {
+      "slug": "cline",
+      "revision": 1,
+      "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

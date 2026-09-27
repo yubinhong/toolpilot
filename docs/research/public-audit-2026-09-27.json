@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-27",
+  "checks": [
+    {
+      "url": "https://toolpilot.cc/",
+      "status": 403,
+      "assessment": "restricted"
+    },
+    {
+      "url": "https://toolpilot.cc/tools/cursor/",
+      "status": 403,
+      "assessment": "restricted"
+    },
+    {
+      "url": "https://toolpilot.cc/robots.txt",
+      "status": 403,
+      "assessment": "restricted"
+    },
+    {
+      "url": "https://toolpilot.cc/sitemap.xml",
+      "status": 403,
+      "assessment": "restricted"
+    },
+    {
+      "url": "https://toolpilot.cc/nonexistent-audit-20260927/",
+      "status": 403,
+      "assessment": "restricted"
+    }
+  ],
+  "legacyUrls": [],
+  "limitations": [
+    "No raw GSC export supplied; report has no exact legacy Crypto URL.",
+    "403 in this environment does not establish a public outage."
+  ]
+}

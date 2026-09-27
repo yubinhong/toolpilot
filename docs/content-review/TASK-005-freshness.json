@@ -1,0 +1,201 @@
+{
+  "asOf": "2026-09-27",
+  "reviewQueue": [
+    {
+      "path": "/tools/bolt-new/",
+      "type": "fact",
+      "field": "privacy",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/bolt-new/",
+      "type": "fact",
+      "field": "selfHosting",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/bolt-new/",
+      "type": "fact",
+      "field": "localModels",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/claude-code/",
+      "type": "fact",
+      "field": "selfHosting",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/claude-code/",
+      "type": "fact",
+      "field": "localModels",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/claude-code/",
+      "type": "fact",
+      "field": "portability",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/cline/",
+      "type": "fact",
+      "field": "privacy",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/cline/",
+      "type": "fact",
+      "field": "selfHosting",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/cline/",
+      "type": "fact",
+      "field": "portability",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/cursor/",
+      "type": "fact",
+      "field": "selfHosting",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/cursor/",
+      "type": "fact",
+      "field": "localModels",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/cursor/",
+      "type": "fact",
+      "field": "portability",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/github-copilot/",
+      "type": "fact",
+      "field": "privacy",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/github-copilot/",
+      "type": "fact",
+      "field": "selfHosting",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/github-copilot/",
+      "type": "fact",
+      "field": "localModels",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/github-copilot/",
+      "type": "fact",
+      "field": "portability",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/lovable/",
+      "type": "fact",
+      "field": "privacy",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/lovable/",
+      "type": "fact",
+      "field": "selfHosting",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/lovable/",
+      "type": "fact",
+      "field": "localModels",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/replit/",
+      "type": "fact",
+      "field": "privacy",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/replit/",
+      "type": "fact",
+      "field": "selfHosting",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/replit/",
+      "type": "fact",
+      "field": "localModels",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/replit/",
+      "type": "fact",
+      "field": "portability",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/windsurf/",
+      "type": "price",
+      "field": "Legacy Windsurf entitlement",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/windsurf/",
+      "type": "fact",
+      "field": "privacy",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/windsurf/",
+      "type": "fact",
+      "field": "selfHosting",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/windsurf/",
+      "type": "fact",
+      "field": "localModels",
+      "ageDays": null,
+      "status": "unverified"
+    },
+    {
+      "path": "/tools/windsurf/",
+      "type": "fact",
+      "field": "portability",
+      "ageDays": null,
+      "status": "unverified"
+    }
+  ]
+}

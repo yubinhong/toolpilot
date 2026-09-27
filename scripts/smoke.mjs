@@ -1,63 +1,40 @@
-const defaultBaseUrl = process.env.SMOKE_BASE_URL || "https://toolpilot.cc";
-const cliBaseUrl = process.argv.find((argument) => argument.startsWith("--base-url="))?.slice(11);
-const baseUrl = new URL(cliBaseUrl || defaultBaseUrl);
-
-if (!/^https?:$/.test(baseUrl.protocol)) {
-  throw new Error(`SMOKE_BASE_URL must use http or https: ${baseUrl.href}`);
-}
-
-const checks = [
-  { path: "/", includes: ["research-derived drafts", "Editorial review"] },
-  { path: "/tools/", includes: ["research-derived drafts", "Editorial review"] },
-  { path: "/tools/digitalocean/", includes: ["Editorial review", "Pending"] },
-  { path: "/tools/cloudways/", includes: ["Reachable but restricted", "Pending"] },
-  { path: "/tools/docker/", includes: ["Missing from research snapshot", "Pending"] },
-  { path: "/robots.txt", includes: ["Sitemap:"] },
-  { path: "/sitemap.xml", includes: [] },
-];
-
-const failures = [];
-
-for (const check of checks) {
-  const target = new URL(check.path, baseUrl);
-
-  try {
-    const response = await fetch(target, {
-      redirect: "follow",
-      headers: { "user-agent": "toolpilot-smoke/1.0" },
-      signal: AbortSignal.timeout(20_000),
-    });
-    const body = await response.text();
-
-    console.log(`${check.path} ${response.status} ${response.url}`);
-
-    if (response.status !== 200) {
-      failures.push(`${check.path}: expected HTTP 200, received ${response.status}`);
-    }
-
-    for (const marker of check.includes) {
-      if (!body.includes(marker)) {
-        failures.push(`${check.path}: missing marker ${JSON.stringify(marker)}`);
-      }
-    }
-
-    if (check.path === "/sitemap.xml") {
-      const toolUrls = body.match(/<loc>[^<]*\/tools\/[^<]+<\/loc>/g) || [];
-      if (toolUrls.length !== 50) {
-        failures.push(`${check.path}: expected 50 tool URLs, found ${toolUrls.length}`);
-      }
-    }
-  } catch (error) {
-    failures.push(`${check.path}: ${error instanceof Error ? error.message : String(error)}`);
-  }
-}
-
-if (failures.length > 0) {
-  console.error("Production smoke failed:");
-  for (const failure of failures) {
-    console.error(`- ${failure}`);
-  }
-  process.exitCode = 1;
+const profile = process.env.SMOKE_PROFILE || 'current';
+if (profile === 'legacy') {
+  await import('./smoke-legacy.mjs');
+} else if (profile !== 'current') {
+  throw new Error('SMOKE_PROFILE must be current or legacy');
 } else {
-  console.log(`Smoke passed for ${baseUrl.origin}`);
+  const { getRoutes } = await import('../lib/routes.mjs');
+  const { getSiteUrl } = await import('../lib/site-config.mjs');
+  const base = new URL(process.argv.find(a => a.startsWith('--base-url='))?.slice(11) || process.env.SMOKE_BASE_URL || 'https://toolpilot.cc');
+  if (!['http:','https:'].includes(base.protocol) || base.username || base.password) throw new Error('Invalid smoke base URL');
+  const routes = getRoutes();
+  const failures = [];
+  const queue = [...routes];
+  const get = path => fetch(new URL(path,base),{signal:AbortSignal.timeout(20000),redirect:'manual'});
+  await Promise.all(Array.from({length:4},async () => {
+    while (queue.length) {
+      const r = queue.shift();
+      try {
+        const response = await get(r.path); const html = await response.text();
+        if (response.status !== 200) throw new Error(`expected 200; got ${response.status}`);
+        const tag = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
+        if (r.index ? !/content="index,/.test(tag) : !/content="noindex,/.test(tag)) throw new Error('index directive mismatch');
+        if (!html.includes(`rel="canonical" href="${getSiteUrl()}${r.path}"`)) throw new Error('canonical mismatch');
+        if (/^\/(tools|compare|alternatives|pricing|best|guides)\/[^/]+\/$/.test(r.path) && !r.index && !/draft|review pending/i.test(html)) throw new Error('missing review marker');
+      } catch (e) { failures.push(`${r.path}: ${e.message}`); }
+    }
+  }));
+  try {
+    const sitemap = await get('/sitemap.xml'); const xml = await sitemap.text();
+    if (sitemap.status !== 200) throw new Error('sitemap not HTTP 200');
+    const actual = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).sort();
+    const expected = routes.filter(r => r.index).map(r => getSiteUrl()+r.path).sort();
+    if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error('sitemap differs from this source version');
+    const robots = await get('/robots.txt');
+    if (robots.status !== 200 || !(await robots.text()).includes(`${getSiteUrl()}/sitemap.xml`)) throw new Error('robots mismatch');
+    if ((await get('/nonexistent-toolpilot-smoke/')).status !== 404) throw new Error('unknown URL must return 404');
+  } catch (e) { failures.push(e.message); }
+  if (failures.length) { console.error(failures.join('\n')); process.exitCode=1; }
+  else console.log(`Smoke passed: ${routes.length} pages, robots, sitemap and real 404 (${profile}).`);
 }

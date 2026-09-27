@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "../lib/site-config.mjs";
 
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://toolpilot.cc";
+  const siteUrl = getSiteUrl();
 
   return {
     rules: [{ userAgent: "*", allow: "/" }],

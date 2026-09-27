@@ -1,0 +1,85 @@
+{
+  "slug": "cline-vs-claude-code",
+  "kind": "compare",
+  "title": "Cline vs Claude Code",
+  "summary": "Cline vs Claude Code: developers deciding whether provider configuration is a core requirement.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Provider choice is an operating responsibility",
+      "paragraphs": [
+        "For each candidate, write down the model endpoint, credentials owner and spending limit. A configurable provider helps only when someone can maintain and audit that configuration."
+      ]
+    },
+    {
+      "heading": "Local inference is a separate trial",
+      "paragraphs": [
+        "A local client is not the same as local model inference. If offline operation is mandatory, verify the entire tool chain and run the same acceptance test without relying on cloud services; no offline guarantee is made here."
+      ]
+    },
+    {
+      "heading": "When neither is a fit",
+      "paragraphs": [
+        "If your required security, data location or operating environment is not supported by current evidence, pause the purchase. Use the sources below to resolve the missing constraint before accepting a recommendation."
+      ]
+    }
+  ],
+  "verdict": "Evaluate Cline for provider choice, and Claude Code for its documented coding-agent workflow. Decide using the permitted account and execution environment.",
+  "bestFor": "Developers deciding whether provider configuration is a core requirement",
+  "notFor": "Users expecting a local client to guarantee local inference",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "cline",
+      "revision": 1,
+      "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696"
+    },
+    {
+      "slug": "claude-code",
+      "revision": 1,
+      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

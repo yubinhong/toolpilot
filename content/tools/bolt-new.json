@@ -1,0 +1,167 @@
+{
+  "slug": "bolt-new",
+  "kind": "tools",
+  "title": "Bolt.new",
+  "summary": "An AI builder with a documented JavaScript web-app path.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://support.bolt.new/get-started/intro-bolt",
+      "title": "Intro to Bolt",
+      "publisher": "Bolt.new",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "pricing",
+      "url": "https://bolt.new/pricing",
+      "title": "Plans and billing",
+      "publisher": "Bolt.new",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "git",
+      "url": "https://support.bolt.new/integrations/git",
+      "title": "GitHub for version control",
+      "publisher": "Bolt",
+      "accessedAt": "2026-09-27"
+    }
+  ],
+  "facts": [
+    {
+      "key": "workflow",
+      "label": "Workflow",
+      "value": "JavaScript web apps; mobile path uses Expo",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": true
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy / data handling",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "selfHosting",
+      "label": "Product self-hosting",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "localModels",
+      "label": "Local model inference",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "portability",
+      "label": "Code / data portability",
+      "value": "Official documentation provides a GitHub version-control integration.",
+      "sourceIds": [
+        "git"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": false
+    }
+  ],
+  "prices": [
+    {
+      "name": "Free",
+      "amount": 0,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Free tier",
+      "allowance": "1M tokens/month with a 300K daily cap",
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    },
+    {
+      "name": "Pro",
+      "amount": 25,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Monthly billing",
+      "allowance": "Starts at 10M tokens/month",
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Check the technology fit",
+      "paragraphs": [
+        "The official introduction describes JavaScript web frameworks and an Expo path for mobile applications. Verify the dependencies and backend requirements of your intended project instead of interpreting that scope as support for every language."
+      ]
+    },
+    {
+      "heading": "Review the exported project",
+      "paragraphs": [
+        "Use the documented GitHub integration and test a clean checkout. Confirm environment variables, database access and the deployment procedure separately. Token allowances should be evaluated against observed work, not converted into an invented number of finished features."
+      ]
+    }
+  ],
+  "verdict": "Shortlist Bolt for a prototype that fits its documented technology scope. Validate the export and deployment steps before choosing a paid tier.",
+  "bestFor": "Builders evaluating JavaScript web applications",
+  "notFor": "Projects assuming every backend language is supported",
+  "migration": "Rehearse the GitHub handoff, then build from a clean checkout. Inventory database, hosting and secret configuration separately from the code.",
+  "dependencies": [],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  },
+  "name": "Bolt.new",
+  "category": "AI App Builders",
+  "productUrl": "https://bolt.new/"
+}

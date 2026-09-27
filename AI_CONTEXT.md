@@ -1,110 +1,46 @@
 # AI_CONTEXT.md
 
-> 面向 AI 的项目入口与当前快照。稳定详情放到对应主文档，本文件只保留摘要、事实状态和阅读路径。
+## 当前快照 — 2026-09-27
 
-## 1. 项目快照
+- ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
+- 当前活动任务：TASK-005（用户批准的研究整改）；状态 IN_PROGRESS，R00–R08、本地工程验证和依赖修复已完成，R09 等待生产部署与线上验证，详见 TASK.md。
+- 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
+- 历史 50 条研究快照保留；加入 Claude Code/Cline 后有 52 个工具身份。首批 28 个结构化内容记录全部待用户审核，未冒充正式评价。
+- 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。
+- 草稿保留 URL，noindex 且退出 sitemap；来源日期与审核/实测日期分开。逐版本审批见 ADR-0009。
+- 首批范围：英文 AI Coding / AI App Builders；没有激活广告、分析或实际 Affiliate。
+- 工作区含原先未提交整理和本次改动；不得清理或覆盖。基线见 docs/tasks/remediation-baseline.md。
+- 本地安全修复与构建已验证；只有完整发布后的线上 smoke 才能证明生产更新。
 
-- 项目：`ToolPilot`
-- 一句话目标：面向 Developer、Indie Hacker 和 AI Builder，帮助用户发现、比较和选择开发者工具与技术栈。
-- 当前阶段：`MVP PUBLISHED / CONTENT REVIEW`
-- 主要用户：`Developer`、`Indie Hacker`、`AI Builder`；次要用户为工具厂商和 ToolPilot 运营者
-- 生产状态：`DEPLOYED`（Cloudflare Pages 项目 `toolpilot`；`https://toolpilot.cc` 首页、目录、详情、robots、sitemap 已公网验证 200）
-- 当前版本：`0.1.0`（package.json；未发布）
-- 最近更新：`2026-08-21`
+## 当前阻塞
 
-## 2. 当前工作状态
+- 用户尚未批准具体内容修订；真实运营主体和公开联系渠道未提供。
+- 当前环境访问生产关键路径均为 403；不能据此认定全球不可达或 Googlebot 被拒。见 docs/research/public-audit-2026-09-27.json。
+- Node 22 下 `npm ci` 和 `npm audit --audit-level=high` 当前通过，0 vulnerabilities；每次发布仍须重新审计。
+- TASK-004 的 Cloudflare Git Integration 项目、授权、域名迁移、通知和实际回滚演练仍未完成。归档任务不是完成记录。
+- 当前环境无 Cloudflare API Token；Wrangler Pages 部署列表检查要求非交互 API Token。Git Integration 是否已启用须以本次真实部署和线上 smoke 验证。
+- 没有原始 GSC、PV、转化或收入数据。90 天运营不能从本地构建推断为完成。
 
-- 最近完成任务：`TASK-003` — 50 条目录内容审核与来源记录
-- 任务状态：`IN_PROGRESS`
-- 当前分支：`main`（`HEAD` 与 `origin/main` 已同步；工作区干净且 `release:check` 已通过；生产 reviewed source 为 `4776027`）
-- 当前重点：TASK-004 已完成 GitHub CI、生产 smoke 和定时监控基础；当前改造目标是 Cloudflare Pages Git Integration 自动构建，仓库已加入 `cloudflare:build` 并移除手动 Pages 发布 workflow
-- 阻塞项：当前 `toolpilot` Pages 项目仍为 Direct Upload（Wrangler 显示 `Git Provider: No`）；必须在 Cloudflare Dashboard 新建 Git-integrated Pages 项目并迁移 `toolpilot.cc`，GitHub App 授权、构建设置和域名迁移仍待完成
-- Cloudflare 快照：2026-08-21 Wrangler 认证和部署历史读取已验证；当前 Direct Upload Production source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，预览地址为 `https://be8ecb81.toolpilot-2cy.pages.dev`；`https://toolpilot.cc` 公网 smoke 已通过。旧项目在新 Git-integrated 项目完成验证前不得删除
-- 内容风险仍在：8 个官网和 6 个来源链接受 403/429 或其他访问限制；5 条记录缺少研究来源；产品/商业/法务 Owner 仍为 `TBD`
+## 阅读路径
 
-## 3. 主文档索引
+1. AGENTS.md → 本文件 → PROJECT.md → TASK.md。
+2. PRD.md、ARCHITECTURE.md、TESTING.md、SECURITY.md。
+3. PLANS.md TASK-005、docs/adr/0009-reviewed-decision-content.md。
+4. docs/research/toolpilot-report-extract.md：报告抽取和采用/暂缓决策。
+5. docs/content-review/TASK-005/README.md：8 份证据包、28 页清单及逐版本审核流程。
+6. docs/operations/90-day-review.md：真实数据运营模板。
+7. RUNBOOK.md、docs/tasks/TASK-004-before-remediation.md、ADR-0008：生产授权和迁移。
 
-| 主题 | 唯一事实来源 | 读取条件 |
-| --- | --- | --- |
-| 仓库级行为、授权与长期规则 | `AGENTS.md` | 所有任务 |
-| 项目目标、范围、环境 | `PROJECT.md` | 所有任务 |
-| 产品需求、用户验收 | `PRD.md` | 功能、体验、范围变更 |
-| 当前执行任务 | `TASK.md` | 所有实现任务；当前为 `TASK-004` |
-| 复杂执行计划 | `PLANS.md` | 跨模块或高风险任务 |
-| 系统结构、数据流 | `ARCHITECTURE.md` | 架构、接口、数据变更 |
-| 测试命令、质量门槛 | `TESTING.md` | 所有代码变更 |
-| 安全与隐私 | `SECURITY.md` | 鉴权、数据、外部输入、依赖 |
-| 部署与故障处理 | `RUNBOOK.md` | 发布、配置、运维 |
-| 架构决策 | `DECISIONS.md`、`docs/adr/` | 不可逆或跨团队决策 |
-| 待办队列 | `TODO.md` | 当前任务完成后的下一步 |
-| 已发布变化 | `CHANGELOG.md` | 发布和兼容性判断 |
+## 仓库地图
 
-## 4. 技术摘要
+- app/、components/：静态路由与共享 UI。
+- content/：正式模型的待审核 JSON 与来源域名 allowlist。
+- lib/content-types.ts、content-policy.mjs、content.mjs：类型、审核不变量、服务端读取与公开 DTO。
+- lib/routes.mjs、metadata.ts、site-config.mjs：唯一页面清单、逐页元数据、公开站点 URL。
+- scripts/：内容、静态产物、出站链接、新鲜度、smoke 和仓库发布门槛。
+- .github/workflows/：质量检查、旧生产 smoke、新维护报告；仓库配置不代表外部运行已成功。
+- out/、.next/：生成物，不是事实来源或生产证据。
 
-- 前端：`Next.js 16.3.1 App Router`、React 19.2.8、TypeScript 5.9.3；源码在 `app/`、`components/`、`lib/`
-- 后端：当前没有独立 API 或服务端逻辑；Next 配置为静态导出
-- 数据：当前为 `lib/catalog.mjs` 中的 50 条受标记研究草稿；每条分离 `productUrl`、`sourceUrl`、链接检查、来源状态、编辑审核字段、`affiliateStatus`、`commission` 和 `verifiedAt`；没有 CMS、数据库、迁移或厂商提交
-- 基础设施：`next build` 已生成 `out/` 静态站点并部署到当前 Direct Upload Pages 项目 `toolpilot`；目标改为 Cloudflare Pages Git Integration，生产域名为 `https://toolpilot.cc`
-- 外部服务：Cloudflare Pages 已由 Wrangler 创建/部署；产品官网和研究来源作为外部链接依赖；没有分析、支付或运行时 API
-- 认证授权：当前未实现账户、管理端或身份提供方
-- 可观测性：仓库已有生产 smoke 和 GitHub Actions 定时监控配置；通知渠道、历史运行记录和 Cloudflare 内部指标仍为 `TBD`
-- 运行时：`.nvmrc` 要求 Node `22`；Node 22.23.0/npm 10.9.8 下已安装依赖并通过工程检查；当前默认 shell 实际仍为 Node `v20.17.0`
+## 历史部署证据边界
 
-## 5. 仓库地图
-
-| 路径 | 责任 | 主要入口 |
-| --- | --- | --- |
-| `AGENTS.md`、`PROJECT.md`、`AI_CONTEXT.md` | 项目规则、目标和上下文 | 本文件和根目录文档 |
-| `PRD.md`、`ARCHITECTURE.md` | 产品需求与系统边界 | 文档入口；当前内容和商业流程仍为 DRAFT/TBD |
-| `TESTING.md`、`SECURITY.md`、`RUNBOOK.md` | 验证、安全和运维规则 | 文档入口；本地命令和 Cloudflare Pages 发布命令已核实 |
-| `app/` | Next App Router 页面、动态静态参数、robots/sitemap | 当前 Web 入口和路由实现 |
-| `components/` | 共享壳层、目录卡片、首页搜索筛选 | UI 组件，不含外部服务 |
-| `lib/catalog.mjs` | 首批分类、工具草稿、决策页和指南种子数据 | 当前唯一内容种子；全部需来源审核 |
-| `scripts/smoke.mjs`、`scripts/release-readiness.mjs` | 公共 HTTP smoke 和发布仓库状态门槛 | TASK-004 运维入口；不读取 Secret |
-| `out/` | `next build` 静态产物 | 生成物，不是内容事实来源 |
-| `package.json`、`package-lock.json` | npm 脚本和锁定依赖 | 当前工程基线 |
-| `.env.example`、`.nvmrc`、`.npmrc` | 站点 URL 样例、Node 要求、npm 配置 | 当前已恢复；不含真实密钥 |
-| `docs/adr/0000-template.md`、`prompts/` | ADR 模板与工作流提示 | 不代表已采用的架构决策 |
-
-## 6. 不可违反的约束
-
-- 默认不提交 Git、不读取或输出真实密钥；`TASK-002` 已完成 Cloudflare Pages 部署和 `toolpilot.cc` DNS 绑定，TASK-003 只允许发布带有明确 Draft/待审核标记的内容。
-- `.next`、缓存和历史研究示例不能替代源码、配置、依赖或生产证据；当前旧 Crypto/DeFi 内容按用户确认不迁移。
-- 免费基础收录保持开放；Affiliate、Featured、Sponsor 只能购买明确标注的曝光，不能改变客观评价、比较结论或自然排序。
-- 工具事实、价格、限制、链接和商业关系必须有来源、更新时间或明确的 `TBD`/待核实标记。
-- 不读取、输出或提交真实密钥、令牌、个人数据、生产数据库和未脱敏第三方报告。
-
-## 7. 关键术语
-
-| 术语 | 项目内含义 | 不应混用 |
-| --- | --- | --- |
-| `ToolPilot` | 开发者工具发现、比较和技术栈决策平台 | 通用工具目录、工具本身 |
-| `Developer Tool` | 面向开发、部署、数据、认证、通信、支付和自动化工作的工具 | 所有互联网产品 |
-| `Decision Page` | `Best`、`Compare`、`Alternatives`、`Stacks` 或明确指南页面 | 只有名称和链接的目录页 |
-| `Affiliate` | 用户经推荐链接转化后产生的合作方佣金关系 | Sponsor、Featured 付费曝光 |
-| `Featured / Sponsor` | 厂商直接购买、且必须披露的曝光权益 | 客观排名或评价购买 |
-| `Generated Artifact` | `.next` 等构建输出，可用于观察构建结果 | 源码、配置和生产部署证据 |
-
-## 8. 最近确认的决策
-
-- `2026-08-19`：`DOC-001` 文档审计完成，旧生成物和配置按用户确认是主动删除内容，不再作为迁移输入。
-- `2026-08-20`：`TASK-001` 重建 Next.js 16.3.1 静态导出 MVP；Node 22 下 `typecheck`、`lint`、`test`、`build` 已通过，本地关键路径 HTTP smoke test 已通过。
-- `2026-08-20`：当前 50 条目录数据全部显式标为 Draft/Research snapshot；正式内容仍必须完成来源、更新时间、商业关系和评价审核。
-- `2026-08-20`：`TASK-002` 接入 50 条研究快照；Node 22 质量门槛通过；Cloudflare Pages 项目 `toolpilot` 部署 332 个静态文件并绑定 `toolpilot.cc`，生产关键路径返回 200。
-- `2026-08-20`：`TASK-003` 记录 50 条产品链接检查、45 条来源状态、5 条来源缺失和编辑审核门槛；链接可达不等于产品事实已核验。
-- `2026-08-21`：`TASK-004` 完成 CI、生产 smoke 和定时监控基础；当前改造采用 ADR-0008，将 Direct Upload 迁移为 Cloudflare Pages Git Integration，`cloudflare:build` 已接入 lint、typecheck、test 和静态构建，外部新项目与域名迁移待完成。
-
-## 9. 已知风险与技术债
-
-- GitHub CI 和生产 smoke 已写入仓库，但当前 Cloudflare 项目仍是 Direct Upload，尚未完成 Git Integration 新项目、GitHub App 授权、`toolpilot.cc` 迁移和新部署验证 — 影响：自动生产部署路径尚未生效 — 跟踪：`TODO-004`、`TODO-304`、`TODO-302`
-- 50 条研究草稿尚未完成正式来源、更新时间和评价审核 — 影响：不能当作正式评价或佣金承诺 — 跟踪：`TODO-005`、`TODO-006`、`TODO-008`；逐条快照见 `docs/content-review/TASK-003-2026-08-20.md`
-- 静态导出和内容存储尚未完成正式 ADR — 影响：后续引入 CMS/API 时可能出现边界漂移 — 跟踪：`ADR-001`、`TODO-007`
-- 当前默认 shell 为 Node 20 而项目要求 Node 22 — 影响：直接运行 npm 命令可能复现不同结果 — 跟踪：`TODO-002`
-- `README.md` 已改为 ToolPilot 项目入口；后续只需随运行命令和阅读路径变化同步。
-
-## 10. 更新规则
-
-- 任务切换、架构变化、环境变化或里程碑完成后更新本文件。
-- 不复制 PRD、架构或测试全文，只保留摘要、证据状态和链接。
-- 删除已失效状态；历史决策进入 ADR，已交付变化进入 `CHANGELOG.md`。
-- 每次更新都区分“要求/假设”“仓库观察值”和“可运行命令验证值”。
+2026-08-21 的 Direct Upload 生产 source 为 4776027，GitHub CI 有历史成功记录；这不是 2026-09-27 的重新核验。旧 Cloudflare 项目 toolpilot 必须保留，直到另获授权完成新项目验证和迁移。

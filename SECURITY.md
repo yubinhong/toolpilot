@@ -1,5 +1,14 @@
 # SECURITY.md
 
+## 当前安全状态（2026-09-27）
+
+- 2026-09-27 在 Node 22 下执行 `npm ci` 与 `npm audit --audit-level=high` 通过，0 vulnerabilities。将 Next.js/eslint-config-next 更新至 16.3.6、sharp 至 0.35.4、js-yaml 至 4.3.2；不屏蔽告警，每次发布前仍须重新审计。
+- 内容 JSON 只能引用经校验的 HTTPS URL；未知/未审核不得伪装正式事实。审核 digest 是一致性检查，不是身份认证，真实用户授权记录不可伪造。
+- 客户端只接收 allowlist DTO，内部佣金、研究商业计划和批准证据不序列化到浏览器。
+- 批处理出站检查只消费仓库公开 URL；固定域名 allowlist、拒绝 IP/凭据/非 HTTPS/自定义端口；所有 DNS 结果必须为公网地址，并把验证地址固定到 TLS 请求，阻止二次解析重绑定。每跳再校验，最多 3 次，15 秒请求预算，并发 3，不带 Cookie/Token。
+- 检查日志只记录公开 origin/path、状态和固定错误类别，不记录查询参数、响应正文或原始异常。403/429 记为 restricted，不绕过限制；外部网络异常不自动编辑来源或审批。
+- 仍无分析、广告、表单或账户；托管请求数据处理仍待运营主体确认，不能宣称零数据处理。
+
 ## 1. 安全目标与范围
 
 - 保护对象：公开工具内容、来源和编辑记录；厂商提交；Affiliate/Featured/Sponsor 标识和链接；分析数据；管理凭据；构建和部署凭据。
@@ -43,14 +52,14 @@
 - 轮换周期：`TBD`；任何泄露迹象都应立即吊销、轮换并记录影响。
 - 本地开发：若恢复 `.env.example`，只使用它作为非敏感字段样例；真实 `.env*.local` 不提交，禁止复制到对话或日志。
 - `.env.example` 只包含公开站点 URL；真实 `.env*.local` 不提交，当前没有真实密钥配置。
-- 当前 `.npmrc` 未关闭 npm audit；Node 22 下 `npm ci` 后，授权网络执行 `npm audit --audit-level=high` 返回 0 vulnerabilities；CI 建立后仍需自动重跑。
+- 当前 `.npmrc` 未关闭 npm audit；Node 22 下 `npm ci` 后每次发布前都要重新运行审计。2026-09-27 当前锁文件审计为 0 vulnerabilities；CI 仍需在远端运行验证。
 - `.next`、`out/` 和 npm 缓存都不能存放或传播密钥；构建前检查产物和日志是否含敏感值。
 
 ## 6. 依赖与供应链
 
 - 允许的包源：npm registry（当前 npm 默认源，组织策略 `TBD`）。
 - 锁文件：`package-lock.json` lockfile v3；构建和 CI 必须使用锁定依赖。
-- 漏洞扫描：`npm audit --audit-level=high`；本次安装结果为 0 vulnerabilities。
+- 漏洞扫描：`npm audit --audit-level=high`；本次安装后的审计通过，发布/线上状态见 `TASK.md`。
 - 高危漏洞 SLA：`TBD`；不得以 `audit=false` 作为风险处理。
 - 构建产物签名/SBOM：`TBD`；`npm run release:check` 已先行要求 Node 22、不可变 HEAD、无凭据 GitHub origin、干净工作区和已跟踪发布文件，但尚不能替代产物签名或 SBOM。
 - 依赖安装：先核对 `.nvmrc` 和 `package-lock.json`，再使用 Node 22 执行 `npm ci`；不得使用 `--ignore-scripts` 规避未知风险，也不得把 npm warning 当作安全结论。
@@ -64,13 +73,13 @@
 
 ## 8. 安全发布门槛
 
-- [x] Node 22、依赖清单和锁文件已确认，当前 `npm audit --audit-level=high` 结果为 0 vulnerabilities。
+- [x] Node 22 和锁文件已确认；2026-09-27 干净安装后审计通过，0 vulnerabilities。
 - [ ] 权限边界有正向和反向测试；当前无权限实现时必须记录为阻塞。
 - [ ] 外部输入、URL、文件和错误路径已测试。
 - [ ] 无明文密钥或敏感数据泄漏到代码、日志、截图、构建产物或文档。
 - [ ] Affiliate、Featured、Sponsor 和独立评价在页面和链接中清晰分隔。
 - [x] 旧 Crypto/DeFi 生成页面不在当前源码中，未进入构建产物。
-- [x] 当前 npm 依赖审计无高危问题；仓库级 CI 已建立，GitHub 外部运行和分支保护仍待验证。
+- [ ] 依赖审计本地通过；远端 CI 和分支保护仍需新版本证据。
 - [x] 生产 smoke 不读取密钥，只访问公开 HTTP 页面；正常 Cloudflare Pages 发布不使用仓库或 GitHub Actions Cloudflare Secret。
 - [x] Cloudflare Pages 生产域使用 HTTPS，生产首页、工具页、robots 和 sitemap 均已通过只读 smoke；安全响应头和 CSP 策略仍需单独审查。
 - [x] 50 条目录的审核元数据区分产品链接、研究来源、编辑审核和正式核验；5 条来源缺失、14 条 URL 受限情况没有被伪装成已核验。

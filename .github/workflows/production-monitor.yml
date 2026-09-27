@@ -26,3 +26,5 @@ jobs:
         run: npm run smoke
         env:
           SMOKE_BASE_URL: https://toolpilot.cc
+          # Keep checking the deployed pre-remediation version until authorized cutover.
+          SMOKE_PROFILE: legacy

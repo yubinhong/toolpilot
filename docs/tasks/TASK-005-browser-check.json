@@ -1,0 +1,129 @@
+{
+  "checks": [
+    {
+      "path": "/",
+      "width": 375,
+      "status": "passed"
+    },
+    {
+      "path": "/tools/cursor/",
+      "width": 375,
+      "status": "passed"
+    },
+    {
+      "path": "/compare/cursor-vs-claude-code/",
+      "width": 375,
+      "status": "passed"
+    },
+    {
+      "path": "/alternatives/lovable/",
+      "width": 375,
+      "status": "passed"
+    },
+    {
+      "path": "/pricing/lovable/",
+      "width": 375,
+      "status": "passed"
+    },
+    {
+      "path": "/best/ai-app-builders-for-prototypes/",
+      "width": 375,
+      "status": "passed"
+    },
+    {
+      "path": "/guides/ai-editor-vs-terminal-agent/",
+      "width": 375,
+      "status": "passed"
+    },
+    {
+      "path": "/contact/",
+      "width": 375,
+      "status": "passed"
+    },
+    {
+      "path": "/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "path": "/tools/cursor/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "path": "/compare/cursor-vs-claude-code/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "path": "/alternatives/lovable/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "path": "/pricing/lovable/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "path": "/best/ai-app-builders-for-prototypes/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "path": "/guides/ai-editor-vs-terminal-agent/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "path": "/contact/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "path": "/tools/cursor/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "path": "/compare/cursor-vs-claude-code/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "path": "/alternatives/lovable/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "path": "/pricing/lovable/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "path": "/best/ai-app-builders-for-prototypes/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "path": "/guides/ai-editor-vs-terminal-agent/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "path": "/contact/",
+      "width": 1440,
+      "status": "passed"
+    }
+  ],
+  "search": "passed",
+  "emptyState": "passed",
+  "filterAria": "passed",
+  "keyboard": "passed",
+  "pageErrors": []
+}

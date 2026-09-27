@@ -8,6 +8,19 @@
 - 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`、`docs/adr/0008-cloudflare-pages-git-integration.md`
 - 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Wrangler 项目状态、Cloudflare Dashboard 配置和 `toolpilot.cc` 公网 smoke；当前 Direct Upload 项目尚未迁移为 Git Integration
 
+## TASK-005 当前架构（2026-09-27）
+
+- 内容流：content/tools 与 content/decisions JSON → lib/content.mjs 校验/读取 → 服务端模板 → out/。
+- 历史流：lib/catalog.mjs 的 researchTools 原样保留；tools 提供兼容叠加视图。新增产品无伪造旧检查日期。
+- 审核与安全边界：lib/content-policy.mjs 校验来源、修订/digest、依赖、商业关系；客户端只收到 publicTool allowlist DTO。
+- 路由：lib/routes.mjs 是页面与索引清单，metadata.ts、sitemap、smoke、产物检查共用。site-config 仅管理站点 URL。
+- 商业：Affiliate、Featured、Sponsor 分别记录；只有有效审核和关系证据才能激活商业目的地，未知关系不冒充合作。
+- 维护：独立 HTTPS 域名 allowlist、DNS 全结果公网校验、固定已验证地址连接、3 次重定向限制；不引入任意运行时抓取服务。
+- 本地构建覆盖 88 个站内 HTML 路径；Next 日志另计 404/元数据路由，不能混淆计数。没有内容正式审批时 sitemap 为 4 个站点说明入口。
+- 数据和公开接口迁移、批准失效及回滚见 ADR-0009。仍无数据库、API、CMS、账户或分析。
+
+下方既有 MVP 章节保留历史背景；2026-08 构建/部署数字与尚未实现描述不能覆盖上述当前代码边界。生产是否更新仅以部署和公网证据为准。
+
 ## 1. 架构目标
 
 - 业务能力：面向开发任务的工具发现、比较、替代方案和技术栈决策页面。
@@ -39,6 +52,7 @@ flowchart LR
 | --- | --- | --- | --- | --- | --- |
 | Web 页面 | `app/`、`components/` | 首页、工具、指南、法律和决策页 | ToolPilot 草稿内容 | Next 配置、目录数据、Cloudflare Pages | `TBD` |
 | 内容模型 | `lib/catalog.mjs` | 50 条分类、草稿工具、`productUrl`、`sourceUrl`、链接检查、来源状态、编辑审核和正式核验字段、决策页和指南 | ToolPilot 草稿 | 编辑、公开来源 | `TBD` |
+| 站点配置 | `lib/site-config.mjs` | 默认站点 URL、静态路由和构建时 URL 归一化，供 robots/sitemap 使用 | 无业务数据 | 构建环境、Next 元数据路由 | `TBD` |
 | 构建输出 | `.next/`、`out/` | Next 中间产物和最终静态 HTML/CSS/JS | 不拥有业务数据 | `npm run build` -> Cloudflare Pages | `TBD` |
 | 出站链接 | 页面中的产品官网/研究来源 URL | 将用户带到工具厂商或研究来源，并区分官网、来源和研究商业状态 | 第三方厂商/公开来源 | ToolPilot -> 外部站点 | `TBD` |
 | 分析 | 服务 `TBD` | 记录最小化的决策页浏览和出站点击 | `TBD` | 浏览器 -> 分析服务 | `TBD` |

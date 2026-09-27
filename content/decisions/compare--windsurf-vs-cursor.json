@@ -1,0 +1,85 @@
+{
+  "slug": "windsurf-vs-cursor",
+  "kind": "compare",
+  "title": "Windsurf vs Cursor",
+  "summary": "Windsurf vs Cursor: existing Windsurf users reviewing product continuity and an editor alternative.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Resolve identity before features",
+      "paragraphs": [
+        "If you already use Windsurf, capture your current plan and ask the vendor how your editor, credits and account transfer. A new buyer should not treat the old product name as proof of a current purchasable plan."
+      ]
+    },
+    {
+      "heading": "Compare only confirmed entitlements",
+      "paragraphs": [
+        "After the account transition is understood, compare one repository change and the controls you actually receive. Until then, a numeric winner would hide the largest uncertainty in this decision."
+      ]
+    },
+    {
+      "heading": "When neither is a fit",
+      "paragraphs": [
+        "If your required security, data location or operating environment is not supported by current evidence, pause the purchase. Use the sources below to resolve the missing constraint before accepting a recommendation."
+      ]
+    }
+  ],
+  "verdict": "Do not choose on historical price comparisons: Windsurf sources now redirect to Devin and account continuity needs confirmation.",
+  "bestFor": "Existing Windsurf users reviewing product continuity and an editor alternative",
+  "notFor": "New buyers expecting a current Windsurf price from historical research",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "windsurf",
+      "revision": 1,
+      "digest": "fc9b94f9c8f365906acf2bb53c660797664b7b945dba6c2d9acc3bd1d61d3eff"
+    },
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

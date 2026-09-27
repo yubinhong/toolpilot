@@ -1,0 +1,85 @@
+{
+  "slug": "cursor-vs-github-copilot",
+  "kind": "compare",
+  "title": "Cursor vs GitHub Copilot",
+  "summary": "Cursor vs GitHub Copilot: teams balancing editor change against existing GitHub policies.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Count the cost of switching",
+      "paragraphs": [
+        "Inventory editor extensions, shortcuts, review conventions and team policies. A lower subscription is not a saving if each engineer must rebuild an essential workflow."
+      ]
+    },
+    {
+      "heading": "Separate personal and organization purchasing",
+      "paragraphs": [
+        "Do not use the individual plan as evidence that a team has the required controls. Verify seat assignment, permitted models and the applicable data policy with your administrator before a team-wide recommendation."
+      ]
+    },
+    {
+      "heading": "When neither is a fit",
+      "paragraphs": [
+        "If your required security, data location or operating environment is not supported by current evidence, pause the purchase. Use the sources below to resolve the missing constraint before accepting a recommendation."
+      ]
+    }
+  ],
+  "verdict": "Evaluate workflow change against organization fit. Trial Cursor for its editor loop; examine Copilot when existing GitHub policies dominate the decision.",
+  "bestFor": "Teams balancing editor change against existing GitHub policies",
+  "notFor": "Readers assuming individual and organization plans have identical controls",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    },
+    {
+      "slug": "github-copilot",
+      "revision": 1,
+      "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

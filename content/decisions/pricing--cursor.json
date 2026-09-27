@@ -1,0 +1,80 @@
+{
+  "slug": "cursor",
+  "kind": "pricing",
+  "title": "Cursor pricing: billing basis and cost boundaries",
+  "summary": "Cursor pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "One developer on a monthly plan",
+      "paragraphs": [
+        "The recorded base is not a promise of unlimited model use. Before estimating a month of work, record the models, agent intensity and on-demand billing setting. Tax and overage remain outside a simple base-price comparison."
+      ]
+    },
+    {
+      "heading": "A team purchase",
+      "paragraphs": [
+        "Multiply only a verified per-seat price by the actual seat count. Do not substitute an individual plan when administration or team privacy controls are required."
+      ]
+    },
+    {
+      "heading": "No task-to-credit exchange rate",
+      "paragraphs": [
+        "A request, a credit and a token are not interchangeable. ToolPilot has not measured a representative workload across these products, so this guide does not invent a shared usage conversion or promise a fixed number of completed tasks."
+      ]
+    }
+  ],
+  "verdict": "Start with the individual subscription, then account for usage beyond the included allowance.",
+  "bestFor": "Buyers checking Cursor subscription and usage assumptions",
+  "notFor": "Readers seeking a guaranteed workload total without measuring usage",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

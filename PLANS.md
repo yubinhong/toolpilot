@@ -220,7 +220,7 @@ HTTP smoke: / /tools/ /tools/cursor/ /compare/ /guides/ /robots.txt /sitemap.xml
 - [x] `scripts/release-readiness.mjs` 和 `npm run release:check`：作为本地/提交审核门槛拒绝错误 Node、短 SHA、不安全/缺失 remote、dirty worktree 和未跟踪发布文件；4 个门槛测试通过。
 - [x] `docs/adr/0007-ci-monitoring-release-gate.md` 保留 CI/监控决策并标记旧手动发布路径已被 ADR-0008 取代。
 - [x] `docs/adr/0008-cloudflare-pages-git-integration.md`：记录 Direct Upload 到 Git Integration 的迁移目标和回滚边界。
-- [x] 本地静态服务器 smoke 通过；现存 workflow YAML 通过 Ruby YAML 解析。
+- [x] 本地静态服务器 smoke 通过；现存 workflow YAML 通过 Python YAML 解析。
 - [x] Node 22 下 `npm run lint`、`npm run typecheck`、`npm test`、`npm run build`、`npm audit --audit-level=high` 通过；2026-08-21 生产 smoke 7/7 路径通过。
 
 ### 未完成与阻塞
@@ -229,3 +229,54 @@ HTTP smoke: / /tools/ /tools/cursor/ /compare/ /guides/ /robots.txt /sitemap.xml
 - 当前生产部署元数据已显示 source `4776027`，并通过 `https://toolpilot.cc` 公网 smoke；旧部署仍未验收为可复现回滚目标。
 - 尚未在明确生产操作窗口执行实际 Pages 回滚/域名恢复演练；跟踪 `TODO-302`。
 - 任务保持 `IN_PROGRESS`，直到外部 Owner 完成激活并提供运行/回滚证据。
+
+## TASK-004 follow-up - Codebase Cleanup
+
+### Plan metadata
+
+- Status: `COMPLETE`
+- Date: `2026-08-30`
+- Baseline: `43b9ca7` with a clean worktree
+
+### Scope and completion criteria
+
+Keep the static MVP behavior and public routes unchanged while improving source readability, removing repeated presentation logic where it is genuinely shared, and tightening the small set of UI accessibility states that are currently implicit. Add focused regression coverage for any extracted catalog/page helpers, then run the repository's Node 22 quality commands when the required runtime is available.
+
+### Steps
+
+- [x] Inspect current source, tests, generated route expectations, and worktree state.
+- [x] Apply narrowly scoped code cleanup without changing catalog facts, routes, or deployment behavior.
+- [x] Add or update focused tests for changed pure logic and review the final diff.
+- [x] Run lint, typecheck, tests, build, smoke, and release checks where the environment permits; record blockers explicitly.
+
+### Rollback
+
+Revert only the files changed by this follow-up after reviewing the diff; no data, deployment, dependency version, or Git history changes are required.
+
+### Result
+
+Completed on `2026-08-30`. The cleanup added shared `ContentSection` and configurable `CatalogNotice` components, centralized static route/site URL configuration, removed a duplicate CSS selector, and exposed category filter state through `aria-pressed`. Catalog facts, generated route count, and deployment settings are unchanged. Node 22.23.2 checks passed: 9 tests, lint, typecheck, build, `cloudflare:build`, dependency audit, local smoke, and workflow YAML parsing via Python. `release:check` was run against the intentionally dirty worktree and rejected it as expected; no commit or push was made.
+
+
+## TASK-005 — Approved remediation execution (2026-09-27)
+
+Status: IN_PROGRESS. Keep Next.js static export, English first, AI coding/app builders first. Owner alone approves formal content. Draft URLs remain accessible with noindex and outside sitemap. Preserve all existing worktree edits and TASK-004 external migration obligations.
+
+| Step | Deliverable | Acceptance |
+| --- | --- | --- |
+| TP-R00 | Baseline, isolated report extraction, task archive | Existing changes preserved; estimates labeled |
+| TP-R01 | Public HTTP and historical URL audit | Restricted access distinguished from outage; no guessed redirects |
+| TP-R02 | JSON content, TS types, validation, public projections | Exact revision approval, field sources, separate commercial relations |
+| TP-R03 | Shared route/index registry, metadata, migrated tests | Draft excluded; canonical self-references; production legacy smoke retained |
+| TP-R04 | Tools/Compare/Alternatives/Pricing/Best/Guides templates | Static export, accessible tables, unknown values explicit |
+| TP-R05 | Cursor, Copilot, Windsurf, Lovable, Replit, Bolt.new, Claude Code, Cline evidence | Official sources/date and gaps; no fabricated tests |
+| TP-R06 | 8 tools + 6 comparisons + 6 alternatives + 4 pricing + 2 best + 2 guides | Distinct decision intent; owner approval pending |
+| TP-R07 | Task-oriented home, navigation, editorial/disclosure/contact/legal pages | No fake contact, approval or relationships |
+| TP-R08 | Content/artifact/link/freshness checks | Mocked network tests; no external notifications or auto-edit |
+| TP-R09 | Node 22 locked install, audit, full build, local smoke, diff review | Engineering/content/production statuses reported separately |
+
+Dependencies: R00 → R02 → R03/R04 → R06/R07 → R08/R09; R01 and R05 can proceed independently without external mutation. Source failures block relevant claims only. Contact/legal facts block final trust approval only. Release requires explicit authorization and clean full SHA; release:check must continue rejecting dirty worktrees.
+
+Delivery cadence update (2026-09-27): the user explicitly authorized production deployment and requires online verification for every deliverable progress. Each release must pass the current dependency audit, `release:check`, and a production `SMOKE_PROFILE=current` check against the deployed source. Do not infer deployment from a Git push or successful build. This authorization does not approve draft content, activate commercial relationships, migrate/delete the legacy Pages project, or weaken release gates.
+
+90-day follow-up: weeks 1–2 foundation; 3–4 templates/evidence; 5–6 decisions; 7–8 guides/internal links; 9–10 GSC review; 11–13 evidence-driven expansion. No automatic MCP/Chinese/calculator/ads expansion. Weekly compare 28-day GSC windows; no available data means unknown.

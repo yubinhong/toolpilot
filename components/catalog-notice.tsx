@@ -1,13 +1,18 @@
-export function CatalogNotice() {
+type CatalogNoticeProps = {
+  title?: string;
+  message?: string;
+};
+
+export function CatalogNotice({
+  title = "Research and review status",
+  message = "Each entry shows its review state. Research drafts are not published evaluations; source access does not replace factual and editorial review.",
+}: CatalogNoticeProps) {
   return (
     <div className="catalog-notice" role="status">
       <span className="notice-dot" aria-hidden="true" />
       <div>
-        <strong>50-product research catalog</strong>
-        <span>
-          These entries are research-derived drafts. Link checks are recorded for review; pricing,
-          claims, source freshness, and commission terms are not yet editorially verified.
-        </span>
+        <strong>{title}</strong>
+        <span>{message}</span>
       </div>
     </div>
   );

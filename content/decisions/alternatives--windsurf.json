@@ -1,0 +1,95 @@
+{
+  "slug": "windsurf",
+  "kind": "alternatives",
+  "title": "Windsurf alternatives",
+  "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Match the reason to a candidate",
+      "paragraphs": [
+        "Cursor is an editor candidate; Copilot is worth evaluating in an established GitHub workflow; Cline is a provider-configurable candidate. These are trial directions, not drop-in compatibility promises."
+      ]
+    },
+    {
+      "heading": "When to keep the original",
+      "paragraphs": [
+        "Do not migrate merely because a URL redirected. Confirm vendor continuity, export your settings and price the disruption before changing the working environment."
+      ]
+    },
+    {
+      "heading": "Migration rehearsal",
+      "paragraphs": [
+        "Create a copy of the project, remove production secrets, export data using a documented method and run the tests in the candidate workflow. Compare the work needed to restore service after a failed change. Keep the original until the rehearsal succeeds."
+      ]
+    }
+  ],
+  "verdict": "First distinguish an account-transition problem from a coding-workflow problem.",
+  "bestFor": "Existing Windsurf users with a specific workflow, budget or ownership constraint",
+  "notFor": "Readers expecting a replacement to move code, data and infrastructure automatically",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "windsurf",
+      "revision": 1,
+      "digest": "fc9b94f9c8f365906acf2bb53c660797664b7b945dba6c2d9acc3bd1d61d3eff"
+    },
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    },
+    {
+      "slug": "github-copilot",
+      "revision": 1,
+      "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e"
+    },
+    {
+      "slug": "cline",
+      "revision": 1,
+      "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

@@ -1,0 +1,205 @@
+[
+  {
+    "path": "/tools/bolt-new/",
+    "revision": 1,
+    "digest": "4e824ce73ddbad29528f82f18e83dd0c4565766315dff628c97a1863d4f5cba7",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/tools/claude-code/",
+    "revision": 1,
+    "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/tools/cline/",
+    "revision": 1,
+    "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/tools/cursor/",
+    "revision": 1,
+    "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/tools/github-copilot/",
+    "revision": 1,
+    "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e",
+    "state": "in-review",
+    "gaps": [
+      "Confirm account-specific privacy settings and feature availability before a team recommendation."
+    ]
+  },
+  {
+    "path": "/tools/lovable/",
+    "revision": 1,
+    "digest": "cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/tools/replit/",
+    "revision": 1,
+    "digest": "c65a52483a6e64b8435350e212ecdfa4885dcf1fb97a73cead852a23ca4d519f",
+    "state": "in-review",
+    "gaps": [
+      "Public pricing extract did not expose reliable plan amounts; confirm the current plan and included allowance.",
+      "Confirm data residency and export requirements for the proposed deployment."
+    ]
+  },
+  {
+    "path": "/tools/windsurf/",
+    "revision": 1,
+    "digest": "fc9b94f9c8f365906acf2bb53c660797664b7b945dba6c2d9acc3bd1d61d3eff",
+    "state": "in-review",
+    "gaps": [
+      "Official Windsurf URLs redirect to Devin; verify product identity, existing entitlements and current pricing before publication."
+    ]
+  },
+  {
+    "path": "/alternatives/bolt-new/",
+    "revision": 1,
+    "digest": "3643983d52abf2df6b5e8f14a7fb1a86eed3fef2bb594951716a4131526f9576",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/alternatives/claude-code/",
+    "revision": 1,
+    "digest": "eaaf936788ed5f79a05cba4d560068dbe51e6b722765a87a22e2564ce733edf1",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/alternatives/cursor/",
+    "revision": 1,
+    "digest": "9033203677a67da4b8923fe28e66d9ff13e24dcb178f65de48e1ce737b13199f",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/alternatives/lovable/",
+    "revision": 1,
+    "digest": "fa07f447cbed0c810db1b78eec1bc67a3758e313b5e19f7a9a27f20209101681",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/alternatives/replit/",
+    "revision": 1,
+    "digest": "ad3ccad94df77b6a01bb4a086b37c7f6c92156e45acc1f8f70319cfc0d220d21",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/alternatives/windsurf/",
+    "revision": 1,
+    "digest": "0cd535596162694386f02bc99a146c173d886687e0edc90408760138d7b153de",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/best/ai-app-builders-for-prototypes/",
+    "revision": 1,
+    "digest": "6372c28e2cfb41d7b8dd883330ef6ec065b8d2f8c90d8de1e8960e597305594c",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/best/ai-coding-tools-for-solo-founders/",
+    "revision": 1,
+    "digest": "94aff4f7b54516dd2071811ac2cba191f1409a65f5668670d78c0cf9985256fa",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/compare/cline-vs-claude-code/",
+    "revision": 1,
+    "digest": "1dcea4e0adc7339b812cf2f72278308b26cadbf179830900910a13e226c3baa6",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/compare/cursor-vs-claude-code/",
+    "revision": 1,
+    "digest": "cf4adf2e550d076ab3edca7b83289659fae5e139f337804ab6879d1478b59c7d",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/compare/cursor-vs-github-copilot/",
+    "revision": 1,
+    "digest": "6229982672c4588f3caea3a572bf28097b52bfe390ab5db9e28dc5aa7c2e8b91",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/compare/lovable-vs-bolt/",
+    "revision": 1,
+    "digest": "bd830b508dee888a8d0f7faf11183421fc05dab99b3fea53a45157eea268fd7d",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/compare/replit-vs-lovable/",
+    "revision": 1,
+    "digest": "b024bb0b23790b6f3df3ff9834c345f84075b0e5ab018c600305183ef99df95a",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/compare/windsurf-vs-cursor/",
+    "revision": 1,
+    "digest": "286a9933aff348f0e97b7876a3b53ae4d45040a2d938112853ccbfefe995124e",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/guides/ai-editor-vs-terminal-agent/",
+    "revision": 1,
+    "digest": "b77db229e3c7a3d0aecf7e52c35fd0c61a382137778a889781e7b97e5b647bce",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/guides/how-to-choose-a-developer-tool/",
+    "revision": 1,
+    "digest": "8547f3cdbd6d1815ee1a9e3c1f3542929bff9a0034fc6913e02d57d5b2689dd1",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/pricing/claude-code/",
+    "revision": 1,
+    "digest": "4530020612aa555488e48b98f2a108625de3e9d1e2934e0410bbb59b29c18292",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/pricing/cursor/",
+    "revision": 1,
+    "digest": "668a813367468904250bd718e6063aa79dd1df988dbf07826cb352a65f71e4db",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/pricing/lovable/",
+    "revision": 1,
+    "digest": "4f3fafc80a65f1d6b9804603e622433a08a6188ea6a5ae59a8cdaf3ca336f126",
+    "state": "in-review",
+    "gaps": []
+  },
+  {
+    "path": "/pricing/replit/",
+    "revision": 1,
+    "digest": "9d5917fb66f293c6df8be98fa46d72637935ec45820325a46ecab72e18058852",
+    "state": "in-review",
+    "gaps": []
+  }
+]

@@ -1,0 +1,160 @@
+{
+  "slug": "github-copilot",
+  "kind": "tools",
+  "title": "GitHub Copilot",
+  "summary": "Coding assistance for evaluating an existing GitHub and IDE workflow.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://docs.github.com/en/copilot/get-started/plans",
+      "title": "Copilot plans",
+      "publisher": "GitHub Copilot",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "pricing",
+      "url": "https://docs.github.com/en/copilot/get-started/plans",
+      "title": "Plans and billing",
+      "publisher": "GitHub Copilot",
+      "accessedAt": "2026-09-27"
+    }
+  ],
+  "facts": [
+    {
+      "key": "workflow",
+      "label": "Workflow",
+      "value": "IDE assistance and GitHub features vary by plan",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": true
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy / data handling",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "selfHosting",
+      "label": "Product self-hosting",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "localModels",
+      "label": "Local model inference",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "portability",
+      "label": "Code / data portability",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    }
+  ],
+  "prices": [
+    {
+      "name": "Pro",
+      "amount": 10,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Monthly individual plan",
+      "allowance": null,
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    },
+    {
+      "name": "Business",
+      "amount": 19,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Per granted seat per month",
+      "allowance": null,
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Evaluate in the real organization",
+      "paragraphs": [
+        "Trial the same editors and repository permissions used by the team. Confirm whether policy is set by an organization or by an individual account. Compare the features actually enabled for that account rather than a combined marketing feature list."
+      ]
+    },
+    {
+      "heading": "Count adoption overhead",
+      "paragraphs": [
+        "A trial should include onboarding a second developer, reviewing their changes and revoking access afterward. If preserving the existing workflow is the goal, record how much new configuration the trial introduced."
+      ]
+    }
+  ],
+  "verdict": "Start here if changing the team workflow is a larger cost than changing the assistant. Check seat policies before buying individual subscriptions.",
+  "bestFor": "Teams evaluating assistance within an established development workflow",
+  "notFor": "Buyers assuming every feature is available on every plan",
+  "migration": "Inventory organization policies and supported editor features before switching. Preserve repository instructions outside any one assistant.",
+  "dependencies": [],
+  "gaps": [
+    "Confirm account-specific privacy settings and feature availability before a team recommendation."
+  ],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  },
+  "name": "GitHub Copilot",
+  "category": "AI Coding",
+  "productUrl": "https://github.com/features/copilot"
+}

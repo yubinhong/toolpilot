@@ -1,0 +1,96 @@
+{
+  "slug": "ai-editor-vs-terminal-agent",
+  "kind": "guides",
+  "title": "AI editor vs terminal agent: choose a review loop",
+  "summary": "Compare interaction styles without assuming products fit only one category.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Editor-oriented work",
+      "paragraphs": [
+        "Use this lens when the main activity is navigating files, selecting context and revising diffs. Check whether the interface helps you notice changes outside the intended scope. Do not infer that an editor cannot run multi-step tasks."
+      ]
+    },
+    {
+      "heading": "Terminal-oriented work",
+      "paragraphs": [
+        "Use this lens when a task is naturally expressed as repository operations and checks. Inspect command permissions, environment variables and recovery behavior. Do not infer that a terminal agent lacks IDE or web entry points."
+      ]
+    },
+    {
+      "heading": "Run the same acceptance test",
+      "paragraphs": [
+        "Start from the same commit and request one behavior change. Measure whether you can explain the final diff and reproduce the result. Compare review effort and reversibility before comparing response speed."
+      ]
+    },
+    {
+      "heading": "A hybrid can be reasonable",
+      "paragraphs": [
+        "You may read and review in an editor while delegating bounded tasks through a terminal. Avoid overlapping agents editing the same files without coordination. Keep the authoritative task and tests in the repository."
+      ]
+    }
+  ],
+  "verdict": "Choose the surface that makes intent, changes and verification easiest for you to inspect.",
+  "bestFor": "Developers writing a repeatable evaluation and an exit plan",
+  "notFor": "Readers looking for unmeasured speed or accuracy rankings",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    },
+    {
+      "slug": "claude-code",
+      "revision": 1,
+      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+    },
+    {
+      "slug": "cline",
+      "revision": 1,
+      "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

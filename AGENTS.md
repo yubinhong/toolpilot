@@ -77,7 +77,7 @@
 ### 5.1 已确认的技术基线
 
 - 主语言与版本：`TypeScript/TSX`，`typescript@5.9.3`；页面源码位于 `app/`，共享 UI 位于 `components/`，目录数据位于 `lib/catalog.mjs`。
-- Web 框架：`Next.js 16.3.1 App Router`；`next.config.mjs` 已确认 `output: export`、`trailingSlash: true`，当前没有独立服务端、API 或数据库。
+- Web 框架：`Next.js 16.3.6 App Router`；`next.config.mjs` 已确认 `output: export`、`trailingSlash: true`，当前没有独立服务端、API 或数据库。
 - 运行时要求：`Node.js 22`，由根目录 `.nvmrc` 固定；依赖由 npm 管理，锁文件为 `package-lock.json` lockfile v3。
 - 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`、`smoke`、`release:check`、`cloudflare:build`，ESLint 为 `9.39.5`。
 - 域名配置：`.env.example` 提供 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`；当前 Direct Upload 项目 `toolpilot` 已绑定并通过公网 smoke 验证，目标迁移到 Cloudflare Pages Git Integration 后由 `main` 自动部署。
@@ -96,7 +96,7 @@
 | 集成/E2E | `TBD` | 尚未引入浏览器测试框架；页面 smoke test 用本地 HTTP 检查替代 |
 | 构建 | `npm run build` | 生成静态 `out/`；构建后审查路由、`robots.txt` 和 `sitemap.xml` |
 | 依赖安装 | `nvm use 22 && npm ci` | 使用锁文件恢复可复现依赖，不升级版本 |
-| 依赖审计 | `nvm use 22 && npm audit --audit-level=high` | 发布前必须通过；本次结果为 0 vulnerabilities |
+| 依赖审计 | `nvm use 22 && npm audit --audit-level=high` | 发布前必须通过；以当前执行结果为准，历史审计结果不可复用 |
 | Cloudflare Pages Git Integration | Cloudflare Dashboard | 项目连接 `yubinhong/toolpilot`，生产分支 `main`，构建命令 `npm run cloudflare:build`，输出目录 `out` |
 | Cloudflare 部署检查 | `npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot` | 迁移前后只读核对部署来源；不得输出令牌 |
 
@@ -140,3 +140,13 @@
 - 文档和变更记录已同步，或明确记录本次为何不需要同步。
 - 商业关系、Affiliate、Featured、Sponsor 和用户可见评价没有混淆。
 - 最终汇报包含结果、关键文件、验证命令与结果、剩余风险；不要只描述过程。
+
+
+## 9. 已采用的内容审核与验证机制
+
+- content/ 正文、lib/content-policy.mjs 审核门槛与 ADR-0009 必须一致；原 researchTools 快照保留历史语义。
+- 正式批准绑定用户审核证据、revision 和 digest；工具事实变更必须检查所有依赖正文。代理不得伪造审核或实测。
+- 草稿 URL 保留、noindex、不入 sitemap；未知与否定不同。公开客户端 DTO 不携带内部商业研究或审批证据。
+- npm run content:check / content:review / content:freshness / links:check / artifacts:check 为已配置命令。build 包含内容和产物检查。
+- smoke 默认 current；旧生产迁移期间 workflow 显式使用 legacy，只有新部署核验后才能切换。
+- 历史审计通过记录不代表当前安全状态；每次发布重新执行 npm audit --audit-level=high，不屏蔽真实失败。

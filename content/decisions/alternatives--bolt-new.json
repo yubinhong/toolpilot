@@ -1,0 +1,95 @@
+{
+  "slug": "bolt-new",
+  "kind": "alternatives",
+  "title": "Bolt.new alternatives",
+  "summary": "Bolt.new alternatives: candidate paths, switching costs and reasons to keep the original.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Match the reason to a candidate",
+      "paragraphs": [
+        "Compare Lovable and Replit for a new guided prototype. Evaluate Cursor if you are willing to manage the code and infrastructure directly. Do not compare a code assistant subscription with a whole hosted application bill."
+      ]
+    },
+    {
+      "heading": "When to keep the original",
+      "paragraphs": [
+        "Keep Bolt if its documented scope fits and you can independently build the exported project. Resolve usage limits before treating a different billing unit as cheaper."
+      ]
+    },
+    {
+      "heading": "Migration rehearsal",
+      "paragraphs": [
+        "Create a copy of the project, remove production secrets, export data using a documented method and run the tests in the candidate workflow. Compare the work needed to restore service after a failed change. Keep the original until the rehearsal succeeds."
+      ]
+    }
+  ],
+  "verdict": "Change direction when the technology scope, handoff or iteration budget is the actual constraint.",
+  "bestFor": "Existing Bolt.new users with a specific workflow, budget or ownership constraint",
+  "notFor": "Readers expecting a replacement to move code, data and infrastructure automatically",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "bolt-new",
+      "revision": 1,
+      "digest": "4e824ce73ddbad29528f82f18e83dd0c4565766315dff628c97a1863d4f5cba7"
+    },
+    {
+      "slug": "lovable",
+      "revision": 1,
+      "digest": "cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533"
+    },
+    {
+      "slug": "replit",
+      "revision": 1,
+      "digest": "c65a52483a6e64b8435350e212ecdfa4885dcf1fb97a73cead852a23ca4d519f"
+    },
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "claude-code",
+  "kind": "pricing",
+  "title": "Claude Code pricing: billing basis and cost boundaries",
+  "summary": "Claude Code pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Subscription evaluation",
+      "paragraphs": [
+        "The recorded Pro subscription is USD 20 with monthly billing or USD 200 paid up front for a year. This is the subscription base, not a guarantee of unlimited coding. A token-cost display is not automatically the amount a subscriber will be charged; verify the account route and any extra-usage settings."
+      ]
+    },
+    {
+      "heading": "API evaluation",
+      "paragraphs": [
+        "A cost estimate needs the model, input and output volumes, cache behavior and tool-use pattern. Without those inputs, converting tasks into dollars would be invented precision."
+      ]
+    },
+    {
+      "heading": "No task-to-credit exchange rate",
+      "paragraphs": [
+        "A request, a credit and a token are not interchangeable. ToolPilot has not measured a representative workload across these products, so this guide does not invent a shared usage conversion or promise a fixed number of completed tasks."
+      ]
+    }
+  ],
+  "verdict": "Identify whether the account is subscription-based or API-billed before estimating a cost.",
+  "bestFor": "Buyers checking Claude Code subscription and usage assumptions",
+  "notFor": "Readers seeking a guaranteed workload total without measuring usage",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "claude-code",
+      "revision": 1,
+      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

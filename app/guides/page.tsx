@@ -1,31 +1,5 @@
-import Link from "next/link";
-import { PageFrame } from "../../components/page-frame";
-import { PageIntro } from "../../components/page-intro";
-import { guides } from "../../lib/catalog.mjs";
-
-export default function GuidesPage() {
-  return (
-    <PageFrame>
-      <PageIntro
-        eyebrow="Guides"
-        title="Useful guidance starts before the shortlist."
-        summary="Short, practical notes for developers making tool and stack decisions. Each guide is a draft until its sources and review date are recorded."
-      />
-      <section className="content-section">
-        <div className="shell">
-          <ul className="guide-list">
-            {guides.map((guide) => (
-              <li key={guide.slug}>
-                <Link href={`/guides/${guide.slug}/`}>
-                  <p className="card-kicker">{guide.tag}</p>
-                  <strong>{guide.title}</strong>
-                  <span>{guide.summary}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    </PageFrame>
-  );
-}
+import Link from 'next/link';
+import { ContentHub } from '../../components/content-hub';
+import { pageMetadata } from '../../lib/metadata';
+export const metadata = pageMetadata('/guides/');
+export default function Page() { return <><ContentHub kind="guides"/><aside className="shell historical-guides" aria-label="Earlier draft guides"><p>Earlier outlines: <Link href="/guides/build-a-small-ai-saas-stack/">Small AI SaaS stack</Link> · <Link href="/guides/affiliate-and-sponsored-tool-pages/">Commercial labeling</Link></p></aside></>; }

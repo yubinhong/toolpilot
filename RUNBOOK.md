@@ -25,7 +25,7 @@
 ### 前置检查
 
 - [x] 源码、`package.json`、锁文件和构建配置已建立。
-- [x] 使用 Node 22；当前工程验证使用 Node 22.23.0。
+- [x] 使用 Node 22；当前工程验证使用 Node 22.23.2。
 - [x] `TESTING.md` 中的 Lint、类型、测试和构建命令已填入并通过。
 - [x] 生成路由、站点地图、robots、法律页面和 50 条目录链接已审查；工具事实、来源和商业关系仍是 Draft，未完成正式内容审核。
 - [x] TASK-003 的内容发布门槛已写入 `docs/adr/0006-content-review-gate.md`；链接可达只作为访问证据，不能替代事实核验。
@@ -123,3 +123,18 @@ done
 - RTO：`TBD`；需要确认静态托管、DNS 和上一版本产物的恢复时间。
 - 备份位置：`TBD`；不得把备份放在公开仓库或聊天中。
 - 恢复演练：尚未完成；必须先完成新 Git-integrated 项目和域名迁移，再确认上一份可回退部署，通过 Cloudflare Pages 部署历史做一次回滚，并重新验证生产关键路径。
+
+
+## TASK-005 release handoff (2026-09-27)
+
+The user has explicitly authorized production deployment with online verification for each deliverable progress. Keep the existing Direct Upload recovery target and all ADR-0008 migration steps. Current local `npm ci`, `npm audit --audit-level=high`, `cloudflare:build` and local current-profile smoke pass; this alone does not prove production deployment. The non-interactive Wrangler Pages check requires a Cloudflare API Token, which is not present in this environment. Confirm Git Integration through the actual deployment source, then run `SMOKE_PROFILE=current` against `https://toolpilot.cc`. Pending content remains noindex; this authorization is not editorial approval.
+
+1. Resolve the security audit and review final operator/contact/privacy details.
+2. Obtain owner decisions for exact content revisions/digests. Pending records remain noindex, including on a preview; do not switch all records to published.
+3. Run Node 22 locked install, audit, cloudflare:build and local current smoke.
+4. With separate commit/push authorization, review a clean full SHA and run release:check. Never weaken the dirty-worktree gate.
+5. Follow TASK-004 to validate Git Integration preview before any authorized domain migration. Record deployment ID/source SHA.
+6. After authorized new deployment, run SMOKE_PROFILE=current against the actual public origin and verify page directives, sitemap and real 404. Only then switch production-monitor.yml from legacy to current. Until cutover, legacy checks the old deployed contract explicitly.
+7. Retain the old project. Rollback requires authorization, a known verified deployment/source and before/after smoke. No blanket URL redirects, WAF disabling or emergency token publication.
+
+Maintenance reports run daily via content-maintenance.yml after deployment of the workflow; configuration alone is not execution evidence. Inspect restricted/broken links and freshness without treating link checks as factual approval. Artifact retention is 14 days. No external message or issue is sent automatically.

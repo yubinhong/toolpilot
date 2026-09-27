@@ -1,0 +1,154 @@
+{
+  "slug": "replit",
+  "kind": "tools",
+  "title": "Replit",
+  "summary": "An app-building workflow to assess together with its operating costs.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://docs.replit.com/features/agent/overview",
+      "title": "Replit Agent overview",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "pricing",
+      "url": "https://replit.com/pricing",
+      "title": "Plans and billing",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "core",
+      "url": "https://docs.replit.com/billing/plans/replit-core",
+      "title": "Replit Core",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-27"
+    }
+  ],
+  "facts": [
+    {
+      "key": "workflow",
+      "label": "Workflow",
+      "value": "Natural-language agent for building applications",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": true
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy / data handling",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "selfHosting",
+      "label": "Product self-hosting",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "localModels",
+      "label": "Local model inference",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "portability",
+      "label": "Code / data portability",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    }
+  ],
+  "prices": [
+    {
+      "name": "Current paid plan",
+      "amount": null,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Exact plan and checkout terms pending",
+      "allowance": null,
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Budget building and running",
+      "paragraphs": [
+        "Keep a record of the current plan and what is charged when the application is live. The pricing extract in this pack was insufficient for a fixed amount; obtain the actual checkout basis before comparing a monthly budget."
+      ]
+    },
+    {
+      "heading": "Trial operational changes",
+      "paragraphs": [
+        "After the first successful demo, change a data field and repair a deliberately failing request. Rehearse recovery with synthetic data. Record how code, data and configuration would be recovered outside the original workflow."
+      ]
+    }
+  ],
+  "verdict": "Evaluate the full build-to-operation loop, not just the first demo. Require a separate estimate for editing and the live application.",
+  "bestFor": "Builders comparing a hosted development workflow",
+  "notFor": "Projects with an unverified residency or private-network requirement",
+  "migration": "Keep application code, database backups and environment-variable names portable. Test an independent build before considering a migration complete.",
+  "dependencies": [],
+  "gaps": [
+    "Public pricing extract did not expose reliable plan amounts; confirm the current plan and included allowance.",
+    "Confirm data residency and export requirements for the proposed deployment."
+  ],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  },
+  "name": "Replit",
+  "category": "AI App Builders",
+  "productUrl": "https://replit.com/"
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "claude-code",
+  "kind": "alternatives",
+  "title": "Claude Code alternatives",
+  "summary": "Claude Code alternatives: candidate paths, switching costs and reasons to keep the original.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Match the reason to a candidate",
+      "paragraphs": [
+        "For visual iteration, trial Cursor. For provider configuration, inspect Cline. For a GitHub-oriented organization, examine the actual Copilot plan. Each path needs its own permission and data review."
+      ]
+    },
+    {
+      "heading": "When to keep the original",
+      "paragraphs": [
+        "Keep Claude Code if the command loop is already reliable and your concern can be addressed with clearer permissions, smaller tasks or a reviewed billing configuration."
+      ]
+    },
+    {
+      "heading": "Migration rehearsal",
+      "paragraphs": [
+        "Create a copy of the project, remove production secrets, export data using a documented method and run the tests in the candidate workflow. Compare the work needed to restore service after a failed change. Keep the original until the rehearsal succeeds."
+      ]
+    }
+  ],
+  "verdict": "Choose an alternative by the workflow or account boundary you need to change.",
+  "bestFor": "Existing Claude Code users with a specific workflow, budget or ownership constraint",
+  "notFor": "Readers expecting a replacement to move code, data and infrastructure automatically",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "claude-code",
+      "revision": 1,
+      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+    },
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    },
+    {
+      "slug": "cline",
+      "revision": 1,
+      "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696"
+    },
+    {
+      "slug": "github-copilot",
+      "revision": 1,
+      "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

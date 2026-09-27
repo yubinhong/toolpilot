@@ -1,0 +1,85 @@
+{
+  "slug": "cursor-vs-claude-code",
+  "kind": "compare",
+  "title": "Cursor vs Claude Code",
+  "summary": "Cursor vs Claude Code: developers choosing an editor-centered or command-oriented repository workflow.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Keep the task identical",
+      "paragraphs": [
+        "Use an existing failing test and the same repository snapshot. For Cursor, evaluate how comfortably you inspect changes in the editor. For Claude Code, evaluate the task and command loop. Both products have more than one surface; this comparison does not claim either is limited to one interface."
+      ]
+    },
+    {
+      "heading": "Permission boundaries",
+      "paragraphs": [
+        "Before running commands, define which files and services are off limits. Reject a solution that requires weakening tests or sharing production secrets. A faster first response is not evidence of a safer change."
+      ]
+    },
+    {
+      "heading": "When neither is a fit",
+      "paragraphs": [
+        "If your required security, data location or operating environment is not supported by current evidence, pause the purchase. Use the sources below to resolve the missing constraint before accepting a recommendation."
+      ]
+    }
+  ],
+  "verdict": "Choose the workflow you can inspect most reliably: editor-centered iteration or a terminal-oriented task loop. Neither choice removes code review.",
+  "bestFor": "Developers choosing an editor-centered or command-oriented repository workflow",
+  "notFor": "Teams needing a verified offline or data-residency guarantee",
+  "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
+  "dependencies": [
+    {
+      "slug": "cursor",
+      "revision": 1,
+      "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729"
+    },
+    {
+      "slug": "claude-code",
+      "revision": 1,
+      "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd"
+    }
+  ],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

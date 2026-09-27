@@ -1,5 +1,9 @@
+import { pageMetadata } from "../../lib/metadata";
+import { ContentSection } from "../../components/content-section";
 import { PageFrame } from "../../components/page-frame";
 import { PageIntro } from "../../components/page-intro";
+
+export const metadata = pageMetadata("/stacks/");
 
 const stackAreas = [
   ["Application layer", "The framework and deployment loop should make the main product path obvious."],
@@ -16,21 +20,22 @@ export default function StacksPage() {
         title="A stack is a set of boundaries, not a list of logos."
         summary="The first Stacks route gives future content a reviewable shape for combining categories without hiding operational trade-offs."
       />
-      <section className="content-section">
-        <div className="shell">
-          <div className="section-heading-row">
-            <div>
-              <p className="eyebrow">Stack map</p>
-              <h2>Review the system one responsibility at a time.</h2>
-            </div>
+      <ContentSection>
+        <div className="section-heading-row">
+          <div>
+            <p className="eyebrow">Stack map</p>
+            <h2>Review the system one responsibility at a time.</h2>
           </div>
-          <ul className="stack-list">
-            {stackAreas.map(([title, summary], index) => (
-              <li key={title}><strong>0{index + 1} / {title}</strong><span>{summary}</span></li>
-            ))}
-          </ul>
         </div>
-      </section>
+        <ul className="stack-list">
+          {stackAreas.map(([title, summary], index) => (
+            <li key={title}>
+              <strong>0{index + 1} / {title}</strong>
+              <span>{summary}</span>
+            </li>
+          ))}
+        </ul>
+      </ContentSection>
     </PageFrame>
   );
 }

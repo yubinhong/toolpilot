@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { getSiteUrl } from "../lib/site-config.mjs";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "ToolPilot - Choose developer tools with clearer trade-offs",
     template: "%s | ToolPilot",

@@ -1,0 +1,184 @@
+{
+  "slug": "lovable",
+  "kind": "tools",
+  "title": "Lovable",
+  "summary": "A natural-language web-app workflow to evaluate with an explicit handoff plan.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://docs.lovable.dev/introduction/welcome",
+      "title": "Welcome to Lovable",
+      "publisher": "Lovable",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "pricing",
+      "url": "https://docs.lovable.dev/introduction/subscription-plans",
+      "title": "Plans and billing",
+      "publisher": "Lovable",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "usage",
+      "url": "https://docs.lovable.dev/introduction/credits-and-usage",
+      "title": "Credits and usage",
+      "publisher": "Lovable",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "ownership",
+      "url": "https://docs.lovable.dev/tips-tricks/deployment-hosting-ownership",
+      "title": "Deployment, hosting and ownership",
+      "publisher": "Lovable",
+      "accessedAt": "2026-09-27"
+    }
+  ],
+  "facts": [
+    {
+      "key": "workflow",
+      "label": "Workflow",
+      "value": "Natural-language web application builder",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": true
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy / data handling",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "selfHosting",
+      "label": "Product self-hosting",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "localModels",
+      "label": "Local model inference",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "portability",
+      "label": "Code / data portability",
+      "value": "Project code can be synchronized with Git providers; database and service migration still need a separate plan.",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": false
+    },
+    {
+      "key": "billingModel",
+      "label": "Usage basis",
+      "value": "Credits cover build and runtime usage categories; inspect the workspace usage breakdown.",
+      "sourceIds": [
+        "usage"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": false
+    }
+  ],
+  "prices": [
+    {
+      "name": "Pro \u2014 100 monthly credits",
+      "amount": 25,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Monthly billing",
+      "allowance": "100 monthly credits",
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    },
+    {
+      "name": "Pro \u2014 annual commitment",
+      "amount": 250,
+      "currency": "USD",
+      "interval": "year",
+      "billing": "Annual total, not a monthly charge",
+      "allowance": "100 monthly credits",
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [
+        "pricing"
+      ],
+      "checkedAt": "2026-09-27"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Prototype a real boundary",
+      "paragraphs": [
+        "Start with one persisted entity, one signed-in interaction and one invalid input. Inspect what happens when the user is not authorized. A polished interface should not substitute for a test of permissions and data validation."
+      ]
+    },
+    {
+      "heading": "Plan the handoff",
+      "paragraphs": [
+        "Use the documented ownership and hosting guidance to inventory what moves with the code and what needs separate operations. Confirm which application framework your project uses before choosing a deployment target. Database and secret migration deserve their own rehearsal."
+      ]
+    }
+  ],
+  "verdict": "Shortlist Lovable for a web prototype whose code and deployment ownership you can review before launch. Budget iteration and ongoing operation separately.",
+  "bestFor": "Founders validating a web-app workflow",
+  "notFor": "Teams treating generated output as production-ready without security review",
+  "migration": "Before committing, rehearse code handoff, database export and secret replacement. Moving code alone does not prove the complete service can be operated elsewhere.",
+  "dependencies": [],
+  "gaps": [],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  },
+  "name": "Lovable",
+  "category": "AI App Builders",
+  "productUrl": "https://lovable.dev/"
+}

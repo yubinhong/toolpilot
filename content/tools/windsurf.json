@@ -1,0 +1,144 @@
+{
+  "slug": "windsurf",
+  "kind": "tools",
+  "title": "Windsurf",
+  "summary": "A historical editor entry whose official sources now point to Devin.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://docs.devin.ai/desktop/cascade/cascade",
+      "title": "Cascade overview (redirected from Windsurf)",
+      "publisher": "Windsurf",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "pricing",
+      "url": "https://devin.ai/pricing",
+      "title": "Plans and billing",
+      "publisher": "Windsurf",
+      "accessedAt": "2026-09-27"
+    }
+  ],
+  "facts": [
+    {
+      "key": "workflow",
+      "label": "Workflow",
+      "value": "Historical Windsurf documentation redirects to Devin Desktop",
+      "sourceIds": [
+        "product"
+      ],
+      "checkedAt": "2026-09-27",
+      "critical": true
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy / data handling",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "selfHosting",
+      "label": "Product self-hosting",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "localModels",
+      "label": "Local model inference",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    },
+    {
+      "key": "portability",
+      "label": "Code / data portability",
+      "value": null,
+      "sourceIds": [],
+      "checkedAt": null,
+      "critical": false
+    }
+  ],
+  "prices": [
+    {
+      "name": "Legacy Windsurf entitlement",
+      "amount": null,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Unresolved after official redirect",
+      "allowance": null,
+      "overage": null,
+      "taxes": null,
+      "sourceIds": [],
+      "checkedAt": null
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Establish the current entitlement",
+      "paragraphs": [
+        "The official URLs inspected during this research redirected to Devin. Do not copy a historic Windsurf price into a new budget. Ask the vendor which product and plan a new purchase now buys and what happens to an existing account."
+      ]
+    },
+    {
+      "heading": "Rehearse a reversible move",
+      "paragraphs": [
+        "Export a record of your extensions, settings and repository rules before testing another editor. Keep the old environment available until build, test and review tasks can be reproduced. Migration difficulty remains a question for your installation, not a measured score here."
+      ]
+    }
+  ],
+  "verdict": "Pause a new purchase decision until the current product identity and account migration terms are confirmed. This entry preserves the existing Windsurf URL.",
+  "bestFor": "Existing users checking continuity of their editor workflow",
+  "notFor": "New buyers relying on old Windsurf prices",
+  "migration": "Record your current account entitlement and editor settings. Ask the vendor to confirm what transfers; do not assume a redirect preserves a subscription.",
+  "dependencies": [],
+  "gaps": [
+    "Official Windsurf URLs redirect to Devin; verify product identity, existing entitlements and current pricing before publication."
+  ],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based research and editorial draft; owner approval pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  },
+  "name": "Windsurf",
+  "category": "AI Coding",
+  "productUrl": "https://windsurf.com/"
+}

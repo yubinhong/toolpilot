@@ -10,6 +10,13 @@ export const REQUIRED_RELEASE_FILES = Object.freeze([
   "package.json",
   "scripts/release-readiness.mjs",
   "scripts/smoke.mjs",
+  "scripts/smoke-legacy.mjs",
+  "scripts/check-content.mjs",
+  "scripts/check-artifacts.mjs",
+  "lib/content-policy.mjs",
+  "lib/content.mjs",
+  "lib/routes.mjs",
+  "content/link-hosts.json",
 ]);
 
 function isGitHubRemote(remoteUrl) {

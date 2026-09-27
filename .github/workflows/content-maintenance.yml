@@ -1,0 +1,29 @@
+name: Content maintenance reports
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Check content
+        run: node scripts/check-content.mjs
+      - name: Report freshness
+        run: node scripts/check-content.mjs --freshness > freshness-report.json
+      - name: Check public links without modifying content
+        run: node scripts/check-links.mjs > link-report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: content-maintenance
+          path: |
+            freshness-report.json
+            link-report.json
+          retention-days: 14

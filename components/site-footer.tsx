@@ -23,6 +23,9 @@ export function SiteFooter() {
           <p className="footer-label">Trust</p>
           <div className="footer-links">
             <Link href="/about/">About</Link>
+            <Link href="/editorial-policy/">Editorial policy</Link>
+            <Link href="/disclosure/">Disclosure</Link>
+            <Link href="/contact/">Contact</Link>
             <Link href="/privacy/">Privacy</Link>
             <Link href="/terms/">Terms</Link>
           </div>
@@ -30,7 +33,7 @@ export function SiteFooter() {
       </div>
       <div className="shell footer-bottom">
         <span>Independent research and editorial work in progress.</span>
-        <span>All catalog entries are draft until sourced.</span>
+        <span>Read each page’s review status and source dates.</span>
       </div>
     </footer>
   );
