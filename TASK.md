@@ -224,7 +224,9 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - Node.js 22.23.2 / npm 10.9.8: `npm run cloudflare:build` passed lint, typecheck, 78 tests, 39-record content validation, static export and artifact checks (99 pages / 4 indexable URLs); `npm audit --audit-level=high` found 0 vulnerabilities.
 - `npm run links:check` checked 144 unique targets: 117 HTTP-ok, 16 restricted, 6 policy-blocked and 5 temporary-error. Both new GitHub sources returned HTTP 200. `npm run content:freshness -- --as-of=2026-09-27` reports 38 unverified fields and 0 overdue.
 - Local current-profile `npm run smoke` passed 99 pages, robots, sitemap and a real 404. Direct export assertions confirmed the individual-plan policy, organization boundary, both source links and visible account-setting gap; `/tools/github-copilot/` remains `noindex, follow` and absent from the sitemap. `git diff --check` passed.
-- Release acceptance, preview and production smoke evidence will be added after the reviewed content/documentation commit is pushed and deployed.
+- Release acceptance: commit `304c7459facdfd3bc60572a864624e6f23336e5e` passed clean detached-worktree `npm run release:check`, GitHub CI `36357237763` and Cloudflare Pages deployment/check `2e856e18-4cf1-42da-aa78-d05ae9ed7679`.
+- Immutable preview `https://2e856e18.toolpilot-git.pages.dev` and production `https://toolpilot.cc` each passed current-profile smoke for 99 pages, robots, sitemap and a real 404. Direct HTML checks on both confirmed the individual-plan training policy, Business/Enterprise boundary, both official source links and unresolved account-setting gap; `/tools/github-copilot/` remains `noindex, follow` and outside the sitemap. All content remains in-review; no account setting, opt-out, owner approval or legal assessment is claimed.
+- Rollback: revert the reviewed content/documentation commit and restore its matching dependent digests and review manifests; let Git-integrated Pages redeploy, then rerun preview and production current-profile smoke. No route or data migration is involved.
 
 #### Homepage information architecture tranche — 2026-09-27
 
