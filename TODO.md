@@ -1,22 +1,25 @@
 # TODO.md
 
-> 这里是工作队列，不是当前任务的实施说明。进入执行的事项必须移入 `TASK.md`。`TASK-005` 已完成；候选事项进入执行前先更新 `TASK.md`。
+> 这里是工作队列，不是当前任务的实施说明。当前 `TASK-006` 为 READY；其他事项进入执行前先更新 `TASK.md`。本轮仅更新任务/TODO 排程，没有开始重建实现。
 
 ## Now - 已确认，等待进入执行
 
 | ID | 事项 | 价值/原因 | 优先级 | Owner | 依赖 | 状态 |
 | --- | --- | --- | --- | --- | --- | --- |
-| TODO-004 | 建立 CI、监控、告警和自动化回滚入口 | CI、生产 smoke 和监控入口已实现；GitHub 外部配置、通知和真实回滚演练仍未完成 | P0 | 工程/运维 Owner | TASK-004 | In progress |
+| TODO-004 | 完成 GitHub 通知配置核对并保留生产监控运维入口 | CI、current production smoke 和 Pages Git Integration 已实现；GitHub 通知路由仍未核验，生产回滚演练单独跟踪 TODO-302 | P0 | 工程/运维 Owner | TASK-004 | Waiting on repository Owner |
 
 ## Next - 近期候选
 
 | ID | 事项 | 价值/原因 | 优先级 | Owner | 进入条件 |
 | --- | --- | --- | --- | --- | --- |
-| TODO-005 | 评审并批准 `PRD-001` 的首批分类、评价标准和内容审核流程 | TASK-003 已建立技术审核字段，但 50 条公开条目仍是 Draft；需要决定哪些可转为正式内容 | P1 | 产品 Owner | TASK-003 |
-| TODO-006 | 选择工具内容源、版本模型和编辑/厂商审核流程 | TASK-003 已记录当前快照和链接状态，但来源版本、事实证据和正式更新时间策略仍未确认 | P1 | 产品/工程 Owner | PRD-001 批准 |
-| TODO-007 | 完成 ADR：静态导出、内容存储和部署拓扑 | Cloudflare Pages 已用于当前发布，但静态内容长期维护和 CI 拓扑仍未正式记录 | P1 | 技术负责人 | TASK-002 |
-| TODO-008 | 创建 ADR：独立评价与 Affiliate/Featured/Sponsor 隔离 | 固化用户信任和商业合规边界 | P1 | 产品/法务 Owner | 合作方条款和披露规则确认 |
-| TODO-305 | 评估 GitHub Actions Node 运行时弃用警告 | 最新 CI run 提示 `actions/checkout@v4` 与 `actions/setup-node@v4` 的 Node 20 运行时将由 runner 强制使用 Node 24；当前检查通过，后续需按兼容性评估更新 Actions major 或 runner 策略 | P2 | 工程 Owner | CI |
+| TODO-005 | 审核并批准首批内容的精确 revision/digest 与决策标准 | TASK-005 的 28 条记录仍是 `in-review`；批准必须核对依赖、官方来源、关键未知项和用户可见结论 | P1 | 产品/内容 Owner | 提供逐版本书面审核；不以部署替代内容批准 |
+| TODO-006 | 确认新增内容所用的官方来源、事实核验频率和编辑审核责任 | 版本/digest、sources、freshness 和审批机制已在代码/ADR-0009 实现；尚需为后续内容选定来源和实际维护 Owner | P1 | 产品/内容 Owner | TODO-309 内容清单及来源可用 |
+| TODO-008 | 完成商业关系与独立评价隔离的业务/法务决策 | 当前模型和 disclosure 分离 Affiliate/Featured/Sponsor，但合作条款、排序规则、归因、退款和披露文案未确认 | P1 | 产品/商业/法务 Owner | 正式条款与关系证据；当前不得激活商业链接 |
+| TODO-305 | 评估 GitHub Actions Node 运行时弃用警告 | 最新记录提示 `actions/checkout@v4` 与 `actions/setup-node@v4` 的 Node 20 运行时需按 runner 兼容策略复核；更新前在 CI 验证兼容性 | P2 | 工程 Owner | 官方兼容说明与可复现 CI |
+| TODO-309 | 准备重建计划 P1 内容批次 | 现有 8/6/6/4/2（tools/compare/alternatives/pricing/best）对照目标 12/10/5/4/3–5；比较页有 5 个命中计划清单、另有 1 个清单外页面；alternatives 数量足够但 slug/目标集合不同；所有内容均未批准 | P1 | 产品/内容 Owner | TASK-006 技术基线；逐页关键词/意图、官方来源、责任人、准确页面数量和依赖清单获批 |
+| TODO-310 | 决定 MCP 与 self-hosted 路由优先级和第一批页面边界 | 重建计划 §5/§49 列作 P0，§43/§44/§51 又列为未来/P2；代码目前没有这两个路由 | P1 | 产品 Owner | 在 PRD/TASK 中确认优先级、内容价值和维护 Owner；确认前不建空页、不进 sitemap |
+| TODO-311 | 验证重建计划剩余 SEO/性能目标 | 源码有 canonical、robots、sitemap、OG title/description、静态产物和 smoke 检查；尚无面包屑/JSON-LD、OG 图或每页 3 条上下文内链门槛，仓库也没有当前 Core Web Vitals 实测基线 | P2 | 工程/SEO Owner | TASK-006 先完成技术差异审查；外部指标需真实测量 |
+| TODO-312 | 评估目录多维过滤及参数 URL 索引策略 | 当前首页仅支持搜索和类别过滤，状态留在客户端；计划提出免费、自托管、MCP、API、平台等过滤项 | P2 | 产品/工程 Owner | 新过滤维度有已核验数据、用户需求和 noindex 测试设计 |
 
 ## Later - 暂不承诺
 
@@ -27,7 +30,10 @@
 
 | ID | 事项 | 阻塞原因 | 等待对象 | 下一次检查 |
 | --- | --- | --- | --- | --- |
-| TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 与域名迁移已完成；仍未在生产窗口执行上一份 verified deployment 恢复，需 Owner 安排并授权操作窗口 | 运维/项目 Owner | Owner 确认生产演练窗口和操作人 |
+| TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 与域名迁移已完成；尚未在生产窗口执行上一份 verified deployment 恢复，需 Owner 安排并授权操作窗口 | 运维/项目 Owner | Owner 确认生产演练窗口和操作人 |
+| TODO-306 | 完成旧 URL 的索引、外链和迁移证据采集 | 仓库没有完整旧 URL/GSC/backlink 列表；代码路由不能证明某旧 URL 是否索引或有外链，不能据此作批量 301/410 | 项目/SEO Owner | 提供 Search Console 导出、旧 sitemap、可核验外链/日志和受影响域名清单 |
+| TODO-307 | 补全公开运营主体、监控联系渠道和法律事实 | About/Contact/Privacy/Terms 页面结构存在；真实运营者、联系邮箱和最终法律文字尚未提供 | 项目 Owner/法务 | 提供准确资料并审核用户可见版本；不得编造地址或团队 |
+| TODO-308 | 批准 GA4、AdSense、Affiliate 或其他追踪/商业上线 | 当前均未集成；计划提出收入优先级但没有隐私主体、CMP/同意要求、合作方条款、归因及退款规则 | 项目/隐私/法务/商业 Owner | 单独批准数据字段/保留期、适用同意机制、合作条款、披露与可见标识；之前不得加脚本或商业承诺 |
 
 ## 发现问题记录规则
 
@@ -53,7 +59,7 @@
 - 逐条清单和当前访问证据见 `docs/content-review/TASK-003-2026-08-20.md`；完成正式内容发布前仍需产品/内容 Owner 逐条核验事实、来源新鲜度和商业条款。
 - 页面已部署并复核 `Draft`、`Pending` 和受限链接提示；正式审核状态没有被自动 HTTP 检查替代。
 
-## In progress in TASK-004
+## Implemented in TASK-004 (historical record; remaining gates stay above)
 
 - CI、current 生产 smoke、定时监控入口已加入 `.github/workflows/`；Cloudflare Pages Git Integration 已建立独立项目并完成生产域名切换；手动 Pages 发布 workflow 已移除。
 - `npm run release:check` 已加入并由 4 个测试覆盖；`4776027` 上的真实工作区检查已通过。
@@ -74,3 +80,7 @@
 - OPS-005: repeat production checks from an unrestricted environment; obtain actual legacy URL/GSC evidence. No guessed Crypto redirects.
 - Preserve TASK-004 migration/notification/rollback obligations in docs/tasks/TASK-004-before-remediation.md.
 - GROWTH-005: begin real 90-day GSC review only after authorized release. MCP, Chinese, calculators, ads and analytics require a later scoped task.
+
+## Closed in TASK-005 / TASK-006 planning
+
+- `TODO-007`: static export, versioned JSON decision content and Pages topology are documented in ADR-0001, ADR-0008 and ADR-0009. Keep Next.js static export unless a new accepted ADR changes it; no Astro migration is planned by default.

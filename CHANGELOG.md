@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — TASK-005 (2026-09-27)
+## Unreleased — TASK-005 / TASK-006 planning (2026-09-27)
 
 - Preserve 50 historical snapshots; add Claude Code/Cline identities and 28 owner-review drafts with field sources and explicit gaps.
 - Add version/digest approval and dependency checks, ordinary/commercial link separation and allowlisted client catalog data.
@@ -10,6 +10,7 @@
 - Patch Next.js/eslint-config-next to 16.3.6, sharp to 0.35.4 and js-yaml to 4.3.2; locked audit now passes locally.
 - Production deployment and online verification are authorized for each progress. After the CNAME cutover, commit `4fb09bca` deployed successfully; the immutable preview and `toolpilot.cc` passed current-profile smoke across 88 pages, robots, sitemap and a real 404, and manual production-monitor run `36299788937` passed. Editorial drafts remain noindex and unapproved.
 - Add a marked comparison of the source research report against TASK/TODO, separating covered work, under-specified acceptance, explicit deferrals and unsupported business targets.
+- Add TASK-006 planning by comparing the supplied rebuild plan with current routes, content counts, templates, SEO and release gates; no product code or public behavior changed.
 
 
 本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；工作区当前包含未提交的代码整理，Cloudflare Pages 发布证据按条目记录。

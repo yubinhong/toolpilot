@@ -1,3 +1,58 @@
+# TASK-006 — ToolPilot rebuild plan: P0 technical alignment
+
+- Status: READY (planning and current-code audit only; implementation has not started)
+- Date: 2026-09-27
+- Input: user-provided `TOOLPILOT_REBUILD_PLAN.md` (currently untracked; preserve it as supplied)
+- Baseline: HEAD `27ea628`; current code and accepted ADRs are the implementation facts. Do not infer live/indexed status from repository code.
+- Goal: close the source-verifiable P0 gaps from the rebuild plan while retaining ToolPilot's approved Next.js static-export architecture and existing content-review gates. Keep externally dependent content, URL migration and monetization work in TODO until evidence/owner decisions arrive.
+
+## Current-code comparison
+
+| Rebuild-plan area | Current evidence | Marked status / task treatment |
+| --- | --- | --- |
+| P0.1 baseline | No `pre-toolpilot-rebuild` tag exists. `TOOLPILOT_REBUILD_PLAN.md` is an untracked user file. | Open preflight. Record HEAD and preserve the untracked file before any code changes; do not create/replace tags or discard files as part of this documentation task. |
+| P0.2 historical URL audit | `lib/routes.mjs` is the current source registry; no complete GSC, backlink, old sitemap or legacy-path inventory is in the checkout. There is no verified `/docs/url-audit.csv`. | Partial/blocking. Build a source-side URL inventory and mark indexing/backlinks `unknown` unless evidence is supplied. Do not guess 301/410 targets or redirect all old paths to `/`. See TODO-306. |
+| P0.3 Crypto cleanup | Current `app/`, `components/`, `lib/`, `content/`, `next.config.mjs` and `package.json` contain no Crypto/DeFi legacy page implementation. | Code baseline covered; preserve historical/research records and verify generated routes during implementation. |
+| P0.4 design system | Shared page/layout components and `app/globals.css` already provide the current visual system. | Foundation exists. Audit against the plan and change only evidenced gaps; no wholesale restyle. |
+| P0.5 data and templates | `content/tools/`, `content/decisions/`, `lib/content-types.ts`, `lib/content-policy.mjs` and `components/content-detail.tsx` provide source/fact/price/review/digest fields and reusable detail/comparison output. | Partial. Comparison currently renders workflow/privacy/self-host/local-model/portability dimensions; plan dimensions such as MCP/API/IDE/team and purpose-specific pros/cons/FAQ are not explicit contracts. Keep unknown distinct from unsupported and add tests for any new contract. |
+| P0.6 information architecture | Tools, Compare, Alternatives, Pricing, Best, Guides, and `/stacks/` exist. `/stacks/` is noindex scaffolding. `/mcp/` and `/self-hosted/` do not exist. Current trust paths are `/editorial-policy/` and `/disclosure/`, not `/methodology/` and `/affiliate-disclosure/`. | Partial. Preserve working URLs; plan has an internal priority conflict: §5/§49 mark MCP/self-hosted routes P0, while §43/§44/§51 describe them as future/P2. Treat them as deferred until TODO-310 resolves intent and there is distinct source-backed content. Do not add empty indexable routes. |
+| P0.7 trust/legal pages | About, Contact, Privacy, Terms, editorial policy and disclosure routes exist. Contact/legal copy explicitly awaits operator facts. | Structure covered; real operator/contact/legal details remain blocked by TODO-307 and must not be fabricated. |
+| P0.8 technical SEO | Shared metadata creates canonical, robots index directives and Open Graph title/description; sitemap uses the route index flag; robots and tested 404 are implemented. Drafts remain noindex/out of sitemap. | Partial. Current source has no visible breadcrumb/JSON-LD contract, OG image/Twitter metadata, or evidence-backed 301/410 handling. Add only schema supported by the page and verified facts; preserve static artifact checks. |
+| P1 first content batch | Current content: 8 tools, 6 comparisons, 6 alternatives, 4 pricing pages, 2 Best pages and 2 guides; all 28 are `in-review`. | Partial. Plan target is 12 tools, 10 comparisons, 5 alternatives, 4 pricing and 3–5 Best pages. Pricing count meets target; alternative count exceeds it but the named set/slug differs. Five of the plan's ten named comparisons exist, plus one not in its list. Tools and Best are below target. Owner must choose the exact 10 comparison set and URL map in TODO-309. Keep drafts noindex until approval. |
+| Analytics and monetization | No GA4, AdSense, active Affiliate, user accounts or tracking integration. | Intentionally gated, not an implementation omission. Require separate privacy/legal/owner and partner decisions under TODO-308. |
+| Maintenance | Content checks, freshness reporting, safe outbound link checks, sitemap/artifact validation and current-profile smoke scripts exist. | Foundation covered; these checks do not establish facts, broad crawler access, GSC performance or 90-day growth. |
+
+## Scope and order
+
+1. Preserve the supplied plan and capture the exact repository baseline. Audit current routes, content records, metadata, components, tests, build and deployment source before editing.
+2. Produce a source-verifiable legacy/current URL inventory. Record `indexed` and `has_backlink` as unknown without original evidence. Any redirect or 410 must have an exact source URL, justified target/action and test.
+3. Close technical template/SEO deltas that fit the accepted static architecture: comparison dimensions, visible breadcrumbs and appropriate structured data, contextual internal links, unique share metadata and artifact/test coverage. Do not add schema claims unsupported by content.
+4. Resolve plan-vs-code route naming and the MCP/self-hosted priority conflict before public route changes. Preserve current paths unless a source-backed migration map and tests justify a change.
+5. Stage the planned content expansion as source-backed drafts only. Formal publication requires the exact owner approval workflow; content count is not an indexing or quality proxy.
+6. Run Node 22 lint, typecheck, tests, build/artifact checks, local current smoke and dependency audit when code changes begin. Review the final diff and record rollback. Production release requires its own valid authorization and online verification.
+
+## Acceptance criteria
+
+- The execution record compares every P0 area above with current code and separates complete, partial, blocked and deferred work.
+- A URL inventory is delivered with evidence fields and explicit unknowns; no speculative bulk delete, homepage redirect or 410 is introduced.
+- Current static routes, canonical/robots/sitemap behavior, draft noindex rules and 404 behavior remain tested. No unapproved content enters the sitemap.
+- Comparison output exposes only documented values; unknown, unsupported and not checked remain distinct. New page types do not ship as empty placeholders.
+- The approved Next.js static export and Cloudflare Pages topology remain unchanged unless a separately accepted ADR changes them.
+- New factual content is tied to sources and review dates; no fabricated pricing, hands-on testing, affiliate relationship, operator identity, traffic or revenue claim is added.
+- Analytics, ads, Affiliate activation and route migration stay behind their TODO gates until the required owner/evidence/legal inputs are recorded.
+- Required local quality checks and any authorized deployment verification are recorded with results, residual risks and rollback procedure.
+
+## Dependencies and deferred gates
+
+- TODO-306: original legacy URL/GSC/backlink evidence for final 301/410 decisions.
+- TODO-307: real operator, monitored contact, privacy and terms facts.
+- TODO-308: separate privacy/consent and commercial approval before tracking or monetization.
+- TODO-309: approved content target list and source evidence for the 12/10/5/4/3–5 batch.
+- TODO-310: resolve MCP/self-hosted P0-versus-P2 conflict before routes or indexing.
+- TODO-302: production rollback exercise remains an independent operator-authorized window.
+
+Rollback: keep existing route and data files until a reviewed replacement and mapping are ready. Revert only reviewed TASK-006 changes; for a live release, use a verified Pages deployment or reviewed commit and rerun current-profile smoke. No database migration is in scope.
+
 # TASK-005 — ToolPilot decision content remediation
 
 - Status: COMPLETE (engineering remediation and release handoff; external owner gates remain open)

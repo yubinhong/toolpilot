@@ -282,3 +282,91 @@ Delivery cadence update (2026-09-27): the user explicitly authorized production 
 TP-R09 closeout (2026-09-27): commit `4fb09bca29619032588d152e7b971e69fab1f4ad` passed `release:check`, GitHub CI `36299689412`, Cloudflare Pages deployment `76a9ace8-375f-40fd-b31a-acdb22661512`, immutable-preview and production current smoke, and manual production-monitor run `36299788937`. Engineering handoff is complete. Owner content approval, operator/legal/contact facts, independent GSC and broad crawler-access checks, notification setup and the production rollback exercise remain separate gates.
 
 90-day follow-up: weeks 1–2 foundation; 3–4 templates/evidence; 5–6 decisions; 7–8 guides/internal links; 9–10 GSC review; 11–13 evidence-driven expansion. No automatic MCP/Chinese/calculator/ads expansion. Weekly compare 28-day GSC windows; no available data means unknown.
+
+## TASK-006 — ToolPilot Rebuild Plan Alignment and P0 Technical Foundation
+
+### Plan metadata
+
+- Plan ID: `TASK-006`
+- Status: `READY`
+- Date: `2026-09-27`
+- Input: user-provided `TOOLPILOT_REBUILD_PLAN.md`; preserve as supplied (currently untracked)
+- Baseline: HEAD `27ea628`; inspect the entire worktree before making source changes
+- Product/release boundary: this planning update is not editorial, commercial or route-migration approval. Any future release still follows repository gates and the user's applicable deployment/online-verification authorization.
+
+### Goal
+
+Compare the 90-day rebuild plan against current source and close the source-verifiable P0 technical gaps in small reviewable phases. Keep the accepted Next.js static-export and Cloudflare Pages architecture. Carry source-dependent content, old-URL decisions, operator/legal details, GSC measurements and monetization into separately gated work.
+
+### Verified baseline and principal differences
+
+- The project already has shared UI, route metadata, canonical generation, robots, indexability-driven sitemap, a tested 404, structured JSON content, review/digest/dependency gates, freshness and safe-link scripts, build/artifact checks and static Pages deployment.
+- The current content model contains 8 tools, 6 comparisons, 6 alternatives, 4 pricing records, 2 Best pages and 2 guides. All 28 records are `in-review`; they are not owner-approved or indexable. Five of the ten comparison slugs named in the plan exist, plus one current comparison outside its named set. The alternative count exceeds five but its target slug set differs.
+- `/stacks/` exists as noindex scaffolding. `/mcp/` and `/self-hosted/` are absent. Current policy/disclosure paths are `/editorial-policy/` and `/disclosure/`; do not change these paths without a route mapping and reason.
+- Source has no visible breadcrumb/JSON-LD implementation or OG image/Twitter metadata. Comparison dimensions are narrower than the proposed matrix; current unknown values must remain explicit.
+- The exact legacy URL, GSC indexing and backlink inventory is unavailable in the checkout. `/docs/url-audit.csv` is not present. Source route inventory can be completed while external indexing/backlink fields remain `unknown`.
+- No GA4, AdSense, active affiliate relationship, user accounts, database or CMS exists. This is an intentional gate until approved privacy, operator and commercial inputs exist.
+
+### Execution phases
+
+#### Phase 0 — Preserve the baseline and audit source
+
+- Keep the supplied plan file untouched and untracked status visible in the task record.
+- Record HEAD, branch, status, relevant recent commits, current source routes, content counts, tests, metadata/index rules and deployment configuration.
+- Confirm that active product source/build routes contain no Crypto/DeFi content; retain historical research artifacts without treating them as public pages.
+- Do not make a tag or release artifact overwrite user work. A reviewed immutable baseline can be selected before implementation.
+
+#### Phase 1 — URL inventory and migration evidence
+
+- Build the requested URL audit from current route definitions and every recoverable legacy URL source in the repository.
+- Use the plan's fields: `url`, `status`, `title`, `page_type`, `indexed`, `has_backlink`, `action`, `redirect_target`, `notes`.
+- Represent unavailable external facts explicitly as `unknown`; do not convert absence of evidence into `false`.
+- Do not ship bulk deletion, homepage redirects, 301s or 410s. Each action needs the exact old URL, evidence, semantically justified destination or 410 reason, and automated smoke coverage.
+- Stop migration decisions that require Search Console, backlink tools, old sitemap or Cloudflare logs until TODO-306 input exists.
+
+#### Phase 2 — Reconcile information architecture and route names
+
+- Preserve all current routes by default and map proposed paths to existing ones: `/editorial-policy/` versus `/methodology/`, `/disclosure/` versus `/affiliate-disclosure/`, and current `/stacks/` status.
+- Record that the rebuild plan calls MCP/self-hosted P0 in §5/§49 but future/P2 in §43/§44/§51. Keep both clusters deferred/noindex until TODO-310 resolves priority and meaningful source-backed content exists.
+- Never create an empty directory page solely to satisfy a route checklist. `/stacks/` remains noindex until it has approved independent decision content.
+- Keep Next.js 16 static export, JSON content and Cloudflare Pages. No Astro, server, database or CMS migration absent a new accepted ADR.
+
+#### Phase 3 — Complete supported templates and technical SEO
+
+- Extend comparison dimensions only when source/tool data supports them; display unknown, unsupported and unverified states separately.
+- Add visible breadcrumbs plus valid `BreadcrumbList` data where hierarchy is real. Use `SoftwareApplication`/`Article` structured data only for matching, verified page content; omit unsupported claims and fake ratings.
+- Evaluate explicit pros/cons, use cases, FAQs and related-decision sections as content contracts rather than adding generic filler.
+- Add unique share metadata/OG assets only where artwork and brand permissions are available. Keep canonical, robots, sitemap, noindex, 404 and build artifact checks as hard regression gates.
+- Enforce contextual internal links among genuinely related, eligible decisions. Do not create combinatorial comparisons or index parameter filters; any query-driven filter must have noindex tests.
+- Preserve `/tools/`, decision-page and current legal/trust URLs. Any alias/redirect requires a compatibility review and exact mapping test.
+
+#### Phase 4 — Prepare the P1 content batch
+
+- Target from the supplied plan: 12 tools, 10 comparisons, 5 alternatives, 4 pricing and 3–5 Best pages. Current counts are 8/6/6/4/2; two guides already exist.
+- The list in the plan adds Aider, Continue, n8n and Make profiles and comparison candidates including Make vs n8n, Claude Code vs GitHub Copilot, Cline vs Continue, Aider vs Claude Code and Bolt vs Replit. Validate search intent and official sources before creating any record.
+- Reconcile `/alternatives/bolt-new/` versus `/alternatives/bolt/`; do not rename a URL until Phase 1 evidence and the owner-approved mapping are available. Existing extra alternatives may remain drafts; do not delete just to reach the plan count.
+- Each new/changed record must include attributable factual sources and clear gaps. It stays `in-review`, noindex and outside the sitemap until owner approval of its exact revision/digest.
+- Resolve dependency updates and review all downstream comparisons if a tool fact changes.
+
+#### Phase 5 — External operating and commercial gates
+
+- Obtain operator/contact/legal facts before final trust copy; do not invent a company, address, team or legal relationship.
+- Obtain privacy/retention/consent decisions before adding GA4 or any tracking script.
+- Obtain partner terms, attribution/commission, refunds, visible disclosure and ordering policy before activating Affiliate, sponsor or AdSense features. Separate affiliate conversions from paid placements.
+- Use real GSC windows for weekly performance review. Treat plan impressions/clicks/indexation targets as directional targets, not guarantees; no data means unknown.
+- Keep rollback exercise, GitHub notification configuration and production monitoring ownership tracked separately.
+
+### Verification and completion gate
+
+- Node 22: `npm run lint`, `npm run typecheck`, `npm test`, `npm run content:check`, `npm run content:freshness`, `npm run links:check`, `npm run build` (includes artifact checks), `npm run smoke`, and `npm audit --audit-level=high`; run `npm run release:check` at the release stage.
+- Inspect `out/` from the same build for expected route HTML, canonical/index directives, robots, sitemap membership, internal links, missing routes and accidental legacy themes.
+- Test any redirect/410 individually; test sitemap exclusion for drafts and query/filter variants; verify comparison unknowns and disclosure paths.
+- Run preview and production `SMOKE_PROFILE=current` only after an authorized deployment; a successful local build or Git push is not deployment evidence.
+- Record code/doc changes, routes added/retained/removed, redirects (if any), tests, owner inputs still needed, risks and rollback in TASK.md.
+
+### Stop conditions and rollback
+
+- Stop a route migration if exact old-URL evidence is missing or redirect semantics are unclear.
+- Stop public content/indexing if facts, source provenance, dependencies or owner approval are incomplete.
+- Stop analytics/monetization if privacy, operator, consent, partner, attribution or disclosure inputs are missing.
+- Keep data and routes reversible: retain old source until the reviewed replacement and tested URL map are ready. Revert only this task's reviewed files; live recovery uses a verified Pages deployment/reviewed commit and current-profile smoke. No database migration is in scope.
