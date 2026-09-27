@@ -28,7 +28,7 @@ Production deployment and online verification are authorized for each deliverabl
 
 ## Remaining external gates
 
-Owner content approval, operator/contact/legal details, unrestricted production/GSC checks, verified Pages deployment path and TASK-004 Git Integration migration/rollback obligations remain separate gates. Pending content must remain noindex.
+Owner content approval, operator/contact/legal details, unrestricted production/GSC checks, a separately authorized `toolpilot.cc` DNS cutover, and the TASK-004 production rollback exercise remain separate gates. Pending content must remain noindex.
 
 ## Verification and rollback
 
@@ -43,13 +43,16 @@ Owner content approval, operator/contact/legal details, unrestricted production/
 - Freshness snapshot matches the current 2026-09-27 queue: 28 unverified fact/price fields, 0 review-due fields; see `docs/content-review/TASK-005-freshness.json`.
 - Stored outbound-link audit checked 115 URLs: 91 HTTP-ok, 14 restricted, 6 blocked by policy and 4 temporary errors. See `docs/research/link-check-2026-09-27.json`; reachability is not fact verification.
 - `git diff --check`: passed. Playwright evidence covers 8 routes at 375/768/1440px (24 checks), plus search, empty state, filter accessibility and keyboard states; see `docs/tasks/TASK-005-browser-check.json`.
-- `npm run release:check`: previously rejected the pre-commit worktree by design. It must pass on the reviewed full-SHA release commit before push.
-- Wrangler Pages deployment-list check could not run: no Cloudflare API Token is available in this non-interactive environment. The user authorized production release; Git Integration must be confirmed by an actual deployment and online smoke, not inferred from a push.
-- Public production requests from this environment returned 403 for sampled paths. This is recorded in `docs/research/public-audit-2026-09-27.json`; it does not establish global unavailability. GSC and external Cloudflare state were not verified.
+- `npm run release:check`: passed on reviewed full-SHA release commit `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9`; GitHub CI passed at `https://github.com/yubinhong/toolpilot/actions/runs/36288456469`.
+- Cloudflare Pages Git Integration is confirmed by project `toolpilot-git`, connected to `yubinhong/toolpilot` on `main` with `npm run cloudflare:build`, output `out`, and Node 22. Deployment `000a4a88-b061-4f48-afe7-d7bc3d78d202` completed from the full source SHA above.
+- `SMOKE_BASE_URL=https://000a4a88.toolpilot-git.pages.dev SMOKE_PROFILE=current npm run smoke`: passed online for 88 pages, robots, sitemap and a real 404.
+- `SMOKE_PROFILE=current npm run smoke` against `https://toolpilot.cc` still fails because the domain serves the prior Direct Upload release. `SMOKE_PROFILE=legacy npm run smoke` passed against the retained old deployment and the restored public domain.
+- A custom-domain transfer attempt was rolled back. The legacy Direct Upload project remains the public endpoint and recovery target; Cloudflare currently reports its domain validation as pending although the runtime legacy smoke passes. The DNS CNAME and any future domain cutover require separate owner authorization and DNS write access. The current OAuth grant only has `account:read` and `pages:write`.
+- Public production requests from this environment previously returned 403 for sampled paths; this is recorded in `docs/research/public-audit-2026-09-27.json` and does not establish global unavailability. GSC remains unverified.
 - `out/` exists after the current build and contains `sitemap.xml`; generated output remains local and is not treated as production evidence.
 
 ### Remaining gates
 
-Production deployment and online smoke for the reviewed release; owner approval of exact content revisions; operator/contact/privacy/legal facts; independent GSC checks; TASK-004 Git Integration and rollback exercise. Until the actual deployment and online smoke pass, R09 stays incomplete.
+Current-profile smoke on `toolpilot.cc` after a separately authorized DNS cutover; owner approval of exact content revisions; operator/contact/privacy/legal facts; independent GSC checks; TASK-004 production rollback exercise. The Git Integration deployment and its `pages.dev` current smoke are verified, but the public domain still serves the old release, so R09 stays incomplete.
 
 Rollback must preserve the pre-existing baseline. After a live release, use the verified previous Pages deployment or revert the reviewed release commit, then repeat the current-profile online smoke. No data migration is involved.

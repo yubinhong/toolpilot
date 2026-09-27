@@ -1,13 +1,13 @@
 # TODO.md
 
-> 这里是工作队列，不是当前任务的实施说明。进入执行的事项必须移入 `TASK.md`。`TASK-004` 当前进行中；后续事项进入执行前先更新 `TASK.md`。
+> 这里是工作队列，不是当前任务的实施说明。进入执行的事项必须移入 `TASK.md`。`TASK-005` 当前进行中；后续事项进入执行前先更新 `TASK.md`。
 
 ## Now - 已确认，等待进入执行
 
 | ID | 事项 | 价值/原因 | 优先级 | Owner | 依赖 | 状态 |
 | --- | --- | --- | --- | --- | --- | --- |
 | TODO-004 | 建立 CI、监控、告警和自动化回滚入口 | CI、生产 smoke 和监控入口已实现；GitHub 外部配置、通知和真实回滚演练仍未完成 | P0 | 工程/运维 Owner | TASK-004 | In progress |
-| TODO-304 | 将 Cloudflare Pages Direct Upload 迁移为 Git Integration | 当前项目 `toolpilot` 的 `Git Provider: No`；需要新建 Git-integrated 项目、授权 GitHub App、验证构建并迁移 `toolpilot.cc` | P0 | 工程/运维 Owner | ADR-0008、Cloudflare Dashboard | In progress |
+| TODO-304 | 将 Cloudflare Pages Direct Upload 迁移为 Git Integration | `toolpilot-git` 已连接 GitHub，source `fc139ca1` 部署且 `pages.dev` current smoke 通过；`toolpilot.cc` 仍由旧项目提供，正式域名切换需单独授权 DNS CNAME 变更并验证 | P0 | 工程/运维 Owner | ADR-0008、Cloudflare Dashboard | In progress |
 
 ## Next - 近期候选
 
@@ -55,9 +55,9 @@
 
 ## In progress in TASK-004
 
-- CI、生产 smoke、定时监控入口已加入 `.github/workflows/`；手动 Pages 发布 workflow 已移除，目标改为 Cloudflare Pages Git Integration。
+- CI、生产 smoke、定时监控入口已加入 `.github/workflows/`；Cloudflare Pages Git Integration 已建立独立项目并完成首个部署；手动 Pages 发布 workflow 已移除。
 - `npm run release:check` 已加入并由 4 个测试覆盖；`4776027` 上的真实工作区检查已通过。
-- 当前 Direct Upload source `4776027` 已通过生产 smoke；`TODO-004`、`TODO-302` 和 `TODO-304` 仍等待 GitHub/Cloudflare 外部配置、Git Integration 新项目、域名迁移和真实回滚演练。
+- 当前 Direct Upload source `4776027` 的 legacy smoke 通过；新 Git Integration deployment `000a4a88` / source `fc139ca1` 的 88 路由 current smoke 通过。`TODO-004`、`TODO-302` 和 `TODO-304` 仍等待 DNS CNAME 切换、正式域名 current smoke、通知和真实回滚演练。
 
 ## Completed in TASK-004
 

@@ -3,7 +3,7 @@
 ## 当前快照 — 2026-09-27
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
-- 当前活动任务：TASK-005（用户批准的研究整改）；状态 IN_PROGRESS，R00–R08、本地工程验证和依赖修复已完成，R09 等待生产部署与线上验证，详见 TASK.md。
+- 当前活动任务：TASK-005（用户批准的研究整改）；状态 IN_PROGRESS，R00–R08、本地工程验证和依赖修复已完成；R09 的 Git-integrated Pages 部署与 `pages.dev` current smoke 已通过，正式域名仍待单独授权切换和验证，详见 TASK.md。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；加入 Claude Code/Cline 后有 52 个工具身份。首批 28 个结构化内容记录全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。
@@ -15,10 +15,10 @@
 ## 当前阻塞
 
 - 用户尚未批准具体内容修订；真实运营主体和公开联系渠道未提供。
-- 当前环境访问生产关键路径均为 403；不能据此认定全球不可达或 Googlebot 被拒。见 docs/research/public-audit-2026-09-27.json。
+- 早前对生产关键路径的抽样曾返回 403，见 docs/research/public-audit-2026-09-27.json；本次旧站点 legacy smoke 已返回 200。任一环境的访问结果都不能单独推断全球可达性或 Googlebot 状态。
 - Node 22 下 `npm ci` 和 `npm audit --audit-level=high` 当前通过，0 vulnerabilities；每次发布仍须重新审计。
-- TASK-004 的 Cloudflare Git Integration 项目、授权、域名迁移、通知和实际回滚演练仍未完成。归档任务不是完成记录。
-- 当前环境无 Cloudflare API Token；Wrangler Pages 部署列表检查要求非交互 API Token。Git Integration 是否已启用须以本次真实部署和线上 smoke 验证。
+- TASK-004 的新 Git-integrated Pages 项目和首个部署已验证；`toolpilot.cc` 域名切换、通知和生产回滚演练仍未完成。归档任务不是完成记录。
+- Cloudflare OAuth 当前仅授权 `account:read` 与 `pages:write`。`toolpilot-git` 的 deployment `000a4a88` 来自 source `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9`，88 路由 `pages.dev` current smoke 通过。公开域名仍由旧 Direct Upload 项目提供；切换需要 DNS CNAME 更新和正式域名 current smoke。
 - 没有原始 GSC、PV、转化或收入数据。90 天运营不能从本地构建推断为完成。
 
 ## 阅读路径
@@ -43,4 +43,4 @@
 
 ## 历史部署证据边界
 
-2026-08-21 的 Direct Upload 生产 source 为 4776027，GitHub CI 有历史成功记录；这不是 2026-09-27 的重新核验。旧 Cloudflare 项目 toolpilot 必须保留，直到另获授权完成新项目验证和迁移。
+2026-09-27 的 Git-integrated Pages source `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9` 部署及 `pages.dev` current smoke 已核验；`toolpilot.cc` 当前仍走旧 Direct Upload source `4776027`，legacy smoke 通过。两个项目都须保留，直至正式域名切换、current smoke 和回滚演练完成。

@@ -5,10 +5,10 @@
 - 服务：`ToolPilot` 静态 Web 站点（目标域名 `https://toolpilot.cc`）
 - Owner/值班：`TBD`
 - 用户影响：站点不可用、错误工具事实、失效厂商链接或未披露商业关系会直接损害用户决策和信任。
-- 依赖：`package.json`/`package-lock.json`、Node 22、Next 静态构建、Cloudflare Pages 项目 `toolpilot`、厂商站点和未来可选分析服务。
-- Dashboard：Cloudflare Dashboard 的 Workers & Pages > `toolpilot`；当前未配置应用监控或告警。
+- 依赖：`package.json`/`package-lock.json`、Node 22、Next 静态构建、Cloudflare Pages 项目 `toolpilot-git` 与恢复项目 `toolpilot`、厂商站点和未来可选分析服务。
+- Dashboard：Cloudflare Dashboard 的 Workers & Pages > `toolpilot-git` / `toolpilot`；当前未配置应用监控或告警。
 - 日志：`TBD`；当前没有应用、部署或访问日志入口。
-- 当前状态：`out/` 已部署到当前 Cloudflare Pages Direct Upload 项目 `toolpilot`，生产域名为 `https://toolpilot.cc`；当前 Production source 为 `4776027`，部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，生产 smoke 已通过。该项目的 Git Provider 为 `No`；目标是新建 Git-integrated Pages 项目，验证后迁移域名。旧项目和域名在迁移完成前不得删除或切换。
+- 当前状态：Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot` 的 `main`，构建命令 `npm run cloudflare:build`、输出 `out`、Node 22。部署 `000a4a88-b061-4f48-afe7-d7bc3d78d202` 对应 source `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9`，其 `pages.dev` current smoke 通过。`toolpilot.cc` 仍由旧 Direct Upload 项目 `toolpilot` 提供，source `4776027f9fb45cbe8ea5e63e0061984a5b91b2c8`、部署 `be8ecb81-fcad-4058-8909-e80befb441ab`；旧部署及恢复后的正式域名 legacy smoke 通过。域名迁移尝试已回退；Cloudflare 当前报告旧项目域名 validation pending，但公网 legacy smoke 正常。DNS CNAME 写入和后续正式域名切换须经单独授权。两个项目都必须保留至正式域名 current smoke 和回滚演练完成。
 
 ## 2. SLO 与关键指标
 
@@ -32,8 +32,9 @@
 - [x] TASK-004 的 CI 和生产监控入口已写入 `.github/workflows/`；GitHub CI run `32442681654` 已成功。
 - [x] `npm run release:check` 已接入本地/审核流程；GitHub origin 已配置，干净的 `4776027` checkout 实际检查已通过。
 - [x] 旧 Crypto/DeFi 生成内容按用户确认不迁移，当前源码未生成相关页面。
-- [x] 当前 Direct Upload Pages Production source 为 `4776027`，预览地址为 `https://be8ecb81.toolpilot-2cy.pages.dev`，生产 smoke 已通过；新 Git-integrated 项目尚未建立。
-- [ ] Cloudflare Pages Git Integration 已连接 `yubinhong/toolpilot`，生产分支为 `main`，构建命令为 `npm run cloudflare:build`，输出目录为 `out`。
+- [x] Direct Upload 恢复项目 `toolpilot` 的部署 `be8ecb81-fcad-4058-8909-e80befb441ab`（`https://be8ecb81.toolpilot-2cy.pages.dev`）通过 legacy smoke。
+- [x] Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot`，生产分支为 `main`，构建命令为 `npm run cloudflare:build`，输出目录为 `out`；部署 `000a4a88` / source `fc139ca1` 的 88 路由 current smoke 通过。
+- [ ] 在另获授权并具有 DNS 写权限后，将 `toolpilot.cc` CNAME 指向 `toolpilot-git.pages.dev`，确认 Pages 域名 active，并对正式域名运行 current smoke。
 - [ ] Affiliate/Featured/Sponsor 条款、归因、退款和披露文案已批准。
 - [ ] 50 条目录已由产品/内容 Owner 完成事实、来源新鲜度和商业条款审核。
 
@@ -51,7 +52,7 @@ npx --yes wrangler@4.124.0 whoami
 npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot
 ```
 
-Cloudflare Pages Git Integration 的 Dashboard 配置：
+Cloudflare Pages Git Integration 的项目配置：
 
 | 项目 | 值 |
 | --- | --- |
@@ -79,7 +80,7 @@ done
 ## 4. 回滚
 
 - 触发条件：站点不可用、构建产物与源码不一致、工具事实错误、关键链接失效、商业标记缺失、安全门槛失败或旧 Crypto/DeFi 内容误发布。
-- 应用回滚：Git Integration 启用后，优先在 Cloudflare Pages 新项目的 Deployments 中选择上一份已验证部署执行回滚，或从对应 reviewed commit 重新触发 Pages 构建。迁移期间保留旧 Direct Upload 项目作为恢复目标；不得删除旧项目或在未完成 smoke 时切换 `toolpilot.cc`。
+- 应用回滚：新 Git 项目已有成功部署 `000a4a88`；旧 Direct Upload 部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留，legacy smoke 已通过。域名尚未切换。获授权切换后若 current smoke 失败，应恢复旧项目的 Pages 域名关联和旧 CNAME 目标，再运行 legacy smoke。不得删除旧项目。
 - 数据回滚/前滚：当前没有已确认数据库或迁移；若未来引入数据层，必须使用向前迁移和已验证备份恢复，不直接回滚生产数据。
 - 验证：重新检查公共首页、关键决策页、法律页、站点地图、robots、外部链接、商业披露和安全头。
 
@@ -127,14 +128,14 @@ done
 
 ## TASK-005 release handoff (2026-09-27)
 
-The user has explicitly authorized production deployment with online verification for each deliverable progress. Keep the existing Direct Upload recovery target and all ADR-0008 migration steps. Current local `npm ci`, `npm audit --audit-level=high`, `cloudflare:build` and local current-profile smoke pass; this alone does not prove production deployment. The non-interactive Wrangler Pages check requires a Cloudflare API Token, which is not present in this environment. Confirm Git Integration through the actual deployment source, then run `SMOKE_PROFILE=current` against `https://toolpilot.cc`. Pending content remains noindex; this authorization is not editorial approval.
+The user has authorized deployment and online verification for each deliverable progress. Git Integration is confirmed by deployment `000a4a88` from `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9`; its 88-route current-profile smoke passed on `pages.dev`. `toolpilot.cc` remains on the legacy Direct Upload project because DNS CNAME changes and a production-domain cutover still need separate owner authorization and DNS write access. The attempted transfer was rolled back, and legacy smoke passes on the public domain. Pending content remains noindex; deployment authorization is not editorial approval.
 
 1. Resolve the security audit and review final operator/contact/privacy details.
 2. Obtain owner decisions for exact content revisions/digests. Pending records remain noindex, including on a preview; do not switch all records to published.
 3. Run Node 22 locked install, audit, cloudflare:build and local current smoke.
 4. With separate commit/push authorization, review a clean full SHA and run release:check. Never weaken the dirty-worktree gate.
-5. Follow TASK-004 to validate Git Integration preview before any authorized domain migration. Record deployment ID/source SHA.
-6. After authorized new deployment, run SMOKE_PROFILE=current against the actual public origin and verify page directives, sitemap and real 404. Only then switch production-monitor.yml from legacy to current. Until cutover, legacy checks the old deployed contract explicitly.
+5. Record each Git Integration deployment ID/source SHA and verify the `pages.dev` current smoke; deployment `000a4a88` / source `fc139ca1` is verified.
+6. After separately authorized DNS cutover and Pages domain validation, run `SMOKE_PROFILE=current` against `https://toolpilot.cc` and verify page directives, sitemap and real 404. Only then switch production-monitor.yml from legacy to current. Until cutover, legacy checks the old deployed contract explicitly.
 7. Retain the old project. Rollback requires authorization, a known verified deployment/source and before/after smoke. No blanket URL redirects, WAF disabling or emergency token publication.
 
 Maintenance reports run daily via content-maintenance.yml after deployment of the workflow; configuration alone is not execution evidence. Inspect restricted/broken links and freshness without treating link checks as factual approval. Artifact retention is 14 days. No external message or issue is sent automatically.

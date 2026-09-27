@@ -8,7 +8,7 @@
 - Exclude pending content from sitemap, add per-page metadata/canonical and keep original URLs available.
 - Add content, artifact, freshness and safe outbound-link checks; preserve explicit legacy production smoke until authorized cutover.
 - Patch Next.js/eslint-config-next to 16.3.6, sharp to 0.35.4 and js-yaml to 4.3.2; locked audit now passes locally.
-- Production deployment and online verification are authorized for each progress. This release remains pending until the actual Pages deployment and current-profile smoke are verified; editorial drafts remain noindex and unapproved.
+- Production deployment and online verification are authorized for each progress. Git-integrated deployment `000a4a88` passed current-profile smoke on `pages.dev`; `toolpilot.cc` still serves the legacy project pending separately authorized DNS cutover. Editorial drafts remain noindex and unapproved.
 
 
 本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；工作区当前包含未提交的代码整理，Cloudflare Pages 发布证据按条目记录。
