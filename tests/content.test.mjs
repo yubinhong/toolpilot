@@ -6,6 +6,7 @@ import { tools, researchTools } from '../lib/catalog.mjs';
 import { validateContent, contentDigest, isIndexable, vendorLink, freshness, isHttpsUrl } from '../lib/content-policy.mjs';
 import { getRoutes } from '../lib/routes.mjs';
 import { getEvidenceHubGroups } from '../lib/evidence-hubs.mjs';
+import { verificationStatusLabel } from '../lib/content-labels.mjs';
 function tool(slug='synthetic-tool') {
   const r = structuredClone(content.find(r => r.slug === 'cursor' && r.kind === 'tools'));
   r.slug = slug; r.name='Synthetic fixture'; r.title='Synthetic fixture';
@@ -269,6 +270,13 @@ test('authored related links require unique existing structured destinations',()
 test('pending record cannot impersonate formal review or hands-on testing',()=> {
   const a=tool();a.verifiedAt='2026-09-27';assert.ok(validateContent([a]).some(e=>e.includes('pending')));
   const b=tool();b.testedAt='2026-09-27';assert.ok(validateContent([b]).some(e=>e.includes('test evidence')));
+});
+test('verification status displays the bound date only for approved content',()=> {
+  const r=tool();
+  assert.equal(verificationStatusLabel(r,false),'Not yet formally verified');
+  approve(r);
+  assert.equal(verificationStatusLabel(r,true),'Last verified 2026-09-27');
+  assert.equal(verificationStatusLabel(r,false),'Not yet formally verified');
 });
 test('vendor link is ordinary until a valid commercial relationship is approved',()=> {
   const r=tool();assert.equal(vendorLink(r,r).href,r.productUrl);assert.equal(vendorLink(r,r).label,null);assert.equal(vendorLink(r,r).disclosure,null);

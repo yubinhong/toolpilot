@@ -8,6 +8,7 @@ import { ContentSection } from './content-section';
 import { CatalogNotice } from './catalog-notice';
 import { getComparisonDimensions } from '../lib/comparison.mjs';
 import { getRelatedContent } from '../lib/related-content.mjs';
+import { verificationStatusLabel } from '../lib/content-labels.mjs';
 
 function SourceLinks({ record, ids }: { record: Content; ids: string[] }) {
   return <>{ids.map(id => { const s = record.sources.find(s => s.id === id); return s ? <a className="source-citation" key={id} href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a> : null; })}</>;
@@ -41,7 +42,7 @@ export function ContentDetail({ record }: { record: Content }) {
     <PageIntro eyebrow={`${record.kind} / ${published ? 'Reviewed' : 'Editorial draft'}`} title={record.title} summary={record.summary}/>
     <ContentSection>
       {!published && <CatalogNotice title="Editorial review pending" message="Source-based research and proposed judgments await the site owner's approval. This is not a published evaluation."/>}
-      <p className="review-date">Updated {record.updatedAt} · {published ? `Reviewed ${record.review.reviewedAt}` : 'Not yet formally verified'} · {record.testedAt ? `Tested ${record.testedAt}` : 'No hands-on benchmark performed'}</p>
+      <p className="review-date">Updated {record.updatedAt} · {verificationStatusLabel(record, published)} · {record.testedAt ? `Tested ${record.testedAt}` : 'No hands-on benchmark performed'}</p>
       <h2>The decision in brief</h2><p>{record.verdict}</p>
       <div className="detail-grid"><div><h3>Consider for</h3><p>{record.bestFor}</p></div><div><h3>Not a fit for</h3><p>{record.notFor}</p></div></div>
       {record.pros?.length ? <div className="evidence-block"><h2>Documented strengths</h2><EvidenceClaims items={record.pros}/></div> : null}

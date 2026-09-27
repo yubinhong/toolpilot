@@ -5,6 +5,8 @@ import { getEvidenceHubGroups } from '../lib/evidence-hubs.mjs';
 import { getSiteUrl } from '../lib/site-config.mjs';
 import { getBreadcrumbItems } from '../lib/breadcrumbs.mjs';
 import { content } from '../lib/content.mjs';
+import { isIndexable } from '../lib/content-policy.mjs';
+import { verificationStatusLabel } from '../lib/content-labels.mjs';
 import { categoryAnchor, HOME_CATEGORY_SHORTCUTS } from '../lib/homepage.mjs';
 import { generateHeadersFile, injectFallbackCspMeta } from './generate-security-headers.mjs';
 const failures = [];
@@ -140,6 +142,8 @@ for (const record of content) {
 for (const record of content) {
   const path = `/${record.kind}/${record.slug}/`;
   const html = readFileSync(join('out',path,'index.html'),'utf8');
+  const verificationStatus = verificationStatusLabel(record, isIndexable(record, content));
+  if (!html.includes(verificationStatus)) failures.push(`${path}: missing explicit last-verified status`);
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
   const body = main.replace(/<nav\b[^>]*aria-label="Breadcrumb"[^>]*>[\s\S]*?<\/nav>/g,'');
   const targets = new Set([...body.matchAll(/<a\b[^>]*href="([^"#]+)"/g)].flatMap(match => {
