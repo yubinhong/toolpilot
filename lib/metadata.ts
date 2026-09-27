@@ -11,5 +11,6 @@ export function pageMetadata(path: string): Metadata {
     alternates: { canonical: `${getSiteUrl()}${path}` },
     robots: { index: route.index, follow: true },
     openGraph: { title: route.title, description: route.description, url: `${getSiteUrl()}${path}`, type: 'website' },
+    twitter: { card: 'summary', title: route.title, description: route.description },
   };
 }

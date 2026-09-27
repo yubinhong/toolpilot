@@ -11,7 +11,7 @@ export const metadata = pageMetadata("/tools/");
 
 export default function ToolsPage() {
   return (
-    <PageFrame>
+    <PageFrame breadcrumbPath="/tools/">
       <PageIntro
         eyebrow="Tool catalog"
         title="Start with a category, then ask what the tool changes."

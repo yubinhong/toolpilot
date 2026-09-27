@@ -288,10 +288,10 @@ TP-R09 closeout (2026-09-27): commit `4fb09bca29619032588d152e7b971e69fab1f4ad` 
 ### Plan metadata
 
 - Plan ID: `TASK-006`
-- Status: `READY`
+- Status: `IN_PROGRESS`
 - Date: `2026-09-27`
 - Input: user-provided `TOOLPILOT_REBUILD_PLAN.md`; preserve as supplied (currently untracked)
-- Baseline: HEAD `27ea628`; inspect the entire worktree before making source changes
+- Baseline: branch `main`, HEAD `a419cab0891802f786c61dd4343fe5aeda75c6c7`; the supplied plan was the only pre-existing untracked file
 - Product/release boundary: this planning update is not editorial, commercial or route-migration approval. Any future release still follows repository gates and the user's applicable deployment/online-verification authorization.
 
 ### Goal
@@ -303,9 +303,16 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - The project already has shared UI, route metadata, canonical generation, robots, indexability-driven sitemap, a tested 404, structured JSON content, review/digest/dependency gates, freshness and safe-link scripts, build/artifact checks and static Pages deployment.
 - The current content model contains 8 tools, 6 comparisons, 6 alternatives, 4 pricing records, 2 Best pages and 2 guides. All 28 records are `in-review`; they are not owner-approved or indexable. Five of the ten comparison slugs named in the plan exist, plus one current comparison outside its named set. The alternative count exceeds five but its target slug set differs.
 - `/stacks/` exists as noindex scaffolding. `/mcp/` and `/self-hosted/` are absent. Current policy/disclosure paths are `/editorial-policy/` and `/disclosure/`; do not change these paths without a route mapping and reason.
-- Source has no visible breadcrumb/JSON-LD implementation or OG image/Twitter metadata. Comparison dimensions are narrower than the proposed matrix; current unknown values must remain explicit.
-- The exact legacy URL, GSC indexing and backlink inventory is unavailable in the checkout. `/docs/url-audit.csv` is not present. Source route inventory can be completed while external indexing/backlink fields remain `unknown`.
+- Source now derives comparison rows from the union of cited profile facts; values not present on a profile remain explicitly unknown. Registered non-home routes have visible breadcrumbs and matching route-only `BreadcrumbList` JSON-LD. Shared metadata adds Twitter summary cards; no OG image asset/permission is available.
+- `docs/url-audit.csv` now covers all 88 routes registered in source. It explicitly leaves actual HTTP, GSC indexing, backlinks and absent historical URL coverage unverified. The exact legacy URL inventory remains blocked by TODO-306.
 - No GA4, AdSense, active affiliate relationship, user accounts, database or CMS exists. This is an intentional gate until approved privacy, operator and commercial inputs exist.
+
+### Progress recorded 2026-09-27
+
+- [x] Phase 0 source audit and baseline capture at `a419cab0891802f786c61dd4343fe5aeda75c6c7`; user-supplied plan preserved untouched.
+- [x] Phase 1 current-source URL inventory delivered with the requested columns and explicit unknowns; historical route collection and migration remain blocked.
+- [x] Phase 3 first implementation slice: comparison fact union, visible breadcrumb/route JSON-LD, Twitter card metadata and generated-artifact checks.
+- [ ] Remaining Phase 1 historical evidence, Phase 2 route-priority decision, rest of Phase 3 content/internal-link coverage, P1 content and external operating gates.
 
 ### Execution phases
 
@@ -319,6 +326,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 #### Phase 1 — URL inventory and migration evidence
 
 - Build the requested URL audit from current route definitions and every recoverable legacy URL source in the repository.
+- Current-source portion is implemented by `npm run urls:audit`; the output is not a historical census.
 - Use the plan's fields: `url`, `status`, `title`, `page_type`, `indexed`, `has_backlink`, `action`, `redirect_target`, `notes`.
 - Represent unavailable external facts explicitly as `unknown`; do not convert absence of evidence into `false`.
 - Do not ship bulk deletion, homepage redirects, 301s or 410s. Each action needs the exact old URL, evidence, semantically justified destination or 410 reason, and automated smoke coverage.
@@ -333,10 +341,10 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 
 #### Phase 3 — Complete supported templates and technical SEO
 
-- Extend comparison dimensions only when source/tool data supports them; display unknown, unsupported and unverified states separately.
-- Add visible breadcrumbs plus valid `BreadcrumbList` data where hierarchy is real. Use `SoftwareApplication`/`Article` structured data only for matching, verified page content; omit unsupported claims and fake ratings.
+- Extend comparison dimensions only when source/tool data supports them; display unknown, unsupported and unverified states separately. Current implementation renders dimensions recorded in either cited tool profile and marks the missing side unknown.
+- Add visible breadcrumbs plus valid `BreadcrumbList` data where hierarchy is real. Done for registered routes with source route labels only. Use `SoftwareApplication`/`Article` structured data only for matching, verified page content; omit unsupported claims and fake ratings.
 - Evaluate explicit pros/cons, use cases, FAQs and related-decision sections as content contracts rather than adding generic filler.
-- Add unique share metadata/OG assets only where artwork and brand permissions are available. Keep canonical, robots, sitemap, noindex, 404 and build artifact checks as hard regression gates.
+- Add unique share metadata/OG assets only where artwork and brand permissions are available. Twitter summary metadata is implemented; an OG image remains open pending approved artwork. Keep canonical, robots, sitemap, noindex, 404 and build artifact checks as hard regression gates.
 - Enforce contextual internal links among genuinely related, eligible decisions. Do not create combinatorial comparisons or index parameter filters; any query-driven filter must have noindex tests.
 - Preserve `/tools/`, decision-page and current legal/trust URLs. Any alias/redirect requires a compatibility review and exact mapping test.
 
@@ -363,6 +371,8 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Test any redirect/410 individually; test sitemap exclusion for drafts and query/filter variants; verify comparison unknowns and disclosure paths.
 - Run preview and production `SMOKE_PROFILE=current` only after an authorized deployment; a successful local build or Git push is not deployment evidence.
 - Record code/doc changes, routes added/retained/removed, redirects (if any), tests, owner inputs still needed, risks and rollback in TASK.md.
+
+Current tranche verification (2026-09-27): final `npm run cloudflare:build` passed with 42 tests and 88 generated pages; local current smoke passed for 88 pages/robots/sitemap/404; `npm audit --audit-level=high` reported 0 vulnerabilities. Repeat local/online checks after the reviewed release.
 
 ### Stop conditions and rollback
 

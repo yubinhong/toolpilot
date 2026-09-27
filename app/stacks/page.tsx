@@ -14,7 +14,7 @@ const stackAreas = [
 
 export default function StacksPage() {
   return (
-    <PageFrame>
+    <PageFrame breadcrumbPath="/stacks/">
       <PageIntro
         eyebrow="Decision page"
         title="A stack is a set of boundaries, not a list of logos."

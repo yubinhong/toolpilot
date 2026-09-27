@@ -18,6 +18,7 @@ Node 22（.nvmrc）、npm 锁文件恢复。核心不变量：历史快照保留
 | npm run content:check | 所有 JSON 内容运行时校验 |
 | npm run content:review | 输出精确版本/digest 和审核缺口；不批准或改写内容 |
 | npm run content:freshness -- --as-of=YYYY-MM-DD | 价格 30 天、其他事实 90 天复核队列 |
+| npm run urls:audit | 从当前路由注册表更新 `docs/url-audit.csv`；不替代 GSC、HTTP 或外链审计 |
 | npm run links:check | 公开 HTTPS 来源可达报告；403/429 受限不等于事实核验 |
 | npm run build | 内容校验 → Next 静态导出 → 产物元数据/链接/客户端边界检查 |
 | npm run artifacts:check | 检查当前实际存在的 out/，不替代新构建 |

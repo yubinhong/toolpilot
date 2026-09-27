@@ -56,6 +56,32 @@ input:focus-visible {
   margin: 0 auto;
 }
 
+.breadcrumb-nav {
+  padding-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.breadcrumb-nav ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb-nav a:hover {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breadcrumb-separator {
+  margin-right: 8px;
+  color: #89958f;
+}
+
 .site-header {
   border-bottom: 1px solid var(--line);
   background: rgba(248, 250, 247, 0.96);

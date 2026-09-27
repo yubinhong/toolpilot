@@ -19,7 +19,7 @@ export default async function ToolPage({ params }: { params:Promise<{slug:string
   if (!tool) notFound();
   const record = findContent('tools',slug);
   if (record) return <ContentDetail record={record}/>;
-  return <PageFrame><PageIntro eyebrow={`${tool.category} / Draft`} title={tool.name} summary={tool.summary}/>
+  return <PageFrame breadcrumbPath={`/tools/${slug}/`}><PageIntro eyebrow={`${tool.category} / Draft`} title={tool.name} summary={tool.summary}/>
     <ContentSection><CatalogNotice title="Editorial review pending" message="Historical research draft. Product facts, pricing and suitability have not been formally verified."/>
       <h2>Research candidate</h2><p>{tool.bestFor}</p>
       <p>Research snapshot: {tool.researchSnapshotDate}. A link check is not a fact check.</p>

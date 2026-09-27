@@ -4,7 +4,7 @@ import { PageIntro } from "../components/page-intro";
 
 export default function NotFound() {
   return (
-    <PageFrame>
+    <PageFrame breadcrumbPath={null}>
       <PageIntro
         eyebrow="404 / Not found"
         title="That decision page is not in the catalog."

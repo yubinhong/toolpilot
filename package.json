@@ -16,6 +16,7 @@
     "content:check": "node scripts/check-content.mjs",
     "content:review": "node scripts/check-content.mjs --review",
     "content:freshness": "node scripts/check-content.mjs --freshness",
+    "urls:audit": "node scripts/generate-url-audit.mjs",
     "artifacts:check": "node scripts/check-artifacts.mjs",
     "links:check": "node scripts/check-links.mjs"
   },

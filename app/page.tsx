@@ -8,7 +8,7 @@ import { pageMetadata } from '../lib/metadata';
 export const metadata = pageMetadata('/');
 export default function HomePage() {
   const reviewed = publishedContent(undefined).filter(r => ['compare','alternatives','pricing','best'].includes(r.kind));
-  return <PageFrame><section className="home-hero shell"><div className="hero-copy">
+  return <PageFrame breadcrumbPath="/"><section className="home-hero shell"><div className="hero-copy">
     <p className="eyebrow">Choose by the job</p><h1>Find the right AI &amp; developer tool for the job.</h1>
     <p className="hero-summary">Understand the workflow, cost and switching effort before choosing your next tool. Start with a concrete task and inspect the evidence.</p>
     <div className="hero-actions"><Link className="primary-button" href="/compare/">Compare development tools →</Link><Link className="secondary-link" href="/editorial-policy/">How we research</Link></div>

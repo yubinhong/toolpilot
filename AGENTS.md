@@ -79,7 +79,7 @@
 - 主语言与版本：`TypeScript/TSX`，`typescript@5.9.3`；页面源码位于 `app/`，共享 UI 位于 `components/`，目录数据位于 `lib/catalog.mjs`。
 - Web 框架：`Next.js 16.3.6 App Router`；`next.config.mjs` 已确认 `output: export`、`trailingSlash: true`，当前没有独立服务端、API 或数据库。
 - 运行时要求：`Node.js 22`，由根目录 `.nvmrc` 固定；依赖由 npm 管理，锁文件为 `package-lock.json` lockfile v3。
-- 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`、`smoke`、`release:check`、`cloudflare:build`，ESLint 为 `9.39.5`。
+- 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`、`smoke`、`release:check`、`cloudflare:build`、`urls:audit`，ESLint 为 `9.39.5`。
 - 域名配置：`.env.example` 提供 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`；生产域名 CNAME 已切换到 Git-integrated Pages 项目 `toolpilot-git`，正式域名 current smoke 已验证。旧 Direct Upload 项目 `toolpilot` 保留为恢复目标；生产监控使用 current profile。
 
 ### 5.2 命令与验证

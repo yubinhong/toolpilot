@@ -2,6 +2,7 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { getRoutes } from '../lib/routes.mjs';
 import { getSiteUrl } from '../lib/site-config.mjs';
+import { getBreadcrumbItems } from '../lib/breadcrumbs.mjs';
 const failures = [];
 const routes = getRoutes();
 const site = getSiteUrl();
@@ -18,6 +19,19 @@ for (const r of routes) {
   const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
   if (r.index ? !/content="index,/.test(robots) : !/content="noindex,/.test(robots)) failures.push(`${r.path}: robots mismatch`);
   if (!/<title>[^<]+<\/title>/.test(html) || !/<meta name="description" content="[^"]+"/.test(html)) failures.push(`${r.path}: missing metadata`);
+  if (!html.includes('<meta name="twitter:card" content="summary"')) failures.push(`${r.path}: missing Twitter summary metadata`);
+  const breadcrumbItems = getBreadcrumbItems(r.path);
+  const breadcrumbScript = html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1];
+  if (breadcrumbItems.length) {
+    if (!/<nav\b[^>]*aria-label="Breadcrumb"/.test(html)) failures.push(`${r.path}: missing visible breadcrumb`);
+    try {
+      const data = JSON.parse(breadcrumbScript || 'null');
+      const expected = breadcrumbItems.map(item => `${site}${item.href}`);
+      if (data?.['@type'] !== 'BreadcrumbList' || JSON.stringify(data.itemListElement?.map(item => item.item)) !== JSON.stringify(expected)) failures.push(`${r.path}: breadcrumb JSON-LD differs from visible route trail`);
+    } catch { failures.push(`${r.path}: malformed breadcrumb JSON-LD`); }
+  } else if (breadcrumbScript || /<nav\b[^>]*aria-label="Breadcrumb"/.test(html)) {
+    failures.push(`${r.path}: unexpected homepage breadcrumb`);
+  }
   for (const match of html.matchAll(/<a\b[^>]*href="([^"#]+)"/g)) {
     const href = match[1].split(/[?#]/)[0];
     if (!href.startsWith('/') || href.startsWith('//')) continue;

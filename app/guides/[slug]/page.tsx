@@ -27,7 +27,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   }
 
   return (
-    <PageFrame>
+    <PageFrame breadcrumbPath={`/guides/${slug}/`}>
       <PageIntro
         eyebrow={`${guide.tag} / draft guide`}
         title={guide.title}

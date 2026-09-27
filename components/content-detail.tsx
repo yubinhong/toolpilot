@@ -6,6 +6,7 @@ import { PageFrame } from './page-frame';
 import { PageIntro } from './page-intro';
 import { ContentSection } from './content-section';
 import { CatalogNotice } from './catalog-notice';
+import { getComparisonDimensions } from '../lib/comparison.mjs';
 
 function SourceLinks({ record, ids }: { record: Content; ids: string[] }) {
   return <>{ids.map(id => { const s = record.sources.find(s => s.id === id); return s ? <a className="source-citation" key={id} href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a> : null; })}</>;
@@ -22,7 +23,7 @@ export function ContentDetail({ record }: { record: Content }) {
   const related = content.filter(r => r !== record && (record.kind === 'tools' ? r.dependencies.some(d => d.slug === record.slug) : r.dependencies.some(d => record.dependencies.some(rd => rd.slug === d.slug))));
   const sourceRecords = [record, ...dependencies].filter(r => r.sources.length);
   const gaps = [...record.gaps, ...dependencies.flatMap(r => r.gaps.map(g => `${r.title}: ${g}`))];
-  return <PageFrame>
+  return <PageFrame breadcrumbPath={contentPath(record)}>
     <PageIntro eyebrow={`${record.kind} / ${published ? 'Reviewed' : 'Editorial draft'}`} title={record.title} summary={record.summary}/>
     <ContentSection>
       {!published && <CatalogNotice title="Editorial review pending" message="Source-based research and proposed judgments await the site owner's approval. This is not a published evaluation."/>}
@@ -32,7 +33,7 @@ export function ContentDetail({ record }: { record: Content }) {
       {record.productUrl && (() => { const link = vendorLink(record, record); return <div className="vendor-cta">{link.disclosure && <p>{link.disclosure}</p>}<a className="primary-button" href={link.href} rel={link.rel} target="_blank">Visit {record.title} ↗</a></div>; })()}
       {(['featured','sponsor'] as const).map(type => published && record.commercial[type].status === 'active' ? <p key={type}>{type === 'featured' ? 'Featured placement' : 'Sponsor'}: {record.commercial[type].disclosure}</p> : null)}
     </ContentSection>
-    {record.kind === 'compare' && <ContentSection><h2>Compare the same dimensions</h2><div className="table-scroll" role="region" aria-label="Tool comparison" tabIndex={0}><table className="source-table"><caption>Unknown is different from unsupported. Read the dated profiles below.</caption><thead><tr><th scope="col">Dimension</th>{dependencies.map(t => <th scope="col" key={t.slug}><Link href={contentPath(t)}>{t.title}</Link></th>)}</tr></thead><tbody>{['workflow','privacy','selfHosting','localModels','portability'].map(key => <tr key={key}><th scope="row">{dependencies[0]?.facts.find(f => f.key === key)?.label || key}</th>{dependencies.map(t => <td key={t.slug}>{t.facts.find(f => f.key === key)?.value ?? 'Unknown — not yet verified'}</td>)}</tr>)}</tbody></table></div></ContentSection>}
+    {record.kind === 'compare' && <ContentSection><h2>Compare the same dimensions</h2><div className="table-scroll" role="region" aria-label="Tool comparison" tabIndex={0}><table className="source-table"><caption>Only dimensions recorded in at least one cited tool profile are shown. Unknown is different from unsupported.</caption><thead><tr><th scope="col">Dimension</th>{dependencies.map(t => <th scope="col" key={t.slug}><Link href={contentPath(t)}>{t.title}</Link></th>)}</tr></thead><tbody>{getComparisonDimensions(dependencies).map(({ key, label }) => <tr key={key}><th scope="row">{label}</th>{dependencies.map(t => <td key={t.slug}>{t.facts.find(f => f.key === key)?.value ?? 'Unknown — not yet verified'}</td>)}</tr>)}</tbody></table></div></ContentSection>}
     {record.sections.map(s => <ContentSection key={s.heading}><h2>{s.heading}</h2>{s.paragraphs.map((p,i) => <p key={i}>{p}</p>)}</ContentSection>)}
     {record.facts.length > 0 && <ContentSection><h2>Facts and sources</h2><Facts record={record}/></ContentSection>}
     {record.prices.length > 0 && <ContentSection><h2>Pricing evidence</h2><Prices record={record}/></ContentSection>}
