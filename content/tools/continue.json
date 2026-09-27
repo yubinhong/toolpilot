@@ -1,0 +1,49 @@
+{
+  "slug": "continue",
+  "kind": "tools",
+  "title": "Continue",
+  "summary": "An open-source coding assistant with IDE, CLI and model-configuration paths; current upstream maintenance needs review.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    { "id": "product", "url": "https://docs.continue.dev/", "title": "What is Continue?", "publisher": "Continue", "accessedAt": "2026-09-27" },
+    { "id": "agent", "url": "https://docs.continue.dev/ide-extensions/agent/quick-start", "title": "Agent mode quick start", "publisher": "Continue", "accessedAt": "2026-09-27" },
+    { "id": "selfHost", "url": "https://docs.continue.dev/guides/how-to-self-host-a-model", "title": "How to self-host a model", "publisher": "Continue", "accessedAt": "2026-09-27" },
+    { "id": "repository", "url": "https://github.com/continuedev/continue", "title": "Continue upstream repository", "publisher": "Continue Dev", "accessedAt": "2026-09-27" }
+  ],
+  "facts": [
+    { "key": "workflow", "label": "Workflow", "value": "AI coding assistant for VS Code and JetBrains, with Agent, Chat, Edit, autocomplete and CLI surfaces documented.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
+    { "key": "agentMode", "label": "Agent permissions", "value": "Agent mode can use tools to modify a codebase; the docs describe per-tool permission prompts by default.", "sourceIds": ["agent"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "selfHosting", "label": "Self-hosted model endpoint", "value": "The configuration guide describes connecting Continue to self-hosted model endpoints, including OpenAI-compatible endpoints.", "sourceIds": ["selfHost"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "localModels", "label": "Local model inference", "value": "The documentation describes local model providers; model quality and local data flow need separate validation.", "sourceIds": ["selfHost"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "maintenance", "label": "Upstream maintenance", "value": "The upstream repository says it is read-only and no longer actively maintained.", "sourceIds": ["repository"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "privacy", "label": "Privacy / data handling", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "portability", "label": "Code / data portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false }
+  ],
+  "prices": [
+    { "name": "Model and account usage", "amount": null, "currency": "USD", "interval": "month", "billing": "Confirm the current Continue account or model-provider route and its usage terms.", "allowance": null, "overage": null, "taxes": null, "sourceIds": [], "checkedAt": null }
+  ],
+  "sections": [
+    { "heading": "Verify distribution before adopting", "paragraphs": ["The current upstream repository labels itself read-only and no longer actively maintained, while the documentation describes IDE and CLI workflows. Verify the exact package, publisher, supported version and update path you plan to install before relying on it."] },
+    { "heading": "Keep model hosting and client separate", "paragraphs": ["A configurable local or self-hosted model endpoint may change where inference runs, but it does not by itself establish an offline workflow. Review the client, extensions, telemetry settings and every model endpoint separately."] }
+  ],
+  "verdict": "Treat Continue as a conditional candidate only after verifying the current package and support status. Do not infer active maintenance from the presence of documentation or a published extension.",
+  "bestFor": "Developers evaluating configurable IDE coding assistance with an explicit maintenance check",
+  "notFor": "Teams requiring a confirmed actively maintained upstream before evaluation",
+  "migration": "Pin the exact extension or CLI version, export its configuration and model endpoints, and retain a tested fallback before rollout.",
+  "dependencies": [],
+  "gaps": ["The upstream repository is read-only; confirm package distribution, publisher, security response and support lifecycle before publication or adoption.", "Confirm current pricing, account requirements, telemetry and model-provider data terms."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; upstream maintenance caveat requires owner review." }],
+  "commercial": {
+    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+  },
+  "name": "Continue",
+  "category": "AI Coding",
+  "productUrl": "https://docs.continue.dev/"
+}

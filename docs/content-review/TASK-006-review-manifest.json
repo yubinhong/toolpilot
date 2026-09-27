@@ -1,0 +1,105 @@
+[
+  {
+    "path": "/tools/aider/",
+    "revision": 1,
+    "digest": "c2a970c532824750680559447eafa98c122b1d63292df23c36c1940cff20435c",
+    "state": "in-review",
+    "gaps": [
+      "Confirm current provider billing and whether any separate hosted or commercial offering applies to the intended use.",
+      "Review privacy and data handling for the selected model provider.",
+      "Confirm Git hook behavior and protect pre-existing dirty changes before a trial.",
+      "Do not treat repository license as a license for model weights or provider services."
+    ]
+  },
+  {
+    "path": "/tools/continue/",
+    "revision": 1,
+    "digest": "c8faa7c3666c8e4fd4b24ec7c0f82b63a6795ea9dd61c9ac22616b2a830fa5bc",
+    "state": "in-review",
+    "gaps": [
+      "The upstream repository is read-only; confirm package distribution, publisher, security response and support lifecycle before publication or adoption.",
+      "Confirm current pricing, account requirements, telemetry and model-provider data terms."
+    ]
+  },
+  {
+    "path": "/tools/n8n/",
+    "revision": 1,
+    "digest": "02ee4d16bbaff10cc5adec5bd301e641b5aa79cd49c3035197f5dc2599718ef5",
+    "state": "in-review",
+    "gaps": [
+      "Confirm license compatibility, current feature entitlement and exact regional checkout price before a business recommendation.",
+      "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile."
+    ]
+  },
+  {
+    "path": "/tools/make/",
+    "revision": 1,
+    "digest": "9cc205ac767ca7ce146b8ed91129895c891579e94ef3685f2cec237670d289fc",
+    "state": "in-review",
+    "gaps": [
+      "The live paid amount depends on billing cadence and selected credit quantity; confirm the exact selection and checkout terms before publication.",
+      "Confirm data retention, privacy, regional hosting and scenario export behavior for the intended plan."
+    ]
+  },
+  {
+    "path": "/compare/make-vs-n8n/",
+    "revision": 1,
+    "digest": "bb990b2e884a9a70d709ff75fc7ac4f7142ae55dfaced05d473b775056777cec",
+    "state": "in-review",
+    "gaps": [
+      "Confirm Make's selected paid-plan amount and billing cadence; the official pricing page has interactive billing and credit-quantity selectors.",
+      "Confirm license compatibility and the self-hosted operating cost for the intended n8n use."
+    ]
+  },
+  {
+    "path": "/compare/claude-code-vs-github-copilot/",
+    "revision": 1,
+    "digest": "83a22e572657e804ac15e8677afcb0fac150889f0837b81fdee8ba510089e327",
+    "state": "in-review",
+    "gaps": [
+      "GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.",
+      "This comparison contains no hands-on benchmark or measured task result."
+    ]
+  },
+  {
+    "path": "/compare/cline-vs-continue/",
+    "revision": 1,
+    "digest": "79bdbafb3c63dbe9a6aa52e01fc618515432a7f01f8f997523b73383e00208fa",
+    "state": "in-review",
+    "gaps": [
+      "Continue package distribution, publisher, security response and current support lifecycle require confirmation.",
+      "No local-model quality, privacy or performance trial has been performed."
+    ]
+  },
+  {
+    "path": "/compare/aider-vs-claude-code/",
+    "revision": 1,
+    "digest": "81e2c2562ccf5bf1fe8896373ea6d20ebae915b33cee780ebac1d082fd908110",
+    "state": "in-review",
+    "gaps": [
+      "Provider and account-specific billing and privacy terms need current verification.",
+      "No hands-on task benchmark has been performed."
+    ]
+  },
+  {
+    "path": "/compare/bolt-vs-replit/",
+    "revision": 1,
+    "digest": "45806bb695b52a38f1d6319b61338e2e3f77f7bc6d6045cdc8d61587327d96a1",
+    "state": "in-review",
+    "gaps": [
+      "Replit plan amount and included allowance remain unresolved in its source profile.",
+      "No clean export, independent deployment, data-residency or performance test has been performed."
+    ]
+  },
+  {
+    "path": "/best/open-source-ai-coding-tools/",
+    "revision": 1,
+    "digest": "9492723932352967fb72b09c4a75838ed6f79546258de2acfa2de16aaec4836f",
+    "state": "in-review",
+    "gaps": [
+      "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
+      "Continue's distribution, current maintenance, publisher and security response need confirmation before any production recommendation.",
+      "No hands-on comparison or model performance test has been performed."
+    ]
+  }
+]

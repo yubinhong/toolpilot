@@ -1,0 +1,35 @@
+{
+  "slug": "cline-vs-continue",
+  "kind": "compare",
+  "title": "Cline vs Continue",
+  "summary": "Compare IDE coding assistants by model control, permission behavior and upstream maintenance evidence.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    { "heading": "Resolve the maintenance question first", "paragraphs": ["Continue's upstream repository says it is read-only and no longer actively maintained. Verify the exact extension or CLI package, publisher, update channel and security response before including it in a supported production shortlist."] },
+    { "heading": "Test permission and model paths", "paragraphs": ["Use the same repository task and model provider where possible. Record which actions require approval, where inference runs, what credentials are needed and which external services receive code or prompts."] },
+    { "heading": "Treat local inference as a separate test", "paragraphs": ["Both profiles contain model-configuration information, but configuration support does not prove that a particular local model will meet quality, latency or hardware needs. Test a representative change and inspect the resulting diff."] }
+  ],
+  "verdict": "Cline and Continue should not be treated as equivalent maintenance choices today: Continue's upstream read-only notice is a decision-critical caveat. Verify distribution and support before evaluating feature fit.",
+  "bestFor": "Developers deciding how much model configuration and maintenance risk they can own",
+  "notFor": "Teams that require a current upstream support commitment without first checking the package lifecycle",
+  "migration": "Pin the current package version, export model configuration and preserve a working fallback. Reassess extension publisher and update state before each upgrade.",
+  "dependencies": [
+    { "slug": "cline", "revision": 1, "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696" },
+    { "slug": "continue", "revision": 1, "digest": "c8faa7c3666c8e4fd4b24ec7c0f82b63a6795ea9dd61c9ac22616b2a830fa5bc" }
+  ],
+  "gaps": ["Continue package distribution, publisher, security response and current support lifecycle require confirmation.", "No local-model quality, privacy or performance trial has been performed."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source comparison draft; Continue maintenance status is an explicit unresolved adoption gate." }],
+  "commercial": {
+    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+  }
+}

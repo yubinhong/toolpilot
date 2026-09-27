@@ -1,0 +1,35 @@
+{
+  "slug": "bolt-vs-replit",
+  "kind": "compare",
+  "title": "Bolt vs Replit",
+  "summary": "Compare two AI app-building workflows by project fit, handoff, operating ownership and the real cost of a working release.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    { "heading": "Start with the project shape", "paragraphs": ["Bolt's reviewed profile documents a JavaScript web-app path and an Expo mobile path. Replit's profile describes an AI agent for building applications. Confirm the actual framework, backend, data store and deployment target your project needs before treating either scope as a fit."] },
+    { "heading": "Test the handoff", "paragraphs": ["Build the same small feature, then perform a clean checkout or export and run the project using documented steps. Record what remains tied to the original hosted workspace, including environment variables, databases and deployment configuration."] },
+    { "heading": "Estimate a live service separately", "paragraphs": ["The current Replit profile keeps the relevant plan amount unresolved. A builder subscription is not a complete production budget; include runtime, database, model usage, backups and support only when each item has evidence for the intended plan."] }
+  ],
+  "verdict": "Choose after a clean handoff and operating-cost trial. The current evidence is not sufficient to declare a universal winner or a fixed Replit price.",
+  "bestFor": "Indie builders comparing a quick application workflow with the cost of owning its production lifecycle",
+  "notFor": "Projects with unverified portability, data-residency or production-budget requirements",
+  "migration": "Keep the first build disposable. Export or clone the result, document services and secrets, then prove an independent deployment before committing to either platform.",
+  "dependencies": [
+    { "slug": "bolt-new", "revision": 1, "digest": "4e824ce73ddbad29528f82f18e83dd0c4565766315dff628c97a1863d4f5cba7" },
+    { "slug": "replit", "revision": 1, "digest": "c65a52483a6e64b8435350e212ecdfa4885dcf1fb97a73cead852a23ca4d519f" }
+  ],
+  "gaps": ["Replit plan amount and included allowance remain unresolved in its source profile.", "No clean export, independent deployment, data-residency or performance test has been performed."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; operational cost and handoff require owner review." }],
+  "commercial": {
+    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+  }
+}

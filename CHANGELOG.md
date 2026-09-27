@@ -12,6 +12,7 @@
 - Add a marked comparison of the source research report against TASK/TODO, separating covered work, under-specified acceptance, explicit deferrals and unsupported business targets.
 - Add TASK-006 planning by comparing the supplied rebuild plan with current routes, content counts, templates, SEO and release gates; no product code or public behavior changed.
 - Start TASK-006 P0 implementation: generate a source-only inventory for 88 registered URLs while leaving live/index/backlink and historical coverage unknown; add visible breadcrumbs with matching BreadcrumbList JSON-LD, Twitter summary metadata and comparison rows from cited profile facts. Commit `800a817` and final mobile-wrap refinement `b7e9b0d` passed CI; latest Pages deployment `3c4b4d7a-4b7b-47e0-a384-8d06353218c0` passed preview and production current smoke. All 28 editorial records remain in-review.
+- Add four official-source P1 profiles (Aider, Continue, n8n, Make), the five missing plan comparison drafts and a conditional open-source coding shortlist. Add exact revision/digest review handoff; preserve Continue's upstream-maintenance warning and unresolved Make paid-price selector. The content set now has 38 in-review records and the generated source URL inventory covers 96 routes; none of these drafts is approved for indexing.
 
 
 本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；工作区当前包含未提交的代码整理，Cloudflare Pages 发布证据按条目记录。

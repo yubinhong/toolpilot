@@ -1,0 +1,46 @@
+{
+  "slug": "n8n",
+  "kind": "tools",
+  "title": "n8n",
+  "summary": "A workflow automation platform with cloud and self-hosting paths and execution-based cloud pricing.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    { "id": "product", "url": "https://docs.n8n.io/", "title": "n8n documentation", "publisher": "n8n", "accessedAt": "2026-09-27" },
+    { "id": "pricing", "url": "https://n8n.io/pricing/", "title": "Plans and pricing", "publisher": "n8n", "accessedAt": "2026-09-27" }
+  ],
+  "facts": [
+    { "key": "workflow", "label": "Workflow", "value": "Connects applications and APIs in customizable, low-code workflows; supports custom nodes and AI functionality.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
+    { "key": "deployment", "label": "Deployment", "value": "Official docs describe n8n Cloud and self-hosted installation options such as npm and Docker.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "license", "label": "License model", "value": "Official documentation describes n8n as fair-code licensed; review the applicable license terms for the intended use.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "privacy", "label": "Privacy / data handling", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "localModels", "label": "Local model inference", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "portability", "label": "Workflow portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false }
+  ],
+  "prices": [
+    { "name": "Starter (n8n Cloud)", "amount": 20, "currency": "EUR", "interval": "month", "billing": "Displayed monthly equivalent, billed annually; confirm applicable region and taxes at checkout.", "allowance": "2,500 workflow executions per month with unlimited steps.", "overage": null, "taxes": null, "sourceIds": ["pricing"], "checkedAt": "2026-09-27" }
+  ],
+  "sections": [
+    { "heading": "Estimate complete workflow runs", "paragraphs": ["The Cloud pricing page counts a workflow execution as one run regardless of the number of steps. Estimate schedule and event frequency first, then test retries and failure behavior with representative data."] },
+    { "heading": "Compare hosting responsibility", "paragraphs": ["Cloud pricing and self-hosted deployment move different operating responsibilities to the buyer. Before choosing self-hosting, account for upgrades, backups, secrets, monitoring and the license terms that apply to the planned use."] }
+  ],
+  "verdict": "Evaluate n8n when workflows need API-level flexibility or self-hosting is a requirement. Compare execution volume and operating ownership rather than counting workflow steps alone.",
+  "bestFor": "Builders connecting APIs and applications who can estimate full workflow executions",
+  "notFor": "Teams that have not checked the fair-code terms or cannot own the chosen hosting path",
+  "migration": "Export representative workflows and credentials separately. Test node availability, error handling, schedules and secrets in a non-production instance before cutover.",
+  "dependencies": [],
+  "gaps": ["Confirm license compatibility, current feature entitlement and exact regional checkout price before a business recommendation.", "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }],
+  "commercial": {
+    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+  },
+  "name": "n8n",
+  "category": "Automation",
+  "productUrl": "https://n8n.io/"
+}

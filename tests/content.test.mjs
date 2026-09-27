@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { content, publicTool } from '../lib/content.mjs';
 import { tools, researchTools } from '../lib/catalog.mjs';
 import { validateContent, contentDigest, isIndexable, vendorLink, freshness, isHttpsUrl } from '../lib/content-policy.mjs';
@@ -17,7 +18,38 @@ function approve(r) {
 test('content is valid and includes the planned first-batch kinds',() => {
   assert.deepEqual(validateContent(content),[]);
   assert.ok(content.length >= 28);
-  for (const [kind,count] of Object.entries({tools:8,compare:6,alternatives:6,pricing:4,best:2,guides:2})) assert.ok(content.filter(r=>r.kind===kind).length >= count);
+  for (const [kind,count] of Object.entries({tools:12,compare:11,alternatives:6,pricing:4,best:3,guides:2})) assert.ok(content.filter(r=>r.kind===kind).length >= count);
+});
+test('TASK-006 P1 additions exist as in-review noindex routes with valid dependencies',() => {
+  const required = [
+    ...['aider','continue','n8n','make'].map(slug=>`tools/${slug}`),
+    ...['make-vs-n8n','claude-code-vs-github-copilot','cline-vs-continue','aider-vs-claude-code','bolt-vs-replit'].map(slug=>`compare/${slug}`),
+    'best/open-source-ai-coding-tools',
+  ];
+  const routes = getRoutes();
+  for (const path of required) {
+    const [kind,slug] = path.split('/');
+    const record = content.find(r=>r.kind===kind&&r.slug===slug);
+    assert.ok(record,`${path} record exists`);
+    assert.equal(record.review.state,'in-review');
+    assert.equal(isIndexable(record,content),false);
+    assert.equal(routes.find(r=>r.path===`/${path}/`)?.index,false);
+  }
+  assert.ok(routes.some(r=>r.path==='/alternatives/bolt-new/'));
+});
+test('TASK-006 review manifest matches each exact in-review revision and digest',() => {
+  const manifest=JSON.parse(readFileSync(new URL('../docs/content-review/TASK-006-review-manifest.json',import.meta.url),'utf8'));
+  assert.equal(manifest.length,10);
+  for (const entry of manifest) {
+    const [,kind,slug]=entry.path.split('/');
+    const record=content.find(r=>r.kind===kind&&r.slug===slug);
+    assert.ok(record,`${entry.path} record exists`);
+    assert.equal(entry.revision,record.revision);
+    assert.equal(entry.digest,contentDigest(record));
+    assert.equal(entry.state,'in-review');
+    assert.deepEqual(entry.gaps,record.gaps);
+    assert.equal(isIndexable(record,content),false);
+  }
 });
 test('all historical slugs remain and new identities are unique',() => {
   assert.ok(researchTools.every(t=>tools.some(x=>x.slug===t.slug)));
@@ -44,7 +76,7 @@ test('editing a price or verdict without bumping the revision invalidates approv
 });
 test('approved comparison needs current approved dependencies including digest',() => {
   const a=approve(tool()), b=approve(tool());b.slug='second-fixture';approve(b);
-  const r=structuredClone(content.find(r=>r.kind==='compare'));r.slug='fixture-comparison';
+  const r=structuredClone(content.find(r=>r.kind==='compare'&&r.slug==='cursor-vs-claude-code'));r.slug='fixture-comparison';
   r.dependencies=[a,b].map(t=>({slug:t.slug,revision:t.revision,digest:contentDigest(t)}));approve(r);
   assert.deepEqual(validateContent([a,b,r]),[]);assert.equal(isIndexable(r,[a,b,r]),true);
   b.summary='Materially changed';approve(b);

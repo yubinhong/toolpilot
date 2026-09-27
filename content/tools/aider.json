@@ -1,0 +1,50 @@
+{
+  "slug": "aider",
+  "kind": "tools",
+  "title": "Aider",
+  "summary": "A terminal-based AI pair-programming tool whose Git workflow and model-provider costs need separate review.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    { "id": "product", "url": "https://aider.chat/docs/", "title": "Aider documentation", "publisher": "Aider", "accessedAt": "2026-09-27" },
+    { "id": "git", "url": "https://aider.chat/docs/git.html", "title": "Git integration", "publisher": "Aider", "accessedAt": "2026-09-27" },
+    { "id": "models", "url": "https://aider.chat/docs/llms.html", "title": "Connecting to language models", "publisher": "Aider", "accessedAt": "2026-09-27" },
+    { "id": "repository", "url": "https://github.com/Aider-AI/aider", "title": "Aider source repository and license", "publisher": "Aider-AI", "accessedAt": "2026-09-27" }
+  ],
+  "facts": [
+    { "key": "workflow", "label": "Workflow", "value": "AI pair programming in a terminal, working with a local code repository.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
+    { "key": "git", "label": "Git workflow", "value": "Creates commits for edits; the docs say it first commits pre-existing dirty changes and skips Git hooks by default unless configured otherwise.", "sourceIds": ["git"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "modelProviders", "label": "Model providers", "value": "Connects to multiple cloud providers and can use local models; provider and model capability vary.", "sourceIds": ["models"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "localModels", "label": "Local model inference", "value": "Local models are supported through compatible model providers; validate capability and hardware independently.", "sourceIds": ["models"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "privacy", "label": "Privacy / data handling", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "selfHosting", "label": "Product self-hosting", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "portability", "label": "Code / data portability", "value": "Git-managed repository changes can be inspected and reverted with Git.", "sourceIds": ["git"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "license", "label": "Repository license", "value": "The public Aider repository identifies an Apache-2.0 license; model and provider terms are separate.", "sourceIds": ["repository"], "checkedAt": "2026-09-27", "critical": false }
+  ],
+  "prices": [
+    { "name": "Model/provider usage", "amount": null, "currency": "USD", "interval": "month", "billing": "Provider charges depend on the selected model and usage; confirm the current provider route.", "allowance": null, "overage": null, "taxes": null, "sourceIds": ["models"], "checkedAt": "2026-09-27" }
+  ],
+  "sections": [
+    { "heading": "Make the Git behavior part of the trial", "paragraphs": ["Use a disposable branch with a failing test and a narrowly scoped task. The docs say Aider commits pre-existing dirty changes before editing and skips Git hooks by default unless configured otherwise. Inspect commit behavior, enable the required hook verification and rehearse undo before using an established repository."] },
+    { "heading": "Budget the model separately", "paragraphs": ["Choose a provider and model before estimating cost. Record the provider's billing unit and the usage produced by your task; local model support does not establish adequate quality or zero operating cost."] }
+  ],
+  "verdict": "Evaluate Aider when a terminal and Git-centered pair-programming loop fits your repository work. Verify model quality, provider spend and commit behavior in a bounded trial.",
+  "bestFor": "Developers comfortable reviewing terminal output and Git changes",
+  "notFor": "Teams expecting a single fixed product price or unreviewed autonomous changes",
+  "migration": "Preserve repository instructions and provider configuration separately. Trial on a branch, keep credentials in the approved secret store and verify the resulting diff before merging.",
+  "dependencies": [],
+  "gaps": ["Confirm current provider billing and whether any separate hosted or commercial offering applies to the intended use.", "Review privacy and data handling for the selected model provider.", "Confirm Git hook behavior and protect pre-existing dirty changes before a trial.", "Do not treat repository license as a license for model weights or provider services."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }],
+  "commercial": {
+    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+  },
+  "name": "Aider",
+  "category": "AI Coding",
+  "productUrl": "https://aider.chat/"
+}

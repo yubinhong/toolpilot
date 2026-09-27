@@ -3,9 +3,9 @@
 ## 当前快照 — 2026-09-27
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
-- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的 P0 差异。源码路由清单、比较事实维度并集、可见面包屑/route-only JSON-LD、Twitter card 和产物检查已在 `b7e9b0d` 部署；最终 Cloudflare Pages preview 与正式域 current smoke 通过。基线为 `main` / `a419cab0891802f786c61dd4343fe5aeda75c6c7`。计划文件仍为用户提供的未跟踪文件，必须保留。历史 URL/GSC/外链证据、内容批准、运营资料、告警通知和生产回滚演练仍是独立门槛；TASK-006 仍在进行，详见 TASK.md、TODO.md 和 PLANS.md。
+- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的 P0 差异并准备 P1 审核批次。P0 路由/模板基础已在 `b7e9b0d` 部署；本轮新增 Aider、Continue、n8n、Make 档案、5 个比较草稿和一个 Best 草稿，96 条路由清单已更新。新增内容全部 `in-review`、noindex。基线为 `main` / `a419cab0891802f786c61dd4343fe5aeda75c6c7`。计划文件仍为用户提供的未跟踪文件，必须保留。历史 URL/GSC/外链证据、内容批准、Alternatives/slug 映射、运营资料、告警通知和生产回滚演练仍是独立门槛；详见 TASK.md、TODO.md 和 PLANS.md。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
-- 历史 50 条研究快照保留；加入 Claude Code/Cline 后有 52 个工具身份。首批 28 个结构化内容记录全部待用户审核，未冒充正式评价。
+- 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 38 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 2 guides）全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。
 - 草稿保留 URL，noindex 且退出 sitemap；来源日期与审核/实测日期分开。逐版本审批见 ADR-0009。
 - 首批范围：英文 AI Coding / AI App Builders；没有激活广告、分析或实际 Affiliate。
@@ -28,7 +28,7 @@
 3. TASK-006 与 [TOOLPILOT_REBUILD_PLAN.md](TOOLPILOT_REBUILD_PLAN.md)：当前 P0 差异和用户重规划；PLANS.md TASK-006；docs/adr/0009-reviewed-decision-content.md。
 4. docs/research/toolpilot-report-extract.md：报告抽取和采用/暂缓决策。
 5. docs/research/toolpilot-task-gap-analysis-2026-09-27.md：原始报告与 TASK/TODO 的逐项差异标记。
-6. docs/content-review/TASK-005/README.md：8 份证据包、28 页清单及逐版本审核流程。
+6. docs/content-review/TASK-005/README.md：首批 28 页清单；docs/content-review/TASK-006/README.md：新增 10 页精确 revision/digest 审核入口。
 7. docs/operations/90-day-review.md：真实数据运营模板。
 8. RUNBOOK.md、docs/tasks/TASK-004-before-remediation.md、ADR-0008：生产授权和迁移。
 

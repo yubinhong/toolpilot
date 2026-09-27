@@ -301,10 +301,10 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 ### Verified baseline and principal differences
 
 - The project already has shared UI, route metadata, canonical generation, robots, indexability-driven sitemap, a tested 404, structured JSON content, review/digest/dependency gates, freshness and safe-link scripts, build/artifact checks and static Pages deployment.
-- The current content model contains 8 tools, 6 comparisons, 6 alternatives, 4 pricing records, 2 Best pages and 2 guides. All 28 records are `in-review`; they are not owner-approved or indexable. Five of the ten comparison slugs named in the plan exist, plus one current comparison outside its named set. The alternative count exceeds five but its target slug set differs.
+- The current content model now contains 12 tools, 11 comparisons, 6 alternatives, 4 pricing records, 3 Best pages and 2 guides. All 38 records are `in-review`; they are not owner-approved or indexable. All ten comparison topics named in the plan have a draft, plus one existing comparison outside its named set; Cursor vs Windsurf retains a reversed current slug. The alternative count exceeds five but its exact target set and Bolt slug mapping remain unresolved.
 - `/stacks/` exists as noindex scaffolding. `/mcp/` and `/self-hosted/` are absent. Current policy/disclosure paths are `/editorial-policy/` and `/disclosure/`; do not change these paths without a route mapping and reason.
 - Source now derives comparison rows from the union of cited profile facts; values not present on a profile remain explicitly unknown. Registered non-home routes have visible breadcrumbs and matching route-only `BreadcrumbList` JSON-LD. Shared metadata adds Twitter summary cards; no OG image asset/permission is available.
-- `docs/url-audit.csv` now covers all 88 routes registered in source. It explicitly leaves actual HTTP, GSC indexing, backlinks and absent historical URL coverage unverified. The exact legacy URL inventory remains blocked by TODO-306.
+- `docs/url-audit.csv` now covers all 96 routes registered in source. It explicitly leaves actual HTTP, GSC indexing, backlinks and absent historical URL coverage unverified. The exact legacy URL inventory remains blocked by TODO-306.
 - No GA4, AdSense, active affiliate relationship, user accounts, database or CMS exists. This is an intentional gate until approved privacy, operator and commercial inputs exist.
 
 ### Progress recorded 2026-09-27
@@ -314,7 +314,9 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - [x] Phase 3 first implementation slice: comparison fact union, visible breadcrumb/route JSON-LD, Twitter card metadata and generated-artifact checks.
 - [x] Initial implementation commit `800a817` passed CI and deployed as `12e9bb9d-b905-47e1-9e98-716988f2bb2f`; preview and production current smoke passed. Comparison-template screenshots were inspected at 375x812 and 1440x1000.
 - [x] Follow-up `b7e9b0d` final mobile breadcrumb wrapping refinement; fresh build, preview/production smoke and 375x812/1440x1000 screenshots passed.
-- [ ] Remaining Phase 1 historical evidence, Phase 2 route-priority decision, rest of Phase 3 content/internal-link coverage, P1 content and external operating gates.
+- [x] Phase 4 source-backed P1 draft tranche: Aider, Continue, n8n and Make profiles; five missing plan comparisons; and `open-source-ai-coding-tools`. All remain `in-review`; Continue's read-only upstream status and dynamic/unknown billing fields are explicit review gaps.
+- [x] Regenerated the route inventory to 96 source-registered URLs and added a regression check that the ten additions remain noindex with current dependency digests.
+- [ ] Remaining Phase 1 historical evidence, Phase 2 route-priority decision, rest of Phase 3 content/internal-link coverage, P1 alternative/slug reconciliation and exact Owner review, plus external operating gates.
 
 ### Execution phases
 
@@ -352,11 +354,19 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 
 #### Phase 4 — Prepare the P1 content batch
 
-- Target from the supplied plan: 12 tools, 10 comparisons, 5 alternatives, 4 pricing and 3–5 Best pages. Current counts are 8/6/6/4/2; two guides already exist.
-- The list in the plan adds Aider, Continue, n8n and Make profiles and comparison candidates including Make vs n8n, Claude Code vs GitHub Copilot, Cline vs Continue, Aider vs Claude Code and Bolt vs Replit. Validate search intent and official sources before creating any record.
+- Target from the supplied plan: 12 tools, 10 comparisons, 5 alternatives, 4 pricing and 3–5 Best pages. Current counts are 12/11/6/4/3; two guides already exist. All 38 records remain in review.
+- The first draft tranche now adds Aider, Continue, n8n and Make profiles and the five missing plan comparisons: Make vs n8n, Claude Code vs GitHub Copilot, Cline vs Continue, Aider vs Claude Code and Bolt vs Replit. It also adds the plan-listed open-source coding Best page, with license scope and maintenance caveats. Exact owner review remains required.
 - Reconcile `/alternatives/bolt-new/` versus `/alternatives/bolt/`; do not rename a URL until Phase 1 evidence and the owner-approved mapping are available. Existing extra alternatives may remain drafts; do not delete just to reach the plan count.
 - Each new/changed record must include attributable factual sources and clear gaps. It stays `in-review`, noindex and outside the sitemap until owner approval of its exact revision/digest.
 - Resolve dependency updates and review all downstream comparisons if a tool fact changes.
+
+##### Active source-backed draft tranche — 2026-09-27
+
+- Draft the four named tool profiles (Aider, Continue, n8n, Make), five missing plan comparisons (Make vs n8n, Claude Code vs GitHub Copilot, Cline vs Continue, Aider vs Claude Code, Bolt vs Replit), and one plan-listed Best page only where official evidence supports a substantive decision page.
+- Use official product/docs/pricing/repository sources only for product facts. Record access dates. Keep uncertain price, license scope, availability and product support explicitly unknown; do not claim hands-on testing.
+- Continue's upstream repository currently says it is read-only and no longer actively maintained. Capture this as a review gap and make any open-source shortlist conditional; verify package/distribution maintenance before publication.
+- Preserve the existing `/alternatives/bolt-new/` route. This tranche adds no alternative record until an approved route map resolves `/alternatives/bolt/`.
+- After content edits, regenerate dependency digests and the review handoff manifest, then verify all drafts remain noindex and absent from sitemap. The tranche manifest is recorded in `docs/content-review/TASK-006-review-manifest.json`; owner review of exact revision/digest remains required before any indexing.
 
 #### Phase 5 — External operating and commercial gates
 
@@ -374,7 +384,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Run preview and production `SMOKE_PROFILE=current` only after an authorized deployment; a successful local build or Git push is not deployment evidence.
 - Record code/doc changes, routes added/retained/removed, redirects (if any), tests, owner inputs still needed, risks and rollback in TASK.md.
 
-Current tranche verification (2026-09-27): `npm run cloudflare:build` passed with 42 tests and 88 generated pages; local current smoke passed for 88 pages/robots/sitemap/404; `npm audit --audit-level=high` reported 0 vulnerabilities. Follow-up CI run `36304533365` passed, Cloudflare deployment `3c4b4d7a-4b7b-47e0-a384-8d06353218c0` preview and production smoke passed, and final Playwright screenshots were inspected at 375x812 and 1440x1000.
+Initial P0 technical tranche verification (2026-09-27): `npm run cloudflare:build` passed with 42 tests and 88 generated pages; local current smoke passed for 88 pages/robots/sitemap/404; `npm audit --audit-level=high` reported 0 vulnerabilities. Follow-up CI run `36304533365` passed, Cloudflare deployment `3c4b4d7a-4b7b-47e0-a384-8d06353218c0` preview and production smoke passed, and final Playwright screenshots were inspected at 375x812 and 1440x1000. The later P1 tranche's current 44-test/96-page verification is recorded in TASK.md.
 
 ### Stop conditions and rollback
 

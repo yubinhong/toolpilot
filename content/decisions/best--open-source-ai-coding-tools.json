@@ -1,0 +1,45 @@
+{
+  "slug": "open-source-ai-coding-tools",
+  "kind": "best",
+  "title": "Open-source AI coding tools to evaluate",
+  "summary": "A conditional shortlist based on project license evidence, model boundaries and current maintenance signals.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    { "id": "aiderRepo", "url": "https://github.com/Aider-AI/aider", "title": "Aider repository", "publisher": "Aider-AI", "accessedAt": "2026-09-27" },
+    { "id": "clineRepo", "url": "https://github.com/cline/cline", "title": "Cline repository", "publisher": "Cline", "accessedAt": "2026-09-27" },
+    { "id": "continueRepo", "url": "https://github.com/continuedev/continue", "title": "Continue upstream repository", "publisher": "Continue Dev", "accessedAt": "2026-09-27" }
+  ],
+  "facts": [
+    { "key": "aiderLicense", "label": "Aider repository license", "value": "The public repository identifies an Apache-2.0 license.", "sourceIds": ["aiderRepo"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "clineLicense", "label": "Cline repository license", "value": "The public repository identifies an Apache-2.0 license.", "sourceIds": ["clineRepo"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "continueLifecycle", "label": "Continue upstream lifecycle", "value": "The repository identifies Apache 2.0 but also states that the upstream repository is read-only and no longer actively maintained.", "sourceIds": ["continueRepo"], "checkedAt": "2026-09-27", "critical": false }
+  ],
+  "prices": [],
+  "sections": [
+    { "heading": "Treat the shortlist as due diligence", "paragraphs": ["Aider's repository documents terminal pair programming and Git integration. Cline's repository describes an SDK, IDE extension and CLI. These are workflow candidates, not benchmark winners; test the same small repository task and review the resulting changes."] },
+    { "heading": "Separate code license from the model stack", "paragraphs": ["A project license does not license a model's weights, a hosted provider, an extension marketplace or the code and prompts sent to those services. Check every layer against the intended commercial and privacy requirements."] },
+    { "heading": "Handle Continue as a lifecycle exception", "paragraphs": ["Continue's upstream README retains an Apache-2.0 license statement but says that the repository is read-only and no longer actively maintained. Do not include it in a production recommendation until the exact installed package, publisher, updates and security response are confirmed."] },
+    { "heading": "Run a reversible trial", "paragraphs": ["Use a branch, synthetic data and a real acceptance test. Compare review effort, model/provider cost, update cadence and recovery steps. Keep a fallback until the tool and its external model path satisfy the team's requirements."] }
+  ],
+  "verdict": "Aider and Cline are conditional candidates for evaluation based on the linked repository evidence. Continue remains a maintenance-risk exception; no comparative performance result has been measured.",
+  "bestFor": "Developers who want to inspect source and license terms while evaluating AI coding workflows",
+  "notFor": "Teams treating an open-source client license as proof that every model, service or data path is open or offline",
+  "migration": "Pin the client version and model endpoint, preserve a human-reviewed fallback, and recheck license and maintenance evidence before upgrading.",
+  "dependencies": [
+    { "slug": "aider", "revision": 1, "digest": "c2a970c532824750680559447eafa98c122b1d63292df23c36c1940cff20435c" },
+    { "slug": "cline", "revision": 1, "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696" },
+    { "slug": "continue", "revision": 1, "digest": "c8faa7c3666c8e4fd4b24ec7c0f82b63a6795ea9dd61c9ac22616b2a830fa5bc" }
+  ],
+  "gaps": ["Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.", "Continue's distribution, current maintenance, publisher and security response need confirmation before any production recommendation.", "No hands-on comparison or model performance test has been performed."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-repository shortlist draft; owner approval and maintenance checks remain open." }],
+  "commercial": {
+    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+  }
+}

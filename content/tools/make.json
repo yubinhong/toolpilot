@@ -1,0 +1,47 @@
+{
+  "slug": "make",
+  "kind": "tools",
+  "title": "Make",
+  "summary": "A visual automation platform built around scenarios, module actions and monthly credits.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [
+    { "id": "product", "url": "https://help.make.com/step-1-plan-your-scenario", "title": "Plan your scenario", "publisher": "Make", "accessedAt": "2026-09-27" },
+    { "id": "pricing", "url": "https://www.make.com/en/pricing", "title": "Pricing and subscription packages", "publisher": "Make", "accessedAt": "2026-09-27" }
+  ],
+  "facts": [
+    { "key": "workflow", "label": "Workflow", "value": "Visual scenarios connect applications through triggers and actions that process data.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
+    { "key": "billingUnit", "label": "Usage unit", "value": "The pricing page describes module actions as credits and exposes selectable monthly credit quantities.", "sourceIds": ["pricing"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "privacy", "label": "Privacy / data handling", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "selfHosting", "label": "Product self-hosting", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "localModels", "label": "Local model inference", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
+    { "key": "portability", "label": "Scenario portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false }
+  ],
+  "prices": [
+    { "name": "Free", "amount": 0, "currency": "USD", "interval": "month", "billing": "Free plan; official page says there is no time limit.", "allowance": "Up to 1,000 credits per month.", "overage": null, "taxes": null, "sourceIds": ["pricing"], "checkedAt": "2026-09-27" },
+    { "name": "Core (10,000 credits/month selection)", "amount": null, "currency": "USD", "interval": "month", "billing": "The page exposes monthly and annual billing choices; the selected paid amount and checkout basis need confirmation.", "allowance": "10,000 credits per month at the selected pricing quantity.", "overage": null, "taxes": null, "sourceIds": ["pricing"], "checkedAt": "2026-09-27" }
+  ],
+  "sections": [
+    { "heading": "Count actions, not just scenarios", "paragraphs": ["List each trigger and module action in a representative scenario and estimate its run frequency. Retries, polling and data transfer can change the monthly credit requirement, so validate the estimate against a bounded trial."] },
+    { "heading": "Verify the billing selector", "paragraphs": ["The official page has controls for both credit quantity and payment cadence. Record the exact selection, currency, taxes and any extra-credit rules before treating a displayed paid price as a monthly commitment."] }
+  ],
+  "verdict": "Evaluate Make when a visual scenario builder and a broad app-connection workflow fit the use case. Forecast module actions and verify the current pricing selectors before estimating cost.",
+  "bestFor": "Builders who prefer visual automation and can map expected module actions",
+  "notFor": "Teams that need a verified self-hosted deployment or a fixed cost without a usage estimate",
+  "migration": "Export scenario definitions where supported, inventory connections and credentials separately, then replay representative events in a test organization before replacing the source workflow.",
+  "dependencies": [],
+  "gaps": ["The live paid amount depends on billing cadence and selected credit quantity; confirm the exact selection and checkout terms before publication.", "Confirm data retention, privacy, regional hosting and scenario export behavior for the intended plan."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; dynamic paid pricing remains explicitly unresolved." }],
+  "commercial": {
+    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+  },
+  "name": "Make",
+  "category": "Automation",
+  "productUrl": "https://www.make.com/en"
+}

@@ -1,0 +1,35 @@
+{
+  "slug": "claude-code-vs-github-copilot",
+  "kind": "compare",
+  "title": "Claude Code vs GitHub Copilot",
+  "summary": "Choose between coding workflows by testing the same repository task, account policy and review loop.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    { "heading": "Use the same issue and repository", "paragraphs": ["Give each candidate the same bounded maintenance task, acceptance test and clean branch. Record which files changed, how easy it was to inspect the proposed work and how much setup the developer needed to complete it."] },
+    { "heading": "Separate workflow fit from account policy", "paragraphs": ["The current profiles describe different entry points and plan-dependent features. Confirm the actual IDE, terminal, organization policy and account type you will use; do not combine a feature from one plan with the price or privacy terms of another."] },
+    { "heading": "Compare total review effort", "paragraphs": ["Measure accepted and rejected changes, repair time and command review. Keep tests and permission boundaries identical. A faster first response does not establish a safer or less expensive result."] }
+  ],
+  "verdict": "Let your real repository task and account requirements decide. Confirm current plan entitlements and privacy settings before making a team-level recommendation.",
+  "bestFor": "Developers comparing a coding-agent workflow with IDE assistance and GitHub features",
+  "notFor": "Teams requiring an already-verified account-specific privacy, entitlement or cost conclusion",
+  "migration": "Trial the replacement on a branch while preserving the current review workflow. Recheck organization policy, account access and repository instructions before moving team usage.",
+  "dependencies": [
+    { "slug": "claude-code", "revision": 1, "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd" },
+    { "slug": "github-copilot", "revision": 1, "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e" }
+  ],
+  "gaps": ["GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.", "This comparison contains no hands-on benchmark or measured task result."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; exact account constraints and owner review remain open." }],
+  "commercial": {
+    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
+    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+  }
+}
