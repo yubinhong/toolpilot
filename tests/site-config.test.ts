@@ -10,6 +10,12 @@ test("site config keeps static routes unique and local", () => {
   assert.ok(STATIC_ROUTES.every((route) => route === "" || route.startsWith("/")));
 });
 
+test("home metadata matches the rebuild plan", () => {
+  const home = getRoutes().find(route => route.path === "/");
+  assert.equal(home?.title, "ToolPilot — Compare AI & Developer Tools");
+  assert.equal(home?.description, "Compare AI coding tools, developer platforms and AI agents by pricing, features, self-hosting, MCP support and real-world use cases.");
+});
+
 test("site config removes trailing slashes from the public site URL", () => {
   const previousUrl = process.env.NEXT_PUBLIC_SITE_URL;
   process.env.NEXT_PUBLIC_SITE_URL = "https://example.test///";
