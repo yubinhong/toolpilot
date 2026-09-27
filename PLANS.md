@@ -316,7 +316,8 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - [x] Follow-up `b7e9b0d` final mobile breadcrumb wrapping refinement; fresh build, preview/production smoke and 375x812/1440x1000 screenshots passed.
 - [x] Phase 4 source-backed P1 draft tranche: Aider, Continue, n8n and Make profiles; five missing plan comparisons; and `open-source-ai-coding-tools`. All remain `in-review`; Continue's read-only upstream status and dynamic/unknown billing fields are explicit review gaps.
 - [x] Regenerated the route inventory to 96 source-registered URLs and added a regression check that the ten additions remain noindex with current dependency digests.
-- [ ] Remaining Phase 1 historical evidence, Phase 2 route-priority decision, rest of Phase 3 content/internal-link coverage, P1 alternative/slug reconciliation and exact Owner review, plus external operating gates.
+- [x] Phase 3 follow-up: source citations appear on known comparison values; contextual internal links are limited to directly related decisions, capped at five and covered by tests. Local build and smoke pass; CI/Pages verification is pending.
+- [ ] Remaining Phase 1 historical evidence, Phase 2 route-priority decision, source-backed pros/cons/FAQ contracts and authored per-page internal-link coverage, P1 alternative/slug reconciliation and exact Owner review, plus external operating gates.
 
 ### Execution phases
 
@@ -346,10 +347,11 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 #### Phase 3 — Complete supported templates and technical SEO
 
 - Extend comparison dimensions only when source/tool data supports them; display unknown, unsupported and unverified states separately. Current implementation renders dimensions recorded in either cited tool profile and marks the missing side unknown.
+- Comparison cells now link directly to the source for a known value; source-free values remain explicitly unknown.
 - Add visible breadcrumbs plus valid `BreadcrumbList` data where hierarchy is real. Done for registered routes with source route labels only. Use `SoftwareApplication`/`Article` structured data only for matching, verified page content; omit unsupported claims and fake ratings.
 - Evaluate explicit pros/cons, use cases, FAQs and related-decision sections as content contracts rather than adding generic filler.
 - Add unique share metadata/OG assets only where artwork and brand permissions are available. Twitter summary metadata is implemented; an OG image remains open pending approved artwork. Keep canonical, robots, sitemap, noindex, 404 and build artifact checks as hard regression gates.
-- Enforce contextual internal links among genuinely related, eligible decisions. Do not create combinatorial comparisons or index parameter filters; any query-driven filter must have noindex tests.
+- Contextual internal links now use page-type-specific dependency overlap and a five-link cap; combinations without a related decision receive no generated related section. Continue checking each page's authored links and avoid combinatorial comparisons or index parameter filters; any query-driven filter must have noindex tests.
 - Preserve `/tools/`, decision-page and current legal/trust URLs. Any alias/redirect requires a compatibility review and exact mapping test.
 
 #### Phase 4 — Prepare the P1 content batch

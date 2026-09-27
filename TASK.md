@@ -1,6 +1,6 @@
 # TASK-006 — ToolPilot rebuild plan: P0 foundation and P1 content
 
-- Status: IN_PROGRESS (source-backed URL inventory, first P0 template/SEO tranche and one P1 draft batch implemented; historical URL evidence and owner gates remain open)
+- Status: IN_PROGRESS (source-backed URL inventory, first P0 template/SEO tranche, one P1 draft batch and contextual comparison links/source citations implemented; historical URL evidence and owner gates remain open)
 - Date: 2026-09-27
 - Input: user-provided `TOOLPILOT_REBUILD_PLAN.md` (currently untracked; preserve it as supplied)
 - Baseline: branch `main`, HEAD `a419cab0891802f786c61dd4343fe5aeda75c6c7`; only the supplied untracked plan was present before edits. Do not infer live/indexed status from repository code.
@@ -14,7 +14,7 @@
 | P0.2 historical URL audit | `docs/url-audit.csv` now lists all 96 routes in `lib/routes.mjs`; the initial inventory covered 88 before the P1 content tranche. Each row separates route registration from actual HTTP/index/backlink status. No complete GSC, backlink, old sitemap or legacy-path inventory is in the checkout. | Current-source inventory delivered; historical census and migration decisions remain blocked on TODO-306. `indexed` and `has_backlink` remain `unknown`; no 301/410 is inferred. |
 | P0.3 Crypto cleanup | Current `app/`, `components/`, `lib/`, `content/`, `next.config.mjs` and `package.json` contain no Crypto/DeFi legacy page implementation; the current 96-route build contains no old cluster route. | Current code/build covered; preserve historical/research records. This does not establish which removed URLs existed or their external value. |
 | P0.4 design system | Shared page/layout components and `app/globals.css` already provide the current visual system. | Foundation exists. Audit against the plan and change only evidenced gaps; no wholesale restyle. |
-| P0.5 data and templates | `content/tools/`, `content/decisions/`, `lib/content-types.ts`, `lib/content-policy.mjs` and `components/content-detail.tsx` provide source/fact/price/review/digest fields and reusable detail/comparison output. Comparison dimensions now use the union of facts actually present on the cited tool profiles. | Partial. Missing/null values stay unknown; plan dimensions such as MCP/API/IDE/team and purpose-specific pros/cons/FAQ still need source-backed records/contracts. No claims were added for absent facts. |
+| P0.5 data and templates | `content/tools/`, `content/decisions/`, `lib/content-types.ts`, `lib/content-policy.mjs` and `components/content-detail.tsx` provide source/fact/price/review/digest fields and reusable detail/comparison output. Comparison dimensions use the union of facts on the cited tool profiles, and each known comparison cell links directly to its source. | Partial. Missing/null values stay unknown; plan dimensions such as MCP/API/IDE/team and purpose-specific pros/cons/FAQ still need source-backed records/contracts. No claims were added for absent facts. |
 | P0.6 information architecture | Tools, Compare, Alternatives, Pricing, Best, Guides, and `/stacks/` exist. `/stacks/` is noindex scaffolding. `/mcp/` and `/self-hosted/` do not exist. Current trust paths are `/editorial-policy/` and `/disclosure/`, not `/methodology/` and `/affiliate-disclosure/`. | Partial. Preserve working URLs; plan has an internal priority conflict: §5/§49 mark MCP/self-hosted routes P0, while §43/§44/§51 describe them as future/P2. Treat them as deferred until TODO-310 resolves intent and there is distinct source-backed content. Do not add empty indexable routes. |
 | P0.7 trust/legal pages | About, Contact, Privacy, Terms, editorial policy and disclosure routes exist. Contact/legal copy explicitly awaits operator facts. | Structure covered; real operator/contact/legal details remain blocked by TODO-307 and must not be fabricated. |
 | P0.8 technical SEO | Shared metadata creates canonical, robots directives, Open Graph title/description and Twitter summary metadata. Registered non-home routes now have visible breadcrumbs with matching `BreadcrumbList` JSON-LD; artifact checks compare the structured path to the route registry. Canonical, robots, draft noindex, sitemap and 404 behavior are regression-tested; the current build covers 96 pages. | Partial. No OG image asset/permission, GSC evidence or justified 301/410 map is available. Keep those items open; structured data contains route labels only, with no product/rating claims. |
@@ -26,7 +26,7 @@
 
 1. Preserve the supplied plan and exact baseline. Audit routes, content records, metadata, components, tests, build and deployment source before editing. (Done for this tranche.)
 2. Produce a source-verifiable current URL inventory. `docs/url-audit.csv` now covers all 96 registered routes; `indexed` and `has_backlink` remain unknown. Historical routes, 301s and 410s still require TODO-306 evidence.
-3. Close technical template/SEO deltas supported by the accepted static architecture. This tranche adds source-backed comparison dimension unions, visible breadcrumbs, route-only `BreadcrumbList`, Twitter summary metadata and artifact/test coverage. Contextual-link policy, OG artwork and broader comparison content remain open.
+3. Close technical template/SEO deltas supported by the accepted static architecture. Implemented source-backed comparison dimension unions, visible breadcrumbs, route-only `BreadcrumbList`, Twitter summary metadata, contextual decision-link rules and per-cell source citations. OG artwork and broader source-backed comparison content remain open.
 4. Resolve plan-vs-code route naming and the MCP/self-hosted priority conflict before public route changes. Preserve current paths unless a source-backed migration map and tests justify a change.
 5. Stage the planned content expansion as source-backed drafts only. The first tranche now adds Aider, Continue, n8n and Make, the five missing plan comparisons and `open-source-ai-coding-tools`; formal publication still requires exact owner approval, and content count is not an indexing or quality proxy.
 6. Run Node 22 lint, typecheck, tests, build/artifact checks, local current smoke and dependency audit when code changes begin. Review the final diff and record rollback. Production release requires its own valid authorization and online verification.
@@ -63,8 +63,9 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - [x] Follow-up commit `b7e9b0d` keeps each mobile breadcrumb separator with its path item; CI, preview, production and final 375x812/1440x1000 screenshots passed on the deployed revision.
 - [x] Added four source-backed tool drafts, five missing named comparison topics and one plan-listed Best draft. All 38 records remain `in-review`; Continue's official upstream read-only/no-maintenance notice is disclosed as a publication/adoption gap.
 - [x] Regenerated `docs/url-audit.csv` for 96 registered routes and added regression coverage for the new paths, exact dependency digests and noindex state.
+- [x] Tightened related-decision links to page-type-specific evidence overlap, capped each list at five and linked every known comparison value to its source; all 47 tests, Cloudflare build, audit and local 96-page smoke passed. Release verification is pending.
 - [ ] Complete the old-route inventory and decide route migration only after TODO-306 evidence is provided.
-- [ ] Resolve the alternatives route/target-set and Cursor/Windsurf slug mappings; finish remaining P0 template/internal-link audit and owner-dependent gates before marking TASK-006 complete.
+- [ ] Resolve alternatives route/target-set and Cursor/Windsurf slug mappings; finish remaining source-backed content-contract and page-level internal-link checks plus owner-dependent gates before marking TASK-006 complete.
 
 ### P1 draft status
 
@@ -85,6 +86,14 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - `npm run links:check`: checked 128 URLs: 99 HTTP-ok, 15 restricted, 6 blocked by the exact-host policy after redirects, 6 timed out and 2 had network errors. Make's pricing host returned 403 and Continue's docs root had a transient network error; task-specific official pages were inspected separately. Link access is not content verification.
 - `npm audit --audit-level=high`: passed with 0 vulnerabilities.
 - `git diff --check`: passed. No source approval, hands-on testing, commercial activation or indexing change was made.
+- GitHub run `36307764221` for commit `b46cad0bce3cd68bd6c1437844d0efc4a07a25fd` passed; Cloudflare Pages deployment `0bd56378-041e-466c-85ad-72a2e77f47a0` succeeded. Preview `https://0bd56378.toolpilot-git.pages.dev` and `https://toolpilot.cc` both passed current-profile smoke for 96 pages, robots, sitemap and a real 404.
+
+#### Phase 3 related-source tranche — 2026-09-27
+
+- `npm run cloudflare:build`: passed lint, typecheck, 47 tests, content validation, static build and artifact checks; 96 pages and 4 indexable URLs.
+- `npm audit --audit-level=high`: passed with 0 vulnerabilities. Built comparison output was checked for inline official source links and related decision links; the pending comparison remains outside the sitemap.
+- `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke`: passed for 96 pages, robots, sitemap and a real 404. CI and Pages deployment for this tranche are pending.
+- All 38 content records remain unchanged and `in-review`; no content approval or indexability change was made.
 
 #### Initial P0 technical tranche verification
 
