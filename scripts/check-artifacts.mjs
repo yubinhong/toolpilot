@@ -41,6 +41,35 @@ for (const r of routes) {
   if (/Approximately 20%|Cash affiliate|Commission note|commission terms|approvedDigest/.test(html)) failures.push(`${r.path}: historical commercial research exposed`);
 }
 const tools = new Map(content.filter(record => record.kind === 'tools').map(record => [record.slug,record]));
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;' })[char]);
+}
+function citationFollows(html, claim, sourceUrl, closingTag) {
+  const claimStart = html.indexOf(escapeHtml(claim));
+  if (claimStart < 0) return false;
+  const claimEnd = html.indexOf(closingTag, claimStart);
+  return claimEnd > claimStart && html.slice(claimStart, claimEnd).includes(sourceUrl);
+}
+for (const record of content) {
+  const evidence = [
+    ...(record.pros ?? []).map(item => ({ text: item.text, refs: item.sourceRefs, label: 'strength' })),
+    ...(record.cons ?? []).map(item => ({ text: item.text, refs: item.sourceRefs, label: 'constraint' })),
+    ...(record.faqs ?? []).flatMap(item => [
+      { text: item.question, refs: item.sourceRefs, label: 'FAQ question' },
+      { text: item.answer, refs: item.sourceRefs, label: 'FAQ answer' },
+    ]),
+  ];
+  if (!evidence.length) continue;
+  const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');
+  for (const item of evidence) {
+    if (!html.includes(item.text)) failures.push(`${record.kind}/${record.slug}: documented ${item.label} missing from rendered page`);
+    for (const ref of item.refs) {
+      const source = tools.get(ref.toolSlug)?.sources.find(candidate => candidate.id === ref.sourceId);
+      const closingTag = item.label.startsWith('FAQ') ? '</dd>' : '</li>';
+      if (!source || !citationFollows(html, item.text, source.url, closingTag)) failures.push(`${record.kind}/${record.slug}: documented ${item.label} source ${ref.toolSlug}/${ref.sourceId} is not linked beside its claim`);
+    }
+  }
+}
 for (const record of content.filter(item => item.kind === 'tools' && item.facts.some(fact => fact.key === 'mcp'))) {
   const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');
   const fact = record.facts.find(item => item.key === 'mcp');

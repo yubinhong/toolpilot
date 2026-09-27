@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 2. Digest: `012f8a03c2500d5f4ef1235dc5dc81c72ffd00d165c0cd65acc2792e414d58ea`.
+Revision: 3. Digest: `fa15289cff82a8df849e4ec79de954cd382eaec625afc789a8fbaf1a445eac20`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -27,6 +27,10 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **MCP support**: Copilot Chat documents MCP servers for IDE use; GitHub lists VS Code 1.99+ as a prerequisite and requires organization policy enablement for Business or Enterprise members. Sources: mcp; checked: 2026-09-27.
+
+## MCP evidence blocks
+
+This draft now includes 1 source-backed documented strengths, 2 documented constraints and 2 FAQs. These are vendor-documentation facts awaiting owner review, not hands-on results.
 
 ## Pricing basis
 

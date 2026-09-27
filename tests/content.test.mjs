@@ -5,10 +5,11 @@ import { content, publicTool } from '../lib/content.mjs';
 import { tools, researchTools } from '../lib/catalog.mjs';
 import { validateContent, contentDigest, isIndexable, vendorLink, freshness, isHttpsUrl } from '../lib/content-policy.mjs';
 import { getRoutes } from '../lib/routes.mjs';
-function tool() {
+function tool(slug='synthetic-tool') {
   const r = structuredClone(content.find(r => r.slug === 'cursor' && r.kind === 'tools'));
-  r.slug = 'synthetic-tool'; r.name='Synthetic fixture'; r.title='Synthetic fixture';
+  r.slug = slug; r.name='Synthetic fixture'; r.title='Synthetic fixture';
   r.productUrl='https://example.com/';
+  for (const field of ['pros','cons','faqs']) r[field]=r[field].map(item=>({...item,sourceRefs:item.sourceRefs.map(ref=>({...ref,toolSlug:slug}))}));
   return r;
 }
 function approve(r) {
@@ -25,7 +26,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
     ['claude-code','https://code.claude.com/docs/en/mcp'],
     ['cline','https://docs.cline.bot/mcp/mcp-overview'],
     ['continue','https://docs.continue.dev/customize/deep-dives/mcp'],
-    ['cursor','https://docs.cursor.com/context/model-context-protocol'],
+    ['cursor','https://cursor.com/docs/mcp'],
     ['github-copilot','https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp'],
   ]);
   const profiles = content.filter(record=>record.kind==='tools');
@@ -34,7 +35,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,2,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);
@@ -46,6 +47,24 @@ test('MCP capability claims cite official docs and remain pending exact owner re
     assert.equal(record.testedAt,null);
   }
   assert.ok(profiles.filter(record=>!expected.has(record.slug)).every(record=>!record.facts.some(fact=>fact.key==='mcp')));
+});
+test('MCP profiles expose source-backed strengths, constraints and FAQs',() => {
+  const profiles=content.filter(record=>record.kind==='tools'&&record.facts.some(fact=>fact.key==='mcp'));
+  for (const record of profiles) {
+    for (const field of ['pros','cons','faqs']) {
+      assert.ok(record[field]?.length,`${record.slug} has ${field}`);
+      for (const item of record[field]) {
+        const refs=item.sourceRefs;
+        assert.ok(refs.length,`${record.slug} ${field} has citations`);
+        for (const ref of refs) {
+          assert.equal(ref.toolSlug,record.slug);
+          assert.ok(record.sources.some(source=>source.id===ref.sourceId));
+        }
+      }
+    }
+    assert.equal(record.review.state,'in-review');
+    assert.equal(isIndexable(record,content),false);
+  }
 });
 test('TASK-006 P1 additions exist as in-review noindex routes with valid dependencies',() => {
   const required = [
@@ -78,6 +97,27 @@ test('TASK-006 review manifest matches each exact in-review revision and digest'
     assert.equal(isIndexable(record,content),false);
   }
 });
+test('TASK-005 review manifest matches each exact in-review revision and digest',() => {
+  const manifest=JSON.parse(readFileSync(new URL('../docs/content-review/TASK-005-review-manifest.json',import.meta.url),'utf8'));
+  assert.equal(manifest.length,28);
+  for (const entry of manifest) {
+    const [,kind,slug]=entry.path.split('/');
+    const record=content.find(r=>r.kind===kind&&r.slug===slug);
+    assert.ok(record,`${entry.path} record exists`);
+    assert.equal(entry.revision,record.revision);
+    assert.equal(entry.digest,contentDigest(record));
+    assert.equal(entry.state,'in-review');
+    assert.deepEqual(entry.gaps,record.gaps);
+    assert.equal(isIndexable(record,content),false);
+  }
+});
+test('TASK-005 tool evidence packs identify current MCP profile revisions and digests',() => {
+  for (const slug of ['cursor','claude-code','github-copilot','cline']) {
+    const record=content.find(r=>r.kind==='tools'&&r.slug===slug);
+    const pack=readFileSync(new URL(`../docs/content-review/TASK-005/${slug}.md`,import.meta.url),'utf8');
+    assert.ok(pack.includes(`Revision: ${record.revision}. Digest: \`${contentDigest(record)}\`.`),`${slug} evidence pack matches current content`);
+  }
+});
 test('all historical slugs remain and new identities are unique',() => {
   assert.ok(researchTools.every(t=>tools.some(x=>x.slug===t.slug)));
   assert.equal(new Set(tools.map(t=>t.slug)).size,tools.length);
@@ -102,7 +142,7 @@ test('editing a price or verdict without bumping the revision invalidates approv
   }
 });
 test('approved comparison needs current approved dependencies including digest',() => {
-  const a=approve(tool()), b=approve(tool());b.slug='second-fixture';approve(b);
+  const a=approve(tool()), b=approve(tool('second-fixture'));approve(b);
   const r=structuredClone(content.find(r=>r.kind==='compare'&&r.slug==='cursor-vs-claude-code'));r.slug='fixture-comparison';
   r.dependencies=[a,b].map(t=>({slug:t.slug,revision:t.revision,digest:contentDigest(t)}));approve(r);
   assert.deepEqual(validateContent([a,b,r]),[]);assert.equal(isIndexable(r,[a,b,r]),true);
@@ -120,6 +160,15 @@ test('unknown source IDs, missing source dates, duplicate routes and invalid sta
   const b=tool();b.sources[0].accessedAt='2026-02-30';assert.ok(validateContent([b]).some(e=>e.includes('source')));
   assert.ok(validateContent([tool(),tool()]).some(e=>e.includes('duplicate')));
   const c=tool();c.review.state='verified-by-link';assert.ok(validateContent([c]).some(e=>e.includes('state')));
+});
+test('structured editorial evidence rejects missing and unrelated citations',()=> {
+  const missing=tool();missing.pros=[{text:'Claim without citations',sourceRefs:[]}];
+  assert.ok(validateContent([missing]).some(e=>e.includes('requires source references')));
+  const unrelated=structuredClone(content.find(r=>r.kind==='compare'&&r.slug==='cursor-vs-claude-code'));
+  unrelated.faqs=[{question:'Question',answer:'Answer',sourceRefs:[{toolSlug:'continue',sourceId:'mcp'}]}];
+  assert.ok(validateContent([...content.filter(r=>r!==unrelated),unrelated]).some(e=>e.includes('invalid or unrelated source reference')));
+  const unknown=tool();unknown.cons=[{text:'Claim with unknown source',sourceRefs:[{toolSlug:unknown.slug,sourceId:'missing'}]}];
+  assert.ok(validateContent([unknown]).some(e=>e.includes('references unknown source')));
 });
 test('pending record cannot impersonate formal review or hands-on testing',()=> {
   const a=tool();a.verifiedAt='2026-09-27';assert.ok(validateContent([a]).some(e=>e.includes('pending')));

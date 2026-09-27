@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Lovable alternatives",
   "summary": "Lovable alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -61,8 +61,8 @@
     },
     {
       "slug": "cursor",
-      "revision": 2,
-      "digest": "0b4c09ef05fef4afa43a0d911e4c86c7a958a1d63ed7e93ef5e69297e66cb284"
+      "revision": 3,
+      "digest": "7b08dcd85e3c8eaae0ec2333691e7c1e528c946fe4a72748c7a626c3156ba6cd"
     }
   ],
   "gaps": [],
@@ -74,6 +74,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
     }
   ],
   "commercial": {

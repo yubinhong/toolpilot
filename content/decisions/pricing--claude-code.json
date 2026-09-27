@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Claude Code pricing: billing basis and cost boundaries",
   "summary": "Claude Code pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "claude-code",
-      "revision": 2,
-      "digest": "3ecafec2cf2745b3b01301e6766d5a58488f26dcc266cc6bdb77cc91a4064974"
+      "revision": 3,
+      "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e"
     }
   ],
   "gaps": [],
@@ -59,6 +59,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
     }
   ],
   "commercial": {

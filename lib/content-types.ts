@@ -3,6 +3,9 @@ export type Source = { id: string; url: string; title: string; publisher: string
 export type Fact = { key: string; label: string; value: string | null; sourceIds: string[]; checkedAt: string | null; critical: boolean };
 export type Price = { name: string; amount: number | null; currency: string; interval: string; billing: string; allowance: string | null; overage: string | null; taxes: string | null; sourceIds: string[]; checkedAt: string | null };
 export type Section = { heading: string; paragraphs: string[] };
+export type SourceReference = { toolSlug: string; sourceId: string };
+export type EvidenceClaim = { text: string; sourceRefs: SourceReference[] };
+export type EvidenceFaq = { question: string; answer: string; sourceRefs: SourceReference[] };
 export type CommercialRelation = { status: "unconfirmed" | "none" | "active"; url: string | null; disclosure: string | null; evidence: string | null };
 export type Content = {
   slug: string; kind: "tools" | "compare" | "alternatives" | "pricing" | "best" | "guides";
@@ -10,6 +13,7 @@ export type Content = {
   review: { state: ReviewState; owner: string | null; reviewedAt: string | null; approvedRevision: number | null; approvedDigest: string | null; evidence: string | null };
   verifiedAt: string | null; testedAt: string | null; testEvidence: string | null;
   sources: Source[]; facts: Fact[]; prices: Price[]; sections: Section[];
+  pros?: EvidenceClaim[]; cons?: EvidenceClaim[]; faqs?: EvidenceFaq[];
   verdict: string; bestFor: string; notFor: string; migration: string;
   dependencies: { slug: string; revision: number; digest: string }[]; gaps: string[];
   changes: { date: string; summary: string }[];

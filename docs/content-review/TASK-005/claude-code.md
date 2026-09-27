@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 2. Digest: `3ecafec2cf2745b3b01301e6766d5a58488f26dcc266cc6bdb77cc91a4064974`.
+Revision: 3. Digest: `cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -31,6 +31,10 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **MCP support**: Claude Code documents local stdio and remote HTTP, SSE and WebSocket MCP server connections; project-scoped servers require workspace trust and approval. Sources: mcp; checked: 2026-09-27.
+
+## MCP evidence blocks
+
+This draft now includes 1 source-backed documented strengths, 2 documented constraints and 2 FAQs. These are vendor-documentation facts awaiting owner review, not hands-on results.
 
 ## Pricing basis
 

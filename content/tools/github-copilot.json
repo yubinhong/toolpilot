@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "GitHub Copilot",
   "summary": "Coding assistance for evaluating an existing GitHub and IDE workflow.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -86,7 +86,9 @@
       "key": "mcp",
       "label": "MCP support",
       "value": "Copilot Chat documents MCP servers for IDE use; GitHub lists VS Code 1.99+ as a prerequisite and requires organization policy enablement for Business or Enterprise members.",
-      "sourceIds": ["mcp"],
+      "sourceIds": [
+        "mcp"
+      ],
       "checkedAt": "2026-09-27",
       "critical": false
     }
@@ -135,6 +137,59 @@
       ]
     }
   ],
+  "pros": [
+    {
+      "text": "The VS Code documentation covers manual MCP server configuration and installation through the GitHub MCP Registry.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "The documented VS Code setup requires version 1.99 or later.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "The MCP servers in Copilot policy is disabled by default and must be enabled for organization or enterprise members on Business or Enterprise plans.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is required for the documented VS Code MCP setup?",
+      "answer": "The documentation lists Copilot access and VS Code 1.99 or later. Organization or enterprise members on Business or Enterprise plans also need the MCP servers in Copilot policy enabled.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "question": "Does the organization MCP policy govern individual Copilot plans?",
+      "answer": "No. GitHub says this policy applies to organization or enterprise users on Business or Enterprise plans, not Copilot Free, Pro, Pro+, or Max.",
+      "sourceRefs": [
+        {
+          "toolSlug": "github-copilot",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
   "verdict": "Start here if changing the team workflow is a larger cost than changing the assistant. Check seat policies before buying individual subscriptions.",
   "bestFor": "Teams evaluating assistance within an established development workflow",
   "notFor": "Buyers assuming every feature is available on every plan",
@@ -151,6 +206,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added official-source MCP support and organization-policy conditions; owner review pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-backed MCP strengths, constraints and FAQs; owner review pending."
     }
   ],
   "commercial": {

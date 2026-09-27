@@ -10,6 +10,8 @@ Keep Next.js static export and the existing 50 research identities. Add structur
 
 The server-only loader validates all records. TypeScript defines the content shape; a pure Node policy implements runtime invariants. Only an explicit public-tool DTO crosses the client boundary. Historical affiliate-program research never serves as an actual ToolPilot relationship.
 
+Optional pros, cons and FAQ blocks are editorial claims with explicit `{ toolSlug, sourceId }` references. A tool profile may cite its own source records; a decision record may cite only tools in its declared dependencies. The detail template renders these citations as outbound source links. Missing claims remain absent rather than being filled with generic copy.
+
 Review states are draft, in-review and published. Publication requires owner identity, date, actual decision reference, exact revision and a SHA-256 digest of all editorial fields. Dependency references bind both revision and digest. Material content changes invalidate approval even if an editor forgets to increment the revision. Source reading, HTTP reachability, formal approval and hands-on testing remain separate.
 
 The digest is a consistency check, not identity authentication or a digital signature. Real approval is established by the owner decision record and repository review process. Agents must not invent it. The checker does not replace substantive editorial review.

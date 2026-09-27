@@ -7,6 +7,7 @@
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 38 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 2 guides）全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。
+- P0.5 内容契约已推进一批：`lib/content-types.ts` / `lib/content-policy.mjs` 支持带 `{toolSlug, sourceId}` 的 Pros、Cons、FAQ 引用，`components/content-detail.tsx` 渲染引用；首批五个 MCP 工具档案与 18 条依赖决策已更新到 revision 3 和当前 digest，全部继续 in-review/noindex。其余档案/决策 FAQ 跟踪 TODO-313。
 - 草稿保留 URL，noindex 且退出 sitemap；来源日期与审核/实测日期分开。逐版本审批见 ADR-0009。
 - 首批范围：英文 AI Coding / AI App Builders；没有激活广告、分析或实际 Affiliate。
 - 工作区含用户提供的未跟踪 `TOOLPILOT_REBUILD_PLAN.md`；不得清理或覆盖。TASK-006 变更前已检查工作区，基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`。

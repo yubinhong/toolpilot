@@ -378,6 +378,17 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Refresh the TASK-006 review manifest and handoff instructions for changed P1 records; inspect whether TASK-005 review notes refer to any changed exact revisions.
 - Acceptance: content validator and tests confirm source/date attribution, current dependency digests and pending review state; build/artifacts confirm 96 routes and unchanged indexable URL count; link checks may classify network restrictions without treating them as source failures. Run Node 22 quality, audit, local smoke, clean release check, CI, Pages deployment and preview/production smoke.
 - Acceptance completed: five official source URLs are recorded and rendered, 18 dependent decision records validate against current digests, 48 tests pass, static artifacts contain 96 routes and 4 indexable URLs, audit reports zero vulnerabilities, and local current-profile smoke passes. Commit `4363baa9821a547641d88a62c461ad2e1e746773` passed release readiness and GitHub CI run `36310506062`; Pages deployment `bd8c8795-7ff5-4540-8c5a-559a693fb380` and preview/production current smoke passed for all 96 pages.
+- Source URL maintenance: Cursor's old `docs.cursor.com/context/model-context-protocol` URL now redirects to a generic docs root. The profile and review pack use `https://cursor.com/docs/mcp`, verified as HTTP 200; the obsolete hostname is removed from the exact-host allowlist.
+
+##### Active source-backed page-contract tranche — 2026-09-27
+
+- Correct Cursor's MCP citation to the current canonical `https://cursor.com/docs/mcp`; remove the obsolete `docs.cursor.com` allowlist entry only after confirming no remaining source uses it.
+- Add optional structured `pros`, `cons` and `faqs` evidence collections without invalidating existing records. Each claim must carry one or more `{ toolSlug, sourceId }` references resolvable to the record itself or one of its tool dependencies.
+- Add source-derived MCP strengths, limitations and one or more decision-relevant FAQs to the five profiles with official MCP evidence. Label the output as documented information awaiting editorial review; do not infer quality, security or hands-on results.
+- Render the evidence blocks and citations on the existing detail template. Add artifact checks that prove the claim and exact source URL reach generated HTML; add validator regression cases for missing/stale dependency and source references.
+- Increment the five tool revisions and all dependent decision revisions, recompute content digests, refresh TASK-005/TASK-006 handoffs and manifest. Preserve `in-review`, noindex, and the 4-URL sitemap.
+- Acceptance: Node 22 Cloudflare build, generated artifact checks, external link check, dependency audit and local current smoke pass; all modified records have current digests and remain non-indexable. Commit, push, CI, Pages preview/production smoke follow the previously authorized per-deliverable release workflow.
+- Remaining contract gaps after this tranche must stay visible in TASK/TODO; do not claim all tool/decision templates complete because only five tool profiles receive these blocks.
 
 #### Phase 5 — External operating and commercial gates
 

@@ -13,6 +13,7 @@
 - 内容流：content/tools 与 content/decisions JSON → lib/content.mjs 校验/读取 → 服务端模板 → out/。
 - 历史流：lib/catalog.mjs 的 researchTools 原样保留；tools 提供兼容叠加视图。新增产品无伪造旧检查日期。
 - 审核与安全边界：lib/content-policy.mjs 校验来源、修订/digest、依赖、商业关系；客户端只收到 publicTool allowlist DTO。
+- 决策证据块：可选 `pros`、`cons`、`faqs` 记录声明文本和 `{toolSlug, sourceId}` 引用；校验器仅接受本工具或显式依赖工具的来源，详情页渲染链接。未提供来源的陈述不能通过内容校验。
 - 路由：lib/routes.mjs 是页面与索引清单，metadata.ts、sitemap、smoke、产物检查共用。site-config 仅管理站点 URL。
 - 商业：Affiliate、Featured、Sponsor 分别记录；只有有效审核和关系证据才能激活商业目的地，未知关系不冒充合作。
 - 维护：独立 HTTPS 域名 allowlist、DNS 全结果公网校验、固定已验证地址连接、3 次重定向限制；不引入任意运行时抓取服务。

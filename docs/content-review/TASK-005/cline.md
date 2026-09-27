@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 2. Digest: `78db7f8a57375ed8151e955f37659b1aa2e2a77129a8400f9a7ebddf804abf5b`.
+Revision: 3. Digest: `67840defc66ecc432a227cd3d56fe7e930de81ef1712318e43112d196ba6bdab`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -29,6 +29,10 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Provider configuration**: Provider sign-in and bring-your-own-key configurations are documented. Sources: pricing; checked: 2026-09-27.
 
 - **MCP support**: Cline documents MCP servers for connecting external tools and data, with local stdio and remote server configuration paths. Sources: mcp; checked: 2026-09-27.
+
+## MCP evidence blocks
+
+This draft now includes 2 source-backed documented strengths, 2 documented constraints and 2 FAQs. These are vendor-documentation facts awaiting owner review, not hands-on results.
 
 ## Pricing basis
 

@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Cline",
   "summary": "A coding-agent candidate for users who want to choose the model provider.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -98,7 +98,9 @@
       "key": "mcp",
       "label": "MCP support",
       "value": "Cline documents MCP servers for connecting external tools and data, with local stdio and remote server configuration paths.",
-      "sourceIds": ["mcp"],
+      "sourceIds": [
+        "mcp"
+      ],
       "checkedAt": "2026-09-27",
       "critical": false
     }
@@ -133,6 +135,68 @@
       ]
     }
   ],
+  "pros": [
+    {
+      "text": "Cline documents local STDIO and remote server configuration, with Streamable HTTP marked as recommended.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "MCP server management is documented in both the IDE extension and CLI.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "SSE is marked legacy; the documented configuration defaults to legacy SSE when the transport type is omitted.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "Cline's security guidance says to install trusted servers, limit auto-approval to safe tools, and review calls before approval.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How does Cline distinguish local and remote MCP servers?",
+      "answer": "Local servers use STDIO command and argument configuration; remote servers use a URL. Streamable HTTP is recommended and SSE is legacy.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "question": "What MCP approval precautions does Cline document?",
+      "answer": "The guidance says to use trusted servers, store secrets in environment variables, limit autoApprove to safe tools, and review tool calls before approval.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
   "verdict": "Shortlist Cline when model/provider choice is a requirement and you can manage its cost and access controls. Local inference needs a separate capability trial.",
   "bestFor": "Developers evaluating provider choice or local models",
   "notFor": "Buyers equating a local client with no external data transfer",
@@ -147,6 +211,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added an official-documentation MCP capability fact; owner review pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-backed MCP strengths, constraints and FAQs; owner review pending."
     }
   ],
   "commercial": {

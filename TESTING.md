@@ -37,6 +37,7 @@ Node 22（.nvmrc）、npm 锁文件恢复。核心不变量：历史快照保留
 - Draft、in-review 与 synthetic published 的正反测试；缺少 owner/date/revision/digest/evidence 时拒绝发布。
 - 实质编辑不增加 revision 也使旧摘要失效；依赖被重审但摘要变化时，旧决策仍失效。
 - 缺失来源、重复 slug、未知状态、非法 URL、错误计费口径；未知值不被转为否定。
+- Pros/Cons/FAQ 陈述必须携带可解析来源；决策页不得引用不在其依赖列表中的工具来源；静态产物必须包含陈述与对应来源链接。
 - 普通链接与 synthetic Affiliate fixture：有效批准及披露缺一不可；Featured、Sponsor 单独判断。
 - 原 50 条快照的历史断言继续存在；当前目录允许增量和审核，不再要求全站永久 Draft。
 - HTML 中每页 title、description、self canonical、robots 与 registry 一致；sitemap 不包含草稿；未知 URL HTTP 404。

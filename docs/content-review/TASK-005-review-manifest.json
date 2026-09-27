@@ -8,29 +8,29 @@
   },
   {
     "path": "/tools/claude-code/",
-    "revision": 1,
-    "digest": "266ad82f976fec345894b9ce0b622043b7ebc967d1b2348798f7c273fc256dbd",
+    "revision": 3,
+    "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/tools/cline/",
-    "revision": 1,
-    "digest": "75d77f9dce82fe51a4736f85bd1e8698e4bb6a4fcf1130e330038576c584e696",
+    "revision": 3,
+    "digest": "67840defc66ecc432a227cd3d56fe7e930de81ef1712318e43112d196ba6bdab",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/tools/cursor/",
-    "revision": 1,
-    "digest": "a8cecb0b56b4e71a83ba99521b380b8103c7f19d4edd8f733babb67ee9059729",
+    "revision": 3,
+    "digest": "7b08dcd85e3c8eaae0ec2333691e7c1e528c946fe4a72748c7a626c3156ba6cd",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/tools/github-copilot/",
-    "revision": 1,
-    "digest": "30bc16906f696620a082c3d2c07642ff3448624fd39f4d7e60be671bc51ffe2e",
+    "revision": 3,
+    "digest": "fa15289cff82a8df849e4ec79de954cd382eaec625afc789a8fbaf1a445eac20",
     "state": "in-review",
     "gaps": [
       "Confirm account-specific privacy settings and feature availability before a team recommendation."
@@ -64,43 +64,43 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 1,
-    "digest": "3643983d52abf2df6b5e8f14a7fb1a86eed3fef2bb594951716a4131526f9576",
+    "revision": 3,
+    "digest": "2710e4b85368ac220fb7e852902a9765ee44f5ab5e3b335f8fef6396f5981670",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 1,
-    "digest": "eaaf936788ed5f79a05cba4d560068dbe51e6b722765a87a22e2564ce733edf1",
+    "revision": 3,
+    "digest": "aae3bc4335887454ed217d313097c7394cce4f542d8aa2776adf818e6c4e37f5",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 1,
-    "digest": "9033203677a67da4b8923fe28e66d9ff13e24dcb178f65de48e1ce737b13199f",
+    "revision": 3,
+    "digest": "2e7c3585f996c7b9e6bf3336db9829454e5f9ee3cda16335194ab5fae262f08f",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 1,
-    "digest": "fa07f447cbed0c810db1b78eec1bc67a3758e313b5e19f7a9a27f20209101681",
+    "revision": 3,
+    "digest": "92edd3de42136a06485b4024ebae4819a59adf2aebdf891f6c6fd02a65b20902",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 1,
-    "digest": "ad3ccad94df77b6a01bb4a086b37c7f6c92156e45acc1f8f70319cfc0d220d21",
+    "revision": 3,
+    "digest": "f8ca05207c776bd8849e8015882b4119995358bbabde8655e62cba7244556831",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 1,
-    "digest": "0cd535596162694386f02bc99a146c173d886687e0edc90408760138d7b153de",
+    "revision": 3,
+    "digest": "2dd0502f7a1230df90c3bd90c33b37b2d9ae27fbbf5f96c3bc7083447b160e5f",
     "state": "in-review",
     "gaps": []
   },
@@ -113,29 +113,29 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 1,
-    "digest": "94aff4f7b54516dd2071811ac2cba191f1409a65f5668670d78c0cf9985256fa",
+    "revision": 3,
+    "digest": "e6c7982d7a88f0e54d2d8eed28427ecc4beddeb637ed2113d6cadb33a4bde3d2",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/cline-vs-claude-code/",
-    "revision": 1,
-    "digest": "1dcea4e0adc7339b812cf2f72278308b26cadbf179830900910a13e226c3baa6",
+    "revision": 3,
+    "digest": "ae81d8376664670ec5bbb45c03636477382bbed89517448712bff5104c99a45b",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/cursor-vs-claude-code/",
-    "revision": 1,
-    "digest": "cf4adf2e550d076ab3edca7b83289659fae5e139f337804ab6879d1478b59c7d",
+    "revision": 3,
+    "digest": "49ebb1bad0c4699374a6aef7b5dd5e116f22a169973cea5692829b81d72f809a",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/cursor-vs-github-copilot/",
-    "revision": 1,
-    "digest": "6229982672c4588f3caea3a572bf28097b52bfe390ab5db9e28dc5aa7c2e8b91",
+    "revision": 3,
+    "digest": "27cbd99203562dd105ffcb429886256bd6067769c14ed095238315b31021ba64",
     "state": "in-review",
     "gaps": []
   },
@@ -155,15 +155,15 @@
   },
   {
     "path": "/compare/windsurf-vs-cursor/",
-    "revision": 1,
-    "digest": "286a9933aff348f0e97b7876a3b53ae4d45040a2d938112853ccbfefe995124e",
+    "revision": 3,
+    "digest": "4a0183088440d02338e173341f4312fb54193921525e45f4b02bbbb10789a21b",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/guides/ai-editor-vs-terminal-agent/",
-    "revision": 1,
-    "digest": "b77db229e3c7a3d0aecf7e52c35fd0c61a382137778a889781e7b97e5b647bce",
+    "revision": 3,
+    "digest": "63977aeff6a90556bbfbdc911bd8810f24b9ca8a66aeafd55d7cfefc2ccc0857",
     "state": "in-review",
     "gaps": []
   },
@@ -176,15 +176,15 @@
   },
   {
     "path": "/pricing/claude-code/",
-    "revision": 1,
-    "digest": "4530020612aa555488e48b98f2a108625de3e9d1e2934e0410bbb59b29c18292",
+    "revision": 3,
+    "digest": "d074b7629c432ef6d02879982f32c490fdaa5b631b049c0b034e6766b522da8b",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/pricing/cursor/",
-    "revision": 1,
-    "digest": "668a813367468904250bd718e6063aa79dd1df988dbf07826cb352a65f71e4db",
+    "revision": 3,
+    "digest": "cf8c2608cfc618f60cf724ac8d32846c95d349a4b7780c3e5ef7cc701fed3827",
     "state": "in-review",
     "gaps": []
   },

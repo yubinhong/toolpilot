@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Claude Code",
   "summary": "A coding agent with terminal and IDE entry points for repository work.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -102,7 +102,9 @@
       "key": "mcp",
       "label": "MCP support",
       "value": "Claude Code documents local stdio and remote HTTP, SSE and WebSocket MCP server connections; project-scoped servers require workspace trust and approval.",
-      "sourceIds": ["mcp"],
+      "sourceIds": [
+        "mcp"
+      ],
       "checkedAt": "2026-09-27",
       "critical": false
     }
@@ -165,6 +167,59 @@
       ]
     }
   ],
+  "pros": [
+    {
+      "text": "The MCP documentation covers local stdio servers and remote HTTP or WebSocket servers.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "cons": [
+    {
+      "text": "The SSE transport is deprecated; the documentation recommends HTTP when the server supports it.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "text": "Project MCP server approvals depend on workspace trust; a cloned repository cannot approve its own servers.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MCP transports does Claude Code document?",
+      "answer": "It documents local stdio and remote HTTP or WebSocket. SSE is deprecated and HTTP is recommended where available.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    },
+    {
+      "question": "Can a cloned project approve its own MCP servers?",
+      "answer": "No. Repository project-server approvals are not read from checked-in settings until the workspace is trusted; the cloned repository cannot approve those servers itself.",
+      "sourceRefs": [
+        {
+          "toolSlug": "claude-code",
+          "sourceId": "mcp"
+        }
+      ]
+    }
+  ],
   "verdict": "Shortlist Claude Code when an explicit repository task and command-based verification fit your workflow. Review command permissions and the account billing route first.",
   "bestFor": "Developers comfortable inspecting changes and command results",
   "notFor": "Users expecting autonomous changes to be safe without review",
@@ -179,6 +234,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added official-source MCP configuration and project-approval details; owner review pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added source-backed MCP strengths, constraints and FAQs; owner review pending."
     }
   ],
   "commercial": {

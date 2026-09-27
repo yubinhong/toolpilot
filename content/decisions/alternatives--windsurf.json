@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Windsurf alternatives",
   "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -51,18 +51,18 @@
     },
     {
       "slug": "cursor",
-      "revision": 2,
-      "digest": "0b4c09ef05fef4afa43a0d911e4c86c7a958a1d63ed7e93ef5e69297e66cb284"
+      "revision": 3,
+      "digest": "7b08dcd85e3c8eaae0ec2333691e7c1e528c946fe4a72748c7a626c3156ba6cd"
     },
     {
       "slug": "github-copilot",
-      "revision": 2,
-      "digest": "012f8a03c2500d5f4ef1235dc5dc81c72ffd00d165c0cd65acc2792e414d58ea"
+      "revision": 3,
+      "digest": "fa15289cff82a8df849e4ec79de954cd382eaec625afc789a8fbaf1a445eac20"
     },
     {
       "slug": "cline",
-      "revision": 2,
-      "digest": "78db7f8a57375ed8151e955f37659b1aa2e2a77129a8400f9a7ebddf804abf5b"
+      "revision": 3,
+      "digest": "67840defc66ecc432a227cd3d56fe7e930de81ef1712318e43112d196ba6bdab"
     }
   ],
   "gaps": [],
@@ -74,6 +74,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
     }
   ],
   "commercial": {
