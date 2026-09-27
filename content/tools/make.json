@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Make",
   "summary": "A visual automation platform built around scenarios, module actions and monthly credits.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -12,6 +12,7 @@
   "sources": [
     { "id": "product", "url": "https://help.make.com/step-1-plan-your-scenario", "title": "Plan your scenario", "publisher": "Make", "accessedAt": "2026-09-27" },
     { "id": "pricing", "url": "https://www.make.com/en/pricing", "title": "Pricing and subscription packages", "publisher": "Make", "accessedAt": "2026-09-27" },
+    { "id": "pricing-annual", "url": "https://www.make.com/en/blog/make-vs-zapier", "title": "Make Core pricing and annual billing", "publisher": "Make", "accessedAt": "2026-09-27" },
     { "id": "credits", "url": "https://help.make.com/credits", "title": "Credits", "publisher": "Make Help Center", "accessedAt": "2026-09-27" }
   ],
   "facts": [
@@ -24,11 +25,11 @@
   ],
   "prices": [
     { "name": "Free", "amount": 0, "currency": "USD", "interval": "month", "billing": "Free plan; official page says there is no time limit.", "allowance": "Up to 1,000 credits per month.", "overage": null, "taxes": null, "sourceIds": ["pricing"], "checkedAt": "2026-09-27" },
-    { "name": "Core (10,000 credits/month selection)", "amount": null, "currency": "USD", "interval": "month", "billing": "The page exposes monthly and annual billing choices; the selected paid amount and checkout basis need confirmation.", "allowance": "10,000 credits per month at the selected pricing quantity.", "overage": null, "taxes": null, "sourceIds": ["pricing"], "checkedAt": "2026-09-27" }
+    { "name": "Core (10,000 credits/month; annual billing)", "amount": 9, "currency": "USD", "interval": "month", "billing": "Make lists USD 9/month for 10,000 credits on annual billing. The separate monthly-payment amount and regional checkout total are not established here.", "allowance": "10,000 credits per month at the selected pricing quantity.", "overage": null, "taxes": null, "sourceIds": ["pricing", "pricing-annual"], "checkedAt": "2026-09-27" }
   ],
   "sections": [
     { "heading": "Count actions, not just scenarios", "paragraphs": ["List each trigger and module action in a representative scenario and estimate its run frequency. Retries, polling and data transfer can change the monthly credit requirement, so validate the estimate against a bounded trial."] },
-    { "heading": "Verify the billing selector", "paragraphs": ["The official page has controls for both credit quantity and payment cadence. Record the exact selection, currency, taxes and any extra-credit rules before treating a displayed paid price as a monthly commitment."] }
+    { "heading": "Verify the billing selector", "paragraphs": ["The documented USD 9/month Core amount applies to 10,000 monthly credits on annual billing. Compare the monthly-payment option and other quantities separately, and confirm the exact checkout total and extra-credit rules before budgeting."] }
   ],
   "pros": [
     { "text": "Make's visual scenario workflow connects applications through triggers and actions that process data.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "product" }] },
@@ -40,6 +41,7 @@
   ],
   "faqs": [
     { "question": "Does every Make action use exactly one credit?", "answer": "No. Most fixed-use app modules default to one credit per operation, while exceptions and dynamic AI or advanced features can consume a different amount.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
+    { "question": "What does Make Core cost for 10,000 monthly credits?", "answer": "Make lists USD 9 per month on annual billing. The monthly-payment option, taxes and final regional checkout total need a separate check.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "pricing" }, { "toolSlug": "make", "sourceId": "pricing-annual" }] },
     { "question": "How should I estimate a scenario?", "answer": "Map its triggers, action modules, bundles and run frequency, then test retries and any AI, file or page processing against the current credit rules.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "product" }, { "toolSlug": "make", "sourceId": "credits" }] }
   ],
   "relatedLinks": [
@@ -51,8 +53,8 @@
   "notFor": "Teams that need a verified self-hosted deployment or a fixed cost without a usage estimate",
   "migration": "Export scenario definitions where supported, inventory connections and credentials separately, then replay representative events in a test organization before replacing the source workflow.",
   "dependencies": [],
-  "gaps": ["The live paid amount depends on billing cadence and selected credit quantity; confirm the exact selection and checkout terms before publication.", "Confirm data retention, privacy, regional hosting and scenario export behavior for the intended plan."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; dynamic paid pricing remains explicitly unresolved." }, { "date": "2026-09-27", "summary": "Added official credit evidence, cited strengths, constraints, FAQs and related guides; owner review remains pending." }],
+  "gaps": ["The documented USD 9/month Core amount is for 10,000 credits on annual billing; confirm the monthly-payment amount, selected quantity and regional checkout total before publication.", "Confirm data retention, privacy, regional hosting and scenario export behavior for the intended plan."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; dynamic paid pricing remains explicitly unresolved." }, { "date": "2026-09-27", "summary": "Added official credit evidence, cited strengths, constraints, FAQs and related guides; owner review remains pending." }, { "date": "2026-09-27", "summary": "Recorded the documented annual-billed Core baseline for 10,000 monthly credits; monthly billing and regional checkout remain open." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

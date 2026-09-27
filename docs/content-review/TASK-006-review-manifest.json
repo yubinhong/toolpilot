@@ -33,21 +33,21 @@
   },
   {
     "path": "/tools/make/",
-    "revision": 2,
-    "digest": "902b8738e9d048fc99aaaa464a02b7c3066578de2584b096afb21884f2b93dbe",
+    "revision": 3,
+    "digest": "c23e96e0ec4ea3646b4b95df00cec0b099c9c224eacd54e9dc2b5e6f4e8cfa62",
     "state": "in-review",
     "gaps": [
-      "The live paid amount depends on billing cadence and selected credit quantity; confirm the exact selection and checkout terms before publication.",
+      "The documented USD 9/month Core amount is for 10,000 credits on annual billing; confirm the monthly-payment amount, selected quantity and regional checkout total before publication.",
       "Confirm data retention, privacy, regional hosting and scenario export behavior for the intended plan."
     ]
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 3,
-    "digest": "ad38e0b551dac6ea3d7b4ba40a5e1424286711b23d2c74cfdd7f46ba6818569d",
+    "revision": 4,
+    "digest": "6a76c5b25916de463ed7a6dd6204e60e7da8985153e3545904f969c109a08bca",
     "state": "in-review",
     "gaps": [
-      "Confirm Make's selected paid-plan amount and billing cadence; the official pricing page has interactive billing and credit-quantity selectors.",
+      "Make's documented USD 9/month Core baseline is for 10,000 credits on annual billing; confirm the monthly-payment option, chosen quantity and regional checkout total for a specific budget.",
       "Confirm license compatibility and the self-hosted operating cost for the intended n8n use."
     ]
   },
@@ -83,11 +83,11 @@
   },
   {
     "path": "/compare/bolt-vs-replit/",
-    "revision": 3,
-    "digest": "b438a6b2d0c685b09b93928e68ad21be1f49161450a9c3f4594653e843b94455",
+    "revision": 4,
+    "digest": "ecae73d9f4507d91fef5385e2b4dbd6af3edd7c68c6acabc9320e288f8b62ec5",
     "state": "in-review",
     "gaps": [
-      "Replit plan amount and included allowance remain unresolved in its source profile.",
+      "Replit Core's annual-billed base price is recorded; confirm monthly billing, location-based taxes, included usage and full application costs before a budget comparison.",
       "No clean export, independent deployment, data-residency or performance test has been performed."
     ]
   },
@@ -104,11 +104,11 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 2,
-    "digest": "88f071a2a7935621d0a97bccb214464716a4a8d89555e10f3ba025aad76e2e57",
+    "revision": 3,
+    "digest": "40cc5b7d6d6908ac18687e544a0d2683a508ec327c9b70f4f2491f07e185ed4e",
     "state": "in-review",
     "gaps": [
-      "Confirm current regional pricing, retention and privacy terms for the selected plans; no hands-on workflow or recovery test was run."
+      "Make's documented Core price is USD 9/month for 10,000 credits on annual billing; confirm monthly pricing, regional checkout, retention and privacy for the selected plans. No hands-on workflow or recovery test was run."
     ]
   }
 ]

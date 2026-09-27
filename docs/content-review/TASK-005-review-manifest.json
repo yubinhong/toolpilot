@@ -45,11 +45,11 @@
   },
   {
     "path": "/tools/replit/",
-    "revision": 2,
-    "digest": "dd3cc7971dda7d7160e9cf16afc6bbbbec5a28d90b70dddf8124fa03c7c31ef6",
+    "revision": 3,
+    "digest": "7fe3593827469388dbddb76f4082fa0877ea48434c52eab5622f6a023a409f61",
     "state": "in-review",
     "gaps": [
-      "Public pricing extract did not expose reliable plan amounts; confirm the current plan and included allowance.",
+      "The public page displays Core at USD 18/month billed annually; confirm the regular monthly-payment option, current account eligibility, location-based taxes and total application costs.",
       "Confirm data residency and export requirements for the proposed deployment."
     ]
   },
@@ -64,8 +64,8 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 5,
-    "digest": "c18675b1bde95e1fbcb009f8c531f50dffae1ad40883db064d2ea8fc3c8bf675",
+    "revision": 6,
+    "digest": "38358136c64c40db314f373fc4a935dc83fe211bd4212f796804fb454af1a179",
     "state": "in-review",
     "gaps": []
   },
@@ -85,15 +85,15 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 5,
-    "digest": "8953fb1184f6ea566d60d2f73283236a7fb9ec860eea3cf5d98241c86726e8e3",
+    "revision": 6,
+    "digest": "f6d6e3f19b9790ca6fb412fe0ded6fce9c198a7279b953c80ddf165b97534341",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 5,
-    "digest": "a9fb9aadaf11add70487cf96158c19bbfa2143444980672db33a47f7f8f711b3",
+    "revision": 6,
+    "digest": "275cead3e1c225c929cea881b5a0c6fc6d61908de0f38ab00d115e54b9b2b157",
     "state": "in-review",
     "gaps": []
   },
@@ -106,8 +106,8 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 3,
-    "digest": "c43c10811a092eaf0b93d8afd030234de6f28e7e37ba512f80514e832dc61c67",
+    "revision": 4,
+    "digest": "b789df13d69e5939ec4ec83d78932508b85b93ae2780d2116f1b5e33e0d40808",
     "state": "in-review",
     "gaps": []
   },
@@ -148,8 +148,8 @@
   },
   {
     "path": "/compare/replit-vs-lovable/",
-    "revision": 3,
-    "digest": "aab510f81716734d2dcd5c69dbd34d9988972c44ef9760d58af87b8a63bebef5",
+    "revision": 4,
+    "digest": "2ddcb3d07cf2872b6541b61ebbc12d8784385c642ea0a7831190f6c921660153",
     "state": "in-review",
     "gaps": []
   },
@@ -197,9 +197,11 @@
   },
   {
     "path": "/pricing/replit/",
-    "revision": 3,
-    "digest": "d973636e5ffdf9d68c49fd127f34cde3443749e5bbecdb1040559478f43aeec1",
+    "revision": 4,
+    "digest": "c72d45676feda8f15faf992c0e7c1ca33861fbc9f173f638ab4691ac01c73852",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Confirm the regular monthly-payment option, account eligibility and location-based checkout total; the annual-billed base amount is not a full application operating budget."
+    ]
   }
 ]

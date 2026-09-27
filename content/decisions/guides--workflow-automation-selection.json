@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "How to choose a workflow automation platform",
   "summary": "Compare an automation workflow by its real execution pattern, billing unit, hosting needs and recovery path.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -94,8 +94,8 @@
   "dependencies": [
     {
       "slug": "make",
-      "revision": 2,
-      "digest": "902b8738e9d048fc99aaaa464a02b7c3066578de2584b096afb21884f2b93dbe"
+      "revision": 3,
+      "digest": "c23e96e0ec4ea3646b4b95df00cec0b099c9c224eacd54e9dc2b5e6f4e8cfa62"
     },
     {
       "slug": "n8n",
@@ -110,7 +110,7 @@
     }
   ],
   "gaps": [
-    "Confirm current regional pricing, retention and privacy terms for the selected plans; no hands-on workflow or recovery test was run."
+    "Make's documented Core price is USD 9/month for 10,000 credits on annual billing; confirm monthly pricing, regional checkout, retention and privacy for the selected plans. No hands-on workflow or recovery test was run."
   ],
   "changes": [
     {
@@ -120,6 +120,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound strengths and constraints; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Updated Make price context and dependency digest from official sources; owner review remains pending."
     }
   ],
   "commercial": {

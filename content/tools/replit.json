@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Replit",
   "summary": "An app-building workflow to assess together with its operating costs.",
-  "revision": 2,
+  "revision": 3,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -92,14 +92,14 @@
   ],
   "prices": [
     {
-      "name": "Current paid plan",
-      "amount": null,
+      "name": "Replit Core (annual billing equivalent)",
+      "amount": 18,
       "currency": "USD",
       "interval": "month",
-      "billing": "Exact plan and checkout terms pending",
-      "allowance": null,
+      "billing": "The public pricing page displays USD 18/month billed annually, discounted from USD 20/month. This is a base-plan equivalent, not a regional checkout quote.",
+      "allowance": "USD 20 toward the most powerful models per month; does not represent the full app operating budget.",
       "overage": null,
-      "taxes": null,
+      "taxes": "Taxes depend on location.",
       "sourceIds": [
         "pricing"
       ],
@@ -110,7 +110,7 @@
     {
       "heading": "Budget building and running",
       "paragraphs": [
-        "Keep a record of the current plan and what is charged when the application is live. The pricing extract in this pack was insufficient for a fixed amount; obtain the actual checkout basis before comparing a monthly budget."
+        "Keep a record of the plan's billing period and what is charged when the application is live. The public page provides an annual-billed Core equivalent, not a full application budget; obtain the applicable checkout basis before comparing monthly costs."
       ]
     },
     {
@@ -126,11 +126,12 @@
   ],
   "cons": [
     { "text": "A checkpoint is a Replit recovery feature; it does not establish an independently tested export or recovery path outside the platform.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] },
-    { "text": "The current plan amount and included allowance remain unresolved in this profile, so it cannot support a fixed budget comparison yet.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }] }
+    { "text": "The published Core amount is an annual-billed base-plan equivalent; runtime, database and agent usage remain separate budget items.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }] }
   ],
   "faqs": [
     { "question": "What does Replit Agent do?", "answer": "Replit says Agent can take a plain-language idea through project setup, app creation, checking, problem fixing and deployment; validate the result for your own workload.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] },
-    { "question": "Do checkpoints replace an external backup?", "answer": "The docs describe checkpoints as snapshots of a Replit app. Test a separate export and recovery path if you need to operate outside Replit.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] }
+    { "question": "Do checkpoints replace an external backup?", "answer": "The docs describe checkpoints as snapshots of a Replit app. Test a separate export and recovery path if you need to operate outside Replit.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] },
+    { "question": "What Replit Core price is publicly listed?", "answer": "The pricing page currently displays USD 18 per month billed annually, reduced from USD 20, plus location-dependent taxes. Confirm the live billing selector and checkout; this base plan price does not include a measured application operating budget.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }] }
   ],
   "verdict": "Evaluate the full build-to-operation loop, not just the first demo. Require a separate estimate for editing and the live application.",
   "bestFor": "Builders comparing a hosted development workflow",
@@ -138,7 +139,7 @@
   "migration": "Keep application code, database backups and environment-variable names portable. Test an independent build before considering a migration complete.",
   "dependencies": [],
   "gaps": [
-    "Public pricing extract did not expose reliable plan amounts; confirm the current plan and included allowance.",
+    "The public page displays Core at USD 18/month billed annually; confirm the regular monthly-payment option, current account eligibility, location-based taxes and total application costs.",
     "Confirm data residency and export requirements for the proposed deployment."
   ],
   "changes": [
@@ -149,6 +150,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added cited strengths, constraints and FAQs; owner approval remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Recorded the current annual-billed Core price and model-credit allowance from the official pricing page; monthly selector and full operating costs remain open."
     }
   ],
   "commercial": {

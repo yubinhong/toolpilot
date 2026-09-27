@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Replit vs Lovable",
   "summary": "Replit vs Lovable: builders evaluating development and live-app operating responsibility together.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -39,15 +39,15 @@
       ]
     }
   ],
-  "verdict": "Trial the complete app lifecycle in each candidate. Replit pricing is unresolved in this evidence pack, so no fixed-price winner is justified.",
+  "verdict": "Trial the complete app lifecycle in each candidate. Replit's annual-billed Core base price is recorded, but monthly payment and complete app costs remain open, so no fixed-cost winner is justified.",
   "bestFor": "Builders evaluating development and live-app operating responsibility together",
-  "notFor": "Buyers needing a fixed-price winner before Replit plan amounts are confirmed",
+  "notFor": "Buyers needing a fixed-cost winner before Replit monthly payment and full application costs are confirmed",
   "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
   "dependencies": [
     {
       "slug": "replit",
-      "revision": 2,
-      "digest": "dd3cc7971dda7d7160e9cf16afc6bbbbec5a28d90b70dddf8124fa03c7c31ef6"
+      "revision": 3,
+      "digest": "7fe3593827469388dbddb76f4082fa0877ea48434c52eab5622f6a023a409f61"
     },
     {
       "slug": "lovable",
@@ -68,6 +68,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed Replit's dependency revision and digest after pricing source verification; owner re-review required."
     }
   ],
   "commercial": {

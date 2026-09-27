@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "AI app builders for prototypes",
   "summary": "Evaluate a demo together with its handoff and operating responsibilities.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -56,8 +56,8 @@
     },
     {
       "slug": "replit",
-      "revision": 2,
-      "digest": "dd3cc7971dda7d7160e9cf16afc6bbbbec5a28d90b70dddf8124fa03c7c31ef6"
+      "revision": 3,
+      "digest": "7fe3593827469388dbddb76f4082fa0877ea48434c52eab5622f6a023a409f61"
     }
   ],
   "gaps": [],
@@ -73,6 +73,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed Replit's dependency revision and digest after pricing source verification; owner re-review required."
     }
   ],
   "commercial": {

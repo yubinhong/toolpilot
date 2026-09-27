@@ -9,14 +9,14 @@ Eleven TASK-006 structured content records now form the owner review batch, incl
 | `/tools/aider/` | 2 | Terminal/Git workflow, model providers and cited Git/model tradeoffs | Confirm provider billing/privacy and default dirty-commit/hook behavior. |
 | `/tools/continue/` | 4 | IDE/CLI workflow, configurable models, MCP in Agent mode, sourced constraints and FAQs | Upstream repository says read-only/no longer maintained; verify current package, publisher, security response and pricing. |
 | `/tools/n8n/` | 2 | Automation, Cloud/self-host options, license and execution billing | Confirm fair-code compatibility, regional checkout and self-host operational cost. |
-| `/tools/make/` | 2 | Visual scenarios, fixed/dynamic credit behavior and usage questions | Confirm current paid price selector, cadence, regional terms and data handling. |
-| `/compare/make-vs-n8n/` | 3 | Credits vs workflow executions; hosting ownership | Confirm exact Make paid selection and n8n license fit. |
+| `/tools/make/` | 3 | Visual scenarios, fixed/dynamic credit behavior and usage questions | USD 9/month Core baseline is for 10,000 credits on annual billing; confirm monthly-payment amount, selected quantity, regional checkout and data handling. |
+| `/compare/make-vs-n8n/` | 4 | Credits vs workflow executions; hosting ownership | Confirm Make monthly-payment/quantity/checkout basis and n8n license fit. |
 | `/compare/claude-code-vs-github-copilot/` | 4 | Same-task workflow, MCP access and account-policy evaluation | Verify actual Copilot account entitlements/privacy; no benchmark was run. |
 | `/compare/cline-vs-continue/` | 5 | Model configuration, MCP setup, permissions and maintenance lifecycle | Verify Continue distribution and supported package; no local-model trial was run. |
 | `/compare/aider-vs-claude-code/` | 5 | Git effects, MCP capability, model/account route and review controls | Verify model/account terms; no benchmark was run. |
-| `/compare/bolt-vs-replit/` | 3 | App fit, handoff and production ownership | Replit pricing/export/data residency remain unresolved; no deployment test was run. |
+| `/compare/bolt-vs-replit/` | 4 | App fit, handoff and production ownership | Replit's annual-billed Core base price is recorded; monthly billing, total costs, export/data residency and deployment remain open. |
 | `/best/open-source-ai-coding-tools/` | 5 | Repository license evidence, MCP capability and project lifecycle | Confirm exact package/model licenses and Continue's support lifecycle; no performance comparison was run. |
-| `/guides/workflow-automation-selection/` | 2 | Measure triggers, actions, retries, billing units, hosting and recovery | Confirm regional price, privacy/retention and a representative workflow; no product trial was run. |
+| `/guides/workflow-automation-selection/` | 3 | Measure triggers, actions, retries, billing units, hosting and recovery | Make's USD 9/month for 10,000 credits is an annual-billed baseline; confirm monthly pricing, regional checkout, privacy/retention and a representative workflow. |
 
 ## Research boundaries
 
@@ -29,7 +29,8 @@ Eleven TASK-006 structured content records now form the owner review batch, incl
 - The new workflow-automation guide distinguishes measured workload from vendor billing units and treats self-hosting as an operating choice, not a claim of lower cost. It is an editorial draft, not hands-on evaluation.
 - The five TASK-006 comparison pages, the open-source shortlist and the workflow-automation guide now render source-bound strengths, constraints and FAQs from their declared tool dependencies. These are documented capability and review claims, not benchmark results or owner-approved recommendations.
 - n8n's Starter price is recorded as EUR 20/month billed annually and 2,500 workflow executions/month, as displayed on its official pricing page when checked. This is not a checkout quote.
-- Make's Free allowance is recorded; the paid amount is null because the pricing UI exposes monthly/annual cadence and credit-quantity controls and the selected checkout basis was not established.
+- Make's official pricing sources document Core at USD 9/month for 10,000 monthly credits on annual billing. The monthly-payment amount, selected quantity and regional checkout total remain unconfirmed; source: [pricing page](https://www.make.com/en/pricing) and [Make's billing comparison](https://www.make.com/en/blog/make-vs-zapier), accessed 2026-09-27.
+- Replit's official pricing page displays Core at USD 18/month billed annually, discounted from USD 20/month, and USD 20/month toward its most powerful models. Treat this as a base-plan equivalent, not a full operating budget; confirm monthly payment, account eligibility and location-based checkout taxes. Source: [Replit pricing](https://replit.com/pricing), accessed 2026-09-27.
 - HTTP reachability never changes editorial approval. In the current link scan, Cursor, Claude Code, GitHub Copilot and Cline MCP URLs returned 200; Continue's MCP endpoint had a transient network error, although its current official docs page was reviewed directly. Make's official site returned 403. These statuses do not establish product facts or approval.
 - No hands-on product testing, privacy/legal approval, commercial relationship or public content approval is claimed.
 

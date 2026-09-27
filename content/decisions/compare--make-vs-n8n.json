@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Make vs n8n",
   "summary": "Compare Make and n8n by workflow billing unit, hosting responsibility and the operational work your automation requires.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -68,8 +68,8 @@
   "dependencies": [
     {
       "slug": "make",
-      "revision": 2,
-      "digest": "902b8738e9d048fc99aaaa464a02b7c3066578de2584b096afb21884f2b93dbe"
+      "revision": 3,
+      "digest": "c23e96e0ec4ea3646b4b95df00cec0b099c9c224eacd54e9dc2b5e6f4e8cfa62"
     },
     {
       "slug": "n8n",
@@ -78,7 +78,7 @@
     }
   ],
   "gaps": [
-    "Confirm Make's selected paid-plan amount and billing cadence; the official pricing page has interactive billing and credit-quantity selectors.",
+    "Make's documented USD 9/month Core baseline is for 10,000 credits on annual billing; confirm the monthly-payment option, chosen quantity and regional checkout total for a specific budget.",
     "Confirm license compatibility and the self-hosted operating cost for the intended n8n use."
   ],
   "changes": [
@@ -93,6 +93,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Updated Make's price basis and dependency digest from official pricing sources; exact owner review remains pending."
     }
   ],
   "commercial": {

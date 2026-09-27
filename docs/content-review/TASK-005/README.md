@@ -26,28 +26,28 @@ For a material edit, increment revision, reset review fields and verifiedAt, upd
 | /tools/cursor/ | 3 | in-review | MCP capability, transports and default approval have cited strengths/constraints/FAQs; review against the current canonical documentation URL. |
 | /tools/github-copilot/ | 3 | in-review | MCP prerequisites, organization-policy scope and individual-plan distinction have cited strengths/constraints/FAQs; confirm privacy settings before a team recommendation. |
 | /tools/lovable/ | 2 | in-review | Review sourced workspace, credit usage and deployment ownership; confirm current plan and ongoing runtime costs. |
-| /tools/replit/ | 2 | in-review | Public pricing extract did not expose reliable plan amounts; confirm the current plan, included allowance, data residency and export requirements. |
+| /tools/replit/ | 3 | in-review | Public Replit Core baseline is USD 18/month billed annually (displayed against USD 20/month); verify monthly payment, account eligibility, checkout taxes, full app costs, data residency and export requirements. |
 | /tools/windsurf/ | 3 | in-review | Official FAQ says Devin Desktop is the new name for Windsurf and describes the standard account transition; exact account quote and an account-specific migration test remain open. |
-| /alternatives/bolt-new/ | 5 | in-review | Cited app-builder handoff and stack-scope evidence; owner review pending. |
+| /alternatives/bolt-new/ | 6 | in-review | Cited app-builder handoff and stack-scope evidence; refreshed Replit dependency; owner review pending. |
 | /alternatives/claude-code/ | 4 | in-review | Cited client surfaces, provider options and Copilot policy conditions; owner review pending. |
 | /alternatives/cursor/ | 5 | in-review | Cited multi-surface alternatives and current Devin Desktop transition; owner review pending. |
-| /alternatives/lovable/ | 5 | in-review | Cited prototype workflows, credit usage and service-migration limits; owner review pending. |
-| /alternatives/replit/ | 5 | in-review | Cited Git handoff and in-platform checkpoint boundaries; owner review pending. |
+| /alternatives/lovable/ | 6 | in-review | Cited prototype workflows, credit usage and service-migration limits; refreshed Replit dependency; owner review pending. |
+| /alternatives/replit/ | 6 | in-review | Cited Git handoff and in-platform checkpoint boundaries; refreshed Replit dependency; owner review pending. |
 | /alternatives/windsurf/ | 5 | in-review | Cited Devin Desktop naming, standard migration statement and unresolved account quote; owner review pending. |
-| /best/ai-app-builders-for-prototypes/ | 3 | in-review | Cited app scope, repository handoff and recovery limits; no production-readiness claim. |
+| /best/ai-app-builders-for-prototypes/ | 4 | in-review | Cited app scope, repository handoff and recovery limits; refreshed Replit dependency; no production-readiness claim. |
 | /best/ai-coding-tools-for-solo-founders/ | 4 | in-review | Cited editor/agent surfaces and account-dependent billing or policy details; owner review pending. |
 | /compare/cline-vs-claude-code/ | 4 | in-review | Cited local-model options, MCP controls and separate billing routes; no benchmark was run. |
 | /compare/cursor-vs-claude-code/ | 4 | in-review | Cited product surfaces, MCP transports and approval controls; no benchmark was run. |
 | /compare/cursor-vs-github-copilot/ | 4 | in-review | Cited setup differences and Copilot policy scope; no benchmark was run. |
 | /compare/lovable-vs-bolt/ | 3 | in-review | Cited JavaScript/Expo scope, repository handoff and credit usage; owner review pending. |
-| /compare/replit-vs-lovable/ | 3 | in-review | Cited checkpoint, Git sync and build/runtime credit boundaries; no portability test was run. |
+| /compare/replit-vs-lovable/ | 4 | in-review | Cited checkpoint, Git sync and build/runtime credit boundaries; refreshed Replit dependency; no portability test was run. |
 | /compare/windsurf-vs-cursor/ | 5 | in-review | Cited current Windsurf-to-Devin Desktop naming and account quote boundary; no benchmark was run. |
 | /guides/ai-editor-vs-terminal-agent/ | 4 | in-review | Cited overlapping product surfaces; no comparative speed or quality claim. |
 | /guides/how-to-choose-a-developer-tool/ | 2 | in-review | General methodology page has no tool dependencies; source-bound product blocks remain intentionally absent under ADR-0009. |
 | /pricing/claude-code/ | 4 | in-review | Cited subscription/API billing distinction and cost-estimate limits; owner review pending. |
 | /pricing/cursor/ | 4 | in-review | Cited included model usage and on-demand billing in arrears; owner review pending. |
 | /pricing/lovable/ | 3 | in-review | Cited Build/Run credit categories; exact usage remains workload-specific. |
-| /pricing/replit/ | 3 | in-review | No fixed price claimed; checkout cadence, location tax and current allowance need confirmation. |
+| /pricing/replit/ | 4 | in-review | Core is publicly listed at USD 18/month billed annually; confirm monthly payment, eligibility and location-based checkout total. |
 
 ## Operational gates
 
