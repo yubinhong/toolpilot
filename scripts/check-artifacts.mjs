@@ -5,6 +5,7 @@ import { getSiteUrl } from '../lib/site-config.mjs';
 import { getBreadcrumbItems } from '../lib/breadcrumbs.mjs';
 import { content } from '../lib/content.mjs';
 import { categoryAnchor, HOME_CATEGORY_SHORTCUTS } from '../lib/homepage.mjs';
+import { generateHeadersFile } from './generate-security-headers.mjs';
 const failures = [];
 const routes = getRoutes();
 const site = getSiteUrl();
@@ -160,5 +161,21 @@ for (const file of files('out/_next/static').filter(f => f.endsWith('.js'))) {
 }
 if (!existsSync('out/404.html')) failures.push('missing static 404');
 if (!readFileSync('out/robots.txt','utf8').includes(`${site}/sitemap.xml`)) failures.push('robots sitemap mismatch');
+const headersPath = 'out/_headers';
+if (!existsSync(headersPath)) {
+  failures.push('missing generated Cloudflare Pages security headers');
+} else {
+  try {
+    const expectedHeaders = generateHeadersFile(routes, {
+      readHtml: route => readFileSync(join('out',route.path,'index.html'),'utf8'),
+    });
+    const actualHeaders = readFileSync(headersPath,'utf8');
+    if (actualHeaders !== expectedHeaders) failures.push('Cloudflare Pages security headers do not match current routes and inline script hashes');
+    if (!actualHeaders.includes("Content-Security-Policy: object-src 'none'; base-uri 'self'; frame-ancestors 'none';")) failures.push('missing shared fallback CSP protections');
+    if (/Strict-Transport-Security|unsafe-inline/.test(actualHeaders)) failures.push('security headers must not enable unapproved HSTS or unsafe-inline');
+  } catch (error) {
+    failures.push(`security header validation failed: ${error.message}`);
+  }
+}
 if (failures.length) { console.error(failures.join('\n')); process.exitCode=1; }
 else console.log(`Artifact checks passed: ${routes.length} pages; ${expected.length} indexable URLs; metadata, links and client boundaries.`);

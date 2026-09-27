@@ -14,13 +14,13 @@ Node 22（.nvmrc）、npm 锁文件恢复。核心不变量：历史快照保留
 | npm audit --audit-level=high | 发布安全门槛；Node 22 `npm ci` 后本次通过（0 vulnerabilities），每次发布必须重跑 |
 | npm run lint | ESLint |
 | npm run typecheck | TypeScript |
-| npm test | Node 测试：历史目录、当前审核/索引/商业、网络边界、发布门槛 |
+| npm test | Node 测试：历史目录、当前审核/索引/商业、网络边界、发布门槛、Cloudflare Pages CSP/hash 生成约束 |
 | npm run content:check | 所有 JSON 内容运行时校验 |
 | npm run content:review | 输出精确版本/digest 和审核缺口；不批准或改写内容 |
 | npm run content:freshness -- --as-of=YYYY-MM-DD | 价格 30 天、其他事实 90 天复核队列 |
 | npm run urls:audit | 从当前路由注册表更新 `docs/url-audit.csv`；不替代 GSC、HTTP 或外链审计 |
 | npm run links:check | 公开 HTTPS 来源可达报告；403/429 受限不等于事实核验 |
-| npm run build | 内容校验 → Next 静态导出 → 产物元数据/链接/客户端边界检查 |
+| npm run build | 内容校验 → Next 静态导出 → 生成 `out/_headers` 共享保护头与逐路由 CSP hash → 产物元数据/链接/客户端边界/安全头覆盖检查 |
 | npm run artifacts:check | 检查当前实际存在的 out/，不替代新构建 |
 | npm run cloudflare:build | lint → typecheck → test → build；安全审计是独立必需门槛 |
 | npm run smoke | 默认 current 契约；目标由 SMOKE_BASE_URL 指定 |
@@ -28,7 +28,7 @@ Node 22（.nvmrc）、npm 锁文件恢复。核心不变量：历史快照保留
 | npm run release:check | 必须干净工作区、完整 SHA、无凭据 GitHub origin、发布文件已跟踪 |
 | git diff --check | 差异空白检查，另需人工审查新文件 |
 
-本地 HTTP：`python3 -m http.server 4173 --directory out`；另一个终端运行 `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke`。静态导出不使用 npm start。
+本地 HTTP：`python3 -m http.server 4173 --directory out`；另一个终端运行 `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke`。静态导出不使用 npm start。验证 Cloudflare Pages 的 `_headers` 匹配和合并行为时，可运行 `npx --yes wrangler@4.124.0 pages dev out --ip 127.0.0.1 --port 4173` 并检查代表性路由与未知路径响应头。
 
 没有配置格式化器，不引入全仓库格式化。浏览器工具可临时安装在仓库外做验证，不加入项目依赖或假称已有正式 E2E 框架。
 

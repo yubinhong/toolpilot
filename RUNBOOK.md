@@ -80,6 +80,8 @@ for path in / /tools/ /tools/digitalocean/ /robots.txt /sitemap.xml; do
 done
 ```
 
+TASK-007 发布后，先在 immutable Pages preview，再在 `https://toolpilot.cc` 检查首页、代表性详情页和未知路径的响应头。注册页面应带共享和逐路由 CSP（Cloudflare Pages 会合并匹配规则）、`X-Frame-Options: DENY`、`X-Content-Type-Options: nosniff`、`Referrer-Policy: strict-origin-when-cross-origin` 和 `Permissions-Policy: camera=(), microphone=(), geolocation=()`；未知路径至少应保留共享 CSP 与其他共享保护头。随后运行 current-profile smoke 覆盖全部 97 个已注册页面、robots、sitemap 和真实 404。确认生产头已生效前不要关闭 TODO-315 非 HSTS 部分。该发布不设置 HSTS；回滚时使用上一份验证过的 Pages 部署并确认本次添加的头已移除。
+
 ### `toolpilot.cc` 域名切换（2026-09-27，已完成）
 
 用户报告已完成 CNAME 切换。独立线上证据为 `SMOKE_PROFILE=current npm run smoke` 对 `https://toolpilot.cc` 检查 88 个页面、robots、sitemap 和真实 404 通过。DNS 变更由用户完成，本 Agent 未写入 DNS。生产监控工作流保持 `SMOKE_PROFILE: current`；配置由 commit `4fb09bca29619032588d152e7b971e69fab1f4ad` 部署，手动 workflow run `36299788937` 成功。

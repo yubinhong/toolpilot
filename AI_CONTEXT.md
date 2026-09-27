@@ -2,6 +2,8 @@
 
 ## 当前快照 — 2026-09-27
 
+- 独立执行任务：TASK-007 `IN_PROGRESS`，TODO-315 的逐路由 CSP/hash 和共享安全头已完成本地构建、产物、97 路由 CSP-enforced Chromium 与 Wrangler Pages smoke 验证；Git commit/CI/Pages preview/production 发布与响应头复核待完成。未使用 `unsafe-inline`、实验性 SRI 或 HSTS；HSTS 暂缓到 Owner 确认域名范围和 `max-age` 后。
+
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
 - 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的差异并准备 P1 审核批次。当前有 39 条结构化记录、97 条注册路由；所有内容均为 `in-review`、noindex，只有 4 个非内容 URL 在 sitemap。12 个工具档案和全部 26 个声明了工具依赖的决策页现有来源绑定的优势、限制和 FAQ；Make Core 年付基线为 USD 9/月（10,000 credits），Replit Core 年付折算为 USD 18/月；这不解决月付、税费或完整运行成本，且两批仍待 Owner 审核。无依赖的 `/guides/how-to-choose-a-developer-tool/` 按 ADR-0009 不附会产品引用。`a458f4c` 通过 57 项测试、Node 22 Cloudflare 构建（97 页/4 个可索引 URL）、依赖审计（0 漏洞）、GitHub CI `36327141595`、Pages 检查和预览/生产 smoke。TODO-305 也已关闭：三个 workflow 已切换到 Node 24 action 并固定 Ubuntu 24.04；commit `344bd9f` 的 GitHub CI `36320003473`、维护报告 artifact `36320017843`、生产监控 `36320017826` 均成功，Pages deployment `9b49edf9-c90b-4ada-ac42-cc87a0855153` 的预览和 `toolpilot.cc` current smoke 均通过 97 页、robots、sitemap 和 404。Alternatives/slug 映射、内容审批、历史 URL/GSC/外链证据、运营资料、通知配置和生产回滚演练仍是独立门槛。TASK-006 基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；用户计划文件仍未跟踪且保持原样；详见 TASK.md、TODO.md 和 PLANS.md。
 - P0.4 已完成排版与主题审计：h1/h2 使用固定响应式断点字号，字距归零；浅/深主题默认跟随系统，页头可手动切换并保存在浏览器本地。8 类页面 x 3 个视口 x 2 种主题共 48 项检查无横向溢出或页面错误，刷新后偏好仍在；核心文本/控件最低对比度为浅色 4.93:1、深色 7.30:1。默认自有 OG 分享图已接入所有路由且构建产物检查通过，不使用第三方厂商标志。Commit `4aea803` 的 CI `36324864383`、Cloudflare Pages 检查、预览 `https://1a5cc8e2.toolpilot-git.pages.dev` 与 `toolpilot.cc` current smoke 全部通过 97 页；TODO-311 仍开放：真实 CWV/GSC 数据尚未取得。
