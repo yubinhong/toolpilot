@@ -105,6 +105,14 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 
 ### Verification for this tranche
 
+#### Official price-baseline tranche — 2026-09-27
+
+- Runtime: Node.js 22.23.2 / npm 10.9.8. `npm run cloudflare:build` passed lint, typecheck, all 57 tests, content validation, static export and artifact checks; output covers 97 pages with 4 indexable URLs. `npm audit --audit-level=high` found 0 vulnerabilities.
+- `node scripts/check-content.mjs --review` matched all 28 TASK-005 and 11 TASK-006 manifest rows by path, revision, digest, state and gaps. The Replit evidence pack matches profile revision 3/digest; all affected content remains `in-review` and noindex.
+- The source link scan completed. Replit pricing returned HTTP 200; Make's pricing domain and article returned HTTP 403 to automated access, so reachability was not treated as fact verification. Official source pages were separately inspected; no owner approval or hands-on test is claimed.
+- Local static smoke passed for 97 pages, robots, sitemap and a real 404. Immutable preview `https://ae4c6e18.toolpilot-git.pages.dev` and `https://toolpilot.cc` each passed current-profile smoke for the same 97-page contract. Direct HTML checks on both environments confirmed the Make USD 9 / month annual-billed 10,000-credit basis, the Replit USD 18 / month annual-billed Core basis, linked official sources and `noindex` (8 assertions per environment).
+- Commit `a458f4c34b1c8656b312f26f7efa7ae121c538b9` passed `npm run release:check` in a clean detached worktree, GitHub CI run `36327141595` and the Cloudflare Pages check for deployment `ae4c6e18-7a74-4851-a34d-d58109e85807`. Rollback: revert this commit and let Git-integrated Pages rebuild the prior reviewed content; then rerun current-profile smoke on preview and production. No data migration is involved.
+
 #### Current P1 draft tranche — 2026-09-27
 
 - Runtime: Node.js 22.23.2 / npm 10.9.8.
