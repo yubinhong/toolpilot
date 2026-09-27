@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
 
 const primaryLinks = [
   ["Tools", "/tools/"],
@@ -24,6 +25,7 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
+        <ThemeToggle />
         <Link className="header-action" href="/about/">
           About the project
         </Link>

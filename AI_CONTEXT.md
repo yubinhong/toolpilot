@@ -4,6 +4,7 @@
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
 - 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的差异并准备 P1 审核批次。当前有 39 条结构化记录、97 条注册路由；所有内容均为 `in-review`、noindex，只有 4 个非内容 URL 在 sitemap。12 个工具档案和全部 26 个声明了工具依赖的决策页现有来源绑定的优势、限制和 FAQ；无依赖的 `/guides/how-to-choose-a-developer-tool/` 按 ADR-0009 不附会产品引用。内容批次通过 57 项测试、Node 22 Cloudflare 构建（97 页/4 个可索引 URL）和依赖审计（0 漏洞）。TODO-305 也已关闭：三个 workflow 已切换到 Node 24 action 并固定 Ubuntu 24.04；commit `344bd9f` 的 GitHub CI `36320003473`、维护报告 artifact `36320017843`、生产监控 `36320017826` 均成功，Pages deployment `9b49edf9-c90b-4ada-ac42-cc87a0855153` 的预览和 `toolpilot.cc` current smoke 均通过 97 页、robots、sitemap 和 404。Alternatives/slug 映射、内容审批、历史 URL/GSC/外链证据、运营资料、通知配置和生产回滚演练仍是独立门槛。TASK-006 基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；用户计划文件仍未跟踪且保持原样；详见 TASK.md、TODO.md 和 PLANS.md。
+- P0.4 已完成排版与主题审计：h1/h2 使用固定响应式断点字号，字距归零；浅/深主题默认跟随系统，页头可手动切换并保存在浏览器本地。8 类页面 x 3 个视口 x 2 种主题共 48 项检查无横向溢出或页面错误，刷新后偏好仍在；核心文本/控件最低对比度为浅色 4.93:1、深色 7.30:1。TODO-311 仍开放：真实 CWV/GSC 未测、OG 图片授权未取得。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 39 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 3 guides）全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。

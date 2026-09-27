@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script";
 import "./globals.css";
 import { getSiteUrl } from "../lib/site-config.mjs";
 
@@ -15,8 +16,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <Script id="toolpilot-theme-init" strategy="beforeInteractive">
+          {`try {
+  var theme = localStorage.getItem("toolpilot-theme");
+  if (theme === "light" || theme === "dark") {
+    document.documentElement.dataset.theme = theme;
+  }
+} catch {}`}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }
