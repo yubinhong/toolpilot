@@ -77,10 +77,18 @@ for path in / /tools/ /tools/digitalocean/ /robots.txt /sitemap.xml; do
 done
 ```
 
+### `toolpilot.cc` 域名切换（须单独授权）
+
+1. 确认 `toolpilot-git` 最新 `main` 部署成功，并在对应 `pages.dev` 地址通过 `SMOKE_PROFILE=current`。本次已验证 deployment `0d07e89d` / source `a626a162`。
+2. 在 Cloudflare Dashboard > Workers & Pages > `toolpilot` > Custom domains 中解除 `toolpilot.cc`，再到 `toolpilot-git` > Custom domains > Set up a domain 添加 `toolpilot.cc`。旧项目不要删除。
+3. 若 Cloudflare 提示 DNS 确认，确认 zone 中的 CNAME 目标为 `toolpilot-git.pages.dev`；当前旧目标为 `toolpilot-2cy.pages.dev`。不要在 Pages 项目关联前单独创建 CNAME，否则会返回 522。Cloudflare 管理的 zone 可在确认 Pages 域名后自动创建 CNAME，见[官方自定义域名文档](https://developers.cloudflare.com/pages/configuration/custom-domains/)。
+4. 等待 Pages 域名状态为 `active`，再运行 `SMOKE_PROFILE=current npm run smoke` 检查 `https://toolpilot.cc` 的页面、noindex、robots、sitemap 和真实 404。
+5. 只有正式域名 current smoke 通过后，才把 `.github/workflows/production-monitor.yml` 从 `legacy` 切到 `current`；该提交也须部署并再次线上验证。
+
 ## 4. 回滚
 
 - 触发条件：站点不可用、构建产物与源码不一致、工具事实错误、关键链接失效、商业标记缺失、安全门槛失败或旧 Crypto/DeFi 内容误发布。
-- 应用回滚：新 Git 项目已有成功部署 `000a4a88`；旧 Direct Upload 部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留，legacy smoke 已通过。域名尚未切换。获授权切换后若 current smoke 失败，应恢复旧项目的 Pages 域名关联和旧 CNAME 目标，再运行 legacy smoke。不得删除旧项目。
+- 应用回滚：新 Git 项目已有成功部署 `000a4a88`；旧 Direct Upload 部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留，legacy smoke 已通过。域名尚未切换。获授权切换后若 current smoke 失败，应从 `toolpilot-git` 解除域名，在旧项目重新绑定 `toolpilot.cc`，确认 CNAME 回到 `toolpilot-2cy.pages.dev`，再运行 legacy smoke。不得删除旧项目。
 - 数据回滚/前滚：当前没有已确认数据库或迁移；若未来引入数据层，必须使用向前迁移和已验证备份恢复，不直接回滚生产数据。
 - 验证：重新检查公共首页、关键决策页、法律页、站点地图、robots、外部链接、商业披露和安全头。
 
