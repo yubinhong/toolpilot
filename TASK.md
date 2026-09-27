@@ -65,7 +65,7 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - [x] Regenerated `docs/url-audit.csv` for 96 registered routes and added regression coverage for the new paths, exact dependency digests and noindex state.
 - [x] Tightened related-decision links to page-type-specific evidence overlap, capped each list at five and linked every known comparison value to its source; all 47 tests, Cloudflare build, audit and local 96-page smoke passed.
 - [x] Added official-source MCP facts for five tools, refreshed all 18 dependent decision records and exact review handoffs, and kept all 38 records in-review/noindex. Regression coverage, 48 tests, build, artifact checks, audit, official-link check and local 96-page smoke passed; deployment evidence is recorded below after release.
-- [ ] Add and validate source-backed strengths, constraints and FAQs for five MCP tool profiles; refresh 18 dependent records and exact manifests, correct Cursor's canonical MCP source URL, and keep all records in-review/noindex. Local quality checks passed; commit, CI, Pages deployment and online smoke remain pending.
+- [x] Add and validate source-backed strengths, constraints and FAQs for five MCP tool profiles; refresh 18 dependent records and exact manifests, correct Cursor's canonical MCP source URL, and keep all records in-review/noindex. Node 22 checks, CI, Pages deployment and preview/production smoke passed; release evidence is recorded below.
 - [ ] Complete the old-route inventory and decide route migration only after TODO-306 evidence is provided.
 - [ ] Resolve alternatives route/target-set and Cursor/Windsurf slug mappings; complete remaining source-backed content contracts and page-level internal-link checks plus owner-dependent gates before marking TASK-006 complete.
 
@@ -86,6 +86,14 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - Local output inspection confirmed all five profile facts and five dependent comparison MCP citations render with `noindex`; `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke` passed for 96 pages, robots, sitemap and a real 404.
 - Commit `4363baa9821a547641d88a62c461ad2e1e746773` passed `npm run release:check` in a clean temporary worktree and GitHub CI run `36310506062`. Cloudflare Pages deployment `bd8c8795-7ff5-4540-8c5a-559a693fb380` succeeded; preview `https://bd8c8795.toolpilot-git.pages.dev` and `https://toolpilot.cc` each passed current-profile smoke for 96 pages, robots, sitemap and a real 404.
 - No source approval, hands-on test, commercial activation or indexability change was made; all 38 content records remain `in-review` and noindex.
+
+#### Source-backed page-contract tranche — 2026-09-27
+
+- Runtime: Node.js 22.23.2 / npm 10.9.8. `npm run cloudflare:build` passed lint, typecheck, 52 tests, content validation, static export and artifact checks; generated 96 pages with 4 indexable URLs.
+- `npm audit --audit-level=high` passed with 0 vulnerabilities. `npm run links:check` completed; the five MCP profile claims cite official product documentation, and this scan included transient network errors/restricted hosts. Link reachability is not editorial approval.
+- Local current-profile smoke passed for 96 pages, robots, sitemap and a real 404. Generated-artifact checks verify each evidence claim/FAQ has its exact source URL rendered beside it.
+- Commit `eee8485fec0628a09d19aa7adc774c84a06a3183` passed `npm run release:check` in a clean temporary worktree and GitHub CI run `36313122069`. Cloudflare Pages deployment `3b3c9451-b893-428a-b618-e12e9c729228` succeeded; preview `https://3b3c9451.toolpilot-git.pages.dev` and `https://toolpilot.cc` each passed current-profile smoke for 96 pages, robots, sitemap and a real 404. Online inspection confirmed strengths, constraints, FAQs and source links on the Cursor and Continue profiles.
+- All 38 content records remain `in-review` and noindex, with 4 URLs in the sitemap. No owner approval, hands-on test, commercial activation or public indexing change was made. Roll back only to the previous verified Pages deployment or revert this reviewed commit, then rerun current-profile smoke.
 
 ### Verification for this tranche
 
