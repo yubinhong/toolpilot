@@ -5,7 +5,7 @@ import { getSiteUrl } from '../lib/site-config.mjs';
 import { getBreadcrumbItems } from '../lib/breadcrumbs.mjs';
 import { content } from '../lib/content.mjs';
 import { categoryAnchor, HOME_CATEGORY_SHORTCUTS } from '../lib/homepage.mjs';
-import { generateHeadersFile } from './generate-security-headers.mjs';
+import { generateHeadersFile, injectFallbackCspMeta } from './generate-security-headers.mjs';
 const failures = [];
 const routes = getRoutes();
 const site = getSiteUrl();
@@ -27,6 +27,7 @@ for (const r of routes) {
   const file = join('out', r.path, 'index.html');
   if (!existsSync(file)) { failures.push(`${r.path}: missing HTML`); continue; }
   const html = readFileSync(file,'utf8');
+  if (/<meta\b[^>]*\bhttp-equiv="Content-Security-Policy"/i.test(html)) failures.push(`${r.path}: fallback CSP meta must not be added to registered routes`);
   const canonical = html.match(/<link\b[^>]*rel="canonical"[^>]*>/)?.[0];
   if (!canonical?.includes(`href="${site}${r.path}"`)) failures.push(`${r.path}: incorrect canonical`);
   const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
@@ -160,6 +161,14 @@ for (const file of files('out/_next/static').filter(f => f.endsWith('.js'))) {
   if (/commission|restrictedProductSlugs|approvedDigest/.test(text)) failures.push(`${file}: internal content leaked into client JavaScript`);
 }
 if (!existsSync('out/404.html')) failures.push('missing static 404');
+else {
+  try {
+    const html404 = readFileSync('out/404.html','utf8');
+    if (injectFallbackCspMeta(html404) !== html404) failures.push('static 404 is missing its generated fallback CSP meta');
+  } catch (error) {
+    failures.push(`static 404 CSP validation failed: ${error.message}`);
+  }
+}
 if (!readFileSync('out/robots.txt','utf8').includes(`${site}/sitemap.xml`)) failures.push('robots sitemap mismatch');
 const headersPath = 'out/_headers';
 if (!existsSync(headersPath)) {

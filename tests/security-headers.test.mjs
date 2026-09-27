@@ -3,7 +3,9 @@ import { createHash } from 'node:crypto';
 import test from 'node:test';
 import {
   extractInlineScriptHashes,
+  fallbackDocumentCsp,
   generateHeadersFile,
+  injectFallbackCspMeta,
   MAX_HEADER_LINE_LENGTH,
   MAX_HEADER_RULES,
   routeCsp,
@@ -52,6 +54,25 @@ test('generated rules pair shared protections with strict per-route CSP hashes',
   assert.doesNotMatch(output, /unsafe-inline|Strict-Transport-Security/);
   assert.equal(output.trim().split(/\n\n/).length, routes.length + 1);
   assert.match(routeCsp([]), /script-src 'self';/);
+});
+
+test('static 404 gets an idempotent CSP meta using only its executable inline-script hashes', () => {
+  const body = 'window.notFound = true;';
+  const html = `<!doctype html><html><head></head><body><script>${body}</script></body></html>`;
+  const generated = injectFallbackCspMeta(html);
+  const policy = generated.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)?.[1];
+
+  assert.ok(policy);
+  assert.ok(policy.includes(`script-src 'self' ${sha256(body)}`));
+  assert.match(policy, /default-src 'self'/);
+  assert.doesNotMatch(policy, /frame-ancestors|unsafe-inline|static\.cloudflareinsights\.com/);
+  assert.equal(injectFallbackCspMeta(generated), generated);
+  assert.equal((generated.match(/http-equiv="Content-Security-Policy"/g) || []).length, 1);
+  assert.match(fallbackDocumentCsp([]), /script-src 'self';/);
+  const meta = generated.match(/<meta\b[^>]*http-equiv="Content-Security-Policy"[^>]*>/)?.[0];
+  assert.throws(() => injectFallbackCspMeta(generated.replace('</head>', `${meta}</head>`)), /at most one/);
+  assert.throws(() => injectFallbackCspMeta('<html><body></body></html>'), /one complete head element/);
+  assert.throws(() => injectFallbackCspMeta('<html><head></head><head></head></html>'), /one complete head element/);
 });
 
 test('generated Pages rules reject missing artifacts, duplicate/unsafe routes, and limit overflow', () => {

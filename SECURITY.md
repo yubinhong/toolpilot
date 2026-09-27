@@ -12,6 +12,7 @@
 - Cloudflare Pages 响应头预发布基线核验（2026-09-27）：TASK-007 前 production `https://toolpilot.cc/` 与 immutable preview 均返回 `X-Content-Type-Options: nosniff` 和 `Referrer-Policy: strict-origin-when-cross-origin`；未观察到 CSP、HSTS、`X-Frame-Options` 或 `Permissions-Policy`。`public/` 中没有 `_headers` 配置。实施和线上当前状态见下方 TASK-007/TODO-315 记录。
 - TODO-315 安全策略审查（2026-09-27）：浏览当前静态导出的每个注册路由，允许其真实 inline-script SHA-256 哈希，默认限制资源为同源并拒绝 inline event handlers；计划加 `X-Frame-Options: DENY`、关闭当前不使用的 camera/microphone/geolocation。Cloudflare Pages 将叠加匹配规则；97 条逐路由规则加 1 条共享兜底规则，共 98/100 条。具体实施和浏览器证据见 TASK-007。HSTS 尚未获 Owner 对主机/子域范围的确认，禁止在此任务中设置。
 - TASK-007 实施与线上结果（2026-09-27）：每次静态构建生成 `out/_headers`，以共享 `/*` 规则应用基线 CSP、frame、MIME、referrer 和 permissions 头，并为每条注册路由从构建后 HTML 精确允许 inline-script SHA-256。正式 commit/CI/Pages 发布已通过；immutable preview 97 路由 Chromium 零错误/零 CSP violation，production 应用交互通过但 Cloudflare Insights 外部 beacon 被该 CSP 有意阻止并产生一条 violation。Owner 决定是否关闭 Pages Web Analytics 注入，或先正式批准该分析处理和隐私文案；在此之前不放宽策略。未设置 HSTS。
+- TASK-007 404 fallback follow-up（2026-09-27，本地验证）：Pages 的 `/*` 共享 CSP 缺少脚本源限制时，未知路径可以加载生产注入脚本；直接把全站脚本 hash 合并到共享规则会与逐路由策略取交集，并超出 2,000 字符 header 限制。当前源码在静态 `404.html` head 注入只含 404 自身 inline-script hash 的 CSP meta，`frame-ancestors` 继续由响应头执行。Node 22 全量构建、70 项测试、产物检查、审计和 Pages smoke 通过；Chromium 在本地 404 上验证主题交互无错误，并确认对 Cloudflare Insights 测试脚本报 enforced `script-src-elem` / `requestfailed: csp`。只读检查当前生产 404 的 Chromium DOM 发现 beacon 出现在 `</head>` 之后，早于它解析的 head meta 会约束注入脚本。该 follow-up 尚未部署，不能当作生产状态；线上 Analytics 决策和 HSTS 范围仍待 Owner。
 
 ## 1. 安全目标与范围
 

@@ -57,9 +57,9 @@ export function extractInlineScriptHashes(html) {
   return [...hashes].sort();
 }
 
-export function routeCsp(hashes) {
+function cspFromHashes(hashes, { includeFrameAncestors = true } = {}) {
   const scriptSources = ["'self'", ...hashes].join(' ');
-  return [
+  const directives = [
     "default-src 'self'",
     `script-src ${scriptSources}`,
     "script-src-attr 'none'",
@@ -70,9 +70,37 @@ export function routeCsp(hashes) {
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-    "frame-ancestors 'none'",
     'upgrade-insecure-requests',
-  ].join('; ') + ';';
+  ];
+  if (includeFrameAncestors) directives.push("frame-ancestors 'none'");
+  return directives.join('; ') + ';';
+}
+
+export function routeCsp(hashes) {
+  return cspFromHashes(hashes);
+}
+
+export function fallbackDocumentCsp(hashes) {
+  return cspFromHashes(hashes, { includeFrameAncestors: false });
+}
+
+export function injectFallbackCspMeta(html) {
+  const csp = fallbackDocumentCsp(extractInlineScriptHashes(html));
+  const escapedCsp = csp.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
+  const meta = `<meta http-equiv="Content-Security-Policy" content="${escapedCsp}">`;
+  const existingMetas = [...html.matchAll(/<meta\b(?=[^>]*\bhttp-equiv\s*=\s*["']Content-Security-Policy["'])[^>]*>/gi)];
+  if (existingMetas.length > 1) throw new Error('static 404 must contain at most one Content-Security-Policy meta element');
+  if (existingMetas.length === 1) {
+    if (existingMetas[0][0] === meta) return html;
+    throw new Error('static 404 already contains a different Content-Security-Policy meta element');
+  }
+
+  const headOpenCount = [...html.matchAll(/<head\b[^>]*>/gi)].length;
+  const headCloseCount = [...html.matchAll(/<\/head\s*>/gi)].length;
+  if (headOpenCount !== 1 || headCloseCount !== 1) {
+    throw new Error(`static 404 must contain one complete head element (found ${headOpenCount} open, ${headCloseCount} close)`);
+  }
+  return html.replace(/<head\b[^>]*>/i, match => `${match}${meta}`);
 }
 
 function validateRoutePath(path) {
@@ -119,6 +147,11 @@ export function generateHeadersFile(routes, { readHtml, maxRules = MAX_HEADER_RU
 function generateForBuild() {
   const outputDirectory = resolve('out');
   if (!existsSync(outputDirectory)) throw new Error('Next.js output directory out/ does not exist');
+  const fallbackPath = join(outputDirectory, '404.html');
+  if (!existsSync(fallbackPath)) throw new Error(`missing static 404 at ${fallbackPath}`);
+  const fallbackHtml = readFileSync(fallbackPath, 'utf8');
+  writeFileSync(fallbackPath, injectFallbackCspMeta(fallbackHtml));
+
   const routes = getRoutes();
   const contents = generateHeadersFile(routes, {
     readHtml: route => {
