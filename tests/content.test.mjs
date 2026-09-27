@@ -110,6 +110,24 @@ test('Replit privacy and geography facts keep workspace and published-app reside
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('Aider analytics policy distinguishes opt-in telemetry from model-provider data handling',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'aider');
+  const fact = record?.facts.find(item => item.key === 'privacy');
+  assert.ok(record);
+  assert.equal(record.revision, 3);
+  assert.equal(fact?.checkedAt, '2026-09-27');
+  assert.deepEqual(fact?.sourceIds, ['analytics', 'privacy']);
+  assert.match(fact?.value ?? '', /random subset of users to opt in/);
+  assert.match(fact?.value ?? '', /UUID4/);
+  assert.match(fact?.value ?? '', /exclude code, prompts\/chat messages, API keys and personal information/);
+  assert.match(fact?.value ?? '', /model provider's data terms separately/);
+  assert.equal(record.sources.find(item => item.id === 'analytics')?.url, 'https://aider.chat/docs/more/analytics.html');
+  assert.equal(record.sources.find(item => item.id === 'privacy')?.url, 'https://aider.chat/docs/legal/privacy.html');
+  assert.ok(record.gaps.some(gap => gap.includes('no local settings were inspected')));
+  assert.ok(record.gaps.some(gap => gap.includes('selected model provider')));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('GitHub Copilot training-use policy distinguishes individual opt-out from organization plans',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');
   const fact = record?.facts.find(item => item.key === 'privacy');

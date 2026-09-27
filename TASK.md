@@ -228,6 +228,17 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - Immutable preview `https://2e856e18.toolpilot-git.pages.dev` and production `https://toolpilot.cc` each passed current-profile smoke for 99 pages, robots, sitemap and a real 404. Direct HTML checks on both confirmed the individual-plan training policy, Business/Enterprise boundary, both official source links and unresolved account-setting gap; `/tools/github-copilot/` remains `noindex, follow` and outside the sitemap. All content remains in-review; no account setting, opt-out, owner approval or legal assessment is claimed.
 - Rollback: revert the reviewed content/documentation commit and restore its matching dependent digests and review manifests; let Git-integrated Pages redeploy, then rerun preview and production current-profile smoke. No route or data migration is involved.
 
+#### Official Aider analytics policy tranche — 2026-09-27
+
+- Added Aider's current official analytics/privacy boundary: a random subset may be prompted, product analytics begin after opt-in, the documented event categories use a random UUID4 and the docs state code, prompts/chats, API keys and personal information are excluded. Session and permanent opt-out switches are recorded.
+- This only describes Aider product analytics. No local consent/configuration was inspected; selected model-provider prompts/content handling, retention, training, jurisdiction and legal terms remain separate review gates.
+- Bumped Aider to revision 3 and refreshed its two dependent decisions plus the exact TASK-006 review manifest. Added regression coverage for sources, consent/data scope, provider boundary and pending/noindex state. All 39 records remain `in-review`; no account setting, owner approval, verification date, route, sitemap or commercial state changed.
+- Sources: [Aider Analytics](https://aider.chat/docs/more/analytics.html) and [Aider Privacy Policy](https://aider.chat/docs/legal/privacy.html), accessed 2026-09-27; the privacy policy states it was last updated 2025-04-12.
+- Node.js 22.23.2 / npm 10.9.8: `npm run cloudflare:build` passed lint, typecheck, 79 tests, 39-record content validation, static export and artifact checks (99 pages / 4 indexable URLs); `npm audit --audit-level=high` found 0 vulnerabilities.
+- The full source scan covered 146 unique targets. Its first Aider analytics request had a transient network error; a targeted repository link-policy retry then returned HTTP 200 for both Aider sources. `npm run content:freshness -- --as-of=2026-09-27` reports 37 unverified fields and 0 overdue.
+- Local current-profile `npm run smoke` passed 99 pages, robots, sitemap and a real 404. Direct export assertions confirmed analytics scope, opt-in/out controls, both source links and the provider-data gap; `/tools/aider/` and `/best/open-source-ai-coding-tools/` remain noindex, and the profile is absent from the sitemap. `npm run content:review` displayed the exact revision/digest and open gaps; `git diff --check` passed.
+- Release acceptance, preview and production smoke evidence will be added after the content/documentation commit is pushed and deployed.
+
 #### Homepage information architecture tranche — 2026-09-27
 
 - Added category shortcuts for AI Coding, AI App Builders and Automation & Agents, linked to stable category anchors in the existing `/tools/` route. The directory now groups profiles by category; no new route was introduced.

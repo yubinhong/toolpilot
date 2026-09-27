@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Aider vs Claude Code",
   "summary": "Compare two repository-oriented coding agents by Git behavior, model access and review controls.",
-  "revision": 5,
+  "revision": 6,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -58,8 +58,8 @@
   "dependencies": [
     {
       "slug": "aider",
-      "revision": 2,
-      "digest": "630e6bcaabd7e53bcffda289605ca5bdb16f7d0eb2439f52390b1b8ce6e5dc5a"
+      "revision": 3,
+      "digest": "60b68d9e6aeb234eed9d52ee935a117651a382de0761025c7fa09373ad7c39f6"
     },
     {
       "slug": "claude-code",
@@ -91,6 +91,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed the Aider dependency after its official analytics policy update; exact owner review remains pending."
     }
   ],
   "commercial": {
