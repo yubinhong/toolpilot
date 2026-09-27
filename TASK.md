@@ -83,7 +83,8 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - `npm run cloudflare:build`: passed lint, typecheck, 48 tests, static export and artifact checks; generated 96 pages with 4 indexable URLs.
 - `npm audit --audit-level=high`: passed with 0 vulnerabilities. `npm run links:check`: all five task-specific MCP documentation URLs were reachable; the Cursor docs hostname redirects to Cursor's documentation root, so its link remains source evidence but is not described as same-URL HTTP 200.
 - Local output inspection confirmed all five profile facts and five dependent comparison MCP citations render with `noindex`; `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke` passed for 96 pages, robots, sitemap and a real 404.
-- No source approval, hands-on test, commercial activation or indexability change was made. CI, Pages deployment and online smoke evidence will be appended after release verification.
+- Commit `4363baa9821a547641d88a62c461ad2e1e746773` passed `npm run release:check` in a clean temporary worktree and GitHub CI run `36310506062`. Cloudflare Pages deployment `bd8c8795-7ff5-4540-8c5a-559a693fb380` succeeded; preview `https://bd8c8795.toolpilot-git.pages.dev` and `https://toolpilot.cc` each passed current-profile smoke for 96 pages, robots, sitemap and a real 404.
+- No source approval, hands-on test, commercial activation or indexability change was made; all 38 content records remain `in-review` and noindex.
 
 ### Verification for this tranche
 

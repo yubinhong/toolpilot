@@ -3,7 +3,7 @@
 ## 当前快照 — 2026-09-27
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
-- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的 P0 差异并准备 P1 审核批次。P0 路由/模板基础已部署；38 条结构化记录、96 条当前源码路由清单和 TASK-006 精确审核清单已在源码中，全部内容仍为 `in-review`、noindex。最新提交 `98d0be02df01b8322c23a5ab947c7f65e278c4a1` 已通过 GitHub CI run `36308661143` 和 Cloudflare Pages 部署 `f552840a-c154-4086-9bb5-ec5c5061e2a1`；预览站和 `toolpilot.cc` current-profile smoke 均通过。比较表格现在逐项链接来源，相关决策链接按页面类型筛选并限为 5 条。TASK-006 的实施基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；计划文件仍为用户提供的未跟踪文件，必须保留。历史 URL/GSC/外链证据、内容批准、Alternatives/slug 映射、运营资料、告警通知和生产回滚演练仍是独立门槛；详见 TASK.md、TODO.md 和 PLANS.md。
+- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的 P0 差异并准备 P1 审核批次。38 条结构化记录、96 条当前源码路由清单和精确审核清单均已在源码中，全部内容仍为 `in-review`、noindex。MCP 证据批次为 Cursor、Claude Code、GitHub Copilot、Cline 和 Continue 加入官方来源事实，并刷新 18 条依赖决策；提交 `4363baa9821a547641d88a62c461ad2e1e746773` 通过 GitHub CI run `36310506062` 和 Cloudflare Pages 部署 `bd8c8795-7ff5-4540-8c5a-559a693fb380`。预览站 `https://bd8c8795.toolpilot-git.pages.dev` 与 `toolpilot.cc` current-profile smoke 均通过 96 页检查。比较表格逐项链接来源，相关决策链接按页面类型筛选并限为 5 条。TASK-006 实施基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；计划文件仍为用户提供的未跟踪文件，必须保留。历史 URL/GSC/外链证据、内容批准、Alternatives/slug 映射、运营资料、告警通知和生产回滚演练仍是独立门槛；详见 TASK.md、TODO.md 和 PLANS.md。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 38 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 2 guides）全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。

@@ -377,7 +377,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Add `docs.cursor.com` to the exact outbound-host allowlist only after reviewing the source URL; existing official hosts remain exact entries.
 - Refresh the TASK-006 review manifest and handoff instructions for changed P1 records; inspect whether TASK-005 review notes refer to any changed exact revisions.
 - Acceptance: content validator and tests confirm source/date attribution, current dependency digests and pending review state; build/artifacts confirm 96 routes and unchanged indexable URL count; link checks may classify network restrictions without treating them as source failures. Run Node 22 quality, audit, local smoke, clean release check, CI, Pages deployment and preview/production smoke.
-- Local acceptance completed: five official source URLs are recorded and rendered, 18 dependent decision records validate against current digests, 48 tests pass, static artifacts contain 96 routes and 4 indexable URLs, audit reports zero vulnerabilities, and local current-profile smoke passes. CI, deployment and online smoke remain pending release.
+- Acceptance completed: five official source URLs are recorded and rendered, 18 dependent decision records validate against current digests, 48 tests pass, static artifacts contain 96 routes and 4 indexable URLs, audit reports zero vulnerabilities, and local current-profile smoke passes. Commit `4363baa9821a547641d88a62c461ad2e1e746773` passed release readiness and GitHub CI run `36310506062`; Pages deployment `bd8c8795-7ff5-4540-8c5a-559a693fb380` and preview/production current smoke passed for all 96 pages.
 
 #### Phase 5 — External operating and commercial gates
 

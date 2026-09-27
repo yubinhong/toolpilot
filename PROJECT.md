@@ -12,7 +12,7 @@
 
 TASK-005 已获用户授权实施；用户已要求每个可交付进展都部署并线上验证。继续 Next.js 静态导出；原 50 条快照不可覆盖，现有 54 个工具身份。content/ 是 38 条结构化待审核正文的事实源，lib/catalog.mjs 保留历史和兼容入口。用户负责最终内容审批。
 
-依赖更新为 Next.js/eslint-config-next 16.3.6、sharp 0.35.4、js-yaml 4.3.2；Node 22 下锁定安装和审计通过。Git-integrated Pages 项目 `toolpilot-git` 已连接 `main`；最新已部署版本 `98d0be0` 的预览和 `toolpilot.cc` 均通过 96 路由 current smoke。旧 Direct Upload 项目保留为恢复目标，具体状态统一见 TASK.md 和 RUNBOOK.md。
+依赖更新为 Next.js/eslint-config-next 16.3.6、sharp 0.35.4、js-yaml 4.3.2；Node 22 下锁定安装和审计通过。Git-integrated Pages 项目 `toolpilot-git` 已连接 `main`；MCP 内容批次 `4363baa` 已部署，预览 `https://bd8c8795.toolpilot-git.pages.dev` 和 `toolpilot.cc` 均通过 96 路由 current smoke。旧 Direct Upload 项目保留为恢复目标，具体状态统一见 TASK.md 和 RUNBOOK.md。
 
 ## 1. 项目概述
 
