@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-27",
+  "checkedAtUtc": "2026-09-27 19:09 UTC",
+  "task": "TODO-306",
+  "purpose": "Recheck public archive and repository-history sources for historical toolpilot.cc URLs without inferring indexing, backlinks, or redirect actions.",
+  "historicalUrlsRecovered": 0,
+  "probes": [
+    {
+      "source": "Internet Archive CDX",
+      "url": "https://web.archive.org/cdx/search/cdx?url=toolpilot.cc&matchType=domain&output=json&fl=original%2Ctimestamp%2Cstatuscode",
+      "httpStatus": 200,
+      "responseBytes": 3,
+      "result": "empty-array",
+      "interpretation": "This query returned no matching captures; it does not prove the domain or any path never existed."
+    },
+    {
+      "source": "Internet Archive Availability API",
+      "url": "https://web.archive.org/wayback/available?url=toolpilot.cc&timestamp=20260927",
+      "httpStatus": 404,
+      "result": "endpoint-not-found",
+      "interpretation": "The endpoint returned generic 404 HTML, so this is not capture or URL-absence evidence."
+    },
+    {
+      "source": "Common Crawl",
+      "index": "CC-MAIN-2026-39",
+      "query": "url=toolpilot.cc&matchType=domain&output=json",
+      "httpStatus": 404,
+      "result": "no-captures-for-domain",
+      "interpretation": "No captures were returned for this index only."
+    },
+    {
+      "source": "Common Crawl",
+      "index": "CC-MAIN-2026-08",
+      "query": "url=toolpilot.cc&matchType=domain&output=json",
+      "httpStatus": 404,
+      "result": "no-captures-for-domain",
+      "interpretation": "No captures were returned for this index only."
+    },
+    {
+      "source": "Common Crawl",
+      "query": "url=toolpilot.cc&matchType=domain&output=json",
+      "indexes": [
+        { "id": "CC-MAIN-2026-34", "httpStatus": 504 },
+        { "id": "CC-MAIN-2026-30", "httpStatus": 503 },
+        { "id": "CC-MAIN-2026-25", "httpStatus": 503 },
+        { "id": "CC-MAIN-2026-21", "httpStatus": 503 },
+        { "id": "CC-MAIN-2026-17", "httpStatus": 503 },
+        { "id": "CC-MAIN-2026-12", "httpStatus": 503 },
+        { "id": "CC-MAIN-2026-05", "httpStatus": 503 }
+      ],
+      "result": "service-errors",
+      "interpretation": "These indexes remain unverified; service errors are not evidence of no captures."
+    }
+  ],
+  "repositoryHistory": {
+    "rootCommit": "f65b5a71ccc9c5ead3453b3df145f31e85c52ab8",
+    "rootCommitSubject": "first commit",
+    "finding": "The repository's first application-source commit contains the ToolPilot app. Git history search found CryptoClarity references only in research/documentation, not an earlier Crypto route implementation."
+  },
+  "remainingEvidence": [
+    "Google Search Console page/indexing export",
+    "Old sitemap or complete legacy URL list",
+    "Verifiable backlink export or logs"
+  ],
+  "decision": "Keep indexed/backlink status unknown, add no inferred legacy paths, and make no bulk 301 or 410 changes."
+}

@@ -32,7 +32,7 @@
 | ID | 事项 | 阻塞原因 | 等待对象 | 下一次检查 |
 | --- | --- | --- | --- | --- |
 | TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 与域名迁移已完成；尚未在生产窗口执行上一份 verified deployment 恢复，需 Owner 安排并授权操作窗口 | 运维/项目 Owner | Owner 确认生产演练窗口和操作人 |
-| TODO-306 | 完成旧 URL 的索引、外链和迁移证据采集 | `docs/url-audit.csv` 已列出当前源码的 97 个注册路由，但不是历史 URL 清单。2026-09-27 公开档案核查不完整：Wayback CDX 临时离线；Common Crawl wildcard 查询被规范化为根路径，改用 domain 匹配后遇到 502/504，其他三个索引 503。这些失败不能证明旧 URL 不存在、未索引或无外链，也不能据此作批量 301/410。 | 项目/SEO Owner | 提供 Search Console 导出、旧 sitemap、可核验外链/日志和受影响域名清单 |
+| TODO-306 | 完成旧 URL 的索引、外链和迁移证据采集 | `docs/url-audit.csv` 仍只是当前 97 个源码路由。2026-09-27 复核见 `docs/research/archive-recheck-2026-09-27.json`：Wayback CDX 成功但返回空数组；Common Crawl 2026-39/2026-08 对域名无抓取，其余多数索引 503/504；Git 源码历史始于 ToolPilot。没有由此推断旧 URL、未索引或无外链，也未作 301/410。 | 项目/SEO Owner | 提供 Search Console 导出、旧 sitemap、可核验外链/日志和受影响域名清单 |
 | TODO-307 | 补全公开运营主体、监控联系渠道和法律事实 | About/Contact/Privacy/Terms 页面结构存在；真实运营者、联系邮箱和最终法律文字尚未提供 | 项目 Owner/法务 | 提供准确资料并审核用户可见版本；不得编造地址或团队 |
 | TODO-308 | 批准 GA4、AdSense、Affiliate 或其他追踪/商业上线 | 源码未集成 GA4/AdSense/Affiliate；TASK-007 生产浏览器却观察到 Cloudflare Insights beacon 被 CSP 阻止，提示 Pages Web Analytics 可能已在 Dashboard 启用。Cloudflare 官方说明该设置可自动注入 beacon（[Pages Web Analytics](https://developers.cloudflare.com/pages/how-to/web-analytics/)）；当前 Dashboard 未读取或更改，不能将其视为已批准。首页比较研究没有真实使用量依据，因此不宣称“Popular”。 | P1 | 项目/隐私/法务/商业 Owner | Owner 核实/决定 Pages Web Analytics；批准前保持 CSP 阻止外部 beacon。若批准需记录采集范围、保留/同意/隐私文案，并单独批准 CSP 允许的脚本与 beacon 端点 |
 
