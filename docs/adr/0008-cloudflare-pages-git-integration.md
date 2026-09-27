@@ -1,6 +1,6 @@
 # ADR-0008: Cloudflare Pages Git Integration Deployment
 
-- Status: Accepted as the target production deployment model; external migration pending
+- Status: Accepted; Git Integration and custom-domain cutover complete, production rollback exercise pending
 - Date: 2026-08-21
 - Owner: Technical lead
 
@@ -25,7 +25,7 @@ Use Cloudflare Pages Git Integration as the normal production deployment path:
 
 The `cloudflare:build` script runs lint, typecheck, tests, and the static build. GitHub CI remains the repository quality signal. The manual Cloudflare API-token release workflow is removed from the normal path; production rollback is handled through the Git-integrated Pages deployment history after the new project is verified.
 
-Retain the existing Direct Upload project and its last verified deployment as the recovery target. Do not delete it. The Git-integrated project's successful build and `pages.dev` smoke are prerequisites, not proof that `toolpilot.cc` has migrated; custom-domain cutover still requires its own authorization and production smoke.
+Retain the existing Direct Upload project and its last verified deployment as the recovery target. Do not delete it. The Git-integrated project's successful build and `pages.dev` smoke are prerequisites; after the owner-reported CNAME cutover, the production domain must also pass current-profile smoke.
 
 ## Consequences
 
@@ -44,6 +44,6 @@ For rollback, select a previous verified deployment in the Git-integrated Pages 
 
 ## Current migration evidence — 2026-09-27
 
-- Git-integrated project `toolpilot-git` is connected to `yubinhong/toolpilot` on `main`; deployment from source `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9` and subsequent main pushes passed Cloudflare Pages checks and 88-route current smoke on `pages.dev`.
-- `toolpilot.cc` remains on the legacy Direct Upload project. Current-profile smoke fails against its old content; legacy smoke passes. A custom-domain transfer attempt was rolled back.
-- No domain migration is authorized by TASK-005. Keep the legacy project and production monitor profile until the owner authorizes cutover and production-domain smoke passes.
+- Git-integrated project `toolpilot-git` is connected to `yubinhong/toolpilot` on `main`; deployments from commits `fc139ca1`, `a626a16`, `9e249c3`, and `1f20af4` passed Cloudflare Pages checks and current-profile smoke.
+- The owner reports that `toolpilot.cc` CNAME has been switched to the new project. The public domain now passes current-profile smoke for all 88 pages, robots, sitemap, and a real 404.
+- The Direct Upload project remains as the recovery target. Production monitoring is configured for current; its deployed manual run, an actual production rollback exercise and notification setup remain outstanding.

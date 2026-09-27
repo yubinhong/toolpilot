@@ -8,7 +8,7 @@
 - 依赖：`package.json`/`package-lock.json`、Node 22、Next 静态构建、Cloudflare Pages 项目 `toolpilot-git` 与恢复项目 `toolpilot`、厂商站点和未来可选分析服务。
 - Dashboard：Cloudflare Dashboard 的 Workers & Pages > `toolpilot-git` / `toolpilot`；当前未配置应用监控或告警。
 - 日志：`TBD`；当前没有应用、部署或访问日志入口。
-- 当前状态：Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot` 的 `main`，构建命令 `npm run cloudflare:build`、输出 `out`、Node 22。部署 `000a4a88-b061-4f48-afe7-d7bc3d78d202` 对应 source `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9`，其 `pages.dev` current smoke 通过。`toolpilot.cc` 仍由旧 Direct Upload 项目 `toolpilot` 提供，source `4776027f9fb45cbe8ea5e63e0061984a5b91b2c8`、部署 `be8ecb81-fcad-4058-8909-e80befb441ab`；旧部署及恢复后的正式域名 legacy smoke 通过。域名迁移尝试已回退；Cloudflare 当前报告旧项目域名 validation pending，但公网 legacy smoke 正常。DNS CNAME 写入和后续正式域名切换须经单独授权。两个项目都必须保留至正式域名 current smoke 和回滚演练完成。
+- 当前状态：Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot` 的 `main`，构建命令 `npm run cloudflare:build`、输出 `out`、Node 22。用户报告已将 `toolpilot.cc` CNAME 切换至该项目；本次 `SMOKE_PROFILE=current npm run smoke` 对正式域名检查 88 个页面、robots、sitemap 和真实 404 均通过。生产监控配置已切到 current，仍需在部署后手动运行 workflow 并记录成功结果。旧 Direct Upload 项目 `toolpilot` 及部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留为恢复目标；尚未执行生产回滚演练。此 Agent 未更改 DNS 或 Pages 自定义域绑定。
 
 ## 2. SLO 与关键指标
 
@@ -34,7 +34,8 @@
 - [x] 旧 Crypto/DeFi 生成内容按用户确认不迁移，当前源码未生成相关页面。
 - [x] Direct Upload 恢复项目 `toolpilot` 的部署 `be8ecb81-fcad-4058-8909-e80befb441ab`（`https://be8ecb81.toolpilot-2cy.pages.dev`）通过 legacy smoke。
 - [x] Git-integrated 项目 `toolpilot-git` 已连接 `yubinhong/toolpilot`，生产分支为 `main`，构建命令为 `npm run cloudflare:build`，输出目录为 `out`；部署 `000a4a88` / source `fc139ca1` 的 88 路由 current smoke 通过。
-- [ ] 在另获授权并具有 DNS 写权限后，将 `toolpilot.cc` CNAME 指向 `toolpilot-git.pages.dev`，确认 Pages 域名 active，并对正式域名运行 current smoke。
+- [x] 用户报告已将 `toolpilot.cc` CNAME 切换到 `toolpilot-git`；正式域名 `SMOKE_PROFILE=current npm run smoke` 检查 88 个页面、robots、sitemap 和真实 404 通过。
+- [ ] 部署 `.github/workflows/production-monitor.yml` 的 current profile 配置，并手动运行 workflow 验证正式域名。
 - [ ] Affiliate/Featured/Sponsor 条款、归因、退款和披露文案已批准。
 - [ ] 50 条目录已由产品/内容 Owner 完成事实、来源新鲜度和商业条款审核。
 
@@ -77,18 +78,16 @@ for path in / /tools/ /tools/digitalocean/ /robots.txt /sitemap.xml; do
 done
 ```
 
-### `toolpilot.cc` 域名切换（须单独授权）
+### `toolpilot.cc` 域名切换（2026-09-27，已完成）
 
-1. 确认 `toolpilot-git` 最新 `main` 部署成功，并在对应 `pages.dev` 地址通过 `SMOKE_PROFILE=current`。本次已验证 deployment `0d07e89d` / source `a626a162`。
-2. 在 Cloudflare Dashboard > Workers & Pages > `toolpilot` > Custom domains 中解除 `toolpilot.cc`，再到 `toolpilot-git` > Custom domains > Set up a domain 添加 `toolpilot.cc`。旧项目不要删除。
-3. 若 Cloudflare 提示 DNS 确认，确认 zone 中的 CNAME 目标为 `toolpilot-git.pages.dev`；当前旧目标为 `toolpilot-2cy.pages.dev`。不要在 Pages 项目关联前单独创建 CNAME，否则会返回 522。Cloudflare 管理的 zone 可在确认 Pages 域名后自动创建 CNAME，见[官方自定义域名文档](https://developers.cloudflare.com/pages/configuration/custom-domains/)。
-4. 等待 Pages 域名状态为 `active`，再运行 `SMOKE_PROFILE=current npm run smoke` 检查 `https://toolpilot.cc` 的页面、noindex、robots、sitemap 和真实 404。
-5. 只有正式域名 current smoke 通过后，才把 `.github/workflows/production-monitor.yml` 从 `legacy` 切到 `current`；该提交也须部署并再次线上验证。
+用户报告已完成 CNAME 切换。独立线上证据为 `SMOKE_PROFILE=current npm run smoke` 对 `https://toolpilot.cc` 检查 88 个页面、robots、sitemap 和真实 404 通过。DNS 变更由用户完成，本 Agent 未写入 DNS。生产监控工作流必须保持 `SMOKE_PROFILE: current`，切换配置的提交部署后还要手动运行一次并保留 workflow 结果。
+
+常规迁移步骤留档：先验证 `toolpilot-git` 最新 `main` 部署和 `pages.dev` smoke，再在 Cloudflare Pages 将自定义域绑定到 Git-integrated 项目，并确认正式域名 current smoke。Cloudflare 托管 DNS 时应按 Pages Dashboard 的验证流程确认域名关联，避免在 Pages 项目关联前独立创建不匹配记录。旧项目不得删除。
 
 ## 4. 回滚
 
 - 触发条件：站点不可用、构建产物与源码不一致、工具事实错误、关键链接失效、商业标记缺失、安全门槛失败或旧 Crypto/DeFi 内容误发布。
-- 应用回滚：新 Git 项目已有成功部署 `000a4a88`；旧 Direct Upload 部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留，legacy smoke 已通过。域名尚未切换。获授权切换后若 current smoke 失败，应从 `toolpilot-git` 解除域名，在旧项目重新绑定 `toolpilot.cc`，确认 CNAME 回到 `toolpilot-2cy.pages.dev`，再运行 legacy smoke。不得删除旧项目。
+- 应用回滚：旧 Direct Upload 部署 `be8ecb81-fcad-4058-8909-e80befb441ab` 保留为恢复目标。若 current smoke 失败，事故负责人应先记录当前部署、原因和时间，再通过 Cloudflare Pages Dashboard 将 `toolpilot.cc` 重新绑定至已验证的旧项目，并按 Cloudflare 的 Custom Domains/DNS 状态完成域名恢复；随后运行 `SMOKE_PROFILE=legacy npm run smoke` 验证恢复结果。此次生产回滚演练尚未执行，域名/Pages 变更须由获授权的事故负责人操作。不得删除旧项目。
 - 数据回滚/前滚：当前没有已确认数据库或迁移；若未来引入数据层，必须使用向前迁移和已验证备份恢复，不直接回滚生产数据。
 - 验证：重新检查公共首页、关键决策页、法律页、站点地图、robots、外部链接、商业披露和安全头。
 
@@ -131,19 +130,19 @@ done
 - RPO：`TBD`；需要确定内容源、静态产物和订单/分析数据的备份策略。
 - RTO：`TBD`；需要确认静态托管、DNS 和上一版本产物的恢复时间。
 - 备份位置：`TBD`；不得把备份放在公开仓库或聊天中。
-- 恢复演练：尚未完成；必须先完成新 Git-integrated 项目和域名迁移，再确认上一份可回退部署，通过 Cloudflare Pages 部署历史做一次回滚，并重新验证生产关键路径。
+- 恢复演练：尚未完成；Git-integrated Pages 当前承载正式域名。须由 Owner 安排窗口，确认上一份可回退部署，通过 Cloudflare Pages 部署历史或旧 Direct Upload 恢复目标执行演练，并重新验证生产关键路径；演练后将域名绑定恢复到 Git-integrated 项目。
 
 
 ## TASK-005 release handoff (2026-09-27)
 
-The user has authorized deployment and online verification for each deliverable progress. Git Integration is confirmed by deployment `000a4a88` from `fc139ca1b88b76bb8b65c95f4a3f15cbfac736c9`; its 88-route current-profile smoke passed on `pages.dev`. `toolpilot.cc` remains on the legacy Direct Upload project because DNS CNAME changes and a production-domain cutover still need separate owner authorization and DNS write access. The attempted transfer was rolled back, and legacy smoke passes on the public domain. Pending content remains noindex; deployment authorization is not editorial approval.
+The user has authorized deployment and online verification for each deliverable progress. The owner reports that `toolpilot.cc` CNAME now points to Git-integrated Pages project `toolpilot-git`; current-profile smoke passed for all 88 pages, robots, sitemap and a real 404. The production monitor is configured for the current profile; its deployed manual workflow run is still pending. The old Direct Upload project and deployment remain the recovery target. Pending content remains noindex; deployment authorization is not editorial approval.
 
 1. Resolve the security audit and review final operator/contact/privacy details.
 2. Obtain owner decisions for exact content revisions/digests. Pending records remain noindex, including on a preview; do not switch all records to published.
 3. Run Node 22 locked install, audit, cloudflare:build and local current smoke.
 4. With separate commit/push authorization, review a clean full SHA and run release:check. Never weaken the dirty-worktree gate.
 5. Record each Git Integration deployment ID/source SHA and verify the `pages.dev` current smoke; deployment `000a4a88` / source `fc139ca1` is verified.
-6. After separately authorized DNS cutover and Pages domain validation, run `SMOKE_PROFILE=current` against `https://toolpilot.cc` and verify page directives, sitemap and real 404. Only then switch production-monitor.yml from legacy to current. Until cutover, legacy checks the old deployed contract explicitly.
+6. The owner-reported DNS cutover is complete and formal-domain current smoke passed. Deploy the `production-monitor.yml` current-profile change, run the workflow manually, and record the result. Keep current as the scheduled profile; use legacy only for an explicit recovery check.
 7. Retain the old project. Rollback requires authorization, a known verified deployment/source and before/after smoke. No blanket URL redirects, WAF disabling or emergency token publication.
 
 Maintenance reports run daily via content-maintenance.yml after deployment of the workflow; configuration alone is not execution evidence. Inspect restricted/broken links and freshness without treating link checks as factual approval. Artifact retention is 14 days. No external message or issue is sent automatically.

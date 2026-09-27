@@ -12,7 +12,7 @@
 
 TASK-005 已获用户授权实施；用户已要求每个可交付进展都部署并线上验证。继续 Next.js 静态导出；原 50 条快照不可覆盖，现有 52 个工具身份，其中 8 个进入深入研究。content/ 是 28 条首批待审核正文的事实源，lib/catalog.mjs 保留历史和兼容入口。用户负责最终内容审批。
 
-依赖更新为 Next.js/eslint-config-next 16.3.6、sharp 0.35.4、js-yaml 4.3.2；Node 22 下锁定安装和审计通过。Git-integrated Pages 项目 `toolpilot-git` 已连接 `main` 并通过 88 路由 current smoke；正式域名 `toolpilot.cc` 仍由旧 Direct Upload 项目提供，current smoke 不匹配，legacy smoke 通过。域名切换是单独授权门槛，具体状态统一见 TASK.md 和 RUNBOOK.md。
+依赖更新为 Next.js/eslint-config-next 16.3.6、sharp 0.35.4、js-yaml 4.3.2；Node 22 下锁定安装和审计通过。Git-integrated Pages 项目 `toolpilot-git` 已连接 `main`；CNAME 切换后 `toolpilot.cc` 的 88 路由 current smoke 通过。旧 Direct Upload 项目保留为恢复目标，具体状态统一见 TASK.md 和 RUNBOOK.md。
 
 ## 1. 项目概述
 
@@ -98,7 +98,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 服务端 | Next 静态导出 | `output: export` | `next.config.mjs` 已确认；当前没有独立 API、认证或数据库 |
 | 语言 | TypeScript / TSX | TypeScript `5.9.3` | 共享目录数据暂存于 `lib/catalog.mjs`，正式模型见 lib/content-types.ts 和 ADR-0009 |
 | 数据 | 静态研究快照目录 | 50 条 Draft | `lib/catalog.mjs` 分离 `productUrl`、`sourceUrl`、链接检查、审核状态、`affiliateStatus`、`commission` 和 `verifiedAt`；研究信息不得直接作为已核验事实 |
-| 基础设施 | Cloudflare Pages 静态站点 | Direct Upload 恢复项目 `toolpilot`；Git-integrated 项目 `toolpilot-git` 连接 `yubinhong/toolpilot` 的 `main` | `npm run cloudflare:build` 生成 `out/`；`pages.dev` current smoke 已通过，`toolpilot.cc` 仍绑定旧项目，域名切换待单独授权 |
+| 基础设施 | Cloudflare Pages 静态站点 | Git-integrated 项目 `toolpilot-git` 连接 `yubinhong/toolpilot` 的 `main`；Direct Upload 项目 `toolpilot` 保留作恢复目标 | `npm run cloudflare:build` 生成 `out/`；CNAME 已切换，`toolpilot.cc` current smoke 已通过 |
 | 运行时 | Node.js / npm | Node `22` / npm lockfile v3 | `.nvmrc` 固定 Node 22；Node 22.23.2/npm 10.9.8 下已完成安装和验证 |
 
 ## 7. 环境
@@ -107,7 +107,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | --- | --- | --- | --- | --- |
 | local | 应用开发和静态构建 | `nvm use 22 && npm install && npm run dev` | synthetic | 当前工作区 |
 | staging | 集成、内容和链接验证 | `TBD` | sanitized | `TBD` |
-| production | ToolPilot 公共站点 | `https://toolpilot.cc` 仍由 Direct Upload 项目 `toolpilot` 提供；Git-integrated `toolpilot-git.pages.dev` 已部署并通过 current smoke | restricted | 公共域名当前 source `4776027`；新项目 `main` 自动构建已验证，域名切换未完成 |
+| production | ToolPilot 公共站点 | `https://toolpilot.cc` 由 Git-integrated Pages 项目 `toolpilot-git` 提供，current smoke 已通过 | restricted | Cloudflare Pages 从 `main` 自动构建；旧 Direct Upload 部署保留作恢复目标 |
 
 `.env.example` 声明 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`，供 sitemap/robots 使用；Cloudflare Pages 控制台和公网 smoke 另行确认了 DNS/生产部署。真实凭据、联盟密钥、支付密钥和厂商后台凭据不得写入仓库、聊天、日志或测试夹具。
 
@@ -138,7 +138,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 ### 已接受假设
 
 - `CONFIRMED`：`toolpilot.cc` 是项目目标域名；证据：Cloudflare Pages 自定义域绑定和 2026-08-20 生产首页、目录、详情、robots、sitemap smoke。
-- `CONFIRMED`：静态导出是当前 MVP Web 架构；证据：`next.config.mjs`、`npm run build` 和 `out/` 路由产物；Cloudflare Pages 项目 `toolpilot` 和生产域名 `toolpilot.cc` 已通过部署输出及公网 smoke 验证。
+- `CONFIRMED`：静态导出是当前 MVP Web 架构；证据：`next.config.mjs`、`npm run build` 和 `out/` 路由产物；Git-integrated Pages 项目 `toolpilot-git` 当前承载 `toolpilot.cc` 并通过公网 current smoke，旧 Direct Upload 项目 `toolpilot` 保留作恢复目标。
 - `ASSUMPTION`：开发者工具是首个垂直领域，而非未来所有工具类别的总入口；验证方式：PRD 评审和首批内容表现。
 - `ASSUMPTION`：Affiliate 和付费曝光可以并行，但必须分开披露、核算和审查；验证方式：合作方条款、商业页面和分析事件评审。
 
@@ -152,7 +152,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 工程骨架 MVP | Node 22、Next 静态导出、目录数据、测试和本地 smoke test | 技术负责人 | `2026-08-20` | `DONE` |
 | 首批 50 条目录与生产发布 | 研究快照接入、产品/来源链接分离、Cloudflare Pages 和 `toolpilot.cc` 公网验证 | 技术负责人 | `2026-08-20` | `DONE` |
 | 50 条目录内容审核记录 | 逐条产品/来源链接检查、来源缺口、编辑审核字段和正式发布门槛；正式事实仍为 TBD | 技术负责人 | `2026-08-20` | `DONE` |
-| CI、生产监控与 Cloudflare Pages Git Integration | 仓库级质量门槛、生产 smoke、定时检查和 `toolpilot-git` 自动构建已验证；正式域名切换、通知和回滚演练待完成 | 技术负责人 | `2026-08-21` | `IN_PROGRESS` |
+| CI、生产监控与 Cloudflare Pages Git Integration | 仓库质量门槛、自动构建、正式域名 current smoke 已验证；通知和生产回滚演练待完成 | 技术负责人 | `2026-08-21` | `IN_PROGRESS` |
 | 商业准备 | 完成 Affiliate 披露、免费收录和付费曝光规则 | `TBD` | `TBD` | `PLANNED` |
 | 数据验证 | 建立出站点击、联盟转化和商业履约的合规分析 | `TBD` | `TBD` | `PLANNED` |
 
@@ -164,8 +164,7 @@ ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具�
 | 付费曝光损害用户信任 | M | H | 免费收录、独立评价、强制商业标注和评价/商业流程隔离 | `TBD` |
 | 工具价格和功能快速过期 | H | M | 记录来源和更新时间，设置复核周期和失效链接检查 | `TBD` |
 | Affiliate 条款、归因或佣金不稳定 | M | M | 采用合作方可核验报告，不把示例佣金写成保证收入，保留非联盟链接 | `TBD` |
-| 正式域名仍绑定 Direct Upload 项目 | H | H | `toolpilot-git` 已连接 GitHub 且 `pages.dev` current smoke 通过；`toolpilot.cc` 当前 current smoke 失败、legacy smoke 通过，需单独授权切换并保留旧项目 | 工程/运维 Owner `TBD` |
-| 生产域名仍运行 source `4776027` | H | M | 新项目 source `fc139ca1` 与后续文档提交均已自动部署到 Git-integrated Pages；未完成域名切换前，公开站点仍是旧版本 | 工程/运维 Owner `TBD` |
+| Cloudflare Pages 生产回滚演练尚未完成 | M | H | Git-integrated 项目已承载生产域名且 current smoke 通过；保留旧 Direct Upload 部署，安排经授权的回滚演练 | 工程/运维 Owner `TBD` |
 | 50 条研究快照尚未完成正式内容审核 | H | H | 逐条核验官网、价格、功能、来源、更新时间和商业关系；链接检查记录不等于正式评价 | `TBD` |
 | `.nvmrc` 要求 Node 22 但默认 shell 是 Node 18.19.1 | M | M | 开发命令前执行 `nvm use 22`，CI 固定 Node 22 | `TBD` |
 

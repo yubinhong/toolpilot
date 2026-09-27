@@ -7,7 +7,6 @@
 | ID | 事项 | 价值/原因 | 优先级 | Owner | 依赖 | 状态 |
 | --- | --- | --- | --- | --- | --- | --- |
 | TODO-004 | 建立 CI、监控、告警和自动化回滚入口 | CI、生产 smoke 和监控入口已实现；GitHub 外部配置、通知和真实回滚演练仍未完成 | P0 | 工程/运维 Owner | TASK-004 | In progress |
-| TODO-304 | 将 Cloudflare Pages Direct Upload 迁移为 Git Integration | `toolpilot-git` 已连接 GitHub，source `fc139ca1` 部署且 `pages.dev` current smoke 通过；`toolpilot.cc` 仍由旧项目提供，正式域名切换需单独授权 DNS CNAME 变更并验证 | P0 | 工程/运维 Owner | ADR-0008、Cloudflare Dashboard | In progress |
 
 ## Next - 近期候选
 
@@ -55,13 +54,15 @@
 
 ## In progress in TASK-004
 
-- CI、生产 smoke、定时监控入口已加入 `.github/workflows/`；Cloudflare Pages Git Integration 已建立独立项目并完成首个部署；手动 Pages 发布 workflow 已移除。
+- CI、current 生产 smoke、定时监控入口已加入 `.github/workflows/`；Cloudflare Pages Git Integration 已建立独立项目并完成生产域名切换；手动 Pages 发布 workflow 已移除。
 - `npm run release:check` 已加入并由 4 个测试覆盖；`4776027` 上的真实工作区检查已通过。
-- 当前 Direct Upload source `4776027` 的 legacy smoke 通过；新 Git Integration deployment `000a4a88` / source `fc139ca1` 的 88 路由 current smoke 通过。`TODO-004`、`TODO-302` 和 `TODO-304` 仍等待 DNS CNAME 切换、正式域名 current smoke、通知和真实回滚演练。
+- Direct Upload 部署 `be8ecb81` 保留作恢复目标；CNAME 切换后的 `toolpilot.cc` current smoke 通过。`TODO-004` 和 `TODO-302` 仍等待通知和真实生产回滚演练。
 
 ## Completed in TASK-004
 
 - `TODO-303`：`4776027` 已推送、通过 `release:check`，并以 Cloudflare Production source 部署；部署 ID 为 `be8ecb81-fcad-4058-8909-e80befb441ab`，生产 smoke 已通过。
+
+- `TODO-304`：Cloudflare Pages Git Integration 项目 `toolpilot-git` 已接入 `main` 并承载 `toolpilot.cc`；新域名路由通过 88 页面 current smoke，旧 Direct Upload 项目保留作恢复目标。
 
 
 ## TASK-005 follow-up gates (2026-09-27)

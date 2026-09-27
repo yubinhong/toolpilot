@@ -80,7 +80,7 @@
 - Web 框架：`Next.js 16.3.6 App Router`；`next.config.mjs` 已确认 `output: export`、`trailingSlash: true`，当前没有独立服务端、API 或数据库。
 - 运行时要求：`Node.js 22`，由根目录 `.nvmrc` 固定；依赖由 npm 管理，锁文件为 `package-lock.json` lockfile v3。
 - 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`、`smoke`、`release:check`、`cloudflare:build`，ESLint 为 `9.39.5`。
-- 域名配置：`.env.example` 提供 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`；生产域名仍由 Direct Upload 项目 `toolpilot` 提供并通过 legacy smoke。Git-integrated 项目 `toolpilot-git` 已连接 `main`，其 `pages.dev` current smoke 已验证；不得把这视为 `toolpilot.cc` 已切换。
+- 域名配置：`.env.example` 提供 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`；生产域名 CNAME 已切换到 Git-integrated Pages 项目 `toolpilot-git`，正式域名 current smoke 已验证。旧 Direct Upload 项目 `toolpilot` 保留为恢复目标；生产监控使用 current profile。
 
 ### 5.2 命令与验证
 
@@ -128,7 +128,7 @@
 | 部署、告警、回滚 | `RUNBOOK.md` |
 | 当前状态或活动任务变化 | `AI_CONTEXT.md`、`TASK.md`、`TODO.md` |
 
-`TASK-004` 已同步 CI、生产 smoke、监控和 Cloudflare Pages Git Integration 配置；`toolpilot-git` 已有真实部署，旧 Direct Upload 项目仍是恢复目标。正式域名切换必须符合 ADR-0008 并取得单独授权。后续进入需求、内容审核、商业关系或实现阶段时，仍必须按变更类型同步对应文档，不得把摘要复制成第二事实来源。
+`TASK-004` 已同步 CI、生产 smoke、监控和 Cloudflare Pages Git Integration 配置；`toolpilot-git` 已承载 `toolpilot.cc`，旧 Direct Upload 项目仍是恢复目标。后续进入需求、内容审核、商业关系或实现阶段时，仍必须按变更类型同步对应文档，不得把摘要复制成第二事实来源。
 
 ## 8. Definition of Done
 
@@ -148,5 +148,5 @@
 - 正式批准绑定用户审核证据、revision 和 digest；工具事实变更必须检查所有依赖正文。代理不得伪造审核或实测。
 - 草稿 URL 保留、noindex、不入 sitemap；未知与否定不同。公开客户端 DTO 不携带内部商业研究或审批证据。
 - npm run content:check / content:review / content:freshness / links:check / artifacts:check 为已配置命令。build 包含内容和产物检查。
-- smoke 默认 current；旧生产迁移期间 workflow 显式使用 legacy，只有新部署核验后才能切换。
+- smoke 默认 current；生产监控使用 current。只有验证旧部署或回滚时才显式使用 legacy profile。
 - 历史审计通过记录不代表当前安全状态；每次发布重新执行 npm audit --audit-level=high，不屏蔽真实失败。
