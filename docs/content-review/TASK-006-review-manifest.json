@@ -53,8 +53,8 @@
   },
   {
     "path": "/compare/claude-code-vs-github-copilot/",
-    "revision": 4,
-    "digest": "03e2096b4c0db578fd5a132915bdb0157048bc8ea2f6e403e11359ba0ee4df2b",
+    "revision": 5,
+    "digest": "561ea55431fb6dd2ae3bc85da8a67a95080f7932e348bef78ffe4594c88333ce",
     "state": "in-review",
     "gaps": [
       "GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.",

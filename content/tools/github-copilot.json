@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "GitHub Copilot",
   "summary": "Coding assistance for evaluating an existing GitHub and IDE workflow.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -37,6 +37,20 @@
       "title": "Extend Copilot Chat with MCP servers",
       "publisher": "GitHub Copilot",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "model-hosting",
+      "url": "https://docs.github.com/en/copilot/reference/ai-models/model-hosting",
+      "title": "Hosting of models for GitHub Copilot",
+      "publisher": "GitHub Docs",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "individual-policies",
+      "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies",
+      "title": "Managing GitHub Copilot policies as an individual subscriber",
+      "publisher": "GitHub Docs",
+      "accessedAt": "2026-09-27"
     }
   ],
   "facts": [
@@ -53,9 +67,9 @@
     {
       "key": "privacy",
       "label": "Privacy / data handling",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "GitHub's docs say that, starting April 24, 2026, interactions from Copilot Free, Pro, Pro+ and Max—including inputs, outputs, code snippets and associated context—may be used to train and improve models, with a personal opt-out. GitHub says Business and Enterprise customer data is not used for model training under its policy and Data Protection Agreement. This covers training use only; it does not establish the selected model's retention, this account's setting, organization controls or legal suitability.",
+      "sourceIds": ["model-hosting", "individual-policies"],
+      "checkedAt": "2026-09-27",
       "critical": false
     },
     {
@@ -196,7 +210,8 @@
   "migration": "Inventory organization policies and supported editor features before switching. Preserve repository instructions outside any one assistant.",
   "dependencies": [],
   "gaps": [
-    "Confirm account-specific privacy settings and feature availability before a team recommendation."
+    "Verify the exact Copilot plan, personal training opt-out and organization or enterprise privacy policies for the account under review; no account settings were inspected.",
+    "Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the published training-use policy is not a complete retention or legal assessment."
   ],
   "changes": [
     {
@@ -210,6 +225,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-backed MCP strengths, constraints and FAQs; owner review pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added official Copilot training-use policy boundaries for individual and organization plans; account settings, model retention and legal review remain open."
     }
   ],
   "commercial": {

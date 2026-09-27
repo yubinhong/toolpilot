@@ -110,6 +110,21 @@ test('Replit privacy and geography facts keep workspace and published-app reside
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('GitHub Copilot training-use policy distinguishes individual opt-out from organization plans',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');
+  const fact = record?.facts.find(item => item.key === 'privacy');
+  assert.ok(record);
+  assert.equal(record.revision, 4);
+  assert.equal(fact?.checkedAt, '2026-09-27');
+  assert.deepEqual(fact?.sourceIds, ['model-hosting', 'individual-policies']);
+  assert.equal(fact?.value, "GitHub's docs say that, starting April 24, 2026, interactions from Copilot Free, Pro, Pro+ and Max—including inputs, outputs, code snippets and associated context—may be used to train and improve models, with a personal opt-out. GitHub says Business and Enterprise customer data is not used for model training under its policy and Data Protection Agreement. This covers training use only; it does not establish the selected model's retention, this account's setting, organization controls or legal suitability.");
+  assert.equal(record.sources.find(item => item.id === 'model-hosting')?.url, 'https://docs.github.com/en/copilot/reference/ai-models/model-hosting');
+  assert.equal(record.sources.find(item => item.id === 'individual-policies')?.url, 'https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies');
+  assert.ok(record.gaps.some(gap => gap.includes('no account settings were inspected')));
+  assert.ok(record.gaps.some(gap => gap.includes('model-specific hosting and retention')));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('MCP capability claims cite official docs and remain pending exact owner review',() => {
   const expected = new Map([
     ['claude-code','https://code.claude.com/docs/en/mcp'],
@@ -124,7 +139,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?4:record.slug==='github-copilot'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);

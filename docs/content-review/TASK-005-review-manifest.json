@@ -29,11 +29,12 @@
   },
   {
     "path": "/tools/github-copilot/",
-    "revision": 3,
-    "digest": "fa15289cff82a8df849e4ec79de954cd382eaec625afc789a8fbaf1a445eac20",
+    "revision": 4,
+    "digest": "1421ce2cd9d849b23efa1eb87633140adec4afb262908fd2fd1e794949a5a132",
     "state": "in-review",
     "gaps": [
-      "Confirm account-specific privacy settings and feature availability before a team recommendation."
+      "Verify the exact Copilot plan, personal training opt-out and organization or enterprise privacy policies for the account under review; no account settings were inspected.",
+      "Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the published training-use policy is not a complete retention or legal assessment."
     ]
   },
   {
@@ -73,15 +74,15 @@
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 4,
-    "digest": "d29e7d91860a5061fcb810fcab32765dfa8ac57eedd3477c6c3762e1b0dcab45",
+    "revision": 5,
+    "digest": "b5034c9a817a5571709d260994beca3d5e93c282c650f39cc23d0eb339ccf123",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 5,
-    "digest": "329271c5f78e9c88d930135b261c24ab18283d5727b63407d56a56e18f2dd6c8",
+    "revision": 6,
+    "digest": "a8d00a3de9a9f02554947eb54db32b6fe400c43bcdf8cc455ea4ada8f8ab1939",
     "state": "in-review",
     "gaps": []
   },
@@ -101,8 +102,8 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 5,
-    "digest": "678ed3a68ae3681ddc68b928028f549902f7cb5bceea1579fdf46fe976eec1f4",
+    "revision": 6,
+    "digest": "4d63d830d797189676c58047dba8d716c1e8854f1d3ab08139cc55ffa399b2d4",
     "state": "in-review",
     "gaps": []
   },
@@ -115,8 +116,8 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 4,
-    "digest": "f420f0e3f7e8c8c4dfc1c4bdfef9eb24d5368d2380ebc09daf47f53d1fa966fc",
+    "revision": 5,
+    "digest": "be53d39222e150bacf36976ac378253e8493a39c068bb61bd36729f1d0251072",
     "state": "in-review",
     "gaps": []
   },
@@ -136,8 +137,8 @@
   },
   {
     "path": "/compare/cursor-vs-github-copilot/",
-    "revision": 4,
-    "digest": "e7a2e0f0e596376e41fb066ba9f7be39e8e0d5509f6a43fedd3c57c64f1ebda8",
+    "revision": 5,
+    "digest": "ca6a60a92e0fac61f01f99f7d9fedb72f357916af38fdd04e8788ec49ed41802",
     "state": "in-review",
     "gaps": []
   },
