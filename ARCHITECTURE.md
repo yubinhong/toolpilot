@@ -8,7 +8,7 @@
 - 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`、`docs/adr/0008-cloudflare-pages-git-integration.md`
 - 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Cloudflare Pages GitHub check 和公网 smoke；CNAME 切换后的 `toolpilot.cc` 已通过 `SMOKE_PROFILE=current`。
 
-## TASK-005 当前架构（2026-09-27）
+## 当前架构快照（2026-09-27）
 
 - 内容流：content/tools 与 content/decisions JSON → lib/content.mjs 校验/读取 → 服务端模板 → out/。
 - 历史流：lib/catalog.mjs 的 researchTools 原样保留；tools 提供兼容叠加视图。新增产品无伪造旧检查日期。
@@ -31,7 +31,7 @@
 - 规模假设：`TBD`；当前没有用户、RPS、数据量或流量基线。
 - 主要约束：MVP 使用静态输出；外部工具资料和厂商提交必须经过验证；商业曝光不得影响独立评价。
 
-已验证事实：`next.config.mjs` 配置 `output: "export"`、`trailingSlash: true`；Node 22 下 `npm run build` 生成 66 个静态页面/元数据路由到 `out/`，其中包含 50 个工具详情页。
+已验证事实：`next.config.mjs` 配置 `output: "export"`、`trailingSlash: true`；当前源码登记 97 个路由，Node 22 构建和线上 current smoke 均覆盖这些路由。39 条结构化内容仍是审核草稿，因此 sitemap 目前只有 4 个站点说明入口。
 
 ## 2. 系统上下文
 
@@ -40,13 +40,13 @@ flowchart LR
     U[Developer / Indie Hacker / AI Builder] --> W[ToolPilot Web Pages]
     W --> V[Vendor Websites]
     W -. optional, TBD .-> A[Privacy-compliant Analytics]
-    C[lib/catalog.mjs research snapshot] --> W
-    S[Cloudflare Pages: toolpilot] --> W
+    C[content JSON + lib/catalog.mjs research snapshot] --> W
+    S[Cloudflare Pages: toolpilot-git] --> W
 ```
 
 - 当前 Web 形态是 Next 静态导出；源码和构建产物均可复核。
 - 厂商站点是出站依赖；Affiliate、Featured 和 Sponsor 的关系必须在页面上披露。
-- 内容源当前是 `lib/catalog.mjs` 的 50 条研究草稿数据；静态托管为 Cloudflare Pages，生产域名为 `toolpilot.cc`；分析平台和管理入口均未配置。
+- 正式结构化内容源是 `content/tools/` 与 `content/decisions/`，共 39 条待审草稿；`lib/catalog.mjs` 保留 50 条历史研究快照及兼容叠加视图。生产由 Cloudflare Pages Git Integration 项目 `toolpilot-git` 承载。应用源码没有分析集成；Pages Web Analytics 是否注入 beacon 尚待 Owner 核实，当前 CSP 会阻止该外部脚本。
 - 交付控制面由 GitHub `.github/workflows/ci.yml`、`.github/workflows/production-monitor.yml` 和 Cloudflare Pages Git Integration 构成；GitHub Actions 负责质量和 current 生产 smoke，Cloudflare 从 `main` 构建/部署 `toolpilot-git`，该项目已承载 `toolpilot.cc`。
 
 ## 3. 组件与责任
@@ -54,7 +54,7 @@ flowchart LR
 | 组件 | 路径/服务 | 责任 | 数据所有权 | 上游/下游 | Owner |
 | --- | --- | --- | --- | --- | --- |
 | Web 页面 | `app/`、`components/` | 首页、工具、指南、法律和决策页 | ToolPilot 草稿内容 | Next 配置、目录数据、Cloudflare Pages | `TBD` |
-| 内容模型 | `lib/catalog.mjs` | 50 条分类、草稿工具、`productUrl`、`sourceUrl`、链接检查、来源状态、编辑审核和正式核验字段、决策页和指南 | ToolPilot 草稿 | 编辑、公开来源 | `TBD` |
+| 内容模型 | `content/tools/`、`content/decisions/`、`lib/content.mjs`、`lib/content-policy.mjs`、`lib/catalog.mjs` | 结构化工具/决策草稿、来源与版本审核门槛；保留 50 条历史研究快照和兼容视图 | ToolPilot 草稿 | 编辑、公开来源 | `TBD` |
 | 站点配置 | `lib/site-config.mjs` | 默认站点 URL、静态路由和构建时 URL 归一化，供 robots/sitemap 使用 | 无业务数据 | 构建环境、Next 元数据路由 | `TBD` |
 | 构建输出 | `.next/`、`out/` | Next 中间产物和最终静态 HTML/CSS/JS | 不拥有业务数据 | `npm run build` -> Cloudflare Pages | `TBD` |
 | 出站链接 | 页面中的产品官网/研究来源 URL | 将用户带到工具厂商或研究来源，并区分官网、来源和研究商业状态 | 第三方厂商/公开来源 | ToolPilot -> 外部站点 | `TBD` |
@@ -65,29 +65,29 @@ flowchart LR
 
 ## 4. 关键数据流
 
-### 4.1 内容发布流（目标设计，未实现）
+### 4.1 内容校验与静态发布流（已实现审核门槛；内容审批仍由 Owner 完成）
 
-1. 编辑或厂商提交工具事实、来源和商业关系。
-2. 系统校验 URL、字段和外部输入，编辑审核内容。
-3. 构建生成工具详情、决策页、站点地图和法律页面。
-4. 发布前检查来源、更新时间、商业披露、链接和页面主题。
+1. 编辑在 `content/tools/` 与 `content/decisions/` 维护工具事实、来源、依赖和商业关系状态；厂商提交不直接成为独立评价。
+2. `lib/content.mjs` 与 `lib/content-policy.mjs` 校验字段、来源 URL、修订/digest、依赖关系和发布状态；`npm run content:review` 输出精确审核版本但不代替批准。
+3. Node 构建生成静态页面、站点地图和法律页面；草稿保留路径但输出 `noindex`，且不进入 sitemap。
+4. 只有真实 Owner 审核证据匹配当前 revision/digest 后，内容才可发布并参与索引；构建与产物检查验证元数据、链接和公开 DTO 边界。
 
 - 信任边界：提交者/外部来源 -> 审核系统 -> 公开静态页面。
 - 一致性要求：页面事实、来源、更新时间、链接检查、编辑审核和商业标记必须同一版本可追溯。
-- 失败处理：链接检查失败或来源缺失显示待核实；`reviewStatus=pending-editorial` 或 `verifiedAt=null` 的条目不能作为正式事实发布，不使用默认编造值。
-- 幂等/重试：构建和发布策略 `TBD`；内容版本应使用稳定 ID 或 slug。
+- 失败处理：内容校验失败会阻止构建；来源缺失或未知事实必须保持待核实，不使用默认编造值。
+- 幂等/重试：内容版本由稳定 ID/slug、revision 和 digest 绑定；失败发布通过修复提交后重新构建，不自动批准内容。
 
-### 4.2 用户出站流（目标设计，未实现）
+### 4.2 用户出站与分析流（普通出站链接已实现；分析未获批准）
 
 1. 用户打开 ToolPilot 决策页。
 2. 用户查看工具事实、比较维度、限制和商业关系。
-3. 用户点击厂商链接；必要时记录最小化出站事件。
-4. 用户在厂商站点完成后续注册或购买；转化归因由合作方报告确认。
+3. 用户可点击页面展示的普通厂商链接；当前没有应用出站事件采集或实际 Affiliate 链接。
+4. 厂商站点上的注册或购买不由 ToolPilot 观测；未来归因须由已批准的合作方报告确认。
 
 - 信任边界：ToolPilot 公开页面 -> 第三方厂商站点。
 - 一致性要求：页面必须区分 Affiliate、Featured/Sponsor 和普通链接。
-- 失败处理：失效链接标记并进入内容复核，不把跳转成功伪装为转化成功。
-- 幂等/重试：分析事件方案 `TBD`；不得因重试重复计算业务成交。
+- 失败处理：失效链接进入内容复核；不把跳转成功伪装为转化成功。
+- 分析决策：分析、同意、保留和事件契约仍待批准。生产观察到的 Cloudflare Insights beacon 被 CSP 阻止，按 TODO-308/TODO-315 处理；不得据此宣称零托管数据处理。
 
 ## 5. 接口与事件
 
@@ -103,8 +103,8 @@ flowchart LR
 
 | 数据域 | 存储 | 主键/分区 | 保留策略 | 备份/恢复 | 敏感级别 |
 | --- | --- | --- | --- | --- | --- |
-| 工具公开事实 | `lib/catalog.mjs` 草稿数据 | 工具 slug | 当前随代码版本发布；正式复核策略由 ADR-006 约束 | Git/构建产物备份 `TBD` | Public / 可能含 Internal 编辑字段 |
-| 来源与编辑记录 | `TBD` | 工具 ID + 版本/时间 `TBD` | `TBD` | `TBD` | Internal |
+| 工具公开事实 | `content/tools/`、`content/decisions/` JSON；历史快照在 `lib/catalog.mjs` | 工具/决策 slug | 随代码版本发布；审批版本和依赖失效规则见 ADR-0009 | Git/构建产物备份 `TBD` | Public 草稿 / 可能含 Internal 编辑字段 |
+| 来源与编辑记录 | 内容 JSON 的来源、revision/digest 和审核元数据；真实 Owner 决策由仓库审查证据承载 | 内容 ID + revision/digest | 与内容版本共同变更；正式审核频率和责任人见 TODO-006 | Git 历史；额外归档策略 `TBD` | Internal / Public source citations |
 | 厂商提交 | `TBD` | 提交 ID `TBD` | `TBD` | `TBD` | Internal，可能含个人或商务信息 |
 | 分析事件 | `TBD` | 事件 ID/时间 `TBD` | 最小化保留，期限 `TBD` | `TBD` | Internal / Confidential |
 | 密钥与令牌 | 受控密钥存储 `TBD` | 不进入应用数据 | 最短必要期限 | 轮换/吊销 `TBD` | Restricted |

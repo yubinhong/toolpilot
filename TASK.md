@@ -22,6 +22,12 @@
 | Analytics and monetization | Application source has no GA4, AdSense, Affiliate integration, user accounts or analytics snippet. Production Chromium observed a Cloudflare Insights beacon attempt that strict CSP blocks; the Pages Dashboard setting remains unverified. | Intentionally gated in application code. Resolve the production Pages Web Analytics injection under TODO-308 before allowing it in CSP; require separate privacy/legal/owner and partner decisions for any integration. |
 | Maintenance | Content checks, freshness reporting, safe outbound link checks, sitemap/artifact validation and current-profile smoke scripts exist. GitHub Actions now uses Node 24-capable action releases and `ubuntu-24.04`. | Foundation covered; these checks do not establish facts, broad crawler access, GSC performance or 90-day growth. |
 
+### Current-state documentation alignment — 2026-09-27
+
+- Corrected stale PROJECT/ARCHITECTURE summaries that still described an intermediate 38-record/96-route snapshot and the initial 66-page build. Current evidence is 39 structured records, 97 registered routes and 4 indexable sitemap URLs; historical release counts remain in their dated records.
+- Updated the architecture summary to identify `content/` plus the content loader/policy as the structured content source, preserve `lib/catalog.mjs` as the historical snapshot/compatibility layer, and distinguish implemented review/build gates from still-pending Owner approval and analytics decisions.
+- No application behavior, route, content approval or indexability state changed. Node `v22.23.2` / npm `10.9.8`: `npm run cloudflare:build` passed lint, typecheck, 70 tests, content validation (39 records), static export and artifact checks (97 pages / 4 indexable URLs); `npm audit --audit-level=high` found 0 vulnerabilities; `SMOKE_PROFILE=current npm run smoke` passed production smoke for 97 pages, robots, sitemap and a real 404. `git diff --check` passed. Release/preview verification will be recorded after publication.
+
 ## Scope and order
 
 1. Preserve the supplied plan and exact baseline. Audit routes, content records, metadata, components, tests, build and deployment source before editing. (Done for this tranche.)
