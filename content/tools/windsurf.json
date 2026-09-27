@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Windsurf",
   "summary": "A historical editor entry whose official sources now point to Devin.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -21,13 +21,27 @@
       "id": "product",
       "url": "https://docs.devin.ai/desktop/cascade/cascade",
       "title": "Cascade overview (redirected from Windsurf)",
-      "publisher": "Windsurf",
+      "publisher": "Devin",
       "accessedAt": "2026-09-27"
     },
     {
       "id": "pricing",
       "url": "https://devin.ai/pricing",
       "title": "Plans and billing",
+      "publisher": "Devin",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "desktop",
+      "url": "https://devin.ai/desktop",
+      "title": "Devin Desktop",
+      "publisher": "Devin",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "windsurf-editor",
+      "url": "https://windsurf.com/editor",
+      "title": "Windsurf editor page (redirects to Devin Desktop)",
       "publisher": "Windsurf",
       "accessedAt": "2026-09-27"
     }
@@ -104,18 +118,31 @@
       ]
     }
   ],
+  "pros": [
+    { "text": "The current Devin Desktop product page describes a full IDE with syntax highlighting, autocomplete and debugging tools.", "sourceRefs": [{ "toolSlug": "windsurf", "sourceId": "desktop" }] }
+  ],
+  "cons": [
+    { "text": "The official Windsurf editor URL redirects to a Devin Desktop page, so the current product name and new-purchase destination should be confirmed before selection.", "sourceRefs": [{ "toolSlug": "windsurf", "sourceId": "windsurf-editor" }, { "toolSlug": "windsurf", "sourceId": "desktop" }] }
+  ],
+  "faqs": [
+    { "question": "What does the Windsurf editor page identify as the current desktop product?", "answer": "The inspected Windsurf editor URL redirects to Devin Desktop, whose page describes a full IDE. Confirm account history, entitlements and current pricing with the vendor before acting on a legacy Windsurf plan.", "sourceRefs": [{ "toolSlug": "windsurf", "sourceId": "windsurf-editor" }, { "toolSlug": "windsurf", "sourceId": "desktop" }, { "toolSlug": "windsurf", "sourceId": "pricing" }] }
+  ],
   "verdict": "Pause a new purchase decision until the current product identity and account migration terms are confirmed. This entry preserves the existing Windsurf URL.",
   "bestFor": "Existing users checking continuity of their editor workflow",
   "notFor": "New buyers relying on old Windsurf prices",
   "migration": "Record your current account entitlement and editor settings. Ask the vendor to confirm what transfers; do not assume a redirect preserves a subscription.",
   "dependencies": [],
   "gaps": [
-    "Official Windsurf URLs redirect to Devin; verify product identity, existing entitlements and current pricing before publication."
+    "The official editor destination identifies Devin Desktop as the current page; verify account history, plan entitlements and pricing before publication."
   ],
   "changes": [
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Verified the current official editor destination and added cited strengths, constraints and FAQs; account entitlements remain unresolved."
     }
   ],
   "commercial": {

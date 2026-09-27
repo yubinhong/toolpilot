@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "AI app builders for prototypes",
   "summary": "Evaluate a demo together with its handoff and operating responsibilities.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -46,18 +46,18 @@
   "dependencies": [
     {
       "slug": "lovable",
-      "revision": 1,
-      "digest": "cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533"
+      "revision": 2,
+      "digest": "8344d490d982e3e49717e1f4e2400b715d4ab2e8ab26be651abe66dce62a5a64"
     },
     {
       "slug": "bolt-new",
-      "revision": 1,
-      "digest": "4e824ce73ddbad29528f82f18e83dd0c4565766315dff628c97a1863d4f5cba7"
+      "revision": 2,
+      "digest": "86e7fef118e24636f8bb5a9986a63a5e1776825ee02b30df2b0531dccbde2ead"
     },
     {
       "slug": "replit",
-      "revision": 1,
-      "digest": "c65a52483a6e64b8435350e212ecdfa4885dcf1fb97a73cead852a23ca4d519f"
+      "revision": 2,
+      "digest": "dd3cc7971dda7d7160e9cf16afc6bbbbec5a28d90b70dddf8124fa03c7c31ef6"
     }
   ],
   "gaps": [],
@@ -65,6 +65,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
     }
   ],
   "commercial": {

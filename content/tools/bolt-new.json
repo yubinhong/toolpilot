@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Bolt.new",
   "summary": "An AI builder with a documented JavaScript web-app path.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -129,6 +129,18 @@
       ]
     }
   ],
+  "pros": [
+    { "text": "Bolt documents full-stack web apps built with JavaScript-based frameworks and a separate Expo route for mobile apps.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
+    { "text": "The product documentation describes GitHub version control alongside databases and hosting in Bolt Cloud.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }, { "toolSlug": "bolt-new", "sourceId": "git" }] }
+  ],
+  "cons": [
+    { "text": "The documented full-stack web-app scope is JavaScript-based; confirm support before choosing a project built around another language or framework.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
+    { "text": "GitHub sync should be rehearsed as a handoff; the integration docs describe repository sync rather than an in-product merge workflow.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "git" }] }
+  ],
+  "faqs": [
+    { "question": "Can Bolt start from an existing repository?", "answer": "The official introduction describes importing an existing GitHub repository. Test a clean checkout and its external services before relying on the handoff.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }, { "toolSlug": "bolt-new", "sourceId": "git" }] },
+    { "question": "Does its documented web-app path cover every language?", "answer": "The documentation describes JavaScript-based web frameworks, so verify the exact framework and dependencies for your project.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] }
+  ],
   "verdict": "Shortlist Bolt for a prototype that fits its documented technology scope. Validate the export and deployment steps before choosing a paid tier.",
   "bestFor": "Builders evaluating JavaScript web applications",
   "notFor": "Projects assuming every backend language is supported",
@@ -139,6 +151,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added cited strengths, constraints and FAQs; owner approval remains pending."
     }
   ],
   "commercial": {

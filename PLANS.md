@@ -301,10 +301,10 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 ### Verified baseline and principal differences
 
 - The project already has shared UI, route metadata, canonical generation, robots, indexability-driven sitemap, a tested 404, structured JSON content, review/digest/dependency gates, freshness and safe-link scripts, build/artifact checks and static Pages deployment.
-- The current content model now contains 12 tools, 11 comparisons, 6 alternatives, 4 pricing records, 3 Best pages and 2 guides. All 38 records are `in-review`; they are not owner-approved or indexable. All ten comparison topics named in the plan have a draft, plus one existing comparison outside its named set; Cursor vs Windsurf retains a reversed current slug. The alternative count exceeds five but its exact target set and Bolt slug mapping remain unresolved.
+- At the initial audit, the content model contained 12 tools, 11 comparisons, 6 alternatives, 4 pricing records, 3 Best pages and 2 guides (38 drafts). Those counts have since changed; see the latest TASK-006 progress below for current totals. All ten comparison topics named in the plan had a draft, plus one existing comparison outside its named set; Cursor vs Windsurf retained a reversed slug. The alternative target set and Bolt mapping remain unresolved.
 - `/stacks/` exists as noindex scaffolding. `/mcp/` and `/self-hosted/` are absent. Current policy/disclosure paths are `/editorial-policy/` and `/disclosure/`; do not change these paths without a route mapping and reason.
 - Source now derives comparison rows from the union of cited profile facts; values not present on a profile remain explicitly unknown. Registered non-home routes have visible breadcrumbs and matching route-only `BreadcrumbList` JSON-LD. Shared metadata adds Twitter summary cards; no OG image asset/permission is available.
-- `docs/url-audit.csv` now covers all 96 routes registered in source. It explicitly leaves actual HTTP, GSC indexing, backlinks and absent historical URL coverage unverified. The exact legacy URL inventory remains blocked by TODO-306.
+- At the initial audit, `docs/url-audit.csv` covered 96 source-registered routes. The current inventory covers 97; both versions explicitly leave actual HTTP, GSC indexing, backlinks and absent historical URL coverage unverified. The exact legacy URL inventory remains blocked by TODO-306.
 - No GA4, AdSense, active affiliate relationship, user accounts, database or CMS exists. This is an intentional gate until approved privacy, operator and commercial inputs exist.
 
 ### Progress recorded 2026-09-27
@@ -317,7 +317,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - [x] Phase 4 source-backed P1 draft tranche: Aider, Continue, n8n and Make profiles; five missing plan comparisons; and `open-source-ai-coding-tools`. All remain `in-review`; Continue's read-only upstream status and dynamic/unknown billing fields are explicit review gaps.
 - [x] Regenerated the route inventory to 96 source-registered URLs and added a regression check that the ten additions remain noindex with current dependency digests.
 - [x] Phase 3 follow-up: source citations appear on known comparison values; contextual internal links are limited to directly related decisions, capped at five and covered by tests. Local build/smoke, release check, GitHub CI, Cloudflare deployment, preview smoke and production smoke all pass on commit `98d0be0`.
-- [ ] Remaining Phase 1 historical evidence, Phase 2 route-priority decision, source-backed pros/cons/FAQ contracts and authored per-page internal-link coverage, P1 alternative/slug reconciliation and exact Owner review, plus external operating gates.
+- [ ] Remaining work: Phase 1 historical evidence, Phase 2 route-priority decision, decision-page source-backed pros/cons/FAQ contracts, P1 alternative/slug reconciliation and exact Owner review, plus external operating gates. Tool-profile evidence blocks and the authored internal-link coverage gate are complete.
 
 ### Execution phases
 
@@ -356,7 +356,7 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 
 #### Phase 4 — Prepare the P1 content batch
 
-- Target from the supplied plan: 12 tools, 10 comparisons, 5 alternatives, 4 pricing and 3–5 Best pages. Current counts are 12/11/6/4/3; two guides already exist. All 38 records remain in review.
+- At the start of this phase, the draft batch had 12 tools, 11 comparisons, 6 alternatives, 4 pricing and 3 Best pages, plus two guides. Current counts are recorded in the TASK-006 progress summary above. All drafts remain in review.
 - The first draft tranche now adds Aider, Continue, n8n and Make profiles and the five missing plan comparisons: Make vs n8n, Claude Code vs GitHub Copilot, Cline vs Continue, Aider vs Claude Code and Bolt vs Replit. It also adds the plan-listed open-source coding Best page, with license scope and maintenance caveats. Exact owner review remains required.
 - Reconcile `/alternatives/bolt-new/` versus `/alternatives/bolt/`; do not rename a URL until Phase 1 evidence and the owner-approved mapping are available. Existing extra alternatives may remain drafts; do not delete just to reach the plan count.
 - Each new/changed record must include attributable factual sources and clear gaps. It stays `in-review`, noindex and outside the sitemap until owner approval of its exact revision/digest.
@@ -389,7 +389,16 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Increment the five tool revisions and all dependent decision revisions, recompute content digests, refresh TASK-005/TASK-006 handoffs and manifest. Preserve `in-review`, noindex, and the 4-URL sitemap.
 - Acceptance criteria: Node 22 Cloudflare build, generated artifact checks, external link check, dependency audit and local current smoke pass; all modified records have current digests and remain non-indexable. Commit, push, CI, Pages preview/production smoke follow the previously authorized per-deliverable release workflow.
 - Acceptance completed: Node 22 build passed lint, typecheck, 52 tests, content validation and artifact checks (96 pages / 4 indexable URLs); dependency audit found 0 vulnerabilities; external link scan and local 96-page current smoke completed. Commit `eee8485fec0628a09d19aa7adc774c84a06a3183` passed clean-worktree `release:check` and GitHub CI run `36313122069`; Cloudflare deployment `3b3c9451-b893-428a-b618-e12e9c729228` passed preview and production current-profile smoke. All 38 records remain in-review/noindex.
-- Remaining contract gaps after this tranche must stay visible in TASK/TODO; do not claim all tool/decision templates complete because only five tool profiles receive these blocks.
+- At the end of this historical tranche, only five tool profiles had evidence blocks. The subsequent source-contract tranche extended them to all 12; decision-page evidence remains tracked by TODO-313.
+
+##### Source-contract and contextual-link completion tranche — 2026-09-27
+
+- Audit every current structured draft against rebuild-plan §20/§46 internal-link rules using the actual generated HTML, counting unique local decision/tool targets and excluding breadcrumbs and trust-policy boilerplate.
+- Add a small, validated authored-link contract for pages that lack three meaningful next-step destinations; targets must be existing local routes, and generated-artifact checks must enforce the minimum on all structured content pages.
+- Add source-cited strengths, constraints and decision-relevant FAQs to the remaining first-batch tool profiles only where current official sources support the wording. Refresh every dependent revision/digest and exact review handoff; preserve `in-review`, noindex and sitemap state.
+- The current Windsurf profile's official-documentation destination is a Devin Desktop page. Verify whether a current Windsurf-specific primary source exists; keep identity and availability unresolved if it does not, and do not turn an old redirect into product evaluation.
+- Completed scope: all 12 tool profiles expose source-bound strengths, constraints and FAQs; manual links are validated and deduplicated; generated HTML enforces three unique content destinations for all structured pages; all 39 content records remain `in-review` and noindex. This does not close TODO-313: decision-page Pros/Cons/FAQ evidence is still an independent gap.
+- Local acceptance: `npm run content:check`, 55 tests, `npm run cloudflare:build` (97 pages / 4 indexable URLs), `npm audit --audit-level=high` (0 vulnerabilities), freshness review and local current smoke passed. External link scan completed with restricted hosts and temporary network failures recorded as reachability limits. Release and online smoke evidence will be added after deployment.
 
 #### Phase 5 — External operating and commercial gates
 

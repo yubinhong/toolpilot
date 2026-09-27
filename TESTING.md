@@ -38,6 +38,8 @@ Node 22（.nvmrc）、npm 锁文件恢复。核心不变量：历史快照保留
 - 实质编辑不增加 revision 也使旧摘要失效；依赖被重审但摘要变化时，旧决策仍失效。
 - 缺失来源、重复 slug、未知状态、非法 URL、错误计费口径；未知值不被转为否定。
 - Pros/Cons/FAQ 陈述必须携带可解析来源；决策页不得引用不在其依赖列表中的工具来源；静态产物必须包含陈述与对应来源链接。
+- 每个工具详情草稿均需有来源绑定的 Pros/Cons/FAQ；内容校验拒绝未知、自链或重复 `relatedLinks` 目标。
+- 生成产物检查逐页抽取 `<main>` 内结构化内容路径，确保每个结构化内容页面至少链接到三个唯一内容目标；Breadcrumb 和 editorial/disclosure 等通用信任链接不计入。
 - 普通链接与 synthetic Affiliate fixture：有效批准及披露缺一不可；Featured、Sponsor 单独判断。
 - 原 50 条快照的历史断言继续存在；当前目录允许增量和审核，不再要求全站永久 Draft。
 - HTML 中每页 title、description、self canonical、robots 与 registry 一致；sitemap 不包含草稿；未知 URL HTTP 404。

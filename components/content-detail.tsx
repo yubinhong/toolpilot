@@ -58,6 +58,6 @@ export function ContentDetail({ record }: { record: Content }) {
     <ContentSection><h2>Migration and limits</h2><p>{record.migration}</p>{gaps.length > 0 && <><h3>Unresolved before a final recommendation</h3><ul>{gaps.map((g,i) => <li key={i}>{g}</li>)}</ul></>}<p>Local software, a configurable model provider and a self-hosted product are different capabilities. Unknown fields must be resolved for your own requirements.</p></ContentSection>
     {sourceRecords.length > 0 && <ContentSection><h2>Source trail</h2>{sourceRecords.map(t => <div key={`${t.kind}/${t.slug}`}><h3>{t.title}</h3><ul>{t.sources.map(s => <li key={s.id}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a> — {s.publisher}; accessed {s.accessedAt}</li>)}</ul></div>)}</ContentSection>}
     <ContentSection><h2>Content updates</h2><ul>{record.changes.map((c,i) => <li key={i}>{c.date}: {c.summary}</li>)}</ul><p><Link href="/editorial-policy/">How we research and review</Link> · <Link href="/disclosure/">Commercial disclosure</Link></p></ContentSection>
-    {related.length > 0 && <ContentSection><h2>Related decisions</h2><ul>{related.map(r => <li key={contentPath(r)}><Link href={contentPath(r)}>{r.title}</Link> — {isIndexable(r,content) ? 'Reviewed' : 'In review'}</li>)}</ul></ContentSection>}
+    {related.length > 0 && <ContentSection><h2>Related reading</h2><ul>{related.map(r => <li key={contentPath(r)}><Link href={contentPath(r)}>{r.title}</Link> — {isIndexable(r,content) ? 'Reviewed' : 'In review'}</li>)}</ul></ContentSection>}
   </PageFrame>;
 }

@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Lovable",
   "summary": "A natural-language web-app workflow to evaluate with an explicit handoff plan.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -146,6 +146,18 @@
       ]
     }
   ],
+  "pros": [
+    { "text": "Lovable documents natural-language app building with project code that can sync to GitHub, GitLab or Bitbucket.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "product" }] },
+    { "text": "Workspaces support shared projects and a shared credit pool for team members.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "product" }] }
+  ],
+  "cons": [
+    { "text": "Usage is credit-based across product activities, and actual consumption depends on the feature and work performed.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "usage" }] },
+    { "text": "Git synchronization covers the codebase; separately validate database, hosting and secret migration for the complete application.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "product" }, { "toolSlug": "lovable", "sourceId": "ownership" }] }
+  ],
+  "faqs": [
+    { "question": "Can a Lovable project join an existing Git workflow?", "answer": "The documentation says project code can sync to GitHub, GitLab or Bitbucket. Confirm the target repository workflow and separately rehearse moving runtime services.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "product" }, { "toolSlug": "lovable", "sourceId": "ownership" }] },
+    { "question": "Can I estimate one fixed credit cost per feature?", "answer": "No universal conversion is documented. Review workspace usage and test the actual workflow because credit consumption varies by feature and activity.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "usage" }] }
+  ],
   "verdict": "Shortlist Lovable for a web prototype whose code and deployment ownership you can review before launch. Budget iteration and ongoing operation separately.",
   "bestFor": "Founders validating a web-app workflow",
   "notFor": "Teams treating generated output as production-ready without security review",
@@ -156,7 +168,8 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
-    }
+    },
+    { "date": "2026-09-27", "summary": "Added cited strengths, constraints and FAQs; owner approval remains pending." }
   ],
   "commercial": {
     "affiliate": {

@@ -19,7 +19,7 @@ function approve(r) {
 test('content is valid and includes the planned first-batch kinds',() => {
   assert.deepEqual(validateContent(content),[]);
   assert.ok(content.length >= 28);
-  for (const [kind,count] of Object.entries({tools:12,compare:11,alternatives:6,pricing:4,best:3,guides:2})) assert.ok(content.filter(r=>r.kind===kind).length >= count);
+  for (const [kind,count] of Object.entries({tools:12,compare:11,alternatives:6,pricing:4,best:3,guides:3})) assert.ok(content.filter(r=>r.kind===kind).length >= count);
 });
 test('MCP capability claims cite official docs and remain pending exact owner review',() => {
   const expected = new Map([
@@ -35,7 +35,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);
@@ -66,11 +66,29 @@ test('MCP profiles expose source-backed strengths, constraints and FAQs',() => {
     assert.equal(isIndexable(record,content),false);
   }
 });
+test('every current tool profile has source-backed strengths, constraints and FAQs',() => {
+  const profiles=content.filter(record=>record.kind==='tools');
+  assert.equal(profiles.length,12);
+  for (const record of profiles) {
+    for (const field of ['pros','cons','faqs']) {
+      assert.ok(record[field]?.length,`${record.slug} has ${field}`);
+      for (const item of record[field]) {
+        assert.ok(item.sourceRefs.length,`${record.slug} ${field} cites a source`);
+        for (const ref of item.sourceRefs) {
+          const sourceTool=profiles.find(candidate=>candidate.slug===ref.toolSlug);
+          assert.ok(sourceTool?.sources.some(source=>source.id===ref.sourceId),`${record.slug} source ${ref.toolSlug}/${ref.sourceId} resolves`);
+        }
+      }
+    }
+    assert.equal(record.review.state,'in-review');
+    assert.equal(isIndexable(record,content),false);
+  }
+});
 test('TASK-006 P1 additions exist as in-review noindex routes with valid dependencies',() => {
   const required = [
     ...['aider','continue','n8n','make'].map(slug=>`tools/${slug}`),
     ...['make-vs-n8n','claude-code-vs-github-copilot','cline-vs-continue','aider-vs-claude-code','bolt-vs-replit'].map(slug=>`compare/${slug}`),
-    'best/open-source-ai-coding-tools',
+    'best/open-source-ai-coding-tools','guides/workflow-automation-selection',
   ];
   const routes = getRoutes();
   for (const path of required) {
@@ -85,7 +103,7 @@ test('TASK-006 P1 additions exist as in-review noindex routes with valid depende
 });
 test('TASK-006 review manifest matches each exact in-review revision and digest',() => {
   const manifest=JSON.parse(readFileSync(new URL('../docs/content-review/TASK-006-review-manifest.json',import.meta.url),'utf8'));
-  assert.equal(manifest.length,10);
+  assert.equal(manifest.length,11);
   for (const entry of manifest) {
     const [,kind,slug]=entry.path.split('/');
     const record=content.find(r=>r.kind===kind&&r.slug===slug);
@@ -111,8 +129,8 @@ test('TASK-005 review manifest matches each exact in-review revision and digest'
     assert.equal(isIndexable(record,content),false);
   }
 });
-test('TASK-005 tool evidence packs identify current MCP profile revisions and digests',() => {
-  for (const slug of ['cursor','claude-code','github-copilot','cline']) {
+test('TASK-005 tool evidence packs identify current profile revisions and digests',() => {
+  for (const slug of ['cursor','claude-code','github-copilot','cline','bolt-new','lovable','replit','windsurf']) {
     const record=content.find(r=>r.kind==='tools'&&r.slug===slug);
     const pack=readFileSync(new URL(`../docs/content-review/TASK-005/${slug}.md`,import.meta.url),'utf8');
     assert.ok(pack.includes(`Revision: ${record.revision}. Digest: \`${contentDigest(record)}\`.`),`${slug} evidence pack matches current content`);
@@ -169,6 +187,14 @@ test('structured editorial evidence rejects missing and unrelated citations',()=
   assert.ok(validateContent([...content.filter(r=>r!==unrelated),unrelated]).some(e=>e.includes('invalid or unrelated source reference')));
   const unknown=tool();unknown.cons=[{text:'Claim with unknown source',sourceRefs:[{toolSlug:unknown.slug,sourceId:'missing'}]}];
   assert.ok(validateContent([unknown]).some(e=>e.includes('references unknown source')));
+});
+test('authored related links require unique existing structured destinations',()=> {
+  const missing=tool();missing.relatedLinks=[{kind:'guides',slug:'missing-guide'}];
+  assert.ok(validateContent([missing]).some(e=>e.includes('unknown related link target')));
+  const duplicate=tool();duplicate.relatedLinks=[{kind:'tools',slug:'cursor'},{kind:'tools',slug:'cursor'}];
+  assert.ok(validateContent([duplicate]).some(e=>e.includes('duplicate related link')));
+  const self=tool('cursor');self.relatedLinks=[{kind:'tools',slug:'cursor'}];
+  assert.ok(validateContent([self]).some(e=>e.includes('cannot target itself')));
 });
 test('pending record cannot impersonate formal review or hands-on testing',()=> {
   const a=tool();a.verifiedAt='2026-09-27';assert.ok(validateContent([a]).some(e=>e.includes('pending')));

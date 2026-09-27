@@ -1,6 +1,6 @@
 # TODO.md
 
-> 这里是工作队列，不是当前任务的实施说明。当前 `TASK-006` 为 IN_PROGRESS；五个 MCP 档案已补充并部署带来源的优势、限制和 FAQ 页面块，其余内容契约、历史证据、内容审批和 Owner 决策仍保留为独立事项。
+> 这里是工作队列，不是当前任务的实施说明。当前 `TASK-006` 为 IN_PROGRESS；12 个工具档案均已建立带来源的优势、限制和 FAQ 页面块，structured pages 的三条站内决策去向也已进入产物门槛。决策页内容契约、历史证据、内容审批和 Owner 决策仍保留为独立事项。
 
 ## Now - 已确认，等待进入执行
 
@@ -16,10 +16,10 @@
 | TODO-006 | 确认新增内容所用的官方来源、事实核验频率和编辑审核责任 | 版本/digest、sources、freshness 和审批机制已在代码/ADR-0009 实现；尚需为后续内容选定来源和实际维护 Owner | P1 | 产品/内容 Owner | TODO-309 内容清单及来源可用 |
 | TODO-008 | 完成商业关系与独立评价隔离的业务/法务决策 | 当前模型和 disclosure 分离 Affiliate/Featured/Sponsor，但合作条款、排序规则、归因、退款和披露文案未确认 | P1 | 产品/商业/法务 Owner | 正式条款与关系证据；当前不得激活商业链接 |
 | TODO-305 | 评估 GitHub Actions Node 运行时弃用警告 | 最新记录提示 `actions/checkout@v4` 与 `actions/setup-node@v4` 的 Node 20 运行时需按 runner 兼容策略复核；更新前在 CI 验证兼容性 | P2 | 工程 Owner | 官方兼容说明与可复现 CI |
-| TODO-309 | 审核并确定重建计划 P1 内容批次的正式页面集合 | 已按官方来源将结构化内容扩至 12/11/6/4/3（tools/compare/alternatives/pricing/best，共 38 条，全部 in-review）；计划列出的 10 个比较主题均有草稿，另保留 1 个清单外比较。五个 MCP 工具档案加入了来源绑定的优势、限制和 FAQ；18 条依赖决策记录已随档案变化刷新 revision/digest。`/compare/windsurf-vs-cursor/` 与计划顺序相反；Alternatives 数量 6 但 `/alternatives/bolt-new/` vs `/alternatives/bolt/` 和 n8n 替代候选仍未核定。Continue 上游仓库只读/停止维护；Make 当前付费金额的月/年选择未核定。 | P1 | 产品/内容 Owner | 逐条审核 `docs/content-review/TASK-006/README.md` 与 TASK-005 清单的 revision/digest、目标搜索意图、依赖、来源、法律/维护风险和路由映射；明确责任人与通过标准。审批前不得索引或改商业状态 |
-| TODO-313 | 为剩余工具与决策草稿补齐有来源的 Pros/Cons/FAQ 页面契约 | 重建计划 §8–10 将优势/限制、FAQ 和场景判断列为主要决策内容；源码已建立可校验的来源引用结构和详情页渲染，但当前仅五个有 MCP 文档的工具档案填充了这些块，其他工具及决策页仍有缺口 | P1 | 产品/内容 Owner | 确定剩余审阅批次并为每条事实关联本工具或显式依赖工具的官方来源；比较结论不得超出依赖证据，不得用通用 filler；维持 in-review/noindex，逐版审批后再决定是否公开 |
+| TODO-309 | 审核并确定重建计划 P1 内容批次的正式页面集合 | 已按官方来源将结构化内容扩至 12/11/6/4/3/3（tools/compare/alternatives/pricing/best/guides，共 39 条，全部 in-review）；计划列出的 10 个比较主题均有草稿，另保留 1 个清单外比较。12 个工具档案现有来源绑定的优势、限制和 FAQ；新自动化工作流指南与三链接产物门槛已加入。`/compare/windsurf-vs-cursor/` 与计划顺序相反；Alternatives 数量 6 但 `/alternatives/bolt-new/` vs `/alternatives/bolt/` 和 n8n 替代候选仍未核定。Continue 上游仓库只读/停止维护；Make 当前付费金额的月/年选择、Replit 计划价格和 Windsurf 账户权益仍待核实。 | P1 | 产品/内容 Owner | 逐条审核 `docs/content-review/TASK-006/README.md` 与 TASK-005 清单的 revision/digest、目标搜索意图、依赖、来源、法律/维护风险和路由映射；明确责任人与通过标准。审批前不得索引或改商业状态 |
+| TODO-313 | 为决策页草稿补齐有来源的 Pros/Cons/FAQ 页面契约 | 重建计划 §8–10 将优势/限制、FAQ 和场景判断列为主要决策内容；12 个工具档案已有可校验的来源引用结构和详情页渲染，但比较、Alternatives、Pricing、Best 与 Guide 页面仍有来源绑定块缺口 | P1 | 产品/内容 Owner | 确定决策页审阅批次；每条事实关联本页明确依赖工具的官方来源，结论不得超出依赖证据，不得用通用 filler；维持 in-review/noindex，逐版审批后再决定是否公开 |
 | TODO-310 | 决定 MCP 与 self-hosted 路由优先级和第一批页面边界 | 重建计划 §5/§49 列作 P0，§43/§44/§51 又列为未来/P2；代码目前没有这两个路由 | P1 | 产品 Owner | 在 PRD/TASK 中确认优先级、内容价值和维护 Owner；确认前不建空页、不进 sitemap |
-| TODO-311 | 验证重建计划剩余 SEO/性能目标 | canonical、robots、sitemap、OG title/description、Twitter card、面包屑/JSON-LD、逐事实来源链接和按页面类型限制的相关决策链接已有实现；OG 图仍需获批素材，逐页编辑内链覆盖和 Core Web Vitals 仍未验证 | P2 | 工程/SEO Owner | TASK-006 技术差异审查；外部指标需真实测量，OG 素材需取得使用许可 |
+| TODO-311 | 验证重建计划剩余 SEO/性能目标 | canonical、robots、sitemap、OG title/description、Twitter card、面包屑/JSON-LD、逐事实来源链接和三条站内结构化内容链接覆盖已由构建产物检查；OG 图仍需获批素材，真实 Core Web Vitals 和 GSC 表现仍未测量 | P2 | 工程/SEO Owner | TASK-006 技术差异审查；外部指标需真实测量，OG 素材需取得使用许可 |
 | TODO-312 | 评估目录多维过滤及参数 URL 索引策略 | 当前首页仅支持搜索和类别过滤，状态留在客户端；计划提出免费、自托管、MCP、API、平台等过滤项 | P2 | 产品/工程 Owner | 新过滤维度有已核验数据、用户需求和 noindex 测试设计 |
 
 ## Later - 暂不承诺
@@ -32,7 +32,7 @@
 | ID | 事项 | 阻塞原因 | 等待对象 | 下一次检查 |
 | --- | --- | --- | --- | --- |
 | TODO-302 | 演练 Cloudflare Pages 回滚和域名恢复流程 | Git Integration 与域名迁移已完成；尚未在生产窗口执行上一份 verified deployment 恢复，需 Owner 安排并授权操作窗口 | 运维/项目 Owner | Owner 确认生产演练窗口和操作人 |
-| TODO-306 | 完成旧 URL 的索引、外链和迁移证据采集 | `docs/url-audit.csv` 已列出当前源码的 96 个注册路由，但不是历史 URL 清单；代码路由不能证明旧 URL 是否索引或有外链，不能据此作批量 301/410 | 项目/SEO Owner | 提供 Search Console 导出、旧 sitemap、可核验外链/日志和受影响域名清单 |
+| TODO-306 | 完成旧 URL 的索引、外链和迁移证据采集 | `docs/url-audit.csv` 已列出当前源码的 97 个注册路由，但不是历史 URL 清单；代码路由不能证明旧 URL 是否索引或有外链，不能据此作批量 301/410 | 项目/SEO Owner | 提供 Search Console 导出、旧 sitemap、可核验外链/日志和受影响域名清单 |
 | TODO-307 | 补全公开运营主体、监控联系渠道和法律事实 | About/Contact/Privacy/Terms 页面结构存在；真实运营者、联系邮箱和最终法律文字尚未提供 | 项目 Owner/法务 | 提供准确资料并审核用户可见版本；不得编造地址或团队 |
 | TODO-308 | 批准 GA4、AdSense、Affiliate 或其他追踪/商业上线 | 当前均未集成；计划提出收入优先级但没有隐私主体、CMP/同意要求、合作方条款、归因及退款规则 | 项目/隐私/法务/商业 Owner | 单独批准数据字段/保留期、适用同意机制、合作条款、披露与可见标识；之前不得加脚本或商业承诺 |
 

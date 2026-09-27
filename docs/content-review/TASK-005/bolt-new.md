@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 1. Digest: `4e824ce73ddbad29528f82f18e83dd0c4565766315dff628c97a1863d4f5cba7`.
+Revision: 2. Digest: `86e7fef118e24636f8bb5a9986a63a5e1776825ee02b30df2b0531dccbde2ead`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -39,6 +39,12 @@ Shortlist Bolt for a prototype that fits its documented technology scope. Valida
 Consider for: Builders evaluating JavaScript web applications. Not for: Projects assuming every backend language is supported.
 
 Rehearse the GitHub handoff, then build from a clean checkout. Inventory database, hosting and secret configuration separately from the code.
+
+## Documented strengths, constraints and FAQs
+
+- Strength: the official guide describes JavaScript-based web frameworks, an Expo mobile path, GitHub version control, and Bolt Cloud hosting/database options. Sources: product, git.
+- Constraint: verify language/framework compatibility; the GitHub integration should be tested as a handoff and the docs do not establish an in-product merge workflow. Sources: product, git.
+- FAQ: existing GitHub repositories can be imported according to the product introduction; test a clean checkout and external services before relying on it. Source: product.
 
 ## Gaps
 

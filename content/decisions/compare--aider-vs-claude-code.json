@@ -3,9 +3,16 @@
   "kind": "compare",
   "title": "Aider vs Claude Code",
   "summary": "Compare two repository-oriented coding agents by Git behavior, model access and review controls.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
-  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
   "verifiedAt": null,
   "testedAt": null,
   "testEvidence": null,
@@ -13,23 +20,81 @@
   "facts": [],
   "prices": [],
   "sections": [
-    { "heading": "Test the change and the rollback", "paragraphs": ["On a disposable branch, give both tools the same task and acceptance tests. Review their diff, the commands they request and the Git history they leave behind. Aider documents automatic commits and undo commands; confirm the current settings and behavior before allowing it into an established repository."] },
-    { "heading": "Choose a model and account route", "paragraphs": ["Aider connects to model providers, while Claude Code can be used through different account or billing routes. Record the model, provider, account type, data terms and spending limit for each test; a client comparison alone does not compare those services."] },
-    { "heading": "Keep safety controls intact", "paragraphs": ["Do not test with production credentials or weaken repository checks to improve a result. Include permission review and recovery time in the comparison, not only the initial edit speed."] }
+    {
+      "heading": "Test the change and the rollback",
+      "paragraphs": [
+        "On a disposable branch, give both tools the same task and acceptance tests. Review their diff, the commands they request and the Git history they leave behind. Aider documents automatic commits and undo commands; confirm the current settings and behavior before allowing it into an established repository."
+      ]
+    },
+    {
+      "heading": "Choose a model and account route",
+      "paragraphs": [
+        "Aider connects to model providers, while Claude Code can be used through different account or billing routes. Record the model, provider, account type, data terms and spending limit for each test; a client comparison alone does not compare those services."
+      ]
+    },
+    {
+      "heading": "Keep safety controls intact",
+      "paragraphs": [
+        "Do not test with production credentials or weaken repository checks to improve a result. Include permission review and recovery time in the comparison, not only the initial edit speed."
+      ]
+    }
   ],
   "verdict": "Compare the complete repository loop, including Git side effects, model/provider cost and command review. The profiles do not establish a performance winner.",
   "bestFor": "Developers comfortable running a bounded, measured coding-agent trial",
   "notFor": "Teams expecting a product-only price or benchmark conclusion independent of model choice",
   "migration": "Keep repository instructions and tests tool-neutral where possible. Move model credentials through the approved secret path, then verify changes on a branch before replacing the current workflow.",
   "dependencies": [
-    { "slug": "aider", "revision": 1, "digest": "c2a970c532824750680559447eafa98c122b1d63292df23c36c1940cff20435c" },
-    { "slug": "claude-code", "revision": 3, "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e" }
+    {
+      "slug": "aider",
+      "revision": 2,
+      "digest": "630e6bcaabd7e53bcffda289605ca5bdb16f7d0eb2439f52390b1b8ce6e5dc5a"
+    },
+    {
+      "slug": "claude-code",
+      "revision": 3,
+      "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e"
+    }
   ],
-  "gaps": ["Provider and account-specific billing and privacy terms need current verification.", "No hands-on task benchmark has been performed."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; no performance result is claimed." }, { "date": "2026-09-27", "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required." }, { "date": "2026-09-27", "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required." }],
+  "gaps": [
+    "Provider and account-specific billing and privacy terms need current verification.",
+    "No hands-on task benchmark has been performed."
+  ],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial profile-dependent comparison draft; no performance result is claimed."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
+    }
+  ],
   "commercial": {
-    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
-    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
-    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
   }
 }

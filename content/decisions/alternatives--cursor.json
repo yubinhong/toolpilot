@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Cursor alternatives",
   "summary": "Cursor alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -66,8 +66,8 @@
     },
     {
       "slug": "windsurf",
-      "revision": 1,
-      "digest": "fc9b94f9c8f365906acf2bb53c660797664b7b945dba6c2d9acc3bd1d61d3eff"
+      "revision": 2,
+      "digest": "a7c4bf03221774d71b76567b862f69b57d01c5656808305736f1b2b05af7e391"
     }
   ],
   "gaps": [],
@@ -83,6 +83,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Refreshed source dependencies after cited tool profile updates; exact owner review remains pending."
     }
   ],
   "commercial": {

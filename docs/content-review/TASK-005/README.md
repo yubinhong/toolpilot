@@ -1,6 +1,6 @@
 # First-batch review handoff
 
-28 source-based drafts; none owner-approved or deployed. Eight tool evidence packs are in this directory. JSON source remains in content/; this document is an audit snapshot, not a second content source.
+28 source-based drafts; none owner-approved or indexable. Eight tool evidence packs are in this directory. Deployment does not constitute editorial approval. JSON source remains in content/; this document is an audit snapshot, not a second content source.
 
 ## Review sequence
 
@@ -20,14 +20,14 @@ For a material edit, increment revision, reset review fields and verifiedAt, upd
 
 | URL | Revision | State | Blockers |
 | --- | --- | --- | --- |
-| /tools/bolt-new/ | 1 | in-review | Owner review pending |
+| /tools/bolt-new/ | 2 | in-review | Review sourced JavaScript/Expo scope, Git handoff, hosting and current token allowance; owner review pending. |
 | /tools/claude-code/ | 3 | in-review | MCP transports, deprecated SSE, project approval and workspace trust have sourced strengths/constraints/FAQs; review these alongside subscription amount and entitlement. |
 | /tools/cline/ | 3 | in-review | MCP transport and approval guidance have sourced strengths/constraints/FAQs; owner review and account/provider checks remain. |
 | /tools/cursor/ | 3 | in-review | MCP capability, transports and default approval have cited strengths/constraints/FAQs; review against the current canonical documentation URL. |
 | /tools/github-copilot/ | 3 | in-review | MCP prerequisites, organization-policy scope and individual-plan distinction have cited strengths/constraints/FAQs; confirm privacy settings before a team recommendation. |
-| /tools/lovable/ | 1 | in-review | Owner review pending |
-| /tools/replit/ | 1 | in-review | Public pricing extract did not expose reliable plan amounts; confirm the current plan and included allowance.; Confirm data residency and export requirements for the proposed deployment. |
-| /tools/windsurf/ | 1 | in-review | Official Windsurf URLs redirect to Devin; verify product identity, existing entitlements and current pricing before publication. |
+| /tools/lovable/ | 2 | in-review | Review sourced workspace, credit usage and deployment ownership; confirm current plan and ongoing runtime costs. |
+| /tools/replit/ | 2 | in-review | Public pricing extract did not expose reliable plan amounts; confirm the current plan, included allowance, data residency and export requirements. |
+| /tools/windsurf/ | 2 | in-review | Official Windsurf editor URL redirects to Devin Desktop; verify product identity, existing entitlements and current pricing before publication. |
 | /alternatives/bolt-new/ | 3 | in-review | Depends on reviewed product evidence; Cursor MCP facts were refreshed. |
 | /alternatives/claude-code/ | 3 | in-review | Depends on reviewed product evidence, including Claude Code MCP configuration. |
 | /alternatives/cursor/ | 3 | in-review | Depends on reviewed product evidence, including Cursor MCP transports. |

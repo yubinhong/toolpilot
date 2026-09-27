@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "n8n",
   "summary": "A workflow automation platform with cloud and self-hosting paths and execution-based cloud pricing.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -11,7 +11,8 @@
   "testEvidence": null,
   "sources": [
     { "id": "product", "url": "https://docs.n8n.io/", "title": "n8n documentation", "publisher": "n8n", "accessedAt": "2026-09-27" },
-    { "id": "pricing", "url": "https://n8n.io/pricing/", "title": "Plans and pricing", "publisher": "n8n", "accessedAt": "2026-09-27" }
+    { "id": "pricing", "url": "https://n8n.io/pricing/", "title": "Plans and pricing", "publisher": "n8n", "accessedAt": "2026-09-27" },
+    { "id": "hosting", "url": "https://docs.n8n.io/choose-how-to-use-n8n.md", "title": "Choose how to use n8n", "publisher": "n8n", "accessedAt": "2026-09-27" }
   ],
   "facts": [
     { "key": "workflow", "label": "Workflow", "value": "Connects applications and APIs in customizable, low-code workflows; supports custom nodes and AI functionality.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
@@ -28,13 +29,29 @@
     { "heading": "Estimate complete workflow runs", "paragraphs": ["The Cloud pricing page counts a workflow execution as one run regardless of the number of steps. Estimate schedule and event frequency first, then test retries and failure behavior with representative data."] },
     { "heading": "Compare hosting responsibility", "paragraphs": ["Cloud pricing and self-hosted deployment move different operating responsibilities to the buyer. Before choosing self-hosting, account for upgrades, backups, secrets, monitoring and the license terms that apply to the planned use."] }
   ],
+  "pros": [
+    { "text": "n8n documents low-code connections between apps and APIs, with custom nodes available for extending workflows.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "product" }] },
+    { "text": "The documentation presents both n8n Cloud and self-hosted installation paths, including npm and Docker.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] }
+  ],
+  "cons": [
+    { "text": "Self-hosting requires an operator to own deployment and ongoing instance responsibilities; no deployment test was performed for this profile.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] },
+    { "text": "The vendor describes a fair-code license and separate plans, so verify current license terms and feature entitlements for the intended use.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] }
+  ],
+  "faqs": [
+    { "question": "Can n8n be self-hosted?", "answer": "Yes. Official docs list cloud and self-hosted options, including npm and Docker. Review the current license and plan terms before adopting it for a business use case.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] },
+    { "question": "What should I budget for n8n Cloud?", "answer": "Use the current plan page and confirm regional checkout terms; this draft's displayed amount is not a checkout quote.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "pricing" }] }
+  ],
+  "relatedLinks": [
+    { "kind": "guides", "slug": "how-to-choose-a-developer-tool" },
+    { "kind": "guides", "slug": "workflow-automation-selection" }
+  ],
   "verdict": "Evaluate n8n when workflows need API-level flexibility or self-hosting is a requirement. Compare execution volume and operating ownership rather than counting workflow steps alone.",
   "bestFor": "Builders connecting APIs and applications who can estimate full workflow executions",
   "notFor": "Teams that have not checked the fair-code terms or cannot own the chosen hosting path",
   "migration": "Export representative workflows and credentials separately. Test node availability, error handling, schedules and secrets in a non-production instance before cutover.",
   "dependencies": [],
   "gaps": ["Confirm license compatibility, current feature entitlement and exact regional checkout price before a business recommendation.", "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }, { "date": "2026-09-27", "summary": "Added current hosting source, cited strengths, constraints, FAQs and related guides; owner review remains pending." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

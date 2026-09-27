@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "How to choose a developer tool without starting with hype",
   "summary": "A repeatable selection method with an explicit stopping rule.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -45,6 +45,12 @@
       ]
     }
   ],
+  "relatedLinks": [
+    { "kind": "compare", "slug": "cursor-vs-claude-code" },
+    { "kind": "compare", "slug": "make-vs-n8n" },
+    { "kind": "best", "slug": "ai-app-builders-for-prototypes" },
+    { "kind": "alternatives", "slug": "bolt-new" }
+  ],
   "verdict": "Define the acceptance test before selecting the vendor.",
   "bestFor": "Developers writing a repeatable evaluation and an exit plan",
   "notFor": "Readers looking for unmeasured speed or accuracy rankings",
@@ -55,6 +61,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added contextual examples across comparison, shortlist and alternative page types; owner review remains pending."
     }
   ],
   "commercial": {

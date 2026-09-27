@@ -1,8 +1,8 @@
 [
   {
     "path": "/tools/aider/",
-    "revision": 1,
-    "digest": "c2a970c532824750680559447eafa98c122b1d63292df23c36c1940cff20435c",
+    "revision": 2,
+    "digest": "630e6bcaabd7e53bcffda289605ca5bdb16f7d0eb2439f52390b1b8ce6e5dc5a",
     "state": "in-review",
     "gaps": [
       "Confirm current provider billing and whether any separate hosted or commercial offering applies to the intended use.",
@@ -13,8 +13,8 @@
   },
   {
     "path": "/tools/continue/",
-    "revision": 3,
-    "digest": "ac34eca431993a091a1a718fc60dec5abb9fc5f3c127846c50d04cb4cbcf828b",
+    "revision": 4,
+    "digest": "2a8b55b63b356e22260f8a70251d04b22c3d72dd9860a699625f5ecc3a4897a8",
     "state": "in-review",
     "gaps": [
       "The upstream repository is read-only; confirm package distribution, publisher, security response and support lifecycle before publication or adoption.",
@@ -23,8 +23,8 @@
   },
   {
     "path": "/tools/n8n/",
-    "revision": 1,
-    "digest": "02ee4d16bbaff10cc5adec5bd301e641b5aa79cd49c3035197f5dc2599718ef5",
+    "revision": 2,
+    "digest": "528b17776b364ef924debb196ad9e0be7495a66f2949c8ca134e02e026d6d5bb",
     "state": "in-review",
     "gaps": [
       "Confirm license compatibility, current feature entitlement and exact regional checkout price before a business recommendation.",
@@ -33,8 +33,8 @@
   },
   {
     "path": "/tools/make/",
-    "revision": 1,
-    "digest": "9cc205ac767ca7ce146b8ed91129895c891579e94ef3685f2cec237670d289fc",
+    "revision": 2,
+    "digest": "902b8738e9d048fc99aaaa464a02b7c3066578de2584b096afb21884f2b93dbe",
     "state": "in-review",
     "gaps": [
       "The live paid amount depends on billing cadence and selected credit quantity; confirm the exact selection and checkout terms before publication.",
@@ -43,8 +43,8 @@
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 1,
-    "digest": "bb990b2e884a9a70d709ff75fc7ac4f7142ae55dfaced05d473b775056777cec",
+    "revision": 2,
+    "digest": "6436d4097620701863083fe468945b41ff1ab6ac1397aab07962bad21d7c5e59",
     "state": "in-review",
     "gaps": [
       "Confirm Make's selected paid-plan amount and billing cadence; the official pricing page has interactive billing and credit-quantity selectors.",
@@ -63,8 +63,8 @@
   },
   {
     "path": "/compare/cline-vs-continue/",
-    "revision": 3,
-    "digest": "45e48e2dbec348769657aec0db7cde6a6f3953eb0716c276f437e0c5697f5f03",
+    "revision": 4,
+    "digest": "ecf50aa1363095d591139b7bb0cc7a4503b76286e5af4090f9d926a12326cc58",
     "state": "in-review",
     "gaps": [
       "Continue package distribution, publisher, security response and current support lifecycle require confirmation.",
@@ -73,8 +73,8 @@
   },
   {
     "path": "/compare/aider-vs-claude-code/",
-    "revision": 3,
-    "digest": "3b84aca6089a345eded50f1b2ce989e46c3a9d7845b55d41f767008ef63bf6a6",
+    "revision": 4,
+    "digest": "4341304cca391ddf23754c339ac2738c0e72a5b72c29a315053f15db79073fc5",
     "state": "in-review",
     "gaps": [
       "Provider and account-specific billing and privacy terms need current verification.",
@@ -83,8 +83,8 @@
   },
   {
     "path": "/compare/bolt-vs-replit/",
-    "revision": 1,
-    "digest": "45806bb695b52a38f1d6319b61338e2e3f77f7bc6d6045cdc8d61587327d96a1",
+    "revision": 2,
+    "digest": "1dd6e15392962f8197718a3a26141fde083c6ad2571f123530318a45680507f9",
     "state": "in-review",
     "gaps": [
       "Replit plan amount and included allowance remain unresolved in its source profile.",
@@ -93,13 +93,22 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 3,
-    "digest": "8216de9c70324e816d12e968899731c5c6c9521cc17d9c42d878ada3267eb187",
+    "revision": 4,
+    "digest": "e23b5eb81c428e783767673bdc60149846c4ea957672772e14d0408667450aa1",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
       "Continue's distribution, current maintenance, publisher and security response need confirmation before any production recommendation.",
       "No hands-on comparison or model performance test has been performed."
+    ]
+  },
+  {
+    "path": "/guides/workflow-automation-selection/",
+    "revision": 1,
+    "digest": "558543fb90d5f7f0d1df6b1a6638135dbebe23b12a4713815eea3c90c6c68e54",
+    "state": "in-review",
+    "gaps": [
+      "Confirm current regional pricing, retention and privacy terms for the selected plans; no hands-on workflow or recovery test was run."
     ]
   }
 ]

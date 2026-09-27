@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Make",
   "summary": "A visual automation platform built around scenarios, module actions and monthly credits.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -11,7 +11,8 @@
   "testEvidence": null,
   "sources": [
     { "id": "product", "url": "https://help.make.com/step-1-plan-your-scenario", "title": "Plan your scenario", "publisher": "Make", "accessedAt": "2026-09-27" },
-    { "id": "pricing", "url": "https://www.make.com/en/pricing", "title": "Pricing and subscription packages", "publisher": "Make", "accessedAt": "2026-09-27" }
+    { "id": "pricing", "url": "https://www.make.com/en/pricing", "title": "Pricing and subscription packages", "publisher": "Make", "accessedAt": "2026-09-27" },
+    { "id": "credits", "url": "https://help.make.com/credits", "title": "Credits", "publisher": "Make Help Center", "accessedAt": "2026-09-27" }
   ],
   "facts": [
     { "key": "workflow", "label": "Workflow", "value": "Visual scenarios connect applications through triggers and actions that process data.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
@@ -29,13 +30,29 @@
     { "heading": "Count actions, not just scenarios", "paragraphs": ["List each trigger and module action in a representative scenario and estimate its run frequency. Retries, polling and data transfer can change the monthly credit requirement, so validate the estimate against a bounded trial."] },
     { "heading": "Verify the billing selector", "paragraphs": ["The official page has controls for both credit quantity and payment cadence. Record the exact selection, currency, taxes and any extra-credit rules before treating a displayed paid price as a monthly commitment."] }
   ],
+  "pros": [
+    { "text": "Make's visual scenario workflow connects applications through triggers and actions that process data.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "product" }] },
+    { "text": "The credit documentation distinguishes fixed and dynamic consumption, giving users a unit they can inspect during a trial.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] }
+  ],
+  "cons": [
+    { "text": "Credit use may be dynamic: AI and advanced features can vary with tokens, file size, page count or processing time.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
+    { "text": "A displayed monthly credit quantity alone does not establish the cost of a scenario; module behavior and billing cadence must be checked.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }, { "toolSlug": "make", "sourceId": "pricing" }] }
+  ],
+  "faqs": [
+    { "question": "Does every Make action use exactly one credit?", "answer": "No. Most fixed-use app modules default to one credit per operation, while exceptions and dynamic AI or advanced features can consume a different amount.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
+    { "question": "How should I estimate a scenario?", "answer": "Map its triggers, action modules, bundles and run frequency, then test retries and any AI, file or page processing against the current credit rules.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "product" }, { "toolSlug": "make", "sourceId": "credits" }] }
+  ],
+  "relatedLinks": [
+    { "kind": "guides", "slug": "how-to-choose-a-developer-tool" },
+    { "kind": "guides", "slug": "workflow-automation-selection" }
+  ],
   "verdict": "Evaluate Make when a visual scenario builder and a broad app-connection workflow fit the use case. Forecast module actions and verify the current pricing selectors before estimating cost.",
   "bestFor": "Builders who prefer visual automation and can map expected module actions",
   "notFor": "Teams that need a verified self-hosted deployment or a fixed cost without a usage estimate",
   "migration": "Export scenario definitions where supported, inventory connections and credentials separately, then replay representative events in a test organization before replacing the source workflow.",
   "dependencies": [],
   "gaps": ["The live paid amount depends on billing cadence and selected credit quantity; confirm the exact selection and checkout terms before publication.", "Confirm data retention, privacy, regional hosting and scenario export behavior for the intended plan."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; dynamic paid pricing remains explicitly unresolved." }],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; dynamic paid pricing remains explicitly unresolved." }, { "date": "2026-09-27", "summary": "Added official credit evidence, cited strengths, constraints, FAQs and related guides; owner review remains pending." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

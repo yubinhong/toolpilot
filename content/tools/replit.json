@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Replit",
   "summary": "An app-building workflow to assess together with its operating costs.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": {
     "state": "in-review",
@@ -35,6 +35,13 @@
       "id": "core",
       "url": "https://docs.replit.com/billing/plans/replit-core",
       "title": "Replit Core",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "checkpoints",
+      "url": "https://docs.replit.com/features/version-control/checkpoints-and-rollbacks",
+      "title": "Checkpoints and rollbacks",
       "publisher": "Replit",
       "accessedAt": "2026-09-27"
     }
@@ -113,6 +120,18 @@
       ]
     }
   ],
+  "pros": [
+    { "text": "Replit describes Agent as a plain-language workflow that plans, creates applications, checks its work, fixes problems and deploys.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] },
+    { "text": "Agent checkpoints can capture project files, conversation context and connected database state for rollback inside Replit.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] }
+  ],
+  "cons": [
+    { "text": "A checkpoint is a Replit recovery feature; it does not establish an independently tested export or recovery path outside the platform.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] },
+    { "text": "The current plan amount and included allowance remain unresolved in this profile, so it cannot support a fixed budget comparison yet.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }] }
+  ],
+  "faqs": [
+    { "question": "What does Replit Agent do?", "answer": "Replit says Agent can take a plain-language idea through project setup, app creation, checking, problem fixing and deployment; validate the result for your own workload.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] },
+    { "question": "Do checkpoints replace an external backup?", "answer": "The docs describe checkpoints as snapshots of a Replit app. Test a separate export and recovery path if you need to operate outside Replit.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] }
+  ],
   "verdict": "Evaluate the full build-to-operation loop, not just the first demo. Require a separate estimate for editing and the live application.",
   "bestFor": "Builders comparing a hosted development workflow",
   "notFor": "Projects with an unverified residency or private-network requirement",
@@ -126,6 +145,10 @@
     {
       "date": "2026-09-27",
       "summary": "Initial source-based research and editorial draft; owner approval pending."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added cited strengths, constraints and FAQs; owner approval remains pending."
     }
   ],
   "commercial": {

@@ -6,6 +6,7 @@ export type Section = { heading: string; paragraphs: string[] };
 export type SourceReference = { toolSlug: string; sourceId: string };
 export type EvidenceClaim = { text: string; sourceRefs: SourceReference[] };
 export type EvidenceFaq = { question: string; answer: string; sourceRefs: SourceReference[] };
+export type RelatedLink = { kind: Content["kind"]; slug: string };
 export type CommercialRelation = { status: "unconfirmed" | "none" | "active"; url: string | null; disclosure: string | null; evidence: string | null };
 export type Content = {
   slug: string; kind: "tools" | "compare" | "alternatives" | "pricing" | "best" | "guides";
@@ -14,6 +15,7 @@ export type Content = {
   verifiedAt: string | null; testedAt: string | null; testEvidence: string | null;
   sources: Source[]; facts: Fact[]; prices: Price[]; sections: Section[];
   pros?: EvidenceClaim[]; cons?: EvidenceClaim[]; faqs?: EvidenceFaq[];
+  relatedLinks?: RelatedLink[];
   verdict: string; bestFor: string; notFor: string; migration: string;
   dependencies: { slug: string; revision: number; digest: string }[]; gaps: string[];
   changes: { date: string; summary: string }[];

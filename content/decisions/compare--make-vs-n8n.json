@@ -3,9 +3,16 @@
   "kind": "compare",
   "title": "Make vs n8n",
   "summary": "Compare Make and n8n by workflow billing unit, hosting responsibility and the operational work your automation requires.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
-  "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
   "verifiedAt": null,
   "testedAt": null,
   "testEvidence": null,
@@ -13,23 +20,83 @@
   "facts": [],
   "prices": [],
   "sections": [
-    { "heading": "Estimate the same workload in each billing unit", "paragraphs": ["Make describes credits at the module-action level. n8n Cloud describes workflow executions, where a complete run counts once regardless of its number of steps. Sketch one real automation, include retries and schedule frequency, then estimate both units from the same event volume."] },
-    { "heading": "Assign the hosting work", "paragraphs": ["n8n documents self-hosted options as well as its Cloud service. This content record has no verified Make self-hosting fact; treat a private-network or self-hosting requirement as an open question to resolve with Make, not as proof that the capability is absent."] },
-    { "heading": "Run a failure-path trial", "paragraphs": ["Test one integration with a rate limit, a malformed response and a credential rotation. Record retry behavior, run history, alerting and the time required to recover the workflow before selecting a platform."] }
+    {
+      "heading": "Estimate the same workload in each billing unit",
+      "paragraphs": [
+        "Make describes credits at the module-action level. n8n Cloud describes workflow executions, where a complete run counts once regardless of its number of steps. Sketch one real automation, include retries and schedule frequency, then estimate both units from the same event volume."
+      ]
+    },
+    {
+      "heading": "Assign the hosting work",
+      "paragraphs": [
+        "n8n documents self-hosted options as well as its Cloud service. This content record has no verified Make self-hosting fact; treat a private-network or self-hosting requirement as an open question to resolve with Make, not as proof that the capability is absent."
+      ]
+    },
+    {
+      "heading": "Run a failure-path trial",
+      "paragraphs": [
+        "Test one integration with a rate limit, a malformed response and a credential rotation. Record retry behavior, run history, alerting and the time required to recover the workflow before selecting a platform."
+      ]
+    }
+  ],
+  "relatedLinks": [
+    {
+      "kind": "guides",
+      "slug": "how-to-choose-a-developer-tool"
+    },
+    {
+      "kind": "guides",
+      "slug": "workflow-automation-selection"
+    }
   ],
   "verdict": "Choose from the measured workload and hosting requirement. Make's credit unit and n8n's execution unit are not directly comparable without mapping the same automation into each billing model.",
   "bestFor": "Automation builders comparing task-based visual scenarios with API-oriented workflows",
   "notFor": "Teams choosing on a quoted total cost before confirming billing cadence, plan limits and hosting requirements",
   "migration": "Rebuild one non-critical automation first. Export what the vendor supports, re-enter credentials through approved secret handling, and verify schedules, retries and outputs before switching traffic.",
   "dependencies": [
-    { "slug": "make", "revision": 1, "digest": "9cc205ac767ca7ce146b8ed91129895c891579e94ef3685f2cec237670d289fc" },
-    { "slug": "n8n", "revision": 1, "digest": "02ee4d16bbaff10cc5adec5bd301e641b5aa79cd49c3035197f5dc2599718ef5" }
+    {
+      "slug": "make",
+      "revision": 2,
+      "digest": "902b8738e9d048fc99aaaa464a02b7c3066578de2584b096afb21884f2b93dbe"
+    },
+    {
+      "slug": "n8n",
+      "revision": 2,
+      "digest": "528b17776b364ef924debb196ad9e0be7495a66f2949c8ca134e02e026d6d5bb"
+    }
   ],
-  "gaps": ["Confirm Make's selected paid-plan amount and billing cadence; the official pricing page has interactive billing and credit-quantity selectors.", "Confirm license compatibility and the self-hosted operating cost for the intended n8n use."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial source-backed comparison draft; owner review and exact billing selections remain open." }],
+  "gaps": [
+    "Confirm Make's selected paid-plan amount and billing cadence; the official pricing page has interactive billing and credit-quantity selectors.",
+    "Confirm license compatibility and the self-hosted operating cost for the intended n8n use."
+  ],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-backed comparison draft; owner review and exact billing selections remain open."
+    },
+    {
+      "date": "2026-09-27",
+      "summary": "Added contextual workflow-selection links and refreshed source dependency versions; owner review remains pending."
+    }
+  ],
   "commercial": {
-    "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
-    "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
-    "sponsor": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null }
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
   }
 }

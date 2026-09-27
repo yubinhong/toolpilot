@@ -15,9 +15,12 @@ test('comparison links are limited to decision pages with both candidates or a m
   assert.equal(paths.some(path => path.startsWith('/compare/')), false);
 });
 
-test('unrelated overlap does not produce a generic related section', () => {
+test('curated links are retained when dependency overlap has no automatic matches', () => {
   const record = findContent('compare', 'make-vs-n8n');
-  assert.deepEqual(getRelatedContent(record, content), []);
+  assert.deepEqual(getRelatedContent(record, content).map(contentPath), [
+    '/guides/how-to-choose-a-developer-tool/',
+    '/guides/workflow-automation-selection/',
+  ]);
 });
 
 test('tool and guide pages receive a bounded set of directly supported decisions', () => {
@@ -30,4 +33,21 @@ test('tool and guide pages receive a bounded set of directly supported decisions
   const guideRelated = getRelatedContent(guide, content);
   assert.ok(guideRelated.some(record => record.slug === 'cursor-vs-claude-code'));
   assert.ok(guideRelated.every(record => record.dependencies.filter(dependency => guide.dependencies.some(candidate => candidate.slug === dependency.slug)).length >= 2));
+});
+
+test('authored related pages lead, deduplicate automatic links and stay within the limit', () => {
+  const make = structuredClone(findContent('tools', 'make'));
+  make.relatedLinks = [
+    { kind: 'guides', slug: 'how-to-choose-a-developer-tool' },
+    { kind: 'guides', slug: 'workflow-automation-selection' },
+  ];
+  const related = getRelatedContent(make, content);
+  const paths = related.map(contentPath);
+  assert.deepEqual(paths, [
+    '/guides/how-to-choose-a-developer-tool/',
+    '/guides/workflow-automation-selection/',
+    '/compare/make-vs-n8n/',
+  ]);
+  assert.equal(new Set(paths).size, paths.length);
+  assert.deepEqual(getRelatedContent(make, content, 2).map(contentPath), paths.slice(0, 2));
 });

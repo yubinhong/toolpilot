@@ -3,11 +3,11 @@
 ## 当前快照 — 2026-09-27
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
-- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的 P0 差异并准备 P1 审核批次。38 条结构化记录、96 条当前源码路由清单和精确审核清单均已在源码中，所有内容仍为 `in-review`、noindex。最新实现提交 `eee8485fec0628a09d19aa7adc774c84a06a3183` 已通过 GitHub CI run `36313122069` 和 Cloudflare Pages 部署 `3b3c9451-b893-428a-b618-e12e9c729228`；预览与 `toolpilot.cc` current-profile smoke 均通过 96 页、robots、sitemap 和 404 检查。MCP 页面现有来源绑定的优势、限制与 FAQ 区块，比较表格逐项链接来源，相关决策链接按页面类型筛选并限为 5 条。TASK-006 基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；用户计划文件仍未跟踪且保持原样。历史 URL/GSC/外链证据、内容批准、Alternatives/slug 映射、运营资料、告警通知和生产回滚演练仍是独立门槛；详见 TASK.md、TODO.md 和 PLANS.md。
+- 当前任务：TASK-006 `IN_PROGRESS`，按用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 关闭源码可验证的差异并准备 P1 审核批次。当前有 39 条结构化记录、97 条注册路由；所有内容均为 `in-review`、noindex，只有 4 个非内容 URL 在 sitemap。12 个工具档案都具备来源绑定的优势、限制和 FAQ；所有结构化内容页至少链接到三个唯一的站内内容目标。当前待发布工作区已通过 55 项测试、Node 22 Cloudflare 构建（97 页/4 个可索引 URL）、依赖审计（0 漏洞）、内容 freshness 检查和本地 current smoke。最新已部署提交仍为 `eee8485fec0628a09d19aa7adc774c84a06a3183`，本轮改动的 CI/Cloudflare 部署与线上 smoke 尚待执行。TASK-006 基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`；用户计划文件仍未跟踪且保持原样。决策页证据块、Alternatives/slug 映射、内容审批、历史 URL/GSC/外链证据、运营资料、告警通知和生产回滚演练仍是独立门槛；详见 TASK.md、TODO.md 和 PLANS.md。
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
-- 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 38 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 2 guides）全部待用户审核，未冒充正式评价。
+- 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 39 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 3 guides）全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。
-- P0.5 内容契约已推进一批：`lib/content-types.ts` / `lib/content-policy.mjs` 支持带 `{toolSlug, sourceId}` 的 Pros、Cons、FAQ 引用，`components/content-detail.tsx` 渲染引用；Cursor、Claude Code、GitHub Copilot、Cline 和 Continue 五份 MCP 工具档案与 18 条依赖决策已更新到 revision 3 和当前 digest，并随提交 `eee8485` 部署。其余档案/决策 FAQ 跟踪 TODO-313。
+- P0.5 内容契约现支持带 `{toolSlug, sourceId}` 的 Pros、Cons、FAQ 引用；本轮已为剩余可用工具档案补齐相同页面块，并刷新依赖摘要。决策页自己的证据块仍待 TODO-313；用户批准前所有记录保持 `in-review` / noindex。
 - 草稿保留 URL，noindex 且退出 sitemap；来源日期与审核/实测日期分开。逐版本审批见 ADR-0009。
 - 首批范围：英文 AI Coding / AI App Builders；没有激活广告、分析或实际 Affiliate。
 - 工作区含用户提供的未跟踪 `TOOLPILOT_REBUILD_PLAN.md`；不得清理或覆盖。TASK-006 变更前已检查工作区，基线为 `a419cab0891802f786c61dd4343fe5aeda75c6c7`。
@@ -29,7 +29,7 @@
 3. TASK-006 与 [TOOLPILOT_REBUILD_PLAN.md](TOOLPILOT_REBUILD_PLAN.md)：当前 P0 差异和用户重规划；PLANS.md TASK-006；docs/adr/0009-reviewed-decision-content.md。
 4. docs/research/toolpilot-report-extract.md：报告抽取和采用/暂缓决策。
 5. docs/research/toolpilot-task-gap-analysis-2026-09-27.md：原始报告与 TASK/TODO 的逐项差异标记。
-6. docs/content-review/TASK-005/README.md：首批 28 页清单；docs/content-review/TASK-006/README.md：新增 10 页精确 revision/digest 审核入口。
+6. docs/content-review/TASK-005/README.md：首批 28 页清单；docs/content-review/TASK-006/README.md：新增 11 页精确 revision/digest 审核入口。
 7. docs/operations/90-day-review.md：真实数据运营模板。
 8. RUNBOOK.md、docs/tasks/TASK-004-before-remediation.md、ADR-0008：生产授权和迁移。
 

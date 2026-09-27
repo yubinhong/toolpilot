@@ -41,6 +41,7 @@ for (const r of routes) {
   if (/Approximately 20%|Cash affiliate|Commission note|commission terms|approvedDigest/.test(html)) failures.push(`${r.path}: historical commercial research exposed`);
 }
 const tools = new Map(content.filter(record => record.kind === 'tools').map(record => [record.slug,record]));
+const structuredPaths = new Set(content.map(record => `/${record.kind}/${record.slug}/`));
 function escapeHtml(value) {
   return value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;' })[char]);
 }
@@ -69,6 +70,17 @@ for (const record of content) {
       if (!source || !citationFollows(html, item.text, source.url, closingTag)) failures.push(`${record.kind}/${record.slug}: documented ${item.label} source ${ref.toolSlug}/${ref.sourceId} is not linked beside its claim`);
     }
   }
+}
+for (const record of content) {
+  const path = `/${record.kind}/${record.slug}/`;
+  const html = readFileSync(join('out',path,'index.html'),'utf8');
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
+  const body = main.replace(/<nav\b[^>]*aria-label="Breadcrumb"[^>]*>[\s\S]*?<\/nav>/g,'');
+  const targets = new Set([...body.matchAll(/<a\b[^>]*href="([^"#]+)"/g)].flatMap(match => {
+    const href = match[1].split(/[?#]/)[0];
+    return structuredPaths.has(href) ? [href] : [];
+  }));
+  if (targets.size < 3) failures.push(`${path}: expected at least three distinct in-content links to structured pages, found ${targets.size}`);
 }
 for (const record of content.filter(item => item.kind === 'tools' && item.facts.some(fact => fact.key === 'mcp'))) {
   const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');

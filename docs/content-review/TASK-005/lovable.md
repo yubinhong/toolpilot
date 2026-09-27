@@ -2,7 +2,7 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 1. Digest: `cbe50399e535d5b4ebe2243a795cd8f176340a045a8e5ad2092529ddcbd99533`.
+Revision: 2. Digest: `8344d490d982e3e49717e1f4e2400b715d4ab2e8ab26be651abe66dce62a5a64`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -43,6 +43,12 @@ Shortlist Lovable for a web prototype whose code and deployment ownership you ca
 Consider for: Founders validating a web-app workflow. Not for: Teams treating generated output as production-ready without security review.
 
 Before committing, rehearse code handoff, database export and secret replacement. Moving code alone does not prove the complete service can be operated elsewhere.
+
+## Documented strengths, constraints and FAQs
+
+- Strength: project code can sync to GitHub, GitLab or Bitbucket, and workspaces support shared projects and credits. Source: product.
+- Constraint: credit consumption varies by feature and activity; code sync alone does not establish a complete database, hosting or secret migration. Sources: usage, product, ownership.
+- FAQ: Lovable documents Git sync for code, while runtime services need a separate handoff plan. Sources: product, ownership.
 
 ## Gaps
 

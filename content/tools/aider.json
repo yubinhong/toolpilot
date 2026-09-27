@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Aider",
   "summary": "A terminal-based AI pair-programming tool whose Git workflow and model-provider costs need separate review.",
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-09-27",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -32,13 +32,26 @@
     { "heading": "Make the Git behavior part of the trial", "paragraphs": ["Use a disposable branch with a failing test and a narrowly scoped task. The docs say Aider commits pre-existing dirty changes before editing and skips Git hooks by default unless configured otherwise. Inspect commit behavior, enable the required hook verification and rehearse undo before using an established repository."] },
     { "heading": "Budget the model separately", "paragraphs": ["Choose a provider and model before estimating cost. Record the provider's billing unit and the usage produced by your task; local model support does not establish adequate quality or zero operating cost."] }
   ],
+  "pros": [
+    { "text": "Each edited file is committed with a descriptive message, making changes reviewable and reversible through Git.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "git" }] },
+    { "text": "The documentation covers multiple hosted model providers and local models through Ollama or OpenAI-compatible APIs.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "models" }] }
+  ],
+  "cons": [
+    { "text": "Aider commits pre-existing dirty files before editing and skips Git pre-commit hooks by default unless configured otherwise.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "git" }] },
+    { "text": "Model capability varies; Aider warns that less capable models may fail to return edits it can apply.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "models" }] }
+  ],
+  "faqs": [
+    { "question": "Can Aider use a local model?", "answer": "Yes. The docs describe using local models through Ollama or an OpenAI-compatible local API; confirm the model's editing capability in your own trial.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "models" }] },
+    { "question": "What should I check before the first edit?", "answer": "Review the dirty-file commit and hook defaults, then trial on a disposable branch so the Git effects are visible.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "git" }] }
+  ],
+  "relatedLinks": [{ "kind": "guides", "slug": "ai-editor-vs-terminal-agent" }],
   "verdict": "Evaluate Aider when a terminal and Git-centered pair-programming loop fits your repository work. Verify model quality, provider spend and commit behavior in a bounded trial.",
   "bestFor": "Developers comfortable reviewing terminal output and Git changes",
   "notFor": "Teams expecting a single fixed product price or unreviewed autonomous changes",
   "migration": "Preserve repository instructions and provider configuration separately. Trial on a branch, keep credentials in the approved secret store and verify the resulting diff before merging.",
   "dependencies": [],
   "gaps": ["Confirm current provider billing and whether any separate hosted or commercial offering applies to the intended use.", "Review privacy and data handling for the selected model provider.", "Confirm Git hook behavior and protect pre-existing dirty changes before a trial.", "Do not treat repository license as a license for model weights or provider services."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }, { "date": "2026-09-27", "summary": "Added cited strengths, constraints, FAQs and a contextual guide link; owner review remains pending." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

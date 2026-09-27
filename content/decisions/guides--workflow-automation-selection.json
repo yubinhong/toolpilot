@@ -1,0 +1,133 @@
+{
+  "slug": "workflow-automation-selection",
+  "kind": "guides",
+  "title": "How to choose a workflow automation platform",
+  "summary": "Compare an automation workflow by its real execution pattern, billing unit, hosting needs and recovery path.",
+  "revision": 1,
+  "updatedAt": "2026-09-27",
+  "review": {
+    "state": "in-review",
+    "owner": null,
+    "reviewedAt": null,
+    "approvedRevision": null,
+    "approvedDigest": null,
+    "evidence": null
+  },
+  "verifiedAt": null,
+  "testedAt": null,
+  "testEvidence": null,
+  "sources": [],
+  "facts": [],
+  "prices": [],
+  "sections": [
+    {
+      "heading": "Map the real workload",
+      "paragraphs": [
+        "Write down the trigger frequency, records or bundles processed, action modules, retries and peak bursts for one representative workflow. Make documents both fixed and dynamic credit consumption; AI and advanced modules can vary with tokens, file size, pages or runtime. Compare observed usage to each vendor's current unit rather than treating a scenario, operation, credit and execution as interchangeable."
+      ]
+    },
+    {
+      "heading": "Choose who operates the workflow",
+      "paragraphs": [
+        "Make presents a hosted visual scenario workflow. n8n documents both Cloud and self-hosted options. For self-hosting, include the operator's work for deployment, credentials, updates, backups, monitoring and security. Review the current license and plan entitlements for the exact use case before choosing a deployment path."
+      ]
+    },
+    {
+      "heading": "Trial failure and recovery",
+      "paragraphs": [
+        "Run a bounded test with representative but non-sensitive data. Force a timeout or malformed response, inspect retry and duplicate behavior, and verify how credentials are stored. Export or recover the workflow in a separate environment before depending on it for a production process."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How can I compare automation costs fairly?",
+      "answer": "Estimate a representative workflow's frequency, processed bundles, actions and retries, then apply each platform's current billing rules. Make documents fixed and dynamic credits; this is a reason to measure your own workload rather than assume a universal conversion.",
+      "sourceRefs": [
+        {
+          "toolSlug": "make",
+          "sourceId": "credits"
+        },
+        {
+          "toolSlug": "n8n",
+          "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "question": "Is self-hosting automatically less expensive?",
+      "answer": "The docs establish a self-hosting option, not a lower total cost. Include infrastructure and the operator's work, and confirm the applicable n8n license and plan terms.",
+      "sourceRefs": [
+        {
+          "toolSlug": "n8n",
+          "sourceId": "hosting"
+        }
+      ]
+    },
+    {
+      "question": "What should a trial prove before automation goes live?",
+      "answer": "Test a normal run, a failed run and recovery with representative data; confirm credential handling and export or rollback before connecting a production workflow.",
+      "sourceRefs": [
+        {
+          "toolSlug": "make",
+          "sourceId": "product"
+        },
+        {
+          "toolSlug": "n8n",
+          "sourceId": "hosting"
+        }
+      ]
+    }
+  ],
+  "verdict": "Choose based on a measured workflow and the operating model you can support; neither a credit count nor a self-host option proves the total cost or production fit on its own.",
+  "bestFor": "Teams comparing hosted visual automation with configurable Cloud or self-hosted workflows",
+  "notFor": "Readers looking for a universal cost winner or an unverified production recommendation",
+  "migration": "Export a representative workflow, document external credentials and data contracts, then rehearse deployment and recovery in a separate environment before switching providers.",
+  "dependencies": [
+    {
+      "slug": "make",
+      "revision": 2,
+      "digest": "902b8738e9d048fc99aaaa464a02b7c3066578de2584b096afb21884f2b93dbe"
+    },
+    {
+      "slug": "n8n",
+      "revision": 2,
+      "digest": "528b17776b364ef924debb196ad9e0be7495a66f2949c8ca134e02e026d6d5bb"
+    }
+  ],
+  "relatedLinks": [
+    {
+      "kind": "guides",
+      "slug": "how-to-choose-a-developer-tool"
+    }
+  ],
+  "gaps": [
+    "Confirm current regional pricing, retention and privacy terms for the selected plans; no hands-on workflow or recovery test was run."
+  ],
+  "changes": [
+    {
+      "date": "2026-09-27",
+      "summary": "Initial source-based selection guide; owner approval and a representative workflow trial remain pending."
+    }
+  ],
+  "commercial": {
+    "affiliate": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "featured": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    },
+    "sponsor": {
+      "status": "unconfirmed",
+      "url": null,
+      "disclosure": null,
+      "evidence": null
+    }
+  }
+}

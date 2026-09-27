@@ -2,15 +2,19 @@
 
 Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 1. Digest: `fc9b94f9c8f365906acf2bb53c660797664b7b945dba6c2d9acc3bd1d61d3eff`.
+Revision: 2. Digest: `a7c4bf03221774d71b76567b862f69b57d01c5656808305736f1b2b05af7e391`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
 ## Sources
 
-- [Cascade overview (redirected from Windsurf)](https://docs.devin.ai/desktop/cascade/cascade) — Windsurf; accessed 2026-09-27
+- [Cascade overview (redirected from Windsurf)](https://docs.devin.ai/desktop/cascade/cascade) — Devin; accessed 2026-09-27
 
-- [Plans and billing](https://devin.ai/pricing) — Windsurf; accessed 2026-09-27
+- [Plans and billing](https://devin.ai/pricing) — Devin; accessed 2026-09-27
+
+- [Devin Desktop](https://devin.ai/desktop) — Devin; accessed 2026-09-27
+
+- [Windsurf editor page (redirects to Devin Desktop)](https://windsurf.com/editor) — Windsurf; accessed 2026-09-27
 
 ## Field evidence
 
@@ -23,6 +27,12 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+
+## Documented strengths, constraints and FAQs
+
+- Strength: the current Devin Desktop page describes a full IDE with syntax highlighting, autocomplete and debugging tools. Source: desktop.
+- Constraint: the official Windsurf editor URL redirects to a Devin Desktop page; confirm the current purchase destination and existing entitlements. Sources: windsurf-editor, desktop.
+- FAQ: the inspected editor destination identifies Devin Desktop. Verify account history, plan entitlements and pricing before acting on a legacy Windsurf plan. Sources: windsurf-editor, desktop, pricing.
 
 ## Pricing basis
 
@@ -38,7 +48,7 @@ Record your current account entitlement and editor settings. Ask the vendor to c
 
 ## Gaps
 
-- Official Windsurf URLs redirect to Devin; verify product identity, existing entitlements and current pricing before publication.
+- The official editor destination identifies Devin Desktop as the current page; verify account history, plan entitlements and current pricing before publication.
 
 ## Owner checklist
 
