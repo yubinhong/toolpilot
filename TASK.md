@@ -106,7 +106,7 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - `vendorLink()` already enforced exact approval, active status, HTTPS destination, relationship evidence and disclosure before using an Affiliate URL. The detail template now also renders an explicit `Affiliate link` label alongside the required disclosure and `rel=sponsored`; any failed gate falls back to the ordinary product URL.
 - Node `v22.23.2`: `npm run cloudflare:build` passed lint, typecheck, 72 tests, validation of 39 structured records and static artifact checks (99 pages / 4 indexable URLs). `npm audit --audit-level=high` found 0 vulnerabilities.
 - Local Wrangler Pages smoke passed 99 pages, robots, sitemap and real 404. The generated Cursor draft still uses its ordinary official URL and renders no Affiliate label; unit coverage verifies the synthetic exact-approved case and failure fallback. No commercial relationship was activated.
-- Release verification will be recorded after CI, Pages deployment and preview/production smoke complete.
+- Release verification: commit `b28eac7953b5c150bb9ddaf6a6f6400ed9e21730` passed clean-worktree `npm run release:check`, GitHub CI run `36349574064` and Cloudflare Pages deployment/check `b42fe8b0-b97f-4c1d-bf33-1244b2335cc0`. Preview `https://b42fe8b0.toolpilot-git.pages.dev` and `https://toolpilot.cc` passed current smoke (99 pages, robots, sitemap and real 404). Direct HTML checks confirmed the unapproved Cursor draft still uses its ordinary official URL and has no Affiliate label. Rollback: revert this commit, rebuild/redeploy the previous reviewed source and rerun current-profile smoke. No content approval or commercial relationship was activated.
 
 #### P0.6 MCP and self-hosted overview routes — 2026-09-27
 
