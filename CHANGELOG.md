@@ -4,7 +4,7 @@
 
 - Label an approved Affiliate destination explicitly beside its CTA and disclosure; incomplete or unapproved relationships continue to use the ordinary product URL. Commit `b28eac7` passed CI `36349574064` and Pages deployment/check `b42fe8b0`; preview and production current smoke passed 99 pages, robots, sitemap and real 404.
 - Render the bound `verifiedAt` date as `Last verified` on approved pages and retain an explicit pending status on review drafts; generated artifact checks enforce both states. Commit `5057ab8` passed CI `36350165202` and Pages deployment/check `6e614c18`; preview and production current smoke passed 99 pages, robots, sitemap and real 404.
-- Enforce unique page titles and descriptions across generated routes in the static artifact check.
+- Enforce unique page titles and descriptions across generated routes in the static artifact check. Commit `86b8e1a` passed CI `36351183143` and Pages deployment/check `558b1087`; preview and production current smoke passed, and an online audit confirmed uniqueness across all 99 pages.
 - Preserve 50 historical snapshots; add Claude Code/Cline identities and 28 owner-review drafts with field sources and explicit gaps.
 - Add version/digest approval and dependency checks, ordinary/commercial link separation and allowlisted client catalog data.
 - Add comparison, alternatives, pricing and best detail templates; rewrite the decision guide, add an interaction-style guide and trust pages.

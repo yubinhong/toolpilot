@@ -128,7 +128,7 @@ Rollback: keep existing route and data files until a reviewed replacement and ma
 - A generated-output audit found 99 unique titles and descriptions across 99 routes; the sitemap contains only four indexable URLs and all other noindex states match the route registry.
 - Added `findDuplicateMetadata()` plus regression fixtures for duplicate title, duplicate description and the unique case. `scripts/check-artifacts.mjs` now fails a build if a route repeats either value.
 - Node `v22.23.2`: `npm run cloudflare:build` passed lint, typecheck, 74 tests, content validation and static artifact checks (99 pages / 4 indexable URLs). `npm audit --audit-level=high` found 0 vulnerabilities. Local Wrangler Pages smoke passed for 99 pages, robots, sitemap and a real 404.
-- Release verification will be recorded after CI and Pages deployment.
+- Release verification: commit `86b8e1a59dfb63a6a6e35e3e100c1bd2f8204d88` passed clean-worktree `npm run release:check`, GitHub CI run `36351183143` and Cloudflare Pages deployment/check `558b1087-b863-4c73-8b59-618376211274`. Preview `https://558b1087.toolpilot-git.pages.dev` and production passed current smoke (99 pages, robots, sitemap and real 404). Online HTML audit confirmed 99 unique titles and descriptions on both hosts. The four-URL sitemap and registered noindex states were unchanged. Rollback: revert this checker/docs change, rebuild the previous source and rerun current-profile smoke; public content behavior is unchanged.
 
 #### P0.6 MCP and self-hosted overview routes — 2026-09-27
 

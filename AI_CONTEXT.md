@@ -14,6 +14,7 @@
 - P0.4 已完成排版与主题审计：h1/h2 使用固定响应式断点字号，字距归零；浅/深主题默认跟随系统，页头可手动切换并保存在浏览器本地。8 类页面 x 3 个视口 x 2 种主题共 48 项检查无横向溢出或页面错误，刷新后偏好仍在；核心文本/控件最低对比度为浅色 4.93:1、深色 7.30:1。默认自有 OG 分享图已接入所有路由且构建产物检查通过，不使用第三方厂商标志。Commit `4aea803` 的 CI `36324864383`、Cloudflare Pages 检查、预览 `https://1a5cc8e2.toolpilot-git.pages.dev` 与 `toolpilot.cc` current smoke 全部通过 97 页；TODO-311 仍开放：真实 CWV/GSC 数据尚未取得。
 - Supplemental mobile lab evidence is in `docs/research/lighthouse-lab-2026-09-27.md`: Lighthouse 13.5.0 scored the homepage/compare sample 0.98/0.99 with LCP 2.2/2.1s, CLS 0 and TBT 63/60ms. This is simulated lab data, not field CWV or GSC evidence; TODO-311 remains open.
 - Static artifact checks now enforce unique titles and descriptions across all 99 routes. The current generated output has 99 unique pairs, with four indexable sitemap URLs and intentional draft noindex; the rule is covered by regression fixtures and the build.
+- Metadata regression release: commit `86b8e1a59dfb63a6a6e35e3e100c1bd2f8204d88`, CI `36351183143`, Pages deployment/check `558b1087-b863-4c73-8b59-618376211274`; preview and production smoke passed 99 pages/robots/sitemap/404, with online audit confirming unique titles/descriptions for every route.
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 39 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 3 guides）全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。
