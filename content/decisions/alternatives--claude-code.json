@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Claude Code alternatives",
   "summary": "Claude Code alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 7,
+  "revision": 8,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -61,12 +61,13 @@
     },
     {
       "slug": "github-copilot",
-      "revision": 4,
-      "digest": "1421ce2cd9d849b23efa1eb87633140adec4afb262908fd2fd1e794949a5a132"
+      "revision": 5,
+      "digest": "b99704e15f5c690dcc048e1f4a8f7b56468b39d9c743720d4515e917e2a57587"
     }
   ],
   "gaps": [
-    "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+    "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
   ],
   "changes": [
     {
@@ -96,6 +97,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Cursor Privacy Mode, model-retention and Cloud Agent data-scope evidence; account applicability remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added GitHub Copilot Local BYOK client coverage and CLI data-route limits; account policy and inference remain untested."
     }
   ],
   "commercial": {
@@ -203,6 +208,14 @@
           "toolSlug": "cursor",
           "sourceId": "privacy-policy"
         }
+      ]
+    },
+    {
+      "question": "Can GitHub Copilot use locally run models?",
+      "answer": "GitHub lists Local BYOK in VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK. The client-side mechanism stores keys locally and removes dependence on the Copilot API. For Copilot CLI specifically, GitHub lists Ollama, vLLM and Foundry Local-compatible endpoints and requires tool calling and streaming. Offline mode prevents GitHub contact, but prompts and code context still reach a remote provider. Business/Enterprise organization policy can disable Local BYOK in IDEs. Confirm the client, policy and provider route; no account or model was tested.",
+      "sourceRefs": [
+        { "toolSlug": "github-copilot", "sourceId": "byok" },
+        { "toolSlug": "github-copilot", "sourceId": "cli-byok" }
       ]
     }
   ]

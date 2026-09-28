@@ -166,6 +166,14 @@ for (const price of windsurf?.prices ?? []) {
     if (!source || !windsurfHtml.includes(source.url)) failures.push(`/tools/windsurf/: price source ${sourceId} is missing from generated HTML`);
   }
 }
+const githubCopilot = tools.get('github-copilot');
+const copilotLocalModels = githubCopilot?.facts.find(fact => fact.key === 'localModels');
+const githubCopilotHtml = readFileSync('out/tools/github-copilot/index.html', 'utf8');
+if (!copilotLocalModels?.value || !githubCopilotHtml.includes(escapeHtml(copilotLocalModels.value))) failures.push('/tools/github-copilot/: Local BYOK scope fact is missing from generated HTML');
+for (const sourceId of copilotLocalModels?.sourceIds ?? []) {
+  const source = githubCopilot.sources.find(item => item.id === sourceId);
+  if (!source || !githubCopilotHtml.includes(source.url)) failures.push(`/tools/github-copilot/: Local BYOK source ${sourceId} is missing from generated HTML`);
+}
 for (const record of content) {
   const evidence = [
     ...(record.pros ?? []).map(item => ({ text: item.text, refs: item.sourceRefs, label: 'strength' })),

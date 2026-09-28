@@ -3,8 +3,8 @@
   "kind": "tools",
   "title": "GitHub Copilot",
   "summary": "Coding assistance for evaluating an existing GitHub and IDE workflow.",
-  "revision": 4,
-  "updatedAt": "2026-09-27",
+  "revision": 5,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -51,6 +51,20 @@
       "title": "Managing GitHub Copilot policies as an individual subscriber",
       "publisher": "GitHub Docs",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "byok",
+      "url": "https://docs.github.com/en/copilot/concepts/models/bring-your-own-key",
+      "title": "Bring your own key for GitHub Copilot",
+      "publisher": "GitHub Docs",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "cli-byok",
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/use-byok-models",
+      "title": "Using your own LLM models in GitHub Copilot CLI",
+      "publisher": "GitHub Docs",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -83,9 +97,9 @@
     {
       "key": "localModels",
       "label": "Local model inference",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "GitHub documents client-side Local BYOK for VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK; the keys are handled client-side and this route removes dependence on the Copilot API. This is separate from Enterprise BYOK, which enterprise owners configure server-side for licensed members and which still uses the Copilot API and internet access. Copilot CLI explicitly supports local Ollama, vLLM and Foundry Local through compatible endpoints. CLI models must support tool calling and streaming; GitHub recommends at least a 128k context window for best results. `COPILOT_OFFLINE=true` prevents the CLI from contacting GitHub, but a remote provider still receives prompts and code context; full isolation requires a provider on the local host or within the same isolated environment. GitHub says Business/Enterprise organization policies can disable Local BYOK in IDEs. These docs establish supported paths, not every feature or a specific account's access/data flow; no model, client or policy was tested.",
+      "sourceIds": ["byok", "cli-byok"],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -149,6 +163,12 @@
       "paragraphs": [
         "A trial should include onboarding a second developer, reviewing their changes and revoking access afterward. If preserving the existing workflow is the goal, record how much new configuration the trial introduced."
       ]
+    },
+    {
+      "heading": "Check local model and provider boundaries",
+      "paragraphs": [
+        "GitHub documents Local BYOK across several Copilot clients and local Ollama/vLLM use in Copilot CLI. Verify the supported client and organization policy before relying on the path. CLI offline mode blocks GitHub contact, but an external model provider still receives prompts and code context unless it is also local or on-premises."
+      ]
     }
   ],
   "pros": [
@@ -159,6 +179,13 @@
           "toolSlug": "github-copilot",
           "sourceId": "mcp"
         }
+      ]
+    },
+    {
+      "text": "GitHub documents client-side Local BYOK for VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK; Copilot CLI can connect to local Ollama-compatible endpoints.",
+      "sourceRefs": [
+        { "toolSlug": "github-copilot", "sourceId": "byok" },
+        { "toolSlug": "github-copilot", "sourceId": "cli-byok" }
       ]
     }
   ],
@@ -179,6 +206,13 @@
           "toolSlug": "github-copilot",
           "sourceId": "mcp"
         }
+      ]
+    },
+    {
+      "text": "Local BYOK availability depends on the client and organization policy; CLI models need tool-calling and streaming support, and a remote model provider still receives prompts/code context even when Copilot CLI is in offline mode.",
+      "sourceRefs": [
+        { "toolSlug": "github-copilot", "sourceId": "byok" },
+        { "toolSlug": "github-copilot", "sourceId": "cli-byok" }
       ]
     }
   ],
@@ -202,6 +236,14 @@
           "sourceId": "mcp"
         }
       ]
+    },
+    {
+      "question": "Can GitHub Copilot use locally run models?",
+      "answer": "GitHub lists Local BYOK for VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK. Copilot CLI specifically supports local Ollama, vLLM and Foundry Local endpoints; its models must support tool calling and streaming. CLI offline mode prevents contact with GitHub, but a remote provider still receives prompts and code context. Organization policy can disable Local BYOK in IDEs for Business/Enterprise users. Confirm the client and policy; no account or model was tested.",
+      "sourceRefs": [
+        { "toolSlug": "github-copilot", "sourceId": "byok" },
+        { "toolSlug": "github-copilot", "sourceId": "cli-byok" }
+      ]
     }
   ],
   "verdict": "Start here if changing the team workflow is a larger cost than changing the assistant. Check seat policies before buying individual subscriptions.",
@@ -211,7 +253,8 @@
   "dependencies": [],
   "gaps": [
     "Verify the exact Copilot plan, personal training opt-out and organization or enterprise privacy policies for the account under review; no account settings were inspected.",
-    "Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the published training-use policy is not a complete retention or legal assessment."
+    "Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the published training-use policy is not a complete retention or legal assessment.",
+    "Confirm the selected Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
   ],
   "changes": [
     {
@@ -229,6 +272,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added official Copilot training-use policy boundaries for individual and organization plans; account settings, model retention and legal review remain open."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added GitHub's client-side Local BYOK and Copilot CLI offline/local-model boundaries; client, organization policy and actual inference remain untested."
     }
   ],
   "commercial": {

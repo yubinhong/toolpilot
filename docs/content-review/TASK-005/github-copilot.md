@@ -1,8 +1,8 @@
 # GitHub Copilot evidence pack
 
-Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
+Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 4. Digest: `1421ce2cd9d849b23efa1eb87633140adec4afb262908fd2fd1e794949a5a132`.
+Revision: 5. Digest: `b99704e15f5c690dcc048e1f4a8f7b56468b39d9c743720d4515e917e2a57587`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -18,6 +18,10 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Managing GitHub Copilot policies as an individual subscriber](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies) — GitHub Docs; accessed 2026-09-27
 
+- [Bring your own key for GitHub Copilot](https://docs.github.com/en/copilot/concepts/models/bring-your-own-key) — GitHub Docs; accessed 2026-09-28
+
+- [Using your own LLM models in GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/use-byok-models) — GitHub Docs; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: IDE assistance and GitHub features vary by plan Sources: product; checked: 2026-09-27.
@@ -26,15 +30,15 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
-- **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Local model inference**: GitHub lists client-side Local BYOK in VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK. This differs from Enterprise BYOK, which is configured server-side and still uses the Copilot API. Copilot CLI documents local Ollama, vLLM and Foundry Local-compatible endpoints; models need tool calling and streaming. Offline mode prevents GitHub contact, but a remote provider still receives prompts and code context. Business/Enterprise policy can disable Local BYOK in IDEs. No account, model or inference path was tested. Sources: byok, cli-byok; checked: 2026-09-28.
 
 - **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **MCP support**: Copilot Chat documents MCP servers for IDE use; GitHub lists VS Code 1.99+ as a prerequisite and requires organization policy enablement for Business or Enterprise members. Sources: mcp; checked: 2026-09-27.
 
-## MCP evidence blocks
+## Source-bound evidence blocks
 
-This draft now includes 1 source-backed documented strengths, 2 documented constraints and 2 FAQs. These are vendor-documentation facts awaiting owner review, not hands-on results.
+This draft now includes 2 source-backed documented strengths, 3 documented constraints and 3 FAQs. These are vendor-documentation facts awaiting owner review, not hands-on results.
 
 ## Pricing basis
 
@@ -54,6 +58,7 @@ Inventory organization policies and supported editor features before switching. 
 
 - Verify the exact Copilot plan, personal training opt-out, and organization or enterprise policies for the account under review; no account settings were inspected.
 - Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the public training-use policy is not a complete retention or legal assessment.
+- Confirm the selected Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.
 
 ## Owner checklist
 

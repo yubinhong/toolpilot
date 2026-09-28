@@ -37,12 +37,13 @@
   },
   {
     "path": "/tools/github-copilot/",
-    "revision": 4,
-    "digest": "1421ce2cd9d849b23efa1eb87633140adec4afb262908fd2fd1e794949a5a132",
+    "revision": 5,
+    "digest": "b99704e15f5c690dcc048e1f4a8f7b56468b39d9c743720d4515e917e2a57587",
     "state": "in-review",
     "gaps": [
       "Verify the exact Copilot plan, personal training opt-out and organization or enterprise privacy policies for the account under review; no account settings were inspected.",
-      "Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the published training-use policy is not a complete retention or legal assessment."
+      "Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the published training-use policy is not a complete retention or legal assessment.",
+      "Confirm the selected Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
     ]
   },
   {
@@ -89,21 +90,23 @@
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 7,
-    "digest": "1851503e1225e92e6ecb072e348160cb5245c1d3d33e9ad73120cd5d6656149a",
+    "revision": 8,
+    "digest": "0b14649a89642303481de6b22ef57c36a2900074d154d2121bb406f4322255fd",
     "state": "in-review",
     "gaps": [
-      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
     ]
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 10,
-    "digest": "91e4c8e08fb22d47fa4908d9708f6d65ffb629ef107abea8df954d611f98414b",
+    "revision": 11,
+    "digest": "5931d77eb06b103d190a97412db168ee37f9f9ae53f4c515cedb119b5b611edd",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
-      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
     ]
   },
   {
@@ -124,12 +127,13 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 10,
-    "digest": "7952739e779f0309325405d170d819c04ef45f804f0da789d42a4a8f02d7cfba",
+    "revision": 11,
+    "digest": "4046189990f0e96c025485ad92bf6852594f3531af5700d75a3593dc3f941c8d",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
-      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
     ]
   },
   {
@@ -141,11 +145,12 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 7,
-    "digest": "7be6f8f7e095365f91ea0b80975feb38716c5a8e355ca2e6494234db0642b24c",
+    "revision": 8,
+    "digest": "2678305ce02a0d1caf4162e73d5d00803f1683cc3482c53cc6ce88ace471e852",
     "state": "in-review",
     "gaps": [
-      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
     ]
   },
   {
@@ -166,11 +171,12 @@
   },
   {
     "path": "/compare/cursor-vs-github-copilot/",
-    "revision": 6,
-    "digest": "5d871702a04302e82e5b97e5b86deb4331e14762db3a801b932df82cce282bd2",
+    "revision": 7,
+    "digest": "0d80e5375977c4c0f33dad23e888f2d9f354b850a1da410286953459373a1f09",
     "state": "in-review",
     "gaps": [
-      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
     ]
   },
   {

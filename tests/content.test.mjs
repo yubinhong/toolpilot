@@ -338,7 +338,6 @@ test('n8n portability, license and self-hosting evidence preserves documented li
   assert.equal(guide?.revision, 10);
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 26);
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
@@ -528,7 +527,7 @@ test('GitHub Copilot training-use policy distinguishes individual opt-out from o
   const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');
   const fact = record?.facts.find(item => item.key === 'privacy');
   assert.ok(record);
-  assert.equal(record.revision, 4);
+  assert.equal(record.revision, 5);
   assert.equal(fact?.checkedAt, '2026-09-27');
   assert.deepEqual(fact?.sourceIds, ['model-hosting', 'individual-policies']);
   assert.equal(fact?.value, "GitHub's docs say that, starting April 24, 2026, interactions from Copilot Free, Pro, Pro+ and Max—including inputs, outputs, code snippets and associated context—may be used to train and improve models, with a personal opt-out. GitHub says Business and Enterprise customer data is not used for model training under its policy and Data Protection Agreement. This covers training use only; it does not establish the selected model's retention, this account's setting, organization controls or legal suitability.");
@@ -538,6 +537,62 @@ test('GitHub Copilot training-use policy distinguishes individual opt-out from o
   assert.ok(record.gaps.some(gap => gap.includes('model-specific hosting and retention')));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
+});
+test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is explicit',() => {
+  const record=content.find(item=>item.kind==='tools'&&item.slug==='github-copilot');
+  const fact=record?.facts.find(item=>item.key==='localModels');
+  assert.ok(record);
+  assert.equal(record.revision,5);
+  assert.equal(record.updatedAt,'2026-09-28');
+  assert.equal(fact?.checkedAt,'2026-09-28');
+  assert.deepEqual(fact?.sourceIds,['byok','cli-byok']);
+  for(const [id,url] of Object.entries({
+    byok:'https://docs.github.com/en/copilot/concepts/models/bring-your-own-key',
+    'cli-byok':'https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/use-byok-models',
+  })) {
+    assert.equal(record.sources.find(source=>source.id===id)?.url,url);
+    assert.equal(record.sources.find(source=>source.id===id)?.accessedAt,'2026-09-28');
+  }
+  assert.match(fact?.value??'',/VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK/);
+  assert.match(fact?.value??'',/client-side/);
+  assert.match(fact?.value??'',/separate from Enterprise BYOK/);
+  assert.match(fact?.value??'',/server-side for licensed members/);
+  assert.match(fact?.value??'',/Ollama, vLLM and Foundry Local/);
+  assert.match(fact?.value??'',/tool calling and streaming/);
+  assert.match(fact?.value??'',/COPILOT_OFFLINE=true/);
+  assert.match(fact?.value??'',/remote provider still receives prompts and code context/);
+  assert.match(fact?.value??'',/full isolation requires a provider on the local host or within the same isolated environment/);
+  assert.match(fact?.value??'',/Business\/Enterprise organization policies can disable Local BYOK in IDEs/);
+  assert.match(fact?.value??'',/no model, client or policy was tested/);
+  const dependents=content.filter(item=>item.kind!=='tools'&&item.dependencies.some(dependency=>dependency.slug==='github-copilot'));
+  assert.deepEqual(dependents.map(item=>`${item.kind}/${item.slug}`).sort(),[
+    'alternatives/claude-code',
+    'alternatives/cursor',
+    'alternatives/windsurf',
+    'best/ai-coding-tools-for-solo-founders',
+    'compare/claude-code-vs-github-copilot',
+    'compare/cursor-vs-github-copilot',
+  ]);
+  for(const decision of dependents) {
+    const dependency=decision.dependencies.find(item=>item.slug==='github-copilot');
+    assert.equal(dependency.revision,record.revision,`${decision.slug} Copilot revision`);
+    assert.equal(dependency.digest,contentDigest(record),`${decision.slug} Copilot digest`);
+    const faq=decision.faqs.find(item=>item.question==='Can GitHub Copilot use locally run models?');
+    assert.ok(faq,`${decision.slug} has the local BYOK FAQ`);
+    assert.deepEqual(faq.sourceRefs,[
+      {toolSlug:'github-copilot',sourceId:'byok'},
+      {toolSlug:'github-copilot',sourceId:'cli-byok'},
+    ]);
+    assert.match(faq.answer,/prompts and code context still reach a remote provider/);
+    assert.ok(decision.gaps.some(gap=>gap.includes('no account, policy, model or inference path was tested')));
+    assert.equal(decision.review.state,'in-review');
+    assert.equal(decision.review.owner,null);
+    assert.equal(isIndexable(decision,content),false);
+  }
+  assert.equal(record.review.state,'in-review');
+  assert.equal(record.review.owner,null);
+  assert.equal(isIndexable(record,content),false);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,25);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
@@ -629,7 +684,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'||record.slug==='cline'||record.slug==='cursor'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'?5:record.slug==='cline'||record.slug==='cursor'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);
