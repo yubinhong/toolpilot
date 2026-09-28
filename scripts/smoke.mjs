@@ -26,6 +26,13 @@ if (profile === 'legacy') {
     }
   }));
   try {
+    const toolsQueryPath = '/tools/?category=ai-coding&free=true&api=true';
+    const toolsQuery = await get(toolsQueryPath);
+    const toolsQueryHtml = await toolsQuery.text();
+    const toolsQueryRobots = toolsQueryHtml.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
+    if (toolsQuery.status !== 200) throw new Error('tools query URL must return HTTP 200');
+    if (!/content="noindex, follow"/.test(toolsQueryRobots)) throw new Error('tools query URL must remain noindex, follow');
+    if (!toolsQueryHtml.includes(`rel="canonical" href="${getSiteUrl()}/tools/"`)) throw new Error('tools query URL canonical mismatch');
     const sitemap = await get('/sitemap.xml'); const xml = await sitemap.text();
     if (sitemap.status !== 200) throw new Error('sitemap not HTTP 200');
     const actual = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).sort();

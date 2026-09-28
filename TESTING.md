@@ -23,7 +23,7 @@ Node 22（.nvmrc）、npm 锁文件恢复。核心不变量：历史快照保留
 | npm run build | 内容校验 → Next 静态导出 → 生成 `out/_headers` 共享保护头与逐路由 CSP hash → 产物元数据/链接/客户端边界/安全头覆盖检查 |
 | npm run artifacts:check | 检查当前实际存在的 out/，不替代新构建 |
 | npm run cloudflare:build | lint → typecheck → test → build；安全审计是独立必需门槛 |
-| npm run smoke | 默认 current 契约；目标由 SMOKE_BASE_URL 指定 |
+| npm run smoke | 默认 current 契约；目标由 SMOKE_BASE_URL 指定。检查注册路由、robots、sitemap、真实 404，以及 `/tools/` 多参数查询 URL 的 noindex/canonical |
 | SMOKE_PROFILE=legacy npm run smoke | 仅用于尚未整改部署的旧生产版本 |
 | npm run release:check | 必须干净工作区、完整 SHA、无凭据 GitHub origin、发布文件已跟踪 |
 | git diff --check | 差异空白检查，另需人工审查新文件 |

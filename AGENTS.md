@@ -90,7 +90,7 @@
 | 静态检查 | `npm run lint` | 使用仓库中的 ESLint flat config |
 | 类型检查 | `npm run typecheck` | 使用 `tsconfig.json`，禁止绕过错误 |
 | 单元测试 | `npm test` | Node 22 内置 test runner，当前覆盖目录数据和发布门槛不变量 |
-| HTTP smoke | `npm run smoke` | 检查本地或 `SMOKE_BASE_URL` 指定的公开静态站点 |
+| HTTP smoke | `npm run smoke` | 检查注册路由、robots、sitemap、真实 404，并确认 `/tools/` 多参数查询 URL 保持 noindex 且 canonical 指向无参数路由 |
 | 发布前检查 | `npm run release:check` | 本地/审核提交时必须在 Node 22、完整 HEAD SHA、无凭据 GitHub origin、干净工作区和发布文件均被跟踪时通过；不替代 Cloudflare Dashboard Git Integration 构建 |
 | Cloudflare Pages 构建 | `npm run cloudflare:build` | Cloudflare Pages Git Integration 使用；执行 lint、typecheck、test 和静态构建 |
 | 集成/E2E | `TBD` | 尚未引入浏览器测试框架；页面 smoke test 用本地 HTTP 检查替代 |

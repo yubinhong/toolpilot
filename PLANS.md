@@ -750,3 +750,11 @@ Initial P0 technical tranche verification (2026-09-27): `npm run cloudflare:buil
 - [x] Release acceptance — commit `51e0c84` passed clean detached-worktree `npm run release:check`, GitHub CI `36483163254`, Cloudflare Pages check/deployment `fef3fb74-254d-441d-8d58-dd2091026ad1`, and preview/production current smoke. Both public hosts returned 200 for all four changed routes and rendered the Devin Local source and FAQs; all four remained `noindex, follow` and outside the sitemap. Wrangler's deployment-list lookup was unavailable without `CLOUDFLARE_API_TOKEN`; successful Pages check and public responses are the deployment evidence. No Owner approval or account/model/migration test is claimed.
 - Owner boundary: the local agent harness does not prove local model inference or its provider/data route. The migration wizard has not been run; exact page-set and formal editorial approval remain open under TODO-005/TODO-309.
 - Rollback: restore Windsurf revision 6 and dependent revisions 19/18/10, prior TASK-005 manifest/handoff and evidence pack, paired tests/artifact/task notes; rebuild and repeat content review/current-profile smoke. No route, schema or data migration is involved.
+
+### TODO-312 — Directory query URL indexability smoke coverage — 2026-09-28
+
+- Goal: protect the current `/tools/` static route from accidental indexing of query variants while filter dimensions and demand remain unapproved.
+- Scope: add a current-profile smoke request with multiple candidate query parameters and assert HTTP 200, `noindex, follow`, and a canonical URL without query parameters. Do not implement filter behavior or expose unreviewed facts through `publicTool`.
+- [x] Local acceptance — 2026-09-28: Node 22 Cloudflare build passed lint, typecheck, 100 tests and artifact checks (99 pages / 4 indexable URLs); high-severity audit found 0 vulnerabilities; local current smoke, `node --check scripts/smoke.mjs` and `git diff --check` passed. The query URL assertions require HTTP 200, `noindex, follow` and canonical `/tools/`.
+- [ ] Release acceptance: commit and clean-worktree readiness, CI/Pages checks, and preview/production current smoke with the new query assertion.
+- Rollback: revert the smoke assertion and its matching task/testing notes. No page data, route, schema, indexability or sitemap behavior changes.

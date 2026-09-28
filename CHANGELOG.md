@@ -73,6 +73,7 @@
 ### Added
 
 - Add noindex `/mcp/` and `/self-hosted/` evidence overview routes to global navigation. Render source-bound draft facts, exact official source links and explicit review status; defer deep directories and filters to P2.
+- Extend current-profile smoke coverage for `/tools/` query URLs: require HTTP 200, `noindex, follow`, and canonicalization to the parameter-free directory route. This tests indexing policy only; no filter behavior was added.
 - Record Continue's Cursor acquisition/code-availability statement, CLI access requirements and conflicting README/JetBrains Marketplace lifecycle claims. Refresh its profile and two dependent decision drafts plus the exact TASK-006 review manifest; preserve unresolved package support, security response, billing and data terms. All records remain in-review/noindex.
 
 - 初始化 ToolPilot 项目上下文、产品草案、架构观察、安全边界、测试阻塞和运行手册。
