@@ -259,13 +259,14 @@ test('Aider Docker support distinguishes a containerized client from local model
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
-test('n8n license and self-hosting evidence preserves vendor examples and unresolved deployment boundaries',() => {
+test('n8n portability, license and self-hosting evidence preserves documented limits and unresolved deployment boundaries',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'n8n');
   const privacy = record?.facts.find(item => item.key === 'privacy');
   const deployment = record?.facts.find(item => item.key === 'deployment');
   const license = record?.facts.find(item => item.key === 'license');
+  const portability = record?.facts.find(item => item.key === 'portability');
   assert.ok(record);
-  assert.equal(record.revision, 4);
+  assert.equal(record.revision, 5);
   assert.deepEqual(privacy?.sourceIds, ['privacy']);
   assert.match(privacy?.value ?? '', /Usage Data for self-hosted deployments unless users opt out/);
   assert.match(privacy?.value ?? '', /workflow usage metrics and enabled integrations/);
@@ -283,8 +284,21 @@ test('n8n license and self-hosting evidence preserves vendor examples and unreso
   assert.match(license?.value ?? '', /hosting and managing clients' workflows and credentials on your own instance requires Enterprise/);
   assert.match(license?.value ?? '', /embedding n8n to expose workflows to customers requires a white-labeled Embed license/);
   assert.match(license?.value ?? '', /do not determine a specific deployment's terms/);
+  assert.deepEqual(portability?.sourceIds, ['workflow-export', 'backup-restore']);
+  assert.equal(portability?.checkedAt, '2026-09-28');
+  assert.match(portability?.value ?? '', /workflow JSON download\/import/);
+  assert.match(portability?.value ?? '', /packages carry workflow folders, projects and references but remain in Preview/);
+  assert.match(portability?.value ?? '', /not users\/roles, execution history\/logs, variables or instance settings/);
+  assert.match(portability?.value ?? '', /credential names\/IDs and cURL-imported auth headers/);
+  assert.match(portability?.value ?? '', /No cross-instance migration or restore was tested/);
+  assert.equal(record.sources.find(item => item.id === 'workflow-export')?.url, 'https://docs.n8n.io/build/manage-workflows/export-and-import.md');
+  assert.equal(record.sources.find(item => item.id === 'backup-restore')?.url, 'https://docs.n8n.io/deploy/host-n8n/keep-n8n-running/backup-and-restore.md');
+  assert.equal(record.sources.find(item => item.id === 'workflow-export')?.accessedAt, '2026-09-28');
+  assert.equal(record.sources.find(item => item.id === 'backup-restore')?.accessedAt, '2026-09-28');
+  assert.ok(record.faqs.some(faq => faq.question.includes('complete n8n instance') && faq.sourceRefs.some(ref => ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
   assert.ok(record.gaps.some(gap => gap.includes('telemetry opt-out')));
   assert.ok(record.gaps.some(gap => gap.includes('no specific use case, agreement or entitlement was reviewed')));
+  assert.ok(record.gaps.some(gap => gap.includes('No cross-instance migration or restore was tested')));
   const selfHostedEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'n8n');
   assert.equal(selfHostedEntry?.fact.key, 'deployment');
   assert.match(selfHostedEntry?.fact.value ?? '', /TLS termination and handle encryption at rest/);
@@ -292,7 +306,7 @@ test('n8n license and self-hosting evidence preserves vendor examples and unreso
     const decision = content.find(item => item.slug === slug);
     const dependency = decision?.dependencies.find(item => item.slug === 'n8n');
     assert.ok(dependency);
-    assert.equal(dependency.revision, 4);
+    assert.equal(dependency.revision, 5);
     assert.equal(dependency.digest, contentDigest(record));
     assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'privacy')));
     assert.equal(decision?.review.state, 'in-review');
@@ -300,10 +314,13 @@ test('n8n license and self-hosting evidence preserves vendor examples and unreso
   }
   const comparison = content.find(item => item.slug === 'make-vs-n8n');
   const guide = content.find(item => item.slug === 'workflow-automation-selection');
-  assert.equal(comparison?.revision, 9);
+  assert.equal(comparison?.revision, 10);
   assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
-  assert.equal(guide?.revision, 8);
+  assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
+  assert.equal(guide?.revision, 9);
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
+  assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 27);
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });

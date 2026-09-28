@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "How to choose a workflow automation platform",
   "summary": "Compare an automation workflow by its real execution pattern, billing unit, hosting needs and recovery path.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -90,6 +90,14 @@
       ]
     },
     {
+      "question": "What should I include in an n8n migration plan?",
+      "answer": "n8n supports workflow JSON export/import and an n8n CLI package path that is still in Preview. CLI backups cover workflows and credentials, not users/roles, execution history/logs, variables or instance settings such as the encryption key. Full recovery may also require the `.n8n` folder, database, external storage and custom nodes. Protect exports because workflow JSON may expose credential names or authentication headers; test the exact move before relying on it.",
+      "sourceRefs": [
+        { "toolSlug": "n8n", "sourceId": "workflow-export" },
+        { "toolSlug": "n8n", "sourceId": "backup-restore" }
+      ]
+    },
+    {
       "question": "How should I interpret Make's published privacy and retention statements?",
       "answer": "Make's privacy notice describes application-related usage data; its Privacy & GDPR page says personal data can be requested for deletion once no longer needed, and its security page states that log data is kept for 30 days by default with an Enterprise extension option. These vendor-wide statements do not identify a workspace's settings, all workflow-data categories or purge timing.",
       "sourceRefs": [
@@ -125,8 +133,8 @@
     },
     {
       "slug": "n8n",
-      "revision": 4,
-      "digest": "061a339f8ccc934add0d00ad4ebbd894854d40a55af124cfb00be5228d627c2b"
+      "revision": 5,
+      "digest": "8d8136c4b70dd4708e44dcf48a79ecfa6d25d8aad3b5f395b696c3eef972cd3b"
     }
   ],
   "relatedLinks": [
@@ -138,7 +146,8 @@
   "gaps": [
     "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes and whether a selectable region meets the intended residency requirement; verify workspace-specific data scope, configured log retention, connected-provider terms, deletion timing, applicable DPA and representative workflow behavior. No account, legal or hands-on workflow review was performed.",
     "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
-    "Check the exact client-facing or embedded service against n8n's current license and plan; published use-case examples do not determine an individual deployment's entitlements."
+    "Check the exact client-facing or embedded service against n8n's current license and plan; published use-case examples do not determine an individual deployment's entitlements.",
+    "Verify the target n8n instance scope and restore behavior before migration; workflow packages and CLI backups have distinct documented limits, and no move or full restore was tested."
   ],
   "changes": [
     {
@@ -172,6 +181,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed n8n dependency and added its official client-hosting/embedding license examples; exact use-case fit and owner review remain open."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added source-backed n8n workflow export and instance-recovery boundaries; migration and full restore remain untested."
     }
   ],
   "commercial": {

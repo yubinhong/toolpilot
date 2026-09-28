@@ -237,6 +237,29 @@ for (const record of content.filter(item => item.kind !== 'tools' && item.depend
   if (!html.includes(escapeHtml(billingFaq.answer))) failures.push(`/${record.kind}/${record.slug}/: Continue billing FAQ is missing from generated HTML`);
   if (!html.includes('https://continue.dev/terms-conditions/')) failures.push(`/${record.kind}/${record.slug}/: Continue Terms source is missing from generated HTML`);
 }
+const n8nProfile = tools.get('n8n');
+const n8nPortability = n8nProfile?.facts.find(fact => fact.key === 'portability');
+if (n8nProfile && n8nPortability) {
+  const html = readFileSync(join('out','/tools/n8n/','index.html'),'utf8');
+  if (!html.includes(escapeHtml(n8nPortability.value))) failures.push('/tools/n8n/: workflow-portability fact is missing from generated HTML');
+  for (const sourceId of n8nPortability.sourceIds) {
+    const source = n8nProfile.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/tools/n8n/: portability source ${sourceId} is missing from generated HTML`);
+  }
+}
+for (const record of content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'n8n'))) {
+  const portabilityFaq = record.faqs?.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export'));
+  if (!portabilityFaq || !portabilityFaq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')) {
+    failures.push(`/${record.kind}/${record.slug}/: n8n portability evidence FAQ is missing`);
+    continue;
+  }
+  const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');
+  if (!html.includes(escapeHtml(portabilityFaq.answer))) failures.push(`/${record.kind}/${record.slug}/: n8n portability FAQ is missing from generated HTML`);
+  for (const sourceId of ['workflow-export','backup-restore']) {
+    const source = n8nProfile?.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/${record.kind}/${record.slug}/: n8n portability source ${sourceId} is missing from generated HTML`);
+  }
+}
 for (const record of content.filter(item => item.kind === 'compare')) {
   const facts = record.dependencies.flatMap(dependency => {
     const fact = tools.get(dependency.slug)?.facts.find(item => item.key === 'mcp');

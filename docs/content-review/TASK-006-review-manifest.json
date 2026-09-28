@@ -26,13 +26,14 @@
   },
   {
     "path": "/tools/n8n/",
-    "revision": 4,
-    "digest": "061a339f8ccc934add0d00ad4ebbd894854d40a55af124cfb00be5228d627c2b",
+    "revision": 5,
+    "digest": "8d8136c4b70dd4708e44dcf48a79ecfa6d25d8aad3b5f395b696c3eef972cd3b",
     "state": "in-review",
     "gaps": [
       "Confirm the exact deployment and feature entitlements against the current license and plan; public vendor guidance distinguishes internal use from hosting client workflows or embedding, but no specific use case, agreement or entitlement was reviewed. Confirm regional checkout price before a business recommendation.",
       "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile.",
-      "Verify the selected instance's telemetry opt-out, connected-service and model-provider data terms, and actual TLS/at-rest encryption configuration; no account or deployment was inspected."
+      "Verify the selected instance's telemetry opt-out, connected-service and model-provider data terms, and actual TLS/at-rest encryption configuration; no account or deployment was inspected.",
+      "The documented workflow JSON, CLI package and CLI backup methods have different scopes; confirm the exact projects, users, execution data, variables, secrets, instance settings, external storage and custom-node requirements for a move. No cross-instance migration or restore was tested."
     ]
   },
   {
@@ -47,14 +48,15 @@
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 9,
-    "digest": "54284b96d8aa6360a417e93c7e30772ee718c1d67578e2d4c12d897a458e4803",
+    "revision": 10,
+    "digest": "0e708ea08d04a719e1099b92b49702f0f749e6f68a74c58dd04070b622ced3a7",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
       "Confirm the intended n8n deployment and feature entitlement against the current license and plan; vendor guidance distinguishes internal use from client-workflow hosting or embedding, but no specific use case or agreement was reviewed. Estimate self-hosted operating cost separately.",
       "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
-      "Verify the Make workspace's workflow and connected-provider data scope, configured log categories/retention, deletion timing and applicable DPA; published vendor-wide privacy statements do not establish account settings or legal suitability."
+      "Verify the Make workspace's workflow and connected-provider data scope, configured log categories/retention, deletion timing and applicable DPA; published vendor-wide privacy statements do not establish account settings or legal suitability.",
+      "Verify which n8n workflows, credentials, projects, users, execution history, variables, instance settings and external storage must move; the official export/backup paths cover different scopes and no cross-instance migration was tested."
     ]
   },
   {
@@ -116,13 +118,14 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 8,
-    "digest": "397fa22f8f5713ce326c75059e17247c6bf3493bcc6a7891090dfa5f1dcce9cf",
+    "revision": 9,
+    "digest": "bbf9d86fe2a404896457c3a8ca8b7ed60ab4065f22dbbeb5eeeacbeb3ae54625",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes and whether a selectable region meets the intended residency requirement; verify workspace-specific data scope, configured log retention, connected-provider terms, deletion timing, applicable DPA and representative workflow behavior. No account, legal or hands-on workflow review was performed.",
       "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
-      "Check the exact client-facing or embedded service against n8n's current license and plan; published use-case examples do not determine an individual deployment's entitlements."
+      "Check the exact client-facing or embedded service against n8n's current license and plan; published use-case examples do not determine an individual deployment's entitlements.",
+      "Verify the target n8n instance scope and restore behavior before migration; workflow packages and CLI backups have distinct documented limits, and no move or full restore was tested."
     ]
   }
 ]
