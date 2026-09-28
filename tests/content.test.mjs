@@ -137,6 +137,36 @@ test('Replit privacy and geography facts keep workspace and published-app reside
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('Bolt privacy policy draft records prospective training use without claiming account settings',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'bolt-new');
+  const fact = record?.facts.find(item => item.key === 'privacy');
+  const source = record?.sources.find(item => item.id === 'privacy');
+  const faq = record?.faqs.find(item => item.question === 'Can Bolt use project content to develop AI models?');
+
+  assert.ok(record);
+  assert.ok(fact?.value);
+  assert.deepEqual(fact.sourceIds, ['privacy']);
+  assert.equal(fact.checkedAt, '2026-09-28');
+  assert.equal(source?.url, 'https://stackblitz.com/privacy-policy');
+  assert.equal(source?.accessedAt, '2026-09-28');
+  assert.match(fact.value, /no earlier than 2026-10-07/);
+  assert.match(fact.value, /Forge content.*2026-09-14/);
+  assert.match(faq?.answer ?? '', /this account's effective date, region, agreement and settings were not checked/);
+  assert.match(faq?.answer ?? '', /Forge content.*2026-09-14/);
+  assert.ok(record.gaps.some(gap => gap.includes("account's applicable Terms effective date")));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'bolt-new'));
+  assert.equal(dependents.length, 6);
+  for (const dependent of dependents) {
+    const dependency = dependent.dependencies.find(item => item.slug === 'bolt-new');
+    assert.equal(dependency.revision, record.revision);
+    assert.equal(dependency.digest, contentDigest(record));
+    assert.equal(dependent.review.state, 'in-review');
+    assert.equal(isIndexable(dependent, content), false);
+  }
+});
 test('Aider analytics policy distinguishes opt-in telemetry from model-provider data handling',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'aider');
   const fact = record?.facts.find(item => item.key === 'privacy');

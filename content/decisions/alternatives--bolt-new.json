@@ -3,8 +3,8 @@
   "kind": "alternatives",
   "title": "Bolt.new alternatives",
   "summary": "Bolt.new alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 8,
-  "updatedAt": "2026-09-27",
+  "revision": 9,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "bolt-new",
-      "revision": 2,
-      "digest": "86e7fef118e24636f8bb5a9986a63a5e1776825ee02b30df2b0531dccbde2ead"
+      "revision": 3,
+      "digest": "2f51a00e9a6b3db59aa381305856f79ea6eb90f0ded04faa12f5a8b73d23cb95"
     },
     {
       "slug": "lovable",
@@ -98,6 +98,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed Replit source dependency after official privacy and geography evidence; owner re-review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the Bolt dependency after its privacy-policy evidence changed; exact owner review remains pending."
     }
   ],
   "commercial": {

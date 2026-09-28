@@ -3,8 +3,8 @@
   "kind": "tools",
   "title": "Bolt.new",
   "summary": "An AI builder with a documented JavaScript web-app path.",
-  "revision": 2,
-  "updatedAt": "2026-09-27",
+  "revision": 3,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -37,6 +37,13 @@
       "title": "GitHub for version control",
       "publisher": "Bolt",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "privacy",
+      "url": "https://stackblitz.com/privacy-policy",
+      "title": "Privacy Policy",
+      "publisher": "StackBlitz / Bolt",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -53,9 +60,11 @@
     {
       "key": "privacy",
       "label": "Privacy / data handling",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "The policy's general rule says eligible Bolt AI content may be used for model development and de-identified dataset licensing unless opted out, starting no earlier than 2026-10-07 or a later account Terms date. Exception: Forge content created or generated from 2026-09-14 may be eligible under separate affirmative consent. Regional and account exclusions apply.",
+      "sourceIds": [
+        "privacy"
+      ],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -135,18 +144,22 @@
   ],
   "cons": [
     { "text": "The documented full-stack web-app scope is JavaScript-based; confirm support before choosing a project built around another language or framework.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
-    { "text": "GitHub sync should be rehearsed as a handoff; the integration docs describe repository sync rather than an in-product merge workflow.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "git" }] }
+    { "text": "GitHub sync should be rehearsed as a handoff; the integration docs describe repository sync rather than an in-product merge workflow.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "git" }] },
+    { "text": "The published privacy policy describes prospective model-development and dataset-licensing uses for eligible Bolt AI content. Effective dates, Forge consent, account exclusions and opt-out controls must be checked against the account; none were inspected.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "privacy" }] }
   ],
   "faqs": [
     { "question": "Can Bolt start from an existing repository?", "answer": "The official introduction describes importing an existing GitHub repository. Test a clean checkout and its external services before relying on the handoff.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }, { "toolSlug": "bolt-new", "sourceId": "git" }] },
-    { "question": "Does its documented web-app path cover every language?", "answer": "The documentation describes JavaScript-based web frameworks, so verify the exact framework and dependencies for your project.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] }
+    { "question": "Does its documented web-app path cover every language?", "answer": "The documentation describes JavaScript-based web frameworks, so verify the exact framework and dependencies for your project.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
+    { "question": "Can Bolt use project content to develop AI models?", "answer": "The policy says eligible Bolt AI inputs, outputs, related interaction data and project content processed by Bolt AI features may be used for model development and de-identified dataset licensing unless opted out. For non-Forge content, use starts no earlier than 2026-10-07 or a later account Terms date. Forge content created or generated from 2026-09-14 may be eligible under separate affirmative consent. It excludes EEA, UK and Switzerland accounts and organization-managed accounts unless an administrator enables the uses. The policy was checked on 2026-09-28; this account's effective date, region, agreement and settings were not checked.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "privacy" }] }
   ],
   "verdict": "Shortlist Bolt for a prototype that fits its documented technology scope. Validate the export and deployment steps before choosing a paid tier.",
   "bestFor": "Builders evaluating JavaScript web applications",
   "notFor": "Projects assuming every backend language is supported",
   "migration": "Rehearse the GitHub handoff, then build from a clean checkout. Inventory database, hosting and secret configuration separately from the code.",
   "dependencies": [],
-  "gaps": [],
+  "gaps": [
+    "Verify the account's applicable Terms effective date, region, organization-managed status, model-development opt-out and any Bolt Forge consent; no account settings or agreement were inspected."
+  ],
   "changes": [
     {
       "date": "2026-09-27",
@@ -155,6 +168,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added cited strengths, constraints and FAQs; owner approval remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added the current privacy policy's prospective model-development and dataset-licensing terms, effective-date and account-specific caveats; owner approval remains pending."
     }
   ],
   "commercial": {

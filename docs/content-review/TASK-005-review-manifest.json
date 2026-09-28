@@ -1,10 +1,12 @@
 [
   {
     "path": "/tools/bolt-new/",
-    "revision": 2,
-    "digest": "86e7fef118e24636f8bb5a9986a63a5e1776825ee02b30df2b0531dccbde2ead",
+    "revision": 3,
+    "digest": "2f51a00e9a6b3db59aa381305856f79ea6eb90f0ded04faa12f5a8b73d23cb95",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's applicable Terms effective date, region, organization-managed status, model-development opt-out and any Bolt Forge consent; no account settings or agreement were inspected."
+    ]
   },
   {
     "path": "/tools/claude-code/",
@@ -71,8 +73,8 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 8,
-    "digest": "c40494c55c0c2da9c498fd553081e3023c513082b69ba9b4c3ca527d5c732f29",
+    "revision": 9,
+    "digest": "c2fa8f7f988d7cf80d5b773bbe8f3472aeae3241db1bdc57923bb2a500c909dd",
     "state": "in-review",
     "gaps": []
   },
@@ -92,15 +94,15 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 8,
-    "digest": "1b64c86377d1480e7a76d26c906e465a9e781d512fef2c9acf0dfffb01853f81",
+    "revision": 9,
+    "digest": "8a7e22b544f233384b12a9c04b82a6312ebffa5a1b3287e7bbc94584be1fe1b9",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 8,
-    "digest": "fa3d4c1a40571e08a4734101f13c7e0b71626cb7cd76a1de7938860d8c6b02fb",
+    "revision": 9,
+    "digest": "235af04e37cd3391051388c64c26f1c46f792d0a55fc8ab346f249db50778763",
     "state": "in-review",
     "gaps": []
   },
@@ -113,8 +115,8 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 6,
-    "digest": "4e7bb93214905351a961a7ec32f0c6b02287165c3c3ccde8299f9f0810a776ff",
+    "revision": 7,
+    "digest": "618826a99e41c438312daacd127b56f4fc5a03327ba1bc0ccc217e8af7e8f49e",
     "state": "in-review",
     "gaps": []
   },
@@ -148,8 +150,8 @@
   },
   {
     "path": "/compare/lovable-vs-bolt/",
-    "revision": 3,
-    "digest": "72106c5164e17399ed18b7b15bc6672f3b73713ee0aa147ae995638b7138b200",
+    "revision": 4,
+    "digest": "17c374b97393175c48405d54def920e0cfad5122c36c295d2893072b653dba96",
     "state": "in-review",
     "gaps": []
   },
