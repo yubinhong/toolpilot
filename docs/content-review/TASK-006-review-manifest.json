@@ -40,18 +40,19 @@
   },
   {
     "path": "/tools/make/",
-    "revision": 7,
-    "digest": "d7d51e04ad9e514b6257ed22f86e7eba4fd872b938e051811fec2d6b263ca9e9",
+    "revision": 8,
+    "digest": "7cce1ae3dab0e98d23561b9298ea9ef09fb357ae2cc642670d53f05b105ac63a",
     "state": "in-review",
     "gaps": [
       "Confirm location-dependent checkout taxes and total; whether a customer-selectable region meets the intended account data-residency requirement; workspace-specific workflow and connected-provider data scope, configured log categories/periods, deletion response and purge timing; the applicable DPA/subprocessor list and legal suitability; and the exact organization resources that must be recoverable beyond an individual scenario blueprint.",
-      "A representative workflow has not been measured; credit use can vary by module and usage. No blueprint was imported, and exported scenarios were not inspected for actual secret values."
+      "A representative workflow has not been measured; credit use can vary by module and usage. No blueprint was imported, and exported scenarios were not inspected for actual secret values.",
+      "Confirm the required on-premises scope with Make: the reviewed Enterprise agent documents local-network HTTP access, not customer-hosted scenario execution or the complete workflow data path. No account, agent or network was inspected."
     ]
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 12,
-    "digest": "ac2384c6ee02c13afc756b982aee653bcfe9c9414fda27f6e163abb685e6c69b",
+    "revision": 13,
+    "digest": "1405a0f96d70b0ef92d970e9f184568bcf08aa7ee559a52543ff4977a32f0dfe",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
@@ -127,8 +128,8 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 11,
-    "digest": "685742a9cc08e7adb4d6769102b2516a44186beac944afd2640728ee1755004d",
+    "revision": 12,
+    "digest": "8a49e78ef8f2401f37b337ecefaf5c4f12cf5ca2bccc51cad61268a262734e9a",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes and whether a selectable region meets the intended residency requirement; verify workspace-specific data scope, configured log retention, connected-provider terms, deletion timing, applicable DPA and representative workflow behavior. No account, legal or hands-on workflow review was performed.",
