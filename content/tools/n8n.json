@@ -3,8 +3,8 @@
   "kind": "tools",
   "title": "n8n",
   "summary": "A workflow automation platform with cloud and self-hosting paths and execution-based cloud pricing.",
-  "revision": 3,
-  "updatedAt": "2026-09-27",
+  "revision": 4,
+  "updatedAt": "2026-09-28",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
   "testedAt": null,
@@ -14,12 +14,14 @@
     { "id": "pricing", "url": "https://n8n.io/pricing/", "title": "Plans and pricing", "publisher": "n8n", "accessedAt": "2026-09-27" },
     { "id": "hosting", "url": "https://docs.n8n.io/choose-how-to-use-n8n.md", "title": "Choose how to use n8n", "publisher": "n8n", "accessedAt": "2026-09-27" },
     { "id": "privacy", "url": "https://n8n.io/legal/privacy/", "title": "Privacy Policy", "publisher": "n8n", "accessedAt": "2026-09-27" },
-    { "id": "security", "url": "https://n8n.io/legal/security/", "title": "Security at n8n", "publisher": "n8n", "accessedAt": "2026-09-27" }
+    { "id": "security", "url": "https://n8n.io/legal/security/", "title": "Security at n8n", "publisher": "n8n", "accessedAt": "2026-09-27" },
+    { "id": "license", "url": "https://github.com/n8n-io/n8n/blob/master/LICENSE.md", "title": "Sustainable Use License", "publisher": "n8n", "accessedAt": "2026-09-28" },
+    { "id": "license-use-cases", "url": "https://support.n8n.io/article/can-i-use-your-license-for-my-use-case", "title": "Which license do I need for my use case?", "publisher": "n8n", "accessedAt": "2026-09-28" }
   ],
   "facts": [
     { "key": "workflow", "label": "Workflow", "value": "Connects applications and APIs in customizable, low-code workflows; supports custom nodes and AI functionality.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": true },
     { "key": "deployment", "label": "Deployment", "value": "Official docs describe n8n Cloud and self-hosted installation options such as npm and Docker. n8n's security guidance says operators must configure TLS termination and handle encryption at rest.", "sourceIds": ["product", "security"], "checkedAt": "2026-09-27", "critical": false },
-    { "key": "license", "label": "License model", "value": "Official documentation describes n8n as fair-code licensed; review the applicable license terms for the intended use.", "sourceIds": ["product"], "checkedAt": "2026-09-27", "critical": false },
+    { "key": "license", "label": "License model", "value": "n8n's repository license applies its Sustainable Use License to covered code and permits use or modification for the user's own internal business purposes or non-commercial/personal use; source files with .ee. in the filename or directory are excluded and require an applicable Enterprise license. n8n's support guidance says hosting and managing clients' workflows and credentials on your own instance requires Enterprise, while embedding n8n to expose workflows to customers requires a white-labeled Embed license. Consulting on a client's own internal instance does not itself require a commercial license for the consultant. These vendor examples do not determine a specific deployment's terms; confirm the exact use case and entitlements with n8n.", "sourceIds": ["license", "license-use-cases"], "checkedAt": "2026-09-28", "critical": false },
     { "key": "privacy", "label": "Privacy / data handling", "value": "n8n's Privacy Policy says it processes certain Usage Data for self-hosted deployments unless users opt out, including user identifiers, account settings, user events, workflow usage metrics and enabled integrations. It says users can object with future effect; an email address may be submitted for usage-related contact. This does not verify a specific instance's setting or data handled by connected services.", "sourceIds": ["privacy"], "checkedAt": "2026-09-27", "critical": false },
     { "key": "localModels", "label": "Local model inference", "value": null, "sourceIds": [], "checkedAt": null, "critical": false },
     { "key": "portability", "label": "Workflow portability", "value": null, "sourceIds": [], "checkedAt": null, "critical": false }
@@ -37,11 +39,12 @@
   ],
   "cons": [
     { "text": "Self-hosting requires an operator to own deployment and ongoing instance responsibilities; no deployment test was performed for this profile.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] },
-    { "text": "The vendor describes a fair-code license and separate plans, so verify current license terms and feature entitlements for the intended use.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] }
+    { "text": "n8n's Sustainable Use License limits use to internal business or non-commercial/personal purposes; its support guidance identifies separate commercial licenses for hosting client workflows or embedding n8n for customers.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "license" }, { "toolSlug": "n8n", "sourceId": "license-use-cases" }] }
   ],
   "faqs": [
     { "question": "Can n8n be self-hosted?", "answer": "Yes. Official docs list cloud and self-hosted options, including npm and Docker. Review the current license and plan terms before adopting it for a business use case.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] },
-    { "question": "What should I budget for n8n Cloud?", "answer": "Use the current plan page and confirm regional checkout terms; this draft's displayed amount is not a checkout quote.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "pricing" }] }
+    { "question": "What should I budget for n8n Cloud?", "answer": "Use the current plan page and confirm regional checkout terms; this draft's displayed amount is not a checkout quote.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "pricing" }] },
+    { "question": "Can a consultant host clients' workflows in their own n8n instance?", "answer": "n8n's support guidance says hosting and managing clients' workflows and credentials in your own instance requires an Enterprise license. Embedding n8n to expose workflows to customers requires a white-labeled Embed license. Consulting on a client's own internal instance does not itself require a commercial license for the consultant, while the client's needs depend on its use case. Confirm the exact model with n8n; this summary is vendor guidance, not a legal determination.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "license-use-cases" }] }
   ],
   "relatedLinks": [
     { "kind": "guides", "slug": "how-to-choose-a-developer-tool" },
@@ -52,8 +55,8 @@
   "notFor": "Teams that have not checked the fair-code terms or cannot own the chosen hosting path",
   "migration": "Export representative workflows and credentials separately. Test node availability, error handling, schedules and secrets in a non-production instance before cutover.",
   "dependencies": [],
-  "gaps": ["Confirm license compatibility, current feature entitlement and exact regional checkout price before a business recommendation.", "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile.", "Verify the selected instance's telemetry opt-out, connected-service and model-provider data terms, and actual TLS/at-rest encryption configuration; no account or deployment was inspected."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }, { "date": "2026-09-27", "summary": "Added current hosting source, cited strengths, constraints, FAQs and related guides; owner review remains pending." }, { "date": "2026-09-27", "summary": "Added official self-hosted telemetry and operator encryption responsibilities; instance configuration and connected-service data handling remain unverified." }],
+  "gaps": ["Confirm the exact deployment and feature entitlements against the current license and plan; public vendor guidance distinguishes internal use from hosting client workflows or embedding, but no specific use case, agreement or entitlement was reviewed. Confirm regional checkout price before a business recommendation.", "Self-hosting shifts infrastructure and security operations to the operator; no deployment test was performed for this profile.", "Verify the selected instance's telemetry opt-out, connected-service and model-provider data terms, and actual TLS/at-rest encryption configuration; no account or deployment was inspected."],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial official-source draft; exact revision awaits owner review." }, { "date": "2026-09-27", "summary": "Added current hosting source, cited strengths, constraints, FAQs and related guides; owner review remains pending." }, { "date": "2026-09-27", "summary": "Added official self-hosted telemetry and operator encryption responsibilities; instance configuration and connected-service data handling remain unverified." }, { "date": "2026-09-28", "summary": "Recorded the current Sustainable Use License and n8n's commercial-license examples for client hosting and embedding; use-case fit and entitlements remain unreviewed." }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

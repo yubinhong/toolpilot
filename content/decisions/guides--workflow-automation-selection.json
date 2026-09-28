@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "How to choose a workflow automation platform",
   "summary": "Compare an automation workflow by its real execution pattern, billing unit, hosting needs and recovery path.",
-  "revision": 7,
+  "revision": 8,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -83,6 +83,13 @@
       ]
     },
     {
+      "question": "What if the automation platform will host workflows for my customers?",
+      "answer": "n8n's support guidance says hosting and managing clients' workflows and credentials in your own instance requires Enterprise, while embedding n8n to expose workflows to customers requires a white-labeled Embed license. Consulting on a client's own internal instance does not itself require a commercial license for the consultant. Confirm the exact service and license with n8n; this is vendor guidance, not a legal determination.",
+      "sourceRefs": [
+        { "toolSlug": "n8n", "sourceId": "license-use-cases" }
+      ]
+    },
+    {
       "question": "How should I interpret Make's published privacy and retention statements?",
       "answer": "Make's privacy notice describes application-related usage data; its Privacy & GDPR page says personal data can be requested for deletion once no longer needed, and its security page states that log data is kept for 30 days by default with an Enterprise extension option. These vendor-wide statements do not identify a workspace's settings, all workflow-data categories or purge timing.",
       "sourceRefs": [
@@ -118,8 +125,8 @@
     },
     {
       "slug": "n8n",
-      "revision": 3,
-      "digest": "36b3ced2b31f1398fb594eb35129cda9170a55194d2ad4235a1ea5b6b68727df"
+      "revision": 4,
+      "digest": "061a339f8ccc934add0d00ad4ebbd894854d40a55af124cfb00be5228d627c2b"
     }
   ],
   "relatedLinks": [
@@ -130,7 +137,8 @@
   ],
   "gaps": [
     "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes and whether a selectable region meets the intended residency requirement; verify workspace-specific data scope, configured log retention, connected-provider terms, deletion timing, applicable DPA and representative workflow behavior. No account, legal or hands-on workflow review was performed.",
-    "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected."
+    "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
+    "Check the exact client-facing or embedded service against n8n's current license and plan; published use-case examples do not determine an individual deployment's entitlements."
   ],
   "changes": [
     {
@@ -160,6 +168,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Make's official privacy/deletion statements and general log-retention boundary; account configuration and owner re-review remain open."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed n8n dependency and added its official client-hosting/embedding license examples; exact use-case fit and owner review remain open."
     }
   ],
   "commercial": {

@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Make vs n8n",
   "summary": "Compare Make and n8n by workflow billing unit, hosting responsibility and the operational work your automation requires.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -61,6 +61,7 @@
     { "question": "Can I compare one Make credit directly with one n8n execution?", "answer": "No. Make credits can depend on the module and workload, while n8n Cloud counts a workflow execution once per complete run. Map the same trigger, steps and retries into both units.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }, { "toolSlug": "n8n", "sourceId": "pricing" }] },
     { "question": "Does n8n self-hosting establish a lower total cost?", "answer": "No. The documentation establishes a self-hosted deployment option, not a cost conclusion; confirm license fit and operating requirements for the intended deployment.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] },
     { "question": "Does self-hosting mean no data is processed by n8n?", "answer": "No. n8n's policy says it processes certain usage data from self-hosted deployments unless users opt out. Check the instance setting and the terms of connected services separately.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "privacy" }] },
+    { "question": "What license should I check if the workflow will serve my customers?", "answer": "n8n's support guidance says managing client workflows and credentials in your own instance requires Enterprise; embedding n8n to expose workflows to customers requires a white-labeled Embed license. Consulting on a client's own internal instance does not itself require a commercial license for the consultant. These are vendor examples, so confirm the exact use case and entitlement directly with n8n.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "license-use-cases" }] },
     { "question": "What does Make publish about privacy and log retention?", "answer": "Its privacy notice lists application-related usage data such as interactions, queries, workflow-step counts, logs and timestamps; Make says personal data may be deleted when no longer needed, subject to legal exceptions. Its security page says log data is stored for 30 days by default, with an Enterprise option to extend it. These statements do not confirm a workspace's settings or retention of every workflow payload or record.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "privacy" }, { "toolSlug": "make", "sourceId": "security" }] }
   ],
   "verdict": "Choose from the measured workload and hosting requirement. Make's credit unit and n8n's execution unit are not directly comparable without mapping the same automation into each billing model.",
@@ -75,13 +76,13 @@
     },
     {
       "slug": "n8n",
-      "revision": 3,
-      "digest": "36b3ced2b31f1398fb594eb35129cda9170a55194d2ad4235a1ea5b6b68727df"
+      "revision": 4,
+      "digest": "061a339f8ccc934add0d00ad4ebbd894854d40a55af124cfb00be5228d627c2b"
     }
   ],
   "gaps": [
     "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
-    "Confirm license compatibility and the self-hosted operating cost for the intended n8n use.",
+    "Confirm the intended n8n deployment and feature entitlement against the current license and plan; vendor guidance distinguishes internal use from client-workflow hosting or embedding, but no specific use case or agreement was reviewed. Estimate self-hosted operating cost separately.",
     "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
     "Verify the Make workspace's workflow and connected-provider data scope, configured log categories/retention, deletion timing and applicable DPA; published vendor-wide privacy statements do not establish account settings or legal suitability."
   ],
@@ -117,6 +118,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Make's official privacy/deletion statements and general log-retention boundary; account configuration and owner re-review remain open."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed n8n dependency after official license and commercial-use guidance; exact use-case fit and owner re-review remain open."
     }
   ],
   "commercial": {

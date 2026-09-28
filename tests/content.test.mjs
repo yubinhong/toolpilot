@@ -170,12 +170,13 @@ test('Aider Docker support distinguishes a containerized client from local model
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
-test('n8n self-hosting evidence keeps telemetry and operator security responsibilities explicit',() => {
+test('n8n license and self-hosting evidence preserves vendor examples and unresolved deployment boundaries',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'n8n');
   const privacy = record?.facts.find(item => item.key === 'privacy');
   const deployment = record?.facts.find(item => item.key === 'deployment');
+  const license = record?.facts.find(item => item.key === 'license');
   assert.ok(record);
-  assert.equal(record.revision, 3);
+  assert.equal(record.revision, 4);
   assert.deepEqual(privacy?.sourceIds, ['privacy']);
   assert.match(privacy?.value ?? '', /Usage Data for self-hosted deployments unless users opt out/);
   assert.match(privacy?.value ?? '', /workflow usage metrics and enabled integrations/);
@@ -183,7 +184,15 @@ test('n8n self-hosting evidence keeps telemetry and operator security responsibi
   assert.match(deployment?.value ?? '', /configure TLS termination and handle encryption at rest/);
   assert.equal(record.sources.find(item => item.id === 'privacy')?.url, 'https://n8n.io/legal/privacy/');
   assert.equal(record.sources.find(item => item.id === 'security')?.url, 'https://n8n.io/legal/security/');
+  assert.equal(record.sources.find(item => item.id === 'license')?.url, 'https://github.com/n8n-io/n8n/blob/master/LICENSE.md');
+  assert.equal(record.sources.find(item => item.id === 'license-use-cases')?.url, 'https://support.n8n.io/article/can-i-use-your-license-for-my-use-case');
+  assert.deepEqual(license?.sourceIds, ['license', 'license-use-cases']);
+  assert.match(license?.value ?? '', /own internal business purposes or non-commercial\/personal use/);
+  assert.match(license?.value ?? '', /hosting and managing clients' workflows and credentials on your own instance requires Enterprise/);
+  assert.match(license?.value ?? '', /embedding n8n to expose workflows to customers requires a white-labeled Embed license/);
+  assert.match(license?.value ?? '', /do not determine a specific deployment's terms/);
   assert.ok(record.gaps.some(gap => gap.includes('telemetry opt-out')));
+  assert.ok(record.gaps.some(gap => gap.includes('no specific use case, agreement or entitlement was reviewed')));
   const selfHostedEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'n8n');
   assert.equal(selfHostedEntry?.fact.key, 'deployment');
   assert.match(selfHostedEntry?.fact.value ?? '', /TLS termination and handle encryption at rest/);
@@ -191,12 +200,18 @@ test('n8n self-hosting evidence keeps telemetry and operator security responsibi
     const decision = content.find(item => item.slug === slug);
     const dependency = decision?.dependencies.find(item => item.slug === 'n8n');
     assert.ok(dependency);
-    assert.equal(dependency.revision, 3);
+    assert.equal(dependency.revision, 4);
     assert.equal(dependency.digest, contentDigest(record));
     assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'privacy')));
     assert.equal(decision?.review.state, 'in-review');
     assert.equal(isIndexable(decision, content), false);
   }
+  const comparison = content.find(item => item.slug === 'make-vs-n8n');
+  const guide = content.find(item => item.slug === 'workflow-automation-selection');
+  assert.equal(comparison?.revision, 9);
+  assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
+  assert.equal(guide?.revision, 8);
+  assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
