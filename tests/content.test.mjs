@@ -170,7 +170,9 @@ test('Bolt privacy policy draft records prospective training use without claimin
 test('Lovable training-policy evidence separates data scopes and keeps account review open',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'lovable');
   const fact = record?.facts.find(item => item.key === 'privacy');
+  const regions = record?.facts.find(item => item.key === 'hostingRegions');
   const faq = record?.faqs.find(item => item.question === 'Is Lovable project content used to train models?');
+  const regionFaq = record?.faqs.find(item => item.question === 'Does selecting a Lovable Cloud region keep all platform data there?');
   const expectedSources = {
     privacy: 'https://lovable.dev/id/privacy',
     terms: 'https://lovable.dev/terms',
@@ -179,7 +181,7 @@ test('Lovable training-policy evidence separates data scopes and keeps account r
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 3);
+  assert.equal(record.revision, 4);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.deepEqual(fact?.sourceIds, ['privacy', 'terms', 'dpa', 'security']);
   assert.match(fact?.value ?? '', /Privacy Policy \(effective 2026-09-15\)/);
@@ -196,6 +198,14 @@ test('Lovable training-policy evidence separates data scopes and keeps account r
   assert.match(faq?.answer ?? '', /no-cost opt-out in settings on any plan that applies prospectively/);
   assert.match(faq?.answer ?? '', /verify the actual plan, organization agreement and setting/);
   assert.deepEqual(new Set(faq?.sourceRefs.map(ref => ref.sourceId)), new Set(Object.keys(expectedSources)));
+  assert.deepEqual(regions?.sourceIds, ['security', 'privacy']);
+  assert.equal(regions?.checkedAt, '2026-09-28');
+  assert.match(regions?.value ?? '', /EU, US and Asia Pacific/);
+  assert.match(regions?.value ?? '', /does not move across regions by default/);
+  assert.match(regions?.value ?? '', /process Personal Data in multiple countries, including the US/);
+  assert.match(regions?.value ?? '', /no account\/workspace region was checked/);
+  assert.match(regionFaq?.answer ?? '', /no account region or complete provider data map was checked/);
+  assert.deepEqual(new Set(regionFaq?.sourceRefs.map(ref => ref.sourceId)), new Set(['security', 'privacy']));
   assert.ok(record.gaps.some(gap => gap.includes('no account or agreement was inspected')));
   assert.ok(record.gaps.some(gap => gap.includes('Customer Content, Usage Data, Customer Personal Data, Service Data or Your Users')));
 
@@ -206,6 +216,9 @@ test('Lovable training-policy evidence separates data scopes and keeps account r
     assert.equal(dependency?.revision, record.revision);
     assert.equal(dependency?.digest, contentDigest(record));
     assert.ok(dependent.faqs.some(item => item.sourceRefs.some(ref => ref.toolSlug === 'lovable' && ref.sourceId === 'privacy')));
+    if (['bolt-new','lovable','replit','ai-app-builders-for-prototypes','lovable-vs-bolt','replit-vs-lovable'].includes(dependent.slug)) {
+      assert.ok(dependent.faqs.some(item => item.question === 'Does choosing an EU Lovable Cloud region keep all project data in the EU?'));
+    }
     assert.equal(dependent.review.state, 'in-review');
     assert.equal(isIndexable(dependent, content), false);
   }

@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Replit alternatives",
   "summary": "Replit alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 10,
+  "revision": 11,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -51,8 +51,8 @@
     },
     {
       "slug": "lovable",
-      "revision": 3,
-      "digest": "645c41fe72ca5604c58774b1dfadd7ddad914e470ed880bd2ecb9ebd8d37fbda"
+      "revision": 4,
+      "digest": "393d76ff554d10a8323b98294fb0ed7093fecd25ea7480b60646efecc2fca237"
     },
     {
       "slug": "bolt-new",
@@ -106,6 +106,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Lovable dependency after official privacy-policy and contractual-scope research; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Lovable dependency after clarifying Cloud hosting-region scope against broader Personal Data processing; owner review remains required."
     }
   ],
   "commercial": {
@@ -216,6 +220,20 @@
         {
           "toolSlug": "lovable",
           "sourceId": "security"
+        }
+      ]
+    },
+    {
+      "question": "Does choosing an EU Lovable Cloud region keep all project data in the EU?",
+      "answer": "Lovable says Lovable Cloud offers EU, US and Asia Pacific regions and that selected-region Cloud data does not move across regions by default. Its Privacy Policy also says Lovable and service providers process Personal Data in multiple countries, including the US. This does not establish the actual workspace selection or locations for connected services and model providers.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "security"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "privacy"
         }
       ]
     }

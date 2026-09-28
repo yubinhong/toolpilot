@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Lovable",
   "summary": "A natural-language web-app workflow to evaluate with an explicit handoff plan.",
-  "revision": 3,
+  "revision": 4,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -90,6 +90,14 @@
       "label": "Privacy / data handling",
       "value": "Lovable's Privacy Policy (effective 2026-09-15) says Customer Content and Usage Data may be used to train models; its free settings opt-out applies prospectively on any plan. It excludes Business/Enterprise content and Usage Data, account/billing details, and Your Users' Data. The Aug 2026 Terms grant a broader training license subject to prospective opt-out and defer personal-data conflicts to the Privacy Policy; the Nov 2025 Business/Enterprise DPA bars model training on Customer Personal Data but allows Service Data training and says customers cannot opt out of Service Data processing while customers. These sources define data classes differently and have different dates; the account plan, organization agreement and setting were not checked.",
       "sourceIds": ["privacy", "terms", "dpa", "security"],
+      "checkedAt": "2026-09-28",
+      "critical": false
+    },
+    {
+      "key": "hostingRegions",
+      "label": "Lovable Cloud hosting regions",
+      "value": "Lovable says Cloud customer data can be hosted in the EU, US and Asia Pacific, and data in the selected region does not move across regions by default. Its Privacy Policy says Lovable and service providers process Personal Data in multiple countries, including the US. The regional statement is specific to Lovable Cloud and does not map every data category, subprocessor or model-provider flow; no account/workspace region was checked.",
+      "sourceIds": ["security", "privacy"],
       "checkedAt": "2026-09-28",
       "critical": false
     },
@@ -181,12 +189,14 @@
   "cons": [
     { "text": "Usage is credit-based across product activities, and actual consumption depends on the feature and work performed.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "usage" }] },
     { "text": "Git synchronization covers the codebase; separately validate database, hosting and secret migration for the complete application.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "product" }, { "toolSlug": "lovable", "sourceId": "ownership" }] },
-    { "text": "Do not rely on a blanket no-training claim: public documents distinguish plan, workspace and data categories, and Free/Pro opt-out is prospective. Confirm the applicable agreement and account setting before sending sensitive code.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "privacy" }, { "toolSlug": "lovable", "sourceId": "terms" }, { "toolSlug": "lovable", "sourceId": "dpa" }, { "toolSlug": "lovable", "sourceId": "security" }] }
+    { "text": "Do not rely on a blanket no-training claim: public documents distinguish plan, workspace and data categories, and Free/Pro opt-out is prospective. Confirm the applicable agreement and account setting before sending sensitive code.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "privacy" }, { "toolSlug": "lovable", "sourceId": "terms" }, { "toolSlug": "lovable", "sourceId": "dpa" }, { "toolSlug": "lovable", "sourceId": "security" }] },
+    { "text": "A selected Lovable Cloud region is not a complete platform-wide residency map; its Privacy Policy says service providers may process Personal Data in multiple countries, including the US.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "security" }, { "toolSlug": "lovable", "sourceId": "privacy" }] }
   ],
   "faqs": [
     { "question": "Can a Lovable project join an existing Git workflow?", "answer": "The documentation says project code can sync to GitHub, GitLab or Bitbucket. Confirm the target repository workflow and separately rehearse moving runtime services.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "product" }, { "toolSlug": "lovable", "sourceId": "ownership" }] },
     { "question": "Can I estimate one fixed credit cost per feature?", "answer": "No universal conversion is documented. Review workspace usage and test the actual workflow because credit consumption varies by feature and activity.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "usage" }] },
-    { "question": "Is Lovable project content used to train models?", "answer": "Lovable's Privacy Policy says Customer Content and Usage Data may be used for training, with a no-cost opt-out in settings on any plan that applies prospectively; it excludes Business/Enterprise content and usage data, account/billing details, and app end-user data. The Terms and older Business/Enterprise DPA describe different data categories and scopes, so verify the actual plan, organization agreement and setting.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "privacy" }, { "toolSlug": "lovable", "sourceId": "terms" }, { "toolSlug": "lovable", "sourceId": "dpa" }, { "toolSlug": "lovable", "sourceId": "security" }] }
+    { "question": "Is Lovable project content used to train models?", "answer": "Lovable's Privacy Policy says Customer Content and Usage Data may be used for training, with a no-cost opt-out in settings on any plan that applies prospectively; it excludes Business/Enterprise content and usage data, account/billing details, and app end-user data. The Terms and older Business/Enterprise DPA describe different data categories and scopes, so verify the actual plan, organization agreement and setting.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "privacy" }, { "toolSlug": "lovable", "sourceId": "terms" }, { "toolSlug": "lovable", "sourceId": "dpa" }, { "toolSlug": "lovable", "sourceId": "security" }] },
+    { "question": "Does selecting a Lovable Cloud region keep all platform data there?", "answer": "Lovable's Security page describes EU, US and Asia Pacific regions for Lovable Cloud and says selected-region data does not move across regions by default. Its Privacy Policy separately says Lovable and service providers process Personal Data in multiple countries, including the US; no account region or complete provider data map was checked.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "security" }, { "toolSlug": "lovable", "sourceId": "privacy" }] }
   ],
   "verdict": "Shortlist Lovable for a web prototype whose code and deployment ownership you can review before launch. Budget iteration and ongoing operation separately.",
   "bestFor": "Founders validating a web-app workflow",
@@ -196,7 +206,7 @@
   "gaps": [
     "Verify the account plan, effective Privacy Policy/Terms, any organization-managed workspace agreement or Business/Enterprise Order Form/DPA, and the model-training setting; no account or agreement was inspected.",
     "Determine which project data falls under Customer Content, Usage Data, Customer Personal Data, Service Data or Your Users' Data, and confirm any connected integration or model-provider routing for the actual workflow.",
-    "Confirm required data residency separately for Lovable Cloud project data and other service data; the security page lists EU, US and Asia Pacific regions while the Privacy Policy describes multi-country processing, and no account/workspace region setting was checked."
+    "Confirm the selected Lovable Cloud region and the scope of any residency requirement against subprocessors, integrations and model providers; the Security page is Cloud-scoped while the Privacy Policy describes multi-country Personal Data processing, and no account/workspace region was checked."
   ],
   "changes": [
     {
@@ -204,7 +214,8 @@
       "summary": "Initial source-based research and editorial draft; owner approval pending."
     },
     { "date": "2026-09-27", "summary": "Added cited strengths, constraints and FAQs; owner approval remains pending." },
-    { "date": "2026-09-28", "summary": "Added current privacy-policy, Terms, DPA and security-page evidence; account scope and settings remain unverified." }
+    { "date": "2026-09-28", "summary": "Added current privacy-policy, Terms, DPA and security-page evidence; account scope and settings remain unverified." },
+    { "date": "2026-09-28", "summary": "Separated Lovable Cloud's published regional hosting options from the Privacy Policy's multi-country Personal Data processing scope." }
   ],
   "commercial": {
     "affiliate": {

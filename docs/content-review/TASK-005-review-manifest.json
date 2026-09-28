@@ -45,13 +45,13 @@
   },
   {
     "path": "/tools/lovable/",
-    "revision": 3,
-    "digest": "645c41fe72ca5604c58774b1dfadd7ddad914e470ed880bd2ecb9ebd8d37fbda",
+    "revision": 4,
+    "digest": "393d76ff554d10a8323b98294fb0ed7093fecd25ea7480b60646efecc2fca237",
     "state": "in-review",
     "gaps": [
       "Verify the account plan, effective Privacy Policy/Terms, any organization-managed workspace agreement or Business/Enterprise Order Form/DPA, and the model-training setting; no account or agreement was inspected.",
       "Determine which project data falls under Customer Content, Usage Data, Customer Personal Data, Service Data or Your Users' Data, and confirm any connected integration or model-provider routing for the actual workflow.",
-      "Confirm required data residency separately for Lovable Cloud project data and other service data; the security page lists EU, US and Asia Pacific regions while the Privacy Policy describes multi-country processing, and no account/workspace region setting was checked."
+      "Confirm the selected Lovable Cloud region and the scope of any residency requirement against subprocessors, integrations and model providers; the Security page is Cloud-scoped while the Privacy Policy describes multi-country Personal Data processing, and no account/workspace region was checked."
     ]
   },
   {
@@ -77,8 +77,8 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 10,
-    "digest": "be1fd3b1c54cd4dab9af1ee858bd79251ff9e0418f222533b143206acaddb01b",
+    "revision": 11,
+    "digest": "d7aba457f6f7c96f8335d535ac480c76a0d830c226b714e1e371a96d928e0194",
     "state": "in-review",
     "gaps": []
   },
@@ -98,15 +98,15 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 10,
-    "digest": "b8f613314601d708313e4b3b804a99a6748c79c3926d3468f512d58b5f1c340a",
+    "revision": 11,
+    "digest": "b6e9471234b8255cc0c97aabe12153aa67aaab8669a20840190579c92154abd4",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 10,
-    "digest": "67b55d3a55ec1cf034a8f6c70d9929df677fcd2af1417070719619d2dfa29d99",
+    "revision": 11,
+    "digest": "6bea4b5c552613859d909ed099a22c99caa224e72b502f35fa28faf4dddc81e0",
     "state": "in-review",
     "gaps": []
   },
@@ -119,8 +119,8 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 8,
-    "digest": "c03fd6fd9f90ca479c0b5f338208cf69ac3cd55811800a99c663e86f6c74a93a",
+    "revision": 9,
+    "digest": "c0dbcd499572a732cf88965fb726398562d575dca6599e919a940ba596a7673b",
     "state": "in-review",
     "gaps": []
   },
@@ -154,15 +154,15 @@
   },
   {
     "path": "/compare/lovable-vs-bolt/",
-    "revision": 5,
-    "digest": "a5e134ebee966457111efe807e2ddd7e324fb2a8013bcadc22dcb791d993226f",
+    "revision": 6,
+    "digest": "c1b7f1ef617bac22130fc1bab745adb1c1d0a3ccae0ddd64504ff260e2e39aba",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/replit-vs-lovable/",
-    "revision": 7,
-    "digest": "fa6e1d6885a3ceff10f46fc1acf0200eba2fa5bc05143b35cb989c40730a7a7c",
+    "revision": 8,
+    "digest": "f8447e5dd8dbd55eef3d663c13af1b9124162d3488847207bc988044db87722d",
     "state": "in-review",
     "gaps": []
   },
@@ -203,8 +203,8 @@
   },
   {
     "path": "/pricing/lovable/",
-    "revision": 4,
-    "digest": "c95d3ab5dc5b99831cc82e0ba310be232ba31375963739adfa50e75979365b75",
+    "revision": 5,
+    "digest": "8f0a3d8bec021c169f5db8ef103865c5f6e936823200e6ed88d011aa3d4285cf",
     "state": "in-review",
     "gaps": []
   },
