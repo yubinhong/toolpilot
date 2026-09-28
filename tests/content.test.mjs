@@ -167,6 +167,51 @@ test('Bolt privacy policy draft records prospective training use without claimin
     assert.equal(isIndexable(dependent, content), false);
   }
 });
+test('Lovable training-policy evidence separates data scopes and keeps account review open',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'lovable');
+  const fact = record?.facts.find(item => item.key === 'privacy');
+  const faq = record?.faqs.find(item => item.question === 'Is Lovable project content used to train models?');
+  const expectedSources = {
+    privacy: 'https://lovable.dev/id/privacy',
+    terms: 'https://lovable.dev/terms',
+    dpa: 'https://lovable.dev/data-processing-agreement',
+    security: 'https://lovable.dev/security',
+  };
+
+  assert.ok(record);
+  assert.equal(record.revision, 3);
+  assert.equal(fact?.checkedAt, '2026-09-28');
+  assert.deepEqual(fact?.sourceIds, ['privacy', 'terms', 'dpa', 'security']);
+  assert.match(fact?.value ?? '', /Privacy Policy \(effective 2026-09-15\)/);
+  assert.match(fact?.value ?? '', /free settings opt-out applies prospectively on any plan/);
+  assert.match(fact?.value ?? '', /excludes Business\/Enterprise content and Usage Data, account\/billing details, and Your Users' Data/);
+  assert.match(fact?.value ?? '', /Terms grant a broader training license subject to prospective opt-out/);
+  assert.match(fact?.value ?? '', /DPA bars model training on Customer Personal Data but allows Service Data training and says customers cannot opt out of Service Data processing while customers/);
+  assert.match(fact?.value ?? '', /the account plan, organization agreement and setting were not checked/);
+  for (const [id, url] of Object.entries(expectedSources)) {
+    const source = record.sources.find(item => item.id === id);
+    assert.equal(source?.url, url);
+    assert.equal(source?.accessedAt, '2026-09-28');
+  }
+  assert.match(faq?.answer ?? '', /no-cost opt-out in settings on any plan that applies prospectively/);
+  assert.match(faq?.answer ?? '', /verify the actual plan, organization agreement and setting/);
+  assert.deepEqual(new Set(faq?.sourceRefs.map(ref => ref.sourceId)), new Set(Object.keys(expectedSources)));
+  assert.ok(record.gaps.some(gap => gap.includes('no account or agreement was inspected')));
+  assert.ok(record.gaps.some(gap => gap.includes('Customer Content, Usage Data, Customer Personal Data, Service Data or Your Users')));
+
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'lovable'));
+  assert.equal(dependents.length, 7);
+  for (const dependent of dependents) {
+    const dependency = dependent.dependencies.find(item => item.slug === 'lovable');
+    assert.equal(dependency?.revision, record.revision);
+    assert.equal(dependency?.digest, contentDigest(record));
+    assert.ok(dependent.faqs.some(item => item.sourceRefs.some(ref => ref.toolSlug === 'lovable' && ref.sourceId === 'privacy')));
+    assert.equal(dependent.review.state, 'in-review');
+    assert.equal(isIndexable(dependent, content), false);
+  }
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('Aider analytics policy distinguishes opt-in telemetry from model-provider data handling',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'aider');
   const fact = record?.facts.find(item => item.key === 'privacy');

@@ -3,8 +3,8 @@
   "kind": "pricing",
   "title": "Lovable pricing: billing basis and cost boundaries",
   "summary": "Lovable pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 3,
-  "updatedAt": "2026-09-27",
+  "revision": 4,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "lovable",
-      "revision": 2,
-      "digest": "8344d490d982e3e49717e1f4e2400b715d4ab2e8ab26be651abe66dce62a5a64"
+      "revision": 3,
+      "digest": "645c41fe72ca5604c58774b1dfadd7ddad914e470ed880bd2ecb9ebd8d37fbda"
     }
   ],
   "gaps": [],
@@ -63,6 +63,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Lovable dependency after official privacy-policy and contractual-scope research; owner review remains required."
     }
   ],
   "commercial": {
@@ -155,6 +159,28 @@
         {
           "toolSlug": "lovable",
           "sourceId": "ownership"
+        }
+      ]
+    },
+    {
+      "question": "Does the model-training setting depend on a paid credit plan?",
+      "answer": "Lovable's 2026-09-15 Privacy Policy says users can opt out in account settings on any plan at no cost, with prospective effect. Its Terms, Security page and older Business/Enterprise DPA describe different data classes and scopes, so verify the actual workspace agreement and setting separately from the credit budget.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "privacy"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "terms"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "dpa"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "security"
         }
       ]
     }

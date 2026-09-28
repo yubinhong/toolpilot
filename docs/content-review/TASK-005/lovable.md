@@ -1,8 +1,8 @@
 # Lovable evidence pack
 
-Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
+Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 2. Digest: `8344d490d982e3e49717e1f4e2400b715d4ab2e8ab26be651abe66dce62a5a64`.
+Revision: 3. Digest: `645c41fe72ca5604c58774b1dfadd7ddad914e470ed880bd2ecb9ebd8d37fbda`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -16,11 +16,19 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Deployment, hosting and ownership](https://docs.lovable.dev/tips-tricks/deployment-hosting-ownership) — Lovable; accessed 2026-09-27
 
+- [Privacy Policy](https://lovable.dev/id/privacy) — Lovable; effective and last updated 2026-09-15; accessed 2026-09-28
+
+- [Terms of Service](https://lovable.dev/terms) — Lovable; effective 2026-08-15, last updated 2026-08-28; accessed 2026-09-28
+
+- [Data Processing Agreement](https://lovable.dev/data-processing-agreement) — Lovable; last updated 2025-11-06; applies to Business/Enterprise plans; accessed 2026-09-28
+
+- [Security](https://lovable.dev/security) — Lovable; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: Natural-language web application builder Sources: product; checked: 2026-09-27.
 
-- **Privacy / data handling**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Privacy / data handling**: The 2026-09-15 Privacy Policy says Customer Content and Usage Data may be used for model training; its free settings opt-out applies prospectively on any plan. It excludes Business/Enterprise content and Usage Data, account/billing details and Your Users' Data. The Aug 2026 Terms separately grant a broader training license subject to prospective opt-out and defer personal-data conflicts to the Privacy Policy; the Nov 2025 Business/Enterprise DPA bars model training on Customer Personal Data but allows Service Data training and says customers cannot opt out of Service Data processing while customers. These documents use different data classes and dates; the account plan, organization agreement and setting were not checked. Sources: privacy, terms, dpa, security; checked: 2026-09-28.
 
 - **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
@@ -48,17 +56,21 @@ Before committing, rehearse code handoff, database export and secret replacement
 
 - Strength: project code can sync to GitHub, GitLab or Bitbucket, and workspaces support shared projects and credits. Source: product.
 - Constraint: credit consumption varies by feature and activity; code sync alone does not establish a complete database, hosting or secret migration. Sources: usage, product, ownership.
+- Constraint: do not rely on a blanket no-training claim; public documents distinguish plan, workspace and data categories, and the Free/Pro opt-out is prospective. Confirm the applicable agreement and setting before sending sensitive code. Sources: privacy, terms, dpa, security.
 - FAQ: Lovable documents Git sync for code, while runtime services need a separate handoff plan. Sources: product, ownership.
+- FAQ: the current Privacy Policy allows prospective opt-out on any plan, while the older Business/Enterprise DPA says Service Data may be used for training without customer opt-out; their data definitions differ. Verify the actual workspace agreement and setting. Sources: privacy, terms, dpa, security.
 
 ## Gaps
 
-- Assess all unknown fields above against the proposed recommendation.
+- Confirm the account plan, effective Privacy Policy/Terms, any organization-managed workspace agreement or Business/Enterprise Order Form/DPA, and the model-training setting; no account or agreement was inspected.
+- Determine which project data falls under Customer Content, Usage Data, Customer Personal Data, Service Data or Your Users' Data, and confirm connected integrations and model-provider routing for the actual workflow.
+- Confirm required data residency separately for Lovable Cloud project data and other service data; the security page lists EU, US and Asia Pacific regions while the Privacy Policy describes multi-country processing, and no account/workspace region setting was checked.
 
 ## Owner checklist
 
 - [ ] Current official facts, billing basis and unknowns reviewed.
 
-- [ ] Privacy, migration and account requirements adequate for this recommendation.
+- [ ] Privacy scope, model-training opt-out, migration and account requirements reviewed for the exact workspace.
 
 - [ ] Commercial relationship status checked.
 

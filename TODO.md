@@ -34,6 +34,10 @@ TODO-006 check update (2026-09-28 03:21 UTC): freshness reports 31 unverified fi
 
 TODO-006 check update (2026-09-28 03:58 UTC): after the Bolt privacy update, freshness reports 30 unverified fields and 0 overdue. `npm run links:check` completed for 164 unique targets; the new StackBlitz privacy policy was directly retrieved (HTTP 200) and the official policy page is readable. The link checker reports per-URL restricted, blocked and temporary-error outcomes; exit status does not turn reachability into fact verification or Owner approval.
 
+TODO-006 check update (2026-09-28 04:35 UTC): after the Lovable privacy update, freshness reports 29 unverified fields and 0 overdue. The 168-target link scan classified 127 HTTP-ok, 19 restricted, 8 blocked and 14 temporary-error targets; the four new Lovable Privacy Policy, Terms, DPA and Security URLs returned HTTP 200. Reachability does not establish account applicability, fact approval or Owner review.
+
+TODO-309 source update (2026-09-28): Lovable revision 3 now records its Privacy Policy effective 2026-09-15: Customer Content and Usage Data may be used for model training with a free prospective opt-out on any plan; Business/Enterprise content and Usage Data, account/billing details and app end-user data are excluded. The Aug 2026 Terms grant broad training rights subject to opt-out and defer personal-data conflicts to the Privacy Policy; the Nov 2025 Business/Enterprise DPA separately bars training Customer Personal Data but permits Service Data training and says customers cannot opt out of Service Data processing while customers. The sources use different definitions and dates. Seven dependents now cite the privacy evidence at revisions 10/10/10/8/5/7/4; exact account plan, organization agreement, training setting, category mapping and region remain unverified. All eight records remain in-review/noindex; the exact TASK-005 manifest and evidence pack are updated. This does not resolve TODO-005/TODO-309 Owner approval.
+
 ## Later - 暂不承诺
 
 - TODO-101：Newsletter Sponsor、ToolPilot Pro、Lead Gen、工具数据库 API — 重新评估条件：MVP 内容质量、合规披露、用户转化和运营能力已验证。

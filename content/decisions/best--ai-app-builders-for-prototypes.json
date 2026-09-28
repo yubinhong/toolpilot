@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "AI app builders for prototypes",
   "summary": "Evaluate a demo together with its handoff and operating responsibilities.",
-  "revision": 7,
+  "revision": 8,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "lovable",
-      "revision": 2,
-      "digest": "8344d490d982e3e49717e1f4e2400b715d4ab2e8ab26be651abe66dce62a5a64"
+      "revision": 3,
+      "digest": "645c41fe72ca5604c58774b1dfadd7ddad914e470ed880bd2ecb9ebd8d37fbda"
     },
     {
       "slug": "bolt-new",
@@ -89,6 +89,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed the Bolt dependency after its privacy-policy evidence changed; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Lovable dependency after official privacy-policy and contractual-scope research; owner review remains required."
     }
   ],
   "commercial": {
@@ -181,6 +185,28 @@
         {
           "toolSlug": "replit",
           "sourceId": "checkpoints"
+        }
+      ]
+    },
+    {
+      "question": "What should I verify about Lovable model training before sending project code?",
+      "answer": "Its 2026-09-15 Privacy Policy says Customer Content and Usage Data may be used for training, with a free settings opt-out that takes effect prospectively on any plan; it excludes Business/Enterprise content and usage data and app end-user data. The August 2026 Terms and November 2025 DPA distinguish data scopes differently, so verify the actual workspace agreement and setting.",
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "privacy"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "terms"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "dpa"
+        },
+        {
+          "toolSlug": "lovable",
+          "sourceId": "security"
         }
       ]
     }
