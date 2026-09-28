@@ -79,13 +79,14 @@
   },
   {
     "path": "/tools/windsurf/",
-    "revision": 6,
-    "digest": "eb1058027adc67be57e8c91ce30268d3cfef01566b2c874cac46e51252084ce9",
+    "revision": 7,
+    "digest": "feda886f4fb685fff63040cc8682480e09c1689f156dab8fd5899c196b2f9724",
     "state": "in-review",
     "gaps": [
       "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost.",
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, model-training opt-out, and enabled persistent features; public documents describe different data scopes and conditions.",
-      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details, and no customer account or enterprise portal was inspected."
+      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details, and no customer account or enterprise portal was inspected.",
+      "Confirm whether Devin Local supports local model inference and the selected model's data route; the reviewed docs describe a local agent harness but do not establish inference location. No account, model or endpoint was tested."
     ]
   },
   {
@@ -110,14 +111,15 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 19,
-    "digest": "32678288423b3f05cbcd07c85410f201b4011df9ed16fd3d46a01cd49c537369",
+    "revision": 20,
+    "digest": "e6d184727608f0cf009beb5b75bf5c004bce551062bb8a346dd1791bfaf83898",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
       "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
-      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details."
+      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details.",
+      "Confirm whether Devin Local supports local model inference and whether Cascade Workflows and Memories require migration to Skills for the intended workflow; no account, model or migration was tested."
     ]
   },
   {
@@ -141,14 +143,15 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 18,
-    "digest": "2acfb222dcef630d82a94a2483e287fa21492ea29f1bff25a73227b7d97fdbb4",
+    "revision": 19,
+    "digest": "294554f287343adc4c6f98b6c3a427dfe1d7ad1b0eb99a1a1cd08d219422f8c6",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
       "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
-      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details."
+      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details.",
+      "Confirm whether Devin Local supports local model inference and whether Cascade Workflows and Memories require migration to Skills for the intended workflow; no account, model or migration was tested."
     ]
   },
   {
@@ -216,13 +219,14 @@
   },
   {
     "path": "/compare/windsurf-vs-cursor/",
-    "revision": 10,
-    "digest": "81124ea9a704237550c1f176bb24be6e5150a80becc3e028c579353606d58491",
+    "revision": 11,
+    "digest": "9607f47c5364e7cb6c2928c89d74fada66cbb2714d70c1df4071d3340f34d01d",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before comparing privacy or retention with Cursor.",
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
-      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details."
+      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details.",
+      "Confirm whether Devin Local supports local model inference and whether Cascade Workflows and Memories require migration to Skills for the intended workflow; no account, model or migration was tested."
     ]
   },
   {

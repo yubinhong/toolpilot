@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Windsurf / Devin Desktop",
   "summary": "Windsurf, now named Devin Desktop, retains a full IDE and adds an agent command center.",
-  "revision": 6,
+  "revision": 7,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -28,6 +28,13 @@
       "id": "pricing",
       "url": "https://devin.ai/pricing",
       "title": "Plans and Pricing",
+      "publisher": "Devin",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "devin-local",
+      "url": "https://docs.devin.ai/desktop/devin-local",
+      "title": "Devin Local Agent",
       "publisher": "Devin",
       "accessedAt": "2026-09-28"
     },
@@ -85,10 +92,8 @@
     {
       "key": "workflow",
       "label": "Workflow",
-      "value": "The official FAQ identifies Devin Desktop as the new name for Windsurf and says the standard update preserves existing plan and pricing, including legacy Windsurf Enterprise. This does not verify the migration or entitlement of a particular account.",
-      "sourceIds": [
-        "desktop"
-      ],
+      "value": "The official FAQ identifies Devin Desktop as the new name for Windsurf and says the standard update preserves existing plan and pricing, including legacy Windsurf Enterprise. The separate Devin Local agent documentation says Cascade Memories and Workflows are not supported by Devin Local and recommends the Cascade Migration Wizard to migrate them into Skills. This is an agent-selection detail distinct from the standard app update; no account or workflow migration was tested.",
+      "sourceIds": ["desktop", "devin-local"],
       "checkedAt": "2026-09-28",
       "critical": true
     },
@@ -191,7 +196,8 @@
     {
       "heading": "Product name and transition",
       "paragraphs": [
-        "The current official FAQ calls Devin Desktop the new name for Windsurf and says the standard over-the-air update preserves the IDE, extensions, workflows, settings, in-progress work, plans and pricing, including legacy Windsurf Enterprise. This record has not tested an individual account transition."
+        "The current official FAQ calls Devin Desktop the new name for Windsurf and says the standard over-the-air update preserves the IDE, extensions, workflows, settings, in-progress work, plans and pricing, including legacy Windsurf Enterprise. This record has not tested an individual account transition.",
+        "The separate Devin Local agent runs on the user's machine. Its documentation lists Cascade Memories and Workflows as unsupported by Devin Local and recommends migrating them into Skills; this does not establish where model inference runs."
       ]
     },
     {
@@ -246,6 +252,15 @@
           "sourceId": "enterprise-updater"
         }
       ]
+    },
+    {
+      "text": "Devin Local is documented as a local agent harness with access to files, tools and the environment on the user's machine; this describes agent execution, not where model inference runs.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "devin-local"
+        }
+      ]
     }
   ],
   "cons": [
@@ -294,6 +309,15 @@
         {
           "toolSlug": "windsurf",
           "sourceId": "enterprise-updater"
+        }
+      ]
+    },
+    {
+      "text": "The Devin Local documentation lists Cascade Memories and Workflows as unsupported by that agent and recommends migrating them into Skills; no account or workflow migration was tested.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "devin-local"
         }
       ]
     }
@@ -353,6 +377,22 @@
       "sourceRefs": [
         { "toolSlug": "windsurf", "sourceId": "enterprise-updater" }
       ]
+    },
+    {
+      "question": "Does Devin Local mean model inference runs on your device?",
+      "answer": "The Devin Local documentation says its agent harness operates on your machine and can access local files, tools and the environment. The Cascade documentation separately describes model selection, but the reviewed pages do not establish that model inference runs locally or identify a local endpoint. Treat local agent execution as separate from local model inference; no account, model or endpoint was tested.",
+      "sourceRefs": [
+        { "toolSlug": "windsurf", "sourceId": "devin-local" },
+        { "toolSlug": "windsurf", "sourceId": "product" }
+      ]
+    },
+    {
+      "question": "What happens to Cascade Workflows and Memories when switching to Devin Local?",
+      "answer": "Devin's documentation lists Memories and Workflows as unsupported by Devin Local and recommends the Cascade Migration Wizard to migrate them into Skills. This concerns using the Devin Local agent; the Desktop FAQ's separate standard-update statement does not verify a particular account or workflow migration. No account migration was tested.",
+      "sourceRefs": [
+        { "toolSlug": "windsurf", "sourceId": "devin-local" },
+        { "toolSlug": "windsurf", "sourceId": "desktop" }
+      ]
     }
   ],
   "verdict": "Treat Devin Desktop as the documented continuation of Windsurf; use current public plan prices for general comparison, and verify any legacy account quote and usage terms before acting.",
@@ -363,7 +403,8 @@
   "gaps": [
     "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost.",
     "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, model-training opt-out, and enabled persistent features; public documents describe different data scopes and conditions.",
-    "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details, and no customer account or enterprise portal was inspected."
+    "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details, and no customer account or enterprise portal was inspected.",
+    "Confirm whether Devin Local supports local model inference and the selected model's data route; the reviewed docs describe a local agent harness but do not establish inference location. No account, model or endpoint was tested."
   ],
   "changes": [
     {
@@ -389,6 +430,10 @@
     {
       "date": "2026-09-28",
       "summary": "Recorded the Codeium Marketplace's narrow self-hosted Enterprise updater signal; its architecture and continuity into Devin Desktop remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Documented Devin Local's local agent harness and Cascade workflow/memory migration limits; local model inference remains unverified."
     }
   ],
   "commercial": {

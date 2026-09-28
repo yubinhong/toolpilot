@@ -750,10 +750,12 @@ test('Windsurf transition and current plan prices remain source-bound and separa
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
   const workflow = record?.facts.find(item => item.key === 'workflow');
   assert.ok(record);
-  assert.equal(record.revision, 6);
+  assert.equal(record.revision, 7);
   assert.equal(workflow?.checkedAt, '2026-09-28');
-  assert.deepEqual(workflow?.sourceIds, ['desktop']);
+  assert.deepEqual(workflow?.sourceIds, ['desktop', 'devin-local']);
   assert.match(workflow?.value ?? '', /standard update preserves existing plan and pricing, including legacy Windsurf Enterprise/);
+  assert.match(workflow?.value ?? '', /Cascade Memories and Workflows are not supported by Devin Local/);
+  assert.equal(record.sources.find(item => item.id === 'devin-local')?.url, 'https://docs.devin.ai/desktop/devin-local');
   assert.equal(record.sources.find(item => item.id === 'pricing')?.url, 'https://devin.ai/pricing');
   assert.equal(record.sources.find(item => item.id === 'desktop')?.url, 'https://devin.ai/desktop');
   const prices = Object.fromEntries(record.prices.map(price => [price.name, price]));
@@ -914,7 +916,7 @@ test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunct
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 6);
+  assert.equal(record.revision, 7);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.equal(fact?.critical, true);
   assert.deepEqual(fact?.sourceIds, Object.keys(expectedSources));
@@ -955,7 +957,7 @@ test('Windsurf Enterprise updater evidence stays scoped to the Codeium listing a
   const sourceUrl = 'https://marketplace.windsurf.com/extension/Codeium/codeium-enterprise-updater/changes';
 
   assert.ok(record);
-  assert.equal(record.revision, 6);
+  assert.equal(record.revision, 7);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.deepEqual(fact?.sourceIds, ['enterprise-updater']);
   assert.match(fact?.value ?? '', /for self-hosted enterprise customers only/i);
@@ -986,6 +988,41 @@ test('Windsurf Enterprise updater evidence stays scoped to the Codeium listing a
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
   assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
+});
+test('Devin Local evidence separates local agent execution from model inference and records migration limits',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
+  const localInferenceFaq = record?.faqs.find(item => item.question === 'Does Devin Local mean model inference runs on your device?');
+  const migrationFaq = record?.faqs.find(item => item.question === 'What happens to Cascade Workflows and Memories when switching to Devin Local?');
+  assert.ok(record);
+  assert.equal(record.revision, 7);
+  assert.equal(record.sources.find(item => item.id === 'devin-local')?.url, 'https://docs.devin.ai/desktop/devin-local');
+  assert.equal(record.sources.find(item => item.id === 'devin-local')?.accessedAt, '2026-09-28');
+  assert.deepEqual(localInferenceFaq?.sourceRefs.map(ref => ref.sourceId), ['devin-local', 'product']);
+  assert.match(localInferenceFaq?.answer ?? '', /agent harness operates on your machine/);
+  assert.match(localInferenceFaq?.answer ?? '', /do not establish that model inference runs locally/);
+  assert.deepEqual(migrationFaq?.sourceRefs.map(ref => ref.sourceId), ['devin-local', 'desktop']);
+  assert.match(migrationFaq?.answer ?? '', /Memories and Workflows as unsupported by Devin Local/);
+  assert.match(migrationFaq?.answer ?? '', /migrate them into Skills/);
+  assert.equal(record.facts.find(item => item.key === 'localModels')?.value, null);
+  assert.deepEqual(record.facts.find(item => item.key === 'localModels')?.sourceIds, []);
+  assert.ok(record.gaps.some(gap => gap.includes('Devin Local supports local model inference')));
+
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'windsurf'));
+  assert.deepEqual(dependents.map(item => item.slug).sort(), ['cursor', 'windsurf', 'windsurf-vs-cursor']);
+  for (const decision of dependents) {
+    const dependency = decision.dependencies.find(item => item.slug === 'windsurf');
+    assert.equal(dependency?.revision, record.revision);
+    assert.equal(dependency?.digest, contentDigest(record));
+    for (const question of [localInferenceFaq?.question, migrationFaq?.question]) {
+      const faq = decision.faqs.find(item => item.question === question);
+      assert.deepEqual(faq?.sourceRefs.map(ref => ref.sourceId), question === localInferenceFaq?.question ? ['devin-local', 'product'] : ['devin-local', 'desktop']);
+    }
+    assert.ok(decision.gaps.some(gap => gap.includes('Devin Local supports local model inference')));
+    assert.equal(decision.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
 });
 test('GitHub Copilot training-use policy distinguishes individual opt-out from organization plans',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');

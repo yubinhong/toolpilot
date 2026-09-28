@@ -189,17 +189,30 @@ for (const sourceId of windsurfWorkflow?.sourceIds ?? []) {
 const windsurfSelfHosting = windsurf?.facts.find(fact => fact.key === 'selfHosting');
 const windsurfSelfHostingFaq = windsurf?.faqs.find(faq => faq.question === 'What does the official listing establish about self-hosted Enterprise access?');
 const enterpriseUpdater = windsurf?.sources.find(source => source.id === 'enterprise-updater');
+const devinLocal = windsurf?.sources.find(source => source.id === 'devin-local');
+const windsurfLocalInferenceFaq = windsurf?.faqs.find(faq => faq.question === 'Does Devin Local mean model inference runs on your device?');
+const windsurfAgentMigrationFaq = windsurf?.faqs.find(faq => faq.question === 'What happens to Cascade Workflows and Memories when switching to Devin Local?');
 if (!windsurfSelfHosting?.value || !windsurfHtml.includes(escapeHtml(windsurfSelfHosting.value))) failures.push('/tools/windsurf/: scoped self-hosted Enterprise fact is missing from generated HTML');
 if (!windsurfSelfHostingFaq || !windsurfHtml.includes(escapeHtml(windsurfSelfHostingFaq.answer))) failures.push('/tools/windsurf/: self-hosted Enterprise FAQ is missing from generated HTML');
 if (!enterpriseUpdater?.url || !windsurfHtml.includes(enterpriseUpdater.url)) failures.push('/tools/windsurf/: Codeium Enterprise updater source is missing from generated HTML');
+if (!devinLocal?.url || !windsurfHtml.includes(devinLocal.url)) failures.push('/tools/windsurf/: Devin Local source is missing from generated HTML');
+for (const faq of [windsurfLocalInferenceFaq, windsurfAgentMigrationFaq]) {
+  if (!faq || !windsurfHtml.includes(escapeHtml(faq.answer))) failures.push('/tools/windsurf/: Devin Local inference or migration FAQ is missing from generated HTML');
+}
 for (const path of ['/alternatives/cursor/', '/alternatives/windsurf/', '/compare/windsurf-vs-cursor/']) {
   const [, kind, slug] = path.split('/');
   const record = content.find(item => item.kind === kind && item.slug === slug);
   const faq = record?.faqs.find(item => item.question === 'What does the public Codeium listing establish about Windsurf self-hosting?');
+  const localInferenceFaq = record?.faqs.find(item => item.question === windsurfLocalInferenceFaq?.question);
+  const agentMigrationFaq = record?.faqs.find(item => item.question === windsurfAgentMigrationFaq?.question);
   const htmlPath = `out${path}index.html`;
   const html = existsSync(htmlPath) ? readFileSync(htmlPath, 'utf8') : '';
   if (!faq || !html.includes(escapeHtml(faq.answer))) failures.push(`${path}: Codeium self-hosting evidence FAQ is missing from generated HTML`);
   if (!enterpriseUpdater?.url || !html.includes(enterpriseUpdater.url)) failures.push(`${path}: Codeium Enterprise updater source is missing from generated HTML`);
+  for (const dependentFaq of [localInferenceFaq, agentMigrationFaq]) {
+    if (!dependentFaq || !html.includes(escapeHtml(dependentFaq.answer))) failures.push(`${path}: Devin Local inference or migration FAQ is missing from generated HTML`);
+  }
+  if (!devinLocal?.url || !html.includes(devinLocal.url)) failures.push(`${path}: Devin Local source is missing from generated HTML`);
 }
 for (const price of windsurf?.prices ?? []) {
   for (const sourceId of price.sourceIds) {
