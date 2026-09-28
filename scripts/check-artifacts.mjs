@@ -145,11 +145,22 @@ for (const sourceId of clinePortability?.sourceIds ?? []) {
   const source = cline.sources.find(item => item.id === sourceId);
   if (!source || !clineHtml.includes(source.url)) failures.push(`/tools/cline/: task-history source ${sourceId} is missing from generated HTML`);
 }
+const clineLocalModels = cline?.facts.find(fact => fact.key === 'localModels');
+const clineLocalModelsFaq = cline?.faqs.find(faq => faq.question === 'Which local-model runtimes does Cline document?');
+if (!clineLocalModels?.value || !clineHtml.includes(escapeHtml(clineLocalModels.value))) failures.push('/tools/cline/: local-model evidence is missing from generated HTML');
+if (!clineLocalModelsFaq || !clineHtml.includes(escapeHtml(clineLocalModelsFaq.answer))) failures.push('/tools/cline/: local-model FAQ is missing from generated HTML');
+for (const sourceId of clineLocalModels?.sourceIds ?? []) {
+  const source = cline.sources.find(item => item.id === sourceId);
+  if (!source || !clineHtml.includes(source.url)) failures.push(`/tools/cline/: local-model source ${sourceId} is missing from generated HTML`);
+}
 const clineHistoryComparison = content.find(record => record.kind === 'compare' && record.slug === 'cline-vs-continue');
 const clineHistoryFaq = clineHistoryComparison?.faqs.find(faq => faq.question === 'Can I move Cline task history to another device?');
+const clineLocalModelComparisonFaq = clineHistoryComparison?.faqs.find(faq => faq.question === 'Which local inference runtimes does Cline document?');
 const clineHistoryComparisonHtml = readFileSync('out/compare/cline-vs-continue/index.html', 'utf8');
 if (!clineHistoryFaq || !clineHistoryComparisonHtml.includes(escapeHtml(clineHistoryFaq.answer))) failures.push('/compare/cline-vs-continue/: task-history portability FAQ is missing from generated HTML');
 if (!clineHistoryComparisonHtml.includes('https://docs.cline.bot/core-workflows/task-management')) failures.push('/compare/cline-vs-continue/: task-history source is missing from generated HTML');
+if (!clineLocalModelComparisonFaq || !clineHistoryComparisonHtml.includes(escapeHtml(clineLocalModelComparisonFaq.answer))) failures.push('/compare/cline-vs-continue/: local-model FAQ is missing from generated HTML');
+if (!clineHistoryComparisonHtml.includes('https://docs.cline.bot/running-models-locally/overview')) failures.push('/compare/cline-vs-continue/: local-model source is missing from generated HTML');
 const cursor = tools.get('cursor');
 const cursorPrivacy = cursor?.facts.find(fact => fact.key === 'privacy');
 const cursorHtml = readFileSync('out/tools/cursor/index.html', 'utf8');

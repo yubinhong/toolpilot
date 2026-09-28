@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 5. Digest: `2858ccc2b2ca24ebe2a1630eb721c14d3bd7615ec139a263078c977ee2d8fb9a`.
+Revision: 6. Digest: `47367db58ec7f54c413736644fd7aa7c3f9ec7cc74c582c63f56fed771763797`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -22,6 +22,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Tasks](https://docs.cline.bot/core-workflows/task-management) — Cline; accessed 2026-09-28
 
+- [Local models](https://docs.cline.bot/running-models-locally/overview) — Cline; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: IDE extension, CLI and desktop coding agent Sources: product; checked: 2026-09-27.
@@ -30,7 +32,7 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
-- **Local model inference**: Yes — documented Ollama and LM Studio options; hardware and model suitability require evaluation. Sources: product; checked: 2026-09-27.
+- **Local model inference**: Cline's current guide documents Ollama, LM Studio and Atomic Chat runtimes configured against local servers. Hardware and model suitability need workload-specific evaluation. This is a local-inference option, not a guarantee that every feature, extension, external tool or plugin remains offline; no installation, model or data flow was tested. Source: local-models; checked: 2026-09-28.
 
 - **Code / data portability**: Cline's docs say tasks save their full conversation history to the local machine, can be resumed across editor sessions and use Git-based snapshots for file changes. This does not establish supported cross-device transfer, complete task-history export/import, full backup/restore or settings migration; none was tested. Source: task-history; checked: 2026-09-28.
 
@@ -49,6 +51,10 @@ The public sources conflict: the Terms last modified 2025-09-25 say extension te
 ## Task history and portability
 
 The task-management page says tasks are saved automatically to the local machine, include conversation history, can be resumed across editor sessions, and create Git-based checkpoints for file changes. It does not specify supported transfer of full histories, settings or provider configuration between devices. No export, transfer or restore was tested.
+
+## Local inference
+
+The current official guide lists Ollama, LM Studio and Atomic Chat, with instructions to run a local server, select the matching provider and model in Cline, and enable its compact-prompt option. Its example endpoints are `http://localhost:11434`, `http://localhost:1234` and `http://127.0.0.1:1337/v1`; it also gives broad RAM ranges for small, mid-size and larger models. These are documented setup options, not a model-quality result or proof that external tools, telemetry or every connected feature remain offline. No runtime, model, installation or network traffic was inspected.
 
 ## Pricing basis
 

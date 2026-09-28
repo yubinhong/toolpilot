@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Windsurf alternatives",
   "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 16,
+  "revision": 17,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -61,8 +61,8 @@
     },
     {
       "slug": "cline",
-      "revision": 5,
-      "digest": "2858ccc2b2ca24ebe2a1630eb721c14d3bd7615ec139a263078c977ee2d8fb9a"
+      "revision": 6,
+      "digest": "47367db58ec7f54c413736644fd7aa7c3f9ec7cc74c582c63f56fed771763797"
     }
   ],
   "gaps": [
@@ -131,6 +131,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Windsurf dependency after the Codeium Marketplace listed an updater for self-hosted Enterprise customers; architecture and Devin Desktop continuity remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Cline's local-inference evidence with its current Ollama, LM Studio and Atomic Chat documentation; model fit and full offline behavior remain untested."
     }
   ],
   "commercial": {
@@ -164,11 +168,15 @@
       ]
     },
     {
-      "text": "Cline documents local-model options and multiple client surfaces for users comparing a different provider-configurable workflow.",
+      "text": "Cline documents local-model options through Ollama, LM Studio and Atomic Chat, alongside multiple client surfaces for users comparing a different provider-configurable workflow.",
       "sourceRefs": [
         {
           "toolSlug": "cline",
           "sourceId": "product"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "local-models"
         }
       ]
     }

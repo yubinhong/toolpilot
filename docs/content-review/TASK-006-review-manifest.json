@@ -78,8 +78,8 @@
   },
   {
     "path": "/compare/cline-vs-continue/",
-    "revision": 12,
-    "digest": "0ae02aca47c7c5bd2b8ef58550c3e6e81ce428b14e0f8a4dd16c387fec69587e",
+    "revision": 13,
+    "digest": "8b010699de9a0477b8d205e518e937329784e96325f6fcdf80d027430f8cad21",
     "state": "in-review",
     "gaps": [
       "Current Continue CLI maintenance and security response remain unresolved: its README says read-only/final, the Marketplace says CLI development is active, GitHub Releases lists a 2026-06-19 v2.1.0-vscode pre-release, and npm lists CLI 1.5.47 published 2026-06-18. Confirm the selected package, publisher, update path and support response.",
@@ -112,8 +112,8 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 14,
-    "digest": "efb579838475dbf7030be6bc15fbdc6bc5811fd8bc10118818813c612d8a20b7",
+    "revision": 15,
+    "digest": "02778346e21c5e049fcead69a026deb71804c358334de1f0ac41ef3ef9b6eaad",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",

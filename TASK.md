@@ -628,6 +628,14 @@ R09 engineering verification and release handoff are complete. Remaining indepen
 
 Rollback must preserve the pre-existing baseline. After a live release, use the verified previous Pages deployment or revert the reviewed release commit, then repeat the current-profile online smoke. No data migration is involved.
 
+### Verified on 2026-09-28 — Cline current local-inference documentation
+
+- Cline's [current local-model guide](https://docs.cline.bot/running-models-locally/overview) documents Ollama, LM Studio and Atomic Chat configured against local servers (`localhost:11434`, `localhost:1234` and `127.0.0.1:1337/v1`). Cline profile revision 6 now cites that guide in the local-inference fact and FAQ. It does not establish model suitability, local-only behavior for every feature or product self-hosting; no installation, model or data flow was tested. `selfHosting` remains unknown.
+- Refreshed eight dependent drafts: `/alternatives/claude-code/` rev 14, `/alternatives/cursor/` rev 18, `/alternatives/windsurf/` rev 17, `/best/ai-coding-tools-for-solo-founders/` rev 14, `/best/open-source-ai-coding-tools/` rev 15, `/compare/cline-vs-claude-code/` rev 8, `/compare/cline-vs-continue/` rev 13 and `/guides/ai-editor-vs-terminal-agent/` rev 10. Both exact TASK-005/TASK-006 manifests, their review handoffs and the Cline evidence pack match. All 39 records remain in-review; affected routes remain noindex/outside the four-URL sitemap.
+- Node `v22.23.2` / npm `10.9.8`: `npm run cloudflare:build` passed lint, typecheck, 97 tests and artifact checks (99 pages / 4 indexable URLs); `npm audit --audit-level=high` found 0 vulnerabilities. Date-pinned freshness remains 12 unverified fields / 0 overdue. The full `npm run links:check` completed; the new Cline URL returned HTTP 200. Local current smoke passed for 99 pages, robots, sitemap and a real 404. Direct generated-HTML assertions confirmed the source/FAQ and noindex/sitemap exclusion across all nine affected routes.
+- Release verification remains in progress. No Cline runtime, account, provider route, owner approval or indexing state was tested or changed.
+- Rollback: restore Cline revision 5 and the prior revisions/digests of its eight dependents, both prior review manifests and handoffs, prior Cline evidence pack, paired tests/artifact assertions and task records; rebuild and repeat current-profile smoke. No route, schema or data migration is involved.
+
 ## TASK-007 — Static Security Response Headers
 
 - Status: `IN_PROGRESS` (per-document CSP meta capacity implementation and CI/Pages/production verification complete; Cloudflare Web Analytics policy decision and HSTS scope remain open)

@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cline vs Claude Code",
   "summary": "Cline vs Claude Code: developers deciding whether provider configuration is a core requirement.",
-  "revision": 7,
+  "revision": 8,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "cline",
-      "revision": 5,
-      "digest": "2858ccc2b2ca24ebe2a1630eb721c14d3bd7615ec139a263078c977ee2d8fb9a"
+      "revision": 6,
+      "digest": "47367db58ec7f54c413736644fd7aa7c3f9ec7cc74c582c63f56fed771763797"
     },
     {
       "slug": "claude-code",
@@ -84,6 +84,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Cline dependency after documenting local task-history persistence and Git file checkpoints; cross-device history export and migration remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Cline's local-inference evidence with its current Ollama, LM Studio and Atomic Chat documentation; model fit and full offline behavior remain untested."
     }
   ],
   "commercial": {
@@ -108,11 +112,11 @@
   },
   "pros": [
     {
-      "text": "Cline documents Ollama and LM Studio options for local model inference, with hardware and model fit left to the user to evaluate.",
+      "text": "Cline documents Ollama, LM Studio and Atomic Chat options for local model inference; hardware and model fit remain for the user to evaluate.",
       "sourceRefs": [
         {
           "toolSlug": "cline",
-          "sourceId": "product"
+          "sourceId": "local-models"
         }
       ]
     },
@@ -149,11 +153,11 @@
   "faqs": [
     {
       "question": "Which local model options does Cline document?",
-      "answer": "Its official documentation lists Ollama and LM Studio. That establishes configuration options, not model quality, hardware suitability or a fully offline workflow.",
+      "answer": "Cline's current guide lists Ollama, LM Studio and Atomic Chat, with local-server configuration examples. This establishes documented configuration options, not model quality, hardware suitability or a fully offline workflow.",
       "sourceRefs": [
         {
           "toolSlug": "cline",
-          "sourceId": "product"
+          "sourceId": "local-models"
         }
       ]
     },
@@ -187,11 +191,11 @@
     },
     {
       "question": "Does Claude Code's self-hosted environment support local inference like Cline's documented local models?",
-      "answer": "Cline's official docs list Ollama and LM Studio as local model options. Anthropic's self-hosted Claude Code docs describe session runners on customer infrastructure but say inference still goes to api.anthropic.com; they do not document an on-device local-model route. No model or account configuration was tested.",
+      "answer": "Cline's current docs list Ollama, LM Studio and Atomic Chat as local model options. Anthropic's self-hosted Claude Code docs describe session runners on customer infrastructure but say inference still goes to api.anthropic.com; they do not document an on-device local-model route. No model or account configuration was tested.",
       "sourceRefs": [
         {
           "toolSlug": "cline",
-          "sourceId": "product"
+          "sourceId": "local-models"
         },
         {
           "toolSlug": "claude-code",

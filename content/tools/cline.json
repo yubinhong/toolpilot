@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Cline",
   "summary": "A coding-agent candidate for users who want to choose the model provider.",
-  "revision": 5,
+  "revision": 6,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -65,6 +65,13 @@
       "title": "Tasks",
       "publisher": "Cline",
       "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "local-models",
+      "url": "https://docs.cline.bot/running-models-locally/overview",
+      "title": "Local models",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -101,11 +108,11 @@
     {
       "key": "localModels",
       "label": "Local model inference",
-      "value": "Yes \u2014 documented Ollama and LM Studio options; hardware and model suitability require evaluation.",
+      "value": "Cline's current local-model guide documents Ollama, LM Studio and Atomic Chat runtimes, each configured in Cline against a local server; its examples use `http://localhost:11434`, `http://localhost:1234` and `http://127.0.0.1:1337/v1`. Hardware and model suitability need workload-specific evaluation. This documents a local-inference option, not a guarantee that every feature, extension, external tool or plugin stays offline; no installation, model or data flow was tested.",
       "sourceIds": [
-        "product"
+        "local-models"
       ],
-      "checkedAt": "2026-09-27",
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -242,6 +249,16 @@
       ]
     },
     {
+      "question": "Which local-model runtimes does Cline document?",
+      "answer": "Cline's current guide lists Ollama, LM Studio and Atomic Chat and shows selecting the matching provider and model against a local server. Its example endpoints are `http://localhost:11434`, `http://localhost:1234` and `http://127.0.0.1:1337/v1`. The guide recommends compact prompts and notes that model fit depends on hardware. This does not establish the data flow of every feature or connected tool; no model or installation was tested.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "local-models"
+        }
+      ]
+    },
+    {
       "question": "When does Cline receive prompts or code, and what does it say about telemetry?",
       "answer": "Cline's Privacy Notice distinguishes BYOK, where it says content goes directly to the provider and is not collected by Cline, from Cline-provided keys, where Cline collects content to facilitate provider requests. Its later-dated Terms say extension telemetry is on by default, while an older blog says opt-in. Check the installed version and settings; the selected provider's terms remain separate.",
       "sourceRefs": [
@@ -301,6 +318,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Cline's documented local task-history persistence and Git file checkpoints; supported cross-device task export and migration remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Replaced the general repository citation for local inference with Cline's current dedicated Ollama, LM Studio and Atomic Chat guide; no model, installation or full offline workflow was tested."
     }
   ],
   "commercial": {

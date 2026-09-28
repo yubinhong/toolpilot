@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Claude Code alternatives",
   "summary": "Claude Code alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 13,
+  "revision": 14,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -56,8 +56,8 @@
     },
     {
       "slug": "cline",
-      "revision": 5,
-      "digest": "2858ccc2b2ca24ebe2a1630eb721c14d3bd7615ec139a263078c977ee2d8fb9a"
+      "revision": 6,
+      "digest": "47367db58ec7f54c413736644fd7aa7c3f9ec7cc74c582c63f56fed771763797"
     },
     {
       "slug": "github-copilot",
@@ -117,6 +117,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Cline dependency after documenting local task-history persistence and Git file checkpoints; cross-device history export and migration remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Cline's local-inference evidence with its current Ollama, LM Studio and Atomic Chat documentation; model fit and full offline behavior remain untested."
     }
   ],
   "commercial": {
@@ -186,11 +190,11 @@
   "faqs": [
     {
       "question": "Which alternative documents local-model options?",
-      "answer": "Cline documents Ollama and LM Studio options. Hardware and model suitability still need a workload-specific trial.",
+      "answer": "Cline's current guide lists Ollama, LM Studio and Atomic Chat configured against local servers. Hardware and model suitability still need a workload-specific trial; this does not establish an offline path for every feature or connected tool.",
       "sourceRefs": [
         {
           "toolSlug": "cline",
-          "sourceId": "product"
+          "sourceId": "local-models"
         }
       ]
     },

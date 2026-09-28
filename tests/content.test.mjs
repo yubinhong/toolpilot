@@ -426,7 +426,7 @@ test('Cline privacy evidence exposes the public telemetry-policy conflict and AP
   const record = content.find(item => item.kind === 'tools' && item.slug === 'cline');
   const fact = record?.facts.find(item => item.key === 'privacy');
   assert.ok(record);
-  assert.equal(record.revision, 5);
+  assert.equal(record.revision, 6);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.deepEqual(fact?.sourceIds, ['terms', 'privacy', 'telemetry-blog']);
   assert.match(fact?.value ?? '', /Terms of Service, last modified 2025-09-25/);
@@ -446,7 +446,7 @@ test('Cline privacy evidence exposes the public telemetry-policy conflict and AP
   assert.deepEqual(dependents.map(item => item.slug).sort(), dependentSlugs.sort());
   for (const decision of dependents) {
     const dependency = decision.dependencies.find(item => item.slug === 'cline');
-    assert.equal(dependency.revision, 5);
+    assert.equal(dependency.revision, 6);
     assert.equal(dependency.digest, contentDigest(record));
     assert.equal(decision.review.state, 'in-review');
     assert.equal(isIndexable(decision, content), false);
@@ -460,12 +460,49 @@ test('Cline privacy evidence exposes the public telemetry-policy conflict and AP
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('Cline local inference is source-bound to current runtime documentation without implying universal offline behavior',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'cline');
+  const fact = record?.facts.find(item => item.key === 'localModels');
+  const faq = record?.faqs.find(item => item.question === 'Which local-model runtimes does Cline document?');
+  const source = record?.sources.find(item => item.id === 'local-models');
+  assert.ok(record);
+  assert.equal(record.revision, 6);
+  assert.deepEqual(fact?.sourceIds, ['local-models']);
+  assert.equal(fact?.checkedAt, '2026-09-28');
+  assert.match(fact?.value ?? '', /Ollama, LM Studio and Atomic Chat/);
+  assert.match(fact?.value ?? '', /http:\/\/localhost:11434/);
+  assert.match(fact?.value ?? '', /http:\/\/localhost:1234/);
+  assert.match(fact?.value ?? '', /http:\/\/127\.0\.0\.1:1337\/v1/);
+  assert.match(fact?.value ?? '', /not a guarantee that every feature, extension, external tool or plugin stays offline/);
+  assert.match(fact?.value ?? '', /no installation, model or data flow was tested/);
+  assert.equal(source?.url, 'https://docs.cline.bot/running-models-locally/overview');
+  assert.equal(source?.accessedAt, '2026-09-28');
+  assert.deepEqual(faq?.sourceRefs, [{ toolSlug: 'cline', sourceId: 'local-models' }]);
+  assert.match(faq?.answer ?? '', /Ollama, LM Studio and Atomic Chat/);
+  assert.match(faq?.answer ?? '', /http:\/\/localhost:11434/);
+  assert.match(faq?.answer ?? '', /does not establish the data flow of every feature or connected tool/);
+  const selfHosting = record.facts.find(item => item.key === 'selfHosting');
+  assert.equal(selfHosting?.value, null);
+  assert.deepEqual(selfHosting?.sourceIds, []);
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'cline'));
+  assert.equal(dependents.length, 8);
+  for (const decision of dependents) {
+    const dependency = decision.dependencies.find(item => item.slug === 'cline');
+    assert.equal(dependency?.revision, record.revision, `${decision.slug} Cline revision`);
+    assert.equal(dependency?.digest, contentDigest(record), `${decision.slug} Cline digest`);
+    assert.equal(decision.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 12);
+});
 test('Cline task-history portability distinguishes local resume from cross-device migration',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='cline');
   const fact=record?.facts.find(item=>item.key==='portability');
   const faq=record?.faqs.find(item=>item.question==='Can Cline task history be moved to another device?');
   assert.ok(record);
-  assert.equal(record.revision,5);
+  assert.equal(record.revision,6);
   assert.equal(fact?.checkedAt,'2026-09-28');
   assert.deepEqual(fact?.sourceIds,['task-history']);
   assert.match(fact?.value??'',/each task keeps its full conversation history/);
@@ -504,7 +541,7 @@ test('Cline task-history portability distinguishes local resume from cross-devic
   }
   const comparison=dependents.find(item=>item.slug==='cline-vs-continue');
   const comparisonFaq=comparison?.faqs.find(item=>item.question==='Can I move Cline task history to another device?');
-  assert.equal(comparison?.revision,12);
+  assert.equal(comparison?.revision,13);
   assert.deepEqual(comparisonFaq?.sourceRefs,faq?.sourceRefs);
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
@@ -1022,7 +1059,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?9:record.slug==='github-copilot'?7:record.slug==='cline'?5:record.slug==='cursor'?5:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?9:record.slug==='github-copilot'?7:record.slug==='cline'?6:record.slug==='cursor'?5:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);

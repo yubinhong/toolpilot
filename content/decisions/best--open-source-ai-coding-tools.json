@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "Open-source AI coding tools to evaluate",
   "summary": "A conditional shortlist based on project license evidence, model boundaries and channel-specific lifecycle signals.",
-  "revision": 14,
+  "revision": 15,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -145,7 +145,7 @@
   "faqs": [
     { "question": "What do Continue's published artifacts say about CLI support?", "answer": "The official site says Continue was acquired by Cursor and its open-source code remains available. The README says read-only/final 2.0.0; GitHub Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists @continuedev/cli 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These sources do not establish current CLI maintenance or support for a selected package.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "acquisition" }, { "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "question": "Does an Apache-2.0 client license also license model weights or hosted providers?", "answer": "No. Aider's repository identifies the client project license and distinguishes model or provider terms; check each external component separately.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
-    { "question": "Does Cline's open-source client guarantee local-only data handling?", "answer": "No. Cline's Privacy Notice distinguishes BYOK traffic sent directly to a model provider from Cline-provided API-key traffic handled by Cline; its Terms also state extension telemetry is on by default, while an older blog says opt-in. Verify the installed build, setting and provider terms.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "privacy" }, { "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
+    { "question": "Does Cline's open-source client guarantee local-only data handling?", "answer": "No. Cline documents local inference runtimes, but that alone does not establish a local-only workflow: its Privacy Notice distinguishes BYOK traffic sent directly to a model provider from Cline-provided API-key traffic handled by Cline, and its Terms say extension telemetry is on by default while an older blog says opt-in. Verify the selected runtime, installed build, settings and provider terms.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "local-models" }, { "toolSlug": "cline", "sourceId": "privacy" }, { "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
     { "question": "Can Continue use an offline local-model setup?", "answer": "Continue's official guide outlines an offline VS Code path: install its extension, disable Allow Anonymous Telemetry and configure a local model. Its Privacy Notice, last updated 2026-02-05, describes open-source log and analytics collection unless users opt out and excludes processing performed on a customer's behalf; check notice applicability, the selected package and provider terms.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }, { "toolSlug": "continue", "sourceId": "privacy" }] },
     { "question": "How does Continue describe paid model usage?", "answer": "Its Terms describe model-use credit purchases and recurring subscriptions, with applicable Pricing and Payment Terms in a User Account or Service Order. No numeric amount was verified here; confirm any selected model-provider charge separately.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "terms" }] },
     { "question": "Can Continue CLI history and configuration move to another device?", "answer": "The CLI's `cn --resume` or `/resume` commands restore the full history of a previous session. Continue recommends version-controlling `config.yaml`, and the CLI can load a YAML file by path; secrets belong outside committed config. The reviewed docs do not specify cross-device session export/import or complete IDE/CLI state migration. No transfer was tested.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "cli-tui" }, { "toolSlug": "continue", "sourceId": "cli-config" }, { "toolSlug": "continue", "sourceId": "config-guide" }] }
@@ -162,8 +162,8 @@
     },
     {
       "slug": "cline",
-      "revision": 5,
-      "digest": "2858ccc2b2ca24ebe2a1630eb721c14d3bd7615ec139a263078c977ee2d8fb9a"
+      "revision": 6,
+      "digest": "47367db58ec7f54c413736644fd7aa7c3f9ec7cc74c582c63f56fed771763797"
     },
     {
       "slug": "continue",
@@ -236,6 +236,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Continue evidence for CLI session resume and versioned config files; cross-device history export and full state transfer remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Cline's local-inference evidence with its current Ollama, LM Studio and Atomic Chat documentation; model fit and full offline behavior remain untested."
     }
   ],
   "commercial": {
