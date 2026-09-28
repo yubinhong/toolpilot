@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Cursor",
   "summary": "An editor-centered starting point for reviewing AI changes in an existing repository.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -72,6 +72,34 @@
       "title": "Privacy Policy",
       "publisher": "Cursor",
       "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "self-hosted-machines",
+      "url": "https://cursor.com/docs/cloud-agent/self-hosted",
+      "title": "Self-Hosted Machines",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "self-hosted-runtime",
+      "url": "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
+      "title": "Choose where Cloud Agents run",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "self-hosted-pools",
+      "url": "https://cursor.com/docs/cloud-agent/self-hosted/pool",
+      "title": "Team Pools",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "self-hosted-help",
+      "url": "https://cursor.com/help/ai-features/self-hosted-machines",
+      "title": "Self-Hosted Machines help",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -88,13 +116,14 @@
     {
       "key": "privacy",
       "label": "Privacy / data handling",
-      "value": "With Privacy Mode enabled, Cursor says it will not train on Customer Data and that most provider requests use zero-data-retention agreements. Its docs describe safety/abuse review exceptions and models that require administrator approval before provider retention is enabled. BYOK requests still pass through Cursor's backend, and Cursor says its provider ZDR agreements do not apply to user API keys. Optional Cloud Agents temporarily store encrypted repository copies while a run is active and delete them after completion. Privacy Mode is available on Free and Pro, is enabled by default for Enterprise teams, and can be enforced by team administrators. Cursor's Privacy Policy excludes personal data it processes for commercial customers as processor; those agreements govern instead. Turning Privacy Mode off may allow Customer Data to be used or stored for improvement and training. No account setting, team policy, API key, model approval, Cloud Agent use or agreement was inspected.",
+      "value": "With Privacy Mode enabled, Cursor says it will not train on Customer Data and that most provider requests use zero-data-retention agreements. Its docs describe safety/abuse review exceptions and models that require administrator approval before provider retention is enabled. BYOK requests still pass through Cursor's backend, and Cursor says its provider ZDR agreements do not apply to user API keys. Optional Cursor-managed Cloud Agents temporarily store encrypted repository copies while a run is active and delete them after completion. For Self-Hosted Machines, Cursor says Privacy Mode applies and code sent from the worker is not used for training by Cursor or model providers; the worker still sends the content needed for agent execution to Cursor, and artifacts can be uploaded to Cursor-managed storage. Privacy Mode is available on Free and Pro, is enabled by default for Enterprise teams, and can be enforced by team administrators. Cursor's Privacy Policy excludes personal data it processes for commercial customers as processor; those agreements govern instead. Turning Privacy Mode off may allow Customer Data to be used or stored for improvement and training. No account setting, team policy, API key, model approval, Cloud Agent use or agreement was inspected.",
       "sourceIds": [
         "privacy-overview",
         "privacy-governance",
         "privacy-help",
         "privacy-policy",
-        "security"
+        "security",
+        "self-hosted-machines"
       ],
       "checkedAt": "2026-09-28",
       "critical": true
@@ -102,25 +131,36 @@
     {
       "key": "selfHosting",
       "label": "Product self-hosting",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Cursor's Self-Hosted Machines move Cloud Agent tool execution, including file edits and terminal commands, to machines operated by the customer; the agent loop, inference and planning stay in Cursor's cloud. My Machines supports personal workflows, while Team Pools require Enterprise and administrator setup. No account or worker was configured.",
+      "sourceIds": [
+        "self-hosted-machines",
+        "self-hosted-runtime",
+        "self-hosted-pools"
+      ],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
       "key": "localModels",
       "label": "Local model inference",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "For Cloud Agent Self-Hosted Machines, Cursor explicitly keeps the agent loop, inference and planning in Cursor's cloud, so moving tool execution to a customer machine does not establish local model inference. These sources do not establish local-model support or absence for Cursor's editor or other surfaces; no on-device route was confirmed.",
+      "sourceIds": [
+        "self-hosted-machines",
+        "self-hosted-runtime"
+      ],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
       "key": "portability",
       "label": "Code / data portability",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "For Self-Hosted Machines, Cursor says the full checkout, build cache and machine-local credentials stay on the worker. The worker still sends Cursor the content needed for a run, including file contents, terminal output, diffs, screenshots, local MCP results and routing metadata; screenshots, videos and log references may upload to Cursor-managed storage. Git access uses credentials on the worker or documented token routes. This is a session data-flow boundary, not export or session/settings migration; no worker, data path or restore was tested.",
+      "sourceIds": [
+        "self-hosted-machines",
+        "self-hosted-pools",
+        "self-hosted-help"
+      ],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -152,6 +192,12 @@
   ],
   "sections": [
     {
+      "heading": "Separate worker execution from model inference",
+      "paragraphs": [
+        "Cursor Self-Hosted Machines run Cloud Agent tool calls on customer-managed workers, while the agent loop, inference and planning remain in Cursor's cloud. Check the exact worker plan and data flow: repository checkout, cache and local credentials can stay on the worker, but selected code context and run artifacts still reach Cursor."
+      ]
+    },
+    {
       "heading": "Review an existing codebase",
       "paragraphs": [
         "Choose a change that touches both implementation and tests. Check whether you can identify which repository context the agent used and whether the final diff is limited to the task. The relevant benefit is a reviewable change, not the amount of generated code."
@@ -165,6 +211,19 @@
     }
   ],
   "pros": [
+    {
+      "text": "Self-Hosted Machines can run Cloud Agent tool calls on customer-managed hardware, including custom machines, images and private-network-connected workers.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-machines"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-runtime"
+        }
+      ]
+    },
     {
       "text": "Supports local stdio and remote SSE or Streamable HTTP transports.",
       "sourceRefs": [
@@ -185,6 +244,19 @@
     }
   ],
   "cons": [
+    {
+      "text": "Self-Hosted Machines relocate tool execution, not the agent loop or inference; run content and some artifacts still go to Cursor, so this is not a local-model or fully offline mode.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-machines"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-runtime"
+        }
+      ]
+    },
     {
       "text": "Setup differs by transport: local stdio runs a command, while remote servers use an endpoint and authentication configuration.",
       "sourceRefs": [
@@ -232,6 +304,48 @@
   ],
   "faqs": [
     {
+      "question": "Does Cursor Self-Hosted Machines run model inference on my worker?",
+      "answer": "No. Cursor documents the agent loop, inference and planning as running in Cursor's cloud; the customer-managed worker performs tool calls such as file edits and terminal commands. No account or worker was tested.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-machines"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-runtime"
+        }
+      ]
+    },
+    {
+      "question": "What stays on a Cursor self-hosted worker, and what still goes to Cursor?",
+      "answer": "Cursor says the full checkout, build cache and machine-local credentials stay on the worker. The worker sends the content needed for the agent run, such as file contents, terminal output, diffs, screenshots, local MCP results and routing metadata; artifacts can upload to Cursor-managed storage. Confirm the actual account and configuration before relying on this boundary.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-machines"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-pools"
+        }
+      ]
+    },
+    {
+      "question": "Which Cursor plans document self-hosted Cloud Agent workers?",
+      "answer": "Cursor documents My Machines for personal workflows and Team Pools for Enterprise teams. Team Pools require Enterprise, administrator setup and service-account authentication; actual account eligibility and settings were not checked.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-runtime"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-pools"
+        }
+      ]
+    },
+    {
       "question": "Which MCP transports does Cursor document?",
       "answer": "The documentation lists local stdio plus local or remote SSE and Streamable HTTP.",
       "sourceRefs": [
@@ -253,7 +367,7 @@
     },
     {
       "question": "What does Cursor Privacy Mode cover, and what should an account verify?",
-      "answer": "Cursor says Privacy Mode prevents training on Customer Data and that most model requests use provider zero-data-retention agreements, subject to safety and abuse review and non-ZDR model exceptions. Requests made with personal API keys still pass through Cursor's backend and rely on the provider's terms for retention. Optional Cloud Agents store encrypted repository copies while a run is active, then delete them after completion. Teams and Enterprise can enforce Privacy Mode; Cursor says individual plans follow its Privacy Policy rather than the commercial DPA. Verify the account setting, organization policy, model approvals, API-key route, Cloud Agent use and applicable agreement; none was inspected here.",
+      "answer": "Cursor says Privacy Mode prevents training on Customer Data and that most model requests use provider zero-data-retention agreements, subject to safety and abuse review and non-ZDR model exceptions. Requests made with personal API keys still pass through Cursor's backend and rely on the provider's terms for retention. Optional Cursor-managed Cloud Agents store encrypted repository copies while a run is active, then delete them after completion. For Self-Hosted Machines, Cursor says Privacy Mode applies and code sent by the worker is not used for training, but run content still reaches Cursor and artifacts can upload to its storage. Teams and Enterprise can enforce Privacy Mode; Cursor says individual plans follow its Privacy Policy rather than the commercial DPA. Verify the account setting, organization policy, model approvals, API-key route, Cloud Agent mode and applicable agreement; none was inspected here.",
       "sourceRefs": [
         {
           "toolSlug": "cursor",
@@ -270,6 +384,10 @@
         {
           "toolSlug": "cursor",
           "sourceId": "privacy-policy"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-machines"
         }
       ]
     }
@@ -280,7 +398,7 @@
   "migration": "Export your rules and record editor settings before trying another tool. Keep the repository and its tests as the portable source of truth.",
   "dependencies": [],
   "gaps": [
-    "Verify the account's Privacy Mode setting and team enforcement, any personal API keys, approved models with provider retention, Cloud Agent use and applicable individual or commercial agreement; no account settings or data flow were inspected."
+    "Verify the account's Privacy Mode setting and team enforcement, any personal API keys, approved models with provider retention, Cloud Agent use and applicable individual or commercial agreement; no account settings or actual account data flow were inspected."
   ],
   "changes": [
     {
@@ -298,6 +416,10 @@
     {
       "date": "2026-09-28",
       "summary": "Replaced the pricing-page privacy summary with current Privacy Mode, provider-retention and Cloud Agent scope; account settings remain unchecked."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Documented Self-Hosted Machines tool execution, cloud inference, worker data flow and account-plan limits from current official docs; no setup or account was tested."
     }
   ],
   "commercial": {

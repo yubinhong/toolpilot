@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Lovable alternatives",
   "summary": "Lovable alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 12,
+  "revision": 13,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -61,8 +61,8 @@
     },
     {
       "slug": "cursor",
-      "revision": 4,
-      "digest": "e6e3b241f3ea0b12e5a4e8a80770c3769a53704f8bf221bdff2d1657e2e9013d"
+      "revision": 5,
+      "digest": "1f318bcb4fc86a89b3ba74a20c54a869e71e1232ee053aff603b369f9a7a19be"
     }
   ],
   "gaps": [
@@ -116,6 +116,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Cursor Privacy Mode, model-retention and Cloud Agent data-scope evidence; account applicability remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Cursor dependency after official self-hosted execution, inference and data-flow evidence; exact Owner review pending."
     }
   ],
   "commercial": {
@@ -245,7 +249,7 @@
     },
     {
       "question": "What does Cursor Privacy Mode cover, and what should an account verify?",
-      "answer": "Cursor says Privacy Mode prevents training on Customer Data and that most model requests use provider zero-data-retention agreements, subject to safety and abuse review and non-ZDR model exceptions. Requests made with personal API keys still pass through Cursor's backend and rely on the provider's terms for retention. Optional Cloud Agents store encrypted repository copies while a run is active, then delete them after completion. Teams and Enterprise can enforce Privacy Mode; Cursor says individual plans follow its Privacy Policy rather than the commercial DPA. Verify the account setting, organization policy, model approvals, API-key route, Cloud Agent use and applicable agreement; none was inspected here.",
+      "answer": "Cursor says Privacy Mode prevents training on Customer Data and that most model requests use provider zero-data-retention agreements, subject to safety and abuse review and non-ZDR model exceptions. Requests made with personal API keys still pass through Cursor's backend and rely on the provider's terms for retention. Optional Cloud Agents store encrypted repository copies while a run is active, then delete them after completion. Teams and Enterprise can enforce Privacy Mode; Cursor says individual plans follow its Privacy Policy rather than the commercial DPA. Verify the account setting, organization policy, model approvals, API-key route, Cloud Agent use and applicable agreement; none was inspected here. Cursor also says Privacy Mode applies to Self-Hosted Machines and that code sent by the worker is not used for training when enabled, although run content still reaches Cursor and artifacts may upload to its storage; confirm whether this feature and setting apply to the account.",
       "sourceRefs": [
         {
           "toolSlug": "cursor",
@@ -262,6 +266,10 @@
         {
           "toolSlug": "cursor",
           "sourceId": "privacy-policy"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "self-hosted-machines"
         }
       ]
     }

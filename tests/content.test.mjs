@@ -432,21 +432,28 @@ test('Cursor Privacy Mode evidence preserves training, retention, BYOK and Cloud
     'privacy-help': 'https://prod.cursor.com/help/security-and-privacy/privacy',
     'privacy-policy': 'https://cursor.com/privacy',
     security: 'https://cursor.com/security',
+    'self-hosted-machines': 'https://cursor.com/docs/cloud-agent/self-hosted',
+    'self-hosted-runtime': 'https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime',
+    'self-hosted-pools': 'https://cursor.com/docs/cloud-agent/self-hosted/pool',
+    'self-hosted-help': 'https://cursor.com/help/ai-features/self-hosted-machines',
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 4);
+  assert.equal(record.revision, 5);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.equal(fact?.critical, true);
-  assert.deepEqual(fact?.sourceIds, Object.keys(expectedSources));
+  assert.deepEqual(fact?.sourceIds, ['privacy-overview','privacy-governance','privacy-help','privacy-policy','security','self-hosted-machines']);
   assert.match(fact?.value ?? '', /Privacy Mode enabled/);
   assert.match(fact?.value ?? '', /safety\/abuse review exceptions/);
   assert.match(fact?.value ?? '', /BYOK requests still pass through Cursor's backend/);
-  assert.match(fact?.value ?? '', /Cloud Agents temporarily store encrypted repository copies/);
+  assert.match(fact?.value ?? '', /Cursor-managed Cloud Agents temporarily store encrypted repository copies/);
+  assert.match(fact?.value ?? '', /For Self-Hosted Machines, Cursor says Privacy Mode applies/);
+  assert.match(fact?.value ?? '', /worker still sends the content needed for agent execution to Cursor/);
   assert.match(fact?.value ?? '', /commercial customers as processor/);
   assert.match(faq?.answer ?? '', /zero-data-retention agreements/);
   assert.match(faq?.answer ?? '', /personal API keys still pass through Cursor's backend/);
-  assert.deepEqual(faq?.sourceRefs.map(ref => ref.sourceId), ['privacy-overview','privacy-governance','privacy-help','privacy-policy']);
+  assert.match(faq?.answer ?? '', /For Self-Hosted Machines, Cursor says Privacy Mode applies/);
+  assert.deepEqual(faq?.sourceRefs.map(ref => ref.sourceId), ['privacy-overview','privacy-governance','privacy-help','privacy-policy','self-hosted-machines']);
   for (const [id, url] of Object.entries(expectedSources)) {
     assert.equal(record.sources.find(source => source.id === id)?.url, url);
     assert.equal(record.sources.find(source => source.id === id)?.accessedAt, '2026-09-28');
@@ -461,7 +468,8 @@ test('Cursor Privacy Mode evidence preserves training, retention, BYOK and Cloud
     const decisionFaq = decision.faqs.find(item => item.question === faq.question);
     assert.equal(dependency?.revision, record.revision);
     assert.equal(dependency?.digest, contentDigest(record));
-    assert.deepEqual(decisionFaq?.sourceRefs.map(ref => ref.sourceId), Object.keys(expectedSources).slice(0, 4));
+    assert.match(decisionFaq?.answer ?? '', /Cursor also says Privacy Mode applies to Self-Hosted Machines/);
+    assert.deepEqual(decisionFaq?.sourceRefs.map(ref => ref.sourceId), ['privacy-overview','privacy-governance','privacy-help','privacy-policy','self-hosted-machines']);
     assert.ok(decision.gaps.some(gap => gap.includes('drawing account-specific processing or retention conclusions')));
     assert.equal(decision.review.state, 'in-review');
     assert.equal(isIndexable(decision, content), false);
@@ -476,6 +484,56 @@ test('Cursor Privacy Mode evidence preserves training, retention, BYOK and Cloud
   assert.equal(profileEntry?.digest, contentDigest(record));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
+});
+test('Cursor Self-Hosted Machines separate worker execution, inference and data flow',() => {
+  const record=content.find(item=>item.kind==='tools'&&item.slug==='cursor');
+  assert.ok(record);
+  const sources=Object.fromEntries(record.sources.map(source=>[source.id,source]));
+  const expected={
+    'self-hosted-machines':'https://cursor.com/docs/cloud-agent/self-hosted',
+    'self-hosted-runtime':'https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime',
+    'self-hosted-pools':'https://cursor.com/docs/cloud-agent/self-hosted/pool',
+    'self-hosted-help':'https://cursor.com/help/ai-features/self-hosted-machines',
+  };
+  for(const [id,url] of Object.entries(expected)) {
+    assert.equal(sources[id]?.url,url);
+    assert.equal(sources[id]?.accessedAt,'2026-09-28');
+  }
+  const facts=Object.fromEntries(record.facts.map(item=>[item.key,item]));
+  assert.deepEqual(facts.selfHosting.sourceIds,['self-hosted-machines','self-hosted-runtime','self-hosted-pools']);
+  assert.match(facts.selfHosting.value,/tool execution, including file edits and terminal commands/);
+  assert.match(facts.selfHosting.value,/agent loop, inference and planning stay in Cursor's cloud/);
+  assert.match(facts.selfHosting.value,/Team Pools require Enterprise/);
+  assert.deepEqual(facts.localModels.sourceIds,['self-hosted-machines','self-hosted-runtime']);
+  assert.match(facts.localModels.value,/does not establish local model inference/);
+  assert.match(facts.localModels.value,/do not establish local-model support or absence for Cursor's editor/);
+  assert.deepEqual(facts.portability.sourceIds,['self-hosted-machines','self-hosted-pools','self-hosted-help']);
+  assert.match(facts.portability.value,/full checkout, build cache and machine-local credentials stay on the worker/);
+  assert.match(facts.portability.value,/file contents, terminal output, diffs, screenshots, local MCP results and routing metadata/);
+  assert.match(facts.portability.value,/not export or session\/settings migration/);
+  const inferenceFaq=record.faqs.find(item=>item.question==='Does Cursor Self-Hosted Machines run model inference on my worker?');
+  const dataFlowFaq=record.faqs.find(item=>item.question==='What stays on a Cursor self-hosted worker, and what still goes to Cursor?');
+  assert.ok(inferenceFaq?.sourceRefs.some(ref=>ref.sourceId==='self-hosted-runtime'));
+  assert.ok(dataFlowFaq?.sourceRefs.some(ref=>ref.sourceId==='self-hosted-pools'));
+  assert.equal(record.review.state,'in-review');
+  assert.equal(record.review.owner,null);
+  assert.equal(isIndexable(record,content),false);
+
+  const dependents=content.filter(item=>item.kind!=='tools'&&item.dependencies.some(dependency=>dependency.slug==='cursor'));
+  assert.equal(dependents.length,11);
+  for(const decision of dependents) {
+    const dependency=decision.dependencies.find(item=>item.slug==='cursor');
+    assert.equal(dependency?.revision,record.revision);
+    assert.equal(dependency?.digest,contentDigest(record));
+    const privacyFaq=decision.faqs.find(item=>item.question==='What does Cursor Privacy Mode cover, and what should an account verify?');
+    assert.ok(privacyFaq?.sourceRefs.some(ref=>ref.sourceId==='self-hosted-machines'));
+    assert.equal(decision.review.state,'in-review');
+    assert.equal(decision.review.owner,null);
+    assert.equal(isIndexable(decision,content),false);
+  }
+  const paired=content.find(item=>item.kind==='compare'&&item.slug==='cursor-vs-claude-code');
+  assert.ok(paired?.faqs.some(item=>item.question==='Do their self-hosted options move model inference onto your infrastructure?'));
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,19);
 });
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -592,7 +650,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,22);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,19);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
@@ -684,7 +742,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'?5:record.slug==='cline'||record.slug==='cursor'?4:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'?5:record.slug==='cline'?4:record.slug==='cursor'?5:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);
@@ -819,7 +877,7 @@ test('Claude Code hosting, inference and portability claims match current offici
 test('MCP and self-hosted hubs render only facts with resolvable source evidence', () => {
   const expectedProfiles = {
     mcp: ['cursor', 'claude-code', 'github-copilot', 'cline', 'continue'],
-    'self-hosted': ['n8n', 'continue', 'aider', 'claude-code'],
+    'self-hosted': ['n8n', 'continue', 'aider', 'claude-code', 'cursor'],
   };
 
   for (const [kind, slugs] of Object.entries(expectedProfiles)) {
@@ -841,6 +899,10 @@ test('MCP and self-hosted hubs render only facts with resolvable source evidence
   assert.equal(claudeHostedEntry?.fact.key, 'selfHosting');
   assert.deepEqual(claudeHostedEntry?.fact.sourceIds, ['self-hosted']);
   assert.match(claudeHostedEntry?.fact.value ?? '', /inference still goes outbound to api\.anthropic\.com/);
+  const cursorHostedEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'cursor');
+  assert.equal(cursorHostedEntry?.fact.key, 'selfHosting');
+  assert.deepEqual(cursorHostedEntry?.fact.sourceIds, ['self-hosted-machines','self-hosted-runtime','self-hosted-pools']);
+  assert.match(cursorHostedEntry?.fact.value ?? '', /agent loop, inference and planning stay in Cursor's cloud/);
 });
 test('TASK-006 decision pages expose cited strengths, constraints and FAQs while pending review',() => {
   const required = [
@@ -1043,7 +1105,7 @@ test('route registry excludes drafts without removing their routes',()=> {
   for (const r of content.filter(r=>r.review.state!=='published')) assert.equal(routes.find(x=>x.path===`/${r.kind}/${r.slug}/`).index,false);
 });
 test('freshness reports unknown and overdue fields without rewriting evidence',()=> {
-  const r=tool();const before=JSON.stringify(r);
+  const r=tool();const unknown=r.facts.find(item=>item.key==='portability');unknown.value=null;unknown.sourceIds=[];unknown.checkedAt=null;const before=JSON.stringify(r);
   const report=freshness([r],'2026-10-28');assert.ok(report.some(x=>x.type==='price'&&x.status==='review-due'));
   assert.ok(report.some(x=>x.status==='unverified'));assert.equal(JSON.stringify(r),before);
   assert.throws(()=>freshness([r],'invalid'));
