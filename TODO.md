@@ -116,6 +116,8 @@ TODO-311/TODO-312 verification update (2026-09-28): after reviewing Make's AI Ag
 
 TODO-311 CrUX Vis check (2026-09-28 17:53 UTC): the public CrUX History API returned HTTP 404 `NOT_FOUND` (`chrome ux report data not found`) for both `https://toolpilot.cc` origin and `https://toolpilot.cc/` URL queries (up to 40 weekly periods). No collection window or metric was returned; this is not a CWV pass/fail result. See `docs/research/cruxvis-history-recheck-2026-09-28.md`. Dated GSC property data and any available field CWV data remain an Owner input.
 
+TODO-311 evidence release (2026-09-28): commit `fb1f528` passed clean `release:check`, CI `36462603447` and Pages deployment/check `e15e41e9-4cb8-4133-9d58-4fea8b72594c`. Preview and production each passed 99-page current smoke, robots, sitemap and real 404. The release changed documentation only; TODO-311 remains open for Owner-provided GSC and available field CWV data.
+
 TODO-309 Cline release update (2026-09-28): commit `cb23ac0` passed clean `release:check`, CI `36444234496` and Cloudflare Pages deployment/check `c3e60416-fd47-4c65-95f2-9e4538e90e5f`. Immutable preview and production both passed 99-page current smoke and nine-route source/endpoint/FAQ/noindex/sitemap assertions. All drafts remain in-review; no account or model was tested and no Owner approval is implied.
 
 ## Later - 暂不承诺
