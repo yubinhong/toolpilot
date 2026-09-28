@@ -284,6 +284,50 @@ test('GitHub Copilot training-use policy distinguishes individual opt-out from o
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
+  const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
+  assert.ok(record);
+  assert.equal(record.revision,5);
+  assert.equal(record.updatedAt,'2026-09-28');
+  const sources=Object.fromEntries(record.sources.map(source=>[source.id,source]));
+  for (const [id,url] of Object.entries({
+    acquisition:'https://continue.dev/',
+    cli:'https://docs.continue.dev/cli/quickstart',
+    repository:'https://github.com/continuedev/continue',
+    jetbrains:'https://plugins.jetbrains.com/plugin/22707-continue',
+  })) {
+    assert.equal(sources[id]?.url,url);
+    assert.equal(sources[id]?.accessedAt,'2026-09-28');
+  }
+  assert.match(record.facts.find(item=>item.key==='ownership')?.value??'',/acquired by Cursor/);
+  assert.match(record.facts.find(item=>item.key==='ownership')?.value??'',/remains freely available/);
+  const lifecycle=record.facts.find(item=>item.key==='maintenance');
+  assert.deepEqual(lifecycle?.sourceIds,['repository','jetbrains']);
+  assert.match(lifecycle?.value??'',/read-only/);
+  assert.match(lifecycle?.value??'',/final 2\.0\.0 release/);
+  assert.match(lifecycle?.value??'',/community-maintained/);
+  assert.match(lifecycle?.value??'',/active development/);
+  assert.match(lifecycle?.value??'',/CLI statements conflict/);
+  const cli=record.facts.find(item=>item.key==='cliWorkflow');
+  assert.deepEqual(cli?.sourceIds,['cli']);
+  assert.match(cli?.value??'',/Continue account or Anthropic API key/);
+  assert.match(cli?.value??'',/Node\.js 20\+/);
+  assert.equal(record.prices[0]?.amount,null);
+  assert.ok(record.gaps.some(gap=>gap.includes('current version/update path and security response')));
+  assert.ok(record.gaps.some(gap=>gap.includes('billing, telemetry and data terms')));
+  const dependents=content.filter(item=>item.kind!=='tools'&&item.dependencies.some(dependency=>dependency.slug==='continue'));
+  assert.deepEqual(dependents.map(item=>item.slug).sort(),['cline-vs-continue','open-source-ai-coding-tools']);
+  for (const decision of dependents) {
+    const dependency=decision.dependencies.find(item=>item.slug==='continue');
+    assert.equal(dependency.revision,record.revision);
+    assert.equal(dependency.digest,contentDigest(record));
+    assert.equal(decision.review.state,'in-review');
+    assert.equal(isIndexable(decision,content),false);
+  }
+  assert.equal(record.review.state,'in-review');
+  assert.equal(record.review.owner,null);
+  assert.equal(isIndexable(record,content),false);
+});
 test('MCP capability claims cite official docs and remain pending exact owner review',() => {
   const expected = new Map([
     ['claude-code','https://code.claude.com/docs/en/mcp'],
@@ -298,7 +342,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?4:record.slug==='github-copilot'||record.slug==='cline'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?5:record.slug==='github-copilot'||record.slug==='cline'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);

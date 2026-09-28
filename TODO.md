@@ -24,6 +24,8 @@
 
 TODO-309 source update (2026-09-28): Devin's official current plan page lists Free USD 0/month, Pro USD 20/month, Max USD 200/month, and Teams USD 80/month plus USD 40/month per full developer seat. Its Desktop FAQ says existing Windsurf plan pricing carries over, including legacy Enterprise. This closes the public price/standard-transition research gap; an individual account quote, actual usage and account-specific update remain unresolved.
 
+TODO-309 source update (2026-09-28): Continue's official site says it joined Cursor and that its open-source code remains available. The upstream README calls the repository read-only/no longer maintained and describes a final 2.0.0 release for VS Code, CLI and JetBrains; the JetBrains Marketplace calls the plugin community-maintained and says CLI development is active. The CLI statements conflict, so the selected package/version, update path, security response, billing and data terms remain unresolved. Continue is revision 5; its `/compare/cline-vs-continue/` and `/best/open-source-ai-coding-tools/` dependents are revisions 7 and 9. All three remain in-review/noindex. Exact handoff is the TASK-006 manifest; TASK-005 does not contain these records. This evidence update does not resolve the owner-approved page set or formal review.
+
 ## Later - 暂不承诺
 
 - TODO-101：Newsletter Sponsor、ToolPilot Pro、Lead Gen、工具数据库 API — 重新评估条件：MVP 内容质量、合规披露、用户转化和运营能力已验证。

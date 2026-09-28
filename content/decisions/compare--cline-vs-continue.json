@@ -2,8 +2,8 @@
   "slug": "cline-vs-continue",
   "kind": "compare",
   "title": "Cline vs Continue",
-  "summary": "Compare IDE coding assistants by model control, permission behavior and upstream maintenance evidence.",
-  "revision": 6,
+  "summary": "Compare coding assistants by model control, permissions and channel-specific lifecycle evidence.",
+  "revision": 7,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -21,9 +21,9 @@
   "prices": [],
   "sections": [
     {
-      "heading": "Resolve the maintenance question first",
+      "heading": "Resolve the distribution channel first",
       "paragraphs": [
-        "Continue's upstream repository says it is read-only and no longer actively maintained. Verify the exact extension or CLI package, publisher, update channel and security response before including it in a supported production shortlist."
+        "Continue's README says its repository is read-only and describes a final 2.0.0 release, while JetBrains Marketplace calls its plugin community-maintained and says active development is happening in the CLI. Those CLI statements conflict. Verify the exact extension or CLI package, publisher, update channel and security response before relying on a support path."
       ]
     },
     {
@@ -45,14 +45,15 @@
   ],
   "cons": [
     { "text": "Continue's documentation limits MCP use to Agent mode, so this capability is not documented across all modes.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
-    { "text": "Continue's upstream repository says it is read-only and no longer actively maintained; its package and support path need confirmation.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }] }
+    { "text": "Continue's README calls the repository read-only and 2.0.0 its final release, while the JetBrains Marketplace calls its plugin community-maintained and recommends the CLI as the active development path; the CLI lifecycle statements conflict.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] }
   ],
   "faqs": [
     { "question": "Can Continue use MCP outside Agent mode?", "answer": "No. Continue's MCP documentation says MCP tools are available only in Agent mode.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
+    { "question": "What is Continue's current support status?", "answer": "The repository README says it is read-only and describes a final 2.0.0 release, while the JetBrains Marketplace calls the plugin community-maintained and says CLI development is active. These statements conflict about the CLI path; verify the selected package and support response.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "question": "Which MCP transport does Cline recommend?", "answer": "Cline marks Streamable HTTP as recommended and SSE as legacy; match the transport to the server you intend to use.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "mcp" }] },
     { "question": "What do Cline's public sources say about telemetry defaults?", "answer": "Cline's Terms, last modified 2025-09-25, say extension telemetry is on by default and can be disabled in settings; its 2025-02-26 blog describes telemetry as opt-in. These public statements conflict, so verify the current extension version and setting.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] }
   ],
-  "verdict": "Cline and Continue should not be treated as equivalent maintenance choices today: Continue's upstream read-only notice is a decision-critical caveat. Verify distribution and support before evaluating feature fit.",
+  "verdict": "Evaluate the exact package and support channel before comparing feature fit. Continue's current sources conflict about CLI lifecycle, and neither the repository nor marketplace statements establish a package-specific support commitment.",
   "bestFor": "Developers deciding how much model configuration and maintenance risk they can own",
   "notFor": "Teams that require a current upstream support commitment without first checking the package lifecycle",
   "migration": "Pin the current package version, export model configuration and preserve a working fallback. Reassess extension publisher and update state before each upgrade.",
@@ -64,12 +65,12 @@
     },
     {
       "slug": "continue",
-      "revision": 4,
-      "digest": "2a8b55b63b356e22260f8a70251d04b22c3d72dd9860a699625f5ecc3a4897a8"
+      "revision": 5,
+      "digest": "08bee9d36c0393d15a22a99435da496abf9fcc5f9f9ebf97fbf5e7ac3bae70c8"
     }
   ],
   "gaps": [
-    "Continue package distribution, publisher, security response and current support lifecycle require confirmation.",
+    "Resolve the conflict between Continue's README read-only/final-release notice and the JetBrains Marketplace's CLI active-development statement; confirm the selected package, publisher, updates and security response.",
     "No local-model quality, privacy or performance trial has been performed.",
     "Cline's actual telemetry configuration and selected-provider data handling were not inspected."
   ],
@@ -97,6 +98,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed the pinned Cline dependency after its official privacy and telemetry evidence update; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the Continue dependency after recording its acquisition, CLI and JetBrains lifecycle statements, including the unresolved CLI conflict; exact owner review remains pending."
     }
   ],
   "commercial": {
