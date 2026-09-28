@@ -37,13 +37,14 @@
   },
   {
     "path": "/tools/github-copilot/",
-    "revision": 5,
-    "digest": "b99704e15f5c690dcc048e1f4a8f7b56468b39d9c743720d4515e917e2a57587",
+    "revision": 6,
+    "digest": "91eb4a04b7e440cffbb9c14cd1376f2e95316e09023839dd797d0725c6bf3595",
     "state": "in-review",
     "gaps": [
       "Verify the exact Copilot plan, personal training opt-out and organization or enterprise privacy policies for the account under review; no account settings were inspected.",
       "Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the published training-use policy is not a complete retention or legal assessment.",
-      "Confirm the selected Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
+      "Confirm the selected Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
+      "Confirm the organization's Copilot cloud-agent runner policy, repository override permission, firewall configuration and approved ephemeral runner; no organization setting or runner was inspected."
     ]
   },
   {
@@ -90,8 +91,8 @@
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 10,
-    "digest": "5c8e55f88b94ff3b27f4a313d808d91d5d0d0b4aced6133ebd7182bdaa791c86",
+    "revision": 11,
+    "digest": "b03a08014b510a2ae58a8b945761ac7093cefa219045a05501589806efb4c2ab",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -100,8 +101,8 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 13,
-    "digest": "ca0a364bd44f47e25639caad603491015d5c4c5d41d44be2c25d1dda3e0ff70f",
+    "revision": 14,
+    "digest": "f78c375804bc6b27d84aaa30a6cef30616bafe0e5ed1d69da586ddefa6b5add9",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -127,8 +128,8 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 12,
-    "digest": "0deff9cfbfb188dc51fb7ea88c75e342f7d2378310593911a66d2930a716d085",
+    "revision": 13,
+    "digest": "e411bcbb9a1193e576ff7b6b1c8f2e7d41577c277511fb643cb019334932997a",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -145,8 +146,8 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 10,
-    "digest": "a01a5e13ef4a3e38541dd3dbbbdd7d2f1746be9d6b9385e5f595dc796c51a715",
+    "revision": 11,
+    "digest": "9642f0dcb3f3729ef27cb0c20db81f98a9f97df97dd91de46ff4471344f3af82",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -171,8 +172,8 @@
   },
   {
     "path": "/compare/cursor-vs-github-copilot/",
-    "revision": 8,
-    "digest": "7276ce7666538f7f52292dbfee40405f298a78e084722738cc96103239c4da90",
+    "revision": 9,
+    "digest": "c5330f1ac0544ce927b349694df3542c2d3465d5e5b1e2536468b8386d307e3e",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",

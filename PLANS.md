@@ -582,6 +582,15 @@ Initial P0 technical tranche verification (2026-09-27): `npm run cloudflare:buil
 - [x] Release acceptance: commit `15f5492a982af22f8537d63031169a9362ae9b78` passed clean detached-worktree `release:check`, CI `36397813336`, and Pages check/deployment `5c2f37dc-580a-4739-8d76-1a1e61620098`. Immutable preview `https://5c2f37dc.toolpilot-git.pages.dev` and production smoke passed for 99 pages; seven affected routes on both environments render both BYOK sources, remain noindex and stay outside the sitemap. See TASK.md.
 - Rollback: restore Copilot revision 4 and the prior revisions/digests for all six dependents, exact review manifests/evidence pack and the paired tests/artifact/task documentation; rerun content validation/review, build and current-profile smoke.
 
+### TODO-309 — GitHub Copilot cloud-agent runner placement — 2026-09-28
+
+- Official GitHub documentation says Copilot cloud agent defaults to a GitHub-hosted Actions runner and can be configured to use an organization self-hosted Actions runner. Keep this separate from the already documented client-side Local BYOK/local-model routes: self-hosting the task runner does not establish local model inference, offline operation or customer-hosted Copilot service.
+- Update only the GitHub Copilot `selfHosting` fact with runner type, configuration boundary and supported-runner caveat; preserve actual organization runner settings as unknown. Refresh its six declared dependency digests and only add a relevant runner-placement FAQ to the Claude Code/Copilot comparison. Keep all records in-review/noindex and outside the sitemap.
+- Refresh exact TASK-005/TASK-006 review manifests and handoffs; add regression checks for official source IDs/URLs, default versus self-hosted runner scope, non-inference caveat, dependent digest consistency, rendered source links and pending review state.
+- Local acceptance: both new GitHub Docs URLs returned HTTP 200; exact review manifests match; Node 22 lint/typecheck/92 tests/build/artifact checks and audit pass; date-pinned freshness decreases from 19 to 18 unverified fields; local current-profile smoke passes without route or sitemap changes. Online preview/production release checks must verify the same indexing and route invariants.
+- Owner/account boundary: do not query or change organization runner configuration. Public docs establish capability only; actual runner selection remains unverified. This tranche does not resolve page-set approval or TODO-310/314 Owner inputs.
+- Rollback: restore Copilot revision 5, prior dependent revisions/digests, both manifests and evidence handoffs plus tests/artifact/task docs; rebuild, repeat exact content review and current-profile smoke. No route or sitemap change is allowed.
+
 ### TODO-309 — Claude Code self-hosted execution evidence
 
 - Goal: close Claude Code's source-verifiable `selfHosting`, `localModels` and `portability` gaps without treating customer-run session compute as model hosting or claiming custom endpoint support.

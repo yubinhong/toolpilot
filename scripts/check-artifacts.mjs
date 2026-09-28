@@ -178,6 +178,20 @@ for (const sourceId of copilotLocalModels?.sourceIds ?? []) {
   const source = githubCopilot.sources.find(item => item.id === sourceId);
   if (!source || !githubCopilotHtml.includes(source.url)) failures.push(`/tools/github-copilot/: Local BYOK source ${sourceId} is missing from generated HTML`);
 }
+const copilotSelfHosting = githubCopilot?.facts.find(fact => fact.key === 'selfHosting');
+if (!copilotSelfHosting?.value || !githubCopilotHtml.includes(escapeHtml(copilotSelfHosting.value))) failures.push('/tools/github-copilot/: cloud-agent runner placement fact is missing from generated HTML');
+for (const sourceId of copilotSelfHosting?.sourceIds ?? []) {
+  const source = githubCopilot.sources.find(item => item.id === sourceId);
+  if (!source || !githubCopilotHtml.includes(source.url)) failures.push(`/tools/github-copilot/: cloud-agent runner source ${sourceId} is missing from generated HTML`);
+}
+const copilotRunnerComparison = content.find(record => record.kind === 'compare' && record.slug === 'claude-code-vs-github-copilot');
+const copilotRunnerFaq = copilotRunnerComparison?.faqs.find(faq => faq.question === 'Can GitHub Copilot cloud agent run on a self-hosted runner?');
+const copilotRunnerHtml = readFileSync('out/compare/claude-code-vs-github-copilot/index.html', 'utf8');
+if (!copilotRunnerFaq || !copilotRunnerHtml.includes(escapeHtml(copilotRunnerFaq.answer))) failures.push('/compare/claude-code-vs-github-copilot/: cloud-agent runner FAQ is missing from generated HTML');
+for (const sourceId of ['cloud-agent-environment', 'cloud-agent-runners']) {
+  const source = githubCopilot?.sources.find(item => item.id === sourceId);
+  if (!source || !copilotRunnerHtml.includes(source.url)) failures.push(`/compare/claude-code-vs-github-copilot/: cloud-agent runner source ${sourceId} is missing from generated HTML`);
+}
 for (const record of content) {
   const evidence = [
     ...(record.pros ?? []).map(item => ({ text: item.text, refs: item.sourceRefs, label: 'strength' })),

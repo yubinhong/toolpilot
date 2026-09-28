@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Windsurf alternatives",
   "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 12,
+  "revision": 13,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -56,8 +56,8 @@
     },
     {
       "slug": "github-copilot",
-      "revision": 5,
-      "digest": "b99704e15f5c690dcc048e1f4a8f7b56468b39d9c743720d4515e917e2a57587"
+      "revision": 6,
+      "digest": "91eb4a04b7e440cffbb9c14cd1376f2e95316e09023839dd797d0725c6bf3595"
     },
     {
       "slug": "cline",
@@ -117,7 +117,7 @@
     },
     {
       "date": "2026-09-28",
-      "summary": "Refreshed Cursor dependency after official self-hosted execution, inference and data-flow evidence; exact Owner review pending."
+      "summary": "Refreshed GitHub Copilot dependency after official cloud-agent runner placement and self-hosted runner constraints were documented; organization configuration remains unverified."
     }
   ],
   "commercial": {
