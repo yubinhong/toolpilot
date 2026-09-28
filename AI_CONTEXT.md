@@ -2,7 +2,7 @@
 
 ## 当前快照 — 2026-09-28
 
-- Cursor privacy update: revision 4 now cites the Sept 2026 Data Use overview and current privacy/data-governance docs; it distinguishes training/ZDR from safety and non-ZDR model exceptions, BYOK provider handling, temporary Cloud Agent storage, and individual vs commercial contract scope. Eleven dependent drafts and the TASK-005 manifest were refreshed; all remain in-review/noindex pending exact Owner review.
+- Cursor privacy update: revision 4 now cites the Sept 2026 Data Use overview and current privacy/data-governance docs; it distinguishes training/ZDR from safety and non-ZDR model exceptions, BYOK provider handling, temporary Cloud Agent storage, and individual vs commercial contract scope. Eleven dependent drafts and the TASK-005 manifest were refreshed; all remain in-review/noindex. Commit `90d15cb` passed clean release readiness, CI `36383345690`, Pages deployment/check `85b778e0-a621-4e81-9e08-58ff0203b520`, and preview/production current smoke plus 12-route source/noindex/sitemap assertions. Account settings and agreements remain unverified; exact Owner review is still pending.
 
 - Windsurf/Devin Desktop privacy update: revision 5 separates Cognition's training/paid opt-out terms, the DPA's personal-data processing scope and Windsurf's Exafunction-only no-training guidance. Three dependent decisions are revisions 9/9/7; account agreement, tier, opt-out and persistent-feature settings remain unverified. All four records stay in-review/noindex; exact handoff is in the TASK-005 manifest and evidence pack.
 
