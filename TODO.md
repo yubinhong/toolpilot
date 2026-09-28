@@ -6,7 +6,7 @@
 
 - Replit 官方文章称模型按任务自动路由；用户从 Free Mode 开始，工作升级到可能产生用量费用的更高模式时会收到提示并可留在 Free Mode；Core/Pro 可手动选择，Enterprise 管理员可设定批准模型集。文章未说明模型执行位置或本地 endpoint，因此 `localModels` 继续为 unknown。
 - Replit 档案升至 r9，七个声明依赖页更新至 r19/r19/r18/r15/r12/r13/r10；两份精确审核清单、TASK-005/TASK-006 handoff、证据包、测试和产物断言已同步。内容保持 `in-review`、noindex，并排除 sitemap。
-- 本地验证：100 个测试、content/review、Cloudflare 静态构建（99 页 / 4 个 indexable URL）、高危依赖审计 0 个漏洞、freshness 6 unknown / 0 overdue、完整链接检查、99 页本地 smoke 和八页源文/FAQ/noindex/sitemap 断言均通过。发布验证待提交后完成；没有检查账号、模型或 endpoint，也没有 Owner 批准。
+- 本地验证：100 个测试、content/review、Cloudflare 静态构建（99 页 / 4 个 indexable URL）、高危依赖审计 0 个漏洞、freshness 6 unknown / 0 overdue、完整链接检查、99 页本地 smoke 和八页源文/FAQ/noindex/sitemap 断言均通过。提交 `d156d1a` 通过干净 worktree release check、CI `36496404681`、Pages check/deployment `b88496d0-4ff4-4b53-93a9-11e16e99cf4b`，preview/production 99 页 smoke 及 16 个在线页面断言均通过。没有检查账号、模型或 endpoint，也没有 Owner 批准。
 
 ### TODO-309 进展 — Replit Enterprise 托管边界（2026-09-28）
 
