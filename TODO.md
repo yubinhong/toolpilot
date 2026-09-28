@@ -5,7 +5,7 @@
 ### TODO-309 进展 — Replit Enterprise 托管边界（2026-09-28）
 
 - 官方 Enterprise 页面提到 Sales-Assisted Enterprise 可选 dedicated GCP project 和 single-tenant，价格为定制并要求年度承诺；页面没有说明项目归属/运维方、包含的组件或是否提供客户自管的 Replit 平台。
-- 已更新 Replit 档案 r8、7 个依赖决策草稿、TASK-005/TASK-006 精确审核清单、证据包及回归检查。Node 22 静态构建、100 个测试、内容/审核清单检查、0 高危依赖审计、6 个 unknown / 0 overdue freshness、来源链接扫描、本地 current smoke 和 8 路由 HTML 断言均通过。所有内容保持 `in-review`、noindex；没有检查账号、协议或部署。发布验证仍待完成，详见 TASK.md。
+- 已更新 Replit 档案 r8、7 个依赖决策草稿、TASK-005/TASK-006 精确审核清单、证据包及回归检查。Node 22 静态构建、100 个测试、内容/审核清单检查、0 高危依赖审计、6 个 unknown / 0 overdue freshness、来源链接扫描、本地 current smoke 和 8 路由 HTML 断言均通过。提交 `bef03ba` 已通过 release readiness 与 CI；preview/production smoke 和八页在线断言通过。Cloudflare check 元数据仍显示 `Building`，且缺少 Wrangler API token 无法读取部署列表。所有内容保持 `in-review`、noindex；没有检查账号、协议或部署配置。详见 TASK.md。
 
 ## Now - 已确认，等待进入执行
 
