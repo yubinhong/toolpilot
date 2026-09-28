@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 6. Digest: `a6ee281aafd80c1c87d38404c3e0fe7b7d728a69c8a1c4f200ff8e0abb2e19b8`.
+Revision: 7. Digest: `4f049d7ba5cdf5d6575e0aa08f28185f1b6fe548449a7970f8ffa1489a5fab70`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -28,6 +28,10 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Import from providers](https://docs.replit.com/build/import-from-providers) — Replit; accessed 2026-09-28
 
+- [Replit AI Integrations](https://docs.replit.com/features/integrations/replit-ai-integrations) — Replit; accessed 2026-09-28
+
+- [Model selector](https://docs.replit.com/features/agent/model-selector) — Replit; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: Natural-language agent for building applications Sources: product; checked: 2026-09-27.
@@ -37,6 +41,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+
+- **Agent model selection / application AI integrations**: Replit's AI Integrations docs describe managed provider API calls for apps being built, billed at provider API prices through Replit credits, or app BYOK billed by the provider. Its separate Model selector doc describes Replit Agent's model choice. Neither reviewed page documents a local model or endpoint for Replit Agent; support remains unverified, not disproven. Sources: ai-integrations, agent-model-selector; checked: 2026-09-28. No account, endpoint, integration or model was tested.
 
 - **Code / data portability**: Replit documents Git/GitHub workflows and an App-managed `gitsafe-backup` remote for recovering Git commit history after local repository corruption. Its import guide lists GitHub, Bitbucket, ZIP and named builder sources; provider-specific secrets, records and services may need separate setup, and one Supabase import path says existing records and secrets are not imported. Agent checkpoints support rollback inside Replit, with optional development-database restoration; production database restore is not automatic. These sources do not establish a tested full external app export or migration. Sources: version-control, disaster-recovery, import-providers, checkpoints; checked: 2026-09-28.
 - **Published app geography**: Core, Pro and Enterprise can select North America, Europe (EU), Asia, South America or Australia; Free publishes to North America by default. Published compute, database and Object Storage are colocated. Selection is permanent after publish and pre-publish resources may remain elsewhere. Source: geography; checked: 2026-09-27.
@@ -59,6 +65,7 @@ Keep application code, database backups and environment-variable names portable.
 - Strength: Replit describes Agent as a plain-language workflow from project setup through checking and deployment; checkpoints can preserve app state including project files and connected database state. Sources: product, checkpoints.
 - Constraint: Git-history recovery, listed import paths and checkpoint rollback have different scopes; none establishes a full external app export, production-data restore or independent deployment. The published Core amount is a base-plan price and does not establish full application costs. Sources: version-control, disaster-recovery, import-providers, checkpoints, pricing.
 - FAQ: test a separate export and independent deployment path if the project must operate outside Replit; inventory database records, secrets, domains, deployment settings and connected services. No import or restore was tested. Sources: version-control, disaster-recovery, import-providers, checkpoints.
+- FAQ: distinguish Replit Agent's own model selector from AI Integrations used to build app-level API calls. Managed provider use is billed through Replit credits; BYOK is billed by the provider. The docs do not establish local inference for Replit Agent, and no account, endpoint or model was tested. Sources: ai-integrations, agent-model-selector.
 
 ## Gaps
 
@@ -67,6 +74,7 @@ Keep application code, database backups and environment-variable names portable.
 - Confirm that workspace, publishing, pre-existing storage and connected-service locations meet the proposed residency requirement; no account or deployment was checked, and publishing geography cannot be changed after release.
 - Review applicable data-processing terms; the general privacy policy is not an account-specific service-location map or a legal review.
 - Confirm the required code, database, production data, secrets, domains, deployment configuration and connected-service migration scope; no export, import, restore or independent deployment was tested.
+- Confirm whether Replit Agent supports local-model inference or a local endpoint; the reviewed app integrations and Agent model-selection pages do not establish it.
 
 ## Owner checklist
 

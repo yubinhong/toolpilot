@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Replit",
   "summary": "An app-building workflow to assess together with its operating costs.",
-  "revision": 6,
+  "revision": 7,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -86,6 +86,20 @@
       "title": "Import from a provider",
       "publisher": "Replit",
       "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "ai-integrations",
+      "url": "https://docs.replit.com/features/integrations/replit-ai-integrations",
+      "title": "Replit AI Integrations",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "agent-model-selector",
+      "url": "https://docs.replit.com/features/agent/model-selector",
+      "title": "Model selector",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -146,6 +160,14 @@
       "sourceIds": ["geography"],
       "checkedAt": "2026-09-27",
       "critical": false
+    },
+    {
+      "key": "aiIntegrations",
+      "label": "AI model integrations",
+      "value": "Replit AI Integrations let Agent set up application API calls with Replit-managed provider credentials, billed at provider API prices through Replit credits, or a developer's own provider API key billed directly by that provider. Replit documents Agent's own model selector separately. The reviewed docs do not establish a local inference endpoint for Replit Agent; local-model support remains unknown.",
+      "sourceIds": ["ai-integrations", "agent-model-selector"],
+      "checkedAt": "2026-09-28",
+      "critical": false
     }
   ],
   "prices": [
@@ -204,6 +226,7 @@
   ],
   "faqs": [
     { "question": "What does Replit Agent do?", "answer": "Replit says Agent can take a plain-language idea through project setup, app creation, checking, problem fixing and deployment; validate the result for your own workload.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] },
+    { "question": "Does Replit's AI Integrations page establish local-model support for Replit Agent?", "answer": "Not from the reviewed docs. Replit describes AI Integrations as provider API access configured for the apps being built: managed credentials are billed to Replit credits at provider prices, while a developer's own API key is billed by the provider. A separate Model selector page describes model choice for Replit Agent itself. Neither page documents a local model or endpoint for Replit Agent, so local-model support remains unverified rather than being marked unsupported. Account model availability can vary; no account, endpoint, integration or model was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "ai-integrations" }, { "toolSlug": "replit", "sourceId": "agent-model-selector" }] },
     { "question": "Do Replit's backup and import docs establish a complete external migration?", "answer": "No. Replit documents Git repository backup and imports from GitHub, Bitbucket and ZIP, while provider-specific data, secrets and services may need separate setup. Agent checkpoints support rollback inside Replit; production database restore is not automatic. Inventory the exact app resources and test an independent deployment. No export, import or restore was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "version-control" }, { "toolSlug": "replit", "sourceId": "disaster-recovery" }, { "toolSlug": "replit", "sourceId": "import-providers" }, { "toolSlug": "replit", "sourceId": "checkpoints" }] },
     { "question": "What Replit Core prices are publicly listed?", "answer": "Replit's current sources list USD 20/month with monthly billing and USD 18/month equivalent when billed annually. Taxes depend on location; confirm your exact checkout and budget runtime, database and agent usage separately.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }, { "toolSlug": "replit", "sourceId": "core-pricing-update" }] }
   ],
@@ -216,7 +239,8 @@
     "Confirm current account eligibility, location-based taxes and total application costs; public Core base prices are not a regional checkout quote or full operating budget.",
     "Confirm whether the documented workspace and publishing geography settings meet the proposed residency requirement across pre-existing storage, other platform resources and connected services; no account or deployment was checked, and published-region selection is permanent.",
     "Review the applicable data-processing terms for the intended use; the general privacy policy is not an account-specific service-location map or a legal review.",
-    "The reviewed docs cover Git-repository recovery, selected source imports and in-platform checkpoints, not a verified full export outside Replit. Confirm the required secrets, database records, production data, domains, deployment settings and connected services; no export, import, restore or independent deploy was tested."
+    "The reviewed docs cover Git-repository recovery, selected source imports and in-platform checkpoints, not a verified full export outside Replit. Confirm the required secrets, database records, production data, domains, deployment settings and connected services; no export, import, restore or independent deploy was tested.",
+    "The reviewed AI Integrations and Agent Model selector docs distinguish application provider API calls from Agent model selection but do not establish local-model inference for Replit Agent. Confirm the required local endpoint capability; no account, model, integration or endpoint was tested."
   ],
   "changes": [
     {
@@ -242,6 +266,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added official Git, provider-import and disaster-recovery scope; external full-app migration, provider data and account setup remain untested."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Separated Agent model selection from application AI integrations; local-model inference remains unverified."
     }
   ],
   "commercial": {

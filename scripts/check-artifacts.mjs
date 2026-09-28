@@ -415,11 +415,19 @@ for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
 }
 const replitProfile = tools.get('replit');
 const replitPortability = replitProfile?.facts.find(fact => fact.key === 'portability');
+const replitAiIntegrations = replitProfile?.facts.find(fact => fact.key === 'aiIntegrations');
+const replitAiIntegrationsFaq = replitProfile?.faqs.find(faq => faq.question === "Does Replit's AI Integrations page establish local-model support for Replit Agent?");
 const replitProfileHtml = readFileSync('out/tools/replit/index.html', 'utf8');
 if (!replitPortability?.value || !replitProfileHtml.includes(escapeHtml(replitPortability.value))) failures.push('/tools/replit/: code-portability fact is missing from generated HTML');
+if (!replitAiIntegrations?.value || !replitProfileHtml.includes(escapeHtml(replitAiIntegrations.value))) failures.push('/tools/replit/: Agent/app AI integration boundary fact is missing from generated HTML');
+if (!replitAiIntegrationsFaq || !replitProfileHtml.includes(escapeHtml(replitAiIntegrationsFaq.answer))) failures.push('/tools/replit/: Agent/app AI integration FAQ is missing from generated HTML');
 for (const sourceId of replitPortability?.sourceIds ?? []) {
   const source = replitProfile?.sources.find(candidate => candidate.id === sourceId);
   if (!source || !replitProfileHtml.includes(source.url)) failures.push(`/tools/replit/: portability source ${sourceId} is missing from generated HTML`);
+}
+for (const sourceId of replitAiIntegrations?.sourceIds ?? []) {
+  const source = replitProfile?.sources.find(candidate => candidate.id === sourceId);
+  if (!source || !replitProfileHtml.includes(source.url)) failures.push(`/tools/replit/: AI integrations source ${sourceId} is missing from generated HTML`);
 }
 for (const [kind, slug] of [['alternatives', 'replit'], ['compare', 'bolt-vs-replit'], ['compare', 'replit-vs-lovable']]) {
   const record = content.find(item => item.kind === kind && item.slug === slug);
@@ -430,6 +438,33 @@ for (const [kind, slug] of [['alternatives', 'replit'], ['compare', 'bolt-vs-rep
     const source = replitProfile?.sources.find(candidate => candidate.id === sourceId);
     if (!portabilityFaq?.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === sourceId) || !source || !html.includes(source.url)) {
       failures.push(`/${kind}/${slug}/: Replit portability source ${sourceId} is missing from generated HTML`);
+    }
+  }
+  if (!html.includes('content="noindex, follow"')) failures.push(`/${kind}/${slug}/: in-review noindex is missing from generated HTML`);
+  if (xml.includes(`${site}/${kind}/${slug}/`)) failures.push(`/${kind}/${slug}/: in-review page appears in sitemap`);
+}
+for (const [kind, slug] of [
+  ['alternatives', 'bolt-new'],
+  ['alternatives', 'lovable'],
+  ['alternatives', 'replit'],
+  ['best', 'ai-app-builders-for-prototypes'],
+  ['compare', 'bolt-vs-replit'],
+  ['compare', 'replit-vs-lovable'],
+  ['pricing', 'replit'],
+]) {
+  const record = content.find(item => item.kind === kind && item.slug === slug);
+  const html = readFileSync(join('out', `/${kind}/${slug}/`, 'index.html'), 'utf8');
+  const isPricing = kind === 'pricing';
+  const question = isPricing
+    ? 'How does Replit AI Integrations usage affect the Core plan price?'
+    : "Does Replit's AI Integrations page establish local-model support for Replit Agent?";
+  const faq = record?.faqs.find(item => item.question === question);
+  if (!faq || !html.includes(escapeHtml(faq.answer))) failures.push(`/${kind}/${slug}/: Replit Agent/app AI integration FAQ is missing from generated HTML`);
+  const sourceIds = isPricing ? ['ai-integrations'] : ['ai-integrations', 'agent-model-selector'];
+  for (const sourceId of sourceIds) {
+    const source = replitProfile?.sources.find(candidate => candidate.id === sourceId);
+    if (!faq?.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === sourceId) || !source || !html.includes(source.url)) {
+      failures.push(`/${kind}/${slug}/: Replit AI integration source ${sourceId} is missing from generated HTML`);
     }
   }
   if (!html.includes('content="noindex, follow"')) failures.push(`/${kind}/${slug}/: in-review noindex is missing from generated HTML`);

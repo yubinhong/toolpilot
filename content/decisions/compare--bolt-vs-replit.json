@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Bolt vs Replit",
   "summary": "Compare two AI app-building workflows by project fit, handoff, operating ownership and the real cost of a working release.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -40,16 +40,104 @@
     }
   ],
   "pros": [
-    { "text": "Bolt documents a JavaScript-based web-app workflow and a separate Expo path for mobile apps.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
-    { "text": "Replit describes Agent as a plain-language workflow that plans, creates, checks, fixes and deploys applications.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] }
+    {
+      "text": "Bolt documents a JavaScript-based web-app workflow and a separate Expo path for mobile apps.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Replit describes Agent as a plain-language workflow that plans, creates, checks, fixes and deploys applications.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "product"
+        }
+      ]
+    }
   ],
   "cons": [
-    { "text": "Bolt's documented web-app path is JavaScript-based, so confirm the exact framework and dependencies before selecting it for a project.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
-    { "text": "Replit documents repository backup, selected project imports and in-platform checkpoints; these do not establish a complete portable app export.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "version-control" }, { "toolSlug": "replit", "sourceId": "disaster-recovery" }, { "toolSlug": "replit", "sourceId": "import-providers" }, { "toolSlug": "replit", "sourceId": "checkpoints" }] }
+    {
+      "text": "Bolt's documented web-app path is JavaScript-based, so confirm the exact framework and dependencies before selecting it for a project.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "text": "Replit documents repository backup, selected project imports and in-platform checkpoints; these do not establish a complete portable app export.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "version-control"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "disaster-recovery"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "import-providers"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        }
+      ]
+    }
   ],
   "faqs": [
-    { "question": "What application paths does Bolt document?", "answer": "The official introduction describes JavaScript-based web frameworks and an Expo route for mobile applications; verify your specific stack before starting.", "sourceRefs": [{ "toolSlug": "bolt-new", "sourceId": "product" }] },
-    { "question": "What does Replit document for code import and recovery?", "answer": "Replit lists GitHub, Bitbucket and ZIP imports and an App-managed backup that can restore the repository's commit history. Provider-specific imports may require separate secrets, data or service setup. Agent checkpoints support rollback inside Replit; the docs do not establish a complete portable export or migration. No import or restore was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "version-control" }, { "toolSlug": "replit", "sourceId": "disaster-recovery" }, { "toolSlug": "replit", "sourceId": "import-providers" }, { "toolSlug": "replit", "sourceId": "checkpoints" }] }
+    {
+      "question": "What application paths does Bolt document?",
+      "answer": "The official introduction describes JavaScript-based web frameworks and an Expo route for mobile applications; verify your specific stack before starting.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "question": "What does Replit document for code import and recovery?",
+      "answer": "Replit lists GitHub, Bitbucket and ZIP imports and an App-managed backup that can restore the repository's commit history. Provider-specific imports may require separate secrets, data or service setup. Agent checkpoints support rollback inside Replit; the docs do not establish a complete portable export or migration. No import or restore was tested.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "version-control"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "disaster-recovery"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "import-providers"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "checkpoints"
+        }
+      ]
+    },
+    {
+      "question": "Does Replit's AI Integrations page establish local-model support for Replit Agent?",
+      "answer": "Not from the reviewed docs. Replit describes AI Integrations as provider API access configured for the apps being built: managed credentials are billed to Replit credits at provider prices, while a developer's own API key is billed by the provider. A separate Model selector page describes model choice for Replit Agent itself. Neither page documents a local model or endpoint for Replit Agent, so local-model support remains unverified rather than being marked unsupported. No account, endpoint, integration or model was tested.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "ai-integrations"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "agent-model-selector"
+        }
+      ]
+    }
   ],
   "verdict": "Choose after a clean handoff and operating-cost trial. The current evidence is not sufficient to declare a universal winner or a fixed total application cost.",
   "bestFor": "Indie builders comparing a quick application workflow with the cost of owning its production lifecycle",
@@ -63,8 +151,8 @@
     },
     {
       "slug": "replit",
-      "revision": 6,
-      "digest": "a6ee281aafd80c1c87d38404c3e0fe7b7d728a69c8a1c4f200ff8e0abb2e19b8"
+      "revision": 7,
+      "digest": "4f049d7ba5cdf5d6575e0aa08f28185f1b6fe548449a7970f8ffa1489a5fab70"
     }
   ],
   "gaps": [
@@ -103,6 +191,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Replit's official repository recovery/import scope and kept full external migration unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Separated Replit Agent model selection from application AI integrations; local inference remains unverified."
     }
   ],
   "commercial": {

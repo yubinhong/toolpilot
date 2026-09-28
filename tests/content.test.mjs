@@ -173,7 +173,7 @@ test('Replit privacy and geography facts keep workspace and published-app reside
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 6);
+  assert.equal(record.revision, 7);
   for (const [key, expectedFact] of Object.entries(expected)) {
     const fact = record.facts.find(item => item.key === key);
     const source = record.sources.find(item => item.id === expectedFact.source);
@@ -202,7 +202,7 @@ test('Replit Git recovery and provider imports bound portability without claimin
 
   assert.ok(record);
   assert.ok(fact?.value);
-  assert.equal(record.revision, 6);
+  assert.equal(record.revision, 7);
   assert.deepEqual(fact.sourceIds, Object.keys(sources));
   assert.equal(fact.checkedAt, '2026-09-28');
   assert.match(fact.value, /gitsafe-backup remote that can restore the App's Git commit history/);
@@ -221,13 +221,13 @@ test('Replit Git recovery and provider imports bound portability without claimin
   assert.ok(!freshness(content, '2026-09-28').some(item => item.path === '/tools/replit/' && item.type === 'fact' && item.field === 'portability'));
 
   const expectedDependents = {
-    'alternatives/bolt-new': 14,
-    'alternatives/lovable': 14,
-    'alternatives/replit': 13,
-    'best/ai-app-builders-for-prototypes': 10,
-    'compare/bolt-vs-replit': 8,
-    'compare/replit-vs-lovable': 9,
-    'pricing/replit': 7,
+    'alternatives/bolt-new': 15,
+    'alternatives/lovable': 15,
+    'alternatives/replit': 14,
+    'best/ai-app-builders-for-prototypes': 11,
+    'compare/bolt-vs-replit': 9,
+    'compare/replit-vs-lovable': 10,
+    'pricing/replit': 8,
   };
   for (const [key, revision] of Object.entries(expectedDependents)) {
     const [kind, slug] = key.split('/');
@@ -235,10 +235,19 @@ test('Replit Git recovery and provider imports bound portability without claimin
     const dependency = dependent?.dependencies.find(item => item.slug === 'replit');
     assert.ok(dependent, `${key} exists`);
     assert.equal(dependent.revision, revision);
-    assert.equal(dependency?.revision, 6);
+    assert.equal(dependency?.revision, 7);
     assert.equal(dependency?.digest, contentDigest(record));
     assert.equal(dependent.review.state, 'in-review');
     assert.equal(isIndexable(dependent, content), false);
+    const isPricing = key === 'pricing/replit';
+    const inferenceFaq = dependent?.faqs.find(item => item.question === (isPricing
+      ? 'How does Replit AI Integrations usage affect the Core plan price?'
+      : "Does Replit's AI Integrations page establish local-model support for Replit Agent?"));
+    assert.ok(inferenceFaq, `${key} documents the Replit Agent/app integrations boundary`);
+    assert.ok(inferenceFaq.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === 'ai-integrations'));
+    if (!isPricing) assert.ok(inferenceFaq.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === 'agent-model-selector'));
+    assert.match(inferenceFaq.answer, /local-model support remains unverified|not a full app operating budget/);
+    assert.ok(inferenceFaq.answer.includes('provider'));
   }
   for (const key of ['alternatives/replit', 'compare/bolt-vs-replit', 'compare/replit-vs-lovable']) {
     const [kind, slug] = key.split('/');
@@ -249,6 +258,40 @@ test('Replit Git recovery and provider imports bound portability without claimin
     assert.ok(faq.sourceRefs.some(ref => ref.sourceId === 'import-providers'));
     assert.match(faq.answer, /No (?:export, )?import or restore (?:was|were) tested|completed migration test/i);
   }
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 11);
+});
+test('Replit Agent model selection and app AI integrations remain distinct from local inference',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'replit');
+  const fact = record?.facts.find(item => item.key === 'aiIntegrations');
+  const sources = {
+    'ai-integrations': 'https://docs.replit.com/features/integrations/replit-ai-integrations',
+    'agent-model-selector': 'https://docs.replit.com/features/agent/model-selector',
+  };
+
+  assert.ok(record);
+  assert.equal(record.revision, 7);
+  assert.ok(fact?.value);
+  assert.deepEqual(fact.sourceIds, Object.keys(sources));
+  assert.equal(fact.checkedAt, '2026-09-28');
+  assert.match(fact.value, /application API calls/);
+  assert.match(fact.value, /model selector separately/);
+  assert.match(fact.value, /local-model support remains unknown/);
+  for (const [id, url] of Object.entries(sources)) {
+    const source = record.sources.find(item => item.id === id);
+    assert.equal(source?.url, url);
+    assert.equal(source?.accessedAt, '2026-09-28');
+  }
+  const localModelsFaq = record.faqs.find(item => item.question === "Does Replit's AI Integrations page establish local-model support for Replit Agent?");
+  assert.ok(localModelsFaq);
+  assert.ok(localModelsFaq.sourceRefs.some(ref => ref.sourceId === 'ai-integrations'));
+  assert.ok(localModelsFaq.sourceRefs.some(ref => ref.sourceId === 'agent-model-selector'));
+  assert.match(localModelsFaq.answer, /Neither page documents a local model or endpoint/);
+  assert.match(localModelsFaq.answer, /remains unverified rather than being marked unsupported/);
+  assert.equal(record.facts.find(item => item.key === 'localModels')?.value, null);
+  assert.equal(record.facts.find(item => item.key === 'selfHosting')?.value, null);
+  assert.ok(record.gaps.some(gap => gap.includes('do not establish local-model inference for Replit Agent')));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
   assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 11);
 });
 test('Bolt privacy policy draft records prospective training use without claiming account settings',() => {

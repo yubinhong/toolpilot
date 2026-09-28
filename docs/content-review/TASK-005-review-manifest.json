@@ -62,14 +62,15 @@
   },
   {
     "path": "/tools/replit/",
-    "revision": 6,
-    "digest": "a6ee281aafd80c1c87d38404c3e0fe7b7d728a69c8a1c4f200ff8e0abb2e19b8",
+    "revision": 7,
+    "digest": "4f049d7ba5cdf5d6575e0aa08f28185f1b6fe548449a7970f8ffa1489a5fab70",
     "state": "in-review",
     "gaps": [
       "Confirm current account eligibility, location-based taxes and total application costs; public Core base prices are not a regional checkout quote or full operating budget.",
       "Confirm whether the documented workspace and publishing geography settings meet the proposed residency requirement across pre-existing storage, other platform resources and connected services; no account or deployment was checked, and published-region selection is permanent.",
       "Review the applicable data-processing terms for the intended use; the general privacy policy is not an account-specific service-location map or a legal review.",
-      "The reviewed docs cover Git-repository recovery, selected source imports and in-platform checkpoints, not a verified full export outside Replit. Confirm the required secrets, database records, production data, domains, deployment settings and connected services; no export, import, restore or independent deploy was tested."
+      "The reviewed docs cover Git-repository recovery, selected source imports and in-platform checkpoints, not a verified full export outside Replit. Confirm the required secrets, database records, production data, domains, deployment settings and connected services; no export, import, restore or independent deploy was tested.",
+      "The reviewed AI Integrations and Agent Model selector docs distinguish application provider API calls from Agent model selection but do not establish local-model inference for Replit Agent. Confirm the required local endpoint capability; no account, model, integration or endpoint was tested."
     ]
   },
   {
@@ -85,8 +86,8 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 14,
-    "digest": "658b4db4d9956fb2c113581787db771cf152d0220479da00b84b9b3b2cb32786",
+    "revision": 15,
+    "digest": "edeefafd53c500a3a08622f7c7c5753c69105b552d98db09d45e98811a66fda4",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
@@ -116,8 +117,8 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 14,
-    "digest": "67f593a42baad2d7ea4da3f04f74fb237bbce4e1d83e1d379805999c8b40c7f1",
+    "revision": 15,
+    "digest": "0b0e63316e6ee4ee9dec520a67e62ca0c07ba546361025d26243d6af7e084bbc",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
@@ -125,8 +126,8 @@
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 13,
-    "digest": "cfc0582f046f30ef42a1d512ccc897266dde1fa87ac9327101d4505e7a03c429",
+    "revision": 14,
+    "digest": "c9c5e9d262b4ea8304d69f8a05a58ec064849d01c3df9d6088afeb3304597a35",
     "state": "in-review",
     "gaps": []
   },
@@ -144,8 +145,8 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 10,
-    "digest": "7f0d5b83c075499f7303d25f22878a7f420e16cb9cd9e5bed3058da90c332d79",
+    "revision": 11,
+    "digest": "7242ca029b8dee649d1742aeef07994a80d56ae136d66be55b0178577cd35b2d",
     "state": "in-review",
     "gaps": []
   },
@@ -194,8 +195,8 @@
   },
   {
     "path": "/compare/replit-vs-lovable/",
-    "revision": 9,
-    "digest": "7f87045411af7ad5f58dc5b0c30bc7bb98350a78bd5261406b6f60e37e732ba6",
+    "revision": 10,
+    "digest": "edd200374038654af18beec245b55db8fe9b2769ddacb9542a90fa87a0e256a3",
     "state": "in-review",
     "gaps": []
   },
@@ -251,8 +252,8 @@
   },
   {
     "path": "/pricing/replit/",
-    "revision": 7,
-    "digest": "a750b47127e250cd81dbffeed732370f98dfebca4ebc9bf80718a45c6da4f435",
+    "revision": 8,
+    "digest": "7e08d2b52c7e56d686def84d8961fae5d23b3e619284d0a6e52e71b03b31bb75",
     "state": "in-review",
     "gaps": [
       "Confirm account eligibility and location-based checkout taxes and total; the published base prices do not establish included usage or the full application operating budget."

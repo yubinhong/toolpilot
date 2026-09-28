@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Replit vs Lovable",
   "summary": "Replit vs Lovable: builders evaluating development and live-app operating responsibility together.",
-  "revision": 9,
+  "revision": 10,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "replit",
-      "revision": 6,
-      "digest": "a6ee281aafd80c1c87d38404c3e0fe7b7d728a69c8a1c4f200ff8e0abb2e19b8"
+      "revision": 7,
+      "digest": "4f049d7ba5cdf5d6575e0aa08f28185f1b6fe548449a7970f8ffa1489a5fab70"
     },
     {
       "slug": "lovable",
@@ -92,6 +92,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Replit's import and repository-recovery boundary; no cross-platform migration was tested."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Separated Replit Agent model selection from application AI integrations; local inference remains unverified."
     }
   ],
   "commercial": {
@@ -171,9 +175,18 @@
           "toolSlug": "replit",
           "sourceId": "checkpoints"
         },
-        { "toolSlug": "replit", "sourceId": "version-control" },
-        { "toolSlug": "replit", "sourceId": "disaster-recovery" },
-        { "toolSlug": "replit", "sourceId": "import-providers" },
+        {
+          "toolSlug": "replit",
+          "sourceId": "version-control"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "disaster-recovery"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "import-providers"
+        },
         {
           "toolSlug": "lovable",
           "sourceId": "product"
@@ -227,6 +240,20 @@
         {
           "toolSlug": "lovable",
           "sourceId": "privacy"
+        }
+      ]
+    },
+    {
+      "question": "Does Replit's AI Integrations page establish local-model support for Replit Agent?",
+      "answer": "Not from the reviewed docs. Replit describes AI Integrations as provider API access configured for the apps being built: managed credentials are billed to Replit credits at provider prices, while a developer's own API key is billed by the provider. A separate Model selector page describes model choice for Replit Agent itself. Neither page documents a local model or endpoint for Replit Agent, so local-model support remains unverified rather than being marked unsupported. No account, endpoint, integration or model was tested.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "ai-integrations"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "agent-model-selector"
         }
       ]
     }
