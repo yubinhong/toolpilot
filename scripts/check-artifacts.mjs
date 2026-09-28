@@ -433,7 +433,7 @@ const replitPortability = replitProfile?.facts.find(fact => fact.key === 'portab
 const replitEnterprise = replitProfile?.facts.find(fact => fact.key === 'selfHosting');
 const replitAiIntegrations = replitProfile?.facts.find(fact => fact.key === 'aiIntegrations');
 const replitEnterpriseFaq = replitProfile?.faqs.find(faq => faq.question === 'Does Replit Enterprise offer customer-hosted Replit?');
-const replitAiIntegrationsFaq = replitProfile?.faqs.find(faq => faq.question === "Does Replit's AI Integrations page establish local-model support for Replit Agent?");
+const replitAiIntegrationsFaq = replitProfile?.faqs.find(faq => faq.question === "Do Replit's model-routing and AI integration pages establish local-model support for Agent?");
 const replitProfileHtml = readFileSync('out/tools/replit/index.html', 'utf8');
 if (!replitPortability?.value || !replitProfileHtml.includes(escapeHtml(replitPortability.value))) failures.push('/tools/replit/: code-portability fact is missing from generated HTML');
 if (!replitEnterprise?.value || !replitProfileHtml.includes(escapeHtml(replitEnterprise.value))) failures.push('/tools/replit/: Enterprise hosting boundary fact is missing from generated HTML');
@@ -485,11 +485,13 @@ for (const [kind, slug] of [
     failures.push(`/${kind}/${slug}/: Replit Enterprise source is missing from generated HTML`);
   }
   const question = isPricing
-    ? 'How does Replit AI Integrations usage affect the Core plan price?'
-    : "Does Replit's AI Integrations page establish local-model support for Replit Agent?";
+    ? 'How do Replit model routing and AI Integrations affect the Core plan price?'
+    : "Do Replit's model-routing and AI integration pages establish local-model support for Agent?";
   const faq = record?.faqs.find(item => item.question === question);
   if (!faq || !html.includes(escapeHtml(faq.answer))) failures.push(`/${kind}/${slug}/: Replit Agent/app AI integration FAQ is missing from generated HTML`);
-  const sourceIds = isPricing ? ['ai-integrations'] : ['ai-integrations', 'agent-model-selector'];
+  const sourceIds = isPricing
+    ? ['ai-integrations', 'intelligent-model-routing']
+    : ['ai-integrations', 'agent-model-selector', 'intelligent-model-routing'];
   for (const sourceId of sourceIds) {
     const source = replitProfile?.sources.find(candidate => candidate.id === sourceId);
     if (!faq?.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === sourceId) || !source || !html.includes(source.url)) {

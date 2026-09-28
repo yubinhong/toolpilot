@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Replit",
   "summary": "An app-building workflow to assess together with its operating costs.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -102,6 +102,13 @@
       "accessedAt": "2026-09-28"
     },
     {
+      "id": "intelligent-model-routing",
+      "url": "https://replit.com/blog/intelligent-model-routing",
+      "title": "Intelligent Model Routing on Replit",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-28"
+    },
+    {
       "id": "enterprise",
       "url": "https://replit.com/enterprise",
       "title": "Replit Enterprise",
@@ -170,9 +177,9 @@
     },
     {
       "key": "aiIntegrations",
-      "label": "AI model integrations",
-      "value": "Replit AI Integrations let Agent set up application API calls with Replit-managed provider credentials, billed at provider API prices through Replit credits, or a developer's own provider API key billed directly by that provider. Replit documents Agent's own model selector separately. The reviewed docs do not establish a local inference endpoint for Replit Agent; local-model support remains unknown.",
-      "sourceIds": ["ai-integrations", "agent-model-selector"],
+      "label": "Agent model routing and app AI integrations",
+      "value": "Replit AI Integrations let Agent set up application API calls with Replit-managed provider credentials, billed at provider API prices through Replit credits, or a developer's own provider API key billed directly by that provider. Replit's Aug 2026 Intelligent Model Routing announcement says it selects a model per task; all users start in Free Mode and are notified when work escalates to higher-powered modes that can incur usage costs, with an option to remain in Free Mode. Core and Pro users can manually select models, while Enterprise administrators can define the approved model set. The reviewed sources do not say where routed models run or establish a local inference endpoint for Agent; local-model support remains unknown.",
+      "sourceIds": ["ai-integrations", "agent-model-selector", "intelligent-model-routing"],
       "checkedAt": "2026-09-28",
       "critical": false
     }
@@ -233,7 +240,7 @@
   ],
   "faqs": [
     { "question": "What does Replit Agent do?", "answer": "Replit says Agent can take a plain-language idea through project setup, app creation, checking, problem fixing and deployment; validate the result for your own workload.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] },
-    { "question": "Does Replit's AI Integrations page establish local-model support for Replit Agent?", "answer": "Not from the reviewed docs. Replit describes AI Integrations as provider API access configured for the apps being built: managed credentials are billed to Replit credits at provider prices, while a developer's own API key is billed by the provider. A separate Model selector page describes model choice for Replit Agent itself. Neither page documents a local model or endpoint for Replit Agent, so local-model support remains unverified rather than being marked unsupported. Account model availability can vary; no account, endpoint, integration or model was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "ai-integrations" }, { "toolSlug": "replit", "sourceId": "agent-model-selector" }] },
+    { "question": "Do Replit's model-routing and AI integration pages establish local-model support for Agent?", "answer": "Replit's Aug 2026 Intelligent Model Routing announcement says Replit selects models per task; all users start in Free Mode and are notified when work escalates to higher-powered modes that can incur usage costs, with an option to remain in Free Mode. Core and Pro users can manually select models, and Enterprise administrators can define the approved model set. AI Integrations separately describes provider API calls for apps being built, while the Model selector describes choices for Replit Agent. These sources do not say where routed models run or establish a local inference endpoint, so local-model support remains unverified rather than being marked unsupported. No account, endpoint, integration or model was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "ai-integrations" }, { "toolSlug": "replit", "sourceId": "agent-model-selector" }, { "toolSlug": "replit", "sourceId": "intelligent-model-routing" }] },
     { "question": "Do Replit's backup and import docs establish a complete external migration?", "answer": "No. Replit documents Git repository backup and imports from GitHub, Bitbucket and ZIP, while provider-specific data, secrets and services may need separate setup. Agent checkpoints support rollback inside Replit; production database restore is not automatic. Inventory the exact app resources and test an independent deployment. No export, import or restore was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "version-control" }, { "toolSlug": "replit", "sourceId": "disaster-recovery" }, { "toolSlug": "replit", "sourceId": "import-providers" }, { "toolSlug": "replit", "sourceId": "checkpoints" }] },
     { "question": "What Replit Core prices are publicly listed?", "answer": "Replit's current sources list USD 20/month with monthly billing and USD 18/month equivalent when billed annually. Taxes depend on location; confirm your exact checkout and budget runtime, database and agent usage separately.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }, { "toolSlug": "replit", "sourceId": "core-pricing-update" }] },
     { "question": "Does Replit Enterprise offer customer-hosted Replit?", "answer": "Replit's Sales-Assisted Enterprise page lists a dedicated GCP project and a single-tenant option under custom pricing with an annual commitment. It does not specify who owns or operates the project or whether the Replit platform is customer-managed, so this does not establish self-hosting. Confirm architecture, terms and app/resource scope with Replit; no account or deployment was checked.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "enterprise" }] }

@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 8. Digest: `b3bdbde622af8dabdd1b3428b0487ecdca436881b73e3a236f8ae90968cf7a33`.
+Revision: 9. Digest: `301b74baa7471a3c2e20eca537b4122e10750a5d7ab0204a663ced35685498c3`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -32,6 +32,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Model selector](https://docs.replit.com/features/agent/model-selector) — Replit; accessed 2026-09-28
 
+- [Intelligent Model Routing](https://replit.com/blog/intelligent-model-routing) — Replit; published 2026-08-26, updated 2026-08-27, accessed 2026-09-28
+
 - [Enterprise](https://replit.com/enterprise) — Replit; accessed 2026-09-28
 
 ## Field evidence
@@ -44,7 +46,7 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
-- **Agent model selection / application AI integrations**: Replit's AI Integrations docs describe managed provider API calls for apps being built, billed at provider API prices through Replit credits, or app BYOK billed by the provider. Its separate Model selector doc describes Replit Agent's model choice. Neither reviewed page documents a local model or endpoint for Replit Agent; support remains unverified, not disproven. Sources: ai-integrations, agent-model-selector; checked: 2026-09-28. No account, endpoint, integration or model was tested.
+- **Agent model routing / application AI integrations**: Replit's AI Integrations docs describe managed provider API calls for apps being built, billed at provider API prices through Replit credits, or app BYOK billed by the provider. The Model selector describes Agent choices. Replit's August 2026 announcement says it routes models per task; users start in Free Mode and are notified when work escalates to higher-powered modes that can incur usage costs, Core/Pro users may select models, and Enterprise administrators may define approved models. The announcement does not say where routed models run or establish local inference. Local-model support remains unknown. Sources: ai-integrations, agent-model-selector, intelligent-model-routing; checked: 2026-09-28. No account, endpoint, integration or model was tested.
 
 - **Code / data portability**: Replit documents Git/GitHub workflows and an App-managed `gitsafe-backup` remote for recovering Git commit history after local repository corruption. Its import guide lists GitHub, Bitbucket, ZIP and named builder sources; provider-specific secrets, records and services may need separate setup, and one Supabase import path says existing records and secrets are not imported. Agent checkpoints support rollback inside Replit, with optional development-database restoration; production database restore is not automatic. These sources do not establish a tested full external app export or migration. Sources: version-control, disaster-recovery, import-providers, checkpoints; checked: 2026-09-28.
 - **Published app geography**: Core, Pro and Enterprise can select North America, Europe (EU), Asia, South America or Australia; Free publishes to North America by default. Published compute, database and Object Storage are colocated. Selection is permanent after publish and pre-publish resources may remain elsewhere. Source: geography; checked: 2026-09-27.

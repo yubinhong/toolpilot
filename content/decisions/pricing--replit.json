@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Replit pricing: billing basis and cost boundaries",
   "summary": "Replit pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 9,
+  "revision": 10,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "replit",
-      "revision": 8,
-      "digest": "b3bdbde622af8dabdd1b3428b0487ecdca436881b73e3a236f8ae90968cf7a33"
+      "revision": 9,
+      "digest": "301b74baa7471a3c2e20eca537b4122e10750a5d7ab0204a663ced35685498c3"
     }
   ],
   "gaps": [
@@ -185,12 +185,16 @@
       ]
     },
     {
-      "question": "How does Replit AI Integrations usage affect the Core plan price?",
-      "answer": "Replit documents provider API usage separately from the Core base price: on an eligible paid plan, managed integrations bill provider public API prices through Replit credits, while a developer's own API key is billed directly by the provider. Starter can use its own key; Pro and Enterprise organizations have managed integrations disabled by default unless an admin enables them. Confirm account eligibility, usage and the checkout total; this is not a full app operating budget. No account or spend control was tested.",
+      "question": "How do Replit model routing and AI Integrations affect the Core plan price?",
+      "answer": "Replit documents provider API usage separately from the Core base price: on an eligible paid plan, managed integrations bill provider public API prices through Replit credits, while a developer's own API key is billed directly by the provider. Its Intelligent Model Routing announcement says everyone starts in Free Mode and is notified when work escalates to higher-powered modes that can incur usage costs; users can remain in Free Mode, and Core and Pro users can manually select models. This does not specify what a given account includes or its total spend. Starter can use its own key; Pro and Enterprise organizations have managed integrations disabled by default unless an admin enables them. Confirm account eligibility, usage and the checkout total; this is not a full app operating budget. No account or spend control was tested.",
       "sourceRefs": [
         {
           "toolSlug": "replit",
           "sourceId": "ai-integrations"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "intelligent-model-routing"
         }
       ]
     },

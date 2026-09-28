@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "AI app builders for prototypes",
   "summary": "Evaluate a demo together with its handoff and operating responsibilities.",
-  "revision": 14,
+  "revision": 15,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -56,8 +56,8 @@
     },
     {
       "slug": "replit",
-      "revision": 8,
-      "digest": "b3bdbde622af8dabdd1b3428b0487ecdca436881b73e3a236f8ae90968cf7a33"
+      "revision": 9,
+      "digest": "301b74baa7471a3c2e20eca537b4122e10750a5d7ab0204a663ced35685498c3"
     }
   ],
   "gaps": [
@@ -251,8 +251,8 @@
       ]
     },
     {
-      "question": "Does Replit's AI Integrations page establish local-model support for Replit Agent?",
-      "answer": "Not from the reviewed docs. Replit describes AI Integrations as provider API access configured for the apps being built: managed credentials are billed to Replit credits at provider prices, while a developer's own API key is billed by the provider. A separate Model selector page describes model choice for Replit Agent itself. Neither page documents a local model or endpoint for Replit Agent, so local-model support remains unverified rather than being marked unsupported. No account, endpoint, integration or model was tested.",
+      "question": "Do Replit's model-routing and AI integration pages establish local-model support for Agent?",
+      "answer": "Replit's Aug 2026 Intelligent Model Routing announcement says Replit selects models per task; all users start in Free Mode and are notified when work escalates to higher-powered modes that can incur usage costs, with an option to remain in Free Mode. Core and Pro users can manually select models, and Enterprise administrators can define the approved model set. AI Integrations separately describes provider API calls for apps being built, while the Model selector describes choices for Replit Agent. These sources do not say where routed models run or establish a local inference endpoint, so local-model support remains unverified rather than being marked unsupported. No account, endpoint, integration or model was tested.",
       "sourceRefs": [
         {
           "toolSlug": "replit",
@@ -261,6 +261,10 @@
         {
           "toolSlug": "replit",
           "sourceId": "agent-model-selector"
+        },
+        {
+          "toolSlug": "replit",
+          "sourceId": "intelligent-model-routing"
         }
       ]
     },

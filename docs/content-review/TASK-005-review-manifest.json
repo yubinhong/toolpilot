@@ -66,8 +66,8 @@
   },
   {
     "path": "/tools/replit/",
-    "revision": 8,
-    "digest": "b3bdbde622af8dabdd1b3428b0487ecdca436881b73e3a236f8ae90968cf7a33",
+    "revision": 9,
+    "digest": "301b74baa7471a3c2e20eca537b4122e10750a5d7ab0204a663ced35685498c3",
     "state": "in-review",
     "gaps": [
       "Confirm current account eligibility, location-based taxes and total application costs; public Core base prices are not a regional checkout quote or full operating budget.",
@@ -93,8 +93,8 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 18,
-    "digest": "0ead4258cfdd9c0edcbc2acff66e0ae05ce2ff0cce63e31c2fa9e7b5f2194a1d",
+    "revision": 19,
+    "digest": "ea1ffa009063c42e340036763b96d5d191708bf22c20b9451b8a66f0bc62491d",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -127,8 +127,8 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 18,
-    "digest": "31ce2ca88c1aab5f462eef75f0cb49ec48872fe90960ea8868e408df16ed3462",
+    "revision": 19,
+    "digest": "5b502acb1e47b0b1c13bd7d4a37565649046c4a74874db26554498f9fd901ffd",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -137,8 +137,8 @@
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 17,
-    "digest": "36b897fa8fd7ce13d4084b2e393f157c4e3d9225e846fdfabd12f341b4703730",
+    "revision": 18,
+    "digest": "f071beb6be752815b7f86b2eafb7fb9d066f58417f28aef0fac5c7abd49b74af",
     "state": "in-review",
     "gaps": [
       "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
@@ -160,8 +160,8 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 14,
-    "digest": "3c65f5c20f55520a3c8d9d46508facbc903b638c4b4e233589149a28d49004e3",
+    "revision": 15,
+    "digest": "bd2e51e2879676201ebeeefd629a4c4dc3a26f7fb2679d1b6ba6af31ef2d4af4",
     "state": "in-review",
     "gaps": [
       "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
@@ -216,8 +216,8 @@
   },
   {
     "path": "/compare/replit-vs-lovable/",
-    "revision": 12,
-    "digest": "e7b6a84c4fd32336bda73ab6bf4f73e8a8a158640dff2bbfdba8c778d9394314",
+    "revision": 13,
+    "digest": "b46995f51afe3c2f14bb983e5f2d30d9c9a42ab9b6b7dc17934ae58871ab2576",
     "state": "in-review",
     "gaps": []
   },
@@ -275,8 +275,8 @@
   },
   {
     "path": "/pricing/replit/",
-    "revision": 9,
-    "digest": "59b5a200b459aa851493f1a593b24d935cd45680fdca416b805c9cf35668af29",
+    "revision": 10,
+    "digest": "c9982108eacc48a2cf58804375e79eef1c981b6a0436821d5b0c3863a94aff53",
     "state": "in-review",
     "gaps": [
       "Confirm account eligibility and location-based checkout taxes and total; the published base prices do not establish included usage or the full application operating budget."
