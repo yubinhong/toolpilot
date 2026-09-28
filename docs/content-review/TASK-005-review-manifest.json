@@ -17,14 +17,15 @@
   },
   {
     "path": "/tools/cline/",
-    "revision": 6,
-    "digest": "47367db58ec7f54c413736644fd7aa7c3f9ec7cc74c582c63f56fed771763797",
+    "revision": 7,
+    "digest": "bf3f582fed351182734a6b67744007452b5863d19fec9240898e0c9c8e9182e9",
     "state": "in-review",
     "gaps": [
       "Confirm the installed Cline version and telemetry setting; the later-dated Terms say telemetry is on by default, while the older 2025-02-26 blog says opt-in. No client configuration or payload was inspected.",
       "Confirm the selected model-provider privacy, retention, training and jurisdiction terms; Cline's public BYOK and Cline-provided API-key descriptions do not establish a specific provider or account configuration.",
       "Confirm the applicable Cline account and enterprise terms and legal suitability for the intended use.",
-      "The task-management docs establish local task persistence and Git checkpoints for file changes, but do not specify supported cross-device history transfer, complete export/restore or settings migration; verify the required scope. No transfer or restore was tested."
+      "The task-management docs establish local task persistence and Git checkpoints for file changes, but do not specify supported cross-device history transfer, complete export/restore or settings migration; verify the required scope. No transfer or restore was tested.",
+      "Confirm Enterprise eligibility, terms, detailed VPC/on-premises/air-gapped architecture and provider/data routes for the intended account; current public descriptions do not verify a particular customer's deployment."
     ]
   },
   {
@@ -95,8 +96,8 @@
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 14,
-    "digest": "ac6c9100bb9de718d24ec3326302223528c0bdc3a95190aa6901c05d4a16aa0c",
+    "revision": 15,
+    "digest": "ab5022423dcff5c90474b4b32b8b75bd89d2d22c2a26488de2151ec3b0c3db39",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -105,8 +106,8 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 18,
-    "digest": "8925542c1f1d0872861e3dcd1e8e387f1202d0c6c8057caed369714812c08b0f",
+    "revision": 19,
+    "digest": "32678288423b3f05cbcd07c85410f201b4011df9ed16fd3d46a01cd49c537369",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -133,8 +134,8 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 17,
-    "digest": "bb26b0ccfdcfa0818214066ba36a727b71a5951a1ffe488300435653e6d0a14e",
+    "revision": 18,
+    "digest": "2acfb222dcef630d82a94a2483e287fa21492ea29f1bff25a73227b7d97fdbb4",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -152,8 +153,8 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 14,
-    "digest": "fbd21e337bf6beaa9443ef8e85c66cccb61115cbc0ce3acd586cc5f442a4b474",
+    "revision": 15,
+    "digest": "60a57ce54b9be340dfc7e051c9b2d2062cf45ffde3690b077203254394991e06",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -162,10 +163,12 @@
   },
   {
     "path": "/compare/cline-vs-claude-code/",
-    "revision": 8,
-    "digest": "8756c4c77e1dde678a33edd0f1af3ca6edddfad882cfc60ec742f73cf5df6060",
+    "revision": 9,
+    "digest": "05de0fa74ff4774d916d812694abcc5535e1214730d82edaf3751fae5dad23f8",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Cline Enterprise eligibility, terms, exact deployment topology and any customer setup remain unverified; no account or environment was inspected."
+    ]
   },
   {
     "path": "/compare/cursor-vs-claude-code/",
@@ -213,8 +216,8 @@
   },
   {
     "path": "/guides/ai-editor-vs-terminal-agent/",
-    "revision": 10,
-    "digest": "30b48401821842ede74b994624700e8fb0b04aa20dd8e66e3de7c926a87f5bf1",
+    "revision": 11,
+    "digest": "86179c24c13c0bc83ef530ff6af09843f16b885bfe091c18eeba8ce766117744",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."

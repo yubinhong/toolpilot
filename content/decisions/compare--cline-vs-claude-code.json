@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cline vs Claude Code",
   "summary": "Cline vs Claude Code: developers deciding whether provider configuration is a core requirement.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "cline",
-      "revision": 6,
-      "digest": "47367db58ec7f54c413736644fd7aa7c3f9ec7cc74c582c63f56fed771763797"
+      "revision": 7,
+      "digest": "bf3f582fed351182734a6b67744007452b5863d19fec9240898e0c9c8e9182e9"
     },
     {
       "slug": "claude-code",
@@ -55,7 +55,9 @@
       "digest": "7942a7b3ffb6b52fcd13c89dead08f29b8e0d062c7fd5ea646648e75ac7f99e9"
     }
   ],
-  "gaps": [],
+  "gaps": [
+    "Cline Enterprise eligibility, terms, exact deployment topology and any customer setup remain unverified; no account or environment was inspected."
+  ],
   "changes": [
     {
       "date": "2026-09-27",
@@ -88,6 +90,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Cline's local-inference evidence with its current Ollama, LM Studio and Atomic Chat documentation; model fit and full offline behavior remain untested."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the Cline dependency after adding current Enterprise deployment evidence; exact Owner review remains pending."
     }
   ],
   "commercial": {
@@ -190,9 +196,21 @@
       ]
     },
     {
-      "question": "Does Claude Code's self-hosted environment support local inference like Cline's documented local models?",
-      "answer": "Cline's current docs list Ollama, LM Studio and Atomic Chat as local model options. Anthropic's self-hosted Claude Code docs describe session runners on customer infrastructure but say inference still goes to api.anthropic.com; they do not document an on-device local-model route. No model or account configuration was tested.",
+      "question": "How do Cline Enterprise deployment and Claude Code self-hosting differ from local inference?",
+      "answer": "Cline currently advertises Enterprise deployment in a customer VPC, on-premises or air-gapped environment, with inference requests from a customer's own VPC going directly to its chosen provider; Cline-managed inference is a separate route. This is distinct from Cline's documented Ollama, LM Studio and Atomic Chat local-model configurations. Anthropic describes Claude Code session runners on customer infrastructure while inference still goes to api.anthropic.com. The July 2025 Cline announcement had described self-hosted options as coming soon; current eligibility, terms, topology and any customer's deployment remain unverified. No model or account configuration was tested.",
       "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "enterprise-deployment"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "enterprise-overview"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "enterprise-roadmap"
+        },
         {
           "toolSlug": "cline",
           "sourceId": "local-models"

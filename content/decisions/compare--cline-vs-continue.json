@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cline vs Continue",
   "summary": "Compare coding assistants by model control, permissions and channel-specific lifecycle evidence.",
-  "revision": 13,
+  "revision": 14,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -54,6 +54,7 @@
     { "question": "What do Continue's published artifacts say about CLI support?", "answer": "The README calls the repository read-only and 2.0.0 its final release; GitHub Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists @continuedev/cli 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. This does not establish current CLI maintenance, a support commitment or a security-response path for a selected package.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "question": "Which MCP transport does Cline recommend?", "answer": "Cline marks Streamable HTTP as recommended and SSE as legacy; match the transport to the server you intend to use.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "mcp" }] },
     { "question": "Which local inference runtimes does Cline document?", "answer": "Cline's current guide lists Ollama, LM Studio and Atomic Chat, configured against local servers. This is a documented setup path, not a model-quality result or a guarantee that every connected tool and feature stays offline; no installation was tested.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "local-models" }] },
+    { "question": "How do Cline Enterprise deployment and Continue self-hosting differ?", "answer": "Cline advertises Enterprise deployment in a customer VPC, on-premises or air-gapped environment, and says inference from a customer's own VPC goes directly to the chosen provider; Cline-managed inference is a separate route. Continue documents self-hosted model endpoints and a VS Code offline setup with a local model and telemetry disabled. These describe different scopes: Cline's Enterprise deployment options do not establish local-model inference, and Continue's setup does not establish behavior for every channel or account. Cline's current Enterprise availability, terms, topology and any customer's deployment remain unverified; no account or installation was tested.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "enterprise-deployment" }, { "toolSlug": "cline", "sourceId": "enterprise-overview" }, { "toolSlug": "continue", "sourceId": "selfHost" }, { "toolSlug": "continue", "sourceId": "offline" }] },
     { "question": "What do Cline's public sources say about telemetry defaults?", "answer": "Cline's Terms, last modified 2025-09-25, say extension telemetry is on by default and can be disabled in settings; its 2025-02-26 blog describes telemetry as opt-in. These public statements conflict, so verify the current extension version and setting.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
     { "question": "Can Continue be configured for offline use?", "answer": "Continue documents a VS Code setup that installs the extension, disables Allow Anonymous Telemetry and configures a local model. This documents a setup path, not the behavior of a specific build or every Continue channel; verify the selected package and provider separately.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }] },
     { "question": "How should I verify Continue model costs?", "answer": "Continue's Terms describe model-use credit purchases and recurring subscriptions, with applicable pricing/payment terms in a User Account or Service Order. The CLI quickstart also lists a direct Anthropic API-key route; its provider fees must be checked separately. No numeric account or provider price was verified here.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "terms" }, { "toolSlug": "continue", "sourceId": "cli" }] },
@@ -67,8 +68,8 @@
   "dependencies": [
     {
       "slug": "cline",
-      "revision": 6,
-      "digest": "47367db58ec7f54c413736644fd7aa7c3f9ec7cc74c582c63f56fed771763797"
+      "revision": 7,
+      "digest": "bf3f582fed351182734a6b67744007452b5863d19fec9240898e0c9c8e9182e9"
     },
     {
       "slug": "continue",
@@ -82,7 +83,8 @@
     "No local-model quality, privacy or performance trial has been performed.",
     "Cline's actual telemetry configuration and selected-provider data handling were not inspected.",
     "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified.",
-    "Continue documents resuming previous CLI sessions and reusing versioned configuration files, but not cross-device session export or complete IDE/CLI state migration; no transfer was tested."
+    "Continue documents resuming previous CLI sessions and reusing versioned configuration files, but not cross-device session export or complete IDE/CLI state migration; no transfer was tested.",
+    "Cline Enterprise eligibility, terms, exact deployment topology and any customer setup remain unverified; no account or environment was inspected."
   ],
   "changes": [
     {
@@ -136,6 +138,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Cline's local-inference evidence with its current Ollama, LM Studio and Atomic Chat documentation; model fit and full offline behavior remain untested."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the Cline dependency after adding current Enterprise deployment evidence; exact Owner review remains pending."
     }
   ],
   "commercial": {

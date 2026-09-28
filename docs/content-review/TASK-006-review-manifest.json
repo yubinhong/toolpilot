@@ -80,8 +80,8 @@
   },
   {
     "path": "/compare/cline-vs-continue/",
-    "revision": 13,
-    "digest": "8b010699de9a0477b8d205e518e937329784e96325f6fcdf80d027430f8cad21",
+    "revision": 14,
+    "digest": "3d65a55590be2293d6e800bf292b900af993a30160bc01ea1cd12ca2e9767f9b",
     "state": "in-review",
     "gaps": [
       "Current Continue CLI maintenance and security response remain unresolved: its README says read-only/final, the Marketplace says CLI development is active, GitHub Releases lists a 2026-06-19 v2.1.0-vscode pre-release, and npm lists CLI 1.5.47 published 2026-06-18. Confirm the selected package, publisher, update path and support response.",
@@ -89,7 +89,8 @@
       "No local-model quality, privacy or performance trial has been performed.",
       "Cline's actual telemetry configuration and selected-provider data handling were not inspected.",
       "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified.",
-      "Continue documents resuming previous CLI sessions and reusing versioned configuration files, but not cross-device session export or complete IDE/CLI state migration; no transfer was tested."
+      "Continue documents resuming previous CLI sessions and reusing versioned configuration files, but not cross-device session export or complete IDE/CLI state migration; no transfer was tested.",
+      "Cline Enterprise eligibility, terms, exact deployment topology and any customer setup remain unverified; no account or environment was inspected."
     ]
   },
   {
@@ -114,8 +115,8 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 15,
-    "digest": "02778346e21c5e049fcead69a026deb71804c358334de1f0ac41ef3ef9b6eaad",
+    "revision": 16,
+    "digest": "f2761f316350641596cbfc0bd8a68d9b183746cd42a3ce00caf4c9006ed1c3ce",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
@@ -124,7 +125,8 @@
       "No hands-on comparison or model performance test has been performed.",
       "Cline's client settings and model-provider data handling were not inspected.",
       "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified.",
-      "Continue documents prior CLI session resume and versioned configuration reuse, but not cross-device session export or full IDE/CLI state migration; no transfer was tested."
+      "Continue documents prior CLI session resume and versioned configuration reuse, but not cross-device session export or full IDE/CLI state migration; no transfer was tested.",
+      "Cline Enterprise eligibility, terms, exact deployment topology and any customer setup remain unverified; no account or environment was inspected."
     ]
   },
   {

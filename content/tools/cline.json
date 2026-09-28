@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Cline",
   "summary": "A coding-agent candidate for users who want to choose the model provider.",
-  "revision": 6,
+  "revision": 7,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -37,6 +37,27 @@
       "title": "MCP overview",
       "publisher": "Cline",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "enterprise-deployment",
+      "url": "https://cline.bot/enterprise",
+      "title": "Cline Enterprise deployment options",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "enterprise-overview",
+      "url": "https://docs.cline.bot/enterprise-solutions/overview",
+      "title": "Cline Enterprise",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "enterprise-roadmap",
+      "url": "https://cline.bot/blog/cline-raises-32m-series-a-and-seed-funding-building-the-open-source-ai-coding-agent-that-enterprises-trust",
+      "title": "Cline Enterprise roadmap announcement",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-28"
     },
     {
       "id": "privacy",
@@ -100,9 +121,9 @@
     {
       "key": "selfHosting",
       "label": "Product self-hosting",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Cline's current Enterprise page advertises deployment in a customer VPC, on-premises or air-gapped environment. It says that, in a customer's own VPC, inference requests flow directly from that environment to the chosen model provider; the page describes Cline-managed inference as a separate route. Cline's Enterprise docs also describe customer-environment processing and bring-your-own inference. A July 2025 funding announcement said self-hosted options were coming soon, while the current Enterprise page and docs now describe these deployment options. Exact availability, entitlement, infrastructure requirements, provider/data routes and any customer's configuration remain unverified. No account or environment was inspected.",
+      "sourceIds": ["enterprise-deployment", "enterprise-overview", "enterprise-roadmap"],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -259,6 +280,24 @@
       ]
     },
     {
+      "question": "What Enterprise deployment options does Cline currently describe?",
+      "answer": "Cline's current Enterprise page advertises VPC, on-premises and air-gapped deployments and says requests from a customer's own VPC go directly to selected model providers; Cline-managed inference is described separately. Its Enterprise docs describe customer-environment processing and bring-your-own inference. A July 2025 announcement had said self-hosted options were coming soon, so confirm current eligibility, terms and architecture with Cline. No account or environment was checked.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "enterprise-deployment"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "enterprise-overview"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "enterprise-roadmap"
+        }
+      ]
+    },
+    {
       "question": "When does Cline receive prompts or code, and what does it say about telemetry?",
       "answer": "Cline's Privacy Notice distinguishes BYOK, where it says content goes directly to the provider and is not collected by Cline, from Cline-provided keys, where Cline collects content to facilitate provider requests. Its later-dated Terms say extension telemetry is on by default, while an older blog says opt-in. Check the installed version and settings; the selected provider's terms remain separate.",
       "sourceRefs": [
@@ -296,7 +335,8 @@
     "Confirm the installed Cline version and telemetry setting; the later-dated Terms say telemetry is on by default, while the older 2025-02-26 blog says opt-in. No client configuration or payload was inspected.",
     "Confirm the selected model-provider privacy, retention, training and jurisdiction terms; Cline's public BYOK and Cline-provided API-key descriptions do not establish a specific provider or account configuration.",
     "Confirm the applicable Cline account and enterprise terms and legal suitability for the intended use.",
-    "The task-management docs establish local task persistence and Git checkpoints for file changes, but do not specify supported cross-device history transfer, complete export/restore or settings migration; verify the required scope. No transfer or restore was tested."
+    "The task-management docs establish local task persistence and Git checkpoints for file changes, but do not specify supported cross-device history transfer, complete export/restore or settings migration; verify the required scope. No transfer or restore was tested.",
+    "Confirm Enterprise eligibility, terms, detailed VPC/on-premises/air-gapped architecture and provider/data routes for the intended account; current public descriptions do not verify a particular customer's deployment."
   ],
   "changes": [
     {
@@ -322,6 +362,10 @@
     {
       "date": "2026-09-28",
       "summary": "Replaced the general repository citation for local inference with Cline's current dedicated Ollama, LM Studio and Atomic Chat guide; no model, installation or full offline workflow was tested."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added current Cline Enterprise VPC, on-premises and air-gapped deployment statements; exact entitlement, topology, provider route and customer configuration remain unverified."
     }
   ],
   "commercial": {
