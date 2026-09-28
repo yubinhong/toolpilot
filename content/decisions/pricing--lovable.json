@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Lovable pricing: billing basis and cost boundaries",
   "summary": "Lovable pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 5,
+  "revision": 6,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "lovable",
-      "revision": 4,
-      "digest": "393d76ff554d10a8323b98294fb0ed7093fecd25ea7480b60646efecc2fca237"
+      "revision": 5,
+      "digest": "b42769cf6924902a22d487ba77387036a12da847a2ea1001b9ce9cd403f92fdd"
     }
   ],
   "gaps": [],
@@ -71,6 +71,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Lovable dependency after clarifying Cloud hosting-region scope against broader Personal Data processing; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Lovable's self-hosting boundary: its platform is managed, while generated apps can run on customer infrastructure."
     }
   ],
   "commercial": {
@@ -201,6 +205,11 @@
           "sourceId": "privacy"
         }
       ]
+    },
+    {
+      "question": "Can I self-host the Lovable platform as well as an app built with it?",
+      "answer": "Lovable's hosting guide says the platform (editor and AI agent) is managed and cannot be self-hosted or deployed inside a customer VPC. Apps built with it can run on infrastructure you operate. This distinguishes application hosting from running the Lovable platform; no account or deployment was checked.",
+      "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "ownership" }]
     }
   ]
 }

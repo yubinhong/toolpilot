@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 4. Digest: `393d76ff554d10a8323b98294fb0ed7093fecd25ea7480b60646efecc2fca237`.
+Revision: 5. Digest: `b42769cf6924902a22d487ba77387036a12da847a2ea1001b9ce9cd403f92fdd`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -14,7 +14,7 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Credits and usage](https://docs.lovable.dev/introduction/credits-and-usage) — Lovable; accessed 2026-09-27
 
-- [Deployment, hosting and ownership](https://docs.lovable.dev/tips-tricks/deployment-hosting-ownership) — Lovable; accessed 2026-09-27
+- [Deployment, hosting, and ownership options with Lovable](https://docs.lovable.dev/tips-tricks/deployment-hosting-ownership) — Lovable; accessed 2026-09-28
 
 - [Privacy Policy](https://lovable.dev/id/privacy) — Lovable; effective and last updated 2026-09-15; accessed 2026-09-28
 
@@ -31,9 +31,9 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - **Privacy / data handling**: The 2026-09-15 Privacy Policy says Customer Content and Usage Data may be used for model training; its free settings opt-out applies prospectively on any plan. It excludes Business/Enterprise content and Usage Data, account/billing details and Your Users' Data. The Aug 2026 Terms separately grant a broader training license subject to prospective opt-out and defer personal-data conflicts to the Privacy Policy; the Nov 2025 Business/Enterprise DPA bars model training on Customer Personal Data but allows Service Data training and says customers cannot opt out of Service Data processing while customers. These documents use different data classes and dates; the account plan, organization agreement and setting were not checked. Sources: privacy, terms, dpa, security; checked: 2026-09-28.
 - **Lovable Cloud hosting regions**: The Security page says Cloud customer data can be hosted in the EU, US and Asia Pacific, and data in the selected region does not move across regions by default. The Privacy Policy says Lovable and service providers process Personal Data in multiple countries, including the US. The regional statement is specific to Lovable Cloud and does not map every data category, subprocessor or model-provider flow; no account/workspace region was checked. Sources: security, privacy; checked: 2026-09-28.
 
-- **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Product self-hosting**: Lovable's official hosting guide says the platform itself (the editor and AI agent) is a managed service that cannot be self-hosted or deployed inside a customer VPC. Applications built with Lovable can run on infrastructure the customer operates; that does not move the platform. No account or application deployment was inspected. Sources: ownership; checked: 2026-09-28.
 
-- **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Local model inference**: Unknown. The reviewed hosting guide does not establish a local-model route for the Lovable editor or agent. No account, endpoint or model was tested. Sources: ownership; checked for this evidence boundary: 2026-09-28.
 
 - **Code / data portability**: Project code can be synchronized with Git providers; database and service migration still need a separate plan. Sources: product; checked: 2026-09-27.
 
@@ -59,21 +59,25 @@ Before committing, rehearse code handoff, database export and secret replacement
 - Constraint: credit consumption varies by feature and activity; code sync alone does not establish a complete database, hosting or secret migration. Sources: usage, product, ownership.
 - Constraint: do not rely on a blanket no-training claim; public documents distinguish plan, workspace and data categories, and the Free/Pro opt-out is prospective. Confirm the applicable agreement and setting before sending sensitive code. Sources: privacy, terms, dpa, security.
 - Constraint: a selected Lovable Cloud region is not a complete platform-wide residency map; the Privacy Policy says service providers may process Personal Data in multiple countries, including the US. Sources: security, privacy.
+- Constraint: Lovable documents the editor/AI-agent platform as managed and unavailable for customer self-hosting or customer-VPC deployment; an application built with Lovable can be moved to customer infrastructure. Sources: ownership.
 - FAQ: Lovable documents Git sync for code, while runtime services need a separate handoff plan. Sources: product, ownership.
 - FAQ: the current Privacy Policy allows prospective opt-out on any plan, while the older Business/Enterprise DPA says Service Data may be used for training without customer opt-out; their data definitions differ. Verify the actual workspace agreement and setting. Sources: privacy, terms, dpa, security.
 - FAQ: Lovable documents EU, US and Asia Pacific Lovable Cloud regions, while its Privacy Policy describes multi-country Personal Data processing. Confirm the workspace region and provider scope for the actual account. Sources: security, privacy.
+- FAQ: the Lovable platform itself cannot be self-hosted, although applications created with it can run on infrastructure the customer operates. No account or deployment was checked. Source: ownership.
 
 ## Gaps
 
 - Confirm the account plan, effective Privacy Policy/Terms, any organization-managed workspace agreement or Business/Enterprise Order Form/DPA, and the model-training setting; no account or agreement was inspected.
 - Determine which project data falls under Customer Content, Usage Data, Customer Personal Data, Service Data or Your Users' Data, and confirm connected integrations and model-provider routing for the actual workflow.
 - Confirm the selected Lovable Cloud region and the scope of any residency requirement against subprocessors, integrations and model providers; the Security page is Cloud-scoped while the Privacy Policy describes multi-country Personal Data processing, and no account/workspace region was checked.
+- Confirm the required local-model route for the Lovable editor or agent; the reviewed guide does not establish one, and no account, endpoint or model was tested.
 
 ## Owner checklist
 
 - [ ] Current official facts, billing basis and unknowns reviewed.
 
 - [ ] Privacy scope, model-training opt-out, migration and account requirements reviewed for the exact workspace.
+- [ ] Platform self-hosting versus generated-app hosting and the unresolved local-model requirement reviewed.
 
 - [ ] Commercial relationship status checked.
 

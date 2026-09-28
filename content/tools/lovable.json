@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Lovable",
   "summary": "A natural-language web-app workflow to evaluate with an explicit handoff plan.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -41,9 +41,9 @@
     {
       "id": "ownership",
       "url": "https://docs.lovable.dev/tips-tricks/deployment-hosting-ownership",
-      "title": "Deployment, hosting and ownership",
+      "title": "Deployment, hosting, and ownership options with Lovable",
       "publisher": "Lovable",
-      "accessedAt": "2026-09-27"
+      "accessedAt": "2026-09-28"
     },
     {
       "id": "privacy",
@@ -104,9 +104,9 @@
     {
       "key": "selfHosting",
       "label": "Product self-hosting",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Lovable's official hosting guide says the platform itself (the editor and AI agent) is a managed service that cannot be self-hosted or deployed inside a customer VPC. Applications built with Lovable can be deployed on infrastructure the customer operates; that does not move the Lovable platform. No account or application deployment was inspected.",
+      "sourceIds": ["ownership"],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -196,7 +196,8 @@
     { "question": "Can a Lovable project join an existing Git workflow?", "answer": "The documentation says project code can sync to GitHub, GitLab or Bitbucket. Confirm the target repository workflow and separately rehearse moving runtime services.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "product" }, { "toolSlug": "lovable", "sourceId": "ownership" }] },
     { "question": "Can I estimate one fixed credit cost per feature?", "answer": "No universal conversion is documented. Review workspace usage and test the actual workflow because credit consumption varies by feature and activity.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "usage" }] },
     { "question": "Is Lovable project content used to train models?", "answer": "Lovable's Privacy Policy says Customer Content and Usage Data may be used for training, with a no-cost opt-out in settings on any plan that applies prospectively; it excludes Business/Enterprise content and usage data, account/billing details, and app end-user data. The Terms and older Business/Enterprise DPA describe different data categories and scopes, so verify the actual plan, organization agreement and setting.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "privacy" }, { "toolSlug": "lovable", "sourceId": "terms" }, { "toolSlug": "lovable", "sourceId": "dpa" }, { "toolSlug": "lovable", "sourceId": "security" }] },
-    { "question": "Does selecting a Lovable Cloud region keep all platform data there?", "answer": "Lovable's Security page describes EU, US and Asia Pacific regions for Lovable Cloud and says selected-region data does not move across regions by default. Its Privacy Policy separately says Lovable and service providers process Personal Data in multiple countries, including the US; no account region or complete provider data map was checked.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "security" }, { "toolSlug": "lovable", "sourceId": "privacy" }] }
+    { "question": "Does selecting a Lovable Cloud region keep all platform data there?", "answer": "Lovable's Security page describes EU, US and Asia Pacific regions for Lovable Cloud and says selected-region data does not move across regions by default. Its Privacy Policy separately says Lovable and service providers process Personal Data in multiple countries, including the US; no account region or complete provider data map was checked.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "security" }, { "toolSlug": "lovable", "sourceId": "privacy" }] },
+    { "question": "Can I self-host Lovable itself, or only an app built with it?", "answer": "Lovable's hosting guide says the platform (editor and AI agent) is a managed service that cannot be self-hosted or deployed inside a customer VPC. Separately, applications built with Lovable can run on infrastructure you operate. This does not verify any account or application deployment.", "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "ownership" }] }
   ],
   "verdict": "Shortlist Lovable for a web prototype whose code and deployment ownership you can review before launch. Budget iteration and ongoing operation separately.",
   "bestFor": "Founders validating a web-app workflow",
@@ -206,7 +207,8 @@
   "gaps": [
     "Verify the account plan, effective Privacy Policy/Terms, any organization-managed workspace agreement or Business/Enterprise Order Form/DPA, and the model-training setting; no account or agreement was inspected.",
     "Determine which project data falls under Customer Content, Usage Data, Customer Personal Data, Service Data or Your Users' Data, and confirm any connected integration or model-provider routing for the actual workflow.",
-    "Confirm the selected Lovable Cloud region and the scope of any residency requirement against subprocessors, integrations and model providers; the Security page is Cloud-scoped while the Privacy Policy describes multi-country Personal Data processing, and no account/workspace region was checked."
+    "Confirm the selected Lovable Cloud region and the scope of any residency requirement against subprocessors, integrations and model providers; the Security page is Cloud-scoped while the Privacy Policy describes multi-country Personal Data processing, and no account/workspace region was checked.",
+    "The reviewed hosting guide does not establish a local-model route for the Lovable editor or agent; confirm the required inference path. No account, endpoint or model was tested."
   ],
   "changes": [
     {
@@ -215,7 +217,8 @@
     },
     { "date": "2026-09-27", "summary": "Added cited strengths, constraints and FAQs; owner approval remains pending." },
     { "date": "2026-09-28", "summary": "Added current privacy-policy, Terms, DPA and security-page evidence; account scope and settings remain unverified." },
-    { "date": "2026-09-28", "summary": "Separated Lovable Cloud's published regional hosting options from the Privacy Policy's multi-country Personal Data processing scope." }
+    { "date": "2026-09-28", "summary": "Separated Lovable Cloud's published regional hosting options from the Privacy Policy's multi-country Personal Data processing scope." },
+    { "date": "2026-09-28", "summary": "Confirmed the Lovable platform is managed and cannot be self-hosted; generated apps can move to customer-operated infrastructure, while local-model inference remains unknown." }
   ],
   "commercial": {
     "affiliate": {

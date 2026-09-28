@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Replit vs Lovable",
   "summary": "Replit vs Lovable: builders evaluating development and live-app operating responsibility together.",
-  "revision": 10,
+  "revision": 11,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -51,8 +51,8 @@
     },
     {
       "slug": "lovable",
-      "revision": 4,
-      "digest": "393d76ff554d10a8323b98294fb0ed7093fecd25ea7480b60646efecc2fca237"
+      "revision": 5,
+      "digest": "b42769cf6924902a22d487ba77387036a12da847a2ea1001b9ce9cd403f92fdd"
     }
   ],
   "gaps": [],
@@ -96,6 +96,10 @@
     {
       "date": "2026-09-28",
       "summary": "Separated Replit Agent model selection from application AI integrations; local inference remains unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Lovable's self-hosting boundary: its platform is managed, while generated apps can run on customer infrastructure."
     }
   ],
   "commercial": {
@@ -256,6 +260,11 @@
           "sourceId": "agent-model-selector"
         }
       ]
+    },
+    {
+      "question": "Can I self-host the Lovable platform as well as an app built with it?",
+      "answer": "Lovable's hosting guide says the platform (editor and AI agent) is managed and cannot be self-hosted or deployed inside a customer VPC. Apps built with it can run on infrastructure you operate. This distinguishes application hosting from running the Lovable platform; no account or deployment was checked.",
+      "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "ownership" }]
     }
   ]
 }

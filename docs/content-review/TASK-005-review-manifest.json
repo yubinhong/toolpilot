@@ -52,13 +52,14 @@
   },
   {
     "path": "/tools/lovable/",
-    "revision": 4,
-    "digest": "393d76ff554d10a8323b98294fb0ed7093fecd25ea7480b60646efecc2fca237",
+    "revision": 5,
+    "digest": "b42769cf6924902a22d487ba77387036a12da847a2ea1001b9ce9cd403f92fdd",
     "state": "in-review",
     "gaps": [
       "Verify the account plan, effective Privacy Policy/Terms, any organization-managed workspace agreement or Business/Enterprise Order Form/DPA, and the model-training setting; no account or agreement was inspected.",
       "Determine which project data falls under Customer Content, Usage Data, Customer Personal Data, Service Data or Your Users' Data, and confirm any connected integration or model-provider routing for the actual workflow.",
-      "Confirm the selected Lovable Cloud region and the scope of any residency requirement against subprocessors, integrations and model providers; the Security page is Cloud-scoped while the Privacy Policy describes multi-country Personal Data processing, and no account/workspace region was checked."
+      "Confirm the selected Lovable Cloud region and the scope of any residency requirement against subprocessors, integrations and model providers; the Security page is Cloud-scoped while the Privacy Policy describes multi-country Personal Data processing, and no account/workspace region was checked.",
+      "The reviewed hosting guide does not establish a local-model route for the Lovable editor or agent; confirm the required inference path. No account, endpoint or model was tested."
     ]
   },
   {
@@ -87,8 +88,8 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 15,
-    "digest": "edeefafd53c500a3a08622f7c7c5753c69105b552d98db09d45e98811a66fda4",
+    "revision": 16,
+    "digest": "7b923cb9a41857fd049fa517eba08ead85ca04bf0132203a16b94f2323c94e1a",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
@@ -118,8 +119,8 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 15,
-    "digest": "0b0e63316e6ee4ee9dec520a67e62ca0c07ba546361025d26243d6af7e084bbc",
+    "revision": 16,
+    "digest": "c0941dabde493bcec747b6c2ffee5ba60cfd9c500ee675b3ca30df479133be2b",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
@@ -127,8 +128,8 @@
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 14,
-    "digest": "c9c5e9d262b4ea8304d69f8a05a58ec064849d01c3df9d6088afeb3304597a35",
+    "revision": 15,
+    "digest": "0960485b5e651730caea8edac39ef3ee4e1e5ccca5b256ad06ad955a3d7fe660",
     "state": "in-review",
     "gaps": []
   },
@@ -146,8 +147,8 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 11,
-    "digest": "7242ca029b8dee649d1742aeef07994a80d56ae136d66be55b0178577cd35b2d",
+    "revision": 12,
+    "digest": "d30197f13f2cb7e07e80783c3f11b152224cfbba41a6ed3f8a9366429baf65cc",
     "state": "in-review",
     "gaps": []
   },
@@ -191,15 +192,15 @@
   },
   {
     "path": "/compare/lovable-vs-bolt/",
-    "revision": 6,
-    "digest": "c1b7f1ef617bac22130fc1bab745adb1c1d0a3ccae0ddd64504ff260e2e39aba",
+    "revision": 7,
+    "digest": "7c7cb0e1b93650555927aa06475989d29d2248a5879444a070e85aa867aa1e45",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/replit-vs-lovable/",
-    "revision": 10,
-    "digest": "edd200374038654af18beec245b55db8fe9b2769ddacb9542a90fa87a0e256a3",
+    "revision": 11,
+    "digest": "53a951e2d1e736620a8b4cc99e73f26a520d0d10d02354e3f720130d9d71d70c",
     "state": "in-review",
     "gaps": []
   },
@@ -248,8 +249,8 @@
   },
   {
     "path": "/pricing/lovable/",
-    "revision": 5,
-    "digest": "8f0a3d8bec021c169f5db8ef103865c5f6e936823200e6ed88d011aa3d4285cf",
+    "revision": 6,
+    "digest": "75b4d41a9c220305b76501b663514fd52c92d6aacd0b51f0bc9a4021ba00068e",
     "state": "in-review",
     "gaps": []
   },
