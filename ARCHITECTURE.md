@@ -4,11 +4,11 @@
 
 - 状态：`MVP IMPLEMENTED / ADR PENDING`
 - Owner：`TBD`
-- 最后更新：`2026-09-27`
-- 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`、`docs/adr/0008-cloudflare-pages-git-integration.md`
+- 最后更新：`2026-09-28`
+- 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`、`docs/adr/0008-cloudflare-pages-git-integration.md`、`docs/adr/0010-static-content-security-policy.md`
 - 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Cloudflare Pages GitHub check 和公网 smoke；CNAME 切换后的 `toolpilot.cc` 已通过 `SMOKE_PROFILE=current`。
 
-## 当前架构快照（2026-09-27）
+## 当前架构快照（2026-09-28）
 
 - 内容流：content/tools 与 content/decisions JSON → lib/content.mjs 校验/读取 → 服务端模板 → out/。
 - 历史流：lib/catalog.mjs 的 researchTools 原样保留；tools 提供兼容叠加视图。新增产品无伪造旧检查日期。
@@ -19,7 +19,8 @@
 - 路由：lib/routes.mjs 是页面与索引清单，metadata.ts、sitemap、smoke、产物检查共用。site-config 仅管理站点 URL。
 - 商业：Affiliate、Featured、Sponsor 分别记录；只有有效审核和关系证据才能激活商业目的地，未知关系不冒充合作。
 - 维护：独立 HTTPS 域名 allowlist、DNS 全结果公网校验、固定已验证地址连接、3 次重定向限制；不引入任意运行时抓取服务。
-- 当前源码注册 97 个路由；Next 构建日志另计 404/元数据路由，不能混淆计数。没有内容正式审批时 sitemap 为 4 个站点说明入口。
+- 当前源码注册 99 个路由；Next 构建日志另计 404/元数据路由，不能混淆计数。没有内容正式审批时 sitemap 为 4 个站点说明入口。
+- 静态 CSP 由构建后 HTML 的可执行 inline-script SHA-256 生成，每个注册页面和 `404.html` 各有一条文档级 CSP meta；Cloudflare Pages `out/_headers` 只保留一条 `/*` 共享规则，提供 `frame-ancestors` 与其他响应头保护，避免静态路由增长消耗每规则配额。
 - 数据和公开接口迁移、批准失效及回滚见 ADR-0009。仍无数据库、API、CMS、账户或分析。
 
 下方既有 MVP 章节保留历史背景；2026-08 构建/部署数字与尚未实现描述不能覆盖上述当前代码边界。生产是否更新仅以部署和公网证据为准。
@@ -31,7 +32,7 @@
 - 规模假设：`TBD`；当前没有用户、RPS、数据量或流量基线。
 - 主要约束：MVP 使用静态输出；外部工具资料和厂商提交必须经过验证；商业曝光不得影响独立评价。
 
-已验证事实：`next.config.mjs` 配置 `output: "export"`、`trailingSlash: true`；当前源码登记 97 个路由，Node 22 构建和线上 current smoke 均覆盖这些路由。39 条结构化内容仍是审核草稿，因此 sitemap 目前只有 4 个站点说明入口。
+已验证事实：`next.config.mjs` 配置 `output: "export"`、`trailingSlash: true`；当前源码登记 99 个路由，Node 22 构建和线上 current smoke 均覆盖这些路由。39 条结构化内容仍是审核草稿，因此 sitemap 目前只有 4 个站点说明入口。
 
 ## 2. 系统上下文
 

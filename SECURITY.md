@@ -1,6 +1,6 @@
 # SECURITY.md
 
-## 当前安全状态（2026-09-27）
+## 当前安全状态（2026-09-28）
 
 - 2026-09-27 在 Node 22 下执行 `npm ci` 与 `npm audit --audit-level=high` 通过，0 vulnerabilities。将 Next.js/eslint-config-next 更新至 16.3.6、sharp 至 0.35.4、js-yaml 至 4.3.2；不屏蔽告警，每次发布前仍须重新审计。
 - 内容 JSON 只能引用经校验的 HTTPS URL；未知/未审核不得伪装正式事实。审核 digest 是一致性检查，不是身份认证，真实用户授权记录不可伪造。
@@ -14,6 +14,7 @@
 - TODO-315 安全策略审查（2026-09-27）：浏览当前静态导出的每个注册路由，允许其真实 inline-script SHA-256 哈希，默认限制资源为同源并拒绝 inline event handlers；计划加 `X-Frame-Options: DENY`、关闭当前不使用的 camera/microphone/geolocation。Cloudflare Pages 将叠加匹配规则；97 条逐路由规则加 1 条共享兜底规则，共 98/100 条。具体实施和浏览器证据见 TASK-007。HSTS 尚未获 Owner 对主机/子域范围的确认，禁止在此任务中设置。
 - TASK-007 实施与线上结果（2026-09-27）：每次静态构建生成 `out/_headers`，以共享 `/*` 规则应用基线 CSP、frame、MIME、referrer 和 permissions 头，并为每条注册路由从构建后 HTML 精确允许 inline-script SHA-256。正式 commit/CI/Pages 发布已通过；immutable preview 97 路由 Chromium 零错误/零 CSP violation，production 应用交互通过但 Cloudflare Insights 外部 beacon 被该 CSP 有意阻止并产生一条 violation。Owner 决定是否关闭 Pages Web Analytics 注入，或先正式批准该分析处理和隐私文案；在此之前不放宽策略。未设置 HSTS。
 - TASK-007 404 fallback follow-up（2026-09-27）：Pages 的 `/*` 共享 CSP 缺少脚本源限制时，未知路径可以加载生产注入脚本；直接把全站脚本 hash 合并到共享规则会与逐路由策略取交集，并超出 2,000 字符 header 限制。静态 `404.html` head 注入只含 404 自身 inline-script hash 的 CSP meta，`frame-ancestors` 继续由响应头执行。Node 22 全量构建、70 项测试、产物检查、审计和 Pages smoke 通过；Chromium 在 preview/production 404 上验证页面和主题交互无错误，并确认 Cloudflare Insights 脚本报 enforced `script-src-elem` / `requestfailed: csp`。提交 `057ee368`、CI `36342275495` 和 Pages deployment/check `96ad8a25-c4fa-46ff-99d7-ad9829dceab2` 已通过；两端 97 页 current smoke 通过。生产自动注入 beacon 现在也被 404 meta 策略阻止，仍会产生预期 CSP violation；Cloudflare Dashboard 未更改，线上 Analytics 决策和 HSTS 范围仍待 Owner。
+- TASK-007 route-capacity follow-up（2026-09-28，待发布）：源码已有 99 个路由，旧模型的 99 条路由响应头规则加共享规则正好达到 Pages 100 条上限。生成器现改为为每个最终静态页面和 `404.html` 注入只含该文档脚本哈希的 CSP meta；共享 `/*` 响应规则继续执行 `frame-ancestors`、点击劫持、MIME、referrer 与 permissions 保护。文档 meta 紧随 charset 声明，避免影响早期 UTF-8 检测；构建产物检查要求注册路由与 404 的策略逐页精确匹配。该设计尚待完整构建、Chromium、CI 和 Pages 发布验证，生产仍以最近已部署的逐路由响应 CSP 为准；分析注入与 HSTS 仍是 Owner 决策。
 
 ## 1. 安全目标与范围
 

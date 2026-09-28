@@ -543,6 +543,16 @@ Initial P0 technical tranche verification (2026-09-27): `npm run cloudflare:buil
 - Rollback: revert the reviewed header policy/generator and redeploy the preceding verified Pages commit; rerun current smoke and confirm the changed header is absent. HSTS is excluded, so this tranche introduces no persistent browser HSTS state.
 - Open Owner input: confirm the future HSTS `max-age` and `includeSubDomains` scope. Until that is recorded, TODO-315 stays partially open even if other response headers ship.
 
+#### TODO-315 route-capacity follow-up — 2026-09-28
+
+- Current evidence: the source registry has 99 routes and the deployed `out/_headers` has 100 blocks (99 route CSP rules plus the shared `/*` rule), exactly Cloudflare Pages' documented maximum. A fresh production check verified all 99 registered pages return their exact route CSP and shared security headers; the 404 response has shared protections plus its own hash CSP meta. Any additional route currently exceeds the build rule limit.
+- [x] Preserve exact per-document script hashes by moving route CSP into an early CSP `<meta>` generated from each final static HTML document. Keep the shared `/*` response CSP for `object-src`, `base-uri` and `frame-ancestors`, plus shared clickjacking/MIME/referrer/permissions protections. Do not union hashes into the shared policy; CSP rules that match the same request are enforced together, and the meta policy cannot enforce `frame-ancestors`.
+- [x] Update ADR-0010, the generator and artifact checks so each registered document and `404.html` has exactly one meta policy calculated from its own executable inline scripts, while `_headers` contains only the shared rule. Unit and artifact tests cover exact policy hashes, charset-safe placement, idempotent injection, fail-closed malformed HTML, no `unsafe-inline`, shared `frame-ancestors`, route coverage and 100-rule headroom.
+- [x] Local validation on Node `v22.23.2`: `npm run cloudflare:build` passed lint, typecheck, 91 tests, content validation, static export and artifact checks (99 routes / 4 indexable URLs); `npm audit --audit-level=high` found 0 vulnerabilities; Wrangler Pages local smoke passed 99 routes, robots, sitemap and a real 404. Chromium visited all 99 registered pages with no page errors or unexpected CSP violations; theme persistence, search results/empty state, compare-to-detail navigation and a blocked external-script probe passed. Wrangler confirmed one parsed header rule, shared headers on registered and unknown paths, and 404 CSP/theme behavior.
+- [ ] Run clean release readiness, CI, Pages preview and production checks. Do not alter Dashboard analytics or HSTS state.
+- Owner gates remain: decide whether to disable Pages Web Analytics injection or approve its privacy scope before any allowlist/zero-violation acceptance; separately confirm HSTS host/subdomain scope and `max-age`.
+- Rollback: restore the preceding per-route-header generator and ADR, rebuild, and redeploy the last verified release; its current 99-route capacity remains the limit until this follow-up is reapplied.
+
 ### TODO-309 — n8n workflow portability evidence
 
 - Goal: replace only n8n's unknown `portability` fact with the exact workflow export/import and backup boundary documented by n8n; do not equate a workflow export or CLI package with full-instance portability.

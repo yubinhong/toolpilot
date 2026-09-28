@@ -76,31 +76,31 @@ function cspFromHashes(hashes, { includeFrameAncestors = true } = {}) {
   return directives.join('; ') + ';';
 }
 
-export function routeCsp(hashes) {
-  return cspFromHashes(hashes);
-}
-
-export function fallbackDocumentCsp(hashes) {
+export function documentCsp(hashes) {
   return cspFromHashes(hashes, { includeFrameAncestors: false });
 }
 
-export function injectFallbackCspMeta(html) {
-  const csp = fallbackDocumentCsp(extractInlineScriptHashes(html));
+export function injectCspMeta(html) {
+  const csp = documentCsp(extractInlineScriptHashes(html));
   const escapedCsp = csp.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
   const meta = `<meta http-equiv="Content-Security-Policy" content="${escapedCsp}">`;
   const existingMetas = [...html.matchAll(/<meta\b(?=[^>]*\bhttp-equiv\s*=\s*["']Content-Security-Policy["'])[^>]*>/gi)];
-  if (existingMetas.length > 1) throw new Error('static 404 must contain at most one Content-Security-Policy meta element');
-  if (existingMetas.length === 1) {
-    if (existingMetas[0][0] === meta) return html;
-    throw new Error('static 404 already contains a different Content-Security-Policy meta element');
-  }
+  if (existingMetas.length > 1) throw new Error('static document must contain at most one Content-Security-Policy meta element');
 
-  const headOpenCount = [...html.matchAll(/<head\b[^>]*>/gi)].length;
+  const headOpens = [...html.matchAll(/<head\b[^>]*>/gi)];
   const headCloseCount = [...html.matchAll(/<\/head\s*>/gi)].length;
-  if (headOpenCount !== 1 || headCloseCount !== 1) {
-    throw new Error(`static 404 must contain one complete head element (found ${headOpenCount} open, ${headCloseCount} close)`);
+  if (headOpens.length !== 1 || headCloseCount !== 1) {
+    throw new Error(`static document must contain one complete head element (found ${headOpens.length} open, ${headCloseCount} close)`);
   }
-  return html.replace(/<head\b[^>]*>/i, match => `${match}${meta}`);
+  let policyPosition = headOpens[0].index + headOpens[0][0].length;
+  const charset = html.slice(policyPosition).match(/^\s*<meta\b(?=[^>]*\bcharset\s*=)[^>]*>/i);
+  if (charset) policyPosition += charset[0].length;
+  if (existingMetas.length === 1) {
+    if (existingMetas[0][0] === meta && existingMetas[0].index === policyPosition) return html;
+    throw new Error('static document has a different or misplaced Content-Security-Policy meta element');
+  }
+  // Preserve the early charset declaration while applying CSP before scripts in the static document.
+  return `${html.slice(0, policyPosition)}${meta}${html.slice(policyPosition)}`;
 }
 
 function validateRoutePath(path) {
@@ -109,59 +109,55 @@ function validateRoutePath(path) {
   }
 }
 
-export function generateHeadersFile(routes, { readHtml, maxRules = MAX_HEADER_RULES, maxLineLength = MAX_HEADER_LINE_LENGTH } = {}) {
-  if (!Array.isArray(routes) || typeof readHtml !== 'function') {
-    throw new TypeError('routes and readHtml are required');
+export function generateHeadersFile(routes, { maxRules = MAX_HEADER_RULES, maxLineLength = MAX_HEADER_LINE_LENGTH } = {}) {
+  if (!Array.isArray(routes)) {
+    throw new TypeError('routes are required');
   }
-  if (routes.length + 1 > maxRules) {
-    throw new Error(`Cloudflare Pages header rules would exceed ${maxRules} (${routes.length + 1})`);
+  if (maxRules < 1) {
+    throw new Error(`Cloudflare Pages header rules would exceed ${maxRules} (1)`);
   }
 
   const paths = new Set();
-  const rules = [[
+  for (const route of routes) {
+    validateRoutePath(route?.path);
+    if (paths.has(route.path)) throw new Error(`duplicate route path: ${route.path}`);
+    paths.add(route.path);
+  }
+
+  const sharedRule = [
     '/*',
     '  X-Frame-Options: DENY',
     '  X-Content-Type-Options: nosniff',
     '  Referrer-Policy: strict-origin-when-cross-origin',
     '  Permissions-Policy: camera=(), microphone=(), geolocation=()',
     `  Content-Security-Policy: ${SHARED_CSP}`,
-  ].join('\n')];
-
-  for (const route of routes) {
-    validateRoutePath(route?.path);
-    if (paths.has(route.path)) throw new Error(`duplicate route path: ${route.path}`);
-    paths.add(route.path);
-
-    const hashes = extractInlineScriptHashes(readHtml(route));
-    const csp = routeCsp(hashes);
-    const cspLine = `  Content-Security-Policy: ${csp}`;
-    if (cspLine.length > maxLineLength) {
-      throw new Error(`${route.path}: CSP header line exceeds ${maxLineLength} characters (${cspLine.length})`);
-    }
-    rules.push(`${route.path}\n${cspLine}`);
+  ].join('\n');
+  if (sharedRule.split('\n').some(line => line.length > maxLineLength)) {
+    const longest = Math.max(...sharedRule.split('\n').map(line => line.length));
+    throw new Error(`shared rule header line exceeds ${maxLineLength} characters (${longest})`);
   }
 
-  return `${rules.join('\n\n')}\n`;
+  return `${sharedRule}\n`;
 }
 
 function generateForBuild() {
   const outputDirectory = resolve('out');
   if (!existsSync(outputDirectory)) throw new Error('Next.js output directory out/ does not exist');
+  const routes = getRoutes();
+  const routeOutputs = routes.map(route => {
+    validateRoutePath(route.path);
+    const htmlPath = join(outputDirectory, route.path, 'index.html');
+    if (!existsSync(htmlPath)) throw new Error(`${route.path}: missing exported HTML at ${htmlPath}`);
+    return [htmlPath, injectCspMeta(readFileSync(htmlPath, 'utf8'))];
+  });
   const fallbackPath = join(outputDirectory, '404.html');
   if (!existsSync(fallbackPath)) throw new Error(`missing static 404 at ${fallbackPath}`);
-  const fallbackHtml = readFileSync(fallbackPath, 'utf8');
-  writeFileSync(fallbackPath, injectFallbackCspMeta(fallbackHtml));
-
-  const routes = getRoutes();
-  const contents = generateHeadersFile(routes, {
-    readHtml: route => {
-      const htmlPath = join(outputDirectory, route.path, 'index.html');
-      if (!existsSync(htmlPath)) throw new Error(`${route.path}: missing exported HTML at ${htmlPath}`);
-      return readFileSync(htmlPath, 'utf8');
-    },
-  });
+  const fallbackHtml = injectCspMeta(readFileSync(fallbackPath, 'utf8'));
+  const contents = generateHeadersFile(routes);
+  for (const [htmlPath, html] of routeOutputs) writeFileSync(htmlPath, html);
+  writeFileSync(fallbackPath, fallbackHtml);
   writeFileSync(join(outputDirectory, '_headers'), contents);
-  console.log(`Generated Cloudflare Pages security headers: ${routes.length} route CSP rules plus one shared rule.`);
+  console.log(`Generated document CSP metas for ${routes.length} routes plus 404 and one shared Pages header rule.`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {

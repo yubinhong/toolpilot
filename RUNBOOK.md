@@ -84,7 +84,7 @@ for path in / /tools/ /tools/digitalocean/ /robots.txt /sitemap.xml; do
 done
 ```
 
-TASK-007 发布后，先在 immutable Pages preview，再在 `https://toolpilot.cc` 检查首页、代表性详情页和未知路径。注册页面应带共享和逐路由 CSP（Cloudflare Pages 会合并匹配规则）、`X-Frame-Options: DENY`、`X-Content-Type-Options: nosniff`、`Referrer-Policy: strict-origin-when-cross-origin` 和 `Permissions-Policy: camera=(), microphone=(), geolocation=()`；未知路径返回的静态 404 应包含仅允许该文档 script hashes 的 CSP meta，响应头仍提供共享保护。随后运行 current-profile smoke 覆盖全部 97 个已注册页面、robots、sitemap 和真实 404。最新 `057ee368` deployment/check `96ad8a25-c4fa-46ff-99d7-ad9829dceab2` 的 preview 和 production 均通过 smoke；Chromium 确认 404 内容/主题交互正常，production-only `static.cloudflareinsights.com/beacon.min.js` 被 CSP 阻止并产生预期 violation。Cloudflare Pages Web Analytics 的 Owner 决策未完成；不要把该域名加入 CSP allowlist，也不要关闭 TODO-315。该发布不设置 HSTS；回滚时使用上一份验证过的 Pages 部署并确认本次新增的 404 CSP meta 不再输出。
+TASK-007 发布后，先在 immutable Pages preview，再在 `https://toolpilot.cc` 检查首页、代表性详情页和未知路径。每个注册页面和 `404.html` 应在 charset 声明后立即包含按各自 inline-script hashes 生成的 CSP meta；Cloudflare Pages `/*` 响应规则只提供共享 CSP 的 `frame-ancestors`、`X-Frame-Options: DENY`、`X-Content-Type-Options: nosniff`、`Referrer-Policy: strict-origin-when-cross-origin` 和 `Permissions-Policy: camera=(), microphone=(), geolocation=()`。随后运行 current-profile smoke 覆盖全部 99 个已注册页面、robots、sitemap 和真实 404，并用 Chromium 检查 CSP 执行和应用交互。此前部署 `057ee368`/check `96ad8a25-c4fa-46ff-99d7-ad9829dceab2` 仍是线上旧模型证据：逐路由 CSP 响应头与 404 CSP meta，97 页 smoke；新容量模型尚待发布验证。Cloudflare Pages Web Analytics 的 Owner 决策未完成；不要把该域名加入 CSP allowlist，也不要关闭 TODO-315。该发布不设置 HSTS；回滚时使用上一份验证过的 Pages 部署并确认新路由文档 CSP meta 不再输出。
 
 ### `toolpilot.cc` 域名切换（2026-09-27，已完成）
 

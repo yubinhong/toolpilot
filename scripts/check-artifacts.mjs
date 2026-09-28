@@ -9,7 +9,7 @@ import { isIndexable } from '../lib/content-policy.mjs';
 import { verificationStatusLabel } from '../lib/content-labels.mjs';
 import { findDuplicateMetadata } from './metadata-audit.mjs';
 import { categoryAnchor, HOME_CATEGORY_SHORTCUTS } from '../lib/homepage.mjs';
-import { generateHeadersFile, injectFallbackCspMeta } from './generate-security-headers.mjs';
+import { generateHeadersFile, injectCspMeta } from './generate-security-headers.mjs';
 const failures = [];
 const routes = getRoutes();
 const site = getSiteUrl();
@@ -32,7 +32,11 @@ for (const r of routes) {
   const file = join('out', r.path, 'index.html');
   if (!existsSync(file)) { failures.push(`${r.path}: missing HTML`); continue; }
   const html = readFileSync(file,'utf8');
-  if (/<meta\b[^>]*\bhttp-equiv="Content-Security-Policy"/i.test(html)) failures.push(`${r.path}: fallback CSP meta must not be added to registered routes`);
+  try {
+    if (injectCspMeta(html) !== html) failures.push(`${r.path}: missing generated CSP meta or script hashes do not match this document`);
+  } catch (error) {
+    failures.push(`${r.path}: CSP meta validation failed: ${error.message}`);
+  }
   const canonical = html.match(/<link\b[^>]*rel="canonical"[^>]*>/)?.[0];
   if (!canonical?.includes(`href="${site}${r.path}"`)) failures.push(`${r.path}: incorrect canonical`);
   const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
@@ -312,7 +316,7 @@ if (!existsSync('out/404.html')) failures.push('missing static 404');
 else {
   try {
     const html404 = readFileSync('out/404.html','utf8');
-    if (injectFallbackCspMeta(html404) !== html404) failures.push('static 404 is missing its generated fallback CSP meta');
+    if (injectCspMeta(html404) !== html404) failures.push('static 404 is missing its generated CSP meta or script hashes do not match the document');
   } catch (error) {
     failures.push(`static 404 CSP validation failed: ${error.message}`);
   }
@@ -323,11 +327,10 @@ if (!existsSync(headersPath)) {
   failures.push('missing generated Cloudflare Pages security headers');
 } else {
   try {
-    const expectedHeaders = generateHeadersFile(routes, {
-      readHtml: route => readFileSync(join('out',route.path,'index.html'),'utf8'),
-    });
+    const expectedHeaders = generateHeadersFile(routes);
     const actualHeaders = readFileSync(headersPath,'utf8');
-    if (actualHeaders !== expectedHeaders) failures.push('Cloudflare Pages security headers do not match current routes and inline script hashes');
+    if (actualHeaders !== expectedHeaders) failures.push('Cloudflare Pages shared security headers differ from the expected single wildcard rule');
+    if (actualHeaders.trim().split(/\n\n/).length !== 1) failures.push('Cloudflare Pages headers must stay within one shared rule');
     if (!actualHeaders.includes("Content-Security-Policy: object-src 'none'; base-uri 'self'; frame-ancestors 'none';")) failures.push('missing shared fallback CSP protections');
     if (/Strict-Transport-Security|unsafe-inline/.test(actualHeaders)) failures.push('security headers must not enable unapproved HSTS or unsafe-inline');
   } catch (error) {

@@ -2,13 +2,12 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import test from 'node:test';
 import {
+  documentCsp,
   extractInlineScriptHashes,
-  fallbackDocumentCsp,
   generateHeadersFile,
-  injectFallbackCspMeta,
+  injectCspMeta,
   MAX_HEADER_LINE_LENGTH,
   MAX_HEADER_RULES,
-  routeCsp,
 } from '../scripts/generate-security-headers.mjs';
 
 function sha256(body) {
@@ -38,51 +37,58 @@ test('malformed script output fails closed instead of producing incomplete hashe
   assert.throws(() => extractInlineScriptHashes('<script>window.run()'), /could not safely parse all script elements/);
 });
 
-test('generated rules pair shared protections with strict per-route CSP hashes', () => {
+test('generated Pages headers keep only shared protections in one wildcard rule', () => {
   const routes = [{ path: '/' }, { path: '/tools/sample/' }];
-  const htmlByPath = new Map([
-    ['/', '<script>window.home = true;</script>'],
-    ['/tools/sample/', '<script>window.tool = true;</script><script type="application/ld+json">{}</script>'],
-  ]);
-  const output = generateHeadersFile(routes, { readHtml: route => htmlByPath.get(route.path) });
+  const output = generateHeadersFile(routes);
 
   assert.match(output, /^\/\*\n/);
   assert.match(output, /X-Frame-Options: DENY/);
   assert.match(output, /Permissions-Policy: camera=\(\), microphone=\(\), geolocation=\(\)/);
   assert.match(output, /Content-Security-Policy: object-src 'none'; base-uri 'self'; frame-ancestors 'none';/);
-  assert.ok(output.includes(`/tools/sample/\n  Content-Security-Policy: default-src 'self'; script-src 'self' ${sha256('window.tool = true;')};`));
   assert.doesNotMatch(output, /unsafe-inline|Strict-Transport-Security/);
-  assert.equal(output.trim().split(/\n\n/).length, routes.length + 1);
-  assert.match(routeCsp([]), /script-src 'self';/);
+  assert.doesNotMatch(output, /\/tools\/sample\//);
+  assert.equal(output.trim().split(/\n\n/).length, 1);
 });
 
-test('static 404 gets an idempotent CSP meta using only its executable inline-script hashes', () => {
-  const body = 'window.notFound = true;';
-  const html = `<!doctype html><html><head></head><body><script>${body}</script></body></html>`;
-  const generated = injectFallbackCspMeta(html);
+test('each static document gets an early, exact, idempotent CSP meta', () => {
+  const body = 'window.page = true;';
+  const html = '<!doctype html><html><head data-test="head"><meta charSet="utf-8"/><title>Page</title><script src="/bundle.js"></script><script type="application/ld+json">{"@type":"Thing"}</script><script>' + body + '</script></head><body></body></html>';
+  const generated = injectCspMeta(html);
   const policy = generated.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)?.[1];
 
   assert.ok(policy);
   assert.ok(policy.includes(`script-src 'self' ${sha256(body)}`));
+  assert.doesNotMatch(policy, /bundle\.js|@type|frame-ancestors/);
   assert.match(policy, /default-src 'self'/);
-  assert.doesNotMatch(policy, /frame-ancestors|unsafe-inline|static\.cloudflareinsights\.com/);
-  assert.equal(injectFallbackCspMeta(generated), generated);
+  assert.match(policy, /script-src-attr 'none'/);
+  assert.doesNotMatch(policy, /unsafe-inline|static\.cloudflareinsights\.com/);
+  assert.ok(generated.indexOf('charSet="utf-8"') < generated.indexOf('http-equiv="Content-Security-Policy"'));
+  assert.ok(generated.indexOf('http-equiv="Content-Security-Policy"') < generated.indexOf('<title>'));
+  assert.equal(injectCspMeta(generated), generated);
   assert.equal((generated.match(/http-equiv="Content-Security-Policy"/g) || []).length, 1);
-  assert.match(fallbackDocumentCsp([]), /script-src 'self';/);
+  assert.match(documentCsp([]), /script-src 'self';/);
+  assert.doesNotMatch(documentCsp([]), /frame-ancestors/);
+
   const meta = generated.match(/<meta\b[^>]*http-equiv="Content-Security-Policy"[^>]*>/)?.[0];
-  assert.throws(() => injectFallbackCspMeta(generated.replace('</head>', `${meta}</head>`)), /at most one/);
-  assert.throws(() => injectFallbackCspMeta('<html><body></body></html>'), /one complete head element/);
-  assert.throws(() => injectFallbackCspMeta('<html><head></head><head></head></html>'), /one complete head element/);
+  assert.throws(() => injectCspMeta(generated.replace('</head>', `${meta}</head>`)), /at most one/);
+  assert.throws(() => injectCspMeta(generated.replace(meta, `<title>Page</title>${meta}`)), /different or misplaced/);
+  assert.throws(() => injectCspMeta(generated.replace(sha256(body), sha256('wrong body'))), /different or misplaced/);
+  assert.throws(() => injectCspMeta('<html><body></body></html>'), /one complete head element/);
+  assert.throws(() => injectCspMeta('<html><head></head><head></head></html>'), /one complete head element/);
+  assert.throws(() => injectCspMeta('<html><head></head><head></html>'), /one complete head element/);
 });
 
-test('generated Pages rules reject missing artifacts, duplicate/unsafe routes, and limit overflow', () => {
-  assert.throws(() => generateHeadersFile([{ path: '/missing/' }], { readHtml: () => { throw new Error('missing HTML'); } }), /missing HTML/);
-  assert.throws(() => generateHeadersFile([{ path: '/bad*route/' }], { readHtml: () => '' }), /unsafe or unsupported route path/);
-  assert.throws(() => generateHeadersFile([{ path: '/' }, { path: '/' }], { readHtml: () => '' }), /duplicate route path/);
-  assert.throws(() => generateHeadersFile(Array.from({ length: MAX_HEADER_RULES }, (_, index) => ({ path: `/route-${index}/` })), { readHtml: () => '' }), /header rules would exceed/);
+test('generated Pages rule validates paths and stays within the rule limit as routes grow', () => {
+  assert.throws(() => generateHeadersFile([{ path: '/bad*route/' }]), /unsafe or unsupported route path/);
+  assert.throws(() => generateHeadersFile([{ path: '/' }, { path: '/' }]), /duplicate route path/);
+  const routes = Array.from({ length: MAX_HEADER_RULES + 1 }, (_, index) => ({ path: `/route-${index}/` }));
+  const output = generateHeadersFile(routes);
+  assert.equal(output.trim().split(/\n\n/).length, 1);
+  assert.throws(() => generateHeadersFile(routes, { maxRules: 0 }), /header rules would exceed/);
 });
 
-test('generated Pages rules reject a CSP header value longer than the platform limit', () => {
-  const html = Array.from({ length: 40 }, (_, index) => `<script>window.script${index} = ${index};</script>`).join('');
-  assert.throws(() => generateHeadersFile([{ path: '/large/' }], { readHtml: () => html }), new RegExp(`exceeds ${MAX_HEADER_LINE_LENGTH} characters`));
+test('generated Pages headers enforce the platform header line limit', () => {
+  const limit = 80;
+  assert.ok(limit < MAX_HEADER_LINE_LENGTH);
+  assert.throws(() => generateHeadersFile([{ path: '/' }], { maxLineLength: limit }), new RegExp(`exceeds ${limit} characters`));
 });
