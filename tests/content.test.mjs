@@ -53,25 +53,52 @@ test('Make and Replit price cadences are source-backed and remain pending owner 
     assert.equal(isIndexable(record, content), false);
   }
 });
-test('Make plan limits cite its official pricing page without claiming account data residency',() => {
+test('Make plan, privacy and retention facts cite official pages without claiming account-level settings',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'make');
   const expected = {
-    hostingRegions: 'The pricing table lists AWS (EU/North America) for each plan. This does not establish customer-selectable regions or account-level data residency.',
-    executionLogRetention: 'The plan comparison lists 30 days of execution log storage for Core. Deletion semantics and retention of other data are not specified here.',
-    dataTransferAllowance: 'The plan table lists 5 GB of data transfer per 10,000 monthly credits; this is an allowance, not a measured workload estimate.',
+    hostingRegions: { value: 'The pricing table lists AWS (EU/North America) for each plan. This does not establish customer-selectable regions or account-level data residency.', sources: ['pricing'], date: '2026-09-27' },
+    executionLogRetention: { value: 'The plan comparison lists 30 days of execution log storage for Core. Deletion semantics and retention of other data are not specified here.', sources: ['pricing'], date: '2026-09-27' },
+    dataTransferAllowance: { value: 'The plan table lists 5 GB of data transfer per 10,000 monthly credits; this is an allowance, not a measured workload estimate.', sources: ['pricing'], date: '2026-09-27' },
+    privacy: { sources: ['privacy'], date: '2026-09-28' },
+    personalDataRetention: { sources: ['privacy', 'privacy-and-gdpr'], date: '2026-09-28' },
+    logDataRetention: { sources: ['security'], date: '2026-09-28' },
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 5);
-  for (const [key, value] of Object.entries(expected)) {
+  assert.equal(record.revision, 6);
+  for (const [key, expectation] of Object.entries(expected)) {
     const fact = record.facts.find(item => item.key === key);
     assert.ok(fact, `Make has ${key}`);
-    assert.equal(fact.value, value);
-    assert.deepEqual(fact.sourceIds, ['pricing']);
-    assert.equal(fact.checkedAt, '2026-09-27');
+    if (expectation.value) assert.equal(fact.value, expectation.value);
+    assert.deepEqual(fact.sourceIds, expectation.sources);
+    assert.equal(fact.checkedAt, expectation.date);
     assert.equal(fact.critical, false);
   }
-  assert.ok(record.gaps.some(gap => gap.includes('customer-selectable regions or account-level data residency')));
+  assert.match(record.facts.find(item => item.key === 'privacy')?.value ?? '', /workflow-step counts, operation types and queries/);
+  assert.match(record.facts.find(item => item.key === 'personalDataRetention')?.value ?? '', /Neither page gives a purge timeline/);
+  assert.match(record.facts.find(item => item.key === 'logDataRetention')?.value ?? '', /separate from Core's plan-listed 30-day execution-log allowance/);
+  for (const [id, url] of Object.entries({
+    privacy: 'https://www.make.com/en/privacy-notice',
+    'privacy-and-gdpr': 'https://www.make.com/en/privacy-and-gdpr',
+    security: 'https://www.make.com/en/security',
+  })) {
+    const source = record.sources.find(item => item.id === id);
+    assert.equal(source?.url, url);
+    assert.equal(source?.accessedAt, '2026-09-28');
+  }
+  assert.ok(record.gaps.some(gap => gap.includes('customer-selectable region meets the intended account data-residency requirement')));
+  assert.ok(record.gaps.some(gap => gap.includes('workspace-specific workflow and connected-provider data scope')));
+  assert.ok(record.gaps.some(gap => gap.includes('applicable DPA/subprocessor list and legal suitability')));
+  for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
+    const decision = content.find(item => item.slug === slug);
+    const makeDependency = decision?.dependencies.find(item => item.slug === 'make');
+    assert.equal(makeDependency?.revision, 6);
+    assert.equal(makeDependency?.digest, contentDigest(record));
+    assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'privacy')));
+    assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'security')));
+    assert.equal(decision?.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — TASK-006 implementation (2026-09-27)
+## Unreleased — TASK-006 implementation (2026-09-27–28)
 
 - Label an approved Affiliate destination explicitly beside its CTA and disclosure; incomplete or unapproved relationships continue to use the ordinary product URL. Commit `b28eac7` passed CI `36349574064` and Pages deployment/check `b42fe8b0`; preview and production current smoke passed 99 pages, robots, sitemap and real 404.
 - Render the bound `verifiedAt` date as `Last verified` on approved pages and retain an explicit pending status on review drafts; generated artifact checks enforce both states. Commit `5057ab8` passed CI `36350165202` and Pages deployment/check `6e614c18`; preview and production current smoke passed 99 pages, robots, sitemap and real 404.
@@ -36,6 +36,7 @@
 - Add Aider's documented opt-in product-analytics boundary, event categories, random identifier, opt-out switches and excluded data categories; refresh two dependent decisions and the exact TASK-006 handoff. Provider handling and installed settings remain unresolved; all 39 records stay in-review/noindex. Commit `52756118` passed CI `36358185302`, Pages deployment/check `748dc5fa-2d73-4463-8733-8a7cb6058ab4`, and preview/production current smoke for 99 pages, robots, sitemap and a real 404.
 - Record Aider's official Docker client images and repository mount, explicitly distinguishing containerized client execution from local inference; refresh two dependent decisions and the exact TASK-006 handoff while retaining provider/isolation gaps. All 39 content records remain in-review/noindex. Commit `cb9a0ec3` passed CI `36359019767` and Pages deployment/check `4db16168-e47b-49a9-9e1f-39f1f6631338`; preview and production current smoke passed for 99 pages, robots, sitemap and 404, with direct noindex/source-boundary assertions.
 - Record n8n's official self-hosted Usage Data and opt-out boundary plus operator TLS and at-rest encryption responsibilities; refresh two dependent decisions and TASK-006 handoff. Instance settings and connected-service data handling remain open; all affected records stay in-review/noindex. Commit `6d8c1e88` passed CI `36360079647` and Pages deployment/check `9642e8c7-955f-4df0-b817-20749b159fca`; preview and production current smoke passed for 99 pages, robots, sitemap and 404, with direct source/noindex assertions.
+- Add Make's vendor-published application-usage data categories, purpose-based personal-data deletion language and default 30-day general log statement with the Enterprise extension option. Keep general logs distinct from Core plan execution logs; refresh two dependent decisions and the TASK-006 exact review manifest. Workspace scope, configured log settings, deletion timing and applicable DPA/legal review remain open; all records stay in-review/noindex.
 
 
 本文件记录用户可感知、运维可感知或兼容性相关的已交付变化。当前版本为本地未发布的 `0.1.0`；用户提供的 `TOOLPILOT_REBUILD_PLAN.md` 保持未跟踪且未修改，Cloudflare Pages 发布证据按条目记录。

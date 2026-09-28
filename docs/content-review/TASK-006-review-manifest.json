@@ -36,23 +36,24 @@
   },
   {
     "path": "/tools/make/",
-    "revision": 5,
-    "digest": "ab77bd4ae4962120b344465c0a8465dbdc2f3c9609b0667cedf6f590cc23c245",
+    "revision": 6,
+    "digest": "6e4dc870da6faf8d81fb37d78265e243f4f77725577393692d98b696ce17be2a",
     "state": "in-review",
     "gaps": [
-      "Confirm location-dependent checkout taxes and total; customer-selectable regions or account-level data residency; privacy and retention/deletion terms beyond the listed Core execution-log period; and scenario export behavior for the intended plan.",
+      "Confirm location-dependent checkout taxes and total; whether a customer-selectable region meets the intended account data-residency requirement; workspace-specific workflow and connected-provider data scope, configured log categories/periods, deletion response and purge timing; the applicable DPA/subprocessor list and legal suitability; and scenario export for the intended plan.",
       "A representative workflow has not been measured; credit use can vary by module and usage."
     ]
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 7,
-    "digest": "3f823f9304c0f1ae71303c716b7b2095febc8991b3ac6f2b943bb50dd4838e71",
+    "revision": 8,
+    "digest": "7bf1f3792d8790525f670978a9c09f991cda92fd988c3beba848d8fa4b32eb6a",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
       "Confirm license compatibility and the self-hosted operating cost for the intended n8n use.",
-      "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected."
+      "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
+      "Verify the Make workspace's workflow and connected-provider data scope, configured log categories/retention, deletion timing and applicable DPA; published vendor-wide privacy statements do not establish account settings or legal suitability."
     ]
   },
   {
@@ -108,11 +109,11 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 6,
-    "digest": "a4e8053df5027aab300adf4efb743abc838c4f0dff417d77604fdae336a2bbd4",
+    "revision": 7,
+    "digest": "9513a549584c5952d7fd3489cb7cc0200f3cbc5f15307dfa55a59681dae83c67",
     "state": "in-review",
     "gaps": [
-      "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes, customer data residency, privacy, and retention/deletion terms beyond the listed Core 30-day execution-log period. No hands-on workflow or recovery test was run.",
+      "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes and whether a selectable region meets the intended residency requirement; verify workspace-specific data scope, configured log retention, connected-provider terms, deletion timing, applicable DPA and representative workflow behavior. No account, legal or hands-on workflow review was performed.",
       "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected."
     ]
   }

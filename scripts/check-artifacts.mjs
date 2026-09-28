@@ -139,7 +139,7 @@ for (const record of content) {
   if (!evidence.length) continue;
   const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');
   for (const item of evidence) {
-    if (!html.includes(item.text)) failures.push(`${record.kind}/${record.slug}: documented ${item.label} missing from rendered page`);
+    if (!html.includes(escapeHtml(item.text))) failures.push(`${record.kind}/${record.slug}: documented ${item.label} missing from rendered page`);
     for (const ref of item.refs) {
       const source = tools.get(ref.toolSlug)?.sources.find(candidate => candidate.id === ref.sourceId);
       const closingTag = item.label.startsWith('FAQ') ? '</dd>' : '</li>';

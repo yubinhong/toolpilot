@@ -461,6 +461,13 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Acceptance: tests verify route registration/noindex, fact-to-source rendering, and sitemap exclusion; Node 22 lint, typecheck, tests, content checks, static export/artifact checks, local current-profile smoke, dependency audit, link scan where reachable, and `git diff --check` pass. No Owner approval is implied; retain TODO-005/TODO-309/TODO-310 publication review gates.
 - Acceptance completed: Node 22 build passed 72 tests and artifact checks for 99 pages/4 indexable URLs; the fresh 139-URL scan reported 116 HTTP-ok, 16 restricted, 6 policy-blocked, 1 temporary error and no 404/410. `npm audit --audit-level=high` found 0 vulnerabilities. Commit `1843969916c80e4239277f64556d297485abbb1b` passed `release:check`, CI `36348360212`, Pages deployment/check `5da54123-8908-4d47-80e9-5ccbd3e35824`, and preview/production current smoke. Exact evidence is in TASK.md. Owner review and maintenance responsibility remain open.
 
+##### Make privacy and retention evidence tranche — 2026-09-28
+
+- Inspect Make's official Privacy Notice, Privacy & GDPR and Security pages. Separate individual-related application-usage telemetry, purpose-based personal-data deletion language, general log-data retention and the Core plan's execution-log allowance; do not infer workspace-level settings or purge timing.
+- Bump Make and both dependent decisions, refresh their exact dependency digests and the TASK-006 manifest, and add regression coverage for source dates, claim boundaries, rendered citations and pending/noindex state.
+- Local acceptance completed: `npm run cloudflare:build` passed lint, typecheck, 81 tests, content validation and artifact checks (99 pages / 4 indexable URLs); dependency audit found 0 vulnerabilities; freshness reports 34 unverified fields and 0 overdue. Link scan checked 152 URLs (123 HTTP-ok, 19 restricted, 6 blocked, 4 temporary errors); all six Make URLs were 403-restricted to automated requests, with official pages inspected separately. Local current smoke and direct three-route source/noindex/sitemap checks passed.
+- Exact Owner review, workspace and connected-provider data scope, configured logs, deletion response/timing and applicable DPA/legal review remain open. Preserve all affected records as in-review/noindex and complete the authorized clean release check, push, CI, Pages preview/production smoke and follow-up evidence sync.
+
 #### Phase 5 — External operating and commercial gates
 
 - Obtain operator/contact/legal facts before final trust copy; do not invent a company, address, team or legal relationship.
