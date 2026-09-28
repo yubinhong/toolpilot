@@ -127,6 +127,14 @@ function citationFollows(html, claim, sourceUrl, closingTag) {
   const claimEnd = html.indexOf(closingTag, claimStart);
   return claimEnd > claimStart && html.slice(claimStart, claimEnd).includes(sourceUrl);
 }
+const cline = tools.get('cline');
+const clinePrivacy = cline?.facts.find(fact => fact.key === 'privacy');
+const clineHtml = readFileSync('out/tools/cline/index.html', 'utf8');
+if (!clinePrivacy?.value || !clineHtml.includes(escapeHtml(clinePrivacy.value))) failures.push('/tools/cline/: privacy and telemetry fact is missing from generated HTML');
+for (const sourceId of clinePrivacy?.sourceIds ?? []) {
+  const source = cline.sources.find(item => item.id === sourceId);
+  if (!source || !clineHtml.includes(source.url)) failures.push(`/tools/cline/: privacy source ${sourceId} is missing from generated HTML`);
+}
 for (const record of content) {
   const evidence = [
     ...(record.pros ?? []).map(item => ({ text: item.text, refs: item.sourceRefs, label: 'strength' })),

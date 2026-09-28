@@ -63,6 +63,8 @@
 
 ### Changed
 
+- Reconcile Cline's official data-handling sources: distinguish BYOK from Cline-provided API-key routing and expose the conflict between later Terms that say extension telemetry is on by default and an older opt-in blog. Refresh eight dependent decision records and exact review handoffs; keep drafts in-review/noindex and actual client/provider settings unresolved.
+
 - 明确 ToolPilot 的目标定位为 Developer、Indie Hacker 和 AI Builder 的开发者工具发现与决策平台。
 - 明确免费基础收录、Affiliate、Featured 和 Sponsor 的信任与披露边界；本次没有上线商业功能。
 - 旧 Crypto/DeFi 生成内容按项目 Owner 确认不迁移；当前 50 条目录条目均标记为 Draft/Research snapshot，不能视为正式事实或佣金承诺。

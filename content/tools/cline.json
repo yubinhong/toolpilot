@@ -3,8 +3,8 @@
   "kind": "tools",
   "title": "Cline",
   "summary": "A coding-agent candidate for users who want to choose the model provider.",
-  "revision": 3,
-  "updatedAt": "2026-09-27",
+  "revision": 4,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -37,6 +37,27 @@
       "title": "MCP overview",
       "publisher": "Cline",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "privacy",
+      "url": "https://cline.bot/privacy",
+      "title": "Cline Privacy Notice",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "terms",
+      "url": "https://cline.bot/tos",
+      "title": "Cline Terms of Service",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "telemetry-blog",
+      "url": "https://cline.bot/blog/introducing-anonymous-telemetry-in-cline",
+      "title": "Introducing Anonymous Telemetry in Cline",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -53,9 +74,13 @@
     {
       "key": "privacy",
       "label": "Privacy / data handling",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Cline's Terms of Service, last modified 2025-09-25, say extension telemetry and usage data (described as non-code metadata such as click events and generalized usage patterns) is on by default and can be disabled in extension settings; Cline says disabling it stops future telemetry transmission and retention by Cline. The Terms add that when a user has no Cline account and routes all model calls through infrastructure they control, no User Content is collected with Telemetry Data. Cline's Privacy Notice, last updated 2025-09-24, distinguishes model routing: with the user's own API key, content goes directly to the third-party model provider and Cline says it does not collect that content; with Cline-provided API keys, Cline collects User Content to facilitate requests to providers, whose terms and privacy notices govern. An older 2025-02-26 Cline telemetry blog describes telemetry as opt-in, which conflicts with the later-dated Terms. The installed client version, actual settings and payload, pre-disable retention, provider terms and legal suitability were not inspected.",
+      "sourceIds": [
+        "terms",
+        "privacy",
+        "telemetry-blog"
+      ],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -173,6 +198,19 @@
           "sourceId": "mcp"
         }
       ]
+    },
+    {
+      "text": "Cline's later-dated Terms say extension telemetry is on by default, while an older Cline blog describes it as opt-in; verify the current installed version and setting.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "terms"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "telemetry-blog"
+        }
+      ]
     }
   ],
   "faqs": [
@@ -195,6 +233,24 @@
           "sourceId": "mcp"
         }
       ]
+    },
+    {
+      "question": "When does Cline receive prompts or code, and what does it say about telemetry?",
+      "answer": "Cline's Privacy Notice distinguishes BYOK, where it says content goes directly to the provider and is not collected by Cline, from Cline-provided keys, where Cline collects content to facilitate provider requests. Its later-dated Terms say extension telemetry is on by default, while an older blog says opt-in. Check the installed version and settings; the selected provider's terms remain separate.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "privacy"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "terms"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "telemetry-blog"
+        }
+      ]
     }
   ],
   "verdict": "Shortlist Cline when model/provider choice is a requirement and you can manage its cost and access controls. Local inference needs a separate capability trial.",
@@ -202,7 +258,11 @@
   "notFor": "Buyers equating a local client with no external data transfer",
   "migration": "Preserve repository instructions and rotate provider credentials where appropriate. Check each configured provider and tool independently when changing clients.",
   "dependencies": [],
-  "gaps": [],
+  "gaps": [
+    "Confirm the installed Cline version and telemetry setting; the later-dated Terms say telemetry is on by default, while the older 2025-02-26 blog says opt-in. No client configuration or payload was inspected.",
+    "Confirm the selected model-provider privacy, retention, training and jurisdiction terms; Cline's public BYOK and Cline-provided API-key descriptions do not establish a specific provider or account configuration.",
+    "Confirm the applicable Cline account and enterprise terms and legal suitability for the intended use."
+  ],
   "changes": [
     {
       "date": "2026-09-27",
@@ -215,6 +275,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-backed MCP strengths, constraints and FAQs; owner review pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Cline's published BYOK/provider-content boundary and reconciled later Terms with the older conflicting telemetry blog; installed settings and provider terms remain unverified."
     }
   ],
   "commercial": {

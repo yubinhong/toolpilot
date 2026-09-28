@@ -22,27 +22,27 @@ For a material edit, increment revision, reset review fields and verifiedAt, upd
 | --- | --- | --- | --- |
 | /tools/bolt-new/ | 2 | in-review | Review sourced JavaScript/Expo scope, Git handoff, hosting and current token allowance; owner review pending. |
 | /tools/claude-code/ | 3 | in-review | MCP transports, deprecated SSE, project approval and workspace trust have sourced strengths/constraints/FAQs; review these alongside subscription amount and entitlement. |
-| /tools/cline/ | 3 | in-review | MCP transport and approval guidance have sourced strengths/constraints/FAQs; owner review and account/provider checks remain. |
+| /tools/cline/ | 4 | in-review | Privacy Notice distinguishes BYOK from Cline-provided keys; Terms say telemetry is on by default while an older blog says opt-in. Verify the installed version/settings, provider terms and legal fit. |
 | /tools/cursor/ | 3 | in-review | MCP capability, transports and default approval have cited strengths/constraints/FAQs; review against the current canonical documentation URL. |
 | /tools/github-copilot/ | 4 | in-review | Official policy distinguishes individual-plan training use/opt-out from Business/Enterprise; verify account settings, model-specific retention and organizational controls. |
 | /tools/lovable/ | 2 | in-review | Review sourced workspace, credit usage and deployment ownership; confirm current plan and ongoing runtime costs. |
 | /tools/replit/ | 5 | in-review | Core/Pro/Enterprise can choose a published-app geography; Free defaults to North America. Pro-only workspace geography is separate; verify account settings, existing resources, connected services, checkout taxes, full app costs and independent export. |
 | /tools/windsurf/ | 3 | in-review | Official FAQ says Devin Desktop is the new name for Windsurf and describes the standard account transition; exact account quote and an account-specific migration test remain open. |
 | /alternatives/bolt-new/ | 7 | in-review | Cited app-builder handoff and stack-scope evidence; refreshed Replit dependency; owner review pending. |
-| /alternatives/claude-code/ | 4 | in-review | Cited client surfaces, provider options and Copilot policy conditions; owner review pending. |
-| /alternatives/cursor/ | 5 | in-review | Cited multi-surface alternatives and current Devin Desktop transition; owner review pending. |
+| /alternatives/claude-code/ | 6 | in-review | Cited client surfaces, provider options and Copilot policy conditions; owner review pending. |
+| /alternatives/cursor/ | 7 | in-review | Cited multi-surface alternatives and current Devin Desktop transition; owner review pending. |
 | /alternatives/lovable/ | 7 | in-review | Cited prototype workflows, credit usage and service-migration limits; refreshed Replit dependency; owner review pending. |
 | /alternatives/replit/ | 7 | in-review | Cited Git handoff and in-platform checkpoint boundaries; refreshed Replit dependency; owner review pending. |
-| /alternatives/windsurf/ | 5 | in-review | Cited Devin Desktop naming, standard migration statement and unresolved account quote; owner review pending. |
+| /alternatives/windsurf/ | 7 | in-review | Cited Devin Desktop naming, standard migration statement and unresolved account quote; owner review pending. |
 | /best/ai-app-builders-for-prototypes/ | 5 | in-review | Cited app scope, repository handoff and recovery limits; refreshed Replit dependency; no production-readiness claim. |
-| /best/ai-coding-tools-for-solo-founders/ | 4 | in-review | Cited editor/agent surfaces and account-dependent billing or policy details; owner review pending. |
-| /compare/cline-vs-claude-code/ | 4 | in-review | Cited local-model options, MCP controls and separate billing routes; no benchmark was run. |
+| /best/ai-coding-tools-for-solo-founders/ | 6 | in-review | Cited editor/agent surfaces and account-dependent billing or policy details; owner review pending. |
+| /compare/cline-vs-claude-code/ | 5 | in-review | Cited local-model options, MCP controls, billing and Cline's BYOK/provider-content boundary; no benchmark was run. |
 | /compare/cursor-vs-claude-code/ | 4 | in-review | Cited product surfaces, MCP transports and approval controls; no benchmark was run. |
 | /compare/cursor-vs-github-copilot/ | 4 | in-review | Cited setup differences and Copilot policy scope; no benchmark was run. |
 | /compare/lovable-vs-bolt/ | 3 | in-review | Cited JavaScript/Expo scope, repository handoff and credit usage; owner review pending. |
 | /compare/replit-vs-lovable/ | 5 | in-review | Cited checkpoint, Git sync and build/runtime credit boundaries; refreshed Replit dependency; no portability test was run. |
 | /compare/windsurf-vs-cursor/ | 5 | in-review | Cited current Windsurf-to-Devin Desktop naming and account quote boundary; no benchmark was run. |
-| /guides/ai-editor-vs-terminal-agent/ | 4 | in-review | Cited overlapping product surfaces; no comparative speed or quality claim. |
+| /guides/ai-editor-vs-terminal-agent/ | 5 | in-review | Cited overlapping product surfaces; no comparative speed or quality claim. |
 | /guides/how-to-choose-a-developer-tool/ | 2 | in-review | General methodology page has no tool dependencies; source-bound product blocks remain intentionally absent under ADR-0009. |
 | /pricing/claude-code/ | 4 | in-review | Cited subscription/API billing distinction and cost-estimate limits; owner review pending. |
 | /pricing/cursor/ | 4 | in-review | Cited included model usage and on-demand billing in arrears; owner review pending. |

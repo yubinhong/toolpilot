@@ -3,8 +3,8 @@
   "kind": "compare",
   "title": "Cline vs Continue",
   "summary": "Compare IDE coding assistants by model control, permission behavior and upstream maintenance evidence.",
-  "revision": 5,
-  "updatedAt": "2026-09-27",
+  "revision": 6,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -49,7 +49,8 @@
   ],
   "faqs": [
     { "question": "Can Continue use MCP outside Agent mode?", "answer": "No. Continue's MCP documentation says MCP tools are available only in Agent mode.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
-    { "question": "Which MCP transport does Cline recommend?", "answer": "Cline marks Streamable HTTP as recommended and SSE as legacy; match the transport to the server you intend to use.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "mcp" }] }
+    { "question": "Which MCP transport does Cline recommend?", "answer": "Cline marks Streamable HTTP as recommended and SSE as legacy; match the transport to the server you intend to use.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "mcp" }] },
+    { "question": "What do Cline's public sources say about telemetry defaults?", "answer": "Cline's Terms, last modified 2025-09-25, say extension telemetry is on by default and can be disabled in settings; its 2025-02-26 blog describes telemetry as opt-in. These public statements conflict, so verify the current extension version and setting.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] }
   ],
   "verdict": "Cline and Continue should not be treated as equivalent maintenance choices today: Continue's upstream read-only notice is a decision-critical caveat. Verify distribution and support before evaluating feature fit.",
   "bestFor": "Developers deciding how much model configuration and maintenance risk they can own",
@@ -58,8 +59,8 @@
   "dependencies": [
     {
       "slug": "cline",
-      "revision": 3,
-      "digest": "67840defc66ecc432a227cd3d56fe7e930de81ef1712318e43112d196ba6bdab"
+      "revision": 4,
+      "digest": "0cf41f0bd7038389f8f7b9ae13423b77097abedc2eb14fadef4ff56d5b93eab0"
     },
     {
       "slug": "continue",
@@ -69,7 +70,8 @@
   ],
   "gaps": [
     "Continue package distribution, publisher, security response and current support lifecycle require confirmation.",
-    "No local-model quality, privacy or performance trial has been performed."
+    "No local-model quality, privacy or performance trial has been performed.",
+    "Cline's actual telemetry configuration and selected-provider data handling were not inspected."
   ],
   "changes": [
     {
@@ -91,6 +93,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the pinned Cline dependency after its official privacy and telemetry evidence update; exact owner review remains pending."
     }
   ],
   "commercial": {

@@ -200,6 +200,44 @@ test('n8n self-hosting evidence keeps telemetry and operator security responsibi
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('Cline privacy evidence exposes the public telemetry-policy conflict and API-key routing boundary',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'cline');
+  const fact = record?.facts.find(item => item.key === 'privacy');
+  assert.ok(record);
+  assert.equal(record.revision, 4);
+  assert.equal(fact?.checkedAt, '2026-09-28');
+  assert.deepEqual(fact?.sourceIds, ['terms', 'privacy', 'telemetry-blog']);
+  assert.match(fact?.value ?? '', /Terms of Service, last modified 2025-09-25/);
+  assert.match(fact?.value ?? '', /is on by default and can be disabled in extension settings/);
+  assert.match(fact?.value ?? '', /Privacy Notice, last updated 2025-09-24/);
+  assert.match(fact?.value ?? '', /with the user's own API key/);
+  assert.match(fact?.value ?? '', /with Cline-provided API keys/);
+  assert.match(fact?.value ?? '', /2025-02-26 Cline telemetry blog describes telemetry as opt-in/);
+  assert.match(fact?.value ?? '', /actual settings and payload/);
+  assert.equal(record.sources.find(item => item.id === 'privacy')?.url, 'https://cline.bot/privacy');
+  assert.equal(record.sources.find(item => item.id === 'terms')?.url, 'https://cline.bot/tos');
+  assert.equal(record.sources.find(item => item.id === 'telemetry-blog')?.url, 'https://cline.bot/blog/introducing-anonymous-telemetry-in-cline');
+  assert.ok(record.cons.some(item => item.sourceRefs.some(ref => ref.sourceId === 'terms' && ref.toolSlug === 'cline')));
+  assert.ok(record.faqs.some(item => item.sourceRefs.some(ref => ref.sourceId === 'privacy' && ref.toolSlug === 'cline')));
+  const dependentSlugs = ['claude-code', 'cursor', 'windsurf', 'ai-coding-tools-for-solo-founders', 'open-source-ai-coding-tools', 'cline-vs-claude-code', 'cline-vs-continue', 'ai-editor-vs-terminal-agent'];
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'cline'));
+  assert.deepEqual(dependents.map(item => item.slug).sort(), dependentSlugs.sort());
+  for (const decision of dependents) {
+    const dependency = decision.dependencies.find(item => item.slug === 'cline');
+    assert.equal(dependency.revision, 4);
+    assert.equal(dependency.digest, contentDigest(record));
+    assert.equal(decision.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
+  for (const slug of ['cline-vs-claude-code', 'cline-vs-continue', 'open-source-ai-coding-tools']) {
+    const decision = dependents.find(item => item.slug === slug);
+    assert.ok(decision.faqs.some(item => item.sourceRefs.some(ref => ref.toolSlug === 'cline' && ref.sourceId === 'terms')));
+  }
+  assert.ok(record.gaps.some(gap => gap.includes('No client configuration or payload was inspected')));
+  assert.ok(record.gaps.some(gap => gap.includes('selected model-provider privacy')));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('GitHub Copilot training-use policy distinguishes individual opt-out from organization plans',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');
   const fact = record?.facts.find(item => item.key === 'privacy');
@@ -229,7 +267,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?4:record.slug==='github-copilot'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?4:record.slug==='github-copilot'||record.slug==='cline'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);

@@ -3,8 +3,8 @@
   "kind": "guides",
   "title": "AI editor vs terminal agent: choose a review loop",
   "summary": "Compare interaction styles without assuming products fit only one category.",
-  "revision": 4,
-  "updatedAt": "2026-09-27",
+  "revision": 5,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -62,8 +62,8 @@
     },
     {
       "slug": "cline",
-      "revision": 3,
-      "digest": "67840defc66ecc432a227cd3d56fe7e930de81ef1712318e43112d196ba6bdab"
+      "revision": 4,
+      "digest": "0cf41f0bd7038389f8f7b9ae13423b77097abedc2eb14fadef4ff56d5b93eab0"
     }
   ],
   "gaps": [],
@@ -83,6 +83,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the pinned Cline dependency after its official privacy and telemetry evidence update; exact owner review remains pending."
     }
   ],
   "commercial": {

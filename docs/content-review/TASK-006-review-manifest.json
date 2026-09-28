@@ -68,12 +68,13 @@
   },
   {
     "path": "/compare/cline-vs-continue/",
-    "revision": 5,
-    "digest": "a584e91ed4edf66d60af2de9068fd50f86ebdd7ff8b59e3700e492d9481a627e",
+    "revision": 6,
+    "digest": "6c24ed029064222d911fba776fb0a09d8634aa6d4cd29c35237d28fc6b3048b2",
     "state": "in-review",
     "gaps": [
       "Continue package distribution, publisher, security response and current support lifecycle require confirmation.",
-      "No local-model quality, privacy or performance trial has been performed."
+      "No local-model quality, privacy or performance trial has been performed.",
+      "Cline's actual telemetry configuration and selected-provider data handling were not inspected."
     ]
   },
   {
@@ -98,13 +99,14 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 7,
-    "digest": "a7cc8f0d15da99aa59b6e83639d0ba67acea73bb865c659ef921225e32b25e6e",
+    "revision": 8,
+    "digest": "cbd20aec06ad73f0219c9da0b16bf22f4c94b8d9798ec7124b61eaa025387908",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
       "Continue's distribution, current maintenance, publisher and security response need confirmation before any production recommendation.",
-      "No hands-on comparison or model performance test has been performed."
+      "No hands-on comparison or model performance test has been performed.",
+      "Cline's client settings and model-provider data handling were not inspected."
     ]
   },
   {

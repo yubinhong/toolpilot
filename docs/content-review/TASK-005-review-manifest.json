@@ -15,10 +15,14 @@
   },
   {
     "path": "/tools/cline/",
-    "revision": 3,
-    "digest": "67840defc66ecc432a227cd3d56fe7e930de81ef1712318e43112d196ba6bdab",
+    "revision": 4,
+    "digest": "0cf41f0bd7038389f8f7b9ae13423b77097abedc2eb14fadef4ff56d5b93eab0",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Confirm the installed Cline version and telemetry setting; the later-dated Terms say telemetry is on by default, while the older 2025-02-26 blog says opt-in. No client configuration or payload was inspected.",
+      "Confirm the selected model-provider privacy, retention, training and jurisdiction terms; Cline's public BYOK and Cline-provided API-key descriptions do not establish a specific provider or account configuration.",
+      "Confirm the applicable Cline account and enterprise terms and legal suitability for the intended use."
+    ]
   },
   {
     "path": "/tools/cursor/",
@@ -74,15 +78,15 @@
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 5,
-    "digest": "b5034c9a817a5571709d260994beca3d5e93c282c650f39cc23d0eb339ccf123",
+    "revision": 6,
+    "digest": "08eac5496def96cfd8e70f2db910ad3e72f0392fcdeb9f367b0097a4c95e3ce3",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 6,
-    "digest": "a8d00a3de9a9f02554947eb54db32b6fe400c43bcdf8cc455ea4ada8f8ab1939",
+    "revision": 7,
+    "digest": "1fdaa0a91d6851adc90b44b1699f68ee3d784fb7a08cd6096aa8877fa1fad45d",
     "state": "in-review",
     "gaps": []
   },
@@ -102,8 +106,8 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 6,
-    "digest": "4d63d830d797189676c58047dba8d716c1e8854f1d3ab08139cc55ffa399b2d4",
+    "revision": 7,
+    "digest": "ade93c8b9382faaa2e0ae1aaec56ef84e7a12fb58bfd0e02469916d914305617",
     "state": "in-review",
     "gaps": []
   },
@@ -116,15 +120,15 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 5,
-    "digest": "be53d39222e150bacf36976ac378253e8493a39c068bb61bd36729f1d0251072",
+    "revision": 6,
+    "digest": "87a44773f86917dfd0a6db8d003f8a6b0ed8052e41b5799a946c33bf313be457",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/cline-vs-claude-code/",
-    "revision": 4,
-    "digest": "ccf30b632cfdecf114158fefc6c77e3e231b20fdb0f50c6524073df92d3af205",
+    "revision": 5,
+    "digest": "7dcc66b3bc97bfc60e9578d609d7d000283b4c07a838f13671ed9885b8838e5f",
     "state": "in-review",
     "gaps": []
   },
@@ -165,8 +169,8 @@
   },
   {
     "path": "/guides/ai-editor-vs-terminal-agent/",
-    "revision": 4,
-    "digest": "ec7d77ef114c4cafc57aa7a32ba6309aafce7b11fb66a3bd17b3a86775182564",
+    "revision": 5,
+    "digest": "187bd8e8afc40ed8db279d34b499e80f12fd12a5cec59c54a366f1a89d54c011",
     "state": "in-review",
     "gaps": []
   },

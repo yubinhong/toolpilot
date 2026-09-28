@@ -469,6 +469,16 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Release acceptance completed: commit `2e0ad5e8e7cfdd4105776c23ea0fe06c0bced84f` passed clean detached `release:check`, CI `36361527104` and Pages deployment/check `635f6b39-5f0d-4a23-a149-6f9069d8a852`. Immutable preview and production each passed 99-page current smoke; direct HTML checks confirmed official sources, facts, noindex and sitemap exclusion. TASK.md records the documentation evidence sync, its release verification, and rollback procedure.
 - Exact Owner review, workspace and connected-provider data scope, configured logs, deletion response/timing and applicable DPA/legal review remain open. Preserve all affected records as in-review/noindex.
 
+##### Cline privacy and telemetry policy reconciliation — 2026-09-28
+
+- Compare Cline's current Privacy Notice and Terms with the existing dated telemetry blog before changing any product claim. Record the explicit source dates and the public-source conflict; do not infer behavior from an uninspected extension build or account setting.
+- Add the privacy/telemetry sources and scoped fact to the Cline profile, distinguishing BYOK routing from Cline-provided API-key routing and product telemetry from model-provider processing. Preserve the unresolved actual configuration, provider terms, retention/training and legal assessment.
+- Update only Cline-dependent decision evidence that is made materially more useful by the source, and refresh the exact dependency revisions/digests for every declared dependent record. Refresh TASK-005 and TASK-006 manifests, Cline evidence pack and handoff text without recording Owner approval.
+- Add regression coverage for the later-dated Terms default-on statement, the older blog's opt-in statement, the BYOK/provider boundary, official URLs/dates, dependency integrity, rendered citations and noindex/sitemap exclusion. Keep all affected records in-review and noindex.
+- Acceptance: Node 22 `npm run cloudflare:build`, fresh dependency audit, content review/freshness and source-link scan, local current-profile smoke plus generated-HTML assertions, clean release check, CI, Pages preview and production current-profile smoke. Record that source policy does not prove the deployed client behavior or account configuration.
+- Rollback: revert only the reviewed Cline content, dependent records, test, handoff and manifest changes, restore matching prior digests, let Pages rebuild through the existing authorized release workflow, then repeat content/artifact/current-profile smoke checks.
+- Local acceptance completed: Cloudflare build passed 82 tests and artifact checks (99 pages / 4 indexable URLs); audit found 0 vulnerabilities; freshness reports 33 unverified/0 overdue; all three new Cline source URLs returned HTTP 200 within a 155-URL scan; local current smoke and rendered-source/noindex/sitemap assertions passed. Exact CI, Pages preview/production and release-check results are recorded in TASK.md after deployment.
+
 #### Phase 5 — External operating and commercial gates
 
 - Obtain operator/contact/legal facts before final trust copy; do not invent a company, address, team or legal relationship.

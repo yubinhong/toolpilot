@@ -3,8 +3,8 @@
   "kind": "compare",
   "title": "Cline vs Claude Code",
   "summary": "Cline vs Claude Code: developers deciding whether provider configuration is a core requirement.",
-  "revision": 4,
-  "updatedAt": "2026-09-27",
+  "revision": 5,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "cline",
-      "revision": 3,
-      "digest": "67840defc66ecc432a227cd3d56fe7e930de81ef1712318e43112d196ba6bdab"
+      "revision": 4,
+      "digest": "0cf41f0bd7038389f8f7b9ae13423b77097abedc2eb14fadef4ff56d5b93eab0"
     },
     {
       "slug": "claude-code",
@@ -72,6 +72,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the pinned Cline dependency after its official privacy and telemetry evidence update; exact owner review remains pending."
     }
   ],
   "commercial": {
@@ -156,6 +160,20 @@
         {
           "toolSlug": "claude-code",
           "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "question": "When does Cline receive prompts or code?",
+      "answer": "Cline's Privacy Notice says content using your own API key goes directly to the provider and is not collected by Cline. With Cline-provided keys, Cline says it collects content to facilitate requests to model providers. The provider's terms govern its handling; this does not verify a specific account or setting.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "privacy"
+        },
+        {
+          "toolSlug": "cline",
+          "sourceId": "terms"
         }
       ]
     }

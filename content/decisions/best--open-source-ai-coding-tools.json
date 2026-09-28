@@ -3,8 +3,8 @@
   "kind": "best",
   "title": "Open-source AI coding tools to evaluate",
   "summary": "A conditional shortlist based on project license evidence, model boundaries and current maintenance signals.",
-  "revision": 7,
-  "updatedAt": "2026-09-27",
+  "revision": 8,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -104,11 +104,13 @@
   ],
   "cons": [
     { "text": "Continue's upstream repository says it is read-only and no longer actively maintained, so its distribution and security response need confirmation.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }] },
-    { "text": "An open client repository license does not by itself establish the terms of a selected model or provider service.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] }
+    { "text": "An open client repository license does not by itself establish the terms of a selected model or provider service.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
+    { "text": "Cline's open-source repository does not establish its configured privacy behavior; later Terms say extension telemetry is on by default, while an older blog says opt-in.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] }
   ],
   "faqs": [
     { "question": "Is Continue's upstream repository actively maintained?", "answer": "The repository notice says it is read-only and no longer actively maintained. Confirm the exact package, publisher and security response before relying on it.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }] },
-    { "question": "Does an Apache-2.0 client license also license model weights or hosted providers?", "answer": "No. Aider's repository identifies the client project license and distinguishes model or provider terms; check each external component separately.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] }
+    { "question": "Does an Apache-2.0 client license also license model weights or hosted providers?", "answer": "No. Aider's repository identifies the client project license and distinguishes model or provider terms; check each external component separately.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
+    { "question": "Does Cline's open-source client guarantee local-only data handling?", "answer": "No. Cline's Privacy Notice distinguishes BYOK traffic sent directly to a model provider from Cline-provided API-key traffic handled by Cline; its Terms also state extension telemetry is on by default, while an older blog says opt-in. Verify the installed build, setting and provider terms.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "privacy" }, { "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] }
   ],
   "verdict": "Aider and Cline are conditional candidates for evaluation based on the linked repository evidence. Continue remains a maintenance-risk exception; no comparative performance result has been measured.",
   "bestFor": "Developers who want to inspect source and license terms while evaluating AI coding workflows",
@@ -122,8 +124,8 @@
     },
     {
       "slug": "cline",
-      "revision": 3,
-      "digest": "67840defc66ecc432a227cd3d56fe7e930de81ef1712318e43112d196ba6bdab"
+      "revision": 4,
+      "digest": "0cf41f0bd7038389f8f7b9ae13423b77097abedc2eb14fadef4ff56d5b93eab0"
     },
     {
       "slug": "continue",
@@ -134,7 +136,8 @@
   "gaps": [
     "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
     "Continue's distribution, current maintenance, publisher and security response need confirmation before any production recommendation.",
-    "No hands-on comparison or model performance test has been performed."
+    "No hands-on comparison or model performance test has been performed.",
+    "Cline's client settings and model-provider data handling were not inspected."
   ],
   "changes": [
     {
@@ -164,6 +167,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed the Aider dependency after its official container-install evidence update; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the pinned Cline dependency after its official privacy and telemetry evidence update; exact owner review remains pending."
     }
   ],
   "commercial": {
