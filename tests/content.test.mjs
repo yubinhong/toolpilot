@@ -507,12 +507,13 @@ test('GitHub Copilot training-use policy distinguishes individual opt-out from o
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
   assert.ok(record);
-  assert.equal(record.revision,7);
+  assert.equal(record.revision,8);
   assert.equal(record.updatedAt,'2026-09-28');
   const sources=Object.fromEntries(record.sources.map(source=>[source.id,source]));
   for (const [id,url] of Object.entries({
     acquisition:'https://continue.dev/',
     cli:'https://docs.continue.dev/cli/quickstart',
+    terms:'https://continue.dev/terms-conditions/',
     repository:'https://github.com/continuedev/continue',
     releases:'https://github.com/continuedev/continue/releases',
     cliPackage:'https://www.npmjs.com/package/@continuedev/cli',
@@ -539,6 +540,12 @@ test('Continue ownership and distribution lifecycle remain channel-specific and 
   assert.deepEqual(cli?.sourceIds,['cli']);
   assert.match(cli?.value??'',/Continue account or Anthropic API key/);
   assert.match(cli?.value??'',/Node\.js 20\+/);
+  const billing=record.facts.find(item=>item.key==='billingModel');
+  assert.deepEqual(billing?.sourceIds,['terms']);
+  assert.equal(billing?.checkedAt,'2026-09-28');
+  assert.match(billing?.value??'',/credits \(one-time or recurring\) or recurring subscriptions/);
+  assert.match(billing?.value??'',/User Account or a Service Order/);
+  assert.match(billing?.value??'',/does not establish an actual account price/);
   const privacy=record.facts.find(item=>item.key==='privacy');
   assert.deepEqual(privacy?.sourceIds,['privacy']);
   assert.match(privacy?.value??'',/last updated 2026-02-05/);
@@ -552,18 +559,23 @@ test('Continue ownership and distribution lifecycle remain channel-specific and 
   assert.match(localModels?.value??'',/disabling anonymous telemetry/);
   assert.ok(record.faqs.some(item=>item.question.includes('run offline')&&item.sourceRefs.some(ref=>ref.sourceId==='offline')));
   assert.equal(record.prices[0]?.amount,null);
+  assert.equal(record.prices[0]?.checkedAt,null);
+  assert.deepEqual(record.prices[0]?.sourceIds,['terms']);
+  assert.ok(record.faqs.some(item=>item.question.includes('paid model usage')&&item.sourceRefs.some(ref=>ref.sourceId==='terms')));
   assert.ok(record.gaps.some(gap=>gap.includes('update path and support response')));
   assert.ok(record.gaps.some(gap=>gap.includes('post-acquisition privacy notice')));
-  assert.ok(record.gaps.some(gap=>gap.includes('account/model-provider billing')));
+  assert.ok(record.gaps.some(gap=>gap.includes('exact account or Service Order price')));
   const dependents=content.filter(item=>item.kind!=='tools'&&item.dependencies.some(dependency=>dependency.slug==='continue'));
   assert.deepEqual(dependents.map(item=>item.slug).sort(),['cline-vs-continue','open-source-ai-coding-tools']);
   for (const decision of dependents) {
     const dependency=decision.dependencies.find(item=>item.slug==='continue');
     assert.equal(dependency.revision,record.revision);
     assert.equal(dependency.digest,contentDigest(record));
+    assert.ok(decision.faqs.some(item=>item.sourceRefs.some(ref=>ref.sourceId==='terms')),`${decision.slug} describes the sourced Continue billing route`);
     assert.equal(decision.review.state,'in-review');
     assert.equal(isIndexable(decision,content),false);
   }
+  assert.ok(freshness(content,'2026-09-28').some(item=>item.path==='/tools/continue/'&&item.type==='price'&&item.field==='Model and account usage'&&item.status==='unverified'));
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
@@ -582,7 +594,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?7:record.slug==='github-copilot'||record.slug==='cline'||record.slug==='cursor'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'||record.slug==='cline'||record.slug==='cursor'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);

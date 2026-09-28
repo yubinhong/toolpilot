@@ -218,6 +218,25 @@ if (continueProfile && continueLifecycle) {
     if (!source || !html.includes(source.url)) failures.push(`/tools/continue/: lifecycle source ${sourceId} is missing from generated HTML`);
   }
 }
+const continueBilling = continueProfile?.facts.find(fact => fact.key === 'billingModel');
+if (continueProfile && continueBilling) {
+  const html = readFileSync(join('out','/tools/continue/','index.html'),'utf8');
+  if (!html.includes(escapeHtml(continueBilling.value))) failures.push('/tools/continue/: billing route fact is missing from generated HTML');
+  for (const sourceId of continueBilling.sourceIds) {
+    const source = continueProfile.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/tools/continue/: billing source ${sourceId} is missing from generated HTML`);
+  }
+}
+for (const record of content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'continue'))) {
+  const billingFaq = record.faqs?.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'continue' && ref.sourceId === 'terms'));
+  if (!billingFaq) {
+    failures.push(`/${record.kind}/${record.slug}/: Continue billing evidence FAQ is missing`);
+    continue;
+  }
+  const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');
+  if (!html.includes(escapeHtml(billingFaq.answer))) failures.push(`/${record.kind}/${record.slug}/: Continue billing FAQ is missing from generated HTML`);
+  if (!html.includes('https://continue.dev/terms-conditions/')) failures.push(`/${record.kind}/${record.slug}/: Continue Terms source is missing from generated HTML`);
+}
 for (const record of content.filter(item => item.kind === 'compare')) {
   const facts = record.dependencies.flatMap(dependency => {
     const fact = tools.get(dependency.slug)?.facts.find(item => item.key === 'mcp');

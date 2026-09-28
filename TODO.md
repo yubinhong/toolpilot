@@ -1,6 +1,6 @@
 # TODO.md
 
-> 这里是工作队列，不是当前任务的实施说明。当前 `TASK-006` 为 IN_PROGRESS；12 个工具档案和所有 26 个声明了工具依赖的决策页均有来源绑定的优势、限制和 FAQ 页面块。一个无工具依赖的通用选型指南按 ADR-0009 不伪造产品引用。内容审批、历史证据和 Owner 决策仍是独立事项。
+> 这里是工作队列，不是当前任务的实施说明。当前 `TASK-006` 为 IN_PROGRESS；12 个工具档案和所有 26 个声明了工具依赖的决策页均有来源绑定的优势、限制和 FAQ 页面块。一个无工具依赖的通用选型指南按 ADR-0009 不伪造产品引用。2026-09-28 Continue 官方 Terms 已确认付费模型使用可通过购买 credits 或订阅，并将适用价格指向账号或 Service Order；具体账号金额及模型提供商费用仍未知。内容审批、历史证据和 Owner 决策仍是独立事项。
 
 ## Now - 已确认，等待进入执行
 
@@ -51,6 +51,10 @@ TODO-006 check update (2026-09-28 05:22 UTC): freshness reports 28 unverified fi
 TODO-006 check update (2026-09-28 05:41 UTC): freshness reports 28 unverified fields and 0 overdue. The 176-target outbound scan classified 134 HTTP-ok, 19 restricted, 11 host-policy-blocked and 12 temporary errors. Cursor's five cited privacy/security URLs returned HTTP 200. The scan establishes reachability only, not account applicability, claim approval or Owner review.
 
 TODO-006 check update (2026-09-28 06:08 UTC): the date-pinned freshness run still reports 28 unverified fields and 0 overdue. The outbound scan completed for the updated source set; `www.npmjs.com/package/@continuedev/cli` returned HTTP 403 and was classified as restricted. The npm registry metadata API returned the package's current dist-tag/version and publication date; the GitHub Releases page was directly reviewed. Reachability and registry metadata do not prove current support or approve content.
+
+TODO-311/TODO-312 verification update (2026-09-28 06:24 UTC): `npm run content:freshness -- --as-of=2026-09-28` still reports 28 unverified fields and 0 overdue. The 28 consist of 9 `selfHosting`, 9 `localModels`, and 9 `portability` facts across tool profiles, plus Continue's model/account-usage price. These are unknowns, not negative claims or stale/overdue facts. The 27 facets needed to evaluate proposed directory filters remain unverified; TODO-312 still needs verified facet values, evidence of user demand and a noindex/parameter-URL test design before implementation.
+
+TODO-315 read-only production update (2026-09-28 06:25 UTC): `SMOKE_BASE_URL=https://toolpilot.cc npm run smoke` passed for 99 pages, robots, sitemap and a real 404. `HEAD /` returned HTTP 200 with both CSP policies, `X-Frame-Options: DENY`, `Permissions-Policy`, `X-Content-Type-Options: nosniff` and `Referrer-Policy: strict-origin-when-cross-origin`; no HSTS header was observed. This confirms deployed headers only; Cloudflare Web Analytics dashboard state remains unchecked, the previously observed browser beacon/CSP violation remains an Owner decision, and HSTS scope is still open.
 
 ## Later - 暂不承诺
 

@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "Open-source AI coding tools to evaluate",
   "summary": "A conditional shortlist based on project license evidence, model boundaries and channel-specific lifecycle signals.",
-  "revision": 11,
+  "revision": 12,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -144,7 +144,8 @@
     { "question": "What do Continue's published artifacts say about CLI support?", "answer": "The official site says Continue was acquired by Cursor and its open-source code remains available. The README says read-only/final 2.0.0; GitHub Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists @continuedev/cli 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These sources do not establish current CLI maintenance or support for a selected package.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "acquisition" }, { "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "question": "Does an Apache-2.0 client license also license model weights or hosted providers?", "answer": "No. Aider's repository identifies the client project license and distinguishes model or provider terms; check each external component separately.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
     { "question": "Does Cline's open-source client guarantee local-only data handling?", "answer": "No. Cline's Privacy Notice distinguishes BYOK traffic sent directly to a model provider from Cline-provided API-key traffic handled by Cline; its Terms also state extension telemetry is on by default, while an older blog says opt-in. Verify the installed build, setting and provider terms.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "privacy" }, { "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
-    { "question": "Can Continue use an offline local-model setup?", "answer": "Continue's official guide outlines an offline VS Code path: install its extension, disable Allow Anonymous Telemetry and configure a local model. Its Privacy Notice, last updated 2026-02-05, describes open-source log and analytics collection unless users opt out and excludes processing performed on a customer's behalf; check notice applicability, the selected package and provider terms.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }, { "toolSlug": "continue", "sourceId": "privacy" }] }
+    { "question": "Can Continue use an offline local-model setup?", "answer": "Continue's official guide outlines an offline VS Code path: install its extension, disable Allow Anonymous Telemetry and configure a local model. Its Privacy Notice, last updated 2026-02-05, describes open-source log and analytics collection unless users opt out and excludes processing performed on a customer's behalf; check notice applicability, the selected package and provider terms.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }, { "toolSlug": "continue", "sourceId": "privacy" }] },
+    { "question": "How does Continue describe paid model usage?", "answer": "Its Terms describe model-use credit purchases and recurring subscriptions, with applicable Pricing and Payment Terms in a User Account or Service Order. No numeric amount was verified here; confirm any selected model-provider charge separately.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "terms" }] }
   ],
   "verdict": "Aider and Cline are conditional candidates for evaluation based on the linked repository evidence. Continue remains conditional on clarifying its public channel/version history and confirming the selected package's support path; no comparative performance result has been measured.",
   "bestFor": "Developers who want to inspect source and license terms while evaluating AI coding workflows",
@@ -163,8 +164,8 @@
     },
     {
       "slug": "continue",
-      "revision": 7,
-      "digest": "129b07abf42277053483b8f5a2931183c3988a4224b0ae1b5d102bfe00456613"
+      "revision": 8,
+      "digest": "011eb817f14e527cc89fc83a489e14cc2a899b3267e3dfd8a47bf549c248f065"
     }
   ],
   "gaps": [
@@ -172,7 +173,8 @@
     "Current Continue CLI maintenance and security response remain unresolved: the repository says read-only/final, Marketplace says CLI development is active, GitHub Releases lists a 2026-06-19 v2.1.0-vscode pre-release, and npm lists CLI 1.5.47 published 2026-06-18. Confirm the selected package, publisher, update path and support response.",
     "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product, selected client settings or processing when acting as a customer's processor; confirm the model-provider route.",
     "No hands-on comparison or model performance test has been performed.",
-    "Cline's client settings and model-provider data handling were not inspected."
+    "Cline's client settings and model-provider data handling were not inspected.",
+    "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified."
   ],
   "changes": [
     {
@@ -218,6 +220,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added official CLI package and release-date evidence to clarify channel/version history; current maintenance and support remain unresolved."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Continue's official billing route evidence; exact account and model-provider prices remain unknown."
     }
   ],
   "commercial": {
