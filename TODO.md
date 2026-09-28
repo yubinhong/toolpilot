@@ -98,6 +98,8 @@ TODO-311/TODO-312 verification update (2026-09-28): current date-pinned freshnes
 
 TODO-309 Cline local-inference source update (2026-09-28): Cline revision 6 now cites its current official Ollama, LM Studio and Atomic Chat guide for the existing `localModels` claim; this strengthens its source rather than resolving another unknown. Eight dependents and the exact TASK-005/TASK-006 manifests/handoffs were refreshed. The source URL returned HTTP 200; the full source scan completed. Node 22 build passed lint, typecheck, 97 tests and 99-page artifact checks, audit found 0 vulnerabilities, freshness remains 12 unknown / 0 overdue, and local 99-page current smoke plus nine-route source/FAQ/noindex/sitemap assertions passed. All affected records remain in-review/noindex; Cline self-hosting, actual model/account behavior and Owner approval remain unresolved.
 
+TODO-309 Cline release update (2026-09-28): commit `cb23ac0` passed clean `release:check`, CI `36444234496` and Cloudflare Pages deployment/check `c3e60416-fd47-4c65-95f2-9e4538e90e5f`. Immutable preview and production both passed 99-page current smoke and nine-route source/endpoint/FAQ/noindex/sitemap assertions. All drafts remain in-review; no account or model was tested and no Owner approval is implied.
+
 ## Later - 暂不承诺
 
 - TODO-101：Newsletter Sponsor、ToolPilot Pro、Lead Gen、工具数据库 API — 重新评估条件：MVP 内容质量、合规披露、用户转化和运营能力已验证。
