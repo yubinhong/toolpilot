@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Windsurf alternatives",
   "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 19,
+  "revision": 20,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "windsurf",
-      "revision": 7,
-      "digest": "feda886f4fb685fff63040cc8682480e09c1689f156dab8fd5899c196b2f9724"
+      "revision": 8,
+      "digest": "101b11846d6acc0ee40a88b48c5abae27d9959cd0b63559c9bd6c044cf22a321"
     },
     {
       "slug": "cursor",
@@ -70,7 +70,8 @@
     "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
     "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
     "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details.",
-    "Confirm whether Devin Local supports local model inference and whether Cascade Workflows and Memories require migration to Skills for the intended workflow; no account, model or migration was tested."
+    "Confirm whether Devin Local supports local model inference and the selected provider/data route; the reviewed documentation does not establish local model use, and no account or model was tested.",
+    "Confirm the intended account exposes the Cascade Migration Wizard and that its generated Skills preserve required Cascade Memories and Workflows; the docs do not cover broader account/session transfer, and no migration was tested."
   ],
   "changes": [
     {
@@ -144,6 +145,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Windsurf after Devin Local documentation clarified local agent execution, unknown inference location and Cascade workflow migration limits."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the Devin Local dependency after documenting its limited Cascade Memories/Workflows-to-Skills migration path; broader transfer remains unverified."
     }
   ],
   "commercial": {
@@ -331,7 +336,7 @@
     },
     {
       "question": "What happens to Cascade Workflows and Memories when switching to Devin Local?",
-      "answer": "Devin's documentation lists Memories and Workflows as unsupported by Devin Local and recommends the Cascade Migration Wizard to migrate them into Skills. This concerns using the Devin Local agent; the Desktop FAQ's separate standard-update statement does not verify a particular account or workflow migration. No account migration was tested.",
+      "answer": "Devin's documentation says Cascade Memories and Workflows are unsupported as native Devin Local features and the Cascade Migration Wizard brings them over as Skills. This documents a path for those named customizations, not broader conversation, account or project-state transfer; the Desktop FAQ's separate standard-update statement does not verify an individual account. No migration was tested.",
       "sourceRefs": [
         { "toolSlug": "windsurf", "sourceId": "devin-local" },
         { "toolSlug": "windsurf", "sourceId": "desktop" }

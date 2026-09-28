@@ -187,12 +187,14 @@ for (const sourceId of windsurfWorkflow?.sourceIds ?? []) {
   if (!source || !windsurfHtml.includes(source.url)) failures.push(`/tools/windsurf/: transition/price source ${sourceId} is missing from generated HTML`);
 }
 const windsurfSelfHosting = windsurf?.facts.find(fact => fact.key === 'selfHosting');
+const windsurfPortability = windsurf?.facts.find(fact => fact.key === 'portability');
 const windsurfSelfHostingFaq = windsurf?.faqs.find(faq => faq.question === 'What does the official listing establish about self-hosted Enterprise access?');
 const enterpriseUpdater = windsurf?.sources.find(source => source.id === 'enterprise-updater');
 const devinLocal = windsurf?.sources.find(source => source.id === 'devin-local');
 const windsurfLocalInferenceFaq = windsurf?.faqs.find(faq => faq.question === 'Does Devin Local mean model inference runs on your device?');
 const windsurfAgentMigrationFaq = windsurf?.faqs.find(faq => faq.question === 'What happens to Cascade Workflows and Memories when switching to Devin Local?');
 if (!windsurfSelfHosting?.value || !windsurfHtml.includes(escapeHtml(windsurfSelfHosting.value))) failures.push('/tools/windsurf/: scoped self-hosted Enterprise fact is missing from generated HTML');
+if (!windsurfPortability?.value || !windsurfHtml.includes(escapeHtml(windsurfPortability.value))) failures.push('/tools/windsurf/: source-bound Cascade portability fact is missing from generated HTML');
 if (!windsurfSelfHostingFaq || !windsurfHtml.includes(escapeHtml(windsurfSelfHostingFaq.answer))) failures.push('/tools/windsurf/: self-hosted Enterprise FAQ is missing from generated HTML');
 if (!enterpriseUpdater?.url || !windsurfHtml.includes(enterpriseUpdater.url)) failures.push('/tools/windsurf/: Codeium Enterprise updater source is missing from generated HTML');
 if (!devinLocal?.url || !windsurfHtml.includes(devinLocal.url)) failures.push('/tools/windsurf/: Devin Local source is missing from generated HTML');

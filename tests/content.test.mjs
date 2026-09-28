@@ -258,7 +258,7 @@ test('Replit Git recovery and provider imports bound portability without claimin
     assert.ok(faq.sourceRefs.some(ref => ref.sourceId === 'import-providers'));
     assert.match(faq.answer, /No (?:export, )?import or restore (?:was|were) tested|completed migration test/i);
   }
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
 });
 test('Replit Agent model selection and app AI integrations remain distinct from local inference',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'replit');
@@ -292,7 +292,7 @@ test('Replit Agent model selection and app AI integrations remain distinct from 
   assert.ok(record.gaps.some(gap => gap.includes('do not establish local-model inference for Replit Agent')));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
 });
 test('Bolt BYOK, Forge and Lite evidence stays bounded and pending account review',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'bolt-new');
@@ -445,7 +445,7 @@ test('Lovable training-policy evidence separates data scopes and keeps account r
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
 });
 test('Aider analytics policy distinguishes opt-in telemetry from model-provider data handling',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'aider');
@@ -618,7 +618,7 @@ test('Cline Enterprise deployment stays distinct from local inference and custom
   const localOnlyFaq = shortlist?.faqs.find(item => item.question === "Does Cline's open-source client guarantee local-only data handling?");
   assert.match(localOnlyFaq?.answer ?? '', /advertises Enterprise deployment/);
   assert.match(localOnlyFaq?.answer ?? '', /do not establish a local-only workflow/);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
 });
 test('Cline privacy evidence exposes the public telemetry-policy conflict and API-key routing boundary',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'cline');
@@ -693,7 +693,7 @@ test('Cline local inference is source-bound to current runtime documentation wit
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
 });
 test('Cline task-history portability distinguishes local resume from cross-device migration',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='cline');
@@ -744,13 +744,13 @@ test('Cline task-history portability distinguishes local resume from cross-devic
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,8);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,7);
 });
 test('Windsurf transition and current plan prices remain source-bound and separate from legacy account quotes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
   const workflow = record?.facts.find(item => item.key === 'workflow');
   assert.ok(record);
-  assert.equal(record.revision, 7);
+  assert.equal(record.revision, 8);
   assert.equal(workflow?.checkedAt, '2026-09-28');
   assert.deepEqual(workflow?.sourceIds, ['desktop', 'devin-local']);
   assert.match(workflow?.value ?? '', /standard update preserves existing plan and pricing, including legacy Windsurf Enterprise/);
@@ -902,7 +902,7 @@ test('Cursor Self-Hosted Machines separate worker execution, inference and data 
   }
   const paired=content.find(item=>item.kind==='compare'&&item.slug==='cursor-vs-claude-code');
   assert.ok(paired?.faqs.some(item=>item.question==='Do their self-hosted options move model inference onto your infrastructure?'));
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,8);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,7);
 });
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -916,7 +916,7 @@ test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunct
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 7);
+  assert.equal(record.revision, 8);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.equal(fact?.critical, true);
   assert.deepEqual(fact?.sourceIds, Object.keys(expectedSources));
@@ -953,11 +953,12 @@ test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunct
 test('Windsurf Enterprise updater evidence stays scoped to the Codeium listing and dependent drafts',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
   const fact = record?.facts.find(item => item.key === 'selfHosting');
+  const portability = record?.facts.find(item => item.key === 'portability');
   const faq = record?.faqs.find(item => item.question === 'What does the official listing establish about self-hosted Enterprise access?');
   const sourceUrl = 'https://marketplace.windsurf.com/extension/Codeium/codeium-enterprise-updater/changes';
 
   assert.ok(record);
-  assert.equal(record.revision, 7);
+  assert.equal(record.revision, 8);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.deepEqual(fact?.sourceIds, ['enterprise-updater']);
   assert.match(fact?.value ?? '', /for self-hosted enterprise customers only/i);
@@ -971,7 +972,10 @@ test('Windsurf Enterprise updater evidence stays scoped to the Codeium listing a
   assert.match(faq?.answer ?? '', /does not explain deployment architecture, data or model location/);
   assert.ok(record.gaps.some(gap => gap.includes('listed Codeium Enterprise updater applies to the specific Devin Desktop continuation')));
   assert.equal(record.facts.find(item => item.key === 'localModels')?.value, null);
-  assert.equal(record.facts.find(item => item.key === 'portability')?.value, null);
+  assert.match(portability?.value ?? '', /Cascade Migration Wizard brings Workflows and Memories into Devin Local as Skills/);
+  assert.match(portability?.value ?? '', /docs do not establish transfer of conversations, project state, account settings/);
+  assert.deepEqual(portability?.sourceIds, ['devin-local']);
+  assert.equal(portability?.checkedAt, '2026-09-28');
 
   const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'windsurf'));
   assert.deepEqual(dependents.map(item => item.slug).sort(), ['cursor', 'windsurf', 'windsurf-vs-cursor']);
@@ -987,28 +991,35 @@ test('Windsurf Enterprise updater evidence stays scoped to the Codeium listing a
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
 });
 test('Devin Local evidence separates local agent execution from model inference and records migration limits',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
   const localInferenceFaq = record?.faqs.find(item => item.question === 'Does Devin Local mean model inference runs on your device?');
   const migrationFaq = record?.faqs.find(item => item.question === 'What happens to Cascade Workflows and Memories when switching to Devin Local?');
+  const portability = record?.facts.find(item => item.key === 'portability');
   assert.ok(record);
-  assert.equal(record.revision, 7);
+  assert.equal(record.revision, 8);
   assert.equal(record.sources.find(item => item.id === 'devin-local')?.url, 'https://docs.devin.ai/desktop/devin-local');
   assert.equal(record.sources.find(item => item.id === 'devin-local')?.accessedAt, '2026-09-28');
   assert.deepEqual(localInferenceFaq?.sourceRefs.map(ref => ref.sourceId), ['devin-local', 'product']);
   assert.match(localInferenceFaq?.answer ?? '', /agent harness operates on your machine/);
   assert.match(localInferenceFaq?.answer ?? '', /do not establish that model inference runs locally/);
   assert.deepEqual(migrationFaq?.sourceRefs.map(ref => ref.sourceId), ['devin-local', 'desktop']);
-  assert.match(migrationFaq?.answer ?? '', /Memories and Workflows as unsupported by Devin Local/);
-  assert.match(migrationFaq?.answer ?? '', /migrate them into Skills/);
+  assert.match(migrationFaq?.answer ?? '', /Memories and Workflows are unsupported as native Devin Local features/);
+  assert.match(migrationFaq?.answer ?? '', /Migration Wizard brings them over as Skills/);
+  assert.match(portability?.value ?? '', /Cascade Migration Wizard brings Workflows and Memories into Devin Local as Skills/);
+  assert.match(portability?.value ?? '', /docs do not establish transfer of conversations, project state, account settings/);
+  assert.deepEqual(portability?.sourceIds, ['devin-local']);
+  assert.equal(portability?.checkedAt, '2026-09-28');
   assert.equal(record.facts.find(item => item.key === 'localModels')?.value, null);
   assert.deepEqual(record.facts.find(item => item.key === 'localModels')?.sourceIds, []);
   assert.ok(record.gaps.some(gap => gap.includes('Devin Local supports local model inference')));
+  assert.ok(record.gaps.some(gap => gap.includes('intended account exposes the Cascade Migration Wizard')));
 
   const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'windsurf'));
   assert.deepEqual(dependents.map(item => item.slug).sort(), ['cursor', 'windsurf', 'windsurf-vs-cursor']);
+  assert.deepEqual(dependents.map(item => item.revision).sort((a,b)=>a-b), [12, 20, 21]);
   for (const decision of dependents) {
     const dependency = decision.dependencies.find(item => item.slug === 'windsurf');
     assert.equal(dependency?.revision, record.revision);
@@ -1018,6 +1029,7 @@ test('Devin Local evidence separates local agent execution from model inference 
       assert.deepEqual(faq?.sourceRefs.map(ref => ref.sourceId), question === localInferenceFaq?.question ? ['devin-local', 'product'] : ['devin-local', 'desktop']);
     }
     assert.ok(decision.gaps.some(gap => gap.includes('Devin Local supports local model inference')));
+    assert.ok(decision.gaps.some(gap => gap.includes('intended account exposes the Cascade Migration Wizard')));
     assert.equal(decision.review.state, 'in-review');
     assert.equal(isIndexable(decision, content), false);
   }
@@ -1093,7 +1105,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,8);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,7);
 });
 test('GitHub Copilot cloud-agent runner placement is distinct from local inference and remains pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='github-copilot');
@@ -1186,7 +1198,7 @@ test('GitHub Copilot portability documents the cloud-agent Git handoff without c
   assert.equal(comparison?.review.state,'in-review');
   assert.equal(comparison?.review.owner,null);
   assert.equal(isIndexable(comparison,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,8);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,7);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');

@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 7. Digest: `feda886f4fb685fff63040cc8682480e09c1689f156dab8fd5899c196b2f9724`.
+Revision: 8. Digest: `101b11846d6acc0ee40a88b48c5abae27d9959cd0b63559c9bd6c044cf22a321`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -38,7 +38,7 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - **Local model inference**: Unknown. Devin Local is described as an on-machine agent harness, while Cascade offers model selection; the reviewed pages do not establish local inference or identify an endpoint. This evidence distinguishes local execution from model location but does not confirm local-model support. Sources: devin-local, product; checked: 2026-09-28.
 
-- **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Code / data portability**: Devin's official docs describe a guided migration for Cascade Workflows and Memories into Devin Local as Skills, because these are not supported natively by the local agent. This covers those named customizations only; transfer of conversations, project state, account settings, provider configuration or other data is not established. No account or migration was inspected. Source: devin-local; checked: 2026-09-28.
 
 ## Documented strengths, constraints and FAQs
 
@@ -55,7 +55,7 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - FAQ: Cognition's privacy policy says training use depends on applicable terms; paid-tier opt-out and the Exafunction-specific MSA have different scopes. Verify the account's controlling agreement, plan, setting and enabled persistent features. Sources: privacy-policy, terms, dpa, exafunction-msa.
 - FAQ: the Windsurf Marketplace lists a Codeium Enterprise Updater for self-hosted Enterprise customers. This does not establish its deployment architecture or applicability to Devin Desktop, and no account or installation was checked. Source: enterprise-updater.
 - FAQ: Devin Local runs its agent harness on the user's machine, but the reviewed model-selection docs do not establish local model inference or a local endpoint. Sources: devin-local, product.
-- FAQ: Devin Local does not support Cascade Memories and Workflows directly; the vendor recommends the Cascade Migration Wizard to migrate them into Skills. The standard app update and local-agent migration are separate paths. Sources: devin-local, desktop.
+- FAQ: Devin Local does not support Cascade Memories and Workflows as native features; its docs say the Cascade Migration Wizard brings them over as Skills. This is a path for those named customizations, not broad account/session transfer. The standard app update and local-agent migration are separate paths; no migration was tested. Sources: devin-local, desktop.
 
 ## Pricing basis
 
@@ -81,7 +81,7 @@ Record the current account and editor settings, confirm the official update appl
 - The applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training setting and persistent features were not checked.
 - The public Codeium Enterprise updater listing does not establish whether it applies to the specific Devin Desktop continuation or which components/data it covers; no customer account or enterprise portal was inspected.
 - Local model inference and model-provider data routing remain unverified; no account, model or endpoint was tested.
-- Determine whether the required Cascade Memories and Workflows are migrated into Skills and verify the result in the intended account; no migration was performed.
+- Confirm the intended account exposes the Cascade Migration Wizard and that its generated Skills preserve required Cascade Memories and Workflows; the public docs do not cover broader account/session transfer, and no migration was performed.
 
 ## Owner checklist
 
