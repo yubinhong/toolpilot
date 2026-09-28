@@ -1,6 +1,6 @@
 # Supplemental Public Historical-URL Search — 2026-09-28
 
-Task: TODO-306. This check looked for additional public evidence of historical `toolpilot.cc` paths. It did not recover a URL and does not establish Google indexing, backlinks, URL absence, or a redirect action.
+Task: TODO-306. This check looked for additional public evidence of historical `toolpilot.cc` paths. It found a public scan of the current homepage carrying the former CryptoClarity title, but no non-root historical path. It does not establish Google indexing, backlinks, URL absence, or a redirect action.
 
 ## Internet Archive CDX
 
@@ -38,6 +38,18 @@ The current catalog was sampled at the latest listed index for each year from 20
 
 This annual sample is not a complete Common Crawl census. It recovered no historical path; the successful 2026 response and unavailable older indexes must remain separate evidence states. No route, index status, backlink status or redirect decision was inferred.
 
+## URLScan public scan search — 2026-09-28
+
+The public [URLScan search API](https://urlscan.io/api/v1/search/?q=domain%3Atoolpilot.cc&size=100) was queried with `domain:toolpilot.cc` and `size=100`:
+
+| Probe | Result | Interpretation |
+| --- | --- | --- |
+| `domain:toolpilot.cc` | HTTP 200; `total=1`; public scan `019f4af1-db87-72b9-886f-4db891761581`; submitted URL `https://toolpilot.cc/`; scan time `2026-07-10T07:33:19.226Z`; title `CryptoClarity — Know what your crypto really costs` | Confirms that the current root path was publicly scanned with the former CryptoClarity branding. It is one scanner submission, not evidence of Google indexing, backlinks or a complete historical URL list. |
+| `domain:www.toolpilot.cc` | HTTP 200; `total=0` | No matching public scan was returned by this query; this does not prove that the hostname or its paths never existed. |
+| Scan-result API for the public scan ID | HTTP 403 with `You're not logged in!` | The search summary was available, but request URLs, page links and DOM could not be enumerated. |
+
+The [public scan result](https://urlscan.io/result/019f4af1-db87-72b9-886f-4db891761581/) is the permalink for this record; the search API summary provides its submitted URL and root-page title. The scan is not a web-archive capture and does not recover any non-root route. The public summary reports 20 page requests, but the restricted result API prevents classifying those requests as internal paths. No additional path was added to the URL inventory.
+
 ## Decision
 
-No historical path was added to `docs/url-audit.csv`. Keep `indexed` and `has_backlink` as `unknown`; make no bulk redirect, 301, 410, or homepage redirect. TODO-306 still needs an owner-provided Search Console export, old sitemap or complete legacy URL list, and a verifiable backlink/log source before migration decisions.
+No non-root historical path was recovered, and the homepage path is already present in the current source inventory. Keep `indexed` and `has_backlink` as `unknown`; make no bulk redirect, 301, 410, or homepage redirect. TODO-306 still needs an owner-provided Search Console export, old sitemap or complete legacy URL list, and a verifiable backlink/log source before migration decisions.
