@@ -3,6 +3,7 @@
 ## 当前快照 — 2026-09-28
 
 - 独立执行任务：TASK-007 `IN_PROGRESS`，strict per-route CSP/hash 与共享头由 `f4c9798` 发布，静态 404 的 hash-based CSP meta follow-up 由 `057ee368` 发布；CI `36342275495`、Pages deployment/check `96ad8a25-c4fa-46ff-99d7-ad9829dceab2`、preview/production 97 页 smoke 均通过。Chromium 确认两端未知路径仍渲染 404、主题可切换且无页面脚本错误；Cloudflare Insights beacon 在 production 404 上由 CSP 拦截，记录 `script-src-elem` violation / `requestfailed: csp`。待 Owner 决定禁用 Pages Web Analytics 注入（推荐）或审批分析/隐私范围后按批准扩展策略；HSTS 暂缓到 Owner 确认域名范围和 `max-age` 后。
+- TODO-314 repository controls rechecked read-only on 2026-09-28: Dependabot security updates, secret scanning, non-provider pattern scanning and push protection report `disabled`; Advanced Security is `null`; `main` protection is HTTP 404 and no repository rulesets are returned. No settings changed; Owner scope/applicability decision remains open.
 
 - ToolPilot：面向 Developer、Indie Hacker、AI Builder 的工具发现和决策站。
 - 商业 CTA：`vendorLink()` 仅在内容精确审批、Affiliate 状态 active、HTTPS 目标、关系证据和披露齐全时切换到 Affiliate URL；渲染出明确 `Affiliate link` 标签、相邻披露和 `rel=sponsored`。其他情况继续使用普通产品官网链接。当前没有已激活关系。
