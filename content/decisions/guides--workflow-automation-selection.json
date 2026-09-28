@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "How to choose a workflow automation platform",
   "summary": "Compare an automation workflow by its real execution pattern, billing unit, hosting needs and recovery path.",
-  "revision": 9,
+  "revision": 10,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -107,6 +107,15 @@
       ]
     },
     {
+      "question": "Can n8n use a locally run model in an automation?",
+      "answer": "n8n documents an Ollama Chat Model and a self-hosted AI Starter Kit pairing n8n with Ollama for local LLMs. The Ollama credential defaults to a local URL and also supports remote authenticated endpoints; containers may need network configuration. n8n describes the kit as a proof-of-concept/demo and says to harden it before production. Confirm the target endpoint, workflow data path and model behavior; no inference was tested.",
+      "sourceRefs": [
+        { "toolSlug": "n8n", "sourceId": "ollama-chat" },
+        { "toolSlug": "n8n", "sourceId": "ollama-credentials" },
+        { "toolSlug": "n8n", "sourceId": "ai-starter-kit" }
+      ]
+    },
+    {
       "question": "What should a trial prove before automation goes live?",
       "answer": "Test a normal run, a failed run and recovery with representative data; confirm credential handling and export or rollback before connecting a production workflow.",
       "sourceRefs": [
@@ -133,8 +142,8 @@
     },
     {
       "slug": "n8n",
-      "revision": 5,
-      "digest": "8d8136c4b70dd4708e44dcf48a79ecfa6d25d8aad3b5f395b696c3eef972cd3b"
+      "revision": 6,
+      "digest": "1b75e46269b58976d220c3611f3ae4cc983d12b3dbcc7f15551aae57577890a2"
     }
   ],
   "relatedLinks": [
@@ -147,7 +156,8 @@
     "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes and whether a selectable region meets the intended residency requirement; verify workspace-specific data scope, configured log retention, connected-provider terms, deletion timing, applicable DPA and representative workflow behavior. No account, legal or hands-on workflow review was performed.",
     "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
     "Check the exact client-facing or embedded service against n8n's current license and plan; published use-case examples do not determine an individual deployment's entitlements.",
-    "Verify the target n8n instance scope and restore behavior before migration; workflow packages and CLI backups have distinct documented limits, and no move or full restore was tested."
+    "Verify the target n8n instance scope and restore behavior before migration; workflow packages and CLI backups have distinct documented limits, and no move or full restore was tested.",
+    "Verify that the target n8n deployment can reach its Ollama endpoint and that the model, network and workflow data path satisfy the intended use; no inference or self-hosted setup was tested."
   ],
   "changes": [
     {
@@ -185,6 +195,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added source-backed n8n workflow export and instance-recovery boundaries; migration and full restore remain untested."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added n8n's official Ollama integration and local endpoint caveats; runtime and production suitability remain untested."
     }
   ],
   "commercial": {

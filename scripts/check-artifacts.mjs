@@ -238,6 +238,15 @@ for (const record of content.filter(item => item.kind !== 'tools' && item.depend
   if (!html.includes('https://continue.dev/terms-conditions/')) failures.push(`/${record.kind}/${record.slug}/: Continue Terms source is missing from generated HTML`);
 }
 const n8nProfile = tools.get('n8n');
+const n8nLocalModels = n8nProfile?.facts.find(fact => fact.key === 'localModels');
+if (n8nProfile && n8nLocalModels) {
+  const html = readFileSync(join('out','/tools/n8n/','index.html'),'utf8');
+  if (!html.includes(escapeHtml(n8nLocalModels.value))) failures.push('/tools/n8n/: local-model fact is missing from generated HTML');
+  for (const sourceId of n8nLocalModels.sourceIds) {
+    const source = n8nProfile.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/tools/n8n/: local-model source ${sourceId} is missing from generated HTML`);
+  }
+}
 const n8nPortability = n8nProfile?.facts.find(fact => fact.key === 'portability');
 if (n8nProfile && n8nPortability) {
   const html = readFileSync(join('out','/tools/n8n/','index.html'),'utf8');
@@ -258,6 +267,16 @@ for (const record of content.filter(item => item.kind !== 'tools' && item.depend
   for (const sourceId of ['workflow-export','backup-restore']) {
     const source = n8nProfile?.sources.find(candidate => candidate.id === sourceId);
     if (!source || !html.includes(source.url)) failures.push(`/${record.kind}/${record.slug}/: n8n portability source ${sourceId} is missing from generated HTML`);
+  }
+  const localModelsFaq = record.faqs?.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'ollama-chat'));
+  if (!localModelsFaq || !localModelsFaq.sourceRefs.some(ref => ref.sourceId === 'ollama-credentials') || !localModelsFaq.sourceRefs.some(ref => ref.sourceId === 'ai-starter-kit')) {
+    failures.push(`/${record.kind}/${record.slug}/: n8n local-model evidence FAQ is missing`);
+    continue;
+  }
+  if (!html.includes(escapeHtml(localModelsFaq.answer))) failures.push(`/${record.kind}/${record.slug}/: n8n local-model FAQ is missing from generated HTML`);
+  for (const sourceId of ['ollama-chat','ollama-credentials','ai-starter-kit']) {
+    const source = n8nProfile?.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/${record.kind}/${record.slug}/: n8n local-model source ${sourceId} is missing from generated HTML`);
   }
 }
 for (const record of content.filter(item => item.kind === 'compare')) {

@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Make vs n8n",
   "summary": "Compare Make and n8n by workflow billing unit, hosting responsibility and the operational work your automation requires.",
-  "revision": 10,
+  "revision": 11,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -63,7 +63,8 @@
     { "question": "Does self-hosting mean no data is processed by n8n?", "answer": "No. n8n's policy says it processes certain usage data from self-hosted deployments unless users opt out. Check the instance setting and the terms of connected services separately.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "privacy" }] },
     { "question": "What license should I check if the workflow will serve my customers?", "answer": "n8n's support guidance says managing client workflows and credentials in your own instance requires Enterprise; embedding n8n to expose workflows to customers requires a white-labeled Embed license. Consulting on a client's own internal instance does not itself require a commercial license for the consultant. These are vendor examples, so confirm the exact use case and entitlement directly with n8n.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "license-use-cases" }] },
     { "question": "Can a workflow export move a complete n8n instance?", "answer": "No. n8n supports workflow JSON and an n8n CLI package path, but the package method is in Preview. Its CLI backup omits users/roles, execution history/logs, variables and instance settings such as the encryption key; full recovery can also need the user folder, database and external storage. Workflow JSON may expose credential names or auth headers. No migration was tested.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "workflow-export" }, { "toolSlug": "n8n", "sourceId": "backup-restore" }] },
-    { "question": "What does Make publish about privacy and log retention?", "answer": "Its privacy notice lists application-related usage data such as interactions, queries, workflow-step counts, logs and timestamps; Make says personal data may be deleted when no longer needed, subject to legal exceptions. Its security page says log data is stored for 30 days by default, with an Enterprise option to extend it. These statements do not confirm a workspace's settings or retention of every workflow payload or record.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "privacy" }, { "toolSlug": "make", "sourceId": "security" }] }
+    { "question": "What does Make publish about privacy and log retention?", "answer": "Its privacy notice lists application-related usage data such as interactions, queries, workflow-step counts, logs and timestamps; Make says personal data may be deleted when no longer needed, subject to legal exceptions. Its security page says log data is stored for 30 days by default, with an Enterprise option to extend it. These statements do not confirm a workspace's settings or retention of every workflow payload or record.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "privacy" }, { "toolSlug": "make", "sourceId": "security" }] },
+    { "question": "Can n8n use a locally run model?", "answer": "n8n documents an Ollama Chat Model node and a self-hosted AI Starter Kit that pairs n8n with Ollama for local LLMs. Its Ollama credential defaults to a local endpoint but can also target a remote authenticated instance; separate containers may need network configuration. The starter kit is for proof-of-concept/demo use and needs hardening before production. Verify the target endpoint and data flow; no model was tested.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "ollama-chat" }, { "toolSlug": "n8n", "sourceId": "ollama-credentials" }, { "toolSlug": "n8n", "sourceId": "ai-starter-kit" }] }
   ],
   "verdict": "Choose from the measured workload and hosting requirement. Make's credit unit and n8n's execution unit are not directly comparable without mapping the same automation into each billing model.",
   "bestFor": "Automation builders comparing task-based visual scenarios with API-oriented workflows",
@@ -77,8 +78,8 @@
     },
     {
       "slug": "n8n",
-      "revision": 5,
-      "digest": "8d8136c4b70dd4708e44dcf48a79ecfa6d25d8aad3b5f395b696c3eef972cd3b"
+      "revision": 6,
+      "digest": "1b75e46269b58976d220c3611f3ae4cc983d12b3dbcc7f15551aae57577890a2"
     }
   ],
   "gaps": [
@@ -86,7 +87,8 @@
     "Confirm the intended n8n deployment and feature entitlement against the current license and plan; vendor guidance distinguishes internal use from client-workflow hosting or embedding, but no specific use case or agreement was reviewed. Estimate self-hosted operating cost separately.",
     "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
     "Verify the Make workspace's workflow and connected-provider data scope, configured log categories/retention, deletion timing and applicable DPA; published vendor-wide privacy statements do not establish account settings or legal suitability.",
-    "Verify which n8n workflows, credentials, projects, users, execution history, variables, instance settings and external storage must move; the official export/backup paths cover different scopes and no cross-instance migration was tested."
+    "Verify which n8n workflows, credentials, projects, users, execution history, variables, instance settings and external storage must move; the official export/backup paths cover different scopes and no cross-instance migration was tested.",
+    "Verify that the intended n8n instance can reach the selected Ollama endpoint, that the model meets the workflow requirements, and that the connected services and data path fit the use case; no instance, model or privacy configuration was tested."
   ],
   "changes": [
     {
@@ -128,6 +130,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed n8n dependency after official license and commercial-use guidance; exact use-case fit and owner re-review remain open."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added official n8n/Ollama local-model integration evidence; endpoint reachability, network setup and production fit remain untested."
     }
   ],
   "commercial": {

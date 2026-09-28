@@ -264,9 +264,10 @@ test('n8n portability, license and self-hosting evidence preserves documented li
   const privacy = record?.facts.find(item => item.key === 'privacy');
   const deployment = record?.facts.find(item => item.key === 'deployment');
   const license = record?.facts.find(item => item.key === 'license');
+  const localModels = record?.facts.find(item => item.key === 'localModels');
   const portability = record?.facts.find(item => item.key === 'portability');
   assert.ok(record);
-  assert.equal(record.revision, 5);
+  assert.equal(record.revision, 6);
   assert.deepEqual(privacy?.sourceIds, ['privacy']);
   assert.match(privacy?.value ?? '', /Usage Data for self-hosted deployments unless users opt out/);
   assert.match(privacy?.value ?? '', /workflow usage metrics and enabled integrations/);
@@ -284,6 +285,22 @@ test('n8n portability, license and self-hosting evidence preserves documented li
   assert.match(license?.value ?? '', /hosting and managing clients' workflows and credentials on your own instance requires Enterprise/);
   assert.match(license?.value ?? '', /embedding n8n to expose workflows to customers requires a white-labeled Embed license/);
   assert.match(license?.value ?? '', /do not determine a specific deployment's terms/);
+  assert.deepEqual(localModels?.sourceIds, ['ollama-chat', 'ollama-credentials', 'ai-starter-kit']);
+  assert.equal(localModels?.checkedAt, '2026-09-28');
+  assert.match(localModels?.value ?? '', /built-in Ollama Chat Model and Ollama credentials/);
+  assert.match(localModels?.value ?? '', /http:\/\/localhost:11434/);
+  assert.match(localModels?.value ?? '', /remote authenticated Ollama instances/);
+  assert.match(localModels?.value ?? '', /proof-of-concept\/demo and says to harden it before production/);
+  assert.match(localModels?.value ?? '', /When n8n and Ollama run in separate containers, network configuration may be required/);
+  assert.match(localModels?.value ?? '', /No model or instance was tested/);
+  for (const sourceId of ['ollama-chat', 'ollama-credentials', 'ai-starter-kit']) {
+    assert.equal(record.sources.find(item => item.id === sourceId)?.accessedAt, '2026-09-28');
+  }
+  assert.equal(record.sources.find(item => item.id === 'ollama-chat')?.url, 'https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatollama.md');
+  assert.equal(record.sources.find(item => item.id === 'ollama-credentials')?.url, 'https://docs.n8n.io/integrations/builtin/credentials/ollama.md');
+  assert.equal(record.sources.find(item => item.id === 'ai-starter-kit')?.url, 'https://docs.n8n.io/deploy/host-n8n/deploy-with-the-ai-starter-kit.md');
+  assert.ok(record.faqs.some(faq => faq.question.includes('locally run model') && faq.sourceRefs.length === 3 && faq.sourceRefs.every(ref => ref.toolSlug === 'n8n' && ['ollama-chat', 'ollama-credentials', 'ai-starter-kit'].includes(ref.sourceId))));
+  assert.ok(record.gaps.some(gap => gap.includes('its Ollama endpoint') && gap.includes('no instance, network or model was tested')));
   assert.deepEqual(portability?.sourceIds, ['workflow-export', 'backup-restore']);
   assert.equal(portability?.checkedAt, '2026-09-28');
   assert.match(portability?.value ?? '', /workflow JSON download\/import/);
@@ -306,21 +323,22 @@ test('n8n portability, license and self-hosting evidence preserves documented li
     const decision = content.find(item => item.slug === slug);
     const dependency = decision?.dependencies.find(item => item.slug === 'n8n');
     assert.ok(dependency);
-    assert.equal(dependency.revision, 5);
+    assert.equal(dependency.revision, 6);
     assert.equal(dependency.digest, contentDigest(record));
     assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'privacy')));
+    assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'ollama-chat') && faq.sourceRefs.some(ref => ref.sourceId === 'ollama-credentials') && faq.sourceRefs.some(ref => ref.sourceId === 'ai-starter-kit')));
     assert.equal(decision?.review.state, 'in-review');
     assert.equal(isIndexable(decision, content), false);
   }
   const comparison = content.find(item => item.slug === 'make-vs-n8n');
   const guide = content.find(item => item.slug === 'workflow-automation-selection');
-  assert.equal(comparison?.revision, 10);
+  assert.equal(comparison?.revision, 11);
   assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
   assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
-  assert.equal(guide?.revision, 9);
+  assert.equal(guide?.revision, 10);
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 27);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 26);
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
