@@ -348,7 +348,7 @@ test('Windsurf transition and current plan prices remain source-bound and separa
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
   const workflow = record?.facts.find(item => item.key === 'workflow');
   assert.ok(record);
-  assert.equal(record.revision, 4);
+  assert.equal(record.revision, 5);
   assert.equal(workflow?.checkedAt, '2026-09-28');
   assert.deepEqual(workflow?.sourceIds, ['desktop']);
   assert.match(workflow?.value ?? '', /standard update preserves existing plan and pricing, including legacy Windsurf Enterprise/);
@@ -363,6 +363,8 @@ test('Windsurf transition and current plan prices remain source-bound and separa
   assert.equal(prices['Legacy Windsurf account entitlement'].amount, null);
   assert.ok(prices['Legacy Windsurf account entitlement'].sourceIds.includes('desktop'));
   assert.ok(record.gaps.some(gap => gap.includes('No account-specific transition or legacy entitlement was tested')));
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'windsurf'));
+  assert.deepEqual(dependents.map(item => item.slug).sort(), ['cursor', 'windsurf', 'windsurf-vs-cursor']);
   for (const slug of ['cursor', 'windsurf', 'windsurf-vs-cursor']) {
     const decision = content.find(item => item.slug === slug && item.kind !== 'tools');
     const dependency = decision?.dependencies.find(item => item.slug === 'windsurf');
@@ -370,6 +372,62 @@ test('Windsurf transition and current plan prices remain source-bound and separa
     assert.equal(dependency.revision, record.revision);
     assert.equal(dependency.digest, contentDigest(record));
     assert.equal(decision?.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
+  const manifest = JSON.parse(readFileSync('docs/content-review/TASK-005-review-manifest.json', 'utf8'));
+  for (const reviewedRecord of [record, ...dependents]) {
+    const path = `/${reviewedRecord.kind}/${reviewedRecord.slug}/`;
+    const entry = manifest.find(item => item.path === path);
+    assert.ok(entry, `${path} should appear in the exact review manifest`);
+    assert.equal(entry.revision, reviewedRecord.revision);
+    assert.equal(entry.digest, contentDigest(reviewedRecord));
+    assert.equal(entry.state, 'in-review');
+    assert.deepEqual(entry.gaps, reviewedRecord.gaps);
+  }
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
+test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
+  const fact = record?.facts.find(item => item.key === 'privacy');
+  const faq = record?.faqs.find(item => item.question === "How do Cognition's training terms apply to Windsurf and Devin Desktop?");
+  const expectedSources = {
+    'privacy-policy': 'https://cognition.com/legal/privacy-policy',
+    terms: 'https://cognition.com/legal/platform-terms-of-service',
+    dpa: 'https://cognition.com/legal/data-processing-statement',
+    'exafunction-msa': 'https://windsurf.com/docs/MSA.pdf',
+  };
+
+  assert.ok(record);
+  assert.equal(record.revision, 5);
+  assert.equal(fact?.checkedAt, '2026-09-28');
+  assert.equal(fact?.critical, true);
+  assert.deepEqual(fact?.sourceIds, Object.keys(expectedSources));
+  assert.match(fact?.value ?? '', /User Content may be used to train, fine-tune and improve its models depending on the terms that apply/);
+  assert.match(fact?.value ?? '', /paid Service Tiers may opt out/);
+  assert.match(fact?.value ?? '', /with a Teams administrator required to do so/);
+  assert.match(fact?.value ?? '', /DPA .* limits processing to documented service purposes/);
+  assert.match(fact?.value ?? '', /Exafunction Services only/);
+  assert.match(fact?.value ?? '', /no account tier, assignment notice, order form, opt-out setting or enabled persistent feature was checked/);
+  for (const [id, url] of Object.entries(expectedSources)) {
+    assert.equal(record.sources.find(source => source.id === id)?.url, url);
+    assert.equal(record.sources.find(source => source.id === id)?.accessedAt, '2026-09-28');
+  }
+  assert.match(faq?.answer ?? '', /paid tiers opt out/);
+  assert.match(faq?.answer ?? '', /specific to Exafunction Services/);
+  assert.deepEqual(faq?.sourceRefs.map(ref => ref.sourceId), Object.keys(expectedSources));
+  assert.ok(record.gaps.some(gap => gap.includes('applicable Cognition or Exafunction agreement')));
+
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'windsurf'));
+  assert.deepEqual(dependents.map(item => item.slug).sort(), ['cursor', 'windsurf', 'windsurf-vs-cursor']);
+  for (const decision of dependents) {
+    const dependency = decision.dependencies.find(item => item.slug === 'windsurf');
+    const decisionFaq = decision.faqs.find(item => item.question === faq.question);
+    assert.equal(dependency.revision, record.revision);
+    assert.equal(dependency.digest, contentDigest(record));
+    assert.deepEqual(decisionFaq?.sourceRefs.map(ref => ref.sourceId), Object.keys(expectedSources));
+    assert.ok(decision.gaps.some(gap => gap.includes('applicable Cognition or Exafunction agreement')));
+    assert.equal(decision.review.state, 'in-review');
     assert.equal(isIndexable(decision, content), false);
   }
   assert.equal(record.review.state, 'in-review');

@@ -27,13 +27,13 @@ For a material edit, increment revision, reset review fields and verifiedAt, upd
 | /tools/github-copilot/ | 4 | in-review | Official policy distinguishes individual-plan training use/opt-out from Business/Enterprise; verify account settings, model-specific retention and organizational controls. |
 | /tools/lovable/ | 4 | in-review | Review the 2026-09-15 Privacy Policy against August 2026 Terms and the November 2025 Business/Enterprise DPA; confirm plan, workspace agreement, training setting, Cloud region/provider scope and runtime costs. |
 | /tools/replit/ | 5 | in-review | Core/Pro/Enterprise can choose a published-app geography; Free defaults to North America. Pro-only workspace geography is separate; verify account settings, existing resources, connected services, checkout taxes, full app costs and independent export. |
-| /tools/windsurf/ | 4 | in-review | Official FAQ says current plan/pricing carry over, including legacy Windsurf Enterprise; public Free/Pro/Max/Teams prices are recorded. Confirm the actual legacy account quote, usage, checkout taxes and migration experience. |
+| /tools/windsurf/ | 5 | in-review | Cognition's Privacy Policy/Platform Terms, its DPA and Windsurf's Exafunction-specific MSA have different data/training scopes. Verify the controlling agreement, account tier, order form/DPA, opt-out and persistent features; confirm the actual legacy quote, usage, taxes and migration. |
 | /alternatives/bolt-new/ | 11 | in-review | Cited app-builder handoff, stack scope, Lovable training-policy and Cloud-region boundaries; refreshed Bolt, Lovable and Replit dependencies; owner review pending. |
 | /alternatives/claude-code/ | 6 | in-review | Cited client surfaces, provider options and Copilot policy conditions; owner review pending. |
-| /alternatives/cursor/ | 8 | in-review | Cited multi-surface alternatives, Devin Desktop transition and current public plan prices; owner review pending. |
+| /alternatives/cursor/ | 9 | in-review | Cited multi-surface alternatives, Devin Desktop transition/prices and the different Cognition/DPA/Exafunction data scopes; account applicability and owner review pending. |
 | /alternatives/lovable/ | 11 | in-review | Cited prototype workflows, training-policy and Cloud-region scope, credit usage and service-migration limits; refreshed Bolt, Lovable and Replit dependencies; owner review pending. |
 | /alternatives/replit/ | 11 | in-review | Cited Git handoff, in-platform checkpoint boundaries, and Lovable training-policy/Cloud-region scope; refreshed Bolt, Lovable and Replit dependencies; owner review pending. |
-| /alternatives/windsurf/ | 8 | in-review | Cited Devin Desktop naming, plan/pricing continuity and current public plan prices; legacy account quote and usage remain open. |
+| /alternatives/windsurf/ | 9 | in-review | Cited Devin Desktop naming, plan/pricing continuity and training-policy scope; account agreement, settings, legacy quote and usage remain open. |
 | /best/ai-app-builders-for-prototypes/ | 9 | in-review | Cited app scope, repository handoff, recovery limits and Lovable training-policy/Cloud-region scope; refreshed Bolt, Lovable and Replit dependencies; no production-readiness claim. |
 | /best/ai-coding-tools-for-solo-founders/ | 6 | in-review | Cited editor/agent surfaces and account-dependent billing or policy details; owner review pending. |
 | /compare/cline-vs-claude-code/ | 5 | in-review | Cited local-model options, MCP controls, billing and Cline's BYOK/provider-content boundary; no benchmark was run. |
@@ -41,7 +41,7 @@ For a material edit, increment revision, reset review fields and verifiedAt, upd
 | /compare/cursor-vs-github-copilot/ | 4 | in-review | Cited setup differences and Copilot policy scope; no benchmark was run. |
 | /compare/lovable-vs-bolt/ | 6 | in-review | Cited JavaScript/Expo scope, repository handoff, credit usage and Lovable training-policy/Cloud-region scope; refreshed Bolt and Lovable dependencies; owner review pending. |
 | /compare/replit-vs-lovable/ | 8 | in-review | Cited checkpoint, Git sync, build/runtime credit and Lovable training-policy/Cloud-region boundaries; refreshed Replit and Lovable dependencies; no portability test was run. |
-| /compare/windsurf-vs-cursor/ | 6 | in-review | Cited current Devin Desktop prices and the legacy account quote boundary; no benchmark or account migration test was run. |
+| /compare/windsurf-vs-cursor/ | 7 | in-review | Cited current Devin Desktop prices, legacy quote and distinct training/data scopes; account applicability remains open and no benchmark or migration test was run. |
 | /guides/ai-editor-vs-terminal-agent/ | 5 | in-review | Cited overlapping product surfaces; no comparative speed or quality claim. |
 | /guides/how-to-choose-a-developer-tool/ | 2 | in-review | General methodology page has no tool dependencies; source-bound product blocks remain intentionally absent under ADR-0009. |
 | /pricing/claude-code/ | 4 | in-review | Cited subscription/API billing distinction and cost-estimate limits; owner review pending. |

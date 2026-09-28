@@ -68,11 +68,12 @@
   },
   {
     "path": "/tools/windsurf/",
-    "revision": 4,
-    "digest": "4e9a01e37f50d6d44aca97fec87038185a13f75a42abad990bd9a8887593fa32",
+    "revision": 5,
+    "digest": "6e3520218c41d60fd1aa2fe8fe4ab9b16224b83d0729fed35909e98348489342",
     "state": "in-review",
     "gaps": [
-      "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost."
+      "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost.",
+      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, model-training opt-out, and enabled persistent features; public documents describe different data scopes and conditions."
     ]
   },
   {
@@ -91,10 +92,12 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 8,
-    "digest": "dd3c247dbaa9760504cd9774634fcba72b2539d628b0d9ea73b23171adcf93b5",
+    "revision": 9,
+    "digest": "25472cf0f87a62ab5e0668c42f6be895fd40b8afbb38efdf78a7679c3de46422",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions."
+    ]
   },
   {
     "path": "/alternatives/lovable/",
@@ -112,10 +115,12 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 8,
-    "digest": "4afc1eb142626a12f38afd6a8444b22898d8a2e9019475a3ba890d6f889b905d",
+    "revision": 9,
+    "digest": "250f4ae71107cf646a0e84a383124c04bb69fb41144de37bbf4bb4a0fbfb85ca",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions."
+    ]
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
@@ -168,10 +173,12 @@
   },
   {
     "path": "/compare/windsurf-vs-cursor/",
-    "revision": 6,
-    "digest": "cabdbbe80585567a3ec2d8da7997f2122da7a6ae379fac042df32760d2c107ab",
+    "revision": 7,
+    "digest": "8ec35fe28e93b3b9d56c0c78150149611910cb224f55ac5a295528a66f5a7c79",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before comparing privacy or retention with Cursor."
+    ]
   },
   {
     "path": "/guides/ai-editor-vs-terminal-agent/",

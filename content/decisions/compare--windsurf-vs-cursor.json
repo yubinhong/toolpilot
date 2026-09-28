@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Windsurf vs Cursor",
   "summary": "Windsurf vs Cursor: existing Windsurf users reviewing product continuity and an editor alternative.",
-  "revision": 6,
+  "revision": 7,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "windsurf",
-      "revision": 4,
-      "digest": "4e9a01e37f50d6d44aca97fec87038185a13f75a42abad990bd9a8887593fa32"
+      "revision": 5,
+      "digest": "6e3520218c41d60fd1aa2fe8fe4ab9b16224b83d0729fed35909e98348489342"
     },
     {
       "slug": "cursor",
@@ -55,7 +55,9 @@
       "digest": "7b08dcd85e3c8eaae0ec2333691e7c1e528c946fe4a72748c7a626c3156ba6cd"
     }
   ],
-  "gaps": [],
+  "gaps": [
+    "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before comparing privacy or retention with Cursor."
+  ],
   "changes": [
     {
       "date": "2026-09-27",
@@ -80,6 +82,10 @@
     {
       "date": "2026-09-28",
       "summary": "Updated public-price and account-continuity boundaries from the current Devin Desktop sources; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Windsurf training-policy and agreement-scope evidence; account applicability and owner review remain pending."
     }
   ],
   "commercial": {
@@ -190,6 +196,28 @@
         {
           "toolSlug": "cursor",
           "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "question": "How do Cognition's training terms apply to Windsurf and Devin Desktop?",
+      "answer": "Cognition's Privacy Policy says User Content may be used for training depending on applicable terms. Its June 2026 Platform Terms permit Customer Data training and let paid tiers opt out; Teams requires an administrator, and opting out enables provider Zero Data Retention subject to safety, abuse and legal exceptions. The July 2026 DPA sets separate processing and subprocessor limits for applicable personal Customer Data. Windsurf's MSA says its no-training and output-deletion rules are specific to Exafunction Services, with listed exceptions. Confirm the account's controlling agreement, plan, setting and enabled persistent features; none was inspected here.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "privacy-policy"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "terms"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "dpa"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "exafunction-msa"
         }
       ]
     }

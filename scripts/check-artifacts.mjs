@@ -137,8 +137,14 @@ for (const sourceId of clinePrivacy?.sourceIds ?? []) {
 }
 const windsurf = tools.get('windsurf');
 const windsurfWorkflow = windsurf?.facts.find(fact => fact.key === 'workflow');
+const windsurfPrivacy = windsurf?.facts.find(fact => fact.key === 'privacy');
 const windsurfHtml = readFileSync('out/tools/windsurf/index.html', 'utf8');
 if (!windsurfWorkflow?.value || !windsurfHtml.includes(escapeHtml(windsurfWorkflow.value))) failures.push('/tools/windsurf/: transition and current plan-price fact is missing from generated HTML');
+if (!windsurfPrivacy?.value || !windsurfHtml.includes(escapeHtml(windsurfPrivacy.value))) failures.push('/tools/windsurf/: training-policy scope fact is missing from generated HTML');
+for (const sourceId of windsurfPrivacy?.sourceIds ?? []) {
+  const source = windsurf.sources.find(item => item.id === sourceId);
+  if (!source || !windsurfHtml.includes(source.url)) failures.push(`/tools/windsurf/: training-policy source ${sourceId} is missing from generated HTML`);
+}
 for (const price of ['USD 0 / month', 'USD 20 / month', 'USD 200 / month', 'USD 80 / month', 'USD 40/month per full developer seat']) {
   if (!windsurfHtml.includes(price)) failures.push(`/tools/windsurf/: public plan price ${price} is missing from generated HTML`);
 }

@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 4. Digest: `4e9a01e37f50d6d44aca97fec87038185a13f75a42abad990bd9a8887593fa32`.
+Revision: 5. Digest: `6e3520218c41d60fd1aa2fe8fe4ab9b16224b83d0729fed35909e98348489342`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -16,11 +16,19 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Windsurf editor page (redirects to Devin Desktop)](https://windsurf.com/editor) — Windsurf; accessed 2026-09-27
 
+- [Privacy Policy](https://cognition.com/legal/privacy-policy) — Cognition; last updated 2026-03-09; accessed 2026-09-28
+
+- [Platform Terms of Service](https://cognition.com/legal/platform-terms-of-service) — Cognition; last updated 2026-06-30; accessed 2026-09-28
+
+- [Data Processing Agreement](https://cognition.com/legal/data-processing-statement) — Cognition; last updated 2026-07-23; accessed 2026-09-28
+
+- [Windsurf Master Services Agreement (Exafunction Services only)](https://windsurf.com/docs/MSA.pdf) — Windsurf; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: The official FAQ calls Devin Desktop the new name for Windsurf and says the standard update preserves the existing plan/pricing, including legacy Windsurf Enterprise. Sources: desktop; checked: 2026-09-28.
 
-- **Privacy / data handling**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Privacy / data handling**: Cognition's Privacy Policy says User Content may be used for training depending on applicable terms. The June 2026 Platform Terms permit Customer Data training and let paid tiers opt out (Teams requires an administrator); opting out enables provider Zero Data Retention, subject to safety/abuse and legal exceptions. The July 2026 DPA scopes processing of personal Customer Data and requires restrictions preventing subprocessors from training on Customer Data. The separate Windsurf MSA is marked specific to Exafunction Services only and says Customer Data is not trained and is deleted after output, with listed persistent-feature, AUP and profile-data exceptions. The documents cover different data categories, roles and agreements; no account plan, assignment notice, executed Order Form/DPA, opt-out or feature setting was checked. Sources: privacy-policy, terms, dpa, exafunction-msa; checked 2026-09-28.
 
 - **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
@@ -33,7 +41,10 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - Strength: the official FAQ identifies Devin Desktop as the new name for Windsurf and says the full IDE remains available. Source: desktop.
 - Constraint: the vendor describes a standard transition, but this review has not tested an individual account or entitlement. Source: desktop.
 - Strength: the current plan page lists Free at USD 0/month, Pro at USD 20/month, Max at USD 200/month, and Teams at USD 80/month plus USD 40/month per full developer seat. Paid allowances refresh daily and weekly; additional use is available at API pricing. Source: pricing.
+- Strength: paid Service Tiers may opt out of Customer Data model training; the Platform Terms say that this enables Zero Data Retention with model providers, subject to stated exceptions. Source: terms.
+- Constraint: current Cognition terms, the DPA and the Exafunction-specific Windsurf MSA describe different training and retention conditions. Confirm which agreement applies before making an account-specific privacy claim. Sources: terms, dpa, exafunction-msa.
 - FAQ: the standard over-the-air update carries plans, pricing, extensions, settings and in-progress work. The FAQ says plan pricing remains unchanged, including legacy Enterprise. Sources: desktop.
+- FAQ: Cognition's privacy policy says training use depends on applicable terms; paid-tier opt-out and the Exafunction-specific MSA have different scopes. Verify the account's controlling agreement, plan, setting and enabled persistent features. Sources: privacy-policy, terms, dpa, exafunction-msa.
 
 ## Pricing basis
 
@@ -42,6 +53,8 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - Max: USD 200/month; significantly higher quotas than Pro. Included usage refreshes daily/weekly; extra usage is at API pricing. Source: pricing; checked 2026-09-28.
 - Teams: USD 80/month base plus USD 40/month per full developer seat; up to 200 users. Source: pricing; checked 2026-09-28.
 - Legacy Windsurf account entitlement: amount remains account-specific and was not inspected. The vendor says plan/pricing carry over; public prices are not a personal quote. Sources: desktop, pricing.
+
+Training and retention scope is also account-specific: confirm whether Cognition or Exafunction terms govern, the Service Tier, any Order Form/DPA, opt-out state and persistent features. Do not generalize the Exafunction-only data rule to all Devin Desktop plans.
 
 ## Proposed judgment
 
@@ -54,6 +67,7 @@ Record the current account and editor settings, confirm the official update appl
 ## Gaps
 
 - No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost.
+- The applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training setting and persistent features were not checked.
 
 ## Owner checklist
 

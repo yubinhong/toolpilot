@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Windsurf / Devin Desktop",
   "summary": "Windsurf, now named Devin Desktop, retains a full IDE and adds an agent command center.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -44,6 +44,34 @@
       "title": "Windsurf editor page (redirects to Devin Desktop)",
       "publisher": "Windsurf",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "privacy-policy",
+      "url": "https://cognition.com/legal/privacy-policy",
+      "title": "Privacy Policy",
+      "publisher": "Cognition",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "terms",
+      "url": "https://cognition.com/legal/platform-terms-of-service",
+      "title": "Platform Terms of Service",
+      "publisher": "Cognition",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "dpa",
+      "url": "https://cognition.com/legal/data-processing-statement",
+      "title": "Data Processing Agreement",
+      "publisher": "Cognition",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "exafunction-msa",
+      "url": "https://windsurf.com/docs/MSA.pdf",
+      "title": "Windsurf Master Services Agreement (Exafunction Services only)",
+      "publisher": "Windsurf",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -60,10 +88,10 @@
     {
       "key": "privacy",
       "label": "Privacy / data handling",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
-      "critical": false
+      "value": "Cognition's Privacy Policy (last updated 2026-03-09) says User Content may be used to train, fine-tune and improve its models depending on the terms that apply. Its Platform Terms (last updated 2026-06-30) define Customer Data to include inputs and outputs and permit model training; paid Service Tiers may opt out, with a Teams administrator required to do so, after which Cognition says provider Zero Data Retention is enabled. The Terms retain exceptions for safety/abuse review and legal process. Cognition's DPA (last updated 2026-07-23) applies to Customer Data processed on a customer's behalf under applicable agreements, limits processing to documented service purposes and requires equivalent subprocessor restrictions preventing Customer Data model training. A separate Windsurf MSA is expressly labeled for Exafunction Services only and says its Customer Data is not used to train models and is deleted after generating output, except for listed persistent features, suspected AUP violations and profile data. These sources describe different data definitions, roles and agreement scopes; no account tier, assignment notice, order form, opt-out setting or enabled persistent feature was checked.",
+      "sourceIds": ["privacy-policy", "terms", "dpa", "exafunction-msa"],
+      "checkedAt": "2026-09-28",
+      "critical": true
     },
     {
       "key": "selfHosting",
@@ -193,6 +221,15 @@
           "sourceId": "pricing"
         }
       ]
+    },
+    {
+      "text": "Cognition's current Platform Terms allow paid Service Tiers to opt out of Customer Data model training and say the opt-out enables Zero Data Retention with model providers, subject to listed safety and legal exceptions.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "terms"
+        }
+      ]
     }
   ],
   "cons": [
@@ -215,6 +252,23 @@
         {
           "toolSlug": "windsurf",
           "sourceId": "desktop"
+        }
+      ]
+    },
+    {
+      "text": "Cognition's Platform Terms, DPA and Exafunction-specific Windsurf MSA describe different training and retention conditions; the agreement and settings that apply to an individual account were not inspected.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "terms"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "dpa"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "exafunction-msa"
         }
       ]
     }
@@ -257,6 +311,16 @@
           "sourceId": "desktop"
         }
       ]
+    },
+    {
+      "question": "How do Cognition's training terms apply to Windsurf and Devin Desktop?",
+      "answer": "Cognition's Privacy Policy says User Content may be used for training depending on applicable terms. Its June 2026 Platform Terms permit Customer Data training and let paid tiers opt out; Teams requires an administrator, and opting out enables provider Zero Data Retention subject to safety, abuse and legal exceptions. The July 2026 DPA sets separate processing and subprocessor limits for applicable personal Customer Data. Windsurf's MSA says its no-training and output-deletion rules are specific to Exafunction Services, with listed exceptions. Confirm the account's controlling agreement, plan, setting and enabled persistent features; none was inspected here.",
+      "sourceRefs": [
+        { "toolSlug": "windsurf", "sourceId": "privacy-policy" },
+        { "toolSlug": "windsurf", "sourceId": "terms" },
+        { "toolSlug": "windsurf", "sourceId": "dpa" },
+        { "toolSlug": "windsurf", "sourceId": "exafunction-msa" }
+      ]
     }
   ],
   "verdict": "Treat Devin Desktop as the documented continuation of Windsurf; use current public plan prices for general comparison, and verify any legacy account quote and usage terms before acting.",
@@ -265,7 +329,8 @@
   "migration": "Record the current account and editor settings, confirm the official update applies, and rehearse the workflow before changing a production setup.",
   "dependencies": [],
   "gaps": [
-    "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost."
+    "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost.",
+    "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, model-training opt-out, and enabled persistent features; public documents describe different data scopes and conditions."
   ],
   "changes": [
     {
@@ -283,6 +348,10 @@
     {
       "date": "2026-09-28",
       "summary": "Recorded current public Devin Desktop plan prices and the FAQ's legacy plan-continuity statement; individual account quote, usage and migration remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Reconciled Cognition training/opt-out terms, the DPA scope and Windsurf's Exafunction-specific no-training guidance; account applicability remains unverified."
     }
   ],
   "commercial": {
