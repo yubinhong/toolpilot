@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Make vs n8n",
   "summary": "Compare Make and n8n by workflow billing, recovery scope, hosting responsibility and the operational work each automation requires.",
-  "revision": 13,
+  "revision": 14,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -66,6 +66,7 @@
     { "text": "Make warns that a simple-mode AES key is exposed when sharing a scenario or downloading its blueprint, so the export needs a secret review before distribution.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "simple-aes" }] }
   ],
   "faqs": [
+    { "question": "Does Make's AI Agent documentation establish local-model inference?", "answer": "Not from the reviewed pages. Make's current AI Agent guide says Free plans use Make's AI Provider; paid plans can use Make's provider or custom connections such as OpenAI or Anthropic Claude. Separately, its Enterprise-only On-prem agent provides local-network access through the currently supported HTTP Agent app. These sources do not establish that HTTP Agent supplies inference or that Make AI Agent can use Ollama or another local model. Local inference and data flow remain unverified; no account, endpoint or model was tested.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "ai-agents-new" }, { "toolSlug": "make", "sourceId": "on-prem-agent" }] },
     { "question": "Does Make's On-prem agent mean Make itself is self-hosted?", "answer": "No. Make's Enterprise-only agent runs on a customer device so scenarios can access local-network systems through the currently supported HTTP Agent app. It is created and managed through Make's Organization dashboard and needs an Internet connection. The docs describe a local-network connector, not a customer-hosted Make scenario runtime; no account, agent or data path was tested.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "on-prem-agent" }] },
     { "question": "Can I compare one Make credit directly with one n8n execution?", "answer": "No. Make credits can depend on the module and workload, while n8n Cloud counts a workflow execution once per complete run. Map the same trigger, steps and retries into both units.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }, { "toolSlug": "n8n", "sourceId": "pricing" }] },
     { "question": "Does n8n self-hosting establish a lower total cost?", "answer": "No. The documentation establishes a self-hosted deployment option, not a cost conclusion; confirm license fit and operating requirements for the intended deployment.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "hosting" }] },
@@ -84,8 +85,8 @@
   "dependencies": [
     {
       "slug": "make",
-      "revision": 8,
-      "digest": "7cce1ae3dab0e98d23561b9298ea9ef09fb357ae2cc642670d53f05b105ac63a"
+      "revision": 9,
+      "digest": "990bfd75740ee9b1c83b891a0a18721c9aa3772311311a4862bcca1df3cb45c8"
     },
     {
       "slug": "n8n",
@@ -154,6 +155,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Make's Enterprise On-prem agent boundary; local-network access does not establish customer-hosted scenario execution."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Make AI Agent provider examples while keeping local-model inference and its data path unverified."
     }
   ],
   "commercial": {

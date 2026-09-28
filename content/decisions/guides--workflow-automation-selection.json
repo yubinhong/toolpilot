@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "How to choose a workflow automation platform",
   "summary": "Compare automation workflows by execution pattern, billing unit, hosting needs and what their exports can recover.",
-  "revision": 12,
+  "revision": 13,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -50,6 +50,11 @@
     { "text": "Make warns that a simple-mode AES key is exposed when sharing a scenario or downloading its blueprint; inspect an export for secrets before distribution.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "simple-aes" }] }
   ],
   "faqs": [
+    {
+      "question": "Does Make's AI Agent documentation establish local-model inference?",
+      "answer": "Not from the reviewed pages. Make's current AI Agent guide says Free plans use Make's AI Provider; paid plans can use Make's provider or custom connections such as OpenAI or Anthropic Claude. Separately, its Enterprise-only On-prem agent provides local-network access through the currently supported HTTP Agent app. These sources do not establish that HTTP Agent supplies inference or that Make AI Agent can use Ollama or another local model. Local inference and data flow remain unverified; no account, endpoint or model was tested.",
+      "sourceRefs": [{ "toolSlug": "make", "sourceId": "ai-agents-new" }, { "toolSlug": "make", "sourceId": "on-prem-agent" }]
+    },
     {
       "question": "Does Make's On-prem agent mean Make itself is self-hosted?",
       "answer": "No. Make documents an Enterprise-only agent installed on a customer device so scenarios can access local-network systems through the currently supported HTTP Agent app. It is created and managed through Make's Organization dashboard and needs an Internet connection. This is a local-network connector, not evidence that Make's scenario runtime is customer-hosted; no account, agent or data path was tested.",
@@ -159,8 +164,8 @@
   "dependencies": [
     {
       "slug": "make",
-      "revision": 8,
-      "digest": "7cce1ae3dab0e98d23561b9298ea9ef09fb357ae2cc642670d53f05b105ac63a"
+      "revision": 9,
+      "digest": "990bfd75740ee9b1c83b891a0a18721c9aa3772311311a4862bcca1df3cb45c8"
     },
     {
       "slug": "n8n",
@@ -229,6 +234,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Make's Enterprise On-prem agent boundary; local-network access does not establish customer-hosted scenario execution."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Make AI Agent provider examples while keeping local-model inference and its data path unverified."
     }
   ],
   "commercial": {

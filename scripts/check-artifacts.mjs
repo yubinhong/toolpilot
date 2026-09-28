@@ -377,10 +377,13 @@ const makeProfile = tools.get('make');
 const makePortability = makeProfile?.facts.find(fact => fact.key === 'portability');
 const makeSelfHosting = makeProfile?.facts.find(fact => fact.key === 'selfHosting');
 const makeSelfHostingFaq = makeProfile?.faqs.find(faq => faq.question === "Does Make's On-prem agent mean Make itself is self-hosted?");
+const makeLocalModelsFaq = makeProfile?.faqs.find(faq => faq.question === "Does Make's AI Agent documentation establish local-model inference?");
 const makeProfileHtml = readFileSync('out/tools/make/index.html', 'utf8');
 if (!makePortability?.value || !makeProfileHtml.includes(escapeHtml(makePortability.value))) failures.push('/tools/make/: scenario portability fact is missing from generated HTML');
 if (!makeSelfHosting?.value || !makeProfileHtml.includes(escapeHtml(makeSelfHosting.value))) failures.push('/tools/make/: on-prem agent/product hosting boundary fact is missing from generated HTML');
 if (!makeSelfHostingFaq || !makeProfileHtml.includes(escapeHtml(makeSelfHostingFaq.answer))) failures.push('/tools/make/: on-prem agent/product hosting FAQ is missing from generated HTML');
+if (!makeLocalModelsFaq || !makeProfileHtml.includes(escapeHtml(makeLocalModelsFaq.answer))) failures.push('/tools/make/: local-model inference boundary FAQ is missing from generated HTML');
+if (!makeProfile?.sources.some(source => source.id === 'ai-agents-new' && makeProfileHtml.includes(source.url))) failures.push('/tools/make/: current AI Agent provider source is missing from generated HTML');
 for (const sourceId of makeSelfHosting?.sourceIds ?? []) {
   const source = makeProfile?.sources.find(candidate => candidate.id === sourceId);
   if (!source || !makeProfileHtml.includes(source.url)) failures.push(`/tools/make/: self-hosting source ${sourceId} is missing from generated HTML`);
@@ -398,12 +401,14 @@ for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
   const blueprintFaq = record?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'blueprints'));
   const secretFaq = record?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'simple-aes'));
   const hostingFaq = record?.faqs.find(faq => faq.question === "Does Make's On-prem agent mean Make itself is self-hosted?");
+  const localModelsFaq = record?.faqs.find(faq => faq.question === "Does Make's AI Agent documentation establish local-model inference?");
   if (!blueprintFaq || !html.includes(escapeHtml(blueprintFaq.answer))) failures.push(`/${kind}/${slug}/: Make blueprint portability FAQ is missing from generated HTML`);
   if (!secretFaq || !html.includes(escapeHtml(secretFaq.answer))) failures.push(`/${kind}/${slug}/: Make blueprint secret-handling FAQ is missing from generated HTML`);
   if (!hostingFaq || !html.includes(escapeHtml(hostingFaq.answer))) failures.push(`/${kind}/${slug}/: Make on-prem agent/product hosting FAQ is missing from generated HTML`);
+  if (!localModelsFaq || !html.includes(escapeHtml(localModelsFaq.answer))) failures.push(`/${kind}/${slug}/: Make local-model inference boundary FAQ is missing from generated HTML`);
   if (!html.includes('content="noindex, follow"')) failures.push(`/${kind}/${slug}/: in-review noindex is missing from generated HTML`);
   if (xml.includes(`${site}/${kind}/${slug}/`)) failures.push(`/${kind}/${slug}/: in-review page appears in sitemap`);
-  for (const sourceId of ['blueprints', 'scenario-history', 'simple-aes', 'on-prem-agent']) {
+  for (const sourceId of ['blueprints', 'scenario-history', 'simple-aes', 'on-prem-agent', 'ai-agents-new']) {
     const source = makeProfile?.sources.find(candidate => candidate.id === sourceId);
     if (!source || !html.includes(source.url)) failures.push(`/${kind}/${slug}/: Make portability source ${sourceId} is missing from generated HTML`);
   }

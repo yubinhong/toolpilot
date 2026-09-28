@@ -68,7 +68,7 @@ test('Make plan, privacy, retention and portability facts cite official pages wi
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 8);
+  assert.equal(record.revision, 9);
   for (const [key, expectation] of Object.entries(expected)) {
     const fact = record.facts.find(item => item.key === key);
     assert.ok(fact, `Make has ${key}`);
@@ -86,6 +86,17 @@ test('Make plan, privacy, retention and portability facts cite official pages wi
   assert.match(selfHosting?.value ?? '', /created and managed in Make's Organization dashboard/);
   assert.match(selfHosting?.value ?? '', /does not establish that Make's scenario runtime or product can be deployed/);
   assert.match(selfHosting?.value ?? '', /No account, agent, network or data path was tested/);
+  const localModels = record.facts.find(item => item.key === 'localModels');
+  assert.equal(localModels?.value, null);
+  assert.deepEqual(localModels?.sourceIds, []);
+  assert.equal(localModels?.checkedAt, null);
+  const localModelsFaq = record.faqs.find(faq => faq.question === "Does Make's AI Agent documentation establish local-model inference?");
+  assert.ok(localModelsFaq);
+  assert.ok(localModelsFaq.sourceRefs.some(ref => ref.sourceId === 'ai-agents-new'));
+  assert.ok(localModelsFaq.sourceRefs.some(ref => ref.sourceId === 'on-prem-agent'));
+  assert.match(localModelsFaq.answer, /do not establish that HTTP Agent supplies AI inference/);
+  assert.match(localModelsFaq.answer, /Local inference and its data path remain unverified/);
+  assert.ok(record.gaps.some(gap => gap.includes('Confirm whether Make AI Agent supports a local-model inference provider')));
   assert.ok(record.gaps.some(gap => gap.includes('not customer-hosted scenario execution')));
   assert.ok(record.faqs.some(faq => faq.question === "Does Make's On-prem agent mean Make itself is self-hosted?" && faq.sourceRefs.some(ref => ref.sourceId === 'on-prem-agent')));
   const portability = record.facts.find(item => item.key === 'portability');
@@ -104,6 +115,7 @@ test('Make plan, privacy, retention and portability facts cite official pages wi
     'scenario-history': 'https://help.make.com/scenario-history',
     'simple-aes': 'https://help.make.com/aes-advanced-encryption-standard',
     'on-prem-agent': 'https://help.make.com/on-premise-agent',
+    'ai-agents-new': 'https://help.make.com/create-your-first-ai-agent',
   })) {
     const source = record.sources.find(item => item.id === id);
     assert.equal(source?.url, url);
@@ -116,7 +128,7 @@ test('Make plan, privacy, retention and portability facts cite official pages wi
   for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
     const decision = content.find(item => item.slug === slug);
     const makeDependency = decision?.dependencies.find(item => item.slug === 'make');
-    assert.equal(makeDependency?.revision, 8);
+    assert.equal(makeDependency?.revision, 9);
     assert.equal(makeDependency?.digest, contentDigest(record));
     assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'privacy')));
     assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'security')));
@@ -124,6 +136,12 @@ test('Make plan, privacy, retention and portability facts cite official pages wi
     assert.ok(hostingFaq, `${slug} covers the on-prem connector versus product hosting boundary`);
     assert.ok(hostingFaq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'on-prem-agent'));
     assert.match(hostingFaq.answer, /not a customer-hosted Make scenario runtime|not evidence that Make's scenario runtime is customer-hosted/);
+    const localModelsFaq = decision?.faqs.find(faq => faq.question === "Does Make's AI Agent documentation establish local-model inference?");
+    assert.ok(localModelsFaq, `${slug} preserves Make's local-model evidence boundary`);
+    assert.ok(localModelsFaq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'ai-agents-new'));
+    assert.ok(localModelsFaq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'on-prem-agent'));
+    assert.match(localModelsFaq.answer, /do not establish that HTTP Agent supplies inference/);
+    assert.match(localModelsFaq.answer, /Local inference and data flow remain unverified/);
     const blueprintFaq = decision?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'blueprints'));
     const secretFaq = decision?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'simple-aes'));
     assert.ok(blueprintFaq, `${slug} covers Make blueprint recovery`);
@@ -427,10 +445,10 @@ test('n8n portability, license and self-hosting evidence preserves documented li
   }
   const comparison = content.find(item => item.slug === 'make-vs-n8n');
   const guide = content.find(item => item.slug === 'workflow-automation-selection');
-  assert.equal(comparison?.revision, 13);
+  assert.equal(comparison?.revision, 14);
   assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
   assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
-  assert.equal(guide?.revision, 12);
+  assert.equal(guide?.revision, 13);
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
   assert.equal(record.review.state, 'in-review');
