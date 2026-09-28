@@ -29,7 +29,7 @@
 - 技术：Next.js 16.3.6、React 19.2.8、TypeScript 5.9.3、Node 22、npm、静态导出，仍无 API/数据库/CMS/账户。
 - 历史 50 条研究快照保留；当前目录有 54 个工具身份。首批 39 个结构化内容记录（12 tools / 11 compare / 6 alternatives / 4 pricing / 3 best / 3 guides）全部待用户审核，未冒充正式评价。
 - 内容事实源：content/tools/、content/decisions/；历史快照：lib/catalog.mjs 的 researchTools。公开 DTO 不携带内部佣金和审核证据。
-- Continue 生命周期证据（2026-09-28）：官网称已加入 Cursor、开源代码仍可用；README 称仓库只读并列出最终 2.0.0，JetBrains Marketplace 称插件由社区维护且 CLI 正在积极开发。CLI 生命周期说法冲突，选定包的版本、支持与安全响应仍待核实；Continue revision 5 和两个依赖页均保持 in-review/noindex，详见 TASK.md 与 TASK-006 审核清单。
+- Continue 生命周期与本地/隐私证据（2026-09-28）：官网称已加入 Cursor、开源代码仍可用；README 称仓库只读并列出最终 2.0.0，JetBrains Marketplace 称插件由社区维护且 CLI 正在积极开发，CLI 生命周期说法冲突。官方文档另提供本地 Ollama 模型和需关闭匿名遥测的离线 VS Code 配置；2026-02-05 Privacy Notice 描述开源日志/分析类别与退出方式，但不涵盖其作为客户处理者时的内容处理，也不能确认收购后的适用性。Continue revision 6、比较页 revision 8、Best 页 revision 10 均保持 in-review/noindex；包版本/支持、账单、当前设置及提供商数据处理待核实，详见 TASK.md 与 TASK-006 审核清单。
 - P0.5 内容契约现支持带 `{toolSlug, sourceId}` 的 Pros、Cons、FAQ 引用；12 个工具档案和全部 26 个带声明工具依赖的决策页都已完成来源绑定证据块，并刷新依赖摘要。无依赖的通用选型指南不添加产品引用；用户批准前所有记录保持 `in-review` / noindex。
 - 草稿保留 URL，noindex 且退出 sitemap；来源日期与审核/实测日期分开。逐版本审批见 ADR-0009。
 - 首批范围：英文 AI Coding / AI App Builders；没有激活广告、分析或实际 Affiliate。

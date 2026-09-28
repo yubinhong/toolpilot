@@ -15,12 +15,13 @@
   },
   {
     "path": "/tools/continue/",
-    "revision": 5,
-    "digest": "08bee9d36c0393d15a22a99435da496abf9fcc5f9f9ebf97fbf5e7ac3bae70c8",
+    "revision": 6,
+    "digest": "9ad192cfd9ed6e6a17cdcf0638121c5395b99bf02de9e1ed23626a9e8623bd7b",
     "state": "in-review",
     "gaps": [
       "Resolve the README's final-release/read-only statements against the JetBrains Marketplace's CLI active-development statement; confirm the package, publisher, current version/update path and security response before publication or adoption.",
-      "Confirm account or model-provider billing, telemetry and data terms; the CLI quickstart lists access methods but not their prices or handling terms, and no client or account was inspected."
+      "Confirm the post-acquisition privacy notice's applicability, selected client/CLI telemetry settings and data flow, customer-content processing when Continue acts as a processor, and the selected model provider's data terms; no client, account or network traffic was inspected.",
+      "Confirm Continue account/model-provider billing; the CLI quickstart lists access methods but not their prices."
     ]
   },
   {
@@ -68,11 +69,12 @@
   },
   {
     "path": "/compare/cline-vs-continue/",
-    "revision": 7,
-    "digest": "b8e971db6c44b40d53bc3926a69001d22ca0d47024f64b54541c3f78ca1de746",
+    "revision": 8,
+    "digest": "2061bcd8cc5473710af40f550289c063cb5daa2ce96b7abdbf84b6e8662c8232",
     "state": "in-review",
     "gaps": [
       "Resolve the conflict between Continue's README read-only/final-release notice and the JetBrains Marketplace's CLI active-development statement; confirm the selected package, publisher, updates and security response.",
+      "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product or processing when acting as a customer's processor; verify the selected package, account and model-provider route.",
       "No local-model quality, privacy or performance trial has been performed.",
       "Cline's actual telemetry configuration and selected-provider data handling were not inspected."
     ]
@@ -99,12 +101,13 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 9,
-    "digest": "f42952e8374a1b308e8a1ddd02481e8b5e771940620d7f33621e41082491a95c",
+    "revision": 10,
+    "digest": "099a1791830782870ba04f9f6c65496b93e08e194badde1fc265f75808ccfb5b",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
       "Resolve the conflict between Continue's repository final-release/read-only notice and the JetBrains Marketplace's CLI active-development statement; confirm the selected package, publisher, current version, updates and security response.",
+      "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product, selected client settings or processing when acting as a customer's processor; confirm the model-provider route.",
       "No hands-on comparison or model performance test has been performed.",
       "Cline's client settings and model-provider data handling were not inspected."
     ]

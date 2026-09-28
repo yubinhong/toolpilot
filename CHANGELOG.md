@@ -2,6 +2,7 @@
 
 ## Unreleased — TASK-006 implementation (2026-09-27–28)
 
+- Add Continue's official local-model and offline-IDE setup evidence plus its 2026-02-05 Privacy Notice boundaries; refresh its profile and two dependents to revisions 6/8/10 and the exact TASK-006 manifest. Post-acquisition notice applicability, client settings, account/provider billing and data flow remain open. All records stay in-review/noindex pending owner review.
 - Label an approved Affiliate destination explicitly beside its CTA and disclosure; incomplete or unapproved relationships continue to use the ordinary product URL. Commit `b28eac7` passed CI `36349574064` and Pages deployment/check `b42fe8b0`; preview and production current smoke passed 99 pages, robots, sitemap and real 404.
 - Render the bound `verifiedAt` date as `Last verified` on approved pages and retain an explicit pending status on review drafts; generated artifact checks enforce both states. Commit `5057ab8` passed CI `36350165202` and Pages deployment/check `6e614c18`; preview and production current smoke passed 99 pages, robots, sitemap and real 404.
 - Enforce unique page titles and descriptions across generated routes in the static artifact check. Commit `86b8e1a` passed CI `36351183143` and Pages deployment/check `558b1087`; preview and production current smoke passed, and an online audit confirmed uniqueness across all 99 pages.
