@@ -15,13 +15,14 @@
   },
   {
     "path": "/tools/continue/",
-    "revision": 8,
-    "digest": "011eb817f14e527cc89fc83a489e14cc2a899b3267e3dfd8a47bf549c248f065",
+    "revision": 9,
+    "digest": "7ba26d404874a1e473106ce5b69e21919b2227c6c0a8ce16ebf7699951ce0e27",
     "state": "in-review",
     "gaps": [
       "Current CLI maintenance and security response remain unresolved: the README says the repository is read-only/final, the Marketplace says CLI development is active, GitHub Releases lists a 2026-06-19 v2.1.0-vscode pre-release, and npm lists CLI 1.5.47 published 2026-06-18. Confirm the selected package, publisher, update path and support response before publication or adoption.",
       "Confirm the post-acquisition privacy notice's applicability, selected client/CLI telemetry settings and data flow, customer-content processing when Continue acts as a processor, and the selected model provider's data terms; no client, account or network traffic was inspected.",
-      "Confirm the exact account or Service Order price and the selected model provider's usage fees. Continue's Terms document credits/subscriptions and account/order-specific pricing terms, but no numeric public price or selected provider was verified."
+      "Confirm the exact account or Service Order price and the selected model provider's usage fees. Continue's Terms document credits/subscriptions and account/order-specific pricing terms, but no numeric public price or selected provider was verified.",
+      "Confirm whether the selected workflow requires cross-device CLI session migration or full IDE/CLI state transfer. Reviewed docs document prior-session resume and config-file reuse but not supported session export/import; no transfer was tested."
     ]
   },
   {
@@ -76,15 +77,16 @@
   },
   {
     "path": "/compare/cline-vs-continue/",
-    "revision": 11,
-    "digest": "8f39401f429e530392021dada58e1dc2f0e7b274f8c4dfeb4827e1c44f0f9575",
+    "revision": 12,
+    "digest": "0ae02aca47c7c5bd2b8ef58550c3e6e81ce428b14e0f8a4dd16c387fec69587e",
     "state": "in-review",
     "gaps": [
       "Current Continue CLI maintenance and security response remain unresolved: its README says read-only/final, the Marketplace says CLI development is active, GitHub Releases lists a 2026-06-19 v2.1.0-vscode pre-release, and npm lists CLI 1.5.47 published 2026-06-18. Confirm the selected package, publisher, update path and support response.",
       "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product or processing when acting as a customer's processor; verify the selected package, account and model-provider route.",
       "No local-model quality, privacy or performance trial has been performed.",
       "Cline's actual telemetry configuration and selected-provider data handling were not inspected.",
-      "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified."
+      "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified.",
+      "Continue documents resuming previous CLI sessions and reusing versioned configuration files, but not cross-device session export or complete IDE/CLI state migration; no transfer was tested."
     ]
   },
   {
@@ -109,8 +111,8 @@
   },
   {
     "path": "/best/open-source-ai-coding-tools/",
-    "revision": 13,
-    "digest": "57cbf63a744882bcf71a599bd262fb91339a092832b38d9d9982d4226bf3136d",
+    "revision": 14,
+    "digest": "efb579838475dbf7030be6bc15fbdc6bc5811fd8bc10118818813c612d8a20b7",
     "state": "in-review",
     "gaps": [
       "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
@@ -118,7 +120,8 @@
       "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product, selected client settings or processing when acting as a customer's processor; confirm the model-provider route.",
       "No hands-on comparison or model performance test has been performed.",
       "Cline's client settings and model-provider data handling were not inspected.",
-      "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified."
+      "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified.",
+      "Continue documents prior CLI session resume and versioned configuration reuse, but not cross-device session export or full IDE/CLI state migration; no transfer was tested."
     ]
   },
   {

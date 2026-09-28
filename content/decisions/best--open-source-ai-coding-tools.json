@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "Open-source AI coding tools to evaluate",
   "summary": "A conditional shortlist based on project license evidence, model boundaries and channel-specific lifecycle signals.",
-  "revision": 13,
+  "revision": 14,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -132,25 +132,28 @@
   ],
   "pros": [
     { "text": "Aider's public source repository identifies the project license as Apache-2.0.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
-    { "text": "Cline's public repository provides source that can be inspected as part of a tool and license review.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "product" }] }
+    { "text": "Cline's public repository provides source that can be inspected as part of a tool and license review.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "product" }] },
+    { "text": "Continue documents CLI session resume and recommends version-controlling YAML configuration while keeping secrets outside committed config.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "cli-tui" }, { "toolSlug": "continue", "sourceId": "cli-config" }, { "toolSlug": "continue", "sourceId": "config-guide" }] }
   ],
   "cons": [
     { "text": "Continue's README calls the repository read-only and 2.0.0 its final release; Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists CLI 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These channel/version claims do not establish current CLI support or security response.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "text": "An open client repository license does not by itself establish the terms of a selected model or provider service.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
     { "text": "Cline's open-source repository does not establish its configured privacy behavior; later Terms say extension telemetry is on by default, while an older blog says opt-in.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
-    { "text": "Continue's documented offline IDE setup requires disabling anonymous telemetry and configuring a local model; neither the guide nor its dated Privacy Notice verifies a selected installation's actual settings or data flow.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }, { "toolSlug": "continue", "sourceId": "privacy" }] }
+    { "text": "Continue's documented offline IDE setup requires disabling anonymous telemetry and configuring a local model; neither the guide nor its dated Privacy Notice verifies a selected installation's actual settings or data flow.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }, { "toolSlug": "continue", "sourceId": "privacy" }] },
+    { "text": "Continue documents resuming prior CLI history but does not establish cross-device session export or complete IDE/CLI state migration.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "cli-tui" }, { "toolSlug": "continue", "sourceId": "cli-config" }] }
   ],
   "faqs": [
     { "question": "What do Continue's published artifacts say about CLI support?", "answer": "The official site says Continue was acquired by Cursor and its open-source code remains available. The README says read-only/final 2.0.0; GitHub Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists @continuedev/cli 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These sources do not establish current CLI maintenance or support for a selected package.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "acquisition" }, { "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "question": "Does an Apache-2.0 client license also license model weights or hosted providers?", "answer": "No. Aider's repository identifies the client project license and distinguishes model or provider terms; check each external component separately.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
     { "question": "Does Cline's open-source client guarantee local-only data handling?", "answer": "No. Cline's Privacy Notice distinguishes BYOK traffic sent directly to a model provider from Cline-provided API-key traffic handled by Cline; its Terms also state extension telemetry is on by default, while an older blog says opt-in. Verify the installed build, setting and provider terms.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "privacy" }, { "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
     { "question": "Can Continue use an offline local-model setup?", "answer": "Continue's official guide outlines an offline VS Code path: install its extension, disable Allow Anonymous Telemetry and configure a local model. Its Privacy Notice, last updated 2026-02-05, describes open-source log and analytics collection unless users opt out and excludes processing performed on a customer's behalf; check notice applicability, the selected package and provider terms.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }, { "toolSlug": "continue", "sourceId": "privacy" }] },
-    { "question": "How does Continue describe paid model usage?", "answer": "Its Terms describe model-use credit purchases and recurring subscriptions, with applicable Pricing and Payment Terms in a User Account or Service Order. No numeric amount was verified here; confirm any selected model-provider charge separately.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "terms" }] }
+    { "question": "How does Continue describe paid model usage?", "answer": "Its Terms describe model-use credit purchases and recurring subscriptions, with applicable Pricing and Payment Terms in a User Account or Service Order. No numeric amount was verified here; confirm any selected model-provider charge separately.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "terms" }] },
+    { "question": "Can Continue CLI history and configuration move to another device?", "answer": "The CLI's `cn --resume` or `/resume` commands restore the full history of a previous session. Continue recommends version-controlling `config.yaml`, and the CLI can load a YAML file by path; secrets belong outside committed config. The reviewed docs do not specify cross-device session export/import or complete IDE/CLI state migration. No transfer was tested.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "cli-tui" }, { "toolSlug": "continue", "sourceId": "cli-config" }, { "toolSlug": "continue", "sourceId": "config-guide" }] }
   ],
   "verdict": "Aider and Cline are conditional candidates for evaluation based on the linked repository evidence. Continue remains conditional on clarifying its public channel/version history and confirming the selected package's support path; no comparative performance result has been measured.",
   "bestFor": "Developers who want to inspect source and license terms while evaluating AI coding workflows",
   "notFor": "Teams treating an open-source client license as proof that every model, service or data path is open or offline",
-  "migration": "Pin the client version and model endpoint, preserve a human-reviewed fallback, and recheck license and maintenance evidence before upgrading.",
+  "migration": "Pin the client version and model route; version only reviewable config files and keep secrets outside source control. Confirm whether session history, account settings, local indexes and IDE/CLI state must move. Continue documents CLI session resume, not supported cross-device export or full-state migration; preserve a human-reviewed fallback and recheck license and maintenance before upgrading.",
   "dependencies": [
     {
       "slug": "aider",
@@ -164,8 +167,8 @@
     },
     {
       "slug": "continue",
-      "revision": 8,
-      "digest": "011eb817f14e527cc89fc83a489e14cc2a899b3267e3dfd8a47bf549c248f065"
+      "revision": 9,
+      "digest": "7ba26d404874a1e473106ce5b69e21919b2227c6c0a8ce16ebf7699951ce0e27"
     }
   ],
   "gaps": [
@@ -174,7 +177,8 @@
     "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product, selected client settings or processing when acting as a customer's processor; confirm the model-provider route.",
     "No hands-on comparison or model performance test has been performed.",
     "Cline's client settings and model-provider data handling were not inspected.",
-    "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified."
+    "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified.",
+    "Continue documents prior CLI session resume and versioned configuration reuse, but not cross-device session export or full IDE/CLI state migration; no transfer was tested."
   ],
   "changes": [
     {
@@ -228,6 +232,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Cline dependency after documenting local task-history persistence and Git file checkpoints; cross-device history export and migration remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Continue evidence for CLI session resume and versioned config files; cross-device history export and full state transfer remain unverified."
     }
   ],
   "commercial": {

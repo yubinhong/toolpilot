@@ -276,6 +276,15 @@ if (continueProfile && continueBilling) {
     if (!source || !html.includes(source.url)) failures.push(`/tools/continue/: billing source ${sourceId} is missing from generated HTML`);
   }
 }
+const continuePortability = continueProfile?.facts.find(fact => fact.key === 'portability');
+if (continueProfile && continuePortability) {
+  const html = readFileSync(join('out','/tools/continue/','index.html'),'utf8');
+  if (!html.includes(escapeHtml(continuePortability.value))) failures.push('/tools/continue/: CLI session/config portability fact is missing from generated HTML');
+  for (const sourceId of continuePortability.sourceIds) {
+    const source = continueProfile.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/tools/continue/: portability source ${sourceId} is missing from generated HTML`);
+  }
+}
 for (const record of content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'continue'))) {
   const billingFaq = record.faqs?.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'continue' && ref.sourceId === 'terms'));
   if (!billingFaq) {
@@ -285,6 +294,16 @@ for (const record of content.filter(item => item.kind !== 'tools' && item.depend
   const html = readFileSync(join('out',`/${record.kind}/${record.slug}/`,'index.html'),'utf8');
   if (!html.includes(escapeHtml(billingFaq.answer))) failures.push(`/${record.kind}/${record.slug}/: Continue billing FAQ is missing from generated HTML`);
   if (!html.includes('https://continue.dev/terms-conditions/')) failures.push(`/${record.kind}/${record.slug}/: Continue Terms source is missing from generated HTML`);
+  const portabilityFaq = record.faqs?.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'continue' && ref.sourceId === 'cli-tui'));
+  if (!portabilityFaq || !['cli-config','config-guide'].every(sourceId => portabilityFaq.sourceRefs.some(ref => ref.toolSlug === 'continue' && ref.sourceId === sourceId))) {
+    failures.push(`/${record.kind}/${record.slug}/: Continue session/config portability FAQ is missing`);
+    continue;
+  }
+  if (!html.includes(escapeHtml(portabilityFaq.answer))) failures.push(`/${record.kind}/${record.slug}/: Continue portability FAQ is missing from generated HTML`);
+  for (const sourceId of ['cli-tui','cli-config','config-guide']) {
+    const source = continueProfile?.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/${record.kind}/${record.slug}/: Continue portability source ${sourceId} is missing from generated HTML`);
+  }
 }
 const n8nProfile = tools.get('n8n');
 const n8nLocalModels = n8nProfile?.facts.find(fact => fact.key === 'localModels');

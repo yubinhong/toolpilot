@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cline vs Continue",
   "summary": "Compare coding assistants by model control, permissions and channel-specific lifecycle evidence.",
-  "revision": 11,
+  "revision": 12,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -41,11 +41,13 @@
   ],
   "pros": [
     { "text": "Cline documents local STDIO and remote MCP servers and supports server management in its IDE extension and CLI.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "mcp" }] },
-    { "text": "Continue documents configurable MCP servers as custom tools in Agent mode.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] }
+    { "text": "Continue documents configurable MCP servers as custom tools in Agent mode.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
+    { "text": "Continue recommends version-controlling its configuration, and its CLI accepts a YAML configuration file by path; secrets should remain outside committed config.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "config-guide" }, { "toolSlug": "continue", "sourceId": "cli-config" }] }
   ],
   "cons": [
     { "text": "Continue's documentation limits MCP use to Agent mode, so this capability is not documented across all modes.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
-    { "text": "Continue's README calls the repository read-only and 2.0.0 its final release; Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists CLI 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These channel/version claims do not establish current CLI support or security response.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] }
+    { "text": "Continue's README calls the repository read-only and 2.0.0 its final release; Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists CLI 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These channel/version claims do not establish current CLI support or security response.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
+    { "text": "Continue CLI docs describe resuming a previous chat, but do not establish supported cross-device session export or complete IDE/CLI state migration.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "cli-tui" }, { "toolSlug": "continue", "sourceId": "cli-config" }] }
   ],
   "faqs": [
     { "question": "Can Continue use MCP outside Agent mode?", "answer": "No. Continue's MCP documentation says MCP tools are available only in Agent mode.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
@@ -54,12 +56,13 @@
     { "question": "What do Cline's public sources say about telemetry defaults?", "answer": "Cline's Terms, last modified 2025-09-25, say extension telemetry is on by default and can be disabled in settings; its 2025-02-26 blog describes telemetry as opt-in. These public statements conflict, so verify the current extension version and setting.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
     { "question": "Can Continue be configured for offline use?", "answer": "Continue documents a VS Code setup that installs the extension, disables Allow Anonymous Telemetry and configures a local model. This documents a setup path, not the behavior of a specific build or every Continue channel; verify the selected package and provider separately.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }] },
     { "question": "How should I verify Continue model costs?", "answer": "Continue's Terms describe model-use credit purchases and recurring subscriptions, with applicable pricing/payment terms in a User Account or Service Order. The CLI quickstart also lists a direct Anthropic API-key route; its provider fees must be checked separately. No numeric account or provider price was verified here.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "terms" }, { "toolSlug": "continue", "sourceId": "cli" }] },
-    { "question": "Can I move Cline task history to another device?", "answer": "Cline's docs say tasks are saved to the local machine and can be resumed across editor sessions; Git-based checkpoints cover file changes. The reviewed page does not specify supported transfer of complete task history, settings or provider configuration to another device. No export, transfer or restore was tested.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "task-history" }] }
+    { "question": "Can I move Cline task history to another device?", "answer": "Cline's docs say tasks are saved to the local machine and can be resumed across editor sessions; Git-based checkpoints cover file changes. The reviewed page does not specify supported transfer of complete task history, settings or provider configuration to another device. No export, transfer or restore was tested.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "task-history" }] },
+    { "question": "Can Continue CLI chat history and configuration move to another device?", "answer": "Continue CLI's `cn --resume` and `/resume` commands restore the full history of a previous session, and its docs recommend version-controlling `config.yaml`; the CLI can load a YAML file by path. The reviewed docs do not specify cross-device session export/import or complete IDE/CLI state migration. Keep secrets outside committed config. No transfer was tested.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "cli-tui" }, { "toolSlug": "continue", "sourceId": "cli-config" }, { "toolSlug": "continue", "sourceId": "config-guide" }] }
   ],
   "verdict": "Evaluate the exact package and support channel before comparing feature fit. The public CLI package/version history and a later VS Code pre-release narrow the channel record, but the README and Marketplace statements do not establish current CLI maintenance or a package-specific support commitment.",
   "bestFor": "Developers deciding how much model configuration and maintenance risk they can own",
   "notFor": "Teams that require a current upstream support commitment without first checking the package lifecycle",
-  "migration": "Pin the current package version, export model configuration and preserve a working fallback. Reassess extension publisher and update state before each upgrade.",
+  "migration": "Pin each selected package version and model route; version only reviewable config files and keep secrets outside source control. Confirm whether session history, account settings, local indexes and IDE/CLI state must move. Continue documents CLI session resume, not supported cross-device export or full-state migration; preserve a working fallback.",
   "dependencies": [
     {
       "slug": "cline",
@@ -68,8 +71,8 @@
     },
     {
       "slug": "continue",
-      "revision": 8,
-      "digest": "011eb817f14e527cc89fc83a489e14cc2a899b3267e3dfd8a47bf549c248f065"
+      "revision": 9,
+      "digest": "7ba26d404874a1e473106ce5b69e21919b2227c6c0a8ce16ebf7699951ce0e27"
     }
   ],
   "gaps": [
@@ -77,7 +80,8 @@
     "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product or processing when acting as a customer's processor; verify the selected package, account and model-provider route.",
     "No local-model quality, privacy or performance trial has been performed.",
     "Cline's actual telemetry configuration and selected-provider data handling were not inspected.",
-    "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified."
+    "Continue's Terms describe credits/subscriptions and account/order-specific pricing terms, but exact account or provider charges remain unverified.",
+    "Continue documents resuming previous CLI sessions and reusing versioned configuration files, but not cross-device session export or complete IDE/CLI state migration; no transfer was tested."
   ],
   "changes": [
     {
@@ -123,6 +127,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Cline dependency after documenting local task-history persistence and Git file checkpoints; cross-device history export and migration remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Continue evidence for CLI session resume and versioned config files; cross-device history export and full state transfer remain unverified."
     }
   ],
   "commercial": {

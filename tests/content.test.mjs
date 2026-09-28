@@ -423,12 +423,12 @@ test('Cline task-history portability distinguishes local resume from cross-devic
   }
   const comparison=dependents.find(item=>item.slug==='cline-vs-continue');
   const comparisonFaq=comparison?.faqs.find(item=>item.question==='Can I move Cline task history to another device?');
-  assert.equal(comparison?.revision,11);
+  assert.equal(comparison?.revision,12);
   assert.deepEqual(comparisonFaq?.sourceRefs,faq?.sourceRefs);
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,16);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,15);
 });
 test('Windsurf transition and current plan prices remain source-bound and separate from legacy account quotes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -584,7 +584,7 @@ test('Cursor Self-Hosted Machines separate worker execution, inference and data 
   }
   const paired=content.find(item=>item.kind==='compare'&&item.slug==='cursor-vs-claude-code');
   assert.ok(paired?.faqs.some(item=>item.question==='Do their self-hosted options move model inference onto your infrastructure?'));
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,16);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,15);
 });
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -701,7 +701,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,16);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,15);
 });
 test('GitHub Copilot cloud-agent runner placement is distinct from local inference and remains pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='github-copilot');
@@ -794,12 +794,12 @@ test('GitHub Copilot portability documents the cloud-agent Git handoff without c
   assert.equal(comparison?.review.state,'in-review');
   assert.equal(comparison?.review.owner,null);
   assert.equal(isIndexable(comparison,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,16);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,15);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
   assert.ok(record);
-  assert.equal(record.revision,8);
+  assert.equal(record.revision,9);
   assert.equal(record.updatedAt,'2026-09-28');
   const sources=Object.fromEntries(record.sources.map(source=>[source.id,source]));
   for (const [id,url] of Object.entries({
@@ -813,6 +813,9 @@ test('Continue ownership and distribution lifecycle remain channel-specific and 
     models:'https://docs.continue.dev/customize/models',
     offline:'https://docs.continue.dev/guides/running-continue-without-internet',
     privacy:'https://continue.dev/privacy/',
+    'cli-tui':'https://docs.continue.dev/cli/tui-mode',
+    'cli-config':'https://docs.continue.dev/cli/configuration',
+    'config-guide':'https://docs.continue.dev/guides/understanding-configs',
   })) {
     assert.equal(sources[id]?.url,url);
     assert.equal(sources[id]?.accessedAt,'2026-09-28');
@@ -849,11 +852,22 @@ test('Continue ownership and distribution lifecycle remain channel-specific and 
   assert.match(localModels?.value??'',/Ollama/);
   assert.match(localModels?.value??'',/sufficient VRAM/);
   assert.match(localModels?.value??'',/disabling anonymous telemetry/);
+  const portability=record.facts.find(item=>item.key==='portability');
+  assert.deepEqual(portability?.sourceIds,['cli-tui','cli-config','config-guide']);
+  assert.equal(portability?.checkedAt,'2026-09-28');
+  assert.match(portability?.value??'',/`cn --resume` or `\/resume`/);
+  assert.match(portability?.value??'',/restores full history from a previous session/);
+  assert.match(portability?.value??'',/version-controlling `config\.yaml`/);
+  assert.match(portability?.value??'',/`\.\/my-config\.yaml` with `--config`/);
+  assert.match(portability?.value??'',/sensitive values in environment variables/);
+  assert.match(portability?.value??'',/not cross-device session export\/import/);
+  assert.match(portability?.value??'',/No session, config or machine was moved/);
   assert.ok(record.faqs.some(item=>item.question.includes('run offline')&&item.sourceRefs.some(ref=>ref.sourceId==='offline')));
   assert.equal(record.prices[0]?.amount,null);
   assert.equal(record.prices[0]?.checkedAt,null);
   assert.deepEqual(record.prices[0]?.sourceIds,['terms']);
   assert.ok(record.faqs.some(item=>item.question.includes('paid model usage')&&item.sourceRefs.some(ref=>ref.sourceId==='terms')));
+  assert.ok(record.faqs.some(item=>item.question.includes('chat history and configuration')&&['cli-tui','cli-config','config-guide'].every(id=>item.sourceRefs.some(ref=>ref.sourceId===id))));
   assert.ok(record.gaps.some(gap=>gap.includes('update path and support response')));
   assert.ok(record.gaps.some(gap=>gap.includes('post-acquisition privacy notice')));
   assert.ok(record.gaps.some(gap=>gap.includes('exact account or Service Order price')));
@@ -864,10 +878,12 @@ test('Continue ownership and distribution lifecycle remain channel-specific and 
     assert.equal(dependency.revision,record.revision);
     assert.equal(dependency.digest,contentDigest(record));
     assert.ok(decision.faqs.some(item=>item.sourceRefs.some(ref=>ref.sourceId==='terms')),`${decision.slug} describes the sourced Continue billing route`);
+    assert.ok(decision.faqs.some(item=>['cli-tui','cli-config','config-guide'].every(id=>item.sourceRefs.some(ref=>ref.toolSlug==='continue'&&ref.sourceId===id))),`${decision.slug} describes Continue session/config portability`);
     assert.equal(decision.review.state,'in-review');
     assert.equal(isIndexable(decision,content),false);
   }
   assert.ok(freshness(content,'2026-09-28').some(item=>item.path==='/tools/continue/'&&item.type==='price'&&item.field==='Model and account usage'&&item.status==='unverified'));
+  assert.ok(!freshness(content,'2026-09-28').some(item=>item.path==='/tools/continue/'&&item.type==='fact'&&item.field==='portability'));
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
@@ -886,7 +902,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'?7:record.slug==='cline'?5:record.slug==='cursor'?5:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?9:record.slug==='github-copilot'?7:record.slug==='cline'?5:record.slug==='cursor'?5:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);

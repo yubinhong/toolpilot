@@ -610,6 +610,17 @@ Initial P0 technical tranche verification (2026-09-27): `npm run cloudflare:buil
 - Owner boundary: no client/account settings, local task directory or migration was inspected or moved. The source-backed draft does not approve history-export completeness or a migration result.
 - Rollback: restore Cline revision 4, all eight prior dependent revisions/digests, exact manifests and handoffs, paired regression/artifact assertions and task records; rebuild and repeat content review and current-profile smoke. No route, data or indexing migration is involved.
 
+### TODO-309 — Continue CLI session and configuration portability — 2026-09-28
+
+- Goal: replace Continue's unknown portability fact with the exact official CLI/session and configuration workflow while keeping cross-device migration limits visible.
+- Evidence scope: the TUI docs say `cn --resume` or `/resume` restores full history from a previous session; CLI configuration docs allow an explicit YAML file path; Continue recommends version-controlling `config.yaml` and keeping secrets outside committed config. These pages do not specify session export/import or full IDE/CLI state transfer.
+- Update only the Continue profile and its two declared decision dependents (`compare/cline-vs-continue`, `best/open-source-ai-coding-tools`); add source-bound FAQs, refresh the exact TASK-006 manifest/evidence handoff, and add regression/rendered-artifact checks. Keep all three records in-review/noindex and out of the sitemap.
+- Preserve the separate lifecycle/support, post-acquisition privacy, actual account/provider terms, and local model testing gaps. Do not claim package maintenance, session storage location, or that a config file contains account state.
+- [x] Local acceptance: Node `v22.23.2` / npm `10.9.8` content validation, exact review, and 55 content-focused tests passed; `npm run cloudflare:build` passed lint, typecheck, 94 tests, 39-record validation, static export and artifacts (99 pages / 4 indexable URLs). `npm audit --audit-level=high` found 0 vulnerabilities; freshness is 15 unverified / 0 overdue. The 201-URL scan reported 160 HTTP-ok, 20 restricted, 11 policy-blocked and 10 temporary errors; all three newly cited Continue docs returned HTTP 200. Local current-profile smoke passed 99 pages, robots, sitemap and a real 404; generated HTML assertions verified all three pages' FAQ/source links, noindex and sitemap exclusion. `git diff --check` passed.
+- Release acceptance: pending clean `release:check`, CI, and current project-hostname/production smoke plus source/noindex/sitemap assertions.
+- Owner boundary: no account, session, credential, model, local configuration or migration will be inspected or moved; no approval or indexability change.
+- Rollback: restore Continue revision 8, both prior dependent revisions/digests and TASK-006 handoff, plus paired tests/artifact/task docs; rebuild and repeat content review and smoke. No route or migration change is involved.
+
 ### TODO-309 — Claude Code self-hosted execution evidence
 
 - Goal: close Claude Code's source-verifiable `selfHosting`, `localModels` and `portability` gaps without treating customer-run session compute as model hosting or claiming custom endpoint support.
