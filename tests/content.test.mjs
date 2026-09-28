@@ -217,7 +217,7 @@ test('Replit Git recovery and provider imports bound portability without claimin
     assert.ok(faq.sourceRefs.some(ref => ref.sourceId === 'import-providers'));
     assert.match(faq.answer, /No (?:export, )?import or restore (?:was|were) tested|completed migration test/i);
   }
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 13);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 12);
 });
 test('Bolt privacy policy draft records prospective training use without claiming account settings',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'bolt-new');
@@ -509,13 +509,13 @@ test('Cline task-history portability distinguishes local resume from cross-devic
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,13);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,12);
 });
 test('Windsurf transition and current plan prices remain source-bound and separate from legacy account quotes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
   const workflow = record?.facts.find(item => item.key === 'workflow');
   assert.ok(record);
-  assert.equal(record.revision, 5);
+  assert.equal(record.revision, 6);
   assert.equal(workflow?.checkedAt, '2026-09-28');
   assert.deepEqual(workflow?.sourceIds, ['desktop']);
   assert.match(workflow?.value ?? '', /standard update preserves existing plan and pricing, including legacy Windsurf Enterprise/);
@@ -665,7 +665,7 @@ test('Cursor Self-Hosted Machines separate worker execution, inference and data 
   }
   const paired=content.find(item=>item.kind==='compare'&&item.slug==='cursor-vs-claude-code');
   assert.ok(paired?.faqs.some(item=>item.question==='Do their self-hosted options move model inference onto your infrastructure?'));
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,13);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,12);
 });
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -679,7 +679,7 @@ test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunct
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 5);
+  assert.equal(record.revision, 6);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.equal(fact?.critical, true);
   assert.deepEqual(fact?.sourceIds, Object.keys(expectedSources));
@@ -712,6 +712,45 @@ test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunct
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
+});
+test('Windsurf Enterprise updater evidence stays scoped to the Codeium listing and dependent drafts',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
+  const fact = record?.facts.find(item => item.key === 'selfHosting');
+  const faq = record?.faqs.find(item => item.question === 'What does the official listing establish about self-hosted Enterprise access?');
+  const sourceUrl = 'https://marketplace.windsurf.com/extension/Codeium/codeium-enterprise-updater/changes';
+
+  assert.ok(record);
+  assert.equal(record.revision, 6);
+  assert.equal(fact?.checkedAt, '2026-09-28');
+  assert.deepEqual(fact?.sourceIds, ['enterprise-updater']);
+  assert.match(fact?.value ?? '', /for self-hosted enterprise customers only/i);
+  assert.match(fact?.value ?? '', /listed Codeium product/);
+  assert.match(fact?.value ?? '', /does not specify deployment architecture/);
+  assert.match(fact?.value ?? '', /whether this path remains available to users of the Devin Desktop continuation/);
+  assert.match(fact?.value ?? '', /No account or installation was inspected/);
+  assert.equal(record.sources.find(source => source.id === 'enterprise-updater')?.url, sourceUrl);
+  assert.equal(record.sources.find(source => source.id === 'enterprise-updater')?.publisher, 'Codeium');
+  assert.deepEqual(faq?.sourceRefs.map(ref => ref.sourceId), ['enterprise-updater']);
+  assert.match(faq?.answer ?? '', /does not explain deployment architecture, data or model location/);
+  assert.ok(record.gaps.some(gap => gap.includes('listed Codeium Enterprise updater applies to the specific Devin Desktop continuation')));
+  assert.equal(record.facts.find(item => item.key === 'localModels')?.value, null);
+  assert.equal(record.facts.find(item => item.key === 'portability')?.value, null);
+
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'windsurf'));
+  assert.deepEqual(dependents.map(item => item.slug).sort(), ['cursor', 'windsurf', 'windsurf-vs-cursor']);
+  for (const decision of dependents) {
+    const dependency = decision.dependencies.find(item => item.slug === 'windsurf');
+    const decisionFaq = decision.faqs.find(item => item.question === 'What does the public Codeium listing establish about Windsurf self-hosting?');
+    assert.equal(dependency.revision, record.revision);
+    assert.equal(dependency.digest, contentDigest(record));
+    assert.deepEqual(decisionFaq?.sourceRefs.map(ref => ref.sourceId), ['enterprise-updater']);
+    assert.ok(decision.gaps.some(gap => gap.includes('listed Codeium Enterprise updater applies to the specific Devin Desktop continuation')));
+    assert.equal(decision.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 12);
 });
 test('GitHub Copilot training-use policy distinguishes individual opt-out from organization plans',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');
@@ -782,7 +821,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,13);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,12);
 });
 test('GitHub Copilot cloud-agent runner placement is distinct from local inference and remains pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='github-copilot');
@@ -875,7 +914,7 @@ test('GitHub Copilot portability documents the cloud-agent Git handoff without c
   assert.equal(comparison?.review.state,'in-review');
   assert.equal(comparison?.review.owner,null);
   assert.equal(isIndexable(comparison,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,13);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,12);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
@@ -1118,7 +1157,7 @@ test('Claude Code hosting, inference and portability claims match current offici
 test('MCP and self-hosted hubs render only facts with resolvable source evidence', () => {
   const expectedProfiles = {
     mcp: ['cursor', 'claude-code', 'github-copilot', 'cline', 'continue'],
-    'self-hosted': ['n8n', 'continue', 'aider', 'claude-code', 'cursor'],
+    'self-hosted': ['n8n', 'continue', 'aider', 'claude-code', 'cursor', 'windsurf'],
   };
 
   for (const [kind, slugs] of Object.entries(expectedProfiles)) {
@@ -1144,6 +1183,10 @@ test('MCP and self-hosted hubs render only facts with resolvable source evidence
   assert.equal(cursorHostedEntry?.fact.key, 'selfHosting');
   assert.deepEqual(cursorHostedEntry?.fact.sourceIds, ['self-hosted-machines','self-hosted-runtime','self-hosted-pools']);
   assert.match(cursorHostedEntry?.fact.value ?? '', /agent loop, inference and planning stay in Cursor's cloud/);
+  const windsurfHostedEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'windsurf');
+  assert.equal(windsurfHostedEntry?.fact.key, 'selfHosting');
+  assert.deepEqual(windsurfHostedEntry?.fact.sourceIds, ['enterprise-updater']);
+  assert.match(windsurfHostedEntry?.fact.value ?? '', /deployment architecture/);
 });
 test('TASK-006 decision pages expose cited strengths, constraints and FAQs while pending review',() => {
   const required = [

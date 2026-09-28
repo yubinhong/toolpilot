@@ -175,6 +175,21 @@ for (const sourceId of windsurfWorkflow?.sourceIds ?? []) {
   const source = windsurf.sources.find(item => item.id === sourceId);
   if (!source || !windsurfHtml.includes(source.url)) failures.push(`/tools/windsurf/: transition/price source ${sourceId} is missing from generated HTML`);
 }
+const windsurfSelfHosting = windsurf?.facts.find(fact => fact.key === 'selfHosting');
+const windsurfSelfHostingFaq = windsurf?.faqs.find(faq => faq.question === 'What does the official listing establish about self-hosted Enterprise access?');
+const enterpriseUpdater = windsurf?.sources.find(source => source.id === 'enterprise-updater');
+if (!windsurfSelfHosting?.value || !windsurfHtml.includes(escapeHtml(windsurfSelfHosting.value))) failures.push('/tools/windsurf/: scoped self-hosted Enterprise fact is missing from generated HTML');
+if (!windsurfSelfHostingFaq || !windsurfHtml.includes(escapeHtml(windsurfSelfHostingFaq.answer))) failures.push('/tools/windsurf/: self-hosted Enterprise FAQ is missing from generated HTML');
+if (!enterpriseUpdater?.url || !windsurfHtml.includes(enterpriseUpdater.url)) failures.push('/tools/windsurf/: Codeium Enterprise updater source is missing from generated HTML');
+for (const path of ['/alternatives/cursor/', '/alternatives/windsurf/', '/compare/windsurf-vs-cursor/']) {
+  const [, kind, slug] = path.split('/');
+  const record = content.find(item => item.kind === kind && item.slug === slug);
+  const faq = record?.faqs.find(item => item.question === 'What does the public Codeium listing establish about Windsurf self-hosting?');
+  const htmlPath = `out${path}index.html`;
+  const html = existsSync(htmlPath) ? readFileSync(htmlPath, 'utf8') : '';
+  if (!faq || !html.includes(escapeHtml(faq.answer))) failures.push(`${path}: Codeium self-hosting evidence FAQ is missing from generated HTML`);
+  if (!enterpriseUpdater?.url || !html.includes(enterpriseUpdater.url)) failures.push(`${path}: Codeium Enterprise updater source is missing from generated HTML`);
+}
 for (const price of windsurf?.prices ?? []) {
   for (const sourceId of price.sourceIds) {
     const source = windsurf.sources.find(item => item.id === sourceId);

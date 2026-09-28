@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Windsurf alternatives",
   "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 15,
+  "revision": 16,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "windsurf",
-      "revision": 5,
-      "digest": "6e3520218c41d60fd1aa2fe8fe4ab9b16224b83d0729fed35909e98348489342"
+      "revision": 6,
+      "digest": "eb1058027adc67be57e8c91ce30268d3cfef01566b2c874cac46e51252084ce9"
     },
     {
       "slug": "cursor",
@@ -68,7 +68,8 @@
   "gaps": [
     "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
     "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
-    "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
+    "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
+    "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details."
   ],
   "changes": [
     {
@@ -126,6 +127,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Cline dependency after documenting local task-history persistence and Git file checkpoints; cross-device history export and migration remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Windsurf dependency after the Codeium Marketplace listed an updater for self-hosted Enterprise customers; architecture and Devin Desktop continuity remain unverified."
     }
   ],
   "commercial": {
@@ -286,6 +291,16 @@
         {
           "toolSlug": "github-copilot",
           "sourceId": "cli-byok"
+        }
+      ]
+    },
+    {
+      "question": "What does the public Codeium listing establish about Windsurf self-hosting?",
+      "answer": "The Windsurf Marketplace lists a Codeium Enterprise Updater for self-hosted Enterprise customers. It does not describe deployment topology, data or model location, new-customer eligibility, or whether this option continues for Devin Desktop; no account or installation was checked.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "enterprise-updater"
         }
       ]
     }

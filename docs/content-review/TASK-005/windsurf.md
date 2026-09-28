@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 5. Digest: `6e3520218c41d60fd1aa2fe8fe4ab9b16224b83d0729fed35909e98348489342`.
+Revision: 6. Digest: `eb1058027adc67be57e8c91ce30268d3cfef01566b2c874cac46e51252084ce9`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -24,13 +24,15 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Windsurf Master Services Agreement (Exafunction Services only)](https://windsurf.com/docs/MSA.pdf) — Windsurf; accessed 2026-09-28
 
+- [Codeium Enterprise Updater](https://marketplace.windsurf.com/extension/Codeium/codeium-enterprise-updater/changes) — Codeium; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: The official FAQ calls Devin Desktop the new name for Windsurf and says the standard update preserves the existing plan/pricing, including legacy Windsurf Enterprise. Sources: desktop; checked: 2026-09-28.
 
 - **Privacy / data handling**: Cognition's Privacy Policy says User Content may be used for training depending on applicable terms. The June 2026 Platform Terms permit Customer Data training and let paid tiers opt out (Teams requires an administrator); opting out enables provider Zero Data Retention, subject to safety/abuse and legal exceptions. The July 2026 DPA scopes processing of personal Customer Data and requires restrictions preventing subprocessors from training on Customer Data. The separate Windsurf MSA is marked specific to Exafunction Services only and says Customer Data is not trained and is deleted after output, with listed persistent-feature, AUP and profile-data exceptions. The documents cover different data categories, roles and agreements; no account plan, assignment notice, executed Order Form/DPA, opt-out or feature setting was checked. Sources: privacy-policy, terms, dpa, exafunction-msa; checked 2026-09-28.
 
-- **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Product self-hosting**: Codeium's current Windsurf Marketplace listing describes the Codeium Enterprise Updater as for self-hosted enterprise customers only. This is bounded evidence of a self-hosted Enterprise customer path for the listed Codeium product. The public listing does not specify deployment architecture, which service components or data are self-hosted, model inference location, whether this path remains available to users of the Devin Desktop continuation, or new-customer eligibility. The older Windsurf plugin setup page redirects and was not used as current evidence. No account or installation was inspected. Source: enterprise-updater; checked: 2026-09-28.
 
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
@@ -42,9 +44,12 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 - Constraint: the vendor describes a standard transition, but this review has not tested an individual account or entitlement. Source: desktop.
 - Strength: the current plan page lists Free at USD 0/month, Pro at USD 20/month, Max at USD 200/month, and Teams at USD 80/month plus USD 40/month per full developer seat. Paid allowances refresh daily and weekly; additional use is available at API pricing. Source: pricing.
 - Strength: paid Service Tiers may opt out of Customer Data model training; the Platform Terms say that this enables Zero Data Retention with model providers, subject to stated exceptions. Source: terms.
+- Strength: the Codeium Marketplace lists an Enterprise updater specifically for self-hosted enterprise customers, a narrow signal that a self-hosted Enterprise customer path exists for the listed Codeium product. Source: enterprise-updater.
 - Constraint: current Cognition terms, the DPA and the Exafunction-specific Windsurf MSA describe different training and retention conditions. Confirm which agreement applies before making an account-specific privacy claim. Sources: terms, dpa, exafunction-msa.
+- Constraint: the Codeium Enterprise updater listing does not describe deployment topology, service or data placement, inference location, new-customer eligibility or continuity into Devin Desktop; no account or installation was checked. Source: enterprise-updater.
 - FAQ: the standard over-the-air update carries plans, pricing, extensions, settings and in-progress work. The FAQ says plan pricing remains unchanged, including legacy Enterprise. Sources: desktop.
 - FAQ: Cognition's privacy policy says training use depends on applicable terms; paid-tier opt-out and the Exafunction-specific MSA have different scopes. Verify the account's controlling agreement, plan, setting and enabled persistent features. Sources: privacy-policy, terms, dpa, exafunction-msa.
+- FAQ: the Windsurf Marketplace lists a Codeium Enterprise Updater for self-hosted Enterprise customers. This does not establish its deployment architecture or applicability to Devin Desktop, and no account or installation was checked. Source: enterprise-updater.
 
 ## Pricing basis
 
@@ -68,6 +73,7 @@ Record the current account and editor settings, confirm the official update appl
 
 - No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost.
 - The applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training setting and persistent features were not checked.
+- The public Codeium Enterprise updater listing does not establish whether it applies to the specific Devin Desktop continuation or which components/data it covers; no customer account or enterprise portal was inspected.
 
 ## Owner checklist
 

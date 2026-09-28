@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Windsurf / Devin Desktop",
   "summary": "Windsurf, now named Devin Desktop, retains a full IDE and adds an agent command center.",
-  "revision": 5,
+  "revision": 6,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -72,6 +72,13 @@
       "title": "Windsurf Master Services Agreement (Exafunction Services only)",
       "publisher": "Windsurf",
       "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "enterprise-updater",
+      "url": "https://marketplace.windsurf.com/extension/Codeium/codeium-enterprise-updater/changes",
+      "title": "Codeium Enterprise Updater",
+      "publisher": "Codeium",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -96,9 +103,9 @@
     {
       "key": "selfHosting",
       "label": "Product self-hosting",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Codeium's current Windsurf Marketplace listing describes its Codeium Enterprise Updater as for self-hosted enterprise customers only. This is bounded evidence of a self-hosted Enterprise customer path for the listed Codeium product. The public listing does not specify deployment architecture, which service components or data are self-hosted, model inference location, whether this path remains available to users of the Devin Desktop continuation, or eligibility for new customers. The older Windsurf plugin setup page redirects and was not used as current evidence. No account or installation was inspected.",
+      "sourceIds": ["enterprise-updater"],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -230,6 +237,15 @@
           "sourceId": "terms"
         }
       ]
+    },
+    {
+      "text": "The Codeium Marketplace lists an Enterprise updater specifically for self-hosted enterprise customers, a narrow signal that a self-hosted Enterprise customer path exists for the listed Codeium product.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "enterprise-updater"
+        }
+      ]
     }
   ],
   "cons": [
@@ -269,6 +285,15 @@
         {
           "toolSlug": "windsurf",
           "sourceId": "exafunction-msa"
+        }
+      ]
+    },
+    {
+      "text": "The public Codeium Enterprise updater listing does not describe deployment topology, service or data placement, inference location, new-customer eligibility or continuity into Devin Desktop; no account or installation was checked.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "enterprise-updater"
         }
       ]
     }
@@ -321,6 +346,13 @@
         { "toolSlug": "windsurf", "sourceId": "dpa" },
         { "toolSlug": "windsurf", "sourceId": "exafunction-msa" }
       ]
+    },
+    {
+      "question": "What does the official listing establish about self-hosted Enterprise access?",
+      "answer": "The Windsurf Marketplace lists a Codeium Enterprise Updater for self-hosted Enterprise customers. This establishes a limited customer-path signal for the listed Codeium product; the public listing does not explain deployment architecture, data or model location, eligibility for new customers, or whether the option continues for Devin Desktop. No account or installation was checked.",
+      "sourceRefs": [
+        { "toolSlug": "windsurf", "sourceId": "enterprise-updater" }
+      ]
     }
   ],
   "verdict": "Treat Devin Desktop as the documented continuation of Windsurf; use current public plan prices for general comparison, and verify any legacy account quote and usage terms before acting.",
@@ -330,7 +362,8 @@
   "dependencies": [],
   "gaps": [
     "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost.",
-    "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, model-training opt-out, and enabled persistent features; public documents describe different data scopes and conditions."
+    "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, model-training opt-out, and enabled persistent features; public documents describe different data scopes and conditions.",
+    "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details, and no customer account or enterprise portal was inspected."
   ],
   "changes": [
     {
@@ -352,6 +385,10 @@
     {
       "date": "2026-09-28",
       "summary": "Reconciled Cognition training/opt-out terms, the DPA scope and Windsurf's Exafunction-specific no-training guidance; account applicability remains unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Recorded the Codeium Marketplace's narrow self-hosted Enterprise updater signal; its architecture and continuity into Devin Desktop remain unverified."
     }
   ],
   "commercial": {

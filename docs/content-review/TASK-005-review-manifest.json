@@ -74,12 +74,13 @@
   },
   {
     "path": "/tools/windsurf/",
-    "revision": 5,
-    "digest": "6e3520218c41d60fd1aa2fe8fe4ab9b16224b83d0729fed35909e98348489342",
+    "revision": 6,
+    "digest": "eb1058027adc67be57e8c91ce30268d3cfef01566b2c874cac46e51252084ce9",
     "state": "in-review",
     "gaps": [
       "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost.",
-      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, model-training opt-out, and enabled persistent features; public documents describe different data scopes and conditions."
+      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, model-training opt-out, and enabled persistent features; public documents describe different data scopes and conditions.",
+      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details, and no customer account or enterprise portal was inspected."
     ]
   },
   {
@@ -103,13 +104,14 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 16,
-    "digest": "55e9073171cd4efc3436898581ca8b12e402e5cb33e067b49b289a77338c9aee",
+    "revision": 17,
+    "digest": "c03392135c16425180f4c44364e920716724afa4c2cfca3b0bb8f03bf4ce21d4",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
-      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
+      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
+      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details."
     ]
   },
   {
@@ -130,13 +132,14 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 15,
-    "digest": "5a6d23f5c670275d7ca78d9d047942b8eecd93aa030e3aab48a5ff421293a31a",
+    "revision": 16,
+    "digest": "034ae8f7dd95fd1593c93813a1ee8172edd786f12117849bd1bafa851983ad4c",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
-      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."
+      "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
+      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details."
     ]
   },
   {
@@ -198,12 +201,13 @@
   },
   {
     "path": "/compare/windsurf-vs-cursor/",
-    "revision": 9,
-    "digest": "b6547155f661839854c6db9f05c36685e96d8240c4aea9317dc29571c84481c0",
+    "revision": 10,
+    "digest": "81124ea9a704237550c1f176bb24be6e5150a80becc3e028c579353606d58491",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before comparing privacy or retention with Cursor.",
-      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+      "Confirm whether the listed Codeium Enterprise updater applies to the specific Devin Desktop continuation and what components and data it covers; the public listing gives no architecture details."
     ]
   },
   {
