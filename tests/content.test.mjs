@@ -186,7 +186,10 @@ test('n8n license and self-hosting evidence preserves vendor examples and unreso
   assert.equal(record.sources.find(item => item.id === 'security')?.url, 'https://n8n.io/legal/security/');
   assert.equal(record.sources.find(item => item.id === 'license')?.url, 'https://github.com/n8n-io/n8n/blob/master/LICENSE.md');
   assert.equal(record.sources.find(item => item.id === 'license-use-cases')?.url, 'https://support.n8n.io/article/can-i-use-your-license-for-my-use-case');
+  assert.equal(record.sources.find(item => item.id === 'license')?.accessedAt, '2026-09-28');
+  assert.equal(record.sources.find(item => item.id === 'license-use-cases')?.accessedAt, '2026-09-28');
   assert.deepEqual(license?.sourceIds, ['license', 'license-use-cases']);
+  assert.equal(license?.checkedAt, '2026-09-28');
   assert.match(license?.value ?? '', /own internal business purposes or non-commercial\/personal use/);
   assert.match(license?.value ?? '', /hosting and managing clients' workflows and credentials on your own instance requires Enterprise/);
   assert.match(license?.value ?? '', /embedding n8n to expose workflows to customers requires a white-labeled Embed license/);
