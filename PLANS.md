@@ -480,6 +480,15 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Local acceptance completed: Cloudflare build passed 82 tests and artifact checks (99 pages / 4 indexable URLs); audit found 0 vulnerabilities; freshness reports 33 unverified/0 overdue; all three new Cline source URLs returned HTTP 200 within a 155-URL scan; local current smoke and rendered-source/noindex/sitemap assertions passed.
 - Release acceptance completed: content commit `31192fc916d03d54af6f6e83ec02066e3b0685cd` passed clean detached `release:check`, CI `36364116609` and Cloudflare Pages check/deployment `7d9d83ea-cc61-40c1-b105-15660fcf61ff`. Immutable preview and production each passed 99-page current smoke; direct HTML checks confirmed sources, policy conflict, pending/noindex state and sitemap exclusion. Exact URLs and evidence are in TASK.md.
 
+##### Windsurf public pricing and transition evidence — 2026-09-28
+
+- Recheck Devin's current official desktop FAQ and plan page. Capture only the displayed public plan prices and the explicit statement that the standard update preserves existing plan/pricing, including legacy Windsurf Enterprise; do not infer a particular account's quote or test a migration.
+- Update the Windsurf profile price rows and transition wording, then revise only its three declared decision dependents (`alternatives/cursor`, `alternatives/windsurf`, and `compare/windsurf-vs-cursor`). Keep model usage variability, region/tax, exact legacy entitlement and account-specific migration as open questions.
+- Refresh the exact TASK-005 manifest and Windsurf evidence pack. Add source/date/amount/dependency/pending-review regression assertions; keep all affected records `in-review` and noindex.
+- Acceptance: content validation/review, freshness and source link scan, focused content tests, Node 22 build/audit and local smoke, clean release check, CI, Pages preview and production current-profile smoke. Add direct HTML checks for cited plan values and noindex/sitemap boundaries.
+- Rollback: revert only this dated content/dependency/manifest/test/evidence tranche and restore the matching prior revisions/digests; rebuild Pages and repeat content/artifact/current-profile smoke. Do not remove user review states or alter existing routes.
+- Local acceptance completed: `npm run cloudflare:build` passed lint, typecheck, 83 tests, content validation and artifact checks (99 pages / 4 indexable URLs); `npm audit --audit-level=high` found 0 vulnerabilities; freshness reports 32 unverified and 0 overdue fields. `npm run content:review` matched the exact manifests. The 155-URL link scan found 125 HTTP-ok, 19 restricted, 6 blocked and 5 temporary errors; both Devin sources returned HTTP 200. Local current-profile smoke and direct price/source/noindex/sitemap checks passed.
+
 #### Phase 5 — External operating and commercial gates
 
 - Obtain operator/contact/legal facts before final trust copy; do not invent a company, address, team or legal relationship.

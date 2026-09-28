@@ -62,11 +62,11 @@
   },
   {
     "path": "/tools/windsurf/",
-    "revision": 3,
-    "digest": "7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0",
+    "revision": 4,
+    "digest": "4e9a01e37f50d6d44aca97fec87038185a13f75a42abad990bd9a8887593fa32",
     "state": "in-review",
     "gaps": [
-      "No account-specific transition was tested; the exact current plan amount and usage terms are not captured for a quote."
+      "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost."
     ]
   },
   {
@@ -85,8 +85,8 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 7,
-    "digest": "1fdaa0a91d6851adc90b44b1699f68ee3d784fb7a08cd6096aa8877fa1fad45d",
+    "revision": 8,
+    "digest": "dd3c247dbaa9760504cd9774634fcba72b2539d628b0d9ea73b23171adcf93b5",
     "state": "in-review",
     "gaps": []
   },
@@ -106,8 +106,8 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 7,
-    "digest": "ade93c8b9382faaa2e0ae1aaec56ef84e7a12fb58bfd0e02469916d914305617",
+    "revision": 8,
+    "digest": "4afc1eb142626a12f38afd6a8444b22898d8a2e9019475a3ba890d6f889b905d",
     "state": "in-review",
     "gaps": []
   },
@@ -162,8 +162,8 @@
   },
   {
     "path": "/compare/windsurf-vs-cursor/",
-    "revision": 5,
-    "digest": "dc31168445700dbd810ad438435aebb8dcc86d31c8b49f115751d9a79167556c",
+    "revision": 6,
+    "digest": "cabdbbe80585567a3ec2d8da7997f2122da7a6ae379fac042df32760d2c107ab",
     "state": "in-review",
     "gaps": []
   },

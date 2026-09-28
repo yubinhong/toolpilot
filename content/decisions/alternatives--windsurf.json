@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Windsurf alternatives",
   "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 7,
+  "revision": 8,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -29,7 +29,7 @@
     {
       "heading": "When to keep the original",
       "paragraphs": [
-        "Do not migrate merely because a URL redirected. Confirm vendor continuity, export your settings and price the disruption before changing the working environment."
+        "The vendor describes a standard over-the-air update that preserves plan, pricing and settings. Verify the documented update applies to your account, compare the current public plan page with its actual usage terms, and rehearse workflow changes before replacing a working environment."
       ]
     },
     {
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "windsurf",
-      "revision": 3,
-      "digest": "7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0"
+      "revision": 4,
+      "digest": "4e9a01e37f50d6d44aca97fec87038185a13f75a42abad990bd9a8887593fa32"
     },
     {
       "slug": "cursor",
@@ -94,6 +94,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed the pinned Cline dependency after its official privacy and telemetry evidence update; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed the Windsurf profile after official plan prices and transition terms were reconciled; exact owner review remains pending."
     }
   ],
   "commercial": {
@@ -147,7 +151,7 @@
       ]
     },
     {
-      "text": "The exact current plan quote is not captured in this content record; use the current plan page and account terms rather than carrying forward a historical amount.",
+      "text": "Published monthly base prices do not establish a particular legacy Windsurf account's exact entitlement, checkout total or actual usage cost.",
       "sourceRefs": [
         {
           "toolSlug": "windsurf",
@@ -169,7 +173,7 @@
     },
     {
       "question": "Does the vendor describe a migration for existing users?",
-      "answer": "The FAQ says a standard over-the-air update carries plans, pricing, extensions, settings and in-progress work. Confirm the update path and current quote for the specific account.",
+      "answer": "The FAQ says a standard over-the-air update carries plans, pricing, extensions, settings and in-progress work, and current pricing remains unchanged including legacy Windsurf Enterprise. Confirm the documented update path for the specific account.",
       "sourceRefs": [
         {
           "toolSlug": "windsurf",
@@ -178,6 +182,20 @@
         {
           "toolSlug": "windsurf",
           "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "question": "What public prices are listed for Devin Desktop?",
+      "answer": "The current page lists Free at USD 0/month, Pro at USD 20/month, Max at USD 200/month and Teams at USD 80/month plus USD 40/month per full developer seat. Paid-plan usage allowances refresh daily and weekly, with extra usage at API pricing; these public amounts do not reveal a legacy account's quote or actual spend.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
         }
       ]
     }

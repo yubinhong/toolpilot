@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Cursor alternatives",
   "summary": "Cursor alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 7,
+  "revision": 8,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -23,7 +23,7 @@
     {
       "heading": "Match the reason to a candidate",
       "paragraphs": [
-        "Keep your current editor habits: inspect Copilot. Prefer command-driven tasks: trial Claude Code. Need provider configuration: inspect Cline. Treat Windsurf as a continuity question until the official redirect is resolved."
+        "Keep your current editor habits: inspect Copilot. Prefer command-driven tasks: trial Claude Code. Need provider configuration: inspect Cline. Treat Windsurf as Devin Desktop's documented continuation; compare its public plan prices separately from a specific account's actual quote."
       ]
     },
     {
@@ -66,8 +66,8 @@
     },
     {
       "slug": "windsurf",
-      "revision": 3,
-      "digest": "7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0"
+      "revision": 4,
+      "digest": "4e9a01e37f50d6d44aca97fec87038185a13f75a42abad990bd9a8887593fa32"
     }
   ],
   "gaps": [],
@@ -99,6 +99,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed the pinned Cline dependency after its official privacy and telemetry evidence update; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Windsurf continuity and public-price evidence; account quote and owner review remain pending."
     }
   ],
   "commercial": {
@@ -152,7 +156,7 @@
       ]
     },
     {
-      "text": "The official Windsurf editor page identifies Devin Desktop as the new name and describes a standard migration path; it does not establish the entitlements of a particular account.",
+      "text": "The official FAQ identifies Devin Desktop as the new name for Windsurf and says the standard update preserves existing plan and pricing, including legacy Enterprise; a particular account's entitlement is not established here.",
       "sourceRefs": [
         {
           "toolSlug": "windsurf",
@@ -183,6 +187,20 @@
         {
           "toolSlug": "claude-code",
           "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "question": "What public prices does Devin list for the Windsurf continuation?",
+      "answer": "The current page lists Free at USD 0/month, Pro at USD 20/month, Max at USD 200/month and Teams at USD 80/month plus USD 40/month per full developer seat. The vendor says a legacy plan's price stays the same, so these new-plan amounts do not establish a particular account's quote or usage cost.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
         }
       ]
     }

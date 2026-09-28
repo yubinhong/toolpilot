@@ -135,6 +135,23 @@ for (const sourceId of clinePrivacy?.sourceIds ?? []) {
   const source = cline.sources.find(item => item.id === sourceId);
   if (!source || !clineHtml.includes(source.url)) failures.push(`/tools/cline/: privacy source ${sourceId} is missing from generated HTML`);
 }
+const windsurf = tools.get('windsurf');
+const windsurfWorkflow = windsurf?.facts.find(fact => fact.key === 'workflow');
+const windsurfHtml = readFileSync('out/tools/windsurf/index.html', 'utf8');
+if (!windsurfWorkflow?.value || !windsurfHtml.includes(escapeHtml(windsurfWorkflow.value))) failures.push('/tools/windsurf/: transition and current plan-price fact is missing from generated HTML');
+for (const price of ['USD 0 / month', 'USD 20 / month', 'USD 200 / month', 'USD 80 / month', 'USD 40/month per full developer seat']) {
+  if (!windsurfHtml.includes(price)) failures.push(`/tools/windsurf/: public plan price ${price} is missing from generated HTML`);
+}
+for (const sourceId of windsurfWorkflow?.sourceIds ?? []) {
+  const source = windsurf.sources.find(item => item.id === sourceId);
+  if (!source || !windsurfHtml.includes(source.url)) failures.push(`/tools/windsurf/: transition/price source ${sourceId} is missing from generated HTML`);
+}
+for (const price of windsurf?.prices ?? []) {
+  for (const sourceId of price.sourceIds) {
+    const source = windsurf.sources.find(item => item.id === sourceId);
+    if (!source || !windsurfHtml.includes(source.url)) failures.push(`/tools/windsurf/: price source ${sourceId} is missing from generated HTML`);
+  }
+}
 for (const record of content) {
   const evidence = [
     ...(record.pros ?? []).map(item => ({ text: item.text, refs: item.sourceRefs, label: 'strength' })),

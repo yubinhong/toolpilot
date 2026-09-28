@@ -238,6 +238,37 @@ test('Cline privacy evidence exposes the public telemetry-policy conflict and AP
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('Windsurf transition and current plan prices remain source-bound and separate from legacy account quotes',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
+  const workflow = record?.facts.find(item => item.key === 'workflow');
+  assert.ok(record);
+  assert.equal(record.revision, 4);
+  assert.equal(workflow?.checkedAt, '2026-09-28');
+  assert.deepEqual(workflow?.sourceIds, ['desktop']);
+  assert.match(workflow?.value ?? '', /standard update preserves existing plan and pricing, including legacy Windsurf Enterprise/);
+  assert.equal(record.sources.find(item => item.id === 'pricing')?.url, 'https://devin.ai/pricing');
+  assert.equal(record.sources.find(item => item.id === 'desktop')?.url, 'https://devin.ai/desktop');
+  const prices = Object.fromEntries(record.prices.map(price => [price.name, price]));
+  assert.equal(prices.Free.amount, 0);
+  assert.equal(prices.Pro.amount, 20);
+  assert.equal(prices.Max.amount, 200);
+  assert.equal(prices['Teams base plan'].amount, 80);
+  assert.match(prices['Teams base plan'].billing, /USD 40\/month per full developer seat/);
+  assert.equal(prices['Legacy Windsurf account entitlement'].amount, null);
+  assert.ok(prices['Legacy Windsurf account entitlement'].sourceIds.includes('desktop'));
+  assert.ok(record.gaps.some(gap => gap.includes('No account-specific transition or legacy entitlement was tested')));
+  for (const slug of ['cursor', 'windsurf', 'windsurf-vs-cursor']) {
+    const decision = content.find(item => item.slug === slug && item.kind !== 'tools');
+    const dependency = decision?.dependencies.find(item => item.slug === 'windsurf');
+    assert.ok(dependency, `${decision?.kind}/${slug} should pin Windsurf`);
+    assert.equal(dependency.revision, record.revision);
+    assert.equal(dependency.digest, contentDigest(record));
+    assert.equal(decision?.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('GitHub Copilot training-use policy distinguishes individual opt-out from organization plans',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');
   const fact = record?.facts.find(item => item.key === 'privacy');

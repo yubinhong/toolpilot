@@ -3,8 +3,8 @@
   "kind": "compare",
   "title": "Windsurf vs Cursor",
   "summary": "Windsurf vs Cursor: existing Windsurf users reviewing product continuity and an editor alternative.",
-  "revision": 5,
-  "updatedAt": "2026-09-27",
+  "revision": 6,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -23,7 +23,7 @@
     {
       "heading": "Resolve identity before features",
       "paragraphs": [
-        "If you already use Windsurf, capture your current plan and ask the vendor how your editor, credits and account transfer. A new buyer should not treat the old product name as proof of a current purchasable plan."
+        "The official Devin Desktop FAQ says a standard Windsurf update preserves the existing plan, pricing, editor and settings. Compare current public plan prices for a new purchase, but verify the specific account's entitlement, usage and checkout before estimating spend."
       ]
     },
     {
@@ -39,15 +39,15 @@
       ]
     }
   ],
-  "verdict": "Do not choose on historical price comparisons: Windsurf sources now redirect to Devin and account continuity needs confirmation.",
+  "verdict": "Compare current public base prices and workflow evidence, not historical Windsurf quotes; the vendor documents plan continuity, while each account's actual usage and entitlement still need confirmation.",
   "bestFor": "Existing Windsurf users reviewing product continuity and an editor alternative",
   "notFor": "New buyers expecting a current Windsurf price from historical research",
   "migration": "Trial the candidate on a branch; retain the original workflow until tests, export and billing checks pass.",
   "dependencies": [
     {
       "slug": "windsurf",
-      "revision": 3,
-      "digest": "7266e9f51a4fdd2c8935a495f5dd8165471fd831194bd50ba483815e71d208f0"
+      "revision": 4,
+      "digest": "4e9a01e37f50d6d44aca97fec87038185a13f75a42abad990bd9a8887593fa32"
     },
     {
       "slug": "cursor",
@@ -76,6 +76,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Updated public-price and account-continuity boundaries from the current Devin Desktop sources; owner review remains required."
     }
   ],
   "commercial": {
@@ -133,7 +137,7 @@
       ]
     },
     {
-      "text": "A current plan quote is still needed before comparing spend; do not transfer a historic Windsurf amount or a Cursor base plan into a workload estimate.",
+      "text": "Public plan prices are not a workload estimate: confirm current account terms and model usage for both tools before comparing actual spend.",
       "sourceRefs": [
         {
           "toolSlug": "windsurf",
@@ -149,7 +153,7 @@
   "faqs": [
     {
       "question": "Is Devin Desktop the new name for Windsurf?",
-      "answer": "Yes. The current official FAQ says Devin Desktop is the new name for Windsurf and describes plans, pricing, extensions and settings as carrying over with the standard over-the-air update.",
+      "answer": "Yes. The current official FAQ says Devin Desktop is the new name for Windsurf and that the standard over-the-air update preserves plans, pricing, extensions, settings and in-progress work, including legacy Enterprise pricing.",
       "sourceRefs": [
         {
           "toolSlug": "windsurf",
@@ -165,6 +169,20 @@
           "toolSlug": "windsurf",
           "sourceId": "desktop"
         },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "pricing"
+        }
+      ]
+    },
+    {
+      "question": "What public Devin Desktop prices can be used in a current comparison?",
+      "answer": "The current plan page lists Free at USD 0/month, Pro at USD 20/month, Max at USD 200/month and Teams at USD 80/month plus USD 40/month per full developer seat. Paid usage refreshes daily and weekly and extra usage is at API pricing; these are base amounts, not a total workload or legacy-account quote.",
+      "sourceRefs": [
         {
           "toolSlug": "windsurf",
           "sourceId": "pricing"

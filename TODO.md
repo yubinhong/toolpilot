@@ -22,6 +22,8 @@
 | TODO-314 | 审查 GitHub 仓库级依赖与凭据保护控制 | 2026-09-27 只读仓库 API 报告 Dependabot security updates、secret scanning、non-provider pattern scanning 和 push protection 均为 `disabled`。需要 Owner 确认仓库计划/组织策略是否支持并决定启用范围；当前没有修改 GitHub 设置，也没有据此断言仓库存在泄漏。 | P1 | Repository/Security Owner | 确认组织策略、功能可用性和发布安全要求；按授权配置并验证 | Owner 决定控制项与启用范围 |
 | TODO-315 | 审核并补齐 Cloudflare Pages 安全响应头 | strict per-route CSP/hash 与共享保护头随 `f4c9798` 发布；静态 404 的自身 inline-script hash CSP meta 随 `057ee368` 发布。CI `36342275495`、Pages deployment/check `96ad8a25-c4fa-46ff-99d7-ad9829dceab2` 成功；preview 和 production 均通过 97 页 current smoke，404 Chromium 页面/主题交互正常且外部 Insights 脚本失败原因为 `csp`。生产自动注入 beacon 被阻止并产生 CSP violation，无页面脚本错误。 | P1 | Engineering/Security Owner | Owner 决定禁用 Pages Web Analytics 自动注入（推荐保留当前无分析集成边界），或正式批准隐私/分析范围后再允许外部脚本；HSTS scope 单独确认前不启用 | Analytics 决策和 0 生产 CSP violations 核验后关闭非 HSTS 部分；HSTS 留待 Owner |
 
+TODO-309 source update (2026-09-28): Devin's official current plan page lists Free USD 0/month, Pro USD 20/month, Max USD 200/month, and Teams USD 80/month plus USD 40/month per full developer seat. Its Desktop FAQ says existing Windsurf plan pricing carries over, including legacy Enterprise. This closes the public price/standard-transition research gap; an individual account quote, actual usage and account-specific update remain unresolved.
+
 ## Later - 暂不承诺
 
 - TODO-101：Newsletter Sponsor、ToolPilot Pro、Lead Gen、工具数据库 API — 重新评估条件：MVP 内容质量、合规披露、用户转化和运营能力已验证。

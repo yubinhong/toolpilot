@@ -3,8 +3,8 @@
   "kind": "tools",
   "title": "Windsurf / Devin Desktop",
   "summary": "Windsurf, now named Devin Desktop, retains a full IDE and adds an agent command center.",
-  "revision": 3,
-  "updatedAt": "2026-09-27",
+  "revision": 4,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -27,16 +27,16 @@
     {
       "id": "pricing",
       "url": "https://devin.ai/pricing",
-      "title": "Plans and billing",
+      "title": "Plans and Pricing",
       "publisher": "Devin",
-      "accessedAt": "2026-09-27"
+      "accessedAt": "2026-09-28"
     },
     {
       "id": "desktop",
       "url": "https://devin.ai/desktop",
       "title": "Devin Desktop FAQ and Windsurf transition",
       "publisher": "Devin",
-      "accessedAt": "2026-09-27"
+      "accessedAt": "2026-09-28"
     },
     {
       "id": "windsurf-editor",
@@ -50,11 +50,11 @@
     {
       "key": "workflow",
       "label": "Workflow",
-      "value": "The vendor says Devin Desktop is the new name for Windsurf; the IDE remains available alongside an Agent Command Center.",
+      "value": "The official FAQ identifies Devin Desktop as the new name for Windsurf and says the standard update preserves existing plan and pricing, including legacy Windsurf Enterprise. This does not verify the migration or entitlement of a particular account.",
       "sourceIds": [
         "desktop"
       ],
-      "checkedAt": "2026-09-27",
+      "checkedAt": "2026-09-28",
       "critical": true
     },
     {
@@ -92,29 +92,77 @@
   ],
   "prices": [
     {
-      "name": "Legacy Windsurf entitlement",
+      "name": "Free",
+      "amount": 0,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Published public plan price; the page displays USD 0/month.",
+      "allowance": "Light agent quota, limited model availability, unlimited inline edits and Tab completions.",
+      "overage": null,
+      "taxes": null,
+      "sourceIds": ["pricing"],
+      "checkedAt": "2026-09-28"
+    },
+    {
+      "name": "Pro",
+      "amount": 20,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Published monthly base price; included usage refreshes daily and weekly, and extra usage can be purchased at API pricing.",
+      "allowance": "Increased quotas and full model availability; exact included usage is not quantified here.",
+      "overage": "Extra usage is available at API pricing; actual spend varies by model and task.",
+      "taxes": null,
+      "sourceIds": ["pricing"],
+      "checkedAt": "2026-09-28"
+    },
+    {
+      "name": "Max",
+      "amount": 200,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Published monthly base price; included usage refreshes daily and weekly, and extra usage can be purchased at API pricing.",
+      "allowance": "Significantly higher quotas than Pro; exact included usage is not quantified here.",
+      "overage": "Extra usage is available at API pricing; actual spend varies by model and task.",
+      "taxes": null,
+      "sourceIds": ["pricing"],
+      "checkedAt": "2026-09-28"
+    },
+    {
+      "name": "Teams base plan",
+      "amount": 80,
+      "currency": "USD",
+      "interval": "month",
+      "billing": "Published USD 80/month team-plan base plus USD 40/month per full developer seat; this is not a seat-inclusive quote.",
+      "allowance": "Up to 200 users; each full user includes a quota and Devin Desktop access.",
+      "overage": null,
+      "taxes": null,
+      "sourceIds": ["pricing"],
+      "checkedAt": "2026-09-28"
+    },
+    {
+      "name": "Legacy Windsurf account entitlement",
       "amount": null,
       "currency": "USD",
       "interval": "month",
-      "billing": "Current account quote not recorded; confirm plan and usage terms",
+      "billing": "The vendor FAQ says an existing plan and pricing stay unchanged, including legacy Windsurf Enterprise; no account-specific quote was inspected.",
       "allowance": null,
       "overage": null,
       "taxes": null,
-      "sourceIds": [],
-      "checkedAt": null
+      "sourceIds": ["desktop"],
+      "checkedAt": "2026-09-28"
     }
   ],
   "sections": [
     {
       "heading": "Product name and transition",
       "paragraphs": [
-        "The current official FAQ calls Devin Desktop the new name for Windsurf. It says the IDE remains available and plans, pricing, extensions, settings and in-progress work carry over with the standard over-the-air update. This record has not tested an individual account transition."
+        "The current official FAQ calls Devin Desktop the new name for Windsurf and says the standard over-the-air update preserves the IDE, extensions, workflows, settings, in-progress work, plans and pricing, including legacy Windsurf Enterprise. This record has not tested an individual account transition."
       ]
     },
     {
       "heading": "Keep price and account scope separate",
       "paragraphs": [
-        "The vendor describes continuity for an existing account, but this record does not capture a current checkout amount or verify account-specific entitlements. Confirm the plan and usage terms before budgeting or changing a working environment."
+        "The official plan page lists Free at USD 0/month, Pro at USD 20/month, Max at USD 200/month and Teams at USD 80/month plus USD 40/month per full developer seat. Paid-plan allowances refresh daily and weekly, extra usage can be purchased at API pricing, and actual cost varies by model and task. These public amounts do not establish a specific legacy account's entitlement, regional checkout total or actual spend."
       ]
     }
   ],
@@ -136,6 +184,15 @@
           "sourceId": "desktop"
         }
       ]
+    },
+    {
+      "text": "The current public plan page lists Free at USD 0/month, Pro at USD 20/month, Max at USD 200/month and Teams at USD 80/month plus USD 40/month per full developer seat.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        }
+      ]
     }
   ],
   "cons": [
@@ -149,11 +206,15 @@
       ]
     },
     {
-      "text": "The exact current plan quote is not recorded here; check the current plan page and the account’s usage terms before budgeting.",
+      "text": "Published base prices do not establish a particular legacy Windsurf account's exact entitlement, checkout total or actual usage cost.",
       "sourceRefs": [
         {
           "toolSlug": "windsurf",
           "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
         }
       ]
     }
@@ -171,7 +232,7 @@
     },
     {
       "question": "What does the vendor say carries over during the standard update?",
-      "answer": "The FAQ says plans, pricing, extensions, settings and in-progress work carry over with the over-the-air update. Confirm the applicable path and quote for the specific account.",
+      "answer": "The FAQ says plans, pricing, extensions, settings and in-progress work carry over with the standard over-the-air update, and that current plan pricing stays the same, including legacy Windsurf Enterprise. Confirm the applicable path for the specific account.",
       "sourceRefs": [
         {
           "toolSlug": "windsurf",
@@ -182,15 +243,29 @@
           "sourceId": "pricing"
         }
       ]
+    },
+    {
+      "question": "What public monthly prices does Devin list for the Windsurf continuation?",
+      "answer": "The current plan page lists Free at USD 0/month, Pro at USD 20/month, Max at USD 200/month and Teams at USD 80/month plus USD 40/month per full developer seat. Paid-plan included usage refreshes daily and weekly; extra usage is available at API pricing. These are public plan amounts, not an account-specific legacy quote or total usage estimate.",
+      "sourceRefs": [
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "pricing"
+        },
+        {
+          "toolSlug": "windsurf",
+          "sourceId": "desktop"
+        }
+      ]
     }
   ],
-  "verdict": "Treat Devin Desktop as the documented continuation of Windsurf; confirm the account-specific update path and current plan terms before acting.",
+  "verdict": "Treat Devin Desktop as the documented continuation of Windsurf; use current public plan prices for general comparison, and verify any legacy account quote and usage terms before acting.",
   "bestFor": "Existing Windsurf users assessing the documented transition or current editor workflow",
   "notFor": "Buyers treating historical Windsurf prices as a current quote",
   "migration": "Record the current account and editor settings, confirm the official update applies, and rehearse the workflow before changing a production setup.",
   "dependencies": [],
   "gaps": [
-    "No account-specific transition was tested; the exact current plan amount and usage terms are not captured for a quote."
+    "No account-specific transition or legacy entitlement was tested; public base plan prices do not establish the exact account quote, regional checkout taxes or actual usage cost."
   ],
   "changes": [
     {
@@ -204,6 +279,10 @@
     {
       "date": "2026-09-27",
       "summary": "Updated the Windsurf identity and transition facts from the current Devin Desktop FAQ; exact account pricing and migration remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Recorded current public Devin Desktop plan prices and the FAQ's legacy plan-continuity statement; individual account quote, usage and migration remain unverified."
     }
   ],
   "commercial": {
