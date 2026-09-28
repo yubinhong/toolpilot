@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "Open-source AI coding tools to evaluate",
   "summary": "A conditional shortlist based on project license evidence, model boundaries and channel-specific lifecycle signals.",
-  "revision": 12,
+  "revision": 13,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -159,8 +159,8 @@
     },
     {
       "slug": "cline",
-      "revision": 4,
-      "digest": "0cf41f0bd7038389f8f7b9ae13423b77097abedc2eb14fadef4ff56d5b93eab0"
+      "revision": 5,
+      "digest": "2858ccc2b2ca24ebe2a1630eb721c14d3bd7615ec139a263078c977ee2d8fb9a"
     },
     {
       "slug": "continue",
@@ -224,6 +224,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Continue's official billing route evidence; exact account and model-provider prices remain unknown."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Cline dependency after documenting local task-history persistence and Git file checkpoints; cross-device history export and migration remain unverified."
     }
   ],
   "commercial": {

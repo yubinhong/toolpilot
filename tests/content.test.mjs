@@ -345,7 +345,7 @@ test('Cline privacy evidence exposes the public telemetry-policy conflict and AP
   const record = content.find(item => item.kind === 'tools' && item.slug === 'cline');
   const fact = record?.facts.find(item => item.key === 'privacy');
   assert.ok(record);
-  assert.equal(record.revision, 4);
+  assert.equal(record.revision, 5);
   assert.equal(fact?.checkedAt, '2026-09-28');
   assert.deepEqual(fact?.sourceIds, ['terms', 'privacy', 'telemetry-blog']);
   assert.match(fact?.value ?? '', /Terms of Service, last modified 2025-09-25/);
@@ -365,7 +365,7 @@ test('Cline privacy evidence exposes the public telemetry-policy conflict and AP
   assert.deepEqual(dependents.map(item => item.slug).sort(), dependentSlugs.sort());
   for (const decision of dependents) {
     const dependency = decision.dependencies.find(item => item.slug === 'cline');
-    assert.equal(dependency.revision, 4);
+    assert.equal(dependency.revision, 5);
     assert.equal(dependency.digest, contentDigest(record));
     assert.equal(decision.review.state, 'in-review');
     assert.equal(isIndexable(decision, content), false);
@@ -378,6 +378,57 @@ test('Cline privacy evidence exposes the public telemetry-policy conflict and AP
   assert.ok(record.gaps.some(gap => gap.includes('selected model-provider privacy')));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
+});
+test('Cline task-history portability distinguishes local resume from cross-device migration',() => {
+  const record=content.find(item=>item.kind==='tools'&&item.slug==='cline');
+  const fact=record?.facts.find(item=>item.key==='portability');
+  const faq=record?.faqs.find(item=>item.question==='Can Cline task history be moved to another device?');
+  assert.ok(record);
+  assert.equal(record.revision,5);
+  assert.equal(fact?.checkedAt,'2026-09-28');
+  assert.deepEqual(fact?.sourceIds,['task-history']);
+  assert.match(fact?.value??'',/each task keeps its full conversation history/);
+  assert.match(fact?.value??'',/saved automatically to the local machine/);
+  assert.match(fact?.value??'',/resumed across editor sessions/);
+  assert.match(fact?.value??'',/Git-based checkpoints for file changes/);
+  assert.match(fact?.value??'',/not supported cross-device transfer, complete task-history export\/import, full backup\/restore or account\/provider-settings migration/);
+  assert.match(fact?.value??'',/No task or configuration was transferred or restored/);
+  const source=record.sources.find(item=>item.id==='task-history');
+  assert.equal(source?.url,'https://docs.cline.bot/core-workflows/task-management');
+  assert.equal(source?.accessedAt,'2026-09-28');
+  assert.deepEqual(faq?.sourceRefs,[{toolSlug:'cline',sourceId:'task-history'}]);
+  assert.match(faq?.answer??'',/saved to the local machine and can be resumed across editor sessions/);
+  assert.match(faq?.answer??'',/Git-based checkpoints cover file changes/);
+  assert.match(faq?.answer??'',/does not specify supported transfer of complete task history/);
+  assert.match(faq?.answer??'',/No export, transfer or restore was tested/);
+  assert.ok(record.gaps.some(gap=>gap.includes('supported cross-device history transfer, complete export/restore or settings migration')));
+  const dependents=content.filter(item=>item.kind!=='tools'&&item.dependencies.some(dependency=>dependency.slug==='cline'));
+  assert.deepEqual(dependents.map(item=>`${item.kind}/${item.slug}`).sort(),[
+    'alternatives/claude-code',
+    'alternatives/cursor',
+    'alternatives/windsurf',
+    'best/ai-coding-tools-for-solo-founders',
+    'best/open-source-ai-coding-tools',
+    'compare/cline-vs-claude-code',
+    'compare/cline-vs-continue',
+    'guides/ai-editor-vs-terminal-agent',
+  ]);
+  for(const decision of dependents) {
+    const dependency=decision.dependencies.find(item=>item.slug==='cline');
+    assert.equal(dependency?.revision,record.revision,`${decision.slug} Cline revision`);
+    assert.equal(dependency?.digest,contentDigest(record),`${decision.slug} Cline digest`);
+    assert.equal(decision.review.state,'in-review');
+    assert.equal(decision.review.owner,null);
+    assert.equal(isIndexable(decision,content),false);
+  }
+  const comparison=dependents.find(item=>item.slug==='cline-vs-continue');
+  const comparisonFaq=comparison?.faqs.find(item=>item.question==='Can I move Cline task history to another device?');
+  assert.equal(comparison?.revision,11);
+  assert.deepEqual(comparisonFaq?.sourceRefs,faq?.sourceRefs);
+  assert.equal(record.review.state,'in-review');
+  assert.equal(record.review.owner,null);
+  assert.equal(isIndexable(record,content),false);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,16);
 });
 test('Windsurf transition and current plan prices remain source-bound and separate from legacy account quotes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -533,7 +584,7 @@ test('Cursor Self-Hosted Machines separate worker execution, inference and data 
   }
   const paired=content.find(item=>item.kind==='compare'&&item.slug==='cursor-vs-claude-code');
   assert.ok(paired?.faqs.some(item=>item.question==='Do their self-hosted options move model inference onto your infrastructure?'));
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,17);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,16);
 });
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -650,7 +701,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,17);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,16);
 });
 test('GitHub Copilot cloud-agent runner placement is distinct from local inference and remains pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='github-copilot');
@@ -743,7 +794,7 @@ test('GitHub Copilot portability documents the cloud-agent Git handoff without c
   assert.equal(comparison?.review.state,'in-review');
   assert.equal(comparison?.review.owner,null);
   assert.equal(isIndexable(comparison,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,17);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,16);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
@@ -835,7 +886,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'?7:record.slug==='cline'?4:record.slug==='cursor'?5:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'?7:record.slug==='cline'?5:record.slug==='cursor'?5:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);

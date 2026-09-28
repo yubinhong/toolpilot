@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Cline",
   "summary": "A coding-agent candidate for users who want to choose the model provider.",
-  "revision": 4,
+  "revision": 5,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -58,6 +58,13 @@
       "title": "Introducing Anonymous Telemetry in Cline",
       "publisher": "Cline",
       "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "task-history",
+      "url": "https://docs.cline.bot/core-workflows/task-management",
+      "title": "Tasks",
+      "publisher": "Cline",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -104,9 +111,9 @@
     {
       "key": "portability",
       "label": "Code / data portability",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Cline's current task-management docs say each task keeps its full conversation history and that tasks are saved automatically to the local machine and can be resumed across editor sessions. The docs describe Git-based checkpoints for file changes. This establishes local task persistence and file-change recovery, not supported cross-device transfer, complete task-history export/import, full backup/restore or account/provider-settings migration; those paths were not established by the reviewed page. No task or configuration was transferred or restored.",
+      "sourceIds": ["task-history"],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -251,6 +258,16 @@
           "sourceId": "telemetry-blog"
         }
       ]
+    },
+    {
+      "question": "Can Cline task history be moved to another device?",
+      "answer": "Cline's docs say tasks are saved to the local machine and can be resumed across editor sessions; Git-based checkpoints cover file changes. The reviewed page does not specify supported transfer of complete task history, settings or provider configuration to another device. No export, transfer or restore was tested.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cline",
+          "sourceId": "task-history"
+        }
+      ]
     }
   ],
   "verdict": "Shortlist Cline when model/provider choice is a requirement and you can manage its cost and access controls. Local inference needs a separate capability trial.",
@@ -261,7 +278,8 @@
   "gaps": [
     "Confirm the installed Cline version and telemetry setting; the later-dated Terms say telemetry is on by default, while the older 2025-02-26 blog says opt-in. No client configuration or payload was inspected.",
     "Confirm the selected model-provider privacy, retention, training and jurisdiction terms; Cline's public BYOK and Cline-provided API-key descriptions do not establish a specific provider or account configuration.",
-    "Confirm the applicable Cline account and enterprise terms and legal suitability for the intended use."
+    "Confirm the applicable Cline account and enterprise terms and legal suitability for the intended use.",
+    "The task-management docs establish local task persistence and Git checkpoints for file changes, but do not specify supported cross-device history transfer, complete export/restore or settings migration; verify the required scope. No transfer or restore was tested."
   ],
   "changes": [
     {
@@ -279,6 +297,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Cline's published BYOK/provider-content boundary and reconciled later Terms with the older conflicting telemetry blog; installed settings and provider terms remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Cline's documented local task-history persistence and Git file checkpoints; supported cross-device task export and migration remain unverified."
     }
   ],
   "commercial": {

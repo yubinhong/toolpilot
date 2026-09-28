@@ -17,13 +17,14 @@
   },
   {
     "path": "/tools/cline/",
-    "revision": 4,
-    "digest": "0cf41f0bd7038389f8f7b9ae13423b77097abedc2eb14fadef4ff56d5b93eab0",
+    "revision": 5,
+    "digest": "2858ccc2b2ca24ebe2a1630eb721c14d3bd7615ec139a263078c977ee2d8fb9a",
     "state": "in-review",
     "gaps": [
       "Confirm the installed Cline version and telemetry setting; the later-dated Terms say telemetry is on by default, while the older 2025-02-26 blog says opt-in. No client configuration or payload was inspected.",
       "Confirm the selected model-provider privacy, retention, training and jurisdiction terms; Cline's public BYOK and Cline-provided API-key descriptions do not establish a specific provider or account configuration.",
-      "Confirm the applicable Cline account and enterprise terms and legal suitability for the intended use."
+      "Confirm the applicable Cline account and enterprise terms and legal suitability for the intended use.",
+      "The task-management docs establish local task persistence and Git checkpoints for file changes, but do not specify supported cross-device history transfer, complete export/restore or settings migration; verify the required scope. No transfer or restore was tested."
     ]
   },
   {
@@ -92,8 +93,8 @@
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 12,
-    "digest": "0403d80dea4f2afcf7e9b1650144115bf56e9be1133d1bccdc973cb59dc2592d",
+    "revision": 13,
+    "digest": "60d5ede8fa83df4382b12a8b699ede9b475a04005cfa45f148563562690a1cb7",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -102,8 +103,8 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 15,
-    "digest": "6831c5975edd58d5a3058f6790c136a901beed0d834dd87b59fc58f14fedb9b2",
+    "revision": 16,
+    "digest": "55e9073171cd4efc3436898581ca8b12e402e5cb33e067b49b289a77338c9aee",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -129,8 +130,8 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 14,
-    "digest": "d43334e1a2f6c329004236df8ad98e886dc323f7de328a3f9178b0fdb274184b",
+    "revision": 15,
+    "digest": "5a6d23f5c670275d7ca78d9d047942b8eecd93aa030e3aab48a5ff421293a31a",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -147,8 +148,8 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 12,
-    "digest": "25e1b4d8b0b109d9118a44f1ddd1e510b8baa217091a31320465a375c5f135bf",
+    "revision": 13,
+    "digest": "3ff2a90762f773e3168907d65448d27ed958aa8987803d2ffb5cc1d40746a9af",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -157,8 +158,8 @@
   },
   {
     "path": "/compare/cline-vs-claude-code/",
-    "revision": 6,
-    "digest": "5c745466995465835546848c47dd482309a910e9b4b89e1d0fbc5a81287c941e",
+    "revision": 7,
+    "digest": "5f5f3d40d95fd083488c49fbdef10cb70eac66be879109a63656435344e39938",
     "state": "in-review",
     "gaps": []
   },
@@ -207,8 +208,8 @@
   },
   {
     "path": "/guides/ai-editor-vs-terminal-agent/",
-    "revision": 8,
-    "digest": "5d6fd9e388a28eb933fe894f3374b5907bbd49c74a7bcf8123588518c964becb",
+    "revision": 9,
+    "digest": "08ca1ba82da237d4e1286e961d12dd0c3d652a3c89d83f341b34bd6196100076",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."

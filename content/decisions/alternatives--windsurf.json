@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Windsurf alternatives",
   "summary": "Windsurf alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 14,
+  "revision": 15,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -61,8 +61,8 @@
     },
     {
       "slug": "cline",
-      "revision": 4,
-      "digest": "0cf41f0bd7038389f8f7b9ae13423b77097abedc2eb14fadef4ff56d5b93eab0"
+      "revision": 5,
+      "digest": "2858ccc2b2ca24ebe2a1630eb721c14d3bd7615ec139a263078c977ee2d8fb9a"
     }
   ],
   "gaps": [
@@ -122,6 +122,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed GitHub Copilot dependency after its Git-based cloud-agent code handoff was documented; chat, session and settings export remain unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Cline dependency after documenting local task-history persistence and Git file checkpoints; cross-device history export and migration remain unverified."
     }
   ],
   "commercial": {

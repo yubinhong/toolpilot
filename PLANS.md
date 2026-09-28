@@ -599,6 +599,17 @@ Initial P0 technical tranche verification (2026-09-27): `npm run cloudflare:buil
 - Owner boundary: do not inspect or claim account-specific exports or perform repository migration. No data/session migration was tested; the content remains a source-backed draft, not an owner-approved portability conclusion.
 - Rollback: restore Copilot revision 6, all six previous dependent revisions/digests, both exact manifests and review handoffs, paired tests/artifact/task docs; rebuild and repeat content review and current-profile smoke. No route, data or indexing migration is involved.
 
+### TODO-309 — Cline local task history and portability boundary — 2026-09-28
+
+- Goal: replace Cline's unknown `portability` field with the narrow workflow documented by Cline: tasks are stored locally, can be reopened/resumed across editor sessions, and file changes have Git-based checkpoints.
+- Treat local task-history persistence and Git snapshots as separate scopes. The current task-management page does not establish supported cross-device transfer, complete history export/import, full backup/restore, account or provider-setting migration, or restore behavior. Do not infer those capabilities from local storage or Git.
+- Update the Cline profile and only its eight declared decision dependents; add one directly relevant task-history migration FAQ to `/compare/cline-vs-continue/`. Refresh exact TASK-005/TASK-006 manifest entries and review handoffs. Keep all records in-review/noindex and outside the sitemap.
+- [x] Add regression coverage for the official source URL/date, local history and resume wording, the open cross-device boundary, the affected dependency digests, rendered source/FAQ, and pending/noindex state.
+- Local acceptance: Node `v22.23.2` / npm `10.9.8` content check and exact review passed; `npm run cloudflare:build` passed lint, typecheck, 94 tests, 39-record validation and artifacts (99 pages / 4 indexable URLs); audit found 0 vulnerabilities; freshness is 16 unverified / 0 overdue; the full link scan completed and the new official docs page returned HTTP 200. Local current-profile smoke passed 99 pages, robots, sitemap and a real 404.
+- Release acceptance: pending clean `release:check`, CI, and Pages project/production smoke plus source/noindex/sitemap assertions.
+- Owner boundary: no client/account settings, local task directory or migration was inspected or moved. The source-backed draft does not approve history-export completeness or a migration result.
+- Rollback: restore Cline revision 4, all eight prior dependent revisions/digests, exact manifests and handoffs, paired regression/artifact assertions and task records; rebuild and repeat content review and current-profile smoke. No route, data or indexing migration is involved.
+
 ### TODO-309 — Claude Code self-hosted execution evidence
 
 - Goal: close Claude Code's source-verifiable `selfHosting`, `localModels` and `portability` gaps without treating customer-run session compute as model hosting or claiming custom endpoint support.
