@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 6. Digest: `91eb4a04b7e440cffbb9c14cd1376f2e95316e09023839dd797d0725c6bf3595`.
+Revision: 7. Digest: `fb8a71b65988e71d021f9df60a3c6da3f41b9e1c5b806c5644723a282493d59d`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -26,6 +26,10 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Configure runners for GitHub Copilot cloud agent](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/configure-runner-for-coding-agent) — GitHub Docs; accessed 2026-09-28
 
+- [Using Copilot cloud agent on GitHub](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/use-cloud-agent-on-github) — GitHub Docs; accessed 2026-09-28
+
+- [About GitHub Copilot cloud agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) — GitHub Docs; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: IDE assistance and GitHub features vary by plan Sources: product; checked: 2026-09-27.
@@ -36,13 +40,13 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - **Local model inference**: GitHub lists client-side Local BYOK in VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK. This differs from Enterprise BYOK, which is configured server-side and still uses the Copilot API. Copilot CLI documents local Ollama, vLLM and Foundry Local-compatible endpoints; models need tool calling and streaming. Offline mode prevents GitHub contact, but a remote provider still receives prompts and code context. Business/Enterprise policy can disable Local BYOK in IDEs. No account, model or inference path was tested. Sources: byok, cli-byok; checked: 2026-09-28.
 
-- **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Code / data portability**: GitHub says Copilot cloud agent works only with GitHub-hosted repositories; its changes are pushed to a branch in the selected repository and can be reviewed as a diff, iterated, and optionally opened as a pull request. Each task is limited to one repository and one branch. This documents a Git-based path for agent-produced code changes, not a general export or migration path for prompts, chat history, session metadata or account settings; those data categories and this account's export controls were not verified. No repository or session migration was tested. Sources: cloud-agent-code-changes, cloud-agent-overview; checked: 2026-09-28.
 
 - **MCP support**: Copilot Chat documents MCP servers for IDE use; GitHub lists VS Code 1.99+ as a prerequisite and requires organization policy enablement for Business or Enterprise members. Sources: mcp; checked: 2026-09-27.
 
 ## Source-bound evidence blocks
 
-This draft now includes 2 source-backed documented strengths, 3 documented constraints and 4 FAQs. These are vendor-documentation facts awaiting owner review, not hands-on results.
+This draft now includes 2 source-backed documented strengths, 3 documented constraints and 5 FAQs. These are vendor-documentation facts awaiting owner review, not hands-on results.
 
 ## Pricing basis
 
@@ -64,6 +68,7 @@ Inventory organization policies and supported editor features before switching. 
 - Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the public training-use policy is not a complete retention or legal assessment.
 - Confirm the selected Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.
 - Confirm the organization's Copilot cloud-agent runner policy, repository override permission, firewall configuration and approved ephemeral runner; no organization setting or runner was inspected.
+- Confirm the required export scope for prompts, chat history, session metadata and account settings; the reviewed docs only establish a Git-based path for cloud-agent code changes. No data or repository migration was tested.
 
 ## Owner checklist
 

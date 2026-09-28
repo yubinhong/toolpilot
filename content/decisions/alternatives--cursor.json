@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Cursor alternatives",
   "summary": "Cursor alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 14,
+  "revision": 15,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -51,8 +51,8 @@
     },
     {
       "slug": "github-copilot",
-      "revision": 6,
-      "digest": "91eb4a04b7e440cffbb9c14cd1376f2e95316e09023839dd797d0725c6bf3595"
+      "revision": 7,
+      "digest": "fb8a71b65988e71d021f9df60a3c6da3f41b9e1c5b806c5644723a282493d59d"
     },
     {
       "slug": "claude-code",
@@ -127,6 +127,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed GitHub Copilot dependency after official cloud-agent runner placement and self-hosted runner constraints were documented; organization configuration remains unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed GitHub Copilot dependency after its Git-based cloud-agent code handoff was documented; chat, session and settings export remain unverified."
     }
   ],
   "commercial": {

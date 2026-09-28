@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Claude Code vs GitHub Copilot",
   "summary": "Choose between coding workflows by testing the same repository task, account policy and review loop.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -30,7 +30,8 @@
     { "question": "Can a cloned repository approve its own Claude Code MCP servers?", "answer": "No. Project server settings are not approved until the workspace is trusted; review and approve the server in the trusted workspace.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "mcp" }] },
     { "question": "Can GitHub Copilot use locally run models?", "answer": "GitHub lists Local BYOK in VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK. The client-side mechanism stores keys locally and removes dependence on the Copilot API. For Copilot CLI specifically, GitHub lists Ollama, vLLM and Foundry Local-compatible endpoints and requires tool calling and streaming. Offline mode prevents GitHub contact, but prompts and code context still reach a remote provider. Business/Enterprise organization policy can disable Local BYOK in IDEs. Confirm the client, policy and provider route; no account or model was tested.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "byok" }, { "toolSlug": "github-copilot", "sourceId": "cli-byok" }] },
     { "question": "Does Claude Code's self-hosted environment provide local model inference?", "answer": "No. Anthropic describes self-hosting as the location for cloud-session compute; those sessions still send model inference to api.anthropic.com. The reviewed docs do not document an on-device local-model route. GitHub's Local BYOK options vary by client and organization policy; no account or model was tested.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "self-hosted" }, { "toolSlug": "claude-code", "sourceId": "deployment" }, { "toolSlug": "github-copilot", "sourceId": "byok" }, { "toolSlug": "github-copilot", "sourceId": "cli-byok" }] },
-    { "question": "Can GitHub Copilot cloud agent run on a self-hosted runner?", "answer": "Yes. GitHub documents ephemeral GitHub-hosted Actions runners by default and an option to use self-hosted Ubuntu x64 or Windows 64-bit runners through setup and organization settings. GitHub recommends ephemeral, single-use runners and requires disabling Copilot's integrated firewall for this configuration. Runner placement does not mean the model runs locally; no organization setting or session was inspected.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "cloud-agent-environment" }, { "toolSlug": "github-copilot", "sourceId": "cloud-agent-runners" }] }
+    { "question": "Can GitHub Copilot cloud agent run on a self-hosted runner?", "answer": "Yes. GitHub documents ephemeral GitHub-hosted Actions runners by default and an option to use self-hosted Ubuntu x64 or Windows 64-bit runners through setup and organization settings. GitHub recommends ephemeral, single-use runners and requires disabling Copilot's integrated firewall for this configuration. Runner placement does not mean the model runs locally; no organization setting or session was inspected.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "cloud-agent-environment" }, { "toolSlug": "github-copilot", "sourceId": "cloud-agent-runners" }] },
+    { "question": "Does Copilot cloud agent provide a Git-based code handoff?", "answer": "GitHub says Copilot cloud agent pushes code changes to a branch in the selected GitHub repository; you can review the diff, iterate, and optionally create a pull request. Each task is limited to one repository and one branch. This documents a Git-based code path, not export or migration for prompts, chat history, session metadata or account settings. No repository or session migration was tested.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "cloud-agent-code-changes" }, { "toolSlug": "github-copilot", "sourceId": "cloud-agent-overview" }] }
   ],
   "verdict": "Let your real repository task and account requirements decide. Confirm current plan entitlements and privacy settings before making a team-level recommendation.",
   "bestFor": "Developers comparing a coding-agent workflow with IDE assistance and GitHub features",
@@ -38,9 +39,9 @@
   "migration": "Trial the replacement on a branch while preserving the current review workflow. Recheck organization policy, account access and repository instructions before moving team usage.",
   "dependencies": [
     { "slug": "claude-code", "revision": 4, "digest": "7942a7b3ffb6b52fcd13c89dead08f29b8e0d062c7fd5ea646648e75ac7f99e9" },
-    { "slug": "github-copilot", "revision": 6, "digest": "91eb4a04b7e440cffbb9c14cd1376f2e95316e09023839dd797d0725c6bf3595" }
+    { "slug": "github-copilot", "revision": 7, "digest": "fb8a71b65988e71d021f9df60a3c6da3f41b9e1c5b806c5644723a282493d59d" }
   ],
-  "gaps": ["GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.", "This comparison contains no hands-on benchmark or measured task result.", "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.", "Confirm the organization's Copilot cloud-agent runner policy, repository override permission, firewall configuration and approved ephemeral runner; no organization setting or runner was inspected."],
+  "gaps": ["GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.", "This comparison contains no hands-on benchmark or measured task result.", "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.", "Confirm the organization's Copilot cloud-agent runner policy, repository override permission, firewall configuration and approved ephemeral runner; no organization setting or runner was inspected.", "The reviewed docs establish a Git-based cloud-agent code-change workflow, not export or migration for prompts, chat history, session metadata or account settings; confirm the required export scope. No repository or session migration was tested."],
   "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; exact account constraints and owner review remain open." }, { "date": "2026-09-27", "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required." }, { "date": "2026-09-27", "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required." }, { "date": "2026-09-27", "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending." }, { "date": "2026-09-27", "summary": "Refreshed GitHub Copilot dependency after its official training-use policy update; owner review remains required." }, { "date": "2026-09-28", "summary": "Added GitHub Copilot Local BYOK client coverage and CLI data-route limits; account policy and inference remain untested." },
     {
       "date": "2026-09-28",
@@ -49,6 +50,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added source-bound Copilot cloud-agent runner placement and self-hosted runner constraints; organization configuration remains unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added a source-bound Copilot cloud-agent Git handoff FAQ; export of prompts, sessions and settings remains unverified."
     }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

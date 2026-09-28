@@ -184,6 +184,12 @@ for (const sourceId of copilotSelfHosting?.sourceIds ?? []) {
   const source = githubCopilot.sources.find(item => item.id === sourceId);
   if (!source || !githubCopilotHtml.includes(source.url)) failures.push(`/tools/github-copilot/: cloud-agent runner source ${sourceId} is missing from generated HTML`);
 }
+const copilotPortability = githubCopilot?.facts.find(fact => fact.key === 'portability');
+if (!copilotPortability?.value || !githubCopilotHtml.includes(escapeHtml(copilotPortability.value))) failures.push('/tools/github-copilot/: cloud-agent Git portability fact is missing from generated HTML');
+for (const sourceId of copilotPortability?.sourceIds ?? []) {
+  const source = githubCopilot.sources.find(item => item.id === sourceId);
+  if (!source || !githubCopilotHtml.includes(source.url)) failures.push(`/tools/github-copilot/: cloud-agent portability source ${sourceId} is missing from generated HTML`);
+}
 const copilotRunnerComparison = content.find(record => record.kind === 'compare' && record.slug === 'claude-code-vs-github-copilot');
 const copilotRunnerFaq = copilotRunnerComparison?.faqs.find(faq => faq.question === 'Can GitHub Copilot cloud agent run on a self-hosted runner?');
 const copilotRunnerHtml = readFileSync('out/compare/claude-code-vs-github-copilot/index.html', 'utf8');
@@ -191,6 +197,12 @@ if (!copilotRunnerFaq || !copilotRunnerHtml.includes(escapeHtml(copilotRunnerFaq
 for (const sourceId of ['cloud-agent-environment', 'cloud-agent-runners']) {
   const source = githubCopilot?.sources.find(item => item.id === sourceId);
   if (!source || !copilotRunnerHtml.includes(source.url)) failures.push(`/compare/claude-code-vs-github-copilot/: cloud-agent runner source ${sourceId} is missing from generated HTML`);
+}
+const copilotPortabilityFaq = copilotRunnerComparison?.faqs.find(faq => faq.question === 'Does Copilot cloud agent provide a Git-based code handoff?');
+if (!copilotPortabilityFaq || !copilotRunnerHtml.includes(escapeHtml(copilotPortabilityFaq.answer))) failures.push('/compare/claude-code-vs-github-copilot/: cloud-agent Git handoff FAQ is missing from generated HTML');
+for (const sourceId of ['cloud-agent-code-changes', 'cloud-agent-overview']) {
+  const source = githubCopilot?.sources.find(item => item.id === sourceId);
+  if (!source || !copilotRunnerHtml.includes(source.url)) failures.push(`/compare/claude-code-vs-github-copilot/: cloud-agent portability source ${sourceId} is missing from generated HTML`);
 }
 for (const record of content) {
   const evidence = [

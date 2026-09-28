@@ -591,6 +591,14 @@ Initial P0 technical tranche verification (2026-09-27): `npm run cloudflare:buil
 - Owner/account boundary: do not query or change organization runner configuration. Public docs establish capability only; actual runner selection remains unverified. This tranche does not resolve page-set approval or TODO-310/314 Owner inputs.
 - Rollback: restore Copilot revision 5, prior dependent revisions/digests, both manifests and evidence handoffs plus tests/artifact/task docs; rebuild, repeat exact content review and current-profile smoke. No route or sitemap change is allowed.
 
+### TODO-309 — GitHub Copilot cloud-agent code portability — 2026-09-28
+
+- GitHub's official cloud-agent docs establish a GitHub-hosted repository workflow: changes are pushed on a branch, can be reviewed as a diff and iterated, with optional pull-request creation. Each cloud-agent task is limited to one repository and one branch. This is evidence for code-change handoff through Git, not general export of prompts, chat history, session metadata or account settings.
+- Update only the Copilot `portability` fact and a directly relevant FAQ on the Claude Code/Copilot comparison; preserve the other data-export categories as unknown. Refresh all six declared dependency digests and the exact TASK-005/TASK-006 handoffs. Keep all records in-review/noindex and outside the sitemap.
+- Local acceptance: focused tests distinguish Git handoff from data export and assert exact dependencies/noindex; rendered artifact checks verify source links on the profile/comparison. Node 22 build passed lint, typecheck, 93 tests, 39-record content validation and artifacts (99 pages / 4 indexable URLs); exact content review matched, audit found 0 vulnerabilities, freshness is 17 unverified / 0 overdue, both new GitHub Docs sources returned HTTP 200, full `links:check` completed, and local current-profile smoke passed 99 pages, robots, sitemap and a real 404. Release/online verification remains pending.
+- Owner boundary: do not inspect or claim account-specific exports or perform repository migration. No data/session migration was tested; the content remains a source-backed draft, not an owner-approved portability conclusion.
+- Rollback: restore Copilot revision 6, all six previous dependent revisions/digests, both exact manifests and review handoffs, paired tests/artifact/task docs; rebuild and repeat content review and current-profile smoke. No route, data or indexing migration is involved.
+
 ### TODO-309 — Claude Code self-hosted execution evidence
 
 - Goal: close Claude Code's source-verifiable `selfHosting`, `localModels` and `portability` gaps without treating customer-run session compute as model hosting or claiming custom endpoint support.

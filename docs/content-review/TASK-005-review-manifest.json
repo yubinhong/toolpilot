@@ -37,14 +37,15 @@
   },
   {
     "path": "/tools/github-copilot/",
-    "revision": 6,
-    "digest": "91eb4a04b7e440cffbb9c14cd1376f2e95316e09023839dd797d0725c6bf3595",
+    "revision": 7,
+    "digest": "fb8a71b65988e71d021f9df60a3c6da3f41b9e1c5b806c5644723a282493d59d",
     "state": "in-review",
     "gaps": [
       "Verify the exact Copilot plan, personal training opt-out and organization or enterprise privacy policies for the account under review; no account settings were inspected.",
       "Review model-specific hosting and retention terms plus the applicable Data Protection Agreement for the enabled models and intended repositories; the published training-use policy is not a complete retention or legal assessment.",
       "Confirm the selected Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
-      "Confirm the organization's Copilot cloud-agent runner policy, repository override permission, firewall configuration and approved ephemeral runner; no organization setting or runner was inspected."
+      "Confirm the organization's Copilot cloud-agent runner policy, repository override permission, firewall configuration and approved ephemeral runner; no organization setting or runner was inspected.",
+      "The reviewed docs establish a Git-based cloud-agent code-change workflow, not export or migration for prompts, chat history, session metadata or account settings; confirm the required export scope. No repository or session migration was tested."
     ]
   },
   {
@@ -91,8 +92,8 @@
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 11,
-    "digest": "b03a08014b510a2ae58a8b945761ac7093cefa219045a05501589806efb4c2ab",
+    "revision": 12,
+    "digest": "0403d80dea4f2afcf7e9b1650144115bf56e9be1133d1bccdc973cb59dc2592d",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -101,8 +102,8 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 14,
-    "digest": "f78c375804bc6b27d84aaa30a6cef30616bafe0e5ed1d69da586ddefa6b5add9",
+    "revision": 15,
+    "digest": "6831c5975edd58d5a3058f6790c136a901beed0d834dd87b59fc58f14fedb9b2",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -128,8 +129,8 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 13,
-    "digest": "e411bcbb9a1193e576ff7b6b1c8f2e7d41577c277511fb643cb019334932997a",
+    "revision": 14,
+    "digest": "d43334e1a2f6c329004236df8ad98e886dc323f7de328a3f9178b0fdb274184b",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -146,8 +147,8 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 11,
-    "digest": "9642f0dcb3f3729ef27cb0c20db81f98a9f97df97dd91de46ff4471344f3af82",
+    "revision": 12,
+    "digest": "25e1b4d8b0b109d9118a44f1ddd1e510b8baa217091a31320465a375c5f135bf",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -172,8 +173,8 @@
   },
   {
     "path": "/compare/cursor-vs-github-copilot/",
-    "revision": 9,
-    "digest": "c5330f1ac0544ce927b349694df3542c2d3465d5e5b1e2536468b8386d307e3e",
+    "revision": 10,
+    "digest": "d9d4c5882e75bceb5df85c380e4f1147970f6aacfb0847ea95261169073a5524",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",

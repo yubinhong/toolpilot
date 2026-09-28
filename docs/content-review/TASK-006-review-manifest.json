@@ -63,14 +63,15 @@
   },
   {
     "path": "/compare/claude-code-vs-github-copilot/",
-    "revision": 8,
-    "digest": "85525c6e4883b59afcacc60fe6651cf3837b2c53b87f02ce954196ac0ac76746",
+    "revision": 9,
+    "digest": "d061641bb63df9824b3ebc2f0852c176ca94c5ec77f61692d72b29a780a132e5",
     "state": "in-review",
     "gaps": [
       "GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.",
       "This comparison contains no hands-on benchmark or measured task result.",
       "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested.",
-      "Confirm the organization's Copilot cloud-agent runner policy, repository override permission, firewall configuration and approved ephemeral runner; no organization setting or runner was inspected."
+      "Confirm the organization's Copilot cloud-agent runner policy, repository override permission, firewall configuration and approved ephemeral runner; no organization setting or runner was inspected.",
+      "The reviewed docs establish a Git-based cloud-agent code-change workflow, not export or migration for prompts, chat history, session metadata or account settings; confirm the required export scope. No repository or session migration was tested."
     ]
   },
   {
