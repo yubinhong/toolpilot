@@ -517,6 +517,14 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Release completed: commit `6a3009c812e7e24dc15a85eaa58a9ba04efa50f7` passed clean `release:check`, GitHub CI `36428147844`, Pages check/deployment `91932f6f-f3b6-43e4-a0d1-a6e6b4e350ff`, and preview/production current smoke plus rendered source/noindex/sitemap assertions. No import or migration was tested.
 - Rollback: revert only the Make portability source/fact/dependent/test/handoff tranche and restore matching prior revisions/digests; rebuild and repeat content/artifact/current-profile checks. No route, owner approval or indexing state may change.
 
+##### Replit code and recovery portability evidence tranche — 2026-09-28
+
+- Review Replit's current official import, Git disaster-recovery, version-control and checkpoint documentation. Separate importing source/code from external recovery, distinguish Replit's internal Git/checkpoint backups from an independently exportable full app, and preserve documented setup gaps for secrets, provider data/services and production resources.
+- Fill only the Replit profile's source-backed portability fact. Add direct migration/recovery guidance to the Replit alternative and the Bolt-vs-Replit comparison; refresh every declared Replit dependency, both TASK-005/TASK-006 manifests and the relevant review handoff.
+- Add regression checks for source dates/URLs, fact boundary and unknown resource scope, dependent digests/revisions, review state, and generated source links/noindex/sitemap exclusion.
+- Acceptance: exact `content:review`, content validation, focused tests, date-pinned freshness, full source-link scan, Node 22 Cloudflare build/artifact checks, dependency audit, local current-profile smoke and generated HTML checks pass. Local acceptance passed on 2026-09-28: 56 focused tests, 95 total build tests, 99-page export, 13 unverified / 0 overdue, 207-target scan with all four Replit documentation URLs HTTP 200, zero-high audit and 99-page smoke. Do not claim a project export/import, backup restore, production database restore or self-hosted deployment was tested.
+- Rollback: revert only the Replit evidence/profile/dependent/handoff/test tranche and restore the matching old revisions/digests and both manifest states; rebuild and repeat content/review/artifact/current-profile checks. No route, approval or indexability state may change.
+
 #### Phase 5 — External operating and commercial gates
 
 - Obtain operator/contact/legal facts before final trust copy; do not invent a company, address, team or legal relationship.

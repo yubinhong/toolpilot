@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Replit vs Lovable",
   "summary": "Replit vs Lovable: builders evaluating development and live-app operating responsibility together.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "replit",
-      "revision": 5,
-      "digest": "9710902b59f27d4fa6a5312210fe68756fe16128fcbd6eccd70e01538afc2b9e"
+      "revision": 6,
+      "digest": "a6ee281aafd80c1c87d38404c3e0fe7b7d728a69c8a1c4f200ff8e0abb2e19b8"
     },
     {
       "slug": "lovable",
@@ -88,6 +88,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Lovable dependency after clarifying Cloud hosting-region scope against broader Personal Data processing; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Replit's import and repository-recovery boundary; no cross-platform migration was tested."
     }
   ],
   "commercial": {
@@ -161,12 +165,15 @@
   "faqs": [
     {
       "question": "Are Replit checkpoints and Lovable Git sync the same kind of handoff?",
-      "answer": "No. Replit describes checkpoints for rollback inside its platform; Lovable describes code sync to Git providers and separately calls for service migration planning.",
+      "answer": "No. Replit documents Git repository recovery and in-platform checkpoints; its provider-import guide says secrets, data or services may need separate setup. Lovable describes code sync to Git providers and separately calls for service migration planning. Neither statement is a completed migration test.",
       "sourceRefs": [
         {
           "toolSlug": "replit",
           "sourceId": "checkpoints"
         },
+        { "toolSlug": "replit", "sourceId": "version-control" },
+        { "toolSlug": "replit", "sourceId": "disaster-recovery" },
+        { "toolSlug": "replit", "sourceId": "import-providers" },
         {
           "toolSlug": "lovable",
           "sourceId": "product"

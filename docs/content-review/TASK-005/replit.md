@@ -1,8 +1,8 @@
 # Replit evidence pack
 
-Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
+Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 5. Digest: `9710902b59f27d4fa6a5312210fe68756fe16128fcbd6eccd70e01538afc2b9e`.
+Revision: 6. Digest: `a6ee281aafd80c1c87d38404c3e0fe7b7d728a69c8a1c4f200ff8e0abb2e19b8`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -22,6 +22,12 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Privacy Policy](https://replit.com/privacy-policy) — Replit; accessed 2026-09-27
 
+- [Version control](https://docs.replit.com/learn/projects-and-artifacts/version-control) — Replit; accessed 2026-09-28
+
+- [Disaster recovery](https://docs.replit.com/features/version-control/disaster-recovery) — Replit; accessed 2026-09-28
+
+- [Import from providers](https://docs.replit.com/build/import-from-providers) — Replit; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: Natural-language agent for building applications Sources: product; checked: 2026-09-27.
@@ -32,7 +38,7 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
-- **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Code / data portability**: Replit documents Git/GitHub workflows and an App-managed `gitsafe-backup` remote for recovering Git commit history after local repository corruption. Its import guide lists GitHub, Bitbucket, ZIP and named builder sources; provider-specific secrets, records and services may need separate setup, and one Supabase import path says existing records and secrets are not imported. Agent checkpoints support rollback inside Replit, with optional development-database restoration; production database restore is not automatic. These sources do not establish a tested full external app export or migration. Sources: version-control, disaster-recovery, import-providers, checkpoints; checked: 2026-09-28.
 - **Published app geography**: Core, Pro and Enterprise can select North America, Europe (EU), Asia, South America or Australia; Free publishes to North America by default. Published compute, database and Object Storage are colocated. Selection is permanent after publish and pre-publish resources may remain elsewhere. Source: geography; checked: 2026-09-27.
 - **Development workspace geography**: Separate from publishing geography, selected at workspace creation, Pro-only and immutable; it need not match the published app region. Source: geography; checked: 2026-09-27.
 
@@ -51,8 +57,8 @@ Keep application code, database backups and environment-variable names portable.
 ## Documented strengths, constraints and FAQs
 
 - Strength: Replit describes Agent as a plain-language workflow from project setup through checking and deployment; checkpoints can preserve app state including project files and connected database state. Sources: product, checkpoints.
-- Constraint: checkpoint recovery is a Replit feature, not an independently tested export path; the published Core amount is an annual-billed base-plan equivalent and does not establish full application costs. Sources: checkpoints, pricing.
-- FAQ: test a separate export/recovery path if the project must operate outside Replit. Source: checkpoints.
+- Constraint: Git-history recovery, listed import paths and checkpoint rollback have different scopes; none establishes a full external app export, production-data restore or independent deployment. The published Core amount is a base-plan price and does not establish full application costs. Sources: version-control, disaster-recovery, import-providers, checkpoints, pricing.
+- FAQ: test a separate export and independent deployment path if the project must operate outside Replit; inventory database records, secrets, domains, deployment settings and connected services. No import or restore was tested. Sources: version-control, disaster-recovery, import-providers, checkpoints.
 
 ## Gaps
 
@@ -60,7 +66,7 @@ Keep application code, database backups and environment-variable names portable.
 
 - Confirm that workspace, publishing, pre-existing storage and connected-service locations meet the proposed residency requirement; no account or deployment was checked, and publishing geography cannot be changed after release.
 - Review applicable data-processing terms; the general privacy policy is not an account-specific service-location map or a legal review.
-- Test a separate code/data export and independent deployment path outside Replit.
+- Confirm the required code, database, production data, secrets, domains, deployment configuration and connected-service migration scope; no export, import, restore or independent deployment was tested.
 
 ## Owner checklist
 

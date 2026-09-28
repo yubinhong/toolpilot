@@ -3,8 +3,8 @@
   "kind": "tools",
   "title": "Replit",
   "summary": "An app-building workflow to assess together with its operating costs.",
-  "revision": 5,
-  "updatedAt": "2026-09-27",
+  "revision": 6,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -50,7 +50,7 @@
       "url": "https://docs.replit.com/features/version-control/checkpoints-and-rollbacks",
       "title": "Checkpoints and rollbacks",
       "publisher": "Replit",
-      "accessedAt": "2026-09-27"
+      "accessedAt": "2026-09-28"
     },
     {
       "id": "geography",
@@ -65,6 +65,27 @@
       "title": "Privacy Policy",
       "publisher": "Replit",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "version-control",
+      "url": "https://docs.replit.com/learn/projects-and-artifacts/version-control",
+      "title": "Version control",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "disaster-recovery",
+      "url": "https://docs.replit.com/features/version-control/disaster-recovery",
+      "title": "Git disaster recovery",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "import-providers",
+      "url": "https://docs.replit.com/build/import-from-providers",
+      "title": "Import from a provider",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -105,9 +126,9 @@
     {
       "key": "portability",
       "label": "Code / data portability",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Replit documents Git/GitHub connectivity and an App-managed gitsafe-backup remote that can restore the App's Git commit history after its local repository is corrupted. Its import guide lists GitHub, Bitbucket and ZIP plus named builder sources; source-specific settings, secrets, database values or services may need separate setup. One documented provider-import path says existing Supabase records and secrets are not imported. Agent checkpoints are an in-platform rollback path covering project state and AI context, with development database restoration optional; production database restore is not automatic. These documents cover code/repository recovery and platform-local rollback, not a tested full external app export or migration.",
+      "sourceIds": ["version-control", "disaster-recovery", "import-providers", "checkpoints"],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -183,19 +204,19 @@
   ],
   "faqs": [
     { "question": "What does Replit Agent do?", "answer": "Replit says Agent can take a plain-language idea through project setup, app creation, checking, problem fixing and deployment; validate the result for your own workload.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] },
-    { "question": "Do checkpoints replace an external backup?", "answer": "The docs describe checkpoints as snapshots of a Replit app. Test a separate export and recovery path if you need to operate outside Replit.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "checkpoints" }] },
+    { "question": "Do Replit's backup and import docs establish a complete external migration?", "answer": "No. Replit documents Git repository backup and imports from GitHub, Bitbucket and ZIP, while provider-specific data, secrets and services may need separate setup. Agent checkpoints support rollback inside Replit; production database restore is not automatic. Inventory the exact app resources and test an independent deployment. No export, import or restore was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "version-control" }, { "toolSlug": "replit", "sourceId": "disaster-recovery" }, { "toolSlug": "replit", "sourceId": "import-providers" }, { "toolSlug": "replit", "sourceId": "checkpoints" }] },
     { "question": "What Replit Core prices are publicly listed?", "answer": "Replit's current sources list USD 20/month with monthly billing and USD 18/month equivalent when billed annually. Taxes depend on location; confirm your exact checkout and budget runtime, database and agent usage separately.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }, { "toolSlug": "replit", "sourceId": "core-pricing-update" }] }
   ],
   "verdict": "Evaluate the full build-to-operation loop, not just the first demo. Require a separate estimate for editing and the live application.",
   "bestFor": "Builders comparing a hosted development workflow",
   "notFor": "Projects with an unverified residency or private-network requirement",
-  "migration": "Keep application code, database backups and environment-variable names portable. Test an independent build before considering a migration complete.",
+  "migration": "Use Replit's documented Git/import paths for code, then inventory environment secrets, database records, production data, domains and provider-specific services separately. Rehearse an independent build and restore before considering a migration complete; no migration was tested.",
   "dependencies": [],
   "gaps": [
     "Confirm current account eligibility, location-based taxes and total application costs; public Core base prices are not a regional checkout quote or full operating budget.",
     "Confirm whether the documented workspace and publishing geography settings meet the proposed residency requirement across pre-existing storage, other platform resources and connected services; no account or deployment was checked, and published-region selection is permanent.",
     "Review the applicable data-processing terms for the intended use; the general privacy policy is not an account-specific service-location map or a legal review.",
-    "No independent export or deployment test established code and data portability outside Replit."
+    "The reviewed docs cover Git-repository recovery, selected source imports and in-platform checkpoints, not a verified full export outside Replit. Confirm the required secrets, database records, production data, domains, deployment settings and connected services; no export, import, restore or independent deploy was tested."
   ],
   "changes": [
     {
@@ -217,6 +238,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added official privacy-policy and separate workspace/publishing geography evidence; account configuration, full resource scope, data-processing review and export tests remain open."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added official Git, provider-import and disaster-recovery scope; external full-app migration, provider data and account setup remain untested."
     }
   ],
   "commercial": {

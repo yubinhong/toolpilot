@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Replit alternatives",
   "summary": "Replit alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 12,
+  "revision": 13,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "replit",
-      "revision": 5,
-      "digest": "9710902b59f27d4fa6a5312210fe68756fe16128fcbd6eccd70e01538afc2b9e"
+      "revision": 6,
+      "digest": "a6ee281aafd80c1c87d38404c3e0fe7b7d728a69c8a1c4f200ff8e0abb2e19b8"
     },
     {
       "slug": "lovable",
@@ -114,6 +114,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Claude Code dependency after official self-hosted compute, model-inference and Git/checkpoint evidence; exact Owner review pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Replit's Git, provider-import and disaster-recovery boundary; project migration remains untested."
     }
   ],
   "commercial": {
@@ -182,18 +186,18 @@
   ],
   "faqs": [
     {
-      "question": "Do Replit checkpoints replace an external backup?",
-      "answer": "The documentation describes checkpoints inside Replit. Test a separate code export and recovery process if the project must operate outside the platform.",
+      "question": "Do Replit's backup and import docs establish a complete external migration?",
+      "answer": "No. Replit documents Git repository backup and imports from GitHub, Bitbucket and ZIP, while provider-specific data, secrets and services may need separate setup. Agent checkpoints support rollback inside Replit; production database restore is not automatic. Inventory the exact app resources and test an independent deployment. No export, import or restore was tested.",
       "sourceRefs": [
-        {
-          "toolSlug": "replit",
-          "sourceId": "checkpoints"
-        }
+        { "toolSlug": "replit", "sourceId": "version-control" },
+        { "toolSlug": "replit", "sourceId": "disaster-recovery" },
+        { "toolSlug": "replit", "sourceId": "import-providers" },
+        { "toolSlug": "replit", "sourceId": "checkpoints" }
       ]
     },
     {
       "question": "Which candidates document Git-based project movement?",
-      "answer": "Lovable documents sync with GitHub, GitLab and Bitbucket; Bolt documents GitHub repository import and version control. Test runtime services separately.",
+      "answer": "Lovable documents sync with GitHub, GitLab and Bitbucket; Bolt documents GitHub repository import and version control. Replit documents GitHub/Bitbucket/ZIP imports plus a Replit-managed repository backup for recovery. Test runtime services and resource setup separately.",
       "sourceRefs": [
         {
           "toolSlug": "lovable",
@@ -202,7 +206,10 @@
         {
           "toolSlug": "bolt-new",
           "sourceId": "git"
-        }
+        },
+        { "toolSlug": "replit", "sourceId": "version-control" },
+        { "toolSlug": "replit", "sourceId": "disaster-recovery" },
+        { "toolSlug": "replit", "sourceId": "import-providers" }
       ]
     },
     {

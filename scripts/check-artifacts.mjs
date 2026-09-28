@@ -368,6 +368,28 @@ for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
     if (!source || !html.includes(source.url)) failures.push(`/${kind}/${slug}/: Make portability source ${sourceId} is missing from generated HTML`);
   }
 }
+const replitProfile = tools.get('replit');
+const replitPortability = replitProfile?.facts.find(fact => fact.key === 'portability');
+const replitProfileHtml = readFileSync('out/tools/replit/index.html', 'utf8');
+if (!replitPortability?.value || !replitProfileHtml.includes(escapeHtml(replitPortability.value))) failures.push('/tools/replit/: code-portability fact is missing from generated HTML');
+for (const sourceId of replitPortability?.sourceIds ?? []) {
+  const source = replitProfile?.sources.find(candidate => candidate.id === sourceId);
+  if (!source || !replitProfileHtml.includes(source.url)) failures.push(`/tools/replit/: portability source ${sourceId} is missing from generated HTML`);
+}
+for (const [kind, slug] of [['alternatives', 'replit'], ['compare', 'bolt-vs-replit'], ['compare', 'replit-vs-lovable']]) {
+  const record = content.find(item => item.kind === kind && item.slug === slug);
+  const html = readFileSync(join('out',`/${kind}/${slug}/`,'index.html'),'utf8');
+  const portabilityFaq = record?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === 'version-control'));
+  if (!portabilityFaq || !html.includes(escapeHtml(portabilityFaq.answer))) failures.push(`/${kind}/${slug}/: Replit code-portability FAQ is missing from generated HTML`);
+  for (const sourceId of ['version-control', 'disaster-recovery', 'import-providers', 'checkpoints']) {
+    const source = replitProfile?.sources.find(candidate => candidate.id === sourceId);
+    if (!portabilityFaq?.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === sourceId) || !source || !html.includes(source.url)) {
+      failures.push(`/${kind}/${slug}/: Replit portability source ${sourceId} is missing from generated HTML`);
+    }
+  }
+  if (!html.includes('content="noindex, follow"')) failures.push(`/${kind}/${slug}/: in-review noindex is missing from generated HTML`);
+  if (xml.includes(`${site}/${kind}/${slug}/`)) failures.push(`/${kind}/${slug}/: in-review page appears in sitemap`);
+}
 for (const record of content.filter(item => item.kind === 'compare')) {
   const facts = record.dependencies.flatMap(dependency => {
     const fact = tools.get(dependency.slug)?.facts.find(item => item.key === 'mcp');

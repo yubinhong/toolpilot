@@ -82,7 +82,11 @@ TODO-309 Make scenario portability update (2026-09-28 13:16 UTC): Make profile r
 
 TODO-309 release update (2026-09-28): commit `6a3009c` passed clean `release:check`, CI `36428147844`, and Pages check/deployment `91932f6f-f3b6-43e4-a0d1-a6e6b4e350ff`. Preview and production passed 99-page current smoke plus direct source/noindex/sitemap assertions for the Make profile, comparison and workflow guide. Release does not constitute Owner content approval or evidence of a tested migration.
 
+TODO-309 Replit portability update (2026-09-28): Replit revision 6 documents Git-history recovery, the App-managed `gitsafe-backup` remote, GitHub/Bitbucket/ZIP and named builder imports, and in-platform checkpoints; provider-specific setup can still be required and production DB restore is not automatic. Seven dependent decisions and both exact review manifests are refreshed. Four Replit documentation URLs returned HTTP 200 in a 207-target scan (170 HTTP-ok, 20 restricted, 11 blocked, 6 temporary errors); reachability is not a migration test. No import, restore, account setup or independent deployment was tested. All affected drafts remain in-review/noindex; required resource scope, regional checkout, account settings and Owner approval remain open.
+
 TODO-311/TODO-312 verification update (2026-09-28 13:16 UTC): date-pinned freshness reports 14 unverified fields and 0 overdue after Make's `portability` fact became source-bound. Remaining unknowns are 6 `selfHosting`, 5 `localModels`, 2 `portability` and Continue's account/model-usage price. These do not assert product absence or overdue behavior; the 26 candidate filter facets remain unverified, and TODO-312 still requires demand evidence and a noindex/parameter-URL test design.
+
+TODO-311/TODO-312 verification update (2026-09-28): after Replit's Git/import/recovery portability evidence, date-pinned freshness reports 13 unverified fields and 0 overdue: 6 `selfHosting`, 5 `localModels`, 1 Windsurf `portability`, and Continue's account/model-usage price. These are unknowns, not negative or overdue findings. The 26 proposed filter facets remain unverified, and TODO-312 still needs demand evidence and a noindex/parameter-URL test design.
 
 ## Later - 暂不承诺
 
