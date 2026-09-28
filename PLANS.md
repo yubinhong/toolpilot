@@ -507,6 +507,15 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - Acceptance: `npm run content:check`, exact `npm run content:review`, freshness, focused tests, Node 22 Cloudflare build/artifact checks, dependency audit, local current-profile smoke and `git diff --check` pass. All affected records remain in-review, noindex and outside the sitemap.
 - Rollback: revert only this dated source/profile/dependent/test/handoff tranche and restore the matching prior revisions/digests; rebuild and repeat content, artifact and current-profile smoke checks. No route or indexability change is allowed.
 
+##### Make scenario portability evidence tranche — 2026-09-28
+
+- Review Make's official scenario-blueprint and AES documentation. Scope portability to one scenario's JSON blueprint: modules, settings and mapped values are included; the importing account must create its own connections; imports are limited to files under 2 MB. Record Make's warning that a simple-mode AES key is exposed when sharing a scenario or downloading its blueprint. Keep full-organization recovery, account resource coverage and actual migration unverified.
+- Add the dated official sources and portability fact to the Make profile. Update the Make-vs-n8n comparison and workflow automation guide only where this evidence improves the migration decision; include source-backed recovery/security FAQs and refresh exact Make dependency digests.
+- Increment all three revisions, reset no review fields beyond preserving `in-review`, regenerate the exact TASK-006 manifest and update its handoff. Add regression coverage for URLs/dates, fact boundaries, secret exposure warning, dependent citations/digests and noindex state.
+- Acceptance: focused content tests; `content:check`, `content:review`, freshness, full source-link scan, Node 22 Cloudflare build/artifact checks, dependency audit, local current-profile smoke, and generated HTML assertions for source links/noindex/sitemap exclusion. Do not claim a blueprint import, cross-account migration, connection transfer or full-workspace restore was tested.
+- Completed locally on 2026-09-28: Cloudflare build passed lint, typecheck, 94 tests, content validation and artifact checks (99 pages / 4 indexable URLs); exact `content:review`, dependency audit (0 vulnerabilities), date-pinned freshness (14 unknown / 0 overdue), 204-target link scan and current-profile smoke passed. All three Make sources returned HTTP 200. Generated HTML confirmed source links, noindex and sitemap exclusion on the profile and both dependents. Migration/import/account behavior remains untested.
+- Rollback: revert only the Make portability source/fact/dependent/test/handoff tranche and restore matching prior revisions/digests; rebuild and repeat content/artifact/current-profile checks. No route, owner approval or indexing state may change.
+
 #### Phase 5 — External operating and commercial gates
 
 - Obtain operator/contact/legal facts before final trust copy; do not invent a company, address, team or legal relationship.

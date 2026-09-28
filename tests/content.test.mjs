@@ -54,7 +54,7 @@ test('Make and Replit price cadences are source-backed and remain pending owner 
     assert.equal(isIndexable(record, content), false);
   }
 });
-test('Make plan, privacy and retention facts cite official pages without claiming account-level settings',() => {
+test('Make plan, privacy, retention and portability facts cite official pages without claiming account-level settings',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'make');
   const expected = {
     hostingRegions: { value: 'The pricing table lists AWS (EU/North America) for each plan. This does not establish customer-selectable regions or account-level data residency.', sources: ['pricing'], date: '2026-09-27' },
@@ -63,10 +63,11 @@ test('Make plan, privacy and retention facts cite official pages without claimin
     privacy: { sources: ['privacy'], date: '2026-09-28' },
     personalDataRetention: { sources: ['privacy', 'privacy-and-gdpr'], date: '2026-09-28' },
     logDataRetention: { sources: ['security'], date: '2026-09-28' },
+    portability: { sources: ['blueprints', 'scenario-history', 'simple-aes'], date: '2026-09-28' },
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 6);
+  assert.equal(record.revision, 7);
   for (const [key, expectation] of Object.entries(expected)) {
     const fact = record.facts.find(item => item.key === key);
     assert.ok(fact, `Make has ${key}`);
@@ -78,10 +79,21 @@ test('Make plan, privacy and retention facts cite official pages without claimin
   assert.match(record.facts.find(item => item.key === 'privacy')?.value ?? '', /workflow-step counts, operation types and queries/);
   assert.match(record.facts.find(item => item.key === 'personalDataRetention')?.value ?? '', /Neither page gives a purge timeline/);
   assert.match(record.facts.find(item => item.key === 'logDataRetention')?.value ?? '', /separate from Core's plan-listed 30-day execution-log allowance/);
+  const portability = record.facts.find(item => item.key === 'portability');
+  assert.match(portability?.value ?? '', /JSON blueprint containing its modules, module settings and mapped values/);
+  assert.match(portability?.value ?? '', /account connections and must be under 2 MB/);
+  assert.match(portability?.value ?? '', /separate CSV export/);
+  assert.match(portability?.value ?? '', /simple-mode AES secret key is exposed/);
+  assert.match(portability?.value ?? '', /not full-organization recovery/);
+  assert.ok(record.gaps.some(gap => gap.includes('exact organization resources that must be recoverable beyond an individual scenario blueprint')));
+  assert.ok(record.gaps.some(gap => gap.includes('No blueprint was imported')));
   for (const [id, url] of Object.entries({
     privacy: 'https://www.make.com/en/privacy-notice',
     'privacy-and-gdpr': 'https://www.make.com/en/privacy-and-gdpr',
     security: 'https://www.make.com/en/security',
+    blueprints: 'https://help.make.com/blueprints',
+    'scenario-history': 'https://help.make.com/scenario-history',
+    'simple-aes': 'https://help.make.com/aes-advanced-encryption-standard',
   })) {
     const source = record.sources.find(item => item.id === id);
     assert.equal(source?.url, url);
@@ -90,13 +102,21 @@ test('Make plan, privacy and retention facts cite official pages without claimin
   assert.ok(record.gaps.some(gap => gap.includes('customer-selectable region meets the intended account data-residency requirement')));
   assert.ok(record.gaps.some(gap => gap.includes('workspace-specific workflow and connected-provider data scope')));
   assert.ok(record.gaps.some(gap => gap.includes('applicable DPA/subprocessor list and legal suitability')));
+  assert.ok(!freshness(content, '2026-09-28').some(item => item.path === '/tools/make/' && item.type === 'fact' && item.field === 'portability'));
   for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
     const decision = content.find(item => item.slug === slug);
     const makeDependency = decision?.dependencies.find(item => item.slug === 'make');
-    assert.equal(makeDependency?.revision, 6);
+    assert.equal(makeDependency?.revision, 7);
     assert.equal(makeDependency?.digest, contentDigest(record));
     assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'privacy')));
     assert.ok(decision?.faqs.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'security')));
+    const blueprintFaq = decision?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'blueprints'));
+    const secretFaq = decision?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'simple-aes'));
+    assert.ok(blueprintFaq, `${slug} covers Make blueprint recovery`);
+    assert.ok(secretFaq, `${slug} covers Make blueprint secret handling`);
+    assert.ok(blueprintFaq.sourceRefs.some(ref => ref.sourceId === 'scenario-history'));
+    assert.match(blueprintFaq.answer, /no (?:import or )?migration was tested/);
+    assert.match(secretFaq.answer, /simple-mode AES secret key is exposed/);
     assert.equal(decision?.review.state, 'in-review');
     assert.equal(isIndexable(decision, content), false);
   }
@@ -332,10 +352,10 @@ test('n8n portability, license and self-hosting evidence preserves documented li
   }
   const comparison = content.find(item => item.slug === 'make-vs-n8n');
   const guide = content.find(item => item.slug === 'workflow-automation-selection');
-  assert.equal(comparison?.revision, 11);
+  assert.equal(comparison?.revision, 12);
   assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
   assert.ok(comparison?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
-  assert.equal(guide?.revision, 10);
+  assert.equal(guide?.revision, 11);
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'license-use-cases')));
   assert.ok(guide?.faqs?.some(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'n8n' && ref.sourceId === 'workflow-export') && faq.sourceRefs.some(ref => ref.sourceId === 'backup-restore')));
   assert.equal(record.review.state, 'in-review');
@@ -428,7 +448,7 @@ test('Cline task-history portability distinguishes local resume from cross-devic
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,15);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,14);
 });
 test('Windsurf transition and current plan prices remain source-bound and separate from legacy account quotes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -584,7 +604,7 @@ test('Cursor Self-Hosted Machines separate worker execution, inference and data 
   }
   const paired=content.find(item=>item.kind==='compare'&&item.slug==='cursor-vs-claude-code');
   assert.ok(paired?.faqs.some(item=>item.question==='Do their self-hosted options move model inference onto your infrastructure?'));
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,15);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,14);
 });
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -701,7 +721,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,15);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,14);
 });
 test('GitHub Copilot cloud-agent runner placement is distinct from local inference and remains pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='github-copilot');
@@ -794,7 +814,7 @@ test('GitHub Copilot portability documents the cloud-agent Git handoff without c
   assert.equal(comparison?.review.state,'in-review');
   assert.equal(comparison?.review.owner,null);
   assert.equal(isIndexable(comparison,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,15);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,14);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');

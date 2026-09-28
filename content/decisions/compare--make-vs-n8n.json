@@ -2,8 +2,8 @@
   "slug": "make-vs-n8n",
   "kind": "compare",
   "title": "Make vs n8n",
-  "summary": "Compare Make and n8n by workflow billing unit, hosting responsibility and the operational work your automation requires.",
-  "revision": 11,
+  "summary": "Compare Make and n8n by workflow billing, recovery scope, hosting responsibility and the operational work each automation requires.",
+  "revision": 12,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -37,6 +37,12 @@
       "paragraphs": [
         "Test one integration with a rate limit, a malformed response and a credential rotation. Record retry behavior, run history, alerting and the time required to recover the workflow before selecting a platform."
       ]
+    },
+    {
+      "heading": "Compare what a workflow export restores",
+      "paragraphs": [
+        "Make documents scenario-level JSON blueprints with modules, settings and mapped values; connections must be created again after import and the file must be under 2 MB. n8n documents workflow JSON, a Preview package path and separate instance backups with different coverage. Neither set of documentation establishes that the same organization-wide resources, credentials or history transfer. Rehearse the exact target scope and inspect exports for secrets before relying on them."
+      ]
     }
   ],
   "relatedLinks": [
@@ -51,11 +57,13 @@
   ],
   "pros": [
     { "text": "Make distinguishes fixed from dynamic credit consumption, so a representative scenario can be estimated against documented usage rules.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
+    { "text": "Make documents importing and exporting individual scenario blueprints; account connections are created again after import.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "blueprints" }] },
     { "text": "n8n Cloud uses workflow executions as its billing unit; one workflow run is counted regardless of its number of steps.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "pricing" }] }
   ],
   "cons": [
     { "text": "Make credit use can vary for AI and advanced modules with tokens, file size, pages or processing time.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }] },
-    { "text": "n8n self-hosting does not establish lower operating cost; the operator must also configure transport and at-rest encryption.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "security" }] }
+    { "text": "n8n self-hosting does not establish lower operating cost; the operator must also configure transport and at-rest encryption.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "security" }] },
+    { "text": "Make warns that a simple-mode AES key is exposed when sharing a scenario or downloading its blueprint, so the export needs a secret review before distribution.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "simple-aes" }] }
   ],
   "faqs": [
     { "question": "Can I compare one Make credit directly with one n8n execution?", "answer": "No. Make credits can depend on the module and workload, while n8n Cloud counts a workflow execution once per complete run. Map the same trigger, steps and retries into both units.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "credits" }, { "toolSlug": "n8n", "sourceId": "pricing" }] },
@@ -64,17 +72,19 @@
     { "question": "What license should I check if the workflow will serve my customers?", "answer": "n8n's support guidance says managing client workflows and credentials in your own instance requires Enterprise; embedding n8n to expose workflows to customers requires a white-labeled Embed license. Consulting on a client's own internal instance does not itself require a commercial license for the consultant. These are vendor examples, so confirm the exact use case and entitlement directly with n8n.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "license-use-cases" }] },
     { "question": "Can a workflow export move a complete n8n instance?", "answer": "No. n8n supports workflow JSON and an n8n CLI package path, but the package method is in Preview. Its CLI backup omits users/roles, execution history/logs, variables and instance settings such as the encryption key; full recovery can also need the user folder, database and external storage. Workflow JSON may expose credential names or auth headers. No migration was tested.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "workflow-export" }, { "toolSlug": "n8n", "sourceId": "backup-restore" }] },
     { "question": "What does Make publish about privacy and log retention?", "answer": "Its privacy notice lists application-related usage data such as interactions, queries, workflow-step counts, logs and timestamps; Make says personal data may be deleted when no longer needed, subject to legal exceptions. Its security page says log data is stored for 30 days by default, with an Enterprise option to extend it. These statements do not confirm a workspace's settings or retention of every workflow payload or record.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "privacy" }, { "toolSlug": "make", "sourceId": "security" }] },
+    { "question": "What does a Make scenario blueprint move?", "answer": "Make says a JSON blueprint contains scenario modules, module settings and mapped values and can be used to back up a scenario when switching Make accounts. After import, create the account connections again; the file must be under 2 MB. Scenario history has a separate CSV export. These pages document scenario-level reuse, not full-organization recovery, and no migration was tested.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "blueprints" }, { "toolSlug": "make", "sourceId": "scenario-history" }] },
+    { "question": "Can a Make blueprint expose a secret?", "answer": "Make warns that a simple-mode AES secret key is exposed when a scenario is shared or its blueprint is downloaded. Inspect a workflow for hard-coded secrets before exporting or distributing it, and use approved secret handling.", "sourceRefs": [{ "toolSlug": "make", "sourceId": "simple-aes" }] },
     { "question": "Can n8n use a locally run model?", "answer": "n8n documents an Ollama Chat Model node and a self-hosted AI Starter Kit that pairs n8n with Ollama for local LLMs. Its Ollama credential defaults to a local endpoint but can also target a remote authenticated instance; separate containers may need network configuration. The starter kit is for proof-of-concept/demo use and needs hardening before production. Verify the target endpoint and data flow; no model was tested.", "sourceRefs": [{ "toolSlug": "n8n", "sourceId": "ollama-chat" }, { "toolSlug": "n8n", "sourceId": "ollama-credentials" }, { "toolSlug": "n8n", "sourceId": "ai-starter-kit" }] }
   ],
   "verdict": "Choose from the measured workload and hosting requirement. Make's credit unit and n8n's execution unit are not directly comparable without mapping the same automation into each billing model.",
   "bestFor": "Automation builders comparing task-based visual scenarios with API-oriented workflows",
   "notFor": "Teams choosing on a quoted total cost before confirming billing cadence, plan limits and hosting requirements",
-  "migration": "Rebuild one non-critical automation first. Export what the vendor supports, re-enter credentials through approved secret handling, and verify schedules, retries and outputs before switching traffic.",
+  "migration": "For Make, export an individual scenario as a JSON blueprint, recreate its account connections after import, and confirm the file is under 2 MB. Make also documents a separate CSV export for scenario history. Inspect blueprints for exposed simple-mode AES keys. Compare this scenario-level path with the specific n8n workflow/package/instance-backup scope needed; no cross-platform migration or full restore was tested.",
   "dependencies": [
     {
       "slug": "make",
-      "revision": 6,
-      "digest": "6e4dc870da6faf8d81fb37d78265e243f4f77725577393692d98b696ce17be2a"
+      "revision": 7,
+      "digest": "d7d51e04ad9e514b6257ed22f86e7eba4fd872b938e051811fec2d6b263ca9e9"
     },
     {
       "slug": "n8n",
@@ -87,6 +97,7 @@
     "Confirm the intended n8n deployment and feature entitlement against the current license and plan; vendor guidance distinguishes internal use from client-workflow hosting or embedding, but no specific use case or agreement was reviewed. Estimate self-hosted operating cost separately.",
     "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
     "Verify the Make workspace's workflow and connected-provider data scope, configured log categories/retention, deletion timing and applicable DPA; published vendor-wide privacy statements do not establish account settings or legal suitability.",
+    "Confirm which Make organization resources and workflow dependencies must be restored beyond the documented scenario blueprint; no blueprint import or migration was tested.",
     "Verify which n8n workflows, credentials, projects, users, execution history, variables, instance settings and external storage must move; the official export/backup paths cover different scopes and no cross-instance migration was tested.",
     "Verify that the intended n8n instance can reach the selected Ollama endpoint, that the model meets the workflow requirements, and that the connected services and data path fit the use case; no instance, model or privacy configuration was tested."
   ],
@@ -134,6 +145,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added official n8n/Ollama local-model integration evidence; endpoint reachability, network setup and production fit remain untested."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Make scenario blueprint, history export and simple-AES secret exposure boundaries; no migration was tested."
     }
   ],
   "commercial": {

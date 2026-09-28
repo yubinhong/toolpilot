@@ -347,6 +347,27 @@ for (const record of content.filter(item => item.kind !== 'tools' && item.depend
     if (!source || !html.includes(source.url)) failures.push(`/${record.kind}/${record.slug}/: n8n local-model source ${sourceId} is missing from generated HTML`);
   }
 }
+const makeProfile = tools.get('make');
+const makePortability = makeProfile?.facts.find(fact => fact.key === 'portability');
+const makeProfileHtml = readFileSync('out/tools/make/index.html', 'utf8');
+if (!makePortability?.value || !makeProfileHtml.includes(escapeHtml(makePortability.value))) failures.push('/tools/make/: scenario portability fact is missing from generated HTML');
+for (const sourceId of makePortability?.sourceIds ?? []) {
+  const source = makeProfile?.sources.find(candidate => candidate.id === sourceId);
+  if (!source || !makeProfileHtml.includes(source.url)) failures.push(`/tools/make/: portability source ${sourceId} is missing from generated HTML`);
+}
+for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
+  const kind = slug === 'make-vs-n8n' ? 'compare' : 'guides';
+  const record = content.find(item => item.kind === kind && item.slug === slug);
+  const html = readFileSync(join('out',`/${kind}/${slug}/`,'index.html'),'utf8');
+  const blueprintFaq = record?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'blueprints'));
+  const secretFaq = record?.faqs.find(faq => faq.sourceRefs.some(ref => ref.toolSlug === 'make' && ref.sourceId === 'simple-aes'));
+  if (!blueprintFaq || !html.includes(escapeHtml(blueprintFaq.answer))) failures.push(`/${kind}/${slug}/: Make blueprint portability FAQ is missing from generated HTML`);
+  if (!secretFaq || !html.includes(escapeHtml(secretFaq.answer))) failures.push(`/${kind}/${slug}/: Make blueprint secret-handling FAQ is missing from generated HTML`);
+  for (const sourceId of ['blueprints', 'scenario-history', 'simple-aes']) {
+    const source = makeProfile?.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/${kind}/${slug}/: Make portability source ${sourceId} is missing from generated HTML`);
+  }
+}
 for (const record of content.filter(item => item.kind === 'compare')) {
   const facts = record.dependencies.flatMap(dependency => {
     const fact = tools.get(dependency.slug)?.facts.find(item => item.key === 'mcp');

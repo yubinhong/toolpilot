@@ -40,24 +40,25 @@
   },
   {
     "path": "/tools/make/",
-    "revision": 6,
-    "digest": "6e4dc870da6faf8d81fb37d78265e243f4f77725577393692d98b696ce17be2a",
+    "revision": 7,
+    "digest": "d7d51e04ad9e514b6257ed22f86e7eba4fd872b938e051811fec2d6b263ca9e9",
     "state": "in-review",
     "gaps": [
-      "Confirm location-dependent checkout taxes and total; whether a customer-selectable region meets the intended account data-residency requirement; workspace-specific workflow and connected-provider data scope, configured log categories/periods, deletion response and purge timing; the applicable DPA/subprocessor list and legal suitability; and scenario export for the intended plan.",
-      "A representative workflow has not been measured; credit use can vary by module and usage."
+      "Confirm location-dependent checkout taxes and total; whether a customer-selectable region meets the intended account data-residency requirement; workspace-specific workflow and connected-provider data scope, configured log categories/periods, deletion response and purge timing; the applicable DPA/subprocessor list and legal suitability; and the exact organization resources that must be recoverable beyond an individual scenario blueprint.",
+      "A representative workflow has not been measured; credit use can vary by module and usage. No blueprint was imported, and exported scenarios were not inspected for actual secret values."
     ]
   },
   {
     "path": "/compare/make-vs-n8n/",
-    "revision": 11,
-    "digest": "6b6281b2b2e711c624335de682e9ba57e62d2a763533c69cf0686e2040cf27e6",
+    "revision": 12,
+    "digest": "ac2384c6ee02c13afc756b982aee653bcfe9c9414fda27f6e163abb685e6c69b",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing; confirm regional checkout taxes and the workload-specific credit requirement before setting a budget.",
       "Confirm the intended n8n deployment and feature entitlement against the current license and plan; vendor guidance distinguishes internal use from client-workflow hosting or embedding, but no specific use case or agreement was reviewed. Estimate self-hosted operating cost separately.",
       "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
       "Verify the Make workspace's workflow and connected-provider data scope, configured log categories/retention, deletion timing and applicable DPA; published vendor-wide privacy statements do not establish account settings or legal suitability.",
+      "Confirm which Make organization resources and workflow dependencies must be restored beyond the documented scenario blueprint; no blueprint import or migration was tested.",
       "Verify which n8n workflows, credentials, projects, users, execution history, variables, instance settings and external storage must move; the official export/backup paths cover different scopes and no cross-instance migration was tested.",
       "Verify that the intended n8n instance can reach the selected Ollama endpoint, that the model meets the workflow requirements, and that the connected services and data path fit the use case; no instance, model or privacy configuration was tested."
     ]
@@ -126,14 +127,14 @@
   },
   {
     "path": "/guides/workflow-automation-selection/",
-    "revision": 10,
-    "digest": "efb8cbb01e35a5a1c846f33c98acf7c773f493fb13a5ecf96f746e62f7e89e70",
+    "revision": 11,
+    "digest": "685742a9cc08e7adb4d6769102b2516a44186beac944afd2640728ee1755004d",
     "state": "in-review",
     "gaps": [
       "For 10,000 monthly credits, Make lists USD 12/month with monthly payment or USD 9/month equivalent on annual billing. Confirm checkout taxes and whether a selectable region meets the intended residency requirement; verify workspace-specific data scope, configured log retention, connected-provider terms, deletion timing, applicable DPA and representative workflow behavior. No account, legal or hands-on workflow review was performed.",
       "Verify n8n self-hosted telemetry opt-out and connected-service data terms; no instance configuration was inspected.",
       "Check the exact client-facing or embedded service against n8n's current license and plan; published use-case examples do not determine an individual deployment's entitlements.",
-      "Verify the target n8n instance scope and restore behavior before migration; workflow packages and CLI backups have distinct documented limits, and no move or full restore was tested.",
+      "Verify the Make organization resources and n8n instance scope that must move; their documented scenario/workflow/package/backup paths cover distinct objects, and no move or full restore was tested.",
       "Verify that the target n8n deployment can reach its Ollama endpoint and that the model, network and workflow data path satisfy the intended use; no inference or self-hosted setup was tested."
     ]
   }
