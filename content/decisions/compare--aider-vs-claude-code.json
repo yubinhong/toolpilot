@@ -3,8 +3,8 @@
   "kind": "compare",
   "title": "Aider vs Claude Code",
   "summary": "Compare two repository-oriented coding agents by Git behavior, model access and review controls.",
-  "revision": 7,
-  "updatedAt": "2026-09-27",
+  "revision": 8,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -49,7 +49,9 @@
   ],
   "faqs": [
     { "question": "What should I inspect before running Aider in an established repository?", "answer": "Review its dirty-file commit and Git hook defaults, then trial on a disposable branch and inspect the resulting history.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "git" }] },
-    { "question": "Do the two clients imply one shared model billing price?", "answer": "No. Aider supports multiple providers and Claude Code documents separate subscription and API usage routes; compare the exact provider, account and usage basis you will use.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "models" }, { "toolSlug": "claude-code", "sourceId": "pricing" }] }
+    { "question": "Do the two clients imply one shared model billing price?", "answer": "No. Aider supports multiple providers and Claude Code documents separate subscription and API usage routes; compare the exact provider, account and usage basis you will use.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "models" }, { "toolSlug": "claude-code", "sourceId": "pricing" }] },
+    { "question": "Does Claude Code's self-hosted environment provide local model inference?", "answer": "No. Anthropic documents self-hosted runners for session compute, but model inference still goes to api.anthropic.com. Aider documents local models through compatible providers; neither route was tested here.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "models" }, { "toolSlug": "claude-code", "sourceId": "self-hosted" }] },
+    { "question": "Are Claude Code checkpoints a replacement for Git history?", "answer": "No. Checkpoints offer session-level recovery for edits made through Claude's editing tools; Bash-command changes and some subagent or external edits are not tracked. Anthropic recommends Git for permanent history.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "checkpoints" }] }
   ],
   "verdict": "Compare the complete repository loop, including Git side effects, model/provider cost and command review. The profiles do not establish a performance winner.",
   "bestFor": "Developers comfortable running a bounded, measured coding-agent trial",
@@ -63,8 +65,8 @@
     },
     {
       "slug": "claude-code",
-      "revision": 3,
-      "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e"
+      "revision": 4,
+      "digest": "7942a7b3ffb6b52fcd13c89dead08f29b8e0d062c7fd5ea646648e75ac7f99e9"
     }
   ],
   "gaps": [
@@ -99,6 +101,10 @@
     {
       "date": "2026-09-27",
       "summary": "Refreshed the Aider dependency after its official container-install evidence update; exact owner review remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Claude Code dependency after official self-hosted compute, model-inference and Git/checkpoint evidence; exact Owner review pending."
     }
   ],
   "commercial": {

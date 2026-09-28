@@ -3,7 +3,7 @@
   "kind": "guides",
   "title": "AI editor vs terminal agent: choose a review loop",
   "summary": "Compare interaction styles without assuming products fit only one category.",
-  "revision": 6,
+  "revision": 7,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -57,8 +57,8 @@
     },
     {
       "slug": "claude-code",
-      "revision": 3,
-      "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e"
+      "revision": 4,
+      "digest": "7942a7b3ffb6b52fcd13c89dead08f29b8e0d062c7fd5ea646648e75ac7f99e9"
     },
     {
       "slug": "cline",
@@ -93,6 +93,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added Cursor Privacy Mode, model-retention and Cloud Agent data-scope evidence; account applicability remains pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Claude Code dependency after official self-hosted compute, model-inference and Git/checkpoint evidence; exact Owner review pending."
     }
   ],
   "commercial": {

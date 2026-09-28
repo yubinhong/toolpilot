@@ -10,8 +10,8 @@
   },
   {
     "path": "/tools/claude-code/",
-    "revision": 3,
-    "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e",
+    "revision": 4,
+    "digest": "7942a7b3ffb6b52fcd13c89dead08f29b8e0d062c7fd5ea646648e75ac7f99e9",
     "state": "in-review",
     "gaps": []
   },
@@ -90,8 +90,8 @@
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 8,
-    "digest": "0b14649a89642303481de6b22ef57c36a2900074d154d2121bb406f4322255fd",
+    "revision": 9,
+    "digest": "bd4ed75b5a30d998a02782c0603d747fecd6e6b5aac2a23dd050dc28aa25369a",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -100,8 +100,8 @@
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 11,
-    "digest": "5931d77eb06b103d190a97412db168ee37f9f9ae53f4c515cedb119b5b611edd",
+    "revision": 12,
+    "digest": "d10e24bcc59da52ed6d57edd81f7cb01eadb559f2aeca447fba88903222f199b",
     "state": "in-review",
     "gaps": [
       "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
@@ -120,8 +120,8 @@
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 11,
-    "digest": "6bea4b5c552613859d909ed099a22c99caa224e72b502f35fa28faf4dddc81e0",
+    "revision": 12,
+    "digest": "fdf8deb43adf8331a074b271ec06ba4ec5e47cd1448a4621f7e709bfdad3c415",
     "state": "in-review",
     "gaps": []
   },
@@ -145,8 +145,8 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 8,
-    "digest": "2678305ce02a0d1caf4162e73d5d00803f1683cc3482c53cc6ce88ace471e852",
+    "revision": 9,
+    "digest": "e9c2a1b780639a5e7b5e70b50234200f019d68ab2a49b76a0eff66299bdee9cf",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -155,15 +155,15 @@
   },
   {
     "path": "/compare/cline-vs-claude-code/",
-    "revision": 5,
-    "digest": "7dcc66b3bc97bfc60e9578d609d7d000283b4c07a838f13671ed9885b8838e5f",
+    "revision": 6,
+    "digest": "5c745466995465835546848c47dd482309a910e9b4b89e1d0fbc5a81287c941e",
     "state": "in-review",
     "gaps": []
   },
   {
     "path": "/compare/cursor-vs-claude-code/",
-    "revision": 5,
-    "digest": "f40b87bb7106f09b20417af435ab3ac9745606ffc03be405fc002c80bae8d120",
+    "revision": 6,
+    "digest": "d20d67f282f499fc60e806d610d33064e554d9cbc9eb28ea5d9530da84f62045",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
@@ -205,8 +205,8 @@
   },
   {
     "path": "/guides/ai-editor-vs-terminal-agent/",
-    "revision": 6,
-    "digest": "3693f42907e34279e601d33113d06be661e1695f2cac4236f4c2bca8f0d367ac",
+    "revision": 7,
+    "digest": "d3306e386b2813015fb37637cce5b8c46e49a0d9f58527eb3f2aca976ab43d7f",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
@@ -221,8 +221,8 @@
   },
   {
     "path": "/pricing/claude-code/",
-    "revision": 4,
-    "digest": "e25ff26b3c06d6cefc9593728f4a6fc53d73667e86e5c62530d782bb4637cfab",
+    "revision": 5,
+    "digest": "7fa2fe84ee667870b679e730bbc07d1bc7a93fba9e1e4e19f85a502a4ebfa5f6",
     "state": "in-review",
     "gaps": []
   },

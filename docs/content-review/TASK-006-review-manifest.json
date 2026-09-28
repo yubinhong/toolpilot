@@ -63,8 +63,8 @@
   },
   {
     "path": "/compare/claude-code-vs-github-copilot/",
-    "revision": 6,
-    "digest": "cdfa0242ac105e5626265e18a41a8aa27c3200327093203d852f2e21a9b5eb65",
+    "revision": 7,
+    "digest": "4a74b9b05bf9e5f00d6498305583e2386221d92b306822bc0b122c181434ac1d",
     "state": "in-review",
     "gaps": [
       "GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.",
@@ -87,8 +87,8 @@
   },
   {
     "path": "/compare/aider-vs-claude-code/",
-    "revision": 7,
-    "digest": "8d49efa87b90bdb69ae7f05d9f4aa2c1f495d9fdfaa3cae6a6f6cb9453604d52",
+    "revision": 8,
+    "digest": "576befe69b9acd9869933fd8f6975e409109e3b8ec30bff3fc893097a7b45a8f",
     "state": "in-review",
     "gaps": [
       "Provider and account-specific billing and privacy terms need current verification.",

@@ -3,7 +3,7 @@
   "kind": "alternatives",
   "title": "Claude Code alternatives",
   "summary": "Claude Code alternatives: candidate paths, switching costs and reasons to keep the original.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "claude-code",
-      "revision": 3,
-      "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e"
+      "revision": 4,
+      "digest": "7942a7b3ffb6b52fcd13c89dead08f29b8e0d062c7fd5ea646648e75ac7f99e9"
     },
     {
       "slug": "cursor",
@@ -101,6 +101,10 @@
     {
       "date": "2026-09-28",
       "summary": "Added GitHub Copilot Local BYOK client coverage and CLI data-route limits; account policy and inference remain untested."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Claude Code dependency after official self-hosted compute, model-inference and Git/checkpoint evidence; exact Owner review pending."
     }
   ],
   "commercial": {

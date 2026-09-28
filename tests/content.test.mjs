@@ -592,7 +592,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,25);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,22);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
@@ -684,7 +684,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'?5:record.slug==='cline'||record.slug==='cursor'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?8:record.slug==='github-copilot'?5:record.slug==='cline'||record.slug==='cursor'?4:record.slug==='claude-code'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);
@@ -750,10 +750,76 @@ test('TASK-006 P1 additions exist as in-review noindex routes with valid depende
   }
   assert.ok(routes.some(r=>r.path==='/alternatives/bolt-new/'));
 });
+test('Claude Code hosting, inference and portability claims match current official sources', () => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'claude-code');
+  assert.ok(record);
+  assert.equal(record.revision, 4);
+  const expectedSources = {
+    'self-hosted': 'https://code.claude.com/docs/en/self-hosted-environments',
+    deployment: 'https://code.claude.com/docs/en/third-party-integrations',
+    checkpoints: 'https://code.claude.com/docs/en/checkpointing',
+  };
+  for (const [id, url] of Object.entries(expectedSources)) {
+    const source = record.sources.find(item => item.id === id);
+    assert.equal(source?.url, url);
+    assert.equal(source?.accessedAt, '2026-09-28');
+  }
+  const facts = Object.fromEntries(record.facts.map(item => [item.key, item]));
+  assert.deepEqual(facts.selfHosting.sourceIds, ['self-hosted']);
+  assert.match(facts.selfHosting.value, /public beta for Team and Enterprise and off by default/);
+  assert.match(facts.selfHosting.value, /model inference still goes outbound to api\.anthropic\.com/);
+  assert.deepEqual(facts.localModels.sourceIds, ['self-hosted', 'deployment']);
+  assert.match(facts.localModels.value, /docs reviewed do not describe an on-device local-model route/);
+  assert.match(facts.localModels.value, /custom endpoint compatibility and account-specific options remain unverified/);
+  assert.deepEqual(facts.portability.sourceIds, ['product', 'checkpoints']);
+  assert.match(facts.portability.value, /Anthropic recommends Git for permanent version history/);
+  assert.match(facts.portability.value, /not session or settings migration/);
+
+  const selfHostedFaq = record.faqs.find(item => item.question === 'Does a Claude Code self-hosted environment keep model inference on your infrastructure?');
+  const localModelFaq = record.faqs.find(item => item.question === 'Can Claude Code use a local model?');
+  assert.ok(selfHostedFaq?.sourceRefs.some(ref => ref.sourceId === 'self-hosted'));
+  assert.ok(localModelFaq?.sourceRefs.some(ref => ref.sourceId === 'deployment'));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'claude-code'));
+  assert.deepEqual(dependents.map(item => `${item.kind}/${item.slug}`).sort(), [
+    'alternatives/claude-code',
+    'alternatives/cursor',
+    'alternatives/replit',
+    'best/ai-coding-tools-for-solo-founders',
+    'compare/aider-vs-claude-code',
+    'compare/claude-code-vs-github-copilot',
+    'compare/cline-vs-claude-code',
+    'compare/cursor-vs-claude-code',
+    'guides/ai-editor-vs-terminal-agent',
+    'pricing/claude-code',
+  ]);
+  for (const decision of dependents) {
+    const dependency = decision.dependencies.find(item => item.slug === 'claude-code');
+    assert.equal(dependency?.revision, record.revision);
+    assert.equal(dependency?.digest, contentDigest(record));
+    assert.equal(decision.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+  }
+  for (const manifestPath of ['docs/content-review/TASK-005-review-manifest.json', 'docs/content-review/TASK-006-review-manifest.json']) {
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    for (const reviewedRecord of [record, ...dependents]) {
+      const path = `/${reviewedRecord.kind}/${reviewedRecord.slug}/`;
+      const entry = manifest.find(item => item.path === path);
+      if (!entry) continue;
+      assert.equal(entry.revision, reviewedRecord.revision);
+      assert.equal(entry.digest, contentDigest(reviewedRecord));
+      assert.equal(entry.state, 'in-review');
+      assert.deepEqual(entry.gaps, reviewedRecord.gaps);
+    }
+  }
+});
+
 test('MCP and self-hosted hubs render only facts with resolvable source evidence', () => {
   const expectedProfiles = {
     mcp: ['cursor', 'claude-code', 'github-copilot', 'cline', 'continue'],
-    'self-hosted': ['n8n', 'continue', 'aider'],
+    'self-hosted': ['n8n', 'continue', 'aider', 'claude-code'],
   };
 
   for (const [kind, slugs] of Object.entries(expectedProfiles)) {
@@ -771,6 +837,10 @@ test('MCP and self-hosted hubs render only facts with resolvable source evidence
   const aiderLocalEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'aider');
   assert.equal(aiderLocalEntry?.fact.key, 'localModels');
   assert.deepEqual(aiderLocalEntry?.fact.sourceIds, ['models']);
+  const claudeHostedEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'claude-code');
+  assert.equal(claudeHostedEntry?.fact.key, 'selfHosting');
+  assert.deepEqual(claudeHostedEntry?.fact.sourceIds, ['self-hosted']);
+  assert.match(claudeHostedEntry?.fact.value ?? '', /inference still goes outbound to api\.anthropic\.com/);
 });
 test('TASK-006 decision pages expose cited strengths, constraints and FAQs while pending review',() => {
   const required = [
@@ -880,6 +950,8 @@ test('editing a price or verdict without bumping the revision invalidates approv
 });
 test('approved comparison needs current approved dependencies including digest',() => {
   const a=approve(tool()), b=approve(tool('second-fixture'));approve(b);
+  b.sources.push({id:'self-hosted',url:'https://example.com/self-hosted',title:'Synthetic self-hosted source',publisher:'Synthetic',accessedAt:'2026-09-28'});
+  approve(b);
   const r=structuredClone(content.find(r=>r.kind==='compare'&&r.slug==='cursor-vs-claude-code'));r.slug='fixture-comparison';
   r.gaps=[];
   r.dependencies=[a,b].map(t=>({slug:t.slug,revision:t.revision,digest:contentDigest(t)}));

@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Claude Code vs GitHub Copilot",
   "summary": "Choose between coding workflows by testing the same repository task, account policy and review loop.",
-  "revision": 6,
+  "revision": 7,
   "updatedAt": "2026-09-28",
   "review": { "state": "in-review", "owner": null, "reviewedAt": null, "approvedRevision": null, "approvedDigest": null, "evidence": null },
   "verifiedAt": null,
@@ -28,18 +28,23 @@
   "faqs": [
     { "question": "Does GitHub's MCP organization policy govern individual Copilot plans?", "answer": "No. GitHub scopes that policy to organization or enterprise members on Business or Enterprise plans, not Free, Pro, Pro+ or Max plans.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "mcp" }] },
     { "question": "Can a cloned repository approve its own Claude Code MCP servers?", "answer": "No. Project server settings are not approved until the workspace is trusted; review and approve the server in the trusted workspace.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "mcp" }] },
-    { "question": "Can GitHub Copilot use locally run models?", "answer": "GitHub lists Local BYOK in VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK. The client-side mechanism stores keys locally and removes dependence on the Copilot API. For Copilot CLI specifically, GitHub lists Ollama, vLLM and Foundry Local-compatible endpoints and requires tool calling and streaming. Offline mode prevents GitHub contact, but prompts and code context still reach a remote provider. Business/Enterprise organization policy can disable Local BYOK in IDEs. Confirm the client, policy and provider route; no account or model was tested.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "byok" }, { "toolSlug": "github-copilot", "sourceId": "cli-byok" }] }
+    { "question": "Can GitHub Copilot use locally run models?", "answer": "GitHub lists Local BYOK in VS Code, JetBrains, Xcode, Copilot CLI, the Copilot app and Copilot SDK. The client-side mechanism stores keys locally and removes dependence on the Copilot API. For Copilot CLI specifically, GitHub lists Ollama, vLLM and Foundry Local-compatible endpoints and requires tool calling and streaming. Offline mode prevents GitHub contact, but prompts and code context still reach a remote provider. Business/Enterprise organization policy can disable Local BYOK in IDEs. Confirm the client, policy and provider route; no account or model was tested.", "sourceRefs": [{ "toolSlug": "github-copilot", "sourceId": "byok" }, { "toolSlug": "github-copilot", "sourceId": "cli-byok" }] },
+    { "question": "Does Claude Code's self-hosted environment provide local model inference?", "answer": "No. Anthropic describes self-hosting as the location for cloud-session compute; those sessions still send model inference to api.anthropic.com. The reviewed docs do not document an on-device local-model route. GitHub's Local BYOK options vary by client and organization policy; no account or model was tested.", "sourceRefs": [{ "toolSlug": "claude-code", "sourceId": "self-hosted" }, { "toolSlug": "claude-code", "sourceId": "deployment" }, { "toolSlug": "github-copilot", "sourceId": "byok" }, { "toolSlug": "github-copilot", "sourceId": "cli-byok" }] }
   ],
   "verdict": "Let your real repository task and account requirements decide. Confirm current plan entitlements and privacy settings before making a team-level recommendation.",
   "bestFor": "Developers comparing a coding-agent workflow with IDE assistance and GitHub features",
   "notFor": "Teams requiring an already-verified account-specific privacy, entitlement or cost conclusion",
   "migration": "Trial the replacement on a branch while preserving the current review workflow. Recheck organization policy, account access and repository instructions before moving team usage.",
   "dependencies": [
-    { "slug": "claude-code", "revision": 3, "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e" },
+    { "slug": "claude-code", "revision": 4, "digest": "7942a7b3ffb6b52fcd13c89dead08f29b8e0d062c7fd5ea646648e75ac7f99e9" },
     { "slug": "github-copilot", "revision": 5, "digest": "b99704e15f5c690dcc048e1f4a8f7b56468b39d9c743720d4515e917e2a57587" }
   ],
   "gaps": ["GitHub Copilot feature availability and privacy settings depend on the account or organization; verify the exact deployment before publication.", "This comparison contains no hands-on benchmark or measured task result.", "Confirm the Copilot client, organization Local BYOK policy, model compatibility and provider route; no account, policy, model or inference path was tested."],
-  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; exact account constraints and owner review remain open." }, { "date": "2026-09-27", "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required." }, { "date": "2026-09-27", "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required." }, { "date": "2026-09-27", "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending." }, { "date": "2026-09-27", "summary": "Refreshed GitHub Copilot dependency after its official training-use policy update; owner review remains required." }, { "date": "2026-09-28", "summary": "Added GitHub Copilot Local BYOK client coverage and CLI data-route limits; account policy and inference remain untested." }],
+  "changes": [{ "date": "2026-09-27", "summary": "Initial profile-dependent comparison draft; exact account constraints and owner review remain open." }, { "date": "2026-09-27", "summary": "Refreshed dependent profile digests after official MCP facts were added; owner review required." }, { "date": "2026-09-27", "summary": "Refreshed dependent evidence digests after source-backed MCP page contracts were added; owner review required." }, { "date": "2026-09-27", "summary": "Added source-bound strengths, constraints and FAQs; exact owner review remains pending." }, { "date": "2026-09-27", "summary": "Refreshed GitHub Copilot dependency after its official training-use policy update; owner review remains required." }, { "date": "2026-09-28", "summary": "Added GitHub Copilot Local BYOK client coverage and CLI data-route limits; account policy and inference remain untested." },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Claude Code dependency after official self-hosted compute, model-inference and Git/checkpoint evidence; exact Owner review pending."
+    }],
   "commercial": {
     "affiliate": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },
     "featured": { "status": "unconfirmed", "url": null, "disclosure": null, "evidence": null },

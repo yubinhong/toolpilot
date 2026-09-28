@@ -1,8 +1,8 @@
 # Claude Code evidence pack
 
-Date: 2026-09-27. Research by Codex agent; final approver: site owner (pending).
+Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 3. Digest: `cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e`.
+Revision: 4. Digest: `7942a7b3ffb6b52fcd13c89dead08f29b8e0d062c7fd5ea646648e75ac7f99e9`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -18,17 +18,23 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp) — Claude Code; accessed 2026-09-27
 
+- [Self-hosted environments](https://code.claude.com/docs/en/self-hosted-environments) — Anthropic; accessed 2026-09-28
+
+- [Enterprise deployment overview](https://code.claude.com/docs/en/third-party-integrations) — Anthropic; accessed 2026-09-28
+
+- [Checkpointing](https://code.claude.com/docs/en/checkpointing) — Anthropic; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: Terminal, IDE, desktop and web coding agent Sources: product; checked: 2026-09-27.
 
 - **Privacy / data handling**: Consumer training settings and commercial terms differ; confirm the account type and opt-in settings. Sources: privacy; checked: 2026-09-27.
 
-- **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Product self-hosting**: Cloud sessions can run on organization-operated self-hosted environments with customer-managed runners; public beta for Team and Enterprise, off by default. Model inference still goes to `api.anthropic.com`. Sources: self-hosted; checked: 2026-09-28.
 
-- **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Local model inference**: The reviewed official docs do not describe an on-device local-model route. Self-hosted cloud sessions send inference to Anthropic and cannot use the listed third-party cloud-provider or LLM-gateway routes. Custom endpoint compatibility and other surfaces remain unverified. Sources: self-hosted, deployment; checked: 2026-09-28.
 
-- **Code / data portability**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Code / data portability**: Project files and Git are the durable work boundary; checkpoints can restore edits from Claude's file-edit tools, but do not track Bash changes and may miss subagent or external/concurrent edits. Anthropic recommends Git for permanent history. Sources: product, checkpoints; checked: 2026-09-28.
 
 - **MCP support**: Claude Code documents local stdio and remote HTTP, SSE and WebSocket MCP server connections; project-scoped servers require workspace trust and approval. Sources: mcp; checked: 2026-09-27.
 
@@ -46,7 +52,7 @@ This draft now includes 1 source-backed documented strengths, 2 documented const
 
 ## Proposed judgment
 
-Shortlist Claude Code when an explicit repository task and command-based verification fit your workflow. Review command permissions and the account billing route first.
+Shortlist Claude Code when an explicit repository task and command-based verification fit your workflow. Distinguish self-hosted session compute from model inference, then review command permissions and the account billing route.
 
 Consider for: Developers comfortable inspecting changes and command results. Not for: Users expecting autonomous changes to be safe without review.
 
@@ -54,7 +60,10 @@ Keep build instructions and acceptance tests in the repository. Port tool-specif
 
 ## Gaps
 
-- Assess all unknown fields above against the proposed recommendation.
+- Verify Team/Enterprise plan eligibility and whether self-hosted cloud sessions are enabled; no account was inspected.
+- Confirm the actual model provider and any custom endpoint configuration; official docs reviewed do not document an on-device model route.
+- Test the intended Git/checkpoint recovery process; no session recovery or migration was exercised.
+- Assess remaining account pricing, entitlements, privacy settings and provider terms.
 
 ## Owner checklist
 
