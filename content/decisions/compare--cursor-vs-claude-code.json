@@ -3,8 +3,8 @@
   "kind": "compare",
   "title": "Cursor vs Claude Code",
   "summary": "Cursor vs Claude Code: developers choosing an editor-centered or command-oriented repository workflow.",
-  "revision": 4,
-  "updatedAt": "2026-09-27",
+  "revision": 5,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "cursor",
-      "revision": 3,
-      "digest": "7b08dcd85e3c8eaae0ec2333691e7c1e528c946fe4a72748c7a626c3156ba6cd"
+      "revision": 4,
+      "digest": "e6e3b241f3ea0b12e5a4e8a80770c3769a53704f8bf221bdff2d1657e2e9013d"
     },
     {
       "slug": "claude-code",
@@ -55,7 +55,9 @@
       "digest": "cb4a9852484a42075d009fac39f99c4c68432248e43111cd9d492af6ff9fe81e"
     }
   ],
-  "gaps": [],
+  "gaps": [
+    "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+  ],
   "changes": [
     {
       "date": "2026-09-27",
@@ -72,6 +74,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-bound decision strengths, constraints and FAQs; owner review remains required."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added Cursor Privacy Mode, model-retention and Cloud Agent data-scope evidence; account applicability remains pending."
     }
   ],
   "commercial": {
@@ -160,6 +166,28 @@
         {
           "toolSlug": "claude-code",
           "sourceId": "product"
+        }
+      ]
+    },
+    {
+      "question": "What does Cursor Privacy Mode cover, and what should an account verify?",
+      "answer": "Cursor says Privacy Mode prevents training on Customer Data and that most model requests use provider zero-data-retention agreements, subject to safety and abuse review and non-ZDR model exceptions. Requests made with personal API keys still pass through Cursor's backend and rely on the provider's terms for retention. Optional Cloud Agents store encrypted repository copies while a run is active, then delete them after completion. Teams and Enterprise can enforce Privacy Mode; Cursor says individual plans follow its Privacy Policy rather than the commercial DPA. Verify the account setting, organization policy, model approvals, API-key route, Cloud Agent use and applicable agreement; none was inspected here.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-overview"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-governance"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-help"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-policy"
         }
       ]
     }

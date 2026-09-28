@@ -3,8 +3,8 @@
   "kind": "tools",
   "title": "Cursor",
   "summary": "An editor-centered starting point for reviewing AI changes in an existing repository.",
-  "revision": 3,
-  "updatedAt": "2026-09-27",
+  "revision": 4,
+  "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
     "owner": null,
@@ -36,7 +36,7 @@
       "url": "https://cursor.com/security",
       "title": "Security",
       "publisher": "Cursor",
-      "accessedAt": "2026-09-27"
+      "accessedAt": "2026-09-28"
     },
     {
       "id": "mcp",
@@ -44,6 +44,34 @@
       "title": "Model Context Protocol (MCP)",
       "publisher": "Cursor",
       "accessedAt": "2026-09-27"
+    },
+    {
+      "id": "privacy-overview",
+      "url": "https://cursor.com/data-use",
+      "title": "Data Use & Privacy Overview",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "privacy-governance",
+      "url": "https://prod.cursor.com/docs/enterprise/privacy-and-data-governance",
+      "title": "Privacy and Data Governance",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "privacy-help",
+      "url": "https://prod.cursor.com/help/security-and-privacy/privacy",
+      "title": "Privacy and data",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "privacy-policy",
+      "url": "https://cursor.com/privacy",
+      "title": "Privacy Policy",
+      "publisher": "Cursor",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -60,12 +88,16 @@
     {
       "key": "privacy",
       "label": "Privacy / data handling",
-      "value": "Privacy mode states that code is not used for training; this is not an offline guarantee.",
+      "value": "With Privacy Mode enabled, Cursor says it will not train on Customer Data and that most provider requests use zero-data-retention agreements. Its docs describe safety/abuse review exceptions and models that require administrator approval before provider retention is enabled. BYOK requests still pass through Cursor's backend, and Cursor says its provider ZDR agreements do not apply to user API keys. Optional Cloud Agents temporarily store encrypted repository copies while a run is active and delete them after completion. Privacy Mode is available on Free and Pro, is enabled by default for Enterprise teams, and can be enforced by team administrators. Cursor's Privacy Policy excludes personal data it processes for commercial customers as processor; those agreements govern instead. Turning Privacy Mode off may allow Customer Data to be used or stored for improvement and training. No account setting, team policy, API key, model approval, Cloud Agent use or agreement was inspected.",
       "sourceIds": [
-        "pricing"
+        "privacy-overview",
+        "privacy-governance",
+        "privacy-help",
+        "privacy-policy",
+        "security"
       ],
-      "checkedAt": "2026-09-27",
-      "critical": false
+      "checkedAt": "2026-09-28",
+      "critical": true
     },
     {
       "key": "selfHosting",
@@ -170,6 +202,32 @@
           "sourceId": "mcp"
         }
       ]
+    },
+    {
+      "text": "Privacy Mode is available on individual Free and Pro plans; teams can enable or enforce it for members.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "security"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-help"
+        }
+      ]
+    },
+    {
+      "text": "Privacy Mode does not make Cursor offline: AI requests send prompts and code context to model providers, and optional Cloud Agents temporarily store encrypted repository copies while running.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-governance"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-help"
+        }
+      ]
     }
   ],
   "faqs": [
@@ -192,6 +250,28 @@
           "sourceId": "mcp"
         }
       ]
+    },
+    {
+      "question": "What does Cursor Privacy Mode cover, and what should an account verify?",
+      "answer": "Cursor says Privacy Mode prevents training on Customer Data and that most model requests use provider zero-data-retention agreements, subject to safety and abuse review and non-ZDR model exceptions. Requests made with personal API keys still pass through Cursor's backend and rely on the provider's terms for retention. Optional Cloud Agents store encrypted repository copies while a run is active, then delete them after completion. Teams and Enterprise can enforce Privacy Mode; Cursor says individual plans follow its Privacy Policy rather than the commercial DPA. Verify the account setting, organization policy, model approvals, API-key route, Cloud Agent use and applicable agreement; none was inspected here.",
+      "sourceRefs": [
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-overview"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-governance"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-help"
+        },
+        {
+          "toolSlug": "cursor",
+          "sourceId": "privacy-policy"
+        }
+      ]
     }
   ],
   "verdict": "Shortlist Cursor when reading and revising diffs alongside the code is your main loop. Validate the usage allowance against your own workload.",
@@ -199,7 +279,9 @@
   "notFor": "Teams requiring a fully offline workflow without further verification",
   "migration": "Export your rules and record editor settings before trying another tool. Keep the repository and its tests as the portable source of truth.",
   "dependencies": [],
-  "gaps": [],
+  "gaps": [
+    "Verify the account's Privacy Mode setting and team enforcement, any personal API keys, approved models with provider retention, Cloud Agent use and applicable individual or commercial agreement; no account settings or data flow were inspected."
+  ],
   "changes": [
     {
       "date": "2026-09-27",
@@ -212,6 +294,10 @@
     {
       "date": "2026-09-27",
       "summary": "Added source-backed MCP strengths, constraints and FAQs; owner review pending."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Replaced the pricing-page privacy summary with current Privacy Mode, provider-retention and Cloud Agent scope; account settings remain unchecked."
     }
   ],
   "commercial": {

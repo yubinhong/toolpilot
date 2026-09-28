@@ -12,6 +12,7 @@ function tool(slug='synthetic-tool') {
   const r = structuredClone(content.find(r => r.slug === 'cursor' && r.kind === 'tools'));
   r.slug = slug; r.name='Synthetic fixture'; r.title='Synthetic fixture';
   r.productUrl='https://example.com/';
+  r.gaps=[];
   for (const field of ['pros','cons','faqs']) r[field]=r[field].map(item=>({...item,sourceRefs:item.sourceRefs.map(ref=>({...ref,toolSlug:slug}))}));
   return r;
 }
@@ -387,6 +388,61 @@ test('Windsurf transition and current plan prices remain source-bound and separa
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
 });
+test('Cursor Privacy Mode evidence preserves training, retention, BYOK and Cloud Agent scope',() => {
+  const record = content.find(item => item.kind === 'tools' && item.slug === 'cursor');
+  const fact = record?.facts.find(item => item.key === 'privacy');
+  const faq = record?.faqs.find(item => item.question === 'What does Cursor Privacy Mode cover, and what should an account verify?');
+  const expectedSources = {
+    'privacy-overview': 'https://cursor.com/data-use',
+    'privacy-governance': 'https://prod.cursor.com/docs/enterprise/privacy-and-data-governance',
+    'privacy-help': 'https://prod.cursor.com/help/security-and-privacy/privacy',
+    'privacy-policy': 'https://cursor.com/privacy',
+    security: 'https://cursor.com/security',
+  };
+
+  assert.ok(record);
+  assert.equal(record.revision, 4);
+  assert.equal(fact?.checkedAt, '2026-09-28');
+  assert.equal(fact?.critical, true);
+  assert.deepEqual(fact?.sourceIds, Object.keys(expectedSources));
+  assert.match(fact?.value ?? '', /Privacy Mode enabled/);
+  assert.match(fact?.value ?? '', /safety\/abuse review exceptions/);
+  assert.match(fact?.value ?? '', /BYOK requests still pass through Cursor's backend/);
+  assert.match(fact?.value ?? '', /Cloud Agents temporarily store encrypted repository copies/);
+  assert.match(fact?.value ?? '', /commercial customers as processor/);
+  assert.match(faq?.answer ?? '', /zero-data-retention agreements/);
+  assert.match(faq?.answer ?? '', /personal API keys still pass through Cursor's backend/);
+  assert.deepEqual(faq?.sourceRefs.map(ref => ref.sourceId), ['privacy-overview','privacy-governance','privacy-help','privacy-policy']);
+  for (const [id, url] of Object.entries(expectedSources)) {
+    assert.equal(record.sources.find(source => source.id === id)?.url, url);
+    assert.equal(record.sources.find(source => source.id === id)?.accessedAt, '2026-09-28');
+  }
+  assert.ok(record.gaps.some(gap => gap.includes('Privacy Mode setting and team enforcement')));
+
+  const dependents = content.filter(item => item.kind !== 'tools' && item.dependencies.some(dependency => dependency.slug === 'cursor'));
+  assert.equal(dependents.length, 11);
+  const manifest = JSON.parse(readFileSync('docs/content-review/TASK-005-review-manifest.json', 'utf8'));
+  for (const decision of dependents) {
+    const dependency = decision.dependencies.find(item => item.slug === 'cursor');
+    const decisionFaq = decision.faqs.find(item => item.question === faq.question);
+    assert.equal(dependency?.revision, record.revision);
+    assert.equal(dependency?.digest, contentDigest(record));
+    assert.deepEqual(decisionFaq?.sourceRefs.map(ref => ref.sourceId), Object.keys(expectedSources).slice(0, 4));
+    assert.ok(decision.gaps.some(gap => gap.includes('drawing account-specific processing or retention conclusions')));
+    assert.equal(decision.review.state, 'in-review');
+    assert.equal(isIndexable(decision, content), false);
+    const entry = manifest.find(item => item.path === `/${decision.kind}/${decision.slug}/`);
+    assert.ok(entry);
+    assert.equal(entry.revision, decision.revision);
+    assert.equal(entry.digest, contentDigest(decision));
+    assert.deepEqual(entry.gaps, decision.gaps);
+  }
+  const profileEntry = manifest.find(item => item.path === '/tools/cursor/');
+  assert.equal(profileEntry?.revision, record.revision);
+  assert.equal(profileEntry?.digest, contentDigest(record));
+  assert.equal(record.review.state, 'in-review');
+  assert.equal(isIndexable(record, content), false);
+});
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
   const fact = record?.facts.find(item => item.key === 'privacy');
@@ -522,7 +578,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?6:record.slug==='github-copilot'||record.slug==='cline'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?6:record.slug==='github-copilot'||record.slug==='cline'||record.slug==='cursor'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);
@@ -719,6 +775,7 @@ test('editing a price or verdict without bumping the revision invalidates approv
 test('approved comparison needs current approved dependencies including digest',() => {
   const a=approve(tool()), b=approve(tool('second-fixture'));approve(b);
   const r=structuredClone(content.find(r=>r.kind==='compare'&&r.slug==='cursor-vs-claude-code'));r.slug='fixture-comparison';
+  r.gaps=[];
   r.dependencies=[a,b].map(t=>({slug:t.slug,revision:t.revision,digest:contentDigest(t)}));
   for(const field of ['pros','cons','faqs']) r[field]=r[field].map(item=>({...item,sourceRefs:item.sourceRefs.map(ref=>({...ref,toolSlug:ref.toolSlug==='cursor'?a.slug:b.slug}))}));
   approve(r);

@@ -135,6 +135,14 @@ for (const sourceId of clinePrivacy?.sourceIds ?? []) {
   const source = cline.sources.find(item => item.id === sourceId);
   if (!source || !clineHtml.includes(source.url)) failures.push(`/tools/cline/: privacy source ${sourceId} is missing from generated HTML`);
 }
+const cursor = tools.get('cursor');
+const cursorPrivacy = cursor?.facts.find(fact => fact.key === 'privacy');
+const cursorHtml = readFileSync('out/tools/cursor/index.html', 'utf8');
+if (!cursorPrivacy?.value || !cursorHtml.includes(escapeHtml(cursorPrivacy.value))) failures.push('/tools/cursor/: privacy-mode scope fact is missing from generated HTML');
+for (const sourceId of cursorPrivacy?.sourceIds ?? []) {
+  const source = cursor.sources.find(item => item.id === sourceId);
+  if (!source || !cursorHtml.includes(source.url)) failures.push(`/tools/cursor/: privacy source ${sourceId} is missing from generated HTML`);
+}
 const windsurf = tools.get('windsurf');
 const windsurfWorkflow = windsurf?.facts.find(fact => fact.key === 'workflow');
 const windsurfPrivacy = windsurf?.facts.find(fact => fact.key === 'privacy');

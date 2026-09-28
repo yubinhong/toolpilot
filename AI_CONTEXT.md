@@ -2,6 +2,8 @@
 
 ## 当前快照 — 2026-09-28
 
+- Cursor privacy update: revision 4 now cites the Sept 2026 Data Use overview and current privacy/data-governance docs; it distinguishes training/ZDR from safety and non-ZDR model exceptions, BYOK provider handling, temporary Cloud Agent storage, and individual vs commercial contract scope. Eleven dependent drafts and the TASK-005 manifest were refreshed; all remain in-review/noindex pending exact Owner review.
+
 - Windsurf/Devin Desktop privacy update: revision 5 separates Cognition's training/paid opt-out terms, the DPA's personal-data processing scope and Windsurf's Exafunction-only no-training guidance. Three dependent decisions are revisions 9/9/7; account agreement, tier, opt-out and persistent-feature settings remain unverified. All four records stay in-review/noindex; exact handoff is in the TASK-005 manifest and evidence pack.
 
 - 独立执行任务：TASK-007 `IN_PROGRESS`，strict per-route CSP/hash 与共享头由 `f4c9798` 发布，静态 404 的 hash-based CSP meta follow-up 由 `057ee368` 发布；CI `36342275495`、Pages deployment/check `96ad8a25-c4fa-46ff-99d7-ad9829dceab2`、preview/production 97 页 smoke 均通过。Chromium 确认两端未知路径仍渲染 404、主题可切换且无页面脚本错误；Cloudflare Insights beacon 在 production 404 上由 CSP 拦截，记录 `script-src-elem` violation / `requestfailed: csp`。待 Owner 决定禁用 Pages Web Analytics 注入（推荐）或审批分析/隐私范围后按批准扩展策略；HSTS 暂缓到 Owner 确认域名范围和 `max-age` 后。

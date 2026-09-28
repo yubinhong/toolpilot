@@ -28,10 +28,12 @@
   },
   {
     "path": "/tools/cursor/",
-    "revision": 3,
-    "digest": "7b08dcd85e3c8eaae0ec2333691e7c1e528c946fe4a72748c7a626c3156ba6cd",
+    "revision": 4,
+    "digest": "e6e3b241f3ea0b12e5a4e8a80770c3769a53704f8bf221bdff2d1657e2e9013d",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode setting and team enforcement, any personal API keys, approved models with provider retention, Cloud Agent use and applicable individual or commercial agreement; no account settings or data flow were inspected."
+    ]
   },
   {
     "path": "/tools/github-copilot/",
@@ -78,33 +80,40 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 11,
-    "digest": "d7aba457f6f7c96f8335d535ac480c76a0d830c226b714e1e371a96d928e0194",
+    "revision": 12,
+    "digest": "c7405bc90b35ff46f607df51e4717c2063bc247096fbbea5b91a165091a45d97",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    ]
   },
   {
     "path": "/alternatives/claude-code/",
-    "revision": 6,
-    "digest": "08eac5496def96cfd8e70f2db910ad3e72f0392fcdeb9f367b0097a4c95e3ce3",
+    "revision": 7,
+    "digest": "1851503e1225e92e6ecb072e348160cb5245c1d3d33e9ad73120cd5d6656149a",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    ]
   },
   {
     "path": "/alternatives/cursor/",
-    "revision": 9,
-    "digest": "25472cf0f87a62ab5e0668c42f6be895fd40b8afbb38efdf78a7679c3de46422",
+    "revision": 10,
+    "digest": "91e4c8e08fb22d47fa4908d9708f6d65ffb629ef107abea8df954d611f98414b",
     "state": "in-review",
     "gaps": [
-      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions."
+      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
     ]
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 11,
-    "digest": "b6e9471234b8255cc0c97aabe12153aa67aaab8669a20840190579c92154abd4",
+    "revision": 12,
+    "digest": "242b8f7d998c786627c65af9cc115659715e5b253f0ffffd2e3b374951f87400",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    ]
   },
   {
     "path": "/alternatives/replit/",
@@ -115,11 +124,12 @@
   },
   {
     "path": "/alternatives/windsurf/",
-    "revision": 9,
-    "digest": "250f4ae71107cf646a0e84a383124c04bb69fb41144de37bbf4bb4a0fbfb85ca",
+    "revision": 10,
+    "digest": "7952739e779f0309325405d170d819c04ef45f804f0da789d42a4a8f02d7cfba",
     "state": "in-review",
     "gaps": [
-      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions."
+      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before drawing account-specific privacy or retention conclusions.",
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
     ]
   },
   {
@@ -131,10 +141,12 @@
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
-    "revision": 6,
-    "digest": "87a44773f86917dfd0a6db8d003f8a6b0ed8052e41b5799a946c33bf313be457",
+    "revision": 7,
+    "digest": "7be6f8f7e095365f91ea0b80975feb38716c5a8e355ca2e6494234db0642b24c",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    ]
   },
   {
     "path": "/compare/cline-vs-claude-code/",
@@ -145,17 +157,21 @@
   },
   {
     "path": "/compare/cursor-vs-claude-code/",
-    "revision": 4,
-    "digest": "2d93cb98f1b9a0615fbb2d25b7862d699c20a5c12f255b1b3ac1c065a5ea626e",
+    "revision": 5,
+    "digest": "f40b87bb7106f09b20417af435ab3ac9745606ffc03be405fc002c80bae8d120",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    ]
   },
   {
     "path": "/compare/cursor-vs-github-copilot/",
-    "revision": 5,
-    "digest": "ca6a60a92e0fac61f01f99f7d9fedb72f357916af38fdd04e8788ec49ed41802",
+    "revision": 6,
+    "digest": "5d871702a04302e82e5b97e5b86deb4331e14762db3a801b932df82cce282bd2",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    ]
   },
   {
     "path": "/compare/lovable-vs-bolt/",
@@ -173,19 +189,22 @@
   },
   {
     "path": "/compare/windsurf-vs-cursor/",
-    "revision": 7,
-    "digest": "8ec35fe28e93b3b9d56c0c78150149611910cb224f55ac5a295528a66f5a7c79",
+    "revision": 8,
+    "digest": "94be3e0ac0c68743457dfbcee349e3f8bf377a1ce35964ba3f95e66b0c73c60a",
     "state": "in-review",
     "gaps": [
-      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before comparing privacy or retention with Cursor."
+      "Confirm the account's applicable Cognition or Exafunction agreement, Service Tier, any executed DPA or Order Form, training opt-out and enabled persistent features before comparing privacy or retention with Cursor.",
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
     ]
   },
   {
     "path": "/guides/ai-editor-vs-terminal-agent/",
-    "revision": 5,
-    "digest": "187bd8e8afc40ed8db279d34b499e80f12fd12a5cec59c54a366f1a89d54c011",
+    "revision": 6,
+    "digest": "3693f42907e34279e601d33113d06be661e1695f2cac4236f4c2bca8f0d367ac",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    ]
   },
   {
     "path": "/guides/how-to-choose-a-developer-tool/",
@@ -203,10 +222,12 @@
   },
   {
     "path": "/pricing/cursor/",
-    "revision": 4,
-    "digest": "d5bf0cb105a863ade04e1e7eca91a20720dbca1d72ee210a9708f2741e2fc7c9",
+    "revision": 5,
+    "digest": "17505ad7d9606d1959cc3092459df02a04ddbc6f1f14b59ca63e7588c0c6b98a",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+    ]
   },
   {
     "path": "/pricing/lovable/",
