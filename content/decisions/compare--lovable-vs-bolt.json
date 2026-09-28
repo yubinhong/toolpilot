@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Lovable vs Bolt",
   "summary": "Lovable vs Bolt: founders comparing a web prototype and its eventual code handoff.",
-  "revision": 7,
+  "revision": 8,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -51,11 +51,13 @@
     },
     {
       "slug": "bolt-new",
-      "revision": 3,
-      "digest": "2f51a00e9a6b3db59aa381305856f79ea6eb90f0ded04faa12f5a8b73d23cb95"
+      "revision": 4,
+      "digest": "5ded72a4a6c991c4557932cf1679147ba8a6d7fc726a5dd9419c9b9624e921a6"
     }
   ],
-  "gaps": [],
+  "gaps": [
+    "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
+  ],
   "changes": [
     {
       "date": "2026-09-27",
@@ -84,6 +86,10 @@
     {
       "date": "2026-09-28",
       "summary": "Refreshed Lovable's self-hosting boundary: its platform is managed, while generated apps can run on customer infrastructure."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Refreshed Bolt BYOK customer-cloud, Forge inference/data-use and waitlisted Lite evidence; account eligibility and review remain open."
     }
   ],
   "commercial": {
@@ -218,7 +224,74 @@
     {
       "question": "Can I self-host the Lovable platform as well as an app built with it?",
       "answer": "Lovable's hosting guide says the platform (editor and AI agent) is managed and cannot be self-hosted or deployed inside a customer VPC. Apps built with it can run on infrastructure you operate. This distinguishes application hosting from running the Lovable platform; no account or deployment was checked.",
-      "sourceRefs": [{ "toolSlug": "lovable", "sourceId": "ownership" }]
+      "sourceRefs": [
+        {
+          "toolSlug": "lovable",
+          "sourceId": "ownership"
+        }
+      ]
+    },
+    {
+      "question": "Can Bolt itself run in a customer cloud?",
+      "answer": "Bolt advertises a BYOK option for running Bolt in a customer AWS or Azure tenant with isolated compute. The public page does not document the component boundary, architecture, eligibility or inference route. No account or deployment was checked.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "security"
+        }
+      ]
+    },
+    {
+      "question": "Does Bolt Forge establish local model inference?",
+      "answer": "No. Bolt describes Forge as an open-model agent running on Bolt-reserved hardware, while the agent guide describes model selection behind the scenes and the product article places app execution in browser WebContainers. These pages do not establish a model running on the user device or a customer-selected local endpoint, so local inference remains unverified.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "forge"
+        },
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "forge-runtime"
+        },
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "agents"
+        }
+      ]
+    },
+    {
+      "question": "What does Bolt Lite include and cost?",
+      "answer": "Bolt lists Lite at USD 9 per month through a waitlist/access-code path. The Forge Help Center says Lite supports Forge only, not Standard or Max agents, and does not allow buying extra Forge usage. October 14, 2026 is the last day to sign up; existing Lite subscribers can continue using Forge after the preview. The general pricing page does not list Lite; no account access or checkout was verified.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "forge"
+        }
+      ]
+    },
+    {
+      "question": "What should a team review before using Bolt Forge?",
+      "answer": "The Help Center says first use requires acceptance and describes de-identified prompts, code, project files, configuration, tool calls, edit histories and fix traces being used by partners to train open-source models; EEA, UK and Swiss sessions are excluded. Switching away stops new collection, but existing collected data is not automatically deleted. The general privacy policy has a separate prospective Bolt AI rule. Verify the applicable agreement, region and consent in the actual account; none was checked.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "forge"
+        },
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "privacy"
+        }
+      ]
+    },
+    {
+      "question": "Which Bolt plans currently support Forge?",
+      "answer": "The Help Center says Forge’s research preview runs from 2026-09-14 through 2026-10-14 and that Forge continues as a working lab afterward. Individual Pro includes Forge at no extra cost only through the preview, then loses Forge access; Teams and Enterprise are unsupported. Lite is USD 9/month through a waitlist/access-code path; October 14, 2026 is the last signup day, while existing Lite subscribers can continue afterward. No account access or plan eligibility was checked.",
+      "sourceRefs": [
+        {
+          "toolSlug": "bolt-new",
+          "sourceId": "forge"
+        }
+      ]
     }
   ]
 }

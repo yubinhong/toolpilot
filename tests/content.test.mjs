@@ -221,11 +221,11 @@ test('Replit Git recovery and provider imports bound portability without claimin
   assert.ok(!freshness(content, '2026-09-28').some(item => item.path === '/tools/replit/' && item.type === 'fact' && item.field === 'portability'));
 
   const expectedDependents = {
-    'alternatives/bolt-new': 16,
-    'alternatives/lovable': 16,
-    'alternatives/replit': 15,
-    'best/ai-app-builders-for-prototypes': 12,
-    'compare/bolt-vs-replit': 9,
+    'alternatives/bolt-new': 17,
+    'alternatives/lovable': 17,
+    'alternatives/replit': 16,
+    'best/ai-app-builders-for-prototypes': 13,
+    'compare/bolt-vs-replit': 10,
     'compare/replit-vs-lovable': 11,
     'pricing/replit': 8,
   };
@@ -258,7 +258,7 @@ test('Replit Git recovery and provider imports bound portability without claimin
     assert.ok(faq.sourceRefs.some(ref => ref.sourceId === 'import-providers'));
     assert.match(faq.answer, /No (?:export, )?import or restore (?:was|were) tested|completed migration test/i);
   }
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 9);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
 });
 test('Replit Agent model selection and app AI integrations remain distinct from local inference',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'replit');
@@ -292,24 +292,60 @@ test('Replit Agent model selection and app AI integrations remain distinct from 
   assert.ok(record.gaps.some(gap => gap.includes('do not establish local-model inference for Replit Agent')));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 9);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
 });
-test('Bolt privacy policy draft records prospective training use without claiming account settings',() => {
+test('Bolt BYOK, Forge and Lite evidence stays bounded and pending account review',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'bolt-new');
   const fact = record?.facts.find(item => item.key === 'privacy');
+  const selfHosting = record?.facts.find(item => item.key === 'selfHosting');
+  const localModels = record?.facts.find(item => item.key === 'localModels');
   const source = record?.sources.find(item => item.id === 'privacy');
   const faq = record?.faqs.find(item => item.question === 'Can Bolt use project content to develop AI models?');
+  const hostingFaq = record?.faqs.find(item => item.question === 'Can Bolt itself run in a customer cloud?');
+  const inferenceFaq = record?.faqs.find(item => item.question === 'Does Bolt Forge establish local model inference?');
+  const liteFaq = record?.faqs.find(item => item.question === 'What does Bolt Lite include and cost?');
+  const planFaq = record?.faqs.find(item => item.question === 'Which Bolt plans currently support Forge?');
 
   assert.ok(record);
+  assert.equal(record.revision, 4);
   assert.ok(fact?.value);
-  assert.deepEqual(fact.sourceIds, ['privacy']);
+  assert.deepEqual(fact.sourceIds, ['privacy', 'forge']);
   assert.equal(fact.checkedAt, '2026-09-28');
   assert.equal(source?.url, 'https://stackblitz.com/privacy-policy');
   assert.equal(source?.accessedAt, '2026-09-28');
   assert.match(fact.value, /no earlier than 2026-10-07/);
-  assert.match(fact.value, /Forge content.*2026-09-14/);
-  assert.match(faq?.answer ?? '', /this account's effective date, region, agreement and settings were not checked/);
-  assert.match(faq?.answer ?? '', /Forge content.*2026-09-14/);
+  assert.match(fact.value, /Forge.*partners to train open-source models/);
+  assert.match(faq?.answer ?? '', /first use requires acceptance/);
+  assert.match(faq?.answer ?? '', /not automatically deleted/);
+  assert.ok(selfHosting?.value);
+  assert.deepEqual(selfHosting.sourceIds, ['security']);
+  assert.match(selfHosting.value, /customer AWS or Azure tenant/);
+  assert.match(selfHosting.value, /no account or deployment was inspected/);
+  assert.equal(localModels?.value, null);
+  assert.deepEqual(localModels?.sourceIds, []);
+  assert.ok(hostingFaq?.answer.includes('does not document the component boundary'));
+  assert.ok(inferenceFaq?.answer.includes('local inference remains unverified'));
+  assert.ok(liteFaq?.answer.includes('USD 9 per month'));
+  assert.ok(liteFaq?.answer.includes('waitlist/access-code'));
+  assert.ok(liteFaq?.answer.includes('October 14, 2026 is the last day to sign up'));
+  assert.ok(liteFaq?.answer.includes('existing Lite subscribers can continue'));
+  assert.ok(planFaq?.answer.includes('research preview runs from 2026-09-14 through 2026-10-14'));
+  assert.ok(planFaq?.answer.includes('Teams and Enterprise are unsupported'));
+  assert.ok(planFaq?.answer.includes('Lite subscribers can continue afterward'));
+  const lite = record.prices.find(price => price.name === 'Lite');
+  assert.equal(lite?.amount, 9);
+  assert.equal(lite?.currency, 'USD');
+  assert.deepEqual(lite?.sourceIds, ['forge']);
+  for (const [id, url] of Object.entries({
+    security: 'https://bolt.new/platform/security',
+    forge: 'https://support.bolt.new/account-and-subscription/bolt-forge',
+    'forge-runtime': 'https://bolt.new/blog/what-is-bolt-forge',
+    agents: 'https://support.bolt.new/building/using-bolt/agents',
+  })) {
+    const officialSource = record.sources.find(item => item.id === id);
+    assert.equal(officialSource?.url, url);
+    assert.equal(officialSource?.accessedAt, '2026-09-28');
+  }
   assert.ok(record.gaps.some(gap => gap.includes("account's applicable Terms effective date")));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
@@ -322,6 +358,17 @@ test('Bolt privacy policy draft records prospective training use without claimin
     assert.equal(dependency.digest, contentDigest(record));
     assert.equal(dependent.review.state, 'in-review');
     assert.equal(isIndexable(dependent, content), false);
+    for (const question of [
+      'Can Bolt itself run in a customer cloud?',
+      'Does Bolt Forge establish local model inference?',
+      'What does Bolt Lite include and cost?',
+      'Which Bolt plans currently support Forge?',
+      'What should a team review before using Bolt Forge?',
+    ]) {
+      const dependentFaq = dependent.faqs.find(item => item.question === question);
+      assert.ok(dependentFaq, `${dependent.kind}/${dependent.slug} includes ${question}`);
+      assert.ok(dependentFaq.sourceRefs.every(ref => ref.toolSlug === 'bolt-new'));
+    }
   }
 });
 test('Lovable training-policy evidence separates data scopes and keeps account review open',() => {
@@ -398,7 +445,7 @@ test('Lovable training-policy evidence separates data scopes and keeps account r
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 9);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
 });
 test('Aider analytics policy distinguishes opt-in telemetry from model-provider data handling',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'aider');
@@ -571,7 +618,7 @@ test('Cline Enterprise deployment stays distinct from local inference and custom
   const localOnlyFaq = shortlist?.faqs.find(item => item.question === "Does Cline's open-source client guarantee local-only data handling?");
   assert.match(localOnlyFaq?.answer ?? '', /advertises Enterprise deployment/);
   assert.match(localOnlyFaq?.answer ?? '', /do not establish a local-only workflow/);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 9);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
 });
 test('Cline privacy evidence exposes the public telemetry-policy conflict and API-key routing boundary',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'cline');
@@ -646,7 +693,7 @@ test('Cline local inference is source-bound to current runtime documentation wit
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 9);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
 });
 test('Cline task-history portability distinguishes local resume from cross-device migration',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='cline');
@@ -697,7 +744,7 @@ test('Cline task-history portability distinguishes local resume from cross-devic
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,9);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,8);
 });
 test('Windsurf transition and current plan prices remain source-bound and separate from legacy account quotes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -853,7 +900,7 @@ test('Cursor Self-Hosted Machines separate worker execution, inference and data 
   }
   const paired=content.find(item=>item.kind==='compare'&&item.slug==='cursor-vs-claude-code');
   assert.ok(paired?.faqs.some(item=>item.question==='Do their self-hosted options move model inference onto your infrastructure?'));
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,9);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,8);
 });
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -938,7 +985,7 @@ test('Windsurf Enterprise updater evidence stays scoped to the Codeium listing a
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 9);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 8);
 });
 test('GitHub Copilot training-use policy distinguishes individual opt-out from organization plans',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'github-copilot');
@@ -1009,7 +1056,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,9);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,8);
 });
 test('GitHub Copilot cloud-agent runner placement is distinct from local inference and remains pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='github-copilot');
@@ -1102,7 +1149,7 @@ test('GitHub Copilot portability documents the cloud-agent Git handoff without c
   assert.equal(comparison?.review.state,'in-review');
   assert.equal(comparison?.review.owner,null);
   assert.equal(isIndexable(comparison,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,9);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,8);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
@@ -1345,7 +1392,7 @@ test('Claude Code hosting, inference and portability claims match current offici
 test('MCP and self-hosted hubs render only facts with resolvable source evidence', () => {
   const expectedProfiles = {
     mcp: ['cursor', 'claude-code', 'github-copilot', 'cline', 'continue'],
-    'self-hosted': ['n8n', 'make', 'continue', 'aider', 'claude-code', 'cline', 'cursor', 'windsurf'],
+    'self-hosted': ['n8n', 'make', 'continue', 'aider', 'claude-code', 'cline', 'cursor', 'windsurf', 'bolt-new'],
   };
 
   for (const [kind, slugs] of Object.entries(expectedProfiles)) {
@@ -1386,6 +1433,11 @@ test('MCP and self-hosted hubs render only facts with resolvable source evidence
   assert.match(makeHostedEntry?.fact.value ?? '', /local-network applications and databases/);
   assert.match(makeHostedEntry?.fact.value ?? '', /does not establish that Make's scenario runtime or product can be deployed/);
   assert.equal(getEvidenceHubGroups('self-hosted').find(group => group.entries.some(entry => entry.tool.slug === 'make'))?.title, 'Connect hosted workflows to a local network');
+  const boltHostedEntry = getEvidenceHubGroups('self-hosted').flatMap(group => group.entries).find(entry => entry.tool.slug === 'bolt-new');
+  assert.equal(boltHostedEntry?.fact.key, 'selfHosting');
+  assert.deepEqual(boltHostedEntry?.fact.sourceIds, ['security']);
+  assert.match(boltHostedEntry?.fact.value ?? '', /customer AWS or Azure tenant/);
+  assert.equal(getEvidenceHubGroups('self-hosted').find(group => group.entries.some(entry => entry.tool.slug === 'bolt-new'))?.title, 'Deploy an AI app-builder platform in a customer cloud');
 });
 test('TASK-006 decision pages expose cited strengths, constraints and FAQs while pending review',() => {
   const required = [

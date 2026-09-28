@@ -105,12 +105,13 @@
   },
   {
     "path": "/compare/bolt-vs-replit/",
-    "revision": 9,
-    "digest": "6783a283562c1bcbe61fd3a586edef0762fa9b1565b1223b1da789602a4d76e9",
+    "revision": 10,
+    "digest": "87bf58cd44f068d31e766b3cd8527f3f8c835a86f3d439f075b917185fae4e7c",
     "state": "in-review",
     "gaps": [
       "Replit's public monthly and annual-billed Core base prices are recorded; confirm account eligibility, location-based checkout taxes, included usage and full application costs before a budget comparison.",
-      "No clean export, independent deployment, account-level geography selection or performance test has been performed."
+      "No clean export, independent deployment, account-level geography selection or performance test has been performed.",
+      "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
     ]
   },
   {

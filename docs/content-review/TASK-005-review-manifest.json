@@ -1,11 +1,13 @@
 [
   {
     "path": "/tools/bolt-new/",
-    "revision": 3,
-    "digest": "2f51a00e9a6b3db59aa381305856f79ea6eb90f0ded04faa12f5a8b73d23cb95",
+    "revision": 4,
+    "digest": "5ded72a4a6c991c4557932cf1679147ba8a6d7fc726a5dd9419c9b9624e921a6",
     "state": "in-review",
     "gaps": [
-      "Verify the account's applicable Terms effective date, region, organization-managed status, model-development opt-out and any Bolt Forge consent; no account settings or agreement were inspected."
+      "Verify the account's applicable Terms effective date, region, organization-managed status, model-development opt-out and any Bolt Forge consent; no account settings or agreement were inspected.",
+      "Confirm eligibility, component scope and operating requirements for customer-cloud BYOK; verify Lite waitlist/account access and the applicable Forge consent, region and data-use controls. No account, agreement, deployment, model endpoint or checkout was inspected.",
+      "Bolt Forge documentation does not establish an on-device or customer-selected local inference endpoint; verify the required model route before claiming local inference. No account or endpoint was tested."
     ]
   },
   {
@@ -88,11 +90,12 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 16,
-    "digest": "7b923cb9a41857fd049fa517eba08ead85ca04bf0132203a16b94f2323c94e1a",
+    "revision": 17,
+    "digest": "6faeef1faf3b900c8f3f86d4fda2488534a217741644e0d68d78b0d05dd71a5e",
     "state": "in-review",
     "gaps": [
-      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+      "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
     ]
   },
   {
@@ -119,19 +122,22 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 16,
-    "digest": "c0941dabde493bcec747b6c2ffee5ba60cfd9c500ee675b3ca30df479133be2b",
+    "revision": 17,
+    "digest": "c54b701dc871c928ba76e2c971ab31ba11e1a6680be14c93237e2766a6353a7d",
     "state": "in-review",
     "gaps": [
-      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected."
+      "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
+      "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
     ]
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 15,
-    "digest": "0960485b5e651730caea8edac39ef3ee4e1e5ccca5b256ad06ad955a3d7fe660",
+    "revision": 16,
+    "digest": "941b73c97b611bcf14e28c891036abf93b2a713dfa7b51c301927668153c5732",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
+    ]
   },
   {
     "path": "/alternatives/windsurf/",
@@ -147,10 +153,12 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 12,
-    "digest": "d30197f13f2cb7e07e80783c3f11b152224cfbba41a6ed3f8a9366429baf65cc",
+    "revision": 13,
+    "digest": "432955bde01cc54e86ea20c1107cd6187f6318b8946469f0c0b50db25eb57e21",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
+    ]
   },
   {
     "path": "/best/ai-coding-tools-for-solo-founders/",
@@ -192,10 +200,12 @@
   },
   {
     "path": "/compare/lovable-vs-bolt/",
-    "revision": 7,
-    "digest": "7c7cb0e1b93650555927aa06475989d29d2248a5879444a070e85aa867aa1e45",
+    "revision": 8,
+    "digest": "29d1c4fdce6e9027a5e78bcd0cfaf44226278a8d61c44a20c578e111cc1cf7f9",
     "state": "in-review",
-    "gaps": []
+    "gaps": [
+      "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
+    ]
   },
   {
     "path": "/compare/replit-vs-lovable/",

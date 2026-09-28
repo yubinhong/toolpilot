@@ -470,6 +470,36 @@ for (const [kind, slug] of [
   if (!html.includes('content="noindex, follow"')) failures.push(`/${kind}/${slug}/: in-review noindex is missing from generated HTML`);
   if (xml.includes(`${site}/${kind}/${slug}/`)) failures.push(`/${kind}/${slug}/: in-review page appears in sitemap`);
 }
+const boltProfile = tools.get('bolt-new');
+const boltProfileHtml = readFileSync('out/tools/bolt-new/index.html', 'utf8');
+const boltHostingFact = boltProfile?.facts.find(item => item.key === 'selfHosting');
+const boltForgeFaq = boltProfile?.faqs.find(item => item.question === 'Does Bolt Forge establish local model inference?');
+if (!boltHostingFact?.value || !boltProfileHtml.includes(escapeHtml(boltHostingFact.value))) failures.push('/tools/bolt-new/: customer-cloud deployment fact is missing from generated HTML');
+if (!boltForgeFaq || !boltProfileHtml.includes(escapeHtml(boltForgeFaq.answer))) failures.push('/tools/bolt-new/: Forge/local-inference FAQ is missing from generated HTML');
+for (const sourceId of ['security', 'forge', 'forge-runtime', 'agents']) {
+  const source = boltProfile?.sources.find(candidate => candidate.id === sourceId);
+  if (!source || !boltProfileHtml.includes(source.url)) failures.push(`/tools/bolt-new/: official Bolt source ${sourceId} is missing from generated HTML`);
+}
+for (const [kind, slug] of [
+  ['alternatives', 'bolt-new'],
+  ['alternatives', 'lovable'],
+  ['alternatives', 'replit'],
+  ['best', 'ai-app-builders-for-prototypes'],
+  ['compare', 'bolt-vs-replit'],
+  ['compare', 'lovable-vs-bolt'],
+]) {
+  const record = content.find(item => item.kind === kind && item.slug === slug);
+  const html = readFileSync(join('out', `/${kind}/${slug}/`, 'index.html'), 'utf8');
+  for (const faq of record?.faqs.filter(item => item.sourceRefs.some(ref => ref.toolSlug === 'bolt-new')) ?? []) {
+    if (!html.includes(escapeHtml(faq.answer))) failures.push(`/${kind}/${slug}/: Bolt FAQ is missing from generated HTML`);
+    for (const ref of faq.sourceRefs.filter(item => item.toolSlug === 'bolt-new')) {
+      const source = boltProfile?.sources.find(item => item.id === ref.sourceId);
+      if (!source || !html.includes(source.url)) failures.push(`/${kind}/${slug}/: Bolt source ${ref.sourceId} is missing from generated HTML`);
+    }
+  }
+  if (!html.includes('content="noindex, follow"')) failures.push(`/${kind}/${slug}/: in-review noindex is missing from generated HTML`);
+  if (xml.includes(`${site}/${kind}/${slug}/`)) failures.push(`/${kind}/${slug}/: in-review page appears in sitemap`);
+}
 for (const record of content.filter(item => item.kind === 'compare')) {
   const facts = record.dependencies.flatMap(dependency => {
     const fact = tools.get(dependency.slug)?.facts.find(item => item.key === 'mcp');
