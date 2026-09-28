@@ -2,7 +2,7 @@
 
 Date: 2026-09-28. Research by Codex agent; final approver: site owner (pending).
 
-Revision: 7. Digest: `4f049d7ba5cdf5d6575e0aa08f28185f1b6fe548449a7970f8ffa1489a5fab70`.
+Revision: 8. Digest: `b3bdbde622af8dabdd1b3428b0487ecdca436881b73e3a236f8ae90968cf7a33`.
 
 No hands-on benchmark performed. Source access is not formal fact verification.
 
@@ -32,13 +32,15 @@ No hands-on benchmark performed. Source access is not formal fact verification.
 
 - [Model selector](https://docs.replit.com/features/agent/model-selector) — Replit; accessed 2026-09-28
 
+- [Enterprise](https://replit.com/enterprise) — Replit; accessed 2026-09-28
+
 ## Field evidence
 
 - **Workflow**: Natural-language agent for building applications Sources: product; checked: 2026-09-27.
 
 - **Privacy / data handling**: Replit's policy says its Services are primarily hosted in the United States and may also be hosted elsewhere; use can transfer data to the United States and other hosting jurisdictions. This does not identify every project resource or account setting. Source: privacy-policy; checked: 2026-09-27.
 
-- **Product self-hosting**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
+- **Product self-hosting / Enterprise hosting**: Replit's Sales-Assisted Enterprise page lists a dedicated GCP project and a single-tenant option under custom pricing and an annual commitment. It does not say who owns or operates the project, which platform components are included, or whether customers can operate the Replit platform; this does not establish customer-operated self-hosting. Sources: enterprise; checked: 2026-09-28. No account, agreement or deployment was inspected.
 
 - **Local model inference**: Unknown — research needed if material to the decision. Sources: none; checked: not checked.
 
@@ -66,6 +68,7 @@ Keep application code, database backups and environment-variable names portable.
 - Constraint: Git-history recovery, listed import paths and checkpoint rollback have different scopes; none establishes a full external app export, production-data restore or independent deployment. The published Core amount is a base-plan price and does not establish full application costs. Sources: version-control, disaster-recovery, import-providers, checkpoints, pricing.
 - FAQ: test a separate export and independent deployment path if the project must operate outside Replit; inventory database records, secrets, domains, deployment settings and connected services. No import or restore was tested. Sources: version-control, disaster-recovery, import-providers, checkpoints.
 - FAQ: distinguish Replit Agent's own model selector from AI Integrations used to build app-level API calls. Managed provider use is billed through Replit credits; BYOK is billed by the provider. The docs do not establish local inference for Replit Agent, and no account, endpoint or model was tested. Sources: ai-integrations, agent-model-selector.
+- FAQ: Replit's Sales-Assisted Enterprise page lists a dedicated GCP project and single-tenant option at custom pricing with an annual commitment. It does not specify project ownership, operation or included platform components, so this does not establish customer-hosted Replit. Confirm the architecture and terms with Replit; no account or deployment was checked. Source: enterprise.
 
 ## Gaps
 
@@ -75,6 +78,7 @@ Keep application code, database backups and environment-variable names portable.
 - Review applicable data-processing terms; the general privacy policy is not an account-specific service-location map or a legal review.
 - Confirm the required code, database, production data, secrets, domains, deployment configuration and connected-service migration scope; no export, import, restore or independent deployment was tested.
 - Confirm whether Replit Agent supports local-model inference or a local endpoint; the reviewed app integrations and Agent model-selection pages do not establish it.
+- Clarify who owns and operates the Enterprise dedicated GCP project, which components it includes, and whether Replit offers a customer-managed platform; the public page does not answer these questions.
 
 ## Owner checklist
 

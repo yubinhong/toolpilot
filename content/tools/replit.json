@@ -3,7 +3,7 @@
   "kind": "tools",
   "title": "Replit",
   "summary": "An app-building workflow to assess together with its operating costs.",
-  "revision": 7,
+  "revision": 8,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -100,6 +100,13 @@
       "title": "Model selector",
       "publisher": "Replit",
       "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "enterprise",
+      "url": "https://replit.com/enterprise",
+      "title": "Replit Enterprise",
+      "publisher": "Replit",
+      "accessedAt": "2026-09-28"
     }
   ],
   "facts": [
@@ -124,9 +131,9 @@
     {
       "key": "selfHosting",
       "label": "Product self-hosting",
-      "value": null,
-      "sourceIds": [],
-      "checkedAt": null,
+      "value": "Replit's current Enterprise page lists a dedicated GCP project and a single-tenant option under Sales-Assisted Enterprise, with custom pricing and an annual commitment. The page does not state who owns or operates the project or which components it includes, so it does not establish a customer-operated or self-hosted Replit platform. No account, agreement or deployment was inspected.",
+      "sourceIds": ["enterprise"],
+      "checkedAt": "2026-09-28",
       "critical": false
     },
     {
@@ -228,7 +235,8 @@
     { "question": "What does Replit Agent do?", "answer": "Replit says Agent can take a plain-language idea through project setup, app creation, checking, problem fixing and deployment; validate the result for your own workload.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "product" }] },
     { "question": "Does Replit's AI Integrations page establish local-model support for Replit Agent?", "answer": "Not from the reviewed docs. Replit describes AI Integrations as provider API access configured for the apps being built: managed credentials are billed to Replit credits at provider prices, while a developer's own API key is billed by the provider. A separate Model selector page describes model choice for Replit Agent itself. Neither page documents a local model or endpoint for Replit Agent, so local-model support remains unverified rather than being marked unsupported. Account model availability can vary; no account, endpoint, integration or model was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "ai-integrations" }, { "toolSlug": "replit", "sourceId": "agent-model-selector" }] },
     { "question": "Do Replit's backup and import docs establish a complete external migration?", "answer": "No. Replit documents Git repository backup and imports from GitHub, Bitbucket and ZIP, while provider-specific data, secrets and services may need separate setup. Agent checkpoints support rollback inside Replit; production database restore is not automatic. Inventory the exact app resources and test an independent deployment. No export, import or restore was tested.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "version-control" }, { "toolSlug": "replit", "sourceId": "disaster-recovery" }, { "toolSlug": "replit", "sourceId": "import-providers" }, { "toolSlug": "replit", "sourceId": "checkpoints" }] },
-    { "question": "What Replit Core prices are publicly listed?", "answer": "Replit's current sources list USD 20/month with monthly billing and USD 18/month equivalent when billed annually. Taxes depend on location; confirm your exact checkout and budget runtime, database and agent usage separately.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }, { "toolSlug": "replit", "sourceId": "core-pricing-update" }] }
+    { "question": "What Replit Core prices are publicly listed?", "answer": "Replit's current sources list USD 20/month with monthly billing and USD 18/month equivalent when billed annually. Taxes depend on location; confirm your exact checkout and budget runtime, database and agent usage separately.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "pricing" }, { "toolSlug": "replit", "sourceId": "core-pricing-update" }] },
+    { "question": "Does Replit Enterprise offer customer-hosted Replit?", "answer": "Replit's Sales-Assisted Enterprise page lists a dedicated GCP project and a single-tenant option under custom pricing with an annual commitment. It does not specify who owns or operates the project or whether the Replit platform is customer-managed, so this does not establish self-hosting. Confirm architecture, terms and app/resource scope with Replit; no account or deployment was checked.", "sourceRefs": [{ "toolSlug": "replit", "sourceId": "enterprise" }] }
   ],
   "verdict": "Evaluate the full build-to-operation loop, not just the first demo. Require a separate estimate for editing and the live application.",
   "bestFor": "Builders comparing a hosted development workflow",
@@ -240,7 +248,8 @@
     "Confirm whether the documented workspace and publishing geography settings meet the proposed residency requirement across pre-existing storage, other platform resources and connected services; no account or deployment was checked, and published-region selection is permanent.",
     "Review the applicable data-processing terms for the intended use; the general privacy policy is not an account-specific service-location map or a legal review.",
     "The reviewed docs cover Git-repository recovery, selected source imports and in-platform checkpoints, not a verified full export outside Replit. Confirm the required secrets, database records, production data, domains, deployment settings and connected services; no export, import, restore or independent deploy was tested.",
-    "The reviewed AI Integrations and Agent Model selector docs distinguish application provider API calls from Agent model selection but do not establish local-model inference for Replit Agent. Confirm the required local endpoint capability; no account, model, integration or endpoint was tested."
+    "The reviewed AI Integrations and Agent Model selector docs distinguish application provider API calls from Agent model selection but do not establish local-model inference for Replit Agent. Confirm the required local endpoint capability; no account, model, integration or endpoint was tested.",
+    "Clarify who owns and operates the dedicated GCP project, which Replit components it includes, and whether a customer-managed platform deployment is available. The Enterprise page lists a single-tenant option but does not define those boundaries; no account, agreement or deployment was inspected."
   ],
   "changes": [
     {
@@ -270,6 +279,10 @@
     {
       "date": "2026-09-28",
       "summary": "Separated Agent model selection from application AI integrations; local-model inference remains unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Recorded Replit Enterprise's dedicated GCP project/single-tenant option without treating it as customer-operated self-hosting; deployment control remains unverified."
     }
   ],
   "commercial": {

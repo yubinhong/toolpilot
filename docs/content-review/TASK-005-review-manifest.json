@@ -66,15 +66,16 @@
   },
   {
     "path": "/tools/replit/",
-    "revision": 7,
-    "digest": "4f049d7ba5cdf5d6575e0aa08f28185f1b6fe548449a7970f8ffa1489a5fab70",
+    "revision": 8,
+    "digest": "b3bdbde622af8dabdd1b3428b0487ecdca436881b73e3a236f8ae90968cf7a33",
     "state": "in-review",
     "gaps": [
       "Confirm current account eligibility, location-based taxes and total application costs; public Core base prices are not a regional checkout quote or full operating budget.",
       "Confirm whether the documented workspace and publishing geography settings meet the proposed residency requirement across pre-existing storage, other platform resources and connected services; no account or deployment was checked, and published-region selection is permanent.",
       "Review the applicable data-processing terms for the intended use; the general privacy policy is not an account-specific service-location map or a legal review.",
       "The reviewed docs cover Git-repository recovery, selected source imports and in-platform checkpoints, not a verified full export outside Replit. Confirm the required secrets, database records, production data, domains, deployment settings and connected services; no export, import, restore or independent deploy was tested.",
-      "The reviewed AI Integrations and Agent Model selector docs distinguish application provider API calls from Agent model selection but do not establish local-model inference for Replit Agent. Confirm the required local endpoint capability; no account, model, integration or endpoint was tested."
+      "The reviewed AI Integrations and Agent Model selector docs distinguish application provider API calls from Agent model selection but do not establish local-model inference for Replit Agent. Confirm the required local endpoint capability; no account, model, integration or endpoint was tested.",
+      "Clarify who owns and operates the dedicated GCP project, which Replit components it includes, and whether a customer-managed platform deployment is available. The Enterprise page lists a single-tenant option but does not define those boundaries; no account, agreement or deployment was inspected."
     ]
   },
   {
@@ -92,8 +93,8 @@
   },
   {
     "path": "/alternatives/bolt-new/",
-    "revision": 17,
-    "digest": "6faeef1faf3b900c8f3f86d4fda2488534a217741644e0d68d78b0d05dd71a5e",
+    "revision": 18,
+    "digest": "0ead4258cfdd9c0edcbc2acff66e0ae05ce2ff0cce63e31c2fa9e7b5f2194a1d",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -126,8 +127,8 @@
   },
   {
     "path": "/alternatives/lovable/",
-    "revision": 17,
-    "digest": "c54b701dc871c928ba76e2c971ab31ba11e1a6680be14c93237e2766a6353a7d",
+    "revision": 18,
+    "digest": "31ce2ca88c1aab5f462eef75f0cb49ec48872fe90960ea8868e408df16ed3462",
     "state": "in-review",
     "gaps": [
       "Verify the account's Privacy Mode and team setting, use of personal API keys, enabled non-ZDR model approvals, Cloud Agent use and applicable agreement before drawing account-specific processing or retention conclusions; no account settings were inspected.",
@@ -136,8 +137,8 @@
   },
   {
     "path": "/alternatives/replit/",
-    "revision": 16,
-    "digest": "941b73c97b611bcf14e28c891036abf93b2a713dfa7b51c301927668153c5732",
+    "revision": 17,
+    "digest": "36b897fa8fd7ce13d4084b2e393f157c4e3d9225e846fdfabd12f341b4703730",
     "state": "in-review",
     "gaps": [
       "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
@@ -159,8 +160,8 @@
   },
   {
     "path": "/best/ai-app-builders-for-prototypes/",
-    "revision": 13,
-    "digest": "432955bde01cc54e86ea20c1107cd6187f6318b8946469f0c0b50db25eb57e21",
+    "revision": 14,
+    "digest": "3c65f5c20f55520a3c8d9d46508facbc903b638c4b4e233589149a28d49004e3",
     "state": "in-review",
     "gaps": [
       "Confirm Bolt account eligibility for customer-cloud BYOK and Forge/Lite access; review applicable Forge consent and processing terms. No Bolt account, settings, deployment, Lite access or model endpoint was inspected."
@@ -215,8 +216,8 @@
   },
   {
     "path": "/compare/replit-vs-lovable/",
-    "revision": 11,
-    "digest": "53a951e2d1e736620a8b4cc99e73f26a520d0d10d02354e3f720130d9d71d70c",
+    "revision": 12,
+    "digest": "e7b6a84c4fd32336bda73ab6bf4f73e8a8a158640dff2bbfdba8c778d9394314",
     "state": "in-review",
     "gaps": []
   },
@@ -274,8 +275,8 @@
   },
   {
     "path": "/pricing/replit/",
-    "revision": 8,
-    "digest": "7e08d2b52c7e56d686def84d8961fae5d23b3e619284d0a6e52e71b03b31bb75",
+    "revision": 9,
+    "digest": "59b5a200b459aa851493f1a593b24d935cd45680fdca416b805c9cf35668af29",
     "state": "in-review",
     "gaps": [
       "Confirm account eligibility and location-based checkout taxes and total; the published base prices do not establish included usage or the full application operating budget."

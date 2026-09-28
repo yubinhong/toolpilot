@@ -430,12 +430,20 @@ for (const slug of ['make-vs-n8n', 'workflow-automation-selection']) {
 }
 const replitProfile = tools.get('replit');
 const replitPortability = replitProfile?.facts.find(fact => fact.key === 'portability');
+const replitEnterprise = replitProfile?.facts.find(fact => fact.key === 'selfHosting');
 const replitAiIntegrations = replitProfile?.facts.find(fact => fact.key === 'aiIntegrations');
+const replitEnterpriseFaq = replitProfile?.faqs.find(faq => faq.question === 'Does Replit Enterprise offer customer-hosted Replit?');
 const replitAiIntegrationsFaq = replitProfile?.faqs.find(faq => faq.question === "Does Replit's AI Integrations page establish local-model support for Replit Agent?");
 const replitProfileHtml = readFileSync('out/tools/replit/index.html', 'utf8');
 if (!replitPortability?.value || !replitProfileHtml.includes(escapeHtml(replitPortability.value))) failures.push('/tools/replit/: code-portability fact is missing from generated HTML');
+if (!replitEnterprise?.value || !replitProfileHtml.includes(escapeHtml(replitEnterprise.value))) failures.push('/tools/replit/: Enterprise hosting boundary fact is missing from generated HTML');
+if (!replitEnterpriseFaq || !replitProfileHtml.includes(escapeHtml(replitEnterpriseFaq.answer))) failures.push('/tools/replit/: Enterprise hosting FAQ is missing from generated HTML');
 if (!replitAiIntegrations?.value || !replitProfileHtml.includes(escapeHtml(replitAiIntegrations.value))) failures.push('/tools/replit/: Agent/app AI integration boundary fact is missing from generated HTML');
 if (!replitAiIntegrationsFaq || !replitProfileHtml.includes(escapeHtml(replitAiIntegrationsFaq.answer))) failures.push('/tools/replit/: Agent/app AI integration FAQ is missing from generated HTML');
+const replitEnterpriseSource = replitProfile?.sources.find(candidate => candidate.id === 'enterprise');
+if (!replitEnterpriseSource || !replitProfileHtml.includes(replitEnterpriseSource.url)) failures.push('/tools/replit/: Enterprise hosting source is missing from generated HTML');
+if (!replitProfileHtml.includes('content="noindex, follow"')) failures.push('/tools/replit/: in-review noindex is missing from generated HTML');
+if (xml.includes(`${site}/tools/replit/`)) failures.push('/tools/replit/: in-review page appears in sitemap');
 for (const sourceId of replitPortability?.sourceIds ?? []) {
   const source = replitProfile?.sources.find(candidate => candidate.id === sourceId);
   if (!source || !replitProfileHtml.includes(source.url)) failures.push(`/tools/replit/: portability source ${sourceId} is missing from generated HTML`);
@@ -470,6 +478,12 @@ for (const [kind, slug] of [
   const record = content.find(item => item.kind === kind && item.slug === slug);
   const html = readFileSync(join('out', `/${kind}/${slug}/`, 'index.html'), 'utf8');
   const isPricing = kind === 'pricing';
+  const enterpriseFaq = record?.faqs.find(item => item.question === 'Does Replit Enterprise offer customer-hosted Replit?');
+  if (!enterpriseFaq || !html.includes(escapeHtml(enterpriseFaq.answer))) failures.push(`/${kind}/${slug}/: Replit Enterprise hosting boundary FAQ is missing from generated HTML`);
+  if (!enterpriseFaq?.answer.includes('does not establish self-hosting')) failures.push(`/${kind}/${slug}/: Replit Enterprise FAQ does not preserve the ownership/operation limitation`);
+  if (!enterpriseFaq?.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === 'enterprise') || !replitEnterpriseSource || !html.includes(replitEnterpriseSource.url)) {
+    failures.push(`/${kind}/${slug}/: Replit Enterprise source is missing from generated HTML`);
+  }
   const question = isPricing
     ? 'How does Replit AI Integrations usage affect the Core plan price?'
     : "Does Replit's AI Integrations page establish local-model support for Replit Agent?";

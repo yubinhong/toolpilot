@@ -3,7 +3,7 @@
   "kind": "pricing",
   "title": "Replit pricing: billing basis and cost boundaries",
   "summary": "Replit pricing: billing basis and cost boundaries. Separate the recorded base price from unverified usage and operating costs.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -46,8 +46,8 @@
   "dependencies": [
     {
       "slug": "replit",
-      "revision": 7,
-      "digest": "4f049d7ba5cdf5d6575e0aa08f28185f1b6fe548449a7970f8ffa1489a5fab70"
+      "revision": 8,
+      "digest": "b3bdbde622af8dabdd1b3428b0487ecdca436881b73e3a236f8ae90968cf7a33"
     }
   ],
   "gaps": [
@@ -89,6 +89,10 @@
     {
       "date": "2026-09-28",
       "summary": "Separated Replit Agent model selection from application AI integrations; local inference remains unverified."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added the Replit Enterprise dedicated GCP project and single-tenant boundary; customer operation remains unverified."
     }
   ],
   "commercial": {
@@ -187,6 +191,16 @@
         {
           "toolSlug": "replit",
           "sourceId": "ai-integrations"
+        }
+      ]
+    },
+    {
+      "question": "Does Replit Enterprise offer customer-hosted Replit?",
+      "answer": "Replit's Sales-Assisted Enterprise page lists a dedicated GCP project and a single-tenant option under custom pricing with an annual commitment. It does not specify who owns or operates the project or whether the Replit platform is customer-managed, so this does not establish self-hosting. Confirm architecture, terms and app/resource scope with Replit; no account or deployment was checked.",
+      "sourceRefs": [
+        {
+          "toolSlug": "replit",
+          "sourceId": "enterprise"
         }
       ]
     }

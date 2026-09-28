@@ -2,6 +2,11 @@
 
 > 这里是工作队列，不是当前任务的实施说明。当前 `TASK-006` 为 IN_PROGRESS；12 个工具档案和所有 26 个声明了工具依赖的决策页均有来源绑定的优势、限制和 FAQ 页面块。一个无工具依赖的通用选型指南按 ADR-0009 不伪造产品引用。2026-09-28 Continue 官方 Terms 已确认付费模型使用可通过购买 credits 或订阅，并将适用价格指向账号或 Service Order；具体账号金额及模型提供商费用仍未知。内容审批、历史证据和 Owner 决策仍是独立事项。
 
+### TODO-309 进展 — Replit Enterprise 托管边界（2026-09-28）
+
+- 官方 Enterprise 页面提到 Sales-Assisted Enterprise 可选 dedicated GCP project 和 single-tenant，价格为定制并要求年度承诺；页面没有说明项目归属/运维方、包含的组件或是否提供客户自管的 Replit 平台。
+- 已更新 Replit 档案 r8、7 个依赖决策草稿、TASK-005/TASK-006 精确审核清单、证据包及回归检查。Node 22 静态构建、100 个测试、内容/审核清单检查、0 高危依赖审计、6 个 unknown / 0 overdue freshness、来源链接扫描、本地 current smoke 和 8 路由 HTML 断言均通过。所有内容保持 `in-review`、noindex；没有检查账号、协议或部署。发布验证仍待完成，详见 TASK.md。
+
 ## Now - 已确认，等待进入执行
 
 | ID | 事项 | 价值/原因 | 优先级 | Owner | 依赖 | 状态 |

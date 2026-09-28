@@ -173,7 +173,7 @@ test('Replit privacy and geography facts keep workspace and published-app reside
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 7);
+  assert.equal(record.revision, 8);
   for (const [key, expectedFact] of Object.entries(expected)) {
     const fact = record.facts.find(item => item.key === key);
     const source = record.sources.find(item => item.id === expectedFact.source);
@@ -202,7 +202,7 @@ test('Replit Git recovery and provider imports bound portability without claimin
 
   assert.ok(record);
   assert.ok(fact?.value);
-  assert.equal(record.revision, 7);
+  assert.equal(record.revision, 8);
   assert.deepEqual(fact.sourceIds, Object.keys(sources));
   assert.equal(fact.checkedAt, '2026-09-28');
   assert.match(fact.value, /gitsafe-backup remote that can restore the App's Git commit history/);
@@ -210,8 +210,18 @@ test('Replit Git recovery and provider imports bound portability without claimin
   assert.match(fact.value, /Supabase records and secrets are not imported/);
   assert.match(fact.value, /production database restore is not automatic/);
   assert.match(fact.value, /not a tested full external app export or migration/);
-  assert.equal(record.facts.find(item => item.key === 'selfHosting')?.value, null);
+  const selfHosting = record.facts.find(item => item.key === 'selfHosting');
+  assert.match(selfHosting?.value ?? '', /dedicated GCP project and a single-tenant option/);
+  assert.match(selfHosting?.value ?? '', /does not establish a customer-operated or self-hosted Replit platform/);
+  assert.deepEqual(selfHosting?.sourceIds, ['enterprise']);
+  assert.equal(selfHosting?.checkedAt, '2026-09-28');
+  assert.equal(record.sources.find(item => item.id === 'enterprise')?.url, 'https://replit.com/enterprise');
+  assert.equal(record.sources.find(item => item.id === 'enterprise')?.accessedAt, '2026-09-28');
   assert.equal(record.facts.find(item => item.key === 'localModels')?.value, null);
+  const enterpriseFaq = record.faqs.find(item => item.question === 'Does Replit Enterprise offer customer-hosted Replit?');
+  assert.deepEqual(enterpriseFaq?.sourceRefs, [{ toolSlug: 'replit', sourceId: 'enterprise' }]);
+  assert.match(enterpriseFaq?.answer ?? '', /does not establish self-hosting/);
+  assert.match(enterpriseFaq?.answer ?? '', /no account or deployment was checked/);
   for (const [id, url] of Object.entries(sources)) {
     const source = record.sources.find(item => item.id === id);
     assert.equal(source?.url, url);
@@ -221,13 +231,13 @@ test('Replit Git recovery and provider imports bound portability without claimin
   assert.ok(!freshness(content, '2026-09-28').some(item => item.path === '/tools/replit/' && item.type === 'fact' && item.field === 'portability'));
 
   const expectedDependents = {
-    'alternatives/bolt-new': 17,
-    'alternatives/lovable': 17,
-    'alternatives/replit': 16,
-    'best/ai-app-builders-for-prototypes': 13,
-    'compare/bolt-vs-replit': 10,
-    'compare/replit-vs-lovable': 11,
-    'pricing/replit': 8,
+    'alternatives/bolt-new': 18,
+    'alternatives/lovable': 18,
+    'alternatives/replit': 17,
+    'best/ai-app-builders-for-prototypes': 14,
+    'compare/bolt-vs-replit': 11,
+    'compare/replit-vs-lovable': 12,
+    'pricing/replit': 9,
   };
   for (const [key, revision] of Object.entries(expectedDependents)) {
     const [kind, slug] = key.split('/');
@@ -235,7 +245,7 @@ test('Replit Git recovery and provider imports bound portability without claimin
     const dependency = dependent?.dependencies.find(item => item.slug === 'replit');
     assert.ok(dependent, `${key} exists`);
     assert.equal(dependent.revision, revision);
-    assert.equal(dependency?.revision, 7);
+    assert.equal(dependency?.revision, 8);
     assert.equal(dependency?.digest, contentDigest(record));
     assert.equal(dependent.review.state, 'in-review');
     assert.equal(isIndexable(dependent, content), false);
@@ -248,6 +258,10 @@ test('Replit Git recovery and provider imports bound portability without claimin
     if (!isPricing) assert.ok(inferenceFaq.sourceRefs.some(ref => ref.toolSlug === 'replit' && ref.sourceId === 'agent-model-selector'));
     assert.match(inferenceFaq.answer, /local-model support remains unverified|not a full app operating budget/);
     assert.ok(inferenceFaq.answer.includes('provider'));
+    const enterpriseFaq = dependent?.faqs.find(item => item.question === 'Does Replit Enterprise offer customer-hosted Replit?');
+    assert.deepEqual(enterpriseFaq?.sourceRefs, [{ toolSlug: 'replit', sourceId: 'enterprise' }]);
+    assert.match(enterpriseFaq?.answer ?? '', /dedicated GCP project and a single-tenant option/);
+    assert.match(enterpriseFaq?.answer ?? '', /does not establish self-hosting/);
   }
   for (const key of ['alternatives/replit', 'compare/bolt-vs-replit', 'compare/replit-vs-lovable']) {
     const [kind, slug] = key.split('/');
@@ -258,7 +272,7 @@ test('Replit Git recovery and provider imports bound portability without claimin
     assert.ok(faq.sourceRefs.some(ref => ref.sourceId === 'import-providers'));
     assert.match(faq.answer, /No (?:export, )?import or restore (?:was|were) tested|completed migration test/i);
   }
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 6);
 });
 test('Replit Agent model selection and app AI integrations remain distinct from local inference',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'replit');
@@ -269,7 +283,7 @@ test('Replit Agent model selection and app AI integrations remain distinct from 
   };
 
   assert.ok(record);
-  assert.equal(record.revision, 7);
+  assert.equal(record.revision, 8);
   assert.ok(fact?.value);
   assert.deepEqual(fact.sourceIds, Object.keys(sources));
   assert.equal(fact.checkedAt, '2026-09-28');
@@ -288,11 +302,11 @@ test('Replit Agent model selection and app AI integrations remain distinct from 
   assert.match(localModelsFaq.answer, /Neither page documents a local model or endpoint/);
   assert.match(localModelsFaq.answer, /remains unverified rather than being marked unsupported/);
   assert.equal(record.facts.find(item => item.key === 'localModels')?.value, null);
-  assert.equal(record.facts.find(item => item.key === 'selfHosting')?.value, null);
+  assert.ok(record.facts.find(item => item.key === 'selfHosting')?.value);
   assert.ok(record.gaps.some(gap => gap.includes('do not establish local-model inference for Replit Agent')));
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 6);
 });
 test('Bolt BYOK, Forge and Lite evidence stays bounded and pending account review',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'bolt-new');
@@ -445,7 +459,7 @@ test('Lovable training-policy evidence separates data scopes and keeps account r
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 6);
 });
 test('Aider analytics policy distinguishes opt-in telemetry from model-provider data handling',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'aider');
@@ -618,7 +632,7 @@ test('Cline Enterprise deployment stays distinct from local inference and custom
   const localOnlyFaq = shortlist?.faqs.find(item => item.question === "Does Cline's open-source client guarantee local-only data handling?");
   assert.match(localOnlyFaq?.answer ?? '', /advertises Enterprise deployment/);
   assert.match(localOnlyFaq?.answer ?? '', /do not establish a local-only workflow/);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 6);
 });
 test('Cline privacy evidence exposes the public telemetry-policy conflict and API-key routing boundary',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'cline');
@@ -693,7 +707,7 @@ test('Cline local inference is source-bound to current runtime documentation wit
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 6);
 });
 test('Cline task-history portability distinguishes local resume from cross-device migration',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='cline');
@@ -744,7 +758,7 @@ test('Cline task-history portability distinguishes local resume from cross-devic
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,7);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,6);
 });
 test('Windsurf transition and current plan prices remain source-bound and separate from legacy account quotes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -902,7 +916,7 @@ test('Cursor Self-Hosted Machines separate worker execution, inference and data 
   }
   const paired=content.find(item=>item.kind==='compare'&&item.slug==='cursor-vs-claude-code');
   assert.ok(paired?.faqs.some(item=>item.question==='Do their self-hosted options move model inference onto your infrastructure?'));
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,7);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,6);
 });
 test('Windsurf privacy sources preserve the distinct Cognition, DPA and Exafunction scopes',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -991,7 +1005,7 @@ test('Windsurf Enterprise updater evidence stays scoped to the Codeium listing a
   }
   assert.equal(record.review.state, 'in-review');
   assert.equal(isIndexable(record, content), false);
-  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 7);
+  assert.equal(freshness(content, '2026-09-28').filter(item => item.status === 'unverified').length, 6);
 });
 test('Devin Local evidence separates local agent execution from model inference and records migration limits',() => {
   const record = content.find(item => item.kind === 'tools' && item.slug === 'windsurf');
@@ -1105,7 +1119,7 @@ test('GitHub Copilot Local BYOK is client-scoped and its CLI offline boundary is
   assert.equal(record.review.state,'in-review');
   assert.equal(record.review.owner,null);
   assert.equal(isIndexable(record,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,7);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,6);
 });
 test('GitHub Copilot cloud-agent runner placement is distinct from local inference and remains pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='github-copilot');
@@ -1198,7 +1212,7 @@ test('GitHub Copilot portability documents the cloud-agent Git handoff without c
   assert.equal(comparison?.review.state,'in-review');
   assert.equal(comparison?.review.owner,null);
   assert.equal(isIndexable(comparison,content),false);
-  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,7);
+  assert.equal(freshness(content,'2026-09-28').filter(item=>item.status==='unverified').length,6);
 });
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');

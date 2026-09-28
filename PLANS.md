@@ -710,6 +710,15 @@ Initial P0 technical tranche verification (2026-09-27): `npm run cloudflare:buil
 - Owner boundary: this evidence tranche does not approve the P1 page set, change rankings or indexability, or establish Replit local-model absence or full self-hosting. Owner review and account-specific settings remain open.
 - Rollback: restore Replit profile revision 6 and all seven prior dependent revisions/digests from the parent commit, then restore the prior TASK-005/TASK-006 manifests, README/evidence pack, tests and artifact assertions; rebuild and rerun current-profile smoke. No route, schema or data migration is involved.
 
+### TODO-309 — Replit Enterprise dedicated project versus self-hosting — 2026-09-28
+
+- Goal: record Replit's current Enterprise deployment option without treating a dedicated GCP project or single-tenant service as customer-operated self-hosting.
+- Evidence: the official [Replit Enterprise page](https://replit.com/enterprise) lists a dedicated GCP project and single-tenant option under Sales-Assisted Enterprise, with custom pricing and an annual commitment. It does not identify project ownership, operator control, or the deployed component boundary.
+- Scope: update the Replit profile's `selfHosting` evidence and one FAQ, refresh all seven declared decision dependents with a relevant source-backed FAQ and exact dependency digest, update both review manifests and the Replit evidence handoff, and add fact/dependency/rendered-output regression coverage. Keep customer-operated self-hosting unestablished, `localModels` unknown, and all records in-review/noindex.
+- [x] Local acceptance — 2026-09-28, Node `v22.23.2` / npm `10.9.8`: Replit Enterprise returned HTTP 200; `npm run content:check`, `npm run content:review`, all 100 tests, lint, typecheck, Cloudflare static build and artifact checks passed (99 pages / 4 indexable URLs); high-severity audit found 0 vulnerabilities; freshness is 6 unverified / 0 overdue; full source-link scan completed; local current-profile smoke and direct source/FAQ/noindex/sitemap assertions passed for all eight affected routes. No account, agreement, deployment or Owner review is claimed.
+- [ ] Release acceptance: clean-worktree `release:check`, CI and Pages checks, preview/production current smoke, and direct source/FAQ/noindex/canonical/sitemap assertions for the profile and seven dependents.
+- Rollback: restore Replit revision 7, all seven prior dependent revisions/digests, prior TASK-005/TASK-006 manifests and Replit handoff, and paired tests/artifact/task notes; rebuild and repeat content review/current-profile smoke. No route, schema or data migration is involved.
+
 ### TODO-309 — Cline Enterprise deployment evidence — 2026-09-28
 
 - Goal: resolve Cline's `selfHosting` unknown with its current official Enterprise deployment statements while distinguishing a vendor-described deployment option from a verified customer installation, local inference or fully offline operation.
