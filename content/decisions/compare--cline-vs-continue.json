@@ -3,7 +3,7 @@
   "kind": "compare",
   "title": "Cline vs Continue",
   "summary": "Compare coding assistants by model control, permissions and channel-specific lifecycle evidence.",
-  "revision": 8,
+  "revision": 9,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -23,7 +23,7 @@
     {
       "heading": "Resolve the distribution channel first",
       "paragraphs": [
-        "Continue's README says its repository is read-only and describes a final 2.0.0 release, while JetBrains Marketplace calls its plugin community-maintained and says active development is happening in the CLI. Those CLI statements conflict. Verify the exact extension or CLI package, publisher, update channel and security response before relying on a support path."
+        "Continue's README says its repository is read-only and describes a final 2.0.0 release; GitHub Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists CLI 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These channel/version statements do not establish current CLI maintenance or support. Verify the selected package, publisher, update channel and security response before relying on it."
       ]
     },
     {
@@ -45,16 +45,16 @@
   ],
   "cons": [
     { "text": "Continue's documentation limits MCP use to Agent mode, so this capability is not documented across all modes.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
-    { "text": "Continue's README calls the repository read-only and 2.0.0 its final release, while the JetBrains Marketplace calls its plugin community-maintained and recommends the CLI as the active development path; the CLI lifecycle statements conflict.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] }
+    { "text": "Continue's README calls the repository read-only and 2.0.0 its final release; Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists CLI 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These channel/version claims do not establish current CLI support or security response.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] }
   ],
   "faqs": [
     { "question": "Can Continue use MCP outside Agent mode?", "answer": "No. Continue's MCP documentation says MCP tools are available only in Agent mode.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "mcp" }] },
-    { "question": "What is Continue's current support status?", "answer": "The repository README says it is read-only and describes a final 2.0.0 release, while the JetBrains Marketplace calls the plugin community-maintained and says CLI development is active. These statements conflict about the CLI path; verify the selected package and support response.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
+    { "question": "What do Continue's published artifacts say about CLI support?", "answer": "The README calls the repository read-only and 2.0.0 its final release; GitHub Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists @continuedev/cli 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. This does not establish current CLI maintenance, a support commitment or a security-response path for a selected package.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "question": "Which MCP transport does Cline recommend?", "answer": "Cline marks Streamable HTTP as recommended and SSE as legacy; match the transport to the server you intend to use.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "mcp" }] },
     { "question": "What do Cline's public sources say about telemetry defaults?", "answer": "Cline's Terms, last modified 2025-09-25, say extension telemetry is on by default and can be disabled in settings; its 2025-02-26 blog describes telemetry as opt-in. These public statements conflict, so verify the current extension version and setting.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
     { "question": "Can Continue be configured for offline use?", "answer": "Continue documents a VS Code setup that installs the extension, disables Allow Anonymous Telemetry and configures a local model. This documents a setup path, not the behavior of a specific build or every Continue channel; verify the selected package and provider separately.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }] }
   ],
-  "verdict": "Evaluate the exact package and support channel before comparing feature fit. Continue's current sources conflict about CLI lifecycle, and neither the repository nor marketplace statements establish a package-specific support commitment.",
+  "verdict": "Evaluate the exact package and support channel before comparing feature fit. The public CLI package/version history and a later VS Code pre-release narrow the channel record, but the README and Marketplace statements do not establish current CLI maintenance or a package-specific support commitment.",
   "bestFor": "Developers deciding how much model configuration and maintenance risk they can own",
   "notFor": "Teams that require a current upstream support commitment without first checking the package lifecycle",
   "migration": "Pin the current package version, export model configuration and preserve a working fallback. Reassess extension publisher and update state before each upgrade.",
@@ -66,12 +66,12 @@
     },
     {
       "slug": "continue",
-      "revision": 6,
-      "digest": "9ad192cfd9ed6e6a17cdcf0638121c5395b99bf02de9e1ed23626a9e8623bd7b"
+      "revision": 7,
+      "digest": "129b07abf42277053483b8f5a2931183c3988a4224b0ae1b5d102bfe00456613"
     }
   ],
   "gaps": [
-    "Resolve the conflict between Continue's README read-only/final-release notice and the JetBrains Marketplace's CLI active-development statement; confirm the selected package, publisher, updates and security response.",
+    "Current Continue CLI maintenance and security response remain unresolved: its README says read-only/final, the Marketplace says CLI development is active, GitHub Releases lists a 2026-06-19 v2.1.0-vscode pre-release, and npm lists CLI 1.5.47 published 2026-06-18. Confirm the selected package, publisher, update path and support response.",
     "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product or processing when acting as a customer's processor; verify the selected package, account and model-provider route.",
     "No local-model quality, privacy or performance trial has been performed.",
     "Cline's actual telemetry configuration and selected-provider data handling were not inspected."
@@ -107,7 +107,11 @@
     },
     {
       "date": "2026-09-28",
-      "summary": "Refreshed the Continue dependency after adding sourced offline-setup and dated privacy-policy evidence; settings, post-acquisition applicability and provider handling remain open."
+      "summary": "Refreshed the Continue dependency after adding public CLI package/release metadata; maintenance, privacy applicability and provider handling remain open."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added official CLI package and release-date evidence to clarify channel/version history; current maintenance and support remain unresolved."
     }
   ],
   "commercial": {

@@ -3,7 +3,7 @@
   "kind": "best",
   "title": "Open-source AI coding tools to evaluate",
   "summary": "A conditional shortlist based on project license evidence, model boundaries and channel-specific lifecycle signals.",
-  "revision": 10,
+  "revision": 11,
   "updatedAt": "2026-09-28",
   "review": {
     "state": "in-review",
@@ -36,6 +36,20 @@
       "url": "https://plugins.jetbrains.com/plugin/22707-continue",
       "title": "Continue Plugin for JetBrains IDEs",
       "publisher": "JetBrains Marketplace",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "continueReleases",
+      "url": "https://github.com/continuedev/continue/releases",
+      "title": "Continue GitHub Releases",
+      "publisher": "Continue Dev",
+      "accessedAt": "2026-09-28"
+    },
+    {
+      "id": "continueCliPackage",
+      "url": "https://www.npmjs.com/package/@continuedev/cli",
+      "title": "@continuedev/cli on npm",
+      "publisher": "npm",
       "accessedAt": "2026-09-28"
     },
     {
@@ -77,11 +91,13 @@
     {
       "key": "continueLifecycle",
       "label": "Continue upstream lifecycle",
-      "value": "Continue's official site says it was acquired by Cursor and its open-source code remains available as a foundation. The repository README says the repository is read-only and describes a final 2.0.0 release, while JetBrains Marketplace calls the plugin community-maintained and says CLI development is active. The CLI lifecycle statements conflict, and these sources do not establish a current package support commitment.",
+      "value": "Continue's official site says it was acquired by Cursor and its open-source code remains available as a foundation. The repository README says the repository is read-only and describes a final 2.0.0 release; GitHub Releases lists a v2.1.0-vscode pre-release published 2026-06-19, and npm lists @continuedev/cli 1.5.47 as latest, published 2026-06-18. JetBrains Marketplace calls the plugin community-maintained and says CLI development is active. These channel/version claims do not establish current CLI maintenance or a package-specific support commitment.",
       "sourceIds": [
         "continueRepo",
         "continueAcquisition",
-        "continueJetBrains"
+        "continueJetBrains",
+        "continueReleases",
+        "continueCliPackage"
       ],
       "checkedAt": "2026-09-28",
       "critical": false
@@ -104,7 +120,7 @@
     {
       "heading": "Handle Continue as a lifecycle exception",
       "paragraphs": [
-        "Continue's official site confirms acquisition by Cursor and continued availability of the open-source codebase, but the README's final-release/read-only notice conflicts with the JetBrains Marketplace's CLI active-development statement. Verify the exact package, publisher, updates and security response before relying on a support path."
+        "Continue's official site confirms acquisition by Cursor and continued availability of the open-source codebase. The README says the repository is read-only and describes a final 2.0.0 release; the Releases page lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists CLI 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These sources narrow the public release record but do not establish current CLI maintenance, package support or security response."
       ]
     },
     {
@@ -119,18 +135,18 @@
     { "text": "Cline's public repository provides source that can be inspected as part of a tool and license review.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "product" }] }
   ],
   "cons": [
-    { "text": "Continue's README calls the repository read-only and 2.0.0 its final release, while the JetBrains Marketplace recommends the CLI as its active development path; these CLI lifecycle statements conflict.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
+    { "text": "Continue's README calls the repository read-only and 2.0.0 its final release; Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists CLI 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These channel/version claims do not establish current CLI support or security response.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "text": "An open client repository license does not by itself establish the terms of a selected model or provider service.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
     { "text": "Cline's open-source repository does not establish its configured privacy behavior; later Terms say extension telemetry is on by default, while an older blog says opt-in.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
     { "text": "Continue's documented offline IDE setup requires disabling anonymous telemetry and configuring a local model; neither the guide nor its dated Privacy Notice verifies a selected installation's actual settings or data flow.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }, { "toolSlug": "continue", "sourceId": "privacy" }] }
   ],
   "faqs": [
-    { "question": "What do Continue's sources say about lifecycle and support?", "answer": "The official site says Continue was acquired by Cursor and its open-source code remains available. The repository says it is read-only and describes a final 2.0.0 release; JetBrains Marketplace calls the plugin community-maintained and says CLI development is active. The CLI statements conflict and do not establish a support commitment for a selected package.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "acquisition" }, { "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
+    { "question": "What do Continue's published artifacts say about CLI support?", "answer": "The official site says Continue was acquired by Cursor and its open-source code remains available. The README says read-only/final 2.0.0; GitHub Releases lists a v2.1.0-vscode pre-release from 2026-06-19, npm lists @continuedev/cli 1.5.47 from 2026-06-18, and JetBrains Marketplace says CLI development is active. These sources do not establish current CLI maintenance or support for a selected package.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "acquisition" }, { "toolSlug": "continue", "sourceId": "repository" }, { "toolSlug": "continue", "sourceId": "releases" }, { "toolSlug": "continue", "sourceId": "cliPackage" }, { "toolSlug": "continue", "sourceId": "jetbrains" }] },
     { "question": "Does an Apache-2.0 client license also license model weights or hosted providers?", "answer": "No. Aider's repository identifies the client project license and distinguishes model or provider terms; check each external component separately.", "sourceRefs": [{ "toolSlug": "aider", "sourceId": "repository" }] },
     { "question": "Does Cline's open-source client guarantee local-only data handling?", "answer": "No. Cline's Privacy Notice distinguishes BYOK traffic sent directly to a model provider from Cline-provided API-key traffic handled by Cline; its Terms also state extension telemetry is on by default, while an older blog says opt-in. Verify the installed build, setting and provider terms.", "sourceRefs": [{ "toolSlug": "cline", "sourceId": "privacy" }, { "toolSlug": "cline", "sourceId": "terms" }, { "toolSlug": "cline", "sourceId": "telemetry-blog" }] },
     { "question": "Can Continue use an offline local-model setup?", "answer": "Continue's official guide outlines an offline VS Code path: install its extension, disable Allow Anonymous Telemetry and configure a local model. Its Privacy Notice, last updated 2026-02-05, describes open-source log and analytics collection unless users opt out and excludes processing performed on a customer's behalf; check notice applicability, the selected package and provider terms.", "sourceRefs": [{ "toolSlug": "continue", "sourceId": "offline" }, { "toolSlug": "continue", "sourceId": "privacy" }] }
   ],
-  "verdict": "Aider and Cline are conditional candidates for evaluation based on the linked repository evidence. Continue remains conditional on resolving its channel-specific lifecycle statements and confirming the selected package's support path; no comparative performance result has been measured.",
+  "verdict": "Aider and Cline are conditional candidates for evaluation based on the linked repository evidence. Continue remains conditional on clarifying its public channel/version history and confirming the selected package's support path; no comparative performance result has been measured.",
   "bestFor": "Developers who want to inspect source and license terms while evaluating AI coding workflows",
   "notFor": "Teams treating an open-source client license as proof that every model, service or data path is open or offline",
   "migration": "Pin the client version and model endpoint, preserve a human-reviewed fallback, and recheck license and maintenance evidence before upgrading.",
@@ -147,13 +163,13 @@
     },
     {
       "slug": "continue",
-      "revision": 6,
-      "digest": "9ad192cfd9ed6e6a17cdcf0638121c5395b99bf02de9e1ed23626a9e8623bd7b"
+      "revision": 7,
+      "digest": "129b07abf42277053483b8f5a2931183c3988a4224b0ae1b5d102bfe00456613"
     }
   ],
   "gaps": [
     "Confirm the license of the exact installed package and any model or hosted service; repository license evidence alone is insufficient.",
-    "Resolve the conflict between Continue's repository final-release/read-only notice and the JetBrains Marketplace's CLI active-development statement; confirm the selected package, publisher, current version, updates and security response.",
+    "Current Continue CLI maintenance and security response remain unresolved: the repository says read-only/final, Marketplace says CLI development is active, GitHub Releases lists a 2026-06-19 v2.1.0-vscode pre-release, and npm lists CLI 1.5.47 published 2026-06-18. Confirm the selected package, publisher, update path and support response.",
     "Continue's 2026-02-05 Privacy Notice does not establish its applicability to the post-acquisition product, selected client settings or processing when acting as a customer's processor; confirm the model-provider route.",
     "No hands-on comparison or model performance test has been performed.",
     "Cline's client settings and model-provider data handling were not inspected."
@@ -197,7 +213,11 @@
     },
     {
       "date": "2026-09-28",
-      "summary": "Refreshed the Continue dependency and added a sourced offline-setup/privacy FAQ; package settings, post-acquisition notice applicability and data-provider behavior remain open."
+      "summary": "Refreshed the Continue dependency with CLI package/release evidence; lifecycle, package support, privacy applicability and provider behavior remain open."
+    },
+    {
+      "date": "2026-09-28",
+      "summary": "Added official CLI package and release-date evidence to clarify channel/version history; current maintenance and support remain unresolved."
     }
   ],
   "commercial": {

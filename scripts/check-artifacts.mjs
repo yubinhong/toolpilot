@@ -208,6 +208,16 @@ for (const record of content.filter(item => item.kind === 'tools' && item.facts.
     if (source && !html.includes(source.url)) failures.push(`${record.kind}/${record.slug}: MCP source ${id} missing from rendered page`);
   }
 }
+const continueProfile = tools.get('continue');
+const continueLifecycle = continueProfile?.facts.find(fact => fact.key === 'maintenance');
+if (continueProfile && continueLifecycle) {
+  const html = readFileSync(join('out','/tools/continue/','index.html'),'utf8');
+  if (!html.includes(escapeHtml(continueLifecycle.value))) failures.push('/tools/continue/: lifecycle/package-version fact is missing from generated HTML');
+  for (const sourceId of continueLifecycle.sourceIds) {
+    const source = continueProfile.sources.find(candidate => candidate.id === sourceId);
+    if (!source || !html.includes(source.url)) failures.push(`/tools/continue/: lifecycle source ${sourceId} is missing from generated HTML`);
+  }
+}
 for (const record of content.filter(item => item.kind === 'compare')) {
   const facts = record.dependencies.flatMap(dependency => {
     const fact = tools.get(dependency.slug)?.facts.find(item => item.key === 'mcp');

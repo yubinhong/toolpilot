@@ -507,13 +507,15 @@ test('GitHub Copilot training-use policy distinguishes individual opt-out from o
 test('Continue ownership and distribution lifecycle remain channel-specific and pending review',() => {
   const record=content.find(item=>item.kind==='tools'&&item.slug==='continue');
   assert.ok(record);
-  assert.equal(record.revision,6);
+  assert.equal(record.revision,7);
   assert.equal(record.updatedAt,'2026-09-28');
   const sources=Object.fromEntries(record.sources.map(source=>[source.id,source]));
   for (const [id,url] of Object.entries({
     acquisition:'https://continue.dev/',
     cli:'https://docs.continue.dev/cli/quickstart',
     repository:'https://github.com/continuedev/continue',
+    releases:'https://github.com/continuedev/continue/releases',
+    cliPackage:'https://www.npmjs.com/package/@continuedev/cli',
     jetbrains:'https://plugins.jetbrains.com/plugin/22707-continue',
     models:'https://docs.continue.dev/customize/models',
     offline:'https://docs.continue.dev/guides/running-continue-without-internet',
@@ -525,12 +527,14 @@ test('Continue ownership and distribution lifecycle remain channel-specific and 
   assert.match(record.facts.find(item=>item.key==='ownership')?.value??'',/acquired by Cursor/);
   assert.match(record.facts.find(item=>item.key==='ownership')?.value??'',/remains freely available/);
   const lifecycle=record.facts.find(item=>item.key==='maintenance');
-  assert.deepEqual(lifecycle?.sourceIds,['repository','jetbrains']);
+  assert.deepEqual(lifecycle?.sourceIds,['repository','releases','cliPackage','jetbrains']);
   assert.match(lifecycle?.value??'',/read-only/);
   assert.match(lifecycle?.value??'',/final 2\.0\.0 release/);
+  assert.match(lifecycle?.value??'',/v2\.1\.0-vscode as a pre-release published 2026-06-19/);
+  assert.match(lifecycle?.value??'',/@continuedev\/cli 1\.5\.47 as the latest version, published 2026-06-18/);
   assert.match(lifecycle?.value??'',/community-maintained/);
   assert.match(lifecycle?.value??'',/active development/);
-  assert.match(lifecycle?.value??'',/CLI statements conflict/);
+  assert.match(lifecycle?.value??'',/do not establish whether the CLI is currently maintained/);
   const cli=record.facts.find(item=>item.key==='cliWorkflow');
   assert.deepEqual(cli?.sourceIds,['cli']);
   assert.match(cli?.value??'',/Continue account or Anthropic API key/);
@@ -548,7 +552,7 @@ test('Continue ownership and distribution lifecycle remain channel-specific and 
   assert.match(localModels?.value??'',/disabling anonymous telemetry/);
   assert.ok(record.faqs.some(item=>item.question.includes('run offline')&&item.sourceRefs.some(ref=>ref.sourceId==='offline')));
   assert.equal(record.prices[0]?.amount,null);
-  assert.ok(record.gaps.some(gap=>gap.includes('current version/update path and security response')));
+  assert.ok(record.gaps.some(gap=>gap.includes('update path and support response')));
   assert.ok(record.gaps.some(gap=>gap.includes('post-acquisition privacy notice')));
   assert.ok(record.gaps.some(gap=>gap.includes('account/model-provider billing')));
   const dependents=content.filter(item=>item.kind!=='tools'&&item.dependencies.some(dependency=>dependency.slug==='continue'));
@@ -578,7 +582,7 @@ test('MCP capability claims cite official docs and remain pending exact owner re
   for (const record of claims) {
     const fact=record.facts.find(item=>item.key==='mcp');
     const source=record.sources.find(item=>item.id==='mcp');
-    assert.equal(record.revision,record.slug==='continue'?6:record.slug==='github-copilot'||record.slug==='cline'||record.slug==='cursor'?4:3,`${record.slug} revision was bumped`);
+    assert.equal(record.revision,record.slug==='continue'?7:record.slug==='github-copilot'||record.slug==='cline'||record.slug==='cursor'?4:3,`${record.slug} revision was bumped`);
     assert.ok(fact.value,`${record.slug} MCP claim has evidence`);
     assert.equal(fact.critical,false);
     assert.deepEqual(fact.sourceIds,['mcp']);
