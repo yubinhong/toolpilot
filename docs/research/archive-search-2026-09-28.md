@@ -58,6 +58,21 @@ Four targeted web searches returned no results: `site:toolpilot.cc CryptoClarity
 
 The public Search API was re-queried and again returned HTTP 200 with the same single apex-root scan and former CryptoClarity title. The screenshot endpoint again returned HTTP 200 (`image/png`) with `Last-Modified: 2026-07-10T07:33:19Z`; the scan-result API again returned HTTP 403. URLScan's official [authentication notice](https://urlscan.io/blog/2026/03/18/api-auth-required/) states that result and DOM endpoints require authentication starting 2026-05-04. The observed behavior matches the published policy; no alternate route was used to bypass it.
 
+### Arquivo.pt domain and brand search — 2026-09-29
+
+The official [Arquivo.pt TextSearch API documentation](https://github-wiki-see.page/m/arquivo/pwa-technologies/wiki/Arquivo.pt-API) directs URL-history lookups to `versionHistory`; the [CDX API documentation](https://github.com/arquivo/pwa-technologies/wiki/URL-search:-CDX-server-API) documents domain matching and NDJSON output. Direct queries returned:
+
+| Probe | Result | Interpretation |
+| --- | --- | --- |
+| TextSearch `versionHistory=toolpilot.cc` and `versionHistory=www.toolpilot.cc` | HTTP 200; `estimated_nr_results=0` for each | No matching version-history record was returned for these hostnames by this query. |
+| TextSearch `versionHistory` for HTTP/HTTPS apex and `www` root URLs | HTTP 200; `estimated_nr_results=0` for all four | No matching root-URL record was returned by these queries. |
+| CDX `url=toolpilot.cc&matchType=domain&output=json&limit=1000` | HTTP 200, NDJSON content type, empty body | No record was returned by this domain query. |
+| Full-text `q=CryptoClarity&maxItems=5` | HTTP 200; estimated 11 results. The first page includes `www.cryptoclarity.com` captures from 2016 and unrelated pages; none of these five results uses `toolpilot.cc`. | The brand term is ambiguous and these results do not connect the older `cryptoclarity.com` site to the 2026 ToolPilot homepage. |
+| Full-text retry `q=CryptoClarity&maxItems=50` | HTTP 500, no result items | The full result set could not be checked; the initial five-item page is not a census. |
+| Exact phrase `"Know what your crypto really costs"` | Client-side fetch failed before an HTTP status or response body was received | Unavailable evidence; no zero-result conclusion. |
+
+The API documentation says URL lookups belong in `versionHistory`, not the full-text `q` parameter. The latter is recorded only as a brand-term ambiguity check. No non-root `toolpilot.cc` URL was recovered. The failed full-page and exact-phrase requests are unavailable evidence, not negative results. These archive checks do not establish Google indexing, backlinks, or the absence of other archived routes.
+
 ## Decision
 
-No exact non-root historical path was recovered, although the screenshot provides old-site section and card labels whose destinations remain unknown. The homepage path is already present in the current source inventory. Keep `indexed` and `has_backlink` as `unknown`; make no bulk redirect, 301, 410, or homepage redirect. TODO-306 still needs an owner-provided Search Console export, old sitemap or complete legacy URL list, and a verifiable backlink/log source before migration decisions.
+No exact non-root historical path was recovered, although the screenshot provides old-site section and card labels whose destinations remain unknown. Arquivo.pt returned no records for the exact ToolPilot host/root URL probes, while the broader brand query is ambiguous and incomplete. The homepage path is already present in the current source inventory. Keep `indexed` and `has_backlink` as `unknown`; make no bulk redirect, 301, 410, or homepage redirect. TODO-306 still needs an owner-provided Search Console export, old sitemap or complete legacy URL list, and a verifiable backlink/log source before migration decisions.
