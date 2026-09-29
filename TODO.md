@@ -139,6 +139,8 @@ TODO-311 evidence release (2026-09-28): commit `fb1f528` passed clean `release:c
 
 TODO-311 Lighthouse recheck (2026-09-29): Lighthouse 13.5.0 simulated-mobile one-run samples scored 0.98 on `/` and 0.97 on `/compare/cursor-vs-claude-code/`; LCP was 1.7s/1.8s, CLS 0, and TBT 100ms/80ms. Both found an estimated 27.6-28.0 KB unused in the same shared JavaScript chunk. Score/TBT differences from the 2026-09-27 one-run samples are not treated as regression or trend data. This lab check does not provide field CWV, GSC, indexing or demand evidence. Full method and results are in `docs/research/lighthouse-lab-2026-09-27.md`.
 
+TODO-311 PSI quota recheck (2026-09-29): a no-key mobile Performance API request returned HTTP 429 `RESOURCE_EXHAUSTED` and no Lighthouse or CrUX metrics. The quota error is not a site-performance result; dated GSC/field CWV input remains outstanding. The raw response's project number is omitted. Details: `docs/research/psi-recheck-2026-09-29.md`.
+
 TODO-309 Cline release update (2026-09-28): commit `cb23ac0` passed clean `release:check`, CI `36444234496` and Cloudflare Pages deployment/check `c3e60416-fd47-4c65-95f2-9e4538e90e5f`. Immutable preview and production both passed 99-page current smoke and nine-route source/endpoint/FAQ/noindex/sitemap assertions. All drafts remain in-review; no account or model was tested and no Owner approval is implied.
 
 ## Later - 暂不承诺
