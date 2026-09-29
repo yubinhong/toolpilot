@@ -799,3 +799,7 @@ Rollback must preserve the pre-existing baseline. After a live release, use the 
 - `npm run content:freshness -- --as-of=2026-09-29` reports 6 unknown fields and 0 overdue: `localModels` for Bolt, Lovable, Make, Replit and Windsurf, plus Continue's model/account usage price. The 40-field count belongs to the 2026-09-27 tranche and is no longer the current snapshot.
 - `node scripts/check-links.mjs` at 2026-09-29 01:38 UTC checked 223 unique targets: 189 HTTP-ok, 20 restricted, 12 blocked by the configured host policy and 2 temporary network errors. Targeted HEAD retries for `https://docs.continue.dev/` and `https://www.docker.com/` both returned HTTP 200 at 01:39 UTC; the scan reported no 404/410. Reachability is not fact verification.
 - Validation: Node `v22.23.2` / npm `10.9.8`; content check, review summary, date-pinned freshness and source scan passed. This verification does not clear the exact-version Owner review or its 120 review gaps.
+
+### TODO-004/314/315 — GitHub controls evidence release — 2026-09-29
+
+- Commit `e5cc40b9a589b5d7a605189b9b2ec7ff6a8f0bca` passed clean-worktree `npm run release:check`, GitHub CI `36509677647`, and Cloudflare Pages check/deployment `5cb39fb1-569f-4048-9264-854b1702c970`. The immutable preview `https://5cb39fb1.toolpilot-git.pages.dev` and production `https://toolpilot.cc` each passed current smoke (99 pages, robots, sitemap and real 404). This was documentation-only; no GitHub or Cloudflare setting changed. Remaining notification, owner policy, account-level security and Dashboard decisions stay open.
