@@ -51,7 +51,7 @@
 - `npm test` passed 28/28. `npm run build` passed model validation, TypeScript compilation, static export, security-header generation, and artifact checks. All eight exported pages contain the GA script and their document CSP allows the required Google endpoints. `git diff --check` passed.
 - Deployment: commit `341e799663ba3bbc04e0c660c4a30b4d7f80ecb2` was pushed to `main`; GitHub quality run `36732339402` and Cloudflare Pages check/deployment `1a02e79e-abe3-4022-b63e-60d723e63442` passed.
 - Production verification: all eight allowlisted routes returned HTTP 200 and each exported page contains `G-VHJ251FCCE` with CSP permissions for Google Tag Manager and Analytics. GA property ingestion was not inspected.
-- `SMOKE_PROFILE=current npm run smoke` still fails only because `/tools/` returns cached legacy HTML with HTTP 200. `CLOUDFLARE_API_TOKEN` is unavailable here, so the edge cache could not be purged; final production smoke remains pending.
+- `SMOKE_PROFILE=current npm run smoke` still fails on a retired path served from stale edge cache: the first post-deployment run saw `/tools/` return HTTP 200, and the latest saw `/mcp/` return HTTP 200 with `Age: 128282`; a query-string request to `/mcp/` returned the expected 404. `CLOUDFLARE_API_TOKEN` is unavailable here, so the edge cache could not be purged; final production smoke remains pending.
 - Rollback: revert this change from `main` and let Pages Git Integration redeploy the previous reviewed commit. No Cloudflare Dashboard or Analytics property settings were changed.
 
 ---
