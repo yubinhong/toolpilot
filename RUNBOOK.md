@@ -2,7 +2,7 @@
 
 ## TASK-008 Rebuild Status (2026-09-30)
 
-TASK-008 replaces the old public product with the eight-page AI model pricing V1. Local `npm run cloudflare:build` passed (27 tests and exact eight-page artifact checks), and Wrangler smoke verified all eight pages, robots/sitemap, and representative legacy 404s. The user authorized production deployment on 2026-09-30. Release is in progress and remains gated on a high-severity transitive dependency audit finding; no V1 production deployment is yet claimed. The dated 97/99-page release entries below describe the earlier application and do not prove that the new V1 is live. Record immutable-preview and production smoke results here after deployment.
+TASK-008 replaces the old public product with the eight-page AI model pricing V1. Commits `b16b940` and `501b726` are deployed through Cloudflare Pages; the latter passed GitHub `quality` and Pages checks. Immutable preview `https://14596746.toolpilot-git.pages.dev` passed the exact eight-page, sitemap, robots, and removed-route 404 smoke. `https://toolpilot.cc` serves the V1 pages, robots, and eight-URL sitemap, but an ordinary request to `/tools/` still receives stale, noindex legacy HTML from an edge cache (`Age: 88389`, `Cache-Control: public, s-maxage=604800`); a query-string cache bypass and the Pages project alias return the V1 404. The release remains open pending a `toolpilot.cc` cache purge and a repeat default-path smoke. Wrangler cannot access Cloudflare's control plane because `CLOUDFLARE_API_TOKEN` is not configured here. No DNS or custom-domain binding was changed. Older 97/99-page entries below describe the previous application only.
 
 ## 1. 服务概览
 

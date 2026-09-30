@@ -26,11 +26,12 @@ This plan supersedes the developer-tool rebuild scope below. The accepted produc
 - [x] Implement pages and interaction flows, with Jev as the only model detail route.
 - [x] Enforce exactly eight indexable/sitemap URLs and test old URL 404s.
 - [x] Run `npm run cloudflare:build` and local Wrangler Pages smoke; all required gates passed.
-- [x] Inspect the final diff and record rollback and remaining risks in TASK.md. No production deployment was performed.
+- [x] Inspect the final diff and record rollback and remaining risks in TASK.md.
 - [x] Receive explicit authorization to deploy TASK-008 to production.
-- [ ] Clear the current high-severity dependency audit finding, then pass release checks in a clean checkout.
-- [ ] Push the reviewed V1 commit to `main`; verify the immutable Pages preview and `https://toolpilot.cc` against the exact eight-page contract.
-- [ ] Record deployed source and production verification in TASK.md, RUNBOOK.md, and AI_CONTEXT.md.
+- [x] Fix the high-severity dependency audit finding, then pass release checks in clean checkouts.
+- [x] Push V1 and the Pages-runtime CI correction to `main`; verify CI, Pages deployment, and the immutable preview against the exact eight-page contract.
+- [ ] Purge stale `toolpilot.cc` edge cache and pass the default-path production smoke, including real 404s for retired routes.
+- [x] Record deployed source and current production evidence in TASK.md, RUNBOOK.md, and AI_CONTEXT.md.
 
 ---
 

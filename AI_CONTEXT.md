@@ -6,8 +6,8 @@
 - TASK-008 本地实现已完成，替代 TASK-006 的开发者工具产品范围。旧产品路由、组件和运行时数据已移除；8 个页面由单一模型数据层驱动，Jev 是唯一模型详情页。14 个模型记录不会生成额外路由。
 - 已建立 `docs/PRD-002-ai-model-pricing.md` 和 `docs/adr/0011-demand-driven-eight-page-v1.md`。旧 TASK-006、PRD-001 和 ADR-0009 仅作为历史证据。
 - OpenAI、Anthropic、Google、DeepSeek 和 TypeSafe 的官方模型/定价资料于 2026-09-30 核验；14 个模型记录均保留来源链接和 `lastVerifiedAt`。价格或能力未知时不推断。
-- `npm run cloudflare:build`、27 项测试、静态产物检查和本地 HTTP smoke 已通过；只确认本地构建，没有部署或核验线上索引。GA4 ID 与 GSC verification token 均未配置。任务记录见 `TASK.md`，官方数据与八路由约束见 PRD-002/ADR-0011。
-- 任务开始前已有 TASK-006 内容审核相关未提交改动；用户明确授权替换旧产品，历史研究/审核文档保留为档案。生产部署、Search Console 数据和真实流量仍未知。
+- `npm run cloudflare:build`、27 项测试、审计、干净 worktree release checks、GitHub CI 与 Cloudflare Pages 部署均已通过。不可变预览的完整八页/sitemap/robots/404 smoke 通过；正式域名页面、robots 和 8 URL sitemap 已更新，但旧 `/tools/` 普通 URL 仍命中缓存的旧 HTML，最终生产 smoke 待 Cloudflare cache purge。GA4 ID 与 GSC verification token 均未配置。
+- 任务开始前已有 TASK-006 内容审核相关未提交改动；用户明确授权替换旧产品，历史研究/审核文档保留为档案。Cloudflare CLI 缺少 API token，不能从当前环境 purge；未改 DNS 或自定义域绑定。Search Console 数据与真实流量仍未知，发布证据与下一步见 `TASK.md` / `RUNBOOK.md`。
 - 继续阅读：AGENTS.md → 本段 → PROJECT.md → TASK.md (TASK-008) → PRD-002 → ARCHITECTURE.md / TESTING.md / SECURITY.md → PLANS.md (TASK-008) → ADR-0011。
 
 ## 历史快照 — 2026-09-29

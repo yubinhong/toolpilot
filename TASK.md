@@ -1,14 +1,14 @@
 # TASK-008 — ToolPilot AI Model Pricing V1
 
-- Status: IN_PROGRESS (production release authorized; release gates and deployment verification in progress)
+- Status: IN_PROGRESS (V1 deployed; production edge-cache purge and final smoke pending)
 - Date: 2026-09-30
 - Authorization: product owner confirmed replacement of the old product and exactly eight V1 public pages; remove old product routes, navigation, content, and data.
 - Goal: ship the eight-page AI model pricing platform defined in `docs/PRD-002-ai-model-pricing.md` and `docs/adr/0011-demand-driven-eight-page-v1.md`.
 - Required routes: `/`, `/pricing/`, `/calculator/`, `/compare/`, `/models/jev/`, `/about/`, `/privacy/`, `/terms/`.
 - Constraints: no `/models/` index, no generated model detail pages, no page-count expansion, no broad redirects, optional GSC/GA4 integrations with minimum-data event payloads, no AdSense runtime (empty reusable placement hooks only), retain static export and official-source-backed pricing.
 - Acceptance: exactly 8 registered/indexable URLs; exact 8-entry sitemap; every unknown legacy path returns a real 404; shared source-backed model data powers all model workflows; lint, typecheck, tests, build/artifact checks and local smoke pass.
-- Current evidence: official provider model/pricing documentation reviewed 2026-09-30. Local implementation, build, generated artifact checks, and HTTP smoke passed; no production deployment or live indexing check was performed.
-- Deployment authorization: user explicitly requested production deployment on 2026-09-30. The first release audit found one high-severity transitive `brace-expansion` advisory; deployment is held until the required audit and clean-checkout release gates pass.
+- Current evidence: official provider model/pricing documentation reviewed 2026-09-30. Local implementation, build, generated artifact checks, HTTP smoke, Pages preview, GitHub CI, and Cloudflare Pages deployment passed. Production pages, robots, and sitemap are updated; one ordinary request to a retired path still receives cached legacy HTML, so final production smoke remains open.
+- Deployment authorization: user explicitly requested production deployment on 2026-09-30. A high-severity transitive `brace-expansion` advisory was fixed in `package-lock.json`; the release audit now reports zero vulnerabilities.
 - Rollback: revert the reviewed TASK-008 source/docs changes and redeploy the last reviewed Pages deployment; no database or external resource changes.
 
 ## Phase Plan
@@ -37,9 +37,12 @@
 - `npm run smoke` with `SMOKE_BASE_URL=http://127.0.0.1:4180`: passed for all eight canonical/indexable routes, exact sitemap, robots access, representative removed legacy paths, `/models/`, `/404`, and `/404.html` returning real 404s.
 - `git diff --check`: passed. Optional `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_GSC_VERIFICATION` are unset in this build; no Google Analytics script or GSC token is emitted.
 - Pricing data: 14 records from OpenAI, Anthropic, Google, DeepSeek, and TypeSafe; every record has an official source URL and `lastVerifiedAt: 2026-09-30`. Jev is the only model with a detail route.
-- Deployment: not performed. Cloudflare Dashboard, DNS, production deployment, Search Console indexing, and field traffic were not checked or changed.
+- Release gates: `npm audit --audit-level=high` reports 0 vulnerabilities. For `b16b940`, `npm run release:check`, `npm ci`, and `npm run cloudflare:build` passed in a clean detached worktree. For `501b726`, `npm run release:check` and GitHub CI passed. `npm run smoke` passed against the local Wrangler Pages runtime and immutable Pages previews.
+- Deployment: commit `b16b940` deployed successfully to Cloudflare Pages. CI smoke initially failed because it used Python's static server for Pages Functions routes; commit `501b726` changed CI to Wrangler Pages runtime, and its GitHub `quality` and Cloudflare Pages checks both passed. Immutable preview `https://14596746.toolpilot-git.pages.dev` passed the complete eight-page/sitemap/robots/404 smoke.
+- Production: `https://toolpilot.cc` serves the V1 homepage, all eight expected page metadata/canonicals, an exact eight-URL sitemap, and the updated robots file. The default production smoke then finds `/tools/` returning HTTP 200 with the old developer-tools HTML, `Age: 88389`, and `Cache-Control: public, s-maxage=604800`; a unique query string returns the new real 404. The `toolpilot-git.pages.dev` production alias and immutable preview return real 404s for the same path. This is stale custom-domain edge cache, not the current Pages artifact.
+- Purge limitation: Wrangler deployment inspection reports that `CLOUDFLARE_API_TOKEN` is absent. DNS and custom-domain bindings were not changed. A Cloudflare cache purge for `toolpilot.cc` and a repeat default-path production smoke are still required before marking TASK-008 complete. Search Console indexing and field traffic remain unchecked.
 - Remaining operational risk: official pricing and provider model catalogs can change; refresh source checks and `lastVerifiedAt` before the next release. Historical evidence and TASK-005/TASK-006 review documents remain as archives, not runtime page content.
-- Rollback: no production rollback is needed for this local-only change. For a future deployment, restore the last reviewed Pages deployment if the eight-route smoke, source accuracy, or security artifact checks fail.
+- Rollback: restore the last reviewed Cloudflare Pages deployment if the eight-route smoke, source accuracy, or security artifact checks fail; the previous Direct Upload project remains the recovery target. No database or external resource changes were made.
 
 ---
 
