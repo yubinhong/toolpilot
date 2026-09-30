@@ -45,24 +45,24 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Serve static output
+      - name: Serve Pages output
         run: |
-          python3 -m http.server 4173 --directory out >/tmp/toolpilot-http.log 2>&1 &
+          npx --yes wrangler@4.124.0 pages dev out --ip 127.0.0.1 --port 4173 >/tmp/toolpilot-pages.log 2>&1 &
           echo $! >/tmp/toolpilot-http.pid
-          for attempt in $(seq 1 20); do
+          for attempt in $(seq 1 45); do
             if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then
               exit 0
             fi
             sleep 1
           done
-          cat /tmp/toolpilot-http.log
+          cat /tmp/toolpilot-pages.log
           exit 1
 
-      - name: Smoke test static output
+      - name: Smoke test Pages output
         run: npm run smoke
         env:
           SMOKE_BASE_URL: http://127.0.0.1:4173
 
-      - name: Stop static server
+      - name: Stop Pages server
         if: ${{ always() }}
         run: kill "$(cat /tmp/toolpilot-http.pid)" 2>/dev/null || true
