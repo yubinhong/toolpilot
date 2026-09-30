@@ -49,8 +49,10 @@
 - Added the supplied public measurement ID as `NEXT_PUBLIC_GA_ID` in `.env.production`; the existing event allowlist and exclusions are unchanged.
 - Updated CSP generation to recognize the GA script in the exported HTML and allow its script, collection, and image endpoints. The separate Node header-generation process does not inherit Next.js's loaded `.env.production` values.
 - `npm test` passed 28/28. `npm run build` passed model validation, TypeScript compilation, static export, security-header generation, and artifact checks. All eight exported pages contain the GA script and their document CSP allows the required Google endpoints. `git diff --check` passed.
-- No production deployment or Google Analytics property inspection was performed; live collection remains unverified until a reviewed build is deployed.
-- Rollback: remove `.env.production`, revert the CSP detection change and regression test, then rebuild to omit GA. No Cloudflare Dashboard or Analytics property settings were changed.
+- Deployment: commit `341e799663ba3bbc04e0c660c4a30b4d7f80ecb2` was pushed to `main`; GitHub quality run `36732339402` and Cloudflare Pages check/deployment `1a02e79e-abe3-4022-b63e-60d723e63442` passed.
+- Production verification: all eight allowlisted routes returned HTTP 200 and each exported page contains `G-VHJ251FCCE` with CSP permissions for Google Tag Manager and Analytics. GA property ingestion was not inspected.
+- `SMOKE_PROFILE=current npm run smoke` still fails only because `/tools/` returns cached legacy HTML with HTTP 200. `CLOUDFLARE_API_TOKEN` is unavailable here, so the edge cache could not be purged; final production smoke remains pending.
+- Rollback: revert this change from `main` and let Pages Git Integration redeploy the previous reviewed commit. No Cloudflare Dashboard or Analytics property settings were changed.
 
 ---
 
