@@ -21,7 +21,7 @@ export function estimateRequestCost(
   const cachedTokens = rates.cachedInput == null ? 0 : input * cachedPercent / 100;
   const uncachedTokens = input - cachedTokens;
   const inputCost = uncachedTokens / TOKEN_UNIT * rates.input + cachedTokens / TOKEN_UNIT * (rates.cachedInput ?? rates.input);
-  const outputCost = output / TOKEN_UNIT * rates.output;
+  const outputCost = typeof rates.output === "number" ? output / TOKEN_UNIT * rates.output : 0;
 
   return { schedule, usedLongContextRate: Boolean(useLongContext), inputCost, outputCost, requestCost: inputCost + outputCost };
 }

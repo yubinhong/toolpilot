@@ -13,6 +13,10 @@ const expectedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/models/
 const errors = [];
 const ids = new Set();
 
+function validPricingDate(value) {
+  return typeof value === "string" && /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z)?$/.test(value) && Number.isFinite(Date.parse(value));
+}
+
 if (JSON.stringify(getRoutes().map(({ path }) => path)) !== JSON.stringify(expectedRoutes)) {
   errors.push("route registry must match the exact eight-page V1 allowlist");
 }
@@ -25,6 +29,7 @@ for (const model of models) {
   if (model.pricing?.currency !== "USD" || model.pricing?.unit !== "1M tokens") errors.push(`${at}: pricing currency and token unit must be explicit`);
   if (!Array.isArray(model.schedules) || !model.schedules.length) errors.push(`${at}: no pricing schedules`);
   if (!model.schedules?.some(({ id }) => id === model.defaultSchedule)) errors.push(`${at}: default schedule is missing`);
+  if (new Set(model.schedules?.map(({ id }) => id)).size !== model.schedules?.length) errors.push(`${at}: duplicate pricing schedule id`);
   if (!model.sources?.length || !model.sources.some(({ label }) => /pricing/i.test(label))) errors.push(`${at}: official pricing source is missing`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(model.lastVerifiedAt ?? "")) errors.push(`${at}: lastVerifiedAt must be an ISO date`);
   if (model.contextWindow !== null && (!Number.isInteger(model.contextWindow) || model.contextWindow <= 0)) errors.push(`${at}: contextWindow must be a positive integer or null`);
@@ -33,13 +38,34 @@ for (const model of models) {
   if (model.id !== "jev" && model.landingPath !== null) errors.push(`${at}: model records do not generate detail routes`);
 
   for (const schedule of model.schedules ?? []) {
-    for (const key of ["input", "output"]) {
-      if (typeof schedule[key] !== "number" || !Number.isFinite(schedule[key]) || schedule[key] < 0) errors.push(`${at}/${schedule.id}: invalid ${key} rate`);
-    }
+    if (typeof schedule.input !== "number" || !Number.isFinite(schedule.input) || schedule.input < 0) errors.push(`${at}/${schedule.id}: invalid input rate`);
+    if (schedule.output !== "not_applicable" && (typeof schedule.output !== "number" || !Number.isFinite(schedule.output) || schedule.output < 0)) errors.push(`${at}/${schedule.id}: invalid output rate`);
     for (const key of ["cachedInput", "cacheWrite"]) {
       if (schedule[key] != null && (typeof schedule[key] !== "number" || !Number.isFinite(schedule[key]) || schedule[key] < 0)) errors.push(`${at}/${schedule.id}: invalid ${key} rate`);
     }
+    if (schedule.priceType != null && !["standard", "introductory", "time_based"].includes(schedule.priceType)) errors.push(`${at}/${schedule.id}: invalid priceType`);
+    for (const key of ["validFrom", "validUntil"]) {
+      if (schedule[key] != null && !validPricingDate(schedule[key])) errors.push(`${at}/${schedule.id}: ${key} must be an ISO date or UTC timestamp`);
+    }
+    if (schedule.validFrom && schedule.validUntil && Date.parse(schedule.validFrom) > Date.parse(schedule.validUntil)) errors.push(`${at}/${schedule.id}: validFrom is after validUntil`);
+    if (schedule.nextPricing != null) {
+      const next = model.schedules.find(({ id }) => id === schedule.nextPricing.scheduleId);
+      if (!next || !validPricingDate(schedule.nextPricing.validFrom) || next.validFrom !== schedule.nextPricing.validFrom) errors.push(`${at}/${schedule.id}: nextPricing must reference a schedule with the same validFrom`);
+    }
+    if (schedule.pricingSchedule != null) {
+      const pricingSchedule = schedule.pricingSchedule;
+      if (!["standard", "effective_date", "time_of_day"].includes(pricingSchedule.type)) errors.push(`${at}/${schedule.id}: invalid pricingSchedule type`);
+      if (pricingSchedule.type === "time_of_day" && (!pricingSchedule.timezone || !pricingSchedule.window || !["peak", "off_peak"].includes(pricingSchedule.period))) errors.push(`${at}/${schedule.id}: time_of_day pricingSchedule needs a timezone, period, and window`);
+    }
+    if (schedule.pricingNotes != null && (!Array.isArray(schedule.pricingNotes) || schedule.pricingNotes.some((note) => typeof note !== "string" || !note.trim()))) errors.push(`${at}/${schedule.id}: pricingNotes must be non-empty strings`);
+    if ("effectiveFrom" in schedule || "effectiveTo" in schedule || "scheduleNote" in schedule) errors.push(`${at}/${schedule.id}: use validFrom, validUntil, and pricingNotes instead of legacy schedule fields`);
   }
+
+  if (model.provider.id === "deepseek") {
+    const periods = new Set(model.schedules.map(({ pricingSchedule }) => pricingSchedule?.type === "time_of_day" ? pricingSchedule.period : null));
+    if (!periods.has("off_peak") || !periods.has("peak")) errors.push(`${at}: DeepSeek must expose both off_peak and peak schedules`);
+  }
+  if (model.id === "jev" && model.schedules.some(({ output }) => output !== "not_applicable")) errors.push("Jev output-token pricing must be marked not_applicable, never numeric zero");
 
   for (const source of model.sources ?? []) {
     try {

@@ -86,12 +86,22 @@ for (const model of models) {
   const pricingSource = model.sources.find((source) => /pricing/i.test(source.label));
   if (!pricingSource || !pricingHtml.includes(pricingSource.url)) failures.push(`/pricing/: missing official pricing source for ${model.id}`);
 }
+if (!pricingHtml.includes("Off-peak") || !pricingHtml.includes("Peak window:") || !pricingHtml.includes("all other hours are off-peak")) failures.push("/pricing/: DeepSeek peak and off-peak schedules must be explicit");
+if (!pricingHtml.includes("https://api-docs.deepseek.com/news/news260910/")) failures.push("/pricing/: legacy DeepSeek V4 Pro routing note must link to its official announcement");
+
+const calculatorHtml = readFileSync("out/calculator/index.html", "utf8");
+if (!calculatorHtml.replaceAll("<!-- -->", "").includes("Estimated using the Standard schedule.")) failures.push("/calculator/: estimates must identify their selected pricing schedule");
+
+const compareHtml = readFileSync("out/compare/index.html", "utf8");
+if (!compareHtml.includes("Pricing schedule") || !compareHtml.includes("DeepSeek Off-peak and Peak rates are separate time-based prices")) failures.push("/compare/: comparison must label pricing schedules and explain DeepSeek time-based rates");
 
 const jevHtml = readFileSync("out/models/jev/index.html", "utf8");
 for (const source of models.find(({ id }) => id === "jev")?.sources ?? []) {
   if (!jevHtml.includes(source.url)) failures.push(`/models/jev/: missing official source ${source.url}`);
 }
 if (!jevHtml.includes("Not publicly specified") && !jevHtml.includes("Not publicly available")) failures.push("/models/jev/: unknown context or cached pricing should be explicit");
+if (!jevHtml.includes("Not token-billed") || jevHtml.includes("$0.000000")) failures.push("/models/jev/: output-token pricing must not render numeric zero");
+if (!jevHtml.includes("Jev is TypeSafe AI") || !jevHtml.includes("not a traditional generative LLM")) failures.push("/models/jev/: System One product distinction is missing");
 
 const notFound = readFileSync("out/404.html", "utf8");
 if (!/name="robots" content="noindex, follow"/.test(notFound)) failures.push("404 page must be noindex, follow");

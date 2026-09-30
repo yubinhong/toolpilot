@@ -1,16 +1,25 @@
+export type PriceRate = number | "not_applicable";
+
 export type PriceRates = {
   input: number;
   cachedInput?: number | null;
   cacheWrite?: number | null;
-  output: number;
+  output: PriceRate;
 };
+
+export type PricingScheduleRule =
+  | { type: "standard" | "effective_date" }
+  | { type: "time_of_day"; timezone: string; period: "peak" | "off_peak"; window: string };
 
 export type PriceSchedule = PriceRates & {
   id: string;
   label: string;
-  effectiveFrom?: string;
-  effectiveTo?: string;
-  scheduleNote?: string;
+  priceType?: "standard" | "introductory" | "time_based";
+  validFrom?: string | null;
+  validUntil?: string | null;
+  nextPricing?: { scheduleId: string; validFrom: string } | null;
+  pricingSchedule?: PricingScheduleRule;
+  pricingNotes?: string[];
   cacheWriteOptions?: { label: string; rate: number }[];
   additionalPrices?: { label: string; unit: string; rate: number }[];
   longContext?: PriceRates & { threshold: number };

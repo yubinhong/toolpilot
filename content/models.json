@@ -184,8 +184,8 @@
     "officialUrl": "https://ai.google.dev/",
     "defaultSchedule": "standard-current",
     "schedules": [
-      { "id": "standard-current", "label": "Standard through 2026-12-31", "effectiveTo": "2026-12-31", "input": 0.75, "cachedInput": 0.075, "output": 3.75, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 0.5 }] },
-      { "id": "standard-2027", "label": "Standard from 2027-01-01", "effectiveFrom": "2027-01-01", "input": 1.5, "cachedInput": 0.15, "output": 7.5, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 1 }] }
+      { "id": "standard-current", "label": "Introductory", "priceType": "introductory", "validFrom": null, "validUntil": "2026-12-31", "nextPricing": { "scheduleId": "standard-2027", "validFrom": "2027-01-01" }, "pricingSchedule": { "type": "effective_date" }, "pricingNotes": ["Introductory rates apply through 2026-12-31; standard rates start 2027-01-01."], "input": 0.75, "cachedInput": 0.075, "output": 3.75, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 0.5 }] },
+      { "id": "standard-2027", "label": "Standard", "priceType": "standard", "validFrom": "2027-01-01", "validUntil": null, "nextPricing": null, "pricingSchedule": { "type": "effective_date" }, "pricingNotes": [], "input": 1.5, "cachedInput": 0.15, "output": 7.5, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 1 }] }
     ],
     "sources": [
       { "label": "Official pricing", "url": "https://ai.google.dev/gemini-api/docs/pricing" },
@@ -208,8 +208,8 @@
     "officialUrl": "https://ai.google.dev/",
     "defaultSchedule": "standard-current",
     "schedules": [
-      { "id": "standard-current", "label": "Standard through 2026-12-31", "effectiveTo": "2026-12-31", "input": 0.75, "cachedInput": 0.075, "output": 3.75, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 0.5 }] },
-      { "id": "standard-2027", "label": "Standard from 2027-01-01", "effectiveFrom": "2027-01-01", "input": 1.5, "cachedInput": 0.15, "output": 7.5, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 1 }] }
+      { "id": "standard-current", "label": "Introductory", "priceType": "introductory", "validFrom": null, "validUntil": "2026-12-31", "nextPricing": { "scheduleId": "standard-2027", "validFrom": "2027-01-01" }, "pricingSchedule": { "type": "effective_date" }, "pricingNotes": ["Introductory rates apply through 2026-12-31; standard rates start 2027-01-01."], "input": 0.75, "cachedInput": 0.075, "output": 3.75, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 0.5 }] },
+      { "id": "standard-2027", "label": "Standard", "priceType": "standard", "validFrom": "2027-01-01", "validUntil": null, "nextPricing": null, "pricingSchedule": { "type": "effective_date" }, "pricingNotes": [], "input": 1.5, "cachedInput": 0.15, "output": 7.5, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 1 }] }
     ],
     "sources": [
       { "label": "Official pricing", "url": "https://ai.google.dev/gemini-api/docs/pricing" },
@@ -278,8 +278,8 @@
     "officialUrl": "https://www.deepseek.com/",
     "defaultSchedule": "off-peak",
     "schedules": [
-      { "id": "off-peak", "label": "Off-peak", "input": 0.15, "cachedInput": 0.003, "output": 0.6, "scheduleNote": "Off-peak is the default estimate; see the provider's UTC schedule." },
-      { "id": "peak", "label": "Peak", "input": 0.3, "cachedInput": 0.006, "output": 1.2, "scheduleNote": "Peak period: Mon-Fri 01:00-04:00 and 06:00-10:00 UTC, excluding China public holidays." }
+      { "id": "off-peak", "label": "Off-peak", "priceType": "time_based", "validFrom": "2026-09-10T04:00:00Z", "validUntil": null, "nextPricing": null, "pricingSchedule": { "type": "time_of_day", "timezone": "UTC", "period": "off_peak", "window": "All hours outside the peak periods" }, "pricingNotes": ["Off-peak rates are the default estimate. Peak hours are Monday-Friday 01:00-04:00 and 06:00-10:00 UTC; all other hours are off-peak."], "input": 0.15, "cachedInput": 0.003, "output": 0.6 },
+      { "id": "peak", "label": "Peak", "priceType": "time_based", "validFrom": "2026-09-10T04:00:00Z", "validUntil": null, "nextPricing": null, "pricingSchedule": { "type": "time_of_day", "timezone": "UTC", "period": "peak", "window": "Monday-Friday 01:00-04:00 and 06:00-10:00 UTC" }, "pricingNotes": ["Peak hours are Monday-Friday 01:00-04:00 and 06:00-10:00 UTC; all other hours are off-peak."], "input": 0.3, "cachedInput": 0.006, "output": 1.2 }
     ],
     "sources": [
       { "label": "Official API pricing", "url": "https://api-docs.deepseek.com/quick_start/pricing" },
@@ -302,12 +302,13 @@
     "officialUrl": "https://www.deepseek.com/",
     "defaultSchedule": "off-peak",
     "schedules": [
-      { "id": "off-peak", "label": "Off-peak", "input": 0.66, "cachedInput": 0.022, "output": 1.98, "scheduleNote": "Off-peak is the default estimate; see the provider's UTC schedule." },
-      { "id": "peak", "label": "Peak", "input": 1.32, "cachedInput": 0.044, "output": 3.96, "scheduleNote": "Peak period: Mon-Fri 01:00-04:00 and 06:00-10:00 UTC, excluding China public holidays." }
+      { "id": "off-peak", "label": "Off-peak", "priceType": "time_based", "validFrom": "2026-09-14T04:00:00Z", "validUntil": null, "nextPricing": null, "pricingSchedule": { "type": "time_of_day", "timezone": "UTC", "period": "off_peak", "window": "All hours outside the peak periods" }, "pricingNotes": ["The legacy deepseek-v4-pro ID routes to DeepSeek V4.1-Flash at its rates until V4.1-Pro launches. Off-peak rates are the default estimate. Peak hours are Monday-Friday 01:00-04:00 and 06:00-10:00 UTC; all other hours are off-peak."], "input": 0.15, "cachedInput": 0.003, "output": 0.6 },
+      { "id": "peak", "label": "Peak", "priceType": "time_based", "validFrom": "2026-09-14T04:00:00Z", "validUntil": null, "nextPricing": null, "pricingSchedule": { "type": "time_of_day", "timezone": "UTC", "period": "peak", "window": "Monday-Friday 01:00-04:00 and 06:00-10:00 UTC" }, "pricingNotes": ["The legacy deepseek-v4-pro ID routes to DeepSeek V4.1-Flash at its rates until V4.1-Pro launches. Peak hours are Monday-Friday 01:00-04:00 and 06:00-10:00 UTC; all other hours are off-peak."], "input": 0.3, "cachedInput": 0.006, "output": 1.2 }
     ],
     "sources": [
       { "label": "Official API pricing", "url": "https://api-docs.deepseek.com/quick_start/pricing" },
-      { "label": "API documentation", "url": "https://api-docs.deepseek.com/" }
+      { "label": "API documentation", "url": "https://api-docs.deepseek.com/" },
+      { "label": "V4.1-Flash routing announcement", "url": "https://api-docs.deepseek.com/news/news260910/" }
     ],
     "lastVerifiedAt": "2026-09-30"
   },
@@ -326,7 +327,7 @@
     "officialUrl": "https://typesafe.ai/",
     "defaultSchedule": "standard",
     "schedules": [
-      { "id": "standard", "label": "Standard", "input": 0.042, "cachedInput": null, "output": 0 }
+      { "id": "standard", "label": "Standard", "priceType": "standard", "pricingNotes": ["Jev's structured output is not billed as generated output tokens."], "input": 0.042, "cachedInput": null, "output": "not_applicable" }
     ],
     "sources": [
       { "label": "Official pricing and announcement", "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev" },

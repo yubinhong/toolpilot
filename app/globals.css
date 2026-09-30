@@ -108,6 +108,12 @@ p { margin-bottom: 16px; }
 .pricing-table tbody th { min-width: 160px; font-weight: 600; }
 .pricing-table tbody th small, .pricing-table td small, .comparison-table th small { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; font-weight: 400; }
 .other-pricing { min-width: 250px; max-width: 360px; color: var(--muted); font-size: 11px; }
+.pricing-details { display: grid; gap: 9px; min-width: 270px; }
+.pricing-detail { display: grid; gap: 3px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.pricing-detail:last-child { padding-bottom: 0; border-bottom: 0; }
+.pricing-detail strong { color: var(--ink); font-size: 11px; }
+.pricing-detail span { color: var(--ink); }
+.pricing-detail small { line-height: 1.45; }
 .table-note, .data-policy { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
 .data-policy { max-width: 850px; margin-top: 18px; }
 
@@ -152,6 +158,8 @@ p { margin-bottom: 16px; }
 .comparison-table > tbody > tr > th { width: 190px; color: var(--muted); font-size: 12px; }
 .comparison-table td { min-width: 135px; }
 .comparison-table thead th > a { display: block; color: var(--ink); }
+.comparison-schedule { min-width: 155px; margin-top: 8px; white-space: normal; }
+.comparison-schedule select { width: 100%; max-width: 220px; }
 .comparison-table .cost-result { background: #f2f7f4; font-size: 15px; font-weight: 800; }
 
 .compare-band { margin-top: 10px; background: #dfeae6; }

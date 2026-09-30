@@ -54,6 +54,13 @@
 - `SMOKE_PROFILE=current npm run smoke` still fails on a retired path served from stale edge cache: the first post-deployment run saw `/tools/` return HTTP 200, and the latest saw `/mcp/` return HTTP 200 with `Age: 128282`; a query-string request to `/mcp/` returned the expected 404. `CLOUDFLARE_API_TOKEN` is unavailable here, so the edge cache could not be purged; final production smoke remains pending.
 - Rollback: revert this change from `main` and let Pages Git Integration redeploy the previous reviewed commit. No Cloudflare Dashboard or Analytics property settings were changed.
 
+### Pricing schedule and Jev billing audit — 2026-09-30
+
+- Extended shared price schedules with `priceType`, `validFrom`, `validUntil`, `nextPricing`, `pricingSchedule`, and `pricingNotes`. Gemini introductory and future standard rates are date-bounded; DeepSeek exposes separate Off-peak and Peak rates, and Pricing, Calculator, and Compare identify schedules. The legacy DeepSeek V4 Pro API ID is mapped to the currently documented V4.1-Flash rates with its official routing announcement linked.
+- Jev output billing is `not_applicable` and renders as “Not token-billed”; its detail page states that Jev is TypeSafe AI's System One model for structured decisions, not a traditional generative LLM.
+- No routes or sitemap entries were added; the eight-route allowlist remains unchanged. Local verification: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` passed. Build artifact checks confirmed exactly eight exported content pages and eight sitemap URLs, plus schedule messaging on Pricing, Calculator, and Compare.
+- No production deployment was performed. Rollback: revert the scoped pricing schema/data/UI/test/documentation changes and rerun model validation, tests, lint, typecheck, and build; no database or external configuration migration is involved.
+
 ---
 
 # TASK-006 — Historical developer-tool rebuild plan (superseded)

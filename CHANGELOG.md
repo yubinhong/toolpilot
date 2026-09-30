@@ -9,6 +9,7 @@
 - Replace route, model-data, artifact, and HTTP smoke checks with an exact eight-page contract; retired routes return 404 without broad redirects.
 - Add optional minimum-data GA4/GSC integrations and non-rendering AdSlot mounts. Local Cloudflare build, 27 tests, artifact checks, and eight-page Wrangler smoke passed; this change does not deploy or confirm production/indexing state.
 - Configure the supplied GA4 measurement ID for production static builds through `.env.production`, and allow its script and collection endpoints in each generated document CSP. The integration sends only allowlisted page and product events without calculator quantities, raw queries, or URL query strings.
+- Extend model price schedules with type, validity dates, next-price references, schedule windows, and notes. Show DeepSeek Off-peak and Peak rates explicitly in Pricing, Calculator, and per-model Compare schedule controls; update the legacy V4 Pro ID to its official V4.1-Flash rates. Represent Jev output billing as `not_applicable` and describe its structured-decision model category without showing a zero output rate.
 
 ## Unreleased — TASK-006 implementation (2026-09-27–28)
 

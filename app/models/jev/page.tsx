@@ -16,17 +16,17 @@ export default function JevPage() {
   const pricing = jev.schedules[0];
   return <PageFrame path="/models/jev/"><article className="page-content shell model-detail">
     <ModelPageAnalytics modelId={jev.id} providerId={jev.provider.id} />
-    <header className="page-heading"><p className="eyebrow">{jev.provider.name} · System One model</p><h1>Jev AI API Pricing &amp; Cost Calculator</h1><p className="lede">Jev is a TypeSafe AI model for structured decisions. Review its official API access, token price, and estimated usage costs.</p></header>
+    <header className="page-heading"><p className="eyebrow">{jev.provider.name} · System One model</p><h1>Jev AI API Pricing &amp; Cost Calculator</h1><p className="lede">Jev is TypeSafe AI&apos;s System One model for structured decisions, not a traditional generative LLM. Review its official API access, input-token price, and estimated usage costs.</p></header>
     <section className="detail-section" aria-labelledby="overview-heading"><div className="section-heading"><h2 id="overview-heading">Overview</h2><span className="verified-label">Last verified {jev.lastVerifiedAt}</span></div>
       <dl className="detail-grid"><div><dt>Model</dt><dd>{jev.name}</dd></div><div><dt>Creator</dt><dd>{jev.provider.name}</dd></div><div><dt>Category</dt><dd>System One model</dd></div><div><dt>Release date</dt><dd>{jev.releaseDate}</dd></div><div><dt>API status</dt><dd>{jev.apiStatus}</dd></div><div><dt>Context window</dt><dd>Not publicly specified</dd></div><div><dt>Official website</dt><dd><OfficialLink href={jev.officialUrl} modelId={jev.id} providerId={jev.provider.id} sourceType="website">typesafe.ai</OfficialLink></dd></div></dl>
-      <p>TypeSafe describes Jev as a model for typed decisions that returns structured outputs rather than free-form strings. This description reflects the provider&apos;s public announcement and documentation.</p>
+      <p>Jev is TypeSafe AI&apos;s System One model for structured decisions, not a traditional generative LLM. It returns typed outputs rather than free-form generated text.</p>
     </section>
 
     <AdSlot placement="model-overview" />
 
     <section className="detail-section" aria-labelledby="jev-pricing-heading"><div className="section-heading"><h2 id="jev-pricing-heading">Pricing</h2><span className="verified-label">Verified {jev.lastVerifiedAt}</span></div>
-      <div className="price-summary"><div><span>Input / 1M tokens</span><strong>${pricing.input}</strong></div><div><span>Cached input</span><strong>Not publicly available</strong></div><div><span>Output / 1M tokens</span><strong>Free</strong></div></div>
-      <p>Pricing is shown as published by TypeSafe. No context-window limit or additional token charge is listed in the cited public sources.</p>
+      <div className="price-summary"><div><span>Input / 1M tokens</span><strong>${pricing.input}</strong></div><div><span>Cached input</span><strong>Not publicly available</strong></div><div><span>Output / 1M tokens</span><strong>{pricing.output === "not_applicable" ? "Not token-billed" : `$${pricing.output}`}</strong></div></div>
+      <p>TypeSafe lists input-token pricing. Jev returns structured decisions rather than generated output tokens, so output is not token-billed. No context-window limit or additional token charge is listed in the cited public sources.</p>
     </section>
 
     <section className="detail-section" aria-labelledby="access-heading"><div className="section-heading"><h2 id="access-heading">API and access</h2><span className="status-label">Early access</span></div>
