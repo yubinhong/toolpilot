@@ -1,0 +1,338 @@
+[
+  {
+    "id": "gpt-6-astra",
+    "name": "GPT-6 Astra",
+    "provider": { "id": "openai", "name": "OpenAI" },
+    "apiModelId": "gpt-6-astra",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1050000,
+    "releaseDate": null,
+    "capabilities": ["Text input and output", "Long-context prompts"],
+    "useCases": ["Complex reasoning", "Long-context tasks"],
+    "officialUrl": "https://openai.com/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      {
+        "id": "standard",
+        "label": "Standard",
+        "input": 10,
+        "cachedInput": 1,
+        "cacheWrite": 12.5,
+        "cacheWriteOptions": [{ "label": "Cache write", "rate": 12.5 }],
+        "output": 50,
+        "longContext": { "threshold": 272000, "input": 20, "cachedInput": 2, "output": 75 }
+      }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://developers.openai.com/api/docs/pricing" },
+      { "label": "Model documentation", "url": "https://developers.openai.com/api/docs/models/gpt-6-astra" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "gpt-6-1-sol",
+    "name": "GPT-6.1 Sol",
+    "provider": { "id": "openai", "name": "OpenAI" },
+    "apiModelId": "gpt-6.1-sol",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1050000,
+    "releaseDate": null,
+    "capabilities": ["Text and image input", "Reasoning", "Responses API tool calling"],
+    "useCases": ["Complex coding", "Computer use", "Professional work"],
+    "officialUrl": "https://openai.com/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 2, "cachedInput": 0.1, "cacheWrite": 2.5, "cacheWriteOptions": [{ "label": "Cache write", "rate": 2.5 }], "output": 10, "longContext": { "threshold": 272000, "input": 4, "cachedInput": 0.2, "output": 15 } }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://developers.openai.com/api/docs/pricing" },
+      { "label": "Model documentation", "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "gpt-6-luna",
+    "name": "GPT-6 Luna",
+    "provider": { "id": "openai", "name": "OpenAI" },
+    "apiModelId": "gpt-6-luna",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1050000,
+    "releaseDate": null,
+    "capabilities": ["Text input and output", "Long-context prompts"],
+    "useCases": ["Lower-cost text workloads", "High-volume requests"],
+    "officialUrl": "https://openai.com/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 0.1, "cachedInput": 0.01, "cacheWrite": 0.125, "cacheWriteOptions": [{ "label": "Cache write", "rate": 0.125 }], "output": 0.5, "longContext": { "threshold": 272000, "input": 0.2, "cachedInput": 0.02, "output": 0.75 } }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://developers.openai.com/api/docs/pricing" },
+      { "label": "Model documentation", "url": "https://developers.openai.com/api/docs/models/gpt-6-luna" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "claude-fable-5-1",
+    "name": "Claude Fable 5.1",
+    "provider": { "id": "anthropic", "name": "Anthropic" },
+    "apiModelId": "claude-fable-5-1",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1000000,
+    "releaseDate": null,
+    "capabilities": ["Text and image input", "Text output"],
+    "useCases": ["Complex analysis", "Long-context tasks"],
+    "officialUrl": "https://www.anthropic.com/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 10, "cachedInput": 0.25, "cacheWrite": 12.5, "cacheWriteOptions": [{ "label": "5-minute cache write", "rate": 12.5 }, { "label": "1-hour cache write", "rate": 20 }], "output": 50 }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://platform.claude.com/docs/en/about-claude/pricing" },
+      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/overview" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "claude-opus-5-5",
+    "name": "Claude Opus 5.5",
+    "provider": { "id": "anthropic", "name": "Anthropic" },
+    "apiModelId": "claude-opus-5-5",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1000000,
+    "releaseDate": null,
+    "capabilities": ["Text and image input", "Text output"],
+    "useCases": ["Complex analysis", "Agent workflows"],
+    "officialUrl": "https://www.anthropic.com/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 4, "cachedInput": 0.2, "cacheWrite": 5, "cacheWriteOptions": [{ "label": "5-minute cache write", "rate": 5 }, { "label": "1-hour cache write", "rate": 8 }], "output": 20 }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://platform.claude.com/docs/en/about-claude/pricing" },
+      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/overview" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "claude-sonnet-5-5",
+    "name": "Claude Sonnet 5.5",
+    "provider": { "id": "anthropic", "name": "Anthropic" },
+    "apiModelId": "claude-sonnet-5-5",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1000000,
+    "releaseDate": "2026-09-28",
+    "capabilities": ["Text and image input", "Text output"],
+    "useCases": ["Coding", "Agent workflows", "Long-context tasks"],
+    "officialUrl": "https://www.anthropic.com/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 2, "cachedInput": 0.2, "cacheWrite": 2.5, "cacheWriteOptions": [{ "label": "5-minute cache write", "rate": 2.5 }, { "label": "1-hour cache write", "rate": 4 }], "output": 10 }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://platform.claude.com/docs/en/about-claude/pricing" },
+      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "claude-haiku-4-5",
+    "name": "Claude Haiku 4.5",
+    "provider": { "id": "anthropic", "name": "Anthropic" },
+    "apiModelId": "claude-haiku-4-5",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 200000,
+    "releaseDate": null,
+    "capabilities": ["Text and image input", "Text output"],
+    "useCases": ["High-volume requests", "Lower-latency tasks"],
+    "officialUrl": "https://www.anthropic.com/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 1, "cachedInput": 0.1, "cacheWrite": 1.25, "cacheWriteOptions": [{ "label": "5-minute cache write", "rate": 1.25 }, { "label": "1-hour cache write", "rate": 2 }], "output": 5 }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://platform.claude.com/docs/en/about-claude/pricing" },
+      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/overview" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "gemini-3-8-flash",
+    "name": "Gemini 3.8 Flash",
+    "provider": { "id": "google", "name": "Google" },
+    "apiModelId": "gemini-3.8-flash",
+    "landingPath": null,
+    "apiStatus": "Available via Gemini API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1048576,
+    "releaseDate": null,
+    "capabilities": ["Text, image, video, audio, and PDF input", "Text output", "Function calling", "Code execution"],
+    "useCases": ["Software engineering", "Autonomous agents", "Enterprise workflows"],
+    "officialUrl": "https://ai.google.dev/",
+    "defaultSchedule": "standard-current",
+    "schedules": [
+      { "id": "standard-current", "label": "Standard through 2026-12-31", "effectiveTo": "2026-12-31", "input": 0.75, "cachedInput": 0.075, "output": 3.75, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 0.5 }] },
+      { "id": "standard-2027", "label": "Standard from 2027-01-01", "effectiveFrom": "2027-01-01", "input": 1.5, "cachedInput": 0.15, "output": 7.5, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 1 }] }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://ai.google.dev/gemini-api/docs/pricing" },
+      { "label": "Model documentation", "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "gemini-3-6-flash",
+    "name": "Gemini 3.6 Flash",
+    "provider": { "id": "google", "name": "Google" },
+    "apiModelId": "gemini-3.6-flash",
+    "landingPath": null,
+    "apiStatus": "Available via Gemini API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": null,
+    "releaseDate": null,
+    "capabilities": ["Text, image, video, and audio input", "Text output"],
+    "useCases": ["General-purpose workloads", "Agent workflows"],
+    "officialUrl": "https://ai.google.dev/",
+    "defaultSchedule": "standard-current",
+    "schedules": [
+      { "id": "standard-current", "label": "Standard through 2026-12-31", "effectiveTo": "2026-12-31", "input": 0.75, "cachedInput": 0.075, "output": 3.75, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 0.5 }] },
+      { "id": "standard-2027", "label": "Standard from 2027-01-01", "effectiveFrom": "2027-01-01", "input": 1.5, "cachedInput": 0.15, "output": 7.5, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 1 }] }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://ai.google.dev/gemini-api/docs/pricing" },
+      { "label": "Model documentation", "url": "https://ai.google.dev/gemini-api/docs/models" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "gemini-3-1-pro-preview",
+    "name": "Gemini 3.1 Pro Preview",
+    "provider": { "id": "google", "name": "Google" },
+    "apiModelId": "gemini-3.1-pro-preview",
+    "landingPath": null,
+    "apiStatus": "Preview via Gemini API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1000000,
+    "releaseDate": null,
+    "capabilities": ["Multimodal input", "Text output", "Agentic tasks"],
+    "useCases": ["Complex reasoning", "Long-context tasks", "Coding"],
+    "officialUrl": "https://ai.google.dev/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 2, "cachedInput": 0.2, "output": 12, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 4.5 }], "longContext": { "threshold": 200000, "input": 4, "cachedInput": 0.4, "output": 18 } }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://ai.google.dev/gemini-api/docs/pricing" },
+      { "label": "Model documentation", "url": "https://ai.google.dev/gemini-api/docs/gemini-3" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "gemini-3-1-flash-lite",
+    "name": "Gemini 3.1 Flash-Lite",
+    "provider": { "id": "google", "name": "Google" },
+    "apiModelId": "gemini-3.1-flash-lite",
+    "landingPath": null,
+    "apiStatus": "Available via Gemini API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1048576,
+    "releaseDate": null,
+    "capabilities": ["Text, image, and video input", "Text output"],
+    "useCases": ["High-volume agentic tasks", "Translation", "Simple data processing"],
+    "officialUrl": "https://ai.google.dev/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 0.25, "cachedInput": 0.025, "output": 1.5, "additionalPrices": [{ "label": "Cached context storage", "unit": "per 1M tokens per hour", "rate": 1 }] }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://ai.google.dev/gemini-api/docs/pricing" },
+      { "label": "Model documentation", "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "deepseek-flash",
+    "name": "DeepSeek Flash",
+    "provider": { "id": "deepseek", "name": "DeepSeek" },
+    "apiModelId": "deepseek-flash",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1000000,
+    "releaseDate": null,
+    "capabilities": ["Text input and output", "Tool calling"],
+    "useCases": ["General-purpose requests", "High-volume API workloads"],
+    "officialUrl": "https://www.deepseek.com/",
+    "defaultSchedule": "off-peak",
+    "schedules": [
+      { "id": "off-peak", "label": "Off-peak", "input": 0.15, "cachedInput": 0.003, "output": 0.6, "scheduleNote": "Off-peak is the default estimate; see the provider's UTC schedule." },
+      { "id": "peak", "label": "Peak", "input": 0.3, "cachedInput": 0.006, "output": 1.2, "scheduleNote": "Peak period: Mon-Fri 01:00-04:00 and 06:00-10:00 UTC, excluding China public holidays." }
+    ],
+    "sources": [
+      { "label": "Official API pricing", "url": "https://api-docs.deepseek.com/quick_start/pricing" },
+      { "label": "API documentation", "url": "https://api-docs.deepseek.com/" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "provider": { "id": "deepseek", "name": "DeepSeek" },
+    "apiModelId": "deepseek-v4-pro",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1000000,
+    "releaseDate": null,
+    "capabilities": ["Text input and output", "Tool calling"],
+    "useCases": ["Complex reasoning", "Long-context tasks"],
+    "officialUrl": "https://www.deepseek.com/",
+    "defaultSchedule": "off-peak",
+    "schedules": [
+      { "id": "off-peak", "label": "Off-peak", "input": 0.66, "cachedInput": 0.022, "output": 1.98, "scheduleNote": "Off-peak is the default estimate; see the provider's UTC schedule." },
+      { "id": "peak", "label": "Peak", "input": 1.32, "cachedInput": 0.044, "output": 3.96, "scheduleNote": "Peak period: Mon-Fri 01:00-04:00 and 06:00-10:00 UTC, excluding China public holidays." }
+    ],
+    "sources": [
+      { "label": "Official API pricing", "url": "https://api-docs.deepseek.com/quick_start/pricing" },
+      { "label": "API documentation", "url": "https://api-docs.deepseek.com/" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "jev",
+    "name": "Jev",
+    "provider": { "id": "typesafe", "name": "TypeSafe AI" },
+    "apiModelId": "jev-latest",
+    "landingPath": "/models/jev/",
+    "apiStatus": "Early access",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": null,
+    "releaseDate": "2026-09-15",
+    "capabilities": ["Structured Choice, Score, and Noul outputs", "Probabilities and confidence fields in API responses"],
+    "useCases": ["Typed decisions", "Structured classification and scoring"],
+    "officialUrl": "https://typesafe.ai/",
+    "defaultSchedule": "standard",
+    "schedules": [
+      { "id": "standard", "label": "Standard", "input": 0.042, "cachedInput": null, "output": 0 }
+    ],
+    "sources": [
+      { "label": "Official pricing and announcement", "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev" },
+      { "label": "Official documentation", "url": "https://docs.typesafe.ai/introduction" },
+      { "label": "API quickstart", "url": "https://docs.typesafe.ai/introduction/quickstart" }
+    ],
+    "lastVerifiedAt": "2026-09-30"
+  }
+]

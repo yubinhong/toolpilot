@@ -52,34 +52,34 @@
 
 ### 4.1 定位与范围
 
-- ToolPilot 面向 `Developer`、`Indie Hacker` 和 `AI Builder`，核心价值是帮助用户完成工具发现、比较、替代方案选择和技术栈组合。
-- 首个垂直领域是开发者工具，当前 50 条研究快照覆盖 `AI Coding`、`AI App Builders`、`Databases`、`Deployment`、`Authentication`、`Email & Marketing`、`Automation`、`Monitoring & Analytics`、`SEO & Growth` 和 `Developer Infrastructure`；`Payments` 仍是后续方向。
-- 优先建设有明确任务意图的 `Best`、`Compare`、`Alternatives`、`Stacks` 和指南页面；不以无筛选的工具数量或低价值 SEO 页面作为成功标准。
-- 未经 PRD/ADR 或用户明确授权，不扩展为通用工具目录、工具本身、代码托管平台或通用 AI 助手。
+- ToolPilot 面向 `AI Developer`、`Indie Hacker`、`SaaS Developer`、`API User` 和 `AI Builder`，帮助用户查询模型价格、估算 API 成本和比较模型。
+- 产品定位为 `AI Model Pricing & API Cost Tools Platform`；不得恢复为开发者工具目录或泛用型在线工具站。
+- V1 只允许 `/`、`/pricing/`、`/calculator/`、`/compare/`、`/models/jev/`、`/about/`、`/privacy/`、`/terms/` 八个公开页面。模型记录不等于模型详情页；Jev 是唯一 V1 独立模型页面。
+- 新增第九个及之后的 SEO 页面必须先满足 PRD-002 的趋势、搜索意图、SERP 和官方来源验证，并得到用户明确批准。
+- 不建设批量模型详情、批量 VS 页面、blog、providers、best、alternatives、通用工具目录、账户系统、论坛、AI Chat、广告或未批准的商业功能。
 
 ### 4.2 内容可信度与用户信任
 
-- 工具的价格、功能、限制、集成、适用场景和链接必须有来源、更新时间或明确的 `TBD`/待核实标记。
-- Affiliate、Featured、Sponsor 和其他商业关系必须在用户可见位置清楚披露；商业标记不得只放在不可见元数据或隐藏链接中。
-- 免费基础收录应保持开放；付费只购买明确标注的曝光权益，不得购买客观评价、比较结论、自然排序或事实校验结果。
-- 厂商提交的描述是外部输入，必须经过校验、审核和必要的编辑，不得直接当作独立评价发布。
-- 不得编造流量、收入、转化率、佣金比例、客户数量、用户评价、排名或“已验证”结论。研究中的示例只可作为假设，不能当作生产数据。
-- 发现事实变化、失效链接或商业关系变化时，优先修正内容并保留变更证据，而不是静默覆盖历史结论。
+- 模型价格、API 状态、上下文和能力必须来自对应厂商官方来源，并保留来源 URL 与 `lastVerifiedAt`。
+- 未能从可靠官方来源确认的信息显示 `Not publicly available` 或其他明确未知状态；不得猜测价格、能力或上下文窗口。
+- 价格数据与页面路由分离；价格变动保留有效日期、上下文档位、缓存、峰谷费率等会影响估算的变体。
+- 价格、功能和可用性变更需更新记录并复核所有使用共享模型数据的页面，不复制维护多份数据。
+- 不得编造流量、收入、排名、用户评价或“实时价格”“已验证”结论。
 
 ### 4.3 商业与分析边界
 
-- Affiliate 是推荐转化关系，Featured/Sponsor 是付费曝光关系；两者在页面标记、链接、统计和财务记录中分开处理。
-- 在合作方条款、归因方式、退款/取消规则和披露文案未确认前，不上线商业承诺或把预估收入写入产品文案。
-- 分析只采集完成产品判断所需的最小数据，遵守 `SECURITY.md` 和隐私政策；不得把真实个人数据复制到测试、日志或对话中。
+- V1 不启用 AdSense、Affiliate、Featured 或 Sponsor。按已接受 PRD 接入 GSC 验证标记和可选 GA4；GA4 只有在 `NEXT_PUBLIC_GA_ID` 是有效测量 ID 时启用，事件字段必须走 allowlist，不得发送 token 数、请求量或自由文本搜索词。
+- Calculator 的模型选择和 token 数只用于浏览器端估算；不要新增传输或持久化这些值的行为，除非 PRD/隐私边界获得批准。
+- 不得把真实个人数据复制到测试、日志或对话中；站点托管请求日志按 `SECURITY.md` 处理。
 
 ## 5. 技术与代码规范
 
 ### 5.1 已确认的技术基线
 
-- 主语言与版本：`TypeScript/TSX`，`typescript@5.9.3`；页面源码位于 `app/`，共享 UI 位于 `components/`，目录数据位于 `lib/catalog.mjs`。
+- 主语言与版本：`TypeScript/TSX`，`typescript@5.9.3`；页面源码位于 `app/`，共享 UI 位于 `components/`，模型数据位于 `content/models.json`，读取接口位于 `lib/models.ts`。
 - Web 框架：`Next.js 16.3.6 App Router`；`next.config.mjs` 已确认 `output: export`、`trailingSlash: true`，当前没有独立服务端、API 或数据库。
 - 运行时要求：`Node.js 22`，由根目录 `.nvmrc` 固定；依赖由 npm 管理，锁文件为 `package-lock.json` lockfile v3。
-- 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`、`smoke`、`release:check`、`cloudflare:build`、`urls:audit`，ESLint 为 `9.39.5`。
+- 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`、`smoke`、`release:check`、`cloudflare:build`、`models:check`、`artifacts:check`，ESLint 为 `9.39.5`。
 - 域名配置：`.env.example` 提供 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`；生产域名 CNAME 已切换到 Git-integrated Pages 项目 `toolpilot-git`，正式域名 current smoke 已验证。旧 Direct Upload 项目 `toolpilot` 保留为恢复目标；生产监控使用 current profile。
 
 ### 5.2 命令与验证
@@ -87,10 +87,11 @@
 | 目的 | 当前命令 | 规则 |
 | --- | --- | --- |
 | 格式化 | `TBD` | 当前没有格式化工具或 npm script；不要自行引入格式化器 |
+| 模型校验 | `npm run models:check` | 检查唯一模型数据源、官方来源域、验证日期和八页路由白名单 |
 | 静态检查 | `npm run lint` | 使用仓库中的 ESLint flat config |
 | 类型检查 | `npm run typecheck` | 使用 `tsconfig.json`，禁止绕过错误 |
-| 单元测试 | `npm test` | Node 22 内置 test runner，当前覆盖目录数据和发布门槛不变量 |
-| HTTP smoke | `npm run smoke` | 检查注册路由、robots、sitemap、真实 404，并确认 `/tools/` 多参数查询 URL 保持 noindex 且 canonical 指向无参数路由 |
+| 单元测试 | `npm test` | Node 22 内置 test runner，覆盖路由、来源、费率日期和成本公式 |
+| HTTP smoke | `npm run smoke` | 检查八页 metadata/canonical、robots、精确 sitemap，以及废弃旧 URL 的真实 404 |
 | 发布前检查 | `npm run release:check` | 本地/审核提交时必须在 Node 22、完整 HEAD SHA、无凭据 GitHub origin、干净工作区和发布文件均被跟踪时通过；不替代 Cloudflare Dashboard Git Integration 构建 |
 | Cloudflare Pages 构建 | `npm run cloudflare:build` | Cloudflare Pages Git Integration 使用；执行 lint、typecheck、test 和静态构建 |
 | 集成/E2E | `TBD` | 尚未引入浏览器测试框架；页面 smoke test 用本地 HTTP 检查替代 |
@@ -142,11 +143,10 @@
 - 最终汇报包含结果、关键文件、验证命令与结果、剩余风险；不要只描述过程。
 
 
-## 9. 已采用的内容审核与验证机制
+## 9. 模型数据验证机制
 
-- content/ 正文、lib/content-policy.mjs 审核门槛与 ADR-0009 必须一致；原 researchTools 快照保留历史语义。
-- 正式批准绑定用户审核证据、revision 和 digest；工具事实变更必须检查所有依赖正文。代理不得伪造审核或实测。
-- 草稿 URL 保留、noindex、不入 sitemap；未知与否定不同。公开客户端 DTO 不携带内部商业研究或审批证据。
-- npm run content:check / content:review / content:freshness / links:check / artifacts:check 为已配置命令。build 包含内容和产物检查。
-- smoke 默认 current；生产监控使用 current。只有验证旧部署或回滚时才显式使用 legacy profile。
-- 历史审计通过记录不代表当前安全状态；每次发布重新执行 npm audit --audit-level=high，不屏蔽真实失败。
+- `content/models.json` 是 V1 唯一模型与价格源；模型记录不会自动创建页面。
+- `scripts/check-models.mjs` 校验唯一模型 ID、官方 HTTPS 来源域、pricing source、`lastVerifiedAt`、有效价格档位和 Jev 唯一详情页。
+- `lib/routes.mjs` 的 8 条显式路由是页面、metadata、sitemap、artifact 检查和 HTTP smoke 的边界。
+- `npm run build` 在 Next 静态导出前运行模型检查，随后验证 sitemap、robots、canonical、metadata、来源链接和真实 404 产物。
+- 价格记录过期不等于当前价格仍有效；发布前应重核官方来源并运行当前测试、构建、审计和 smoke。

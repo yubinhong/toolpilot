@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — TASK-008 AI Model Pricing V1 (2026-09-30)
+
+- Replace the developer-tool catalog with eight allowlisted AI model pricing pages: home, pricing, calculator, compare, Jev detail, about, privacy, and terms.
+- Add a shared official-source model database for 14 OpenAI, Anthropic, Google, DeepSeek, and TypeSafe Jev records, including verification dates and variable price schedules.
+- Add interactive model search, pricing filters/sort, token cost estimates, and comparisons for up to three models. Only Jev has an independent model detail page.
+- Remove old tools, guides, best, alternatives, MCP, self-hosted, stacks, and generated compare/pricing routes and their content data; retired paths return 404 and are not redirected to the home page.
+- Replace route, model-data, artifact, and HTTP smoke checks with an exact eight-page contract; retired routes return 404 without broad redirects.
+- Add optional minimum-data GA4/GSC integrations and non-rendering AdSlot mounts. Local Cloudflare build, 27 tests, artifact checks, and eight-page Wrangler smoke passed; this change does not deploy or confirm production/indexing state.
+
 ## Unreleased — TASK-006 implementation (2026-09-27–28)
 
 - Update Replit's Agent model-routing/app-integration evidence from its 2026-08-26/27 announcement: Free Mode and escalation notices, Core/Pro manual selection and Enterprise approved-model sets. Preserve unknown inference location and local-model support; distinguish potential routed usage costs from Core base pricing. Refresh profile revision 9, seven dependent drafts, both exact review manifests, handoffs, evidence pack and source/rendering regressions. All affected content stays in-review/noindex. Local validation passed 100 tests, the 99-page Cloudflare build, zero-high audit, freshness (6 unknown / 0 overdue), full link scan, local smoke and eight-route source/noindex/sitemap assertions. Commit `d156d1a` passed clean release readiness, CI `36496404681`, Pages deployment/check `b88496d0`, and preview/production smoke plus eight-route assertions. See TASK.md.

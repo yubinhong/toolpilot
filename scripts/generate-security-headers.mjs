@@ -1,7 +1,8 @@
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { getGoogleAnalyticsId } from '../lib/analytics-config.mjs';
 import { getRoutes } from '../lib/routes.mjs';
 
 export const MAX_HEADER_RULES = 100;
@@ -57,16 +58,18 @@ export function extractInlineScriptHashes(html) {
   return [...hashes].sort();
 }
 
-function cspFromHashes(hashes, { includeFrameAncestors = true } = {}) {
-  const scriptSources = ["'self'", ...hashes].join(' ');
+function cspFromHashes(hashes, { includeFrameAncestors = true, googleAnalytics = false } = {}) {
+  const scriptSources = ["'self'", ...hashes, ...(googleAnalytics ? ['https://www.googletagmanager.com'] : [])].join(' ');
+  const connectSources = ["'self'", ...(googleAnalytics ? ['https://www.google-analytics.com', 'https://analytics.google.com', 'https://region1.google-analytics.com'] : [])].join(' ');
+  const imageSources = ["'self'", 'data:', ...(googleAnalytics ? ['https://www.google-analytics.com'] : [])].join(' ');
   const directives = [
     "default-src 'self'",
     `script-src ${scriptSources}`,
     "script-src-attr 'none'",
     "style-src 'self'",
-    "img-src 'self' data:",
+    `img-src ${imageSources}`,
     "font-src 'self'",
-    "connect-src 'self'",
+    `connect-src ${connectSources}`,
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
@@ -76,8 +79,8 @@ function cspFromHashes(hashes, { includeFrameAncestors = true } = {}) {
   return directives.join('; ') + ';';
 }
 
-export function documentCsp(hashes) {
-  return cspFromHashes(hashes, { includeFrameAncestors: false });
+export function documentCsp(hashes, { googleAnalytics = Boolean(getGoogleAnalyticsId()) } = {}) {
+  return cspFromHashes(hashes, { includeFrameAncestors: false, googleAnalytics });
 }
 
 export function injectCspMeta(html) {
@@ -143,6 +146,9 @@ export function generateHeadersFile(routes, { maxRules = MAX_HEADER_RULES, maxLi
 function generateForBuild() {
   const outputDirectory = resolve('out');
   if (!existsSync(outputDirectory)) throw new Error('Next.js output directory out/ does not exist');
+  for (const internalPath of ['404', '_not-found']) {
+    rmSync(join(outputDirectory, internalPath), { recursive: true, force: true });
+  }
   const routes = getRoutes();
   const routeOutputs = routes.map(route => {
     validateRoutePath(route.path);

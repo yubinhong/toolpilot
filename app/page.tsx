@@ -1,29 +1,54 @@
-import Link from 'next/link';
-import { HomeExplorer } from '../components/home-explorer';
-import { PageFrame } from '../components/page-frame';
-import { ContentSection } from '../components/content-section';
-import { tools, categories } from '../lib/catalog.mjs';
-import { content, publicTool, publishedContent, contentPath } from '../lib/content.mjs';
-import { pageMetadata } from '../lib/metadata';
-import { categoryAnchor, getHomepageContent, HOME_CATEGORY_SHORTCUTS, reviewLabel } from '../lib/homepage.mjs';
-export const metadata = pageMetadata('/');
+import Link from "next/link";
+import { AdSlot } from "../components/ad-slot";
+import { CostCalculator, ModelSearch, PopularModels, PricingTable } from "../components/model-tools";
+import { PageFrame } from "../components/page-frame";
+import { pageMetadata } from "../lib/metadata";
+import { models } from "../lib/models";
+import type { ModelRecord } from "../lib/model-types";
+import { getSiteUrl } from "../lib/site-config.mjs";
+
+export const metadata = pageMetadata("/");
+
+function HomeStructuredData() {
+  const site = getSiteUrl();
+  const data = [
+    { "@context": "https://schema.org", "@type": "WebSite", name: "ToolPilot", url: `${site}/` },
+    { "@context": "https://schema.org", "@type": "WebApplication", name: "ToolPilot AI API Cost Calculator", applicationCategory: "DeveloperApplication", operatingSystem: "Web", url: `${site}/calculator/`, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } },
+  ];
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
+}
+
 export default function HomePage() {
-  const reviewed = publishedContent(undefined).filter(r => ['compare','alternatives','pricing','best'].includes(r.kind));
-  const homeContent = getHomepageContent(content);
-  const categoryShortcuts = HOME_CATEGORY_SHORTCUTS.map(item => ({
-    ...item,
-    count: tools.filter(tool => tool.category === item.category).length,
-  }));
-  return <PageFrame breadcrumbPath="/"><section className="home-hero shell"><div className="hero-copy">
-    <p className="eyebrow">Choose by the job</p><h1>Find the right<br />AI &amp; developer<br />tool for the job.</h1>
-    <p className="hero-summary">Compare workflows, pricing and switching effort before choosing a tool.</p>
-    <div className="hero-actions"><Link className="primary-button" href="/compare/">Compare Tools →</Link><Link className="secondary-link" href="/tools/#category-ai-coding">Explore AI Coding Tools</Link></div>
-  </div><div className="hero-signal"><h2>Start with your constraint</h2><p>Working in an existing repository? Evaluate the review loop.</p><p>Building an app prototype? Evaluate the handoff and running costs.</p><p>Every research page shows its sources, unknowns and review status.</p></div></section>
-  <ContentSection><div className="section-heading-row"><div><p className="eyebrow">Browse workflows</p><h2>Start with a tool category.</h2></div><p>Each profile shows whether it is a draft, under review or approved.</p></div><ul className="category-list home-category-links">{categoryShortcuts.map(item => <li key={item.category}><strong><Link href={`/tools/#${categoryAnchor(item.category)}`}>{item.label}</Link></strong><span>{item.summary}</span><small>{item.count} catalog entries</small></li>)}</ul></ContentSection>
-  <ContentSection><div className="section-heading-row"><div><p className="eyebrow">Comparison research</p><h2>Comparisons under review</h2></div><p>These plan-listed drafts show their review state; no popularity ranking is available.</p></div>{homeContent.comparisons.length ? <div className="decision-grid">{homeContent.comparisons.map(record => <article className="tool-card" key={record.slug}><p className="card-kicker">{reviewLabel(record)}</p><h3><Link href={contentPath(record)}>{record.title}</Link></h3><p>{record.summary}</p><Link href={contentPath(record)}>Open comparison research →</Link></article>)}</div> : <p>The selected comparison drafts have completed review. <Link href="/compare/">Browse all comparisons</Link>.</p>}</ContentSection>
-  <ContentSection><div className="section-heading-row"><div><p className="eyebrow">Research updates</p><h2>Latest Pricing Updates</h2></div><p>Dates show when the research record changed, not a guarantee that a price is current.</p></div>{homeContent.pricingUpdates.length ? <ul className="guide-list">{homeContent.pricingUpdates.map(record => <li key={record.slug}><strong><Link href={contentPath(record)}>{record.title}</Link></strong><span>Updated {record.updatedAt} · {reviewLabel(record)}</span></li>)}</ul> : <p>No pricing research is available yet. <Link href="/pricing/">Browse pricing research</Link>.</p>}</ContentSection>
-  <ContentSection><div className="section-heading-row"><div><p className="eyebrow">Verification status</p><h2>Recently Verified Tools</h2></div></div>{homeContent.recentlyVerified.length ? <ul>{homeContent.recentlyVerified.map(record => <li key={record.slug}><Link href={contentPath(record)}>{record.name}</Link> · Verified {record.verifiedAt}</li>)}</ul> : <p>No tool profile currently has both an approved review and a verification date. <Link href="/tools/">Browse profiles with their review status</Link>.</p>}</ContentSection>
-  {reviewed.length ? <ContentSection><h2>Reviewed decisions</h2><ul>{reviewed.map(r => <li key={contentPath(r)}><Link href={contentPath(r)}>{r.title}</Link></li>)}</ul></ContentSection> : null}
-  <HomeExplorer tools={tools.map(publicTool)} categories={categories}/>
+  const recent = (models as ModelRecord[]).filter((model) => model.releaseDate).sort((a, b) => (b.releaseDate ?? "").localeCompare(a.releaseDate ?? "")).slice(0, 3);
+  return <PageFrame path="/">
+    <HomeStructuredData />
+    <section className="home-intro shell">
+      <div className="intro-copy"><p className="eyebrow">ToolPilot · AI API tools</p><h1>AI Model Pricing &amp; API Cost Calculator</h1><p className="lede">Compare AI API pricing and calculate the real cost of running your AI applications.</p></div>
+      <ModelSearch />
+    </section>
+
+    <section className="content-section shell" aria-labelledby="popular-heading">
+      <div className="section-heading"><div><p className="eyebrow">Model discovery</p><h2 id="popular-heading">Popular AI models</h2></div><Link href="/pricing/" className="text-link">All model pricing</Link></div>
+      <PopularModels />
+    </section>
+
+    <section className="content-section shell" aria-labelledby="latest-heading">
+      <div className="section-heading"><div><p className="eyebrow">Recently released</p><h2 id="latest-heading">Latest models</h2></div><p>Release dates appear only where official documentation confirms them.</p></div>
+      {recent.length ? <div className="latest-list">{recent.map((model) => <article key={model.id}><div><Link href={model.landingPath ?? `/calculator/?model=${model.id}`} className="model-name">{model.name}</Link><span>{model.provider.name}</span></div><time dateTime={model.releaseDate ?? undefined}>{model.releaseDate}</time><Link href={model.landingPath ?? `/calculator/?model=${model.id}`}>View details</Link></article>)}</div> : <p className="empty-state">No release date is currently confirmed in the model data.</p>}
+    </section>
+
+    <section className="content-section shell" aria-labelledby="pricing-preview-heading">
+      <div className="section-heading"><div><p className="eyebrow">Official rates</p><h2 id="pricing-preview-heading">API pricing preview</h2></div><Link href="/pricing/" className="text-link">View full pricing</Link></div>
+      <PricingTable limit={5} />
+    </section>
+
+    <div className="shell"><AdSlot placement="homepage-content" /></div>
+
+    <section className="content-section shell" aria-labelledby="quick-calc-heading">
+      <div className="section-heading"><div><p className="eyebrow">Usage estimate</p><h2 id="quick-calc-heading">Quick cost calculator</h2></div><Link href="/calculator/" className="text-link">Advanced calculator</Link></div>
+      <CostCalculator compact />
+    </section>
+
+    <section className="compare-band"><div className="shell compare-band-inner"><div><p className="eyebrow">Workload comparison</p><h2>Compare costs across models</h2><p>Use the same token workload to compare up to three APIs.</p></div><Link href="/compare/" className="primary-button">Compare models <span aria-hidden="true">→</span></Link></div></section>
   </PageFrame>;
 }

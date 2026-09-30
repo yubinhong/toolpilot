@@ -1,12 +1,25 @@
 # TODO.md
 
-> 这里是工作队列，不是当前任务的实施说明。当前 `TASK-006` 为 IN_PROGRESS；12 个工具档案和所有 26 个声明了工具依赖的决策页均有来源绑定的优势、限制和 FAQ 页面块。一个无工具依赖的通用选型指南按 ADR-0009 不伪造产品引用。2026-09-28 Continue 官方 Terms 已确认付费模型使用可通过购买 credits 或订阅，并将适用价格指向账号或 Service Order；具体账号金额及模型提供商费用仍未知。内容审批、历史证据和 Owner 决策仍是独立事项。
+> 当前活动任务见 `TASK.md`（TASK-008）。本文件中后续 TASK-006 项仅保留作历史研究/审核档案，不是当前产品范围或执行任务。
 
 ### TASK-006 当前审核/新鲜度复核 — 2026-09-29
 
 - `npm run content:check` 验证 39 条内容记录通过结构检查；精确审核报告中 39/39 仍为 `in-review`，34 条有 120 个未解决审核缺口。没有批准或改变索引状态。
-- 日期锁定的 freshness 队列有 6 个未知值、0 个逾期值：Bolt、Lovable、Make、Replit、Windsurf 的 `localModels`，以及 Continue 的模型/账号用量价格。此前记录的 40 个字段是 2026-09-27 快照，不再代表当前队列。
+- 本节记录的 6 项是 Bolt 更新前的 2026-09-29 快照；Bolt Terms/Forge 及随后四家工具的本地模型文档复核已为这些字段补充来源与复核时间。当前 freshness 队列为 1 个未知值、0 个逾期值：Continue 的账户/模型用量价格。四份 `localModels` 记录只说明公开文档未解决推理端点问题，不将未知解释为不支持。
 - `node scripts/check-links.mjs` 于 2026-09-29 01:38 UTC 检查 223 个唯一目标：189 HTTP-ok、20 restricted、12 被 host policy 拦截、2 个暂态网络错误；对 `docs.continue.dev` 和 `www.docker.com` 的定向 HEAD 重试于 01:39 UTC 均返回 200。没有 404/410。来源可达性不构成事实核验或内容审批。
+
+### TODO-309 进展 — 四家厂商的本地模型文档边界（2026-09-29）
+
+- 复核 Lovable 托管/ownership 指南、Make AI Agent 与 On-prem agent 指南、Replit Agent model selector / AI Integrations / Intelligent Model Routing，以及 Devin Desktop AI Models、Cascade 和 Devin Local 文档。Lovable 平台托管与应用 runtime provider 是不同范围；Make 的本地网络 HTTP Agent 是连接器而非推理证据；Replit 的 app AI provider API 与 Agent 模型路由分开；Devin Local 说明本机 agent harness，不说明模型推理位置。文档未回答的本地推理支持继续记为 unknown。
+- 四个工具档案更新至 Lovable r6、Make r10、Replit r10、Windsurf r9；19 条声明依赖边、14 个决策草稿、TASK-005/TASK-006 精确清单、README 交接、回归测试和产物断言已同步。所有变更仍为 `in-review`/noindex，未改变 sitemap。
+- 本地验证：Node 22 下 102 项测试、lint/typecheck/静态构建、99 页产物检查、本地 current smoke 和精确 manifest 测试通过；freshness 为 1 unknown / 0 overdue。225 个外链目标：191 HTTP-ok、20 restricted、11 blocked、3 temporary-error，无 404/410；新官方来源链接均返回 200。链接可达性不是事实核验或内容审批。无账号、模型或 endpoint 测试，也无 Owner 批准。
+
+### TODO-309 进展 — Bolt Terms 与 Forge 推理边界（2026-09-29）
+
+- Bolt 当前 Terms 与 Privacy Policy 进一步区分一般 Bolt AI 内容的前瞻性模型训练/去标识数据集许可和 Forge 的明确同意路径：既有账户 Terms 可能在 2026-10-07 后才生效，取决于首次通知时间；普通用户可退出一般用途，但 Forge 启用期间数据用途属于其权益条件，切换模式停止新增采集但不撤销已收集内容的同意。区域、组织管理员设置、单独协议和账号通知仍待实际账户核验。
+- Forge 文档称模型运行在 Bolt 自有保留硬件，WebContainers 运行的是生成的应用；这确认 Forge 是厂商托管推理，但未确认 Standard/Max 或客户云模式能否使用本地模型端点。没有账号、模型或 endpoint 测试。
+- Bolt 档案更新至 revision 5；六个声明依赖页及 TASK-005/TASK-006 精确清单、证据包和 freshness 快照均同步。全部内容仍 `in-review`/noindex；具体 revision/digest 和本地验证记录见 `TASK.md`。
+- Node 22 Cloudflare build 通过 lint、typecheck、101 tests、39 条内容检查及 99 页产物检查；本地 smoke 通过。最新 224 个来源目标扫描为 190 HTTP-ok、20 restricted、11 blocked、3 temporary-error，无 404/410；StackBlitz Terms 在精确主机加入允许列表后返回 200。扫描状态只说明可达性，不表示事实核验或审核批准。
 
 ### TODO-309 进展 — Replit Intelligent Model Routing（2026-09-28）
 

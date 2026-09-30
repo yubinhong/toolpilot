@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "npm run content:check && next build && node scripts/generate-security-headers.mjs && npm run artifacts:check",
+    "build": "npm run models:check && next build && node scripts/generate-security-headers.mjs && npm run artifacts:check",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -13,12 +13,8 @@
     "smoke": "node scripts/smoke.mjs",
     "release:check": "node scripts/release-readiness.mjs",
     "cloudflare:build": "npm run lint && npm run typecheck && npm test && npm run build",
-    "content:check": "node scripts/check-content.mjs",
-    "content:review": "node scripts/check-content.mjs --review",
-    "content:freshness": "node scripts/check-content.mjs --freshness",
-    "urls:audit": "node scripts/generate-url-audit.mjs",
-    "artifacts:check": "node scripts/check-artifacts.mjs",
-    "links:check": "node scripts/check-links.mjs"
+    "models:check": "node scripts/check-models.mjs",
+    "artifacts:check": "node scripts/check-artifacts.mjs"
   },
   "dependencies": {
     "next": "16.3.6",

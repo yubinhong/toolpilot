@@ -1,180 +1,52 @@
 # PROJECT.md - ToolPilot
 
-## 文档信息
+## Current Product Baseline
 
-- 状态：`MVP FOUNDATION`
-- Owner：`TBD`
-- 最后更新：`2026-09-27`
-- 项目仓库：`TBD`
-- 研究输入：用户提供的“研究域名用途”对话；已接入 50 条 `2026-08-20` 研究快照，商业模型仍需通过 PRD、数据和实际转化验证
+- Status: ToolPilot AI Model Pricing V1 implementation (TASK-008)
+- Last updated: 2026-09-30
+- Product: AI Model Pricing & API Cost Tools Platform
+- Primary users: AI developers, indie hackers, SaaS developers, API users, and AI builders
+- Domain: `https://toolpilot.cc`
+- Current PRD: [PRD-002](docs/PRD-002-ai-model-pricing.md); accepted page and route decision: [ADR-0011](docs/adr/0011-demand-driven-eight-page-v1.md)
 
-## 2026-09-27 当前整改基线
+ToolPilot helps users answer how much an AI model/API will cost for a workload and compare the rates of multiple providers. It is not a general online-tools directory.
 
-TASK-006 按用户提供的重建计划持续推进；每个已授权的可交付进展均须部署并线上验证。继续 Next.js 静态导出；原 50 条快照不可覆盖，现有 54 个工具身份。`content/` 是 39 条结构化待审核正文的事实源（12 tools / 11 comparisons / 6 alternatives / 4 pricing / 3 Best / 3 guides）；全部仍为 `in-review`、noindex，`lib/catalog.mjs` 保留历史快照和兼容入口。用户负责最终内容审批。
+## V1 Scope
 
-依赖更新为 Next.js/eslint-config-next 16.3.6、sharp 0.35.4、js-yaml 4.3.2；Node 22 下锁定安装和审计通过。Git-integrated Pages 项目 `toolpilot-git` 已连接 `main` 并承载 `toolpilot.cc`；当前源码登记 99 个路由，MCP/self-hosted 证据综述为 noindex。commit `1843969916c80e4239277f64556d297485abbb1b` 的预览与正式域名 current smoke 已通过 99 页、robots、sitemap 和真实 404。旧 Direct Upload 项目保留为恢复目标；具体发布证据和未决门槛统一见 TASK.md 和 RUNBOOK.md。
+The only public content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/models/jev/`, `/about/`, `/privacy/`, and `/terms/`. The eight routes are indexable and listed in the sitemap. `/models/` and provider/model detail routes are not generated from data.
 
-## 1. 项目概述
+The model database lives in `content/models.json`. The homepage, pricing page, calculator, comparison page, and Jev detail page read the same records. Each price record includes an official source and verification date; unknown values remain unknown. Model records do not create SEO routes. Jev is the only model with a detail page in V1.
 
-### 一句话说明
+V1 does not include accounts, API services, a database, a blog, AdSense scripts, affiliate links, or sponsored placement. Reusable empty ad-slot mount points render nothing until content is supplied. GSC verification metadata and GA4 are optional build-time integrations; when enabled, the event allowlist excludes calculator quantities and raw search text.
 
-ToolPilot 是面向 Developer、Indie Hacker 和 AI Builder 的开发者工具发现与决策平台，帮助用户按任务选择工具、比较替代方案并组合技术栈。
+## Technical Baseline
 
-### 要解决的问题
+| Layer | Current implementation |
+| --- | --- |
+| Web | Next.js App Router, React, TypeScript/TSX |
+| Rendering | Static export using `output: "export"` and trailing slashes |
+| Model data | Static JSON in `content/models.json`, loaded through `lib/models.ts` |
+| Pricing math | Shared pure functions in `lib/model-cost.ts` |
+| Route allowlist | Explicit eight-route registry in `lib/routes.mjs` |
+| Hosting | Cloudflare Pages Git Integration; `toolpilot-git` is the current project for `toolpilot.cc` |
+| Runtime | Node.js 22 (`.nvmrc`), npm with lockfile v3 |
+| Quality | ESLint 9, TypeScript 5.9, Node test runner, static artifact checks, HTTP smoke |
 
-开发者工具数量多、更新快，而且工具目录通常只提供名称和链接，不能回答“我现在要完成这件事应该选什么”。ToolPilot 要把工具分类、真实使用场景、对比、替代方案和技术栈建议组织成可执行的决策内容，减少选择成本。
+There is no application server, database, CMS, account system, or pricing API. User calculator inputs are processed in the browser.
 
-### 为什么现在做
+## Environments and Release Boundary
 
-项目当前处于产品发现阶段，先聚焦开发者工具这一垂直领域，而不是做覆盖所有类别的通用导航站。开发者工具的高意图页面更适合形成稳定的搜索入口、厂商合作和可追踪的推荐行为；商业假设必须以实际点击、注册、成交和厂商反馈验证，不能把研究中的收入估算当作事实。
+- Local: `npm run dev`; synthetic/public model data only.
+- Static build: `npm run build` writes `out/`, validates source records, creates shared security headers, and checks the exported pages.
+- Production: Cloudflare Pages Git Integration on `main`; no deployment is performed by TASK-008 local implementation.
+- Previous Direct Upload Pages project `toolpilot` remains an operational recovery target; it is not part of the application architecture.
 
-## 2. 用户与利益相关者
+Current source, build, smoke, and deployment evidence is recorded in `TASK.md` and `RUNBOOK.md`. A source route or successful local export is not evidence of Google indexing or search traffic.
 
-| 角色 | 目标 | 主要痛点 | 决策权 |
-| --- | --- | --- | --- |
-| Developer | 为当前开发任务选择可靠工具 | 工具太多，功能、价格和限制难以横向比较 | 决定是否点击、试用或采用工具 |
-| Indie Hacker / AI Builder | 快速搭建产品并控制成本 | 需要成套的数据库、部署、认证、邮件、支付和自动化方案 | 决定技术栈和购买方案 |
-| 工具厂商 | 获得高意图用户和可信曝光 | 普通广告难以解释适用场景，无法区分发现与转化 | 提交工具、申请核验、购买合规的曝光位 |
-| ToolPilot 运营者 | 维护内容质量并实现可持续收入 | 需要同时维护数据、独立评价、联盟关系和商业履约 | 决定收录标准、编辑标准和商业规则 |
+## Product Rules
 
-## 3. 目标与非目标
-
-### 项目目标
-
-- 建立以开发者和 AI 构建者为中心的工具分类、详情、指南和决策页。
-- 优先覆盖 `AI Coding`、`AI App Builders`、`Databases`、`Deployment`、`Authentication`、`Email & Marketing`、`Automation`、`Monitoring & Analytics`、`SEO & Growth` 和 `Developer Infrastructure` 等开发工作流类别；`Payments` 保留为后续方向。
-- 用 `/best`、`/compare`、`/alternatives` 和 `/stacks` 等高意图页面帮助用户做选择，而不是只堆积工具链接。
-- 提供开放的免费基础收录；在不影响客观评价的前提下，逐步验证 Affiliate、Featured、Sponsor 和 Launch Package 等收入来源。
-- 建立来源、更新时间、商业关系和评价依据可追溯的内容机制。
-
-### 非目标
-
-- 不做“什么工具都有”的无筛选通用目录，也不以工具数量作为主要价值指标。
-- 不允许付费改变事实、比较结果、评价结论或自然排序；付费只可购买明确标注的曝光权益。
-- 不把 Adsense 作为核心商业模型，不在没有流量和合规基础时堆叠广告位。
-- 当前不开发工具本身、托管用户代码、通用 AI 助手或独立支付平台。
-- 不把研究中的佣金比例、收入示例、流量数字或厂商名单当作已验证指标。
-
-## 4. 成功指标
-
-| 指标 | 基线 | 目标 | 时间窗口 | 数据来源 |
-| --- | --- | --- | --- | --- |
-| 可用的高意图决策页数量 | `TBD` | 先建立可审查的最小内容集 | MVP 前 | 内容清单/发布记录 |
-| 决策页到厂商站点的有效点击率 | `TBD` | `TBD`，先完成 30 天基线 | 上线后每月 | 隐私合规的站内分析、出站事件 |
-| Affiliate 点击到注册/成交 | `TBD` | `TBD`，按合作方报告确认 | 每个合作周期 | 联盟平台报告 |
-| Featured/Sponsor 复购或续期 | `TBD` | `TBD` | 上线后每季度 | 合同/订单/履约记录 |
-| 工具数据的新鲜度 | `TBD` | 关键价格、功能和链接有更新时间 | 每次内容发布 | 来源记录和人工审核 |
-| 商业内容标注完整率 | `0`（尚未建立机制） | `100%` | 每次发布 | 页面审查清单 |
-
-## 5. 范围
-
-### 当前范围
-
-- 建立开发者工具分类和统一工具条目模型。
-- 维护工具详情、适用场景、价格与限制、替代方案、对比和技术栈内容。
-- 优先产出 `Best`、`Compare`、`Alternatives`、`Stacks` 和实用指南页面。
-- 支持厂商免费提交基础条目，并保留人工审核、核验和编辑修正流程。
-- 为 Affiliate、Featured 和 Sponsor 设计清晰的标注、链接和审计边界。
-- 提供基础的隐私、条款、免责声明和联系入口。
-
-### 明确排除
-
-- 未经审核的批量抓取、重复页面、门页或只为 SEO 生成的低价值内容。
-- 隐藏 Affiliate 关系、未标注 Sponsor、购买自然排名或用付费内容伪装独立评价。
-- 在没有明确方案、支付流程、履约记录和退款规则前上线收费提交或推广产品。
-- 依赖生产密钥、真实个人信息或未授权的第三方数据作为开发测试输入。
-
-### 后续候选
-
-- Newsletter Sponsor、ToolPilot Pro、Lead Gen、工具数据库 API 和数据授权。
-- 更细的工作流模板、用户收藏/比较和基于证据的个性化推荐。
-- 厂商自助管理、审核状态查询和可审计的商业订单后台。
-
-## 6. 技术基线
-
-| 层 | 选型 | 版本 | 说明 |
-| --- | --- | --- | --- |
-| 客户端 | Next.js App Router / React | Next.js `16.3.6` / React `19.2.8` | `app/` 路由和 `components/` 共享 UI；当前是静态页面应用 |
-| 服务端 | Next 静态导出 | `output: export` | `next.config.mjs` 已确认；当前没有独立 API、认证或数据库 |
-| 语言 | TypeScript / TSX | TypeScript `5.9.3` | 当前结构化内容类型见 `lib/content-types.ts` 和 ADR-0009；`lib/catalog.mjs` 保留历史快照与兼容视图 |
-| 数据 | 结构化 JSON 内容 + 历史研究快照 | 39 条待审内容 + 50 条保留快照 | `content/tools/`、`content/decisions/` 是当前结构化来源；所有 39 条仍为 `in-review`/noindex。`lib/catalog.mjs` 的 `researchTools` 快照不得直接作为已核实事实 |
-| 基础设施 | Cloudflare Pages 静态站点 | Git-integrated 项目 `toolpilot-git` 连接 `yubinhong/toolpilot` 的 `main`；Direct Upload 项目 `toolpilot` 保留作恢复目标 | `npm run cloudflare:build` 生成 `out/`；CNAME 已切换，`toolpilot.cc` current smoke 已通过 |
-| 运行时 | Node.js / npm | Node `22` / npm lockfile v3 | `.nvmrc` 固定 Node 22；Node 22.23.2/npm 10.9.8 下已完成安装和验证 |
-
-## 7. 环境
-
-| 环境 | 用途 | 访问方式 | 数据级别 | 部署来源 |
-| --- | --- | --- | --- | --- |
-| local | 应用开发和静态构建 | `nvm use 22 && npm install && npm run dev` | synthetic | 当前工作区 |
-| staging | 集成、内容和链接验证 | `TBD` | sanitized | `TBD` |
-| production | ToolPilot 公共站点 | `https://toolpilot.cc` 由 Git-integrated Pages 项目 `toolpilot-git` 提供，current smoke 已通过 | restricted | Cloudflare Pages 从 `main` 自动构建；旧 Direct Upload 部署保留作恢复目标 |
-
-`.env.example` 声明 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`，供 sitemap/robots 使用；Cloudflare Pages 控制台和公网 smoke 另行确认了 DNS/生产部署。真实凭据、联盟密钥、支付密钥和厂商后台凭据不得写入仓库、聊天、日志或测试夹具。
-
-## 8. 仓库与服务边界
-
-| 模块/服务 | 路径/仓库 | 责任 | Owner | 依赖 |
-| --- | --- | --- | --- | --- |
-| 产品上下文 | `PROJECT.md`、`PRD.md`、`AI_CONTEXT.md` | 维护目标、边界和当前状态 | `TBD` | 需求与研究结论 |
-| 工程规则 | `AGENTS.md`、`TESTING.md`、`SECURITY.md` | 约束变更、验证和安全行为 | `TBD` | 代码仓库和 CI |
-| Web 应用 | `app/`、`components/` | 首页、工具目录/详情、指南、Compare、Alternatives、Stacks、法律页和 robots/sitemap | `TBD` | Next.js、结构化 JSON 草稿和历史研究快照、Cloudflare Pages |
-| 内容与来源 | `content/tools/`、`content/decisions/`、`lib/content.mjs`、`lib/content-policy.mjs`、`lib/catalog.mjs` | 管理当前 39 条带来源和审核状态的结构化草稿；保留 `lib/catalog.mjs` 中 50 条研究快照和兼容字段，审核流程见 ADR-0009 | `TBD` | 厂商资料、公开来源、人工审核 |
-| 商业与分析 | 集成位置 `TBD` | 管理 Affiliate、商业曝光标注和转化统计 | `TBD` | 合作方报告、隐私合规分析 |
-
-`.next/` 和 `out/` 都是构建产物，不是内容事实来源。用户已确认旧 Crypto/DeFi 生成内容是主动删除内容，本次不迁移；当前源码只生成开发者工具方向页面。Cloudflare Pages 项目和 `toolpilot.cc` 已完成部署及公网验证，但当前 39 条结构化内容和原 50 条研究快照均未通过正式内容审核，不能当作正式评价或佣金承诺。
-
-## 9. 约束与假设
-
-### 硬约束
-
-- 信任：免费收录保持开放，付费只能影响明确标注的曝光，不能改变客观评价和比较结论。
-- 内容：价格、功能、集成、限制和联盟关系必须有来源或明确标记为待核实，并记录更新时间。
-- 合规：Affiliate、Featured、Sponsor 和厂商赞助必须在用户可见位置披露；法律页面和数据处理边界先于商业上线。
-- 安全：密钥只通过环境或受控密钥存储注入；不得提交、打印或复制真实凭据和个人数据。
-- 成本：优先静态、可缓存和按需生成的方案；未验证需求前不引入高成本基础设施。
-- 兼容性：保持标准 URL、可抓取页面、移动端可用性和清晰的回滚路径。
-- 证据：不能把研究假设、示例数字或构建缓存当作生产、流量、收入或转化证据。
-
-### 已接受假设
-
-- `CONFIRMED`：`toolpilot.cc` 是项目目标域名；证据：Cloudflare Pages 自定义域绑定和 2026-08-20 生产首页、目录、详情、robots、sitemap smoke。
-- `CONFIRMED`：静态导出是当前 MVP Web 架构；证据：`next.config.mjs`、`npm run build` 和 `out/` 路由产物；Git-integrated Pages 项目 `toolpilot-git` 当前承载 `toolpilot.cc` 并通过公网 current smoke，旧 Direct Upload 项目 `toolpilot` 保留作恢复目标。
-- `ASSUMPTION`：开发者工具是首个垂直领域，而非未来所有工具类别的总入口；验证方式：PRD 评审和首批内容表现。
-- `ASSUMPTION`：Affiliate 和付费曝光可以并行，但必须分开披露、核算和审查；验证方式：合作方条款、商业页面和分析事件评审。
-
-## 10. 里程碑
-
-| 里程碑 | 结果 | 负责人 | 目标日期 | 状态 |
-| --- | --- | --- | --- | --- |
-| 产品定位确认 | 形成开发者工具垂直领域的 PRD 和评价原则 | `TBD` | `TBD` | `DRAFT` |
-| 内容模型与首批分类 | 可维护工具条目、来源和更新时间 | `TBD` | `TBD` | `PLANNED` |
-| 决策页 MVP | 发布首页、分类、工具详情、指南、对比、替代方案和技术栈页面 | `TBD` | `TBD` | `PLANNED` |
-| 工程骨架 MVP | Node 22、Next 静态导出、目录数据、测试和本地 smoke test | 技术负责人 | `2026-08-20` | `DONE` |
-| 首批 50 条目录与生产发布 | 研究快照接入、产品/来源链接分离、Cloudflare Pages 和 `toolpilot.cc` 公网验证 | 技术负责人 | `2026-08-20` | `DONE` |
-| 50 条目录内容审核记录 | 逐条产品/来源链接检查、来源缺口、编辑审核字段和正式发布门槛；正式事实仍为 TBD | 技术负责人 | `2026-08-20` | `DONE` |
-| CI、生产监控与 Cloudflare Pages Git Integration | 仓库质量门槛、自动构建、正式域名 current smoke 已验证；通知和生产回滚演练待完成 | 技术负责人 | `2026-08-21` | `IN_PROGRESS` |
-| 商业准备 | 完成 Affiliate 披露、免费收录和付费曝光规则 | `TBD` | `TBD` | `PLANNED` |
-| 数据验证 | 建立出站点击、联盟转化和商业履约的合规分析 | `TBD` | `TBD` | `PLANNED` |
-
-## 11. 项目级风险
-
-| 风险 | 可能性 | 影响 | 缓解措施 | Owner |
-| --- | --- | --- | --- | --- |
-| 变成低差异的通用目录 | H | H | 只围绕开发任务和决策场景组织内容，优先比较、替代方案和技术栈页面 | `TBD` |
-| 付费曝光损害用户信任 | M | H | 免费收录、独立评价、强制商业标注和评价/商业流程隔离 | `TBD` |
-| 工具价格和功能快速过期 | H | M | 记录来源和更新时间，设置复核周期和失效链接检查 | `TBD` |
-| Affiliate 条款、归因或佣金不稳定 | M | M | 采用合作方可核验报告，不把示例佣金写成保证收入，保留非联盟链接 | `TBD` |
-| Cloudflare Pages 生产回滚演练尚未完成 | M | H | Git-integrated 项目已承载生产域名且 current smoke 通过；保留旧 Direct Upload 部署，安排经授权的回滚演练 | 工程/运维 Owner `TBD` |
-| 50 条研究快照尚未完成正式内容审核 | H | H | 逐条核验官网、价格、功能、来源、更新时间和商业关系；链接检查记录不等于正式评价 | `TBD` |
-| `.nvmrc` 要求 Node 22 但默认 shell 是 Node 18.19.1 | M | M | 开发命令前执行 `nvm use 22`，CI 固定 Node 22 | `TBD` |
-
-## 12. 相关文档
-
-- 产品需求：`PRD.md`
-- 当前任务：`TASK.md`
-- 当前快照：`AI_CONTEXT.md`
-- 架构：`ARCHITECTURE.md`
-- 安全：`SECURITY.md`
-- 测试：`TESTING.md`
-- 部署与回滚：`RUNBOOK.md`
-- 决策：`DECISIONS.md`
+- Use official provider sources for prices, API status, context, and capabilities.
+- Record `lastVerifiedAt`; never infer a missing fact from general model knowledge.
+- Preserve price variants that change estimates, such as effective dates, context tiers, cached input, and peak/off-peak rates.
+- Show objective costs and documented facts; do not make a universal “best model” claim.
+- Add an additional model SEO page only after the demand and official-source checks in PRD-002 and explicit product-owner approval.

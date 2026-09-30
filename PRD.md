@@ -1,4 +1,10 @@
-# PRD-001 - ToolPilot 开发者工具发现与决策平台
+# Current Product Requirement
+
+`PRD-001` below is a historical, superseded developer-tools proposal. The current accepted V1 product scope is [PRD-002 — ToolPilot AI Model Pricing Platform](docs/PRD-002-ai-model-pricing.md), which caps the public site at eight URLs and allows only `/models/jev/` as a model landing page.
+
+Implementation and acceptance status are tracked in `TASK.md` under TASK-008. Historical release notes and research evidence remain below for audit history only.
+
+# PRD-001 - Historical ToolPilot developer-tool discovery proposal (superseded 2026-09-30)
 
 ## 文档信息
 

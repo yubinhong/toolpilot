@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import { ContentSection } from '../../components/content-section';
-import { PageFrame } from '../../components/page-frame';
-import { PageIntro } from '../../components/page-intro';
-import { pageMetadata } from '../../lib/metadata';
-export const metadata = pageMetadata('/privacy/');
-export default function Page() {
-  return <PageFrame breadcrumbPath="/privacy/"><PageIntro eyebrow="ToolPilot / Trust" title={"Privacy information"} summary={"Current site practices; operator details remain under review."}/>
-      <ContentSection><h2>What this version does</h2><p>The application serves static pages. Catalog search and category filtering operate in the browser. This version has no accounts, submission forms, analytics integration, advertising scripts or application database.</p></ContentSection>
-      <ContentSection><h2>Hosting and external websites</h2><p>Requests still pass through the hosting infrastructure, which may process request and security information. This page does not claim that no technical data is processed. Vendor links lead to external sites with their own policies; those sites do not become part of ToolPilot.</p></ContentSection>
-      <ContentSection><h2>Information awaiting confirmation</h2><p>The operator identity, public contact channel, applicable retention details and final policy wording must be confirmed before this is treated as a complete privacy policy. Any future analytics, submissions or advertising require a separate data and consent review before activation.</p></ContentSection>
-      <ContentSection><p><Link href="/editorial-policy/">Methodology</Link> · <Link href="/disclosure/">Affiliate Disclosure</Link> · <Link href="/contact/">Contact</Link></p></ContentSection>
-    </PageFrame>;
+import { PageFrame } from "../../components/page-frame";
+import { pageMetadata } from "../../lib/metadata";
+
+export const metadata = pageMetadata("/privacy/");
+
+export default function PrivacyPage() {
+  return <PageFrame path="/privacy/"><article className="page-content shell policy-page">
+    <div className="page-heading"><p className="eyebrow">Privacy</p><h1>Privacy Policy</h1><p className="lede">How ToolPilot handles information while you use this static site.</p><p className="last-updated">Last updated: September 30, 2026</p></div>
+    <section className="detail-section"><h2>Calculator inputs</h2><p>Token counts, model selections, and request volumes are processed in your browser to calculate estimates. ToolPilot does not submit these calculator values to an application server.</p></section>
+    <section className="detail-section"><h2>Hosting and security logs</h2><p>ToolPilot is hosted on Cloudflare Pages. The hosting provider may process request metadata and security logs to deliver and protect the site under its own policies and service terms.</p></section>
+    <section className="detail-section"><h2>Analytics and cookies</h2><p>Google Analytics 4 loads only when a measurement ID is configured for a site build. When enabled, ToolPilot sends page views and limited product events with model/provider identifiers, filter types, and official-source categories. It does not send token counts, request volumes, cached-input percentages, raw search text, or URL query strings. Google may process analytics data under its own policies and the settings on the configured Analytics property. Without a measurement ID, the application sends no Google Analytics events.</p><p>Cloudflare Pages may process request data and can inject its own analytics beacon if that Dashboard feature is enabled. The production Dashboard setting has not been checked in this task; the application Content Security Policy blocks that beacon.</p></section>
+    <section className="detail-section"><h2>External provider links</h2><p>Links to model providers and documentation leave ToolPilot. Those sites apply their own privacy policies and terms.</p></section>
+  </article></PageFrame>;
 }

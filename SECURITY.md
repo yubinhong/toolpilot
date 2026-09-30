@@ -1,5 +1,14 @@
 # SECURITY.md
 
+## TASK-008 V1 Boundary (2026-09-30)
+
+- The new application has no accounts, forms, API, database, or pricing backend. Optional GA4 is loaded only when a valid `NEXT_PUBLIC_GA_ID` is supplied at build time; event properties are allowlisted and exclude calculator quantities and raw search text. GSC verification is an optional metadata token. `content/models.json` contains public pricing facts and official source URLs; its checker limits source hosts to the model providers.
+- Calculator and comparison values remain in browser state. Model selection may appear in a query string; token counts and request volumes are not sent to ToolPilot by application code.
+- External source links are rendered as ordinary HTTPS anchors with `rel="noreferrer"`. Provider source data is reviewed before it is added; URLs are not fetched at runtime.
+- Static output retains the generated CSP meta and shared Cloudflare Pages security headers. Build artifact checks verify those policies in the eight page documents and 404 output.
+- Cloudflare Pages can process request metadata and may inject its own analytics beacon when enabled in its Dashboard. This task does not inspect or change that external setting; the generated CSP continues to block that beacon. Do not claim zero hosting or third-party processing.
+- The rest of this file records historical security reviews and deployments for the superseded developer-tool application. Its TASK-007 references are not the active TASK-008 product rebuild.
+
 ## 当前安全状态（2026-09-28）
 
 - 2026-09-27 在 Node 22 下执行 `npm ci` 与 `npm audit --audit-level=high` 通过，0 vulnerabilities。将 Next.js/eslint-config-next 更新至 16.3.6、sharp 至 0.35.4、js-yaml 至 4.3.2；不屏蔽告警，每次发布前仍须重新审计。
@@ -8,7 +17,7 @@
 - 批处理出站检查只消费仓库公开 URL；固定域名 allowlist、拒绝 IP/凭据/非 HTTPS/自定义端口；所有 DNS 结果必须为公网地址，并把验证地址固定到 TLS 请求，阻止二次解析重绑定。每跳再校验，最多 3 次，15 秒请求预算，并发 3，不带 Cookie/Token。
 - 检查日志只记录公开 origin/path、状态和固定错误类别，不记录查询参数、响应正文或原始异常。403/429 记为 restricted，不绕过限制；外部网络异常不自动编辑来源或审批。
 - 2026-09-28 TASK-006 的 Cline 一手资料复核发现：Terms of Service（last modified 2025-09-25）称扩展遥测默认开启，可在设置关闭；较早的 2025-02-26 官方博客称遥测需 opt-in。Cline Privacy Notice 还区分自带 API key 与 Cline 提供的 key 对用户内容的处理路径。档案保留这一公开资料冲突；没有检查实际安装版本、遥测配置/负载或模型提供商条款，不代表 ToolPilot 集成了 Cline 或遥测。见 TASK.md 与 TODO-309。
-- 应用源码没有 GA4、AdSense、表单或账户。TASK-007 部署后，正式域名浏览器响应额外尝试加载 `static.cloudflareinsights.com/beacon.min.js`，immutable preview 未观察到该行为；CSP 已阻止它，产生一条生产侧 CSP violation，而应用 hydration/主题/搜索/导航仍正常。Cloudflare 说明开启 [Pages Web Analytics](https://developers.cloudflare.com/pages/how-to/web-analytics/) 后会在后续部署自动注入该脚本，当前 Dashboard 状态未核实也未变更；未经 Owner 的分析/隐私批准不得把它加入 CSP。托管请求数据处理仍待运营主体确认，不能宣称零数据处理。跟踪 TODO-308/TODO-315。
+- V1 can load Google Analytics 4 only when a valid `NEXT_PUBLIC_GA_ID` is supplied during the static build. The app event allowlist excludes token counts, request volumes, raw search queries, and query strings from page-view locations. GSC verification is metadata-only. The Cloudflare Pages Dashboard was not checked; its optional Insights beacon remains blocked by CSP pending the separate TODO-308 decision. Hosting request data processing remains subject to Cloudflare's terms and the confirmed operating entity.
 - GitHub 仓库控制项只读核验（2026-09-28）：repository API 报告 Dependabot security updates、secret scanning、non-provider pattern scanning 和 push protection 为 `disabled`，Advanced Security 字段为 `null`；`main` branch-protection endpoint 返回 404，repository rulesets 列表为空。此前个人通知订阅查询因当前 CLI 授权缺少 `notifications` scope 未能读取；Cloudflare 通知仍未核验。未更改 GitHub 设置；Owner 需确认组织策略和功能适用性，见 TODO-004/TODO-314。
 - Cloudflare Pages 响应头预发布基线核验（2026-09-27）：TASK-007 前 production `https://toolpilot.cc/` 与 immutable preview 均返回 `X-Content-Type-Options: nosniff` 和 `Referrer-Policy: strict-origin-when-cross-origin`；未观察到 CSP、HSTS、`X-Frame-Options` 或 `Permissions-Policy`。`public/` 中没有 `_headers` 配置。实施和线上当前状态见下方 TASK-007/TODO-315 记录。
 - TODO-315 安全策略审查（2026-09-27）：浏览当前静态导出的每个注册路由，允许其真实 inline-script SHA-256 哈希，默认限制资源为同源并拒绝 inline event handlers；计划加 `X-Frame-Options: DENY`、关闭当前不使用的 camera/microphone/geolocation。Cloudflare Pages 将叠加匹配规则；97 条逐路由规则加 1 条共享兜底规则，共 98/100 条。具体实施和浏览器证据见 TASK-007。HSTS 尚未获 Owner 对主机/子域范围的确认，禁止在此任务中设置。

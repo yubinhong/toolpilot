@@ -1,47 +1,57 @@
-const profile = process.env.SMOKE_PROFILE || 'current';
-if (profile === 'legacy') {
-  await import('./smoke-legacy.mjs');
-} else if (profile !== 'current') {
-  throw new Error('SMOKE_PROFILE must be current or legacy');
-} else {
-  const { getRoutes } = await import('../lib/routes.mjs');
-  const { getSiteUrl } = await import('../lib/site-config.mjs');
-  const base = new URL(process.argv.find(a => a.startsWith('--base-url='))?.slice(11) || process.env.SMOKE_BASE_URL || 'https://toolpilot.cc');
-  if (!['http:','https:'].includes(base.protocol) || base.username || base.password) throw new Error('Invalid smoke base URL');
-  const routes = getRoutes();
-  const failures = [];
-  const queue = [...routes];
-  const get = path => fetch(new URL(path,base),{signal:AbortSignal.timeout(20000),redirect:'manual'});
-  await Promise.all(Array.from({length:4},async () => {
-    while (queue.length) {
-      const r = queue.shift();
-      try {
-        const response = await get(r.path); const html = await response.text();
-        if (response.status !== 200) throw new Error(`expected 200; got ${response.status}`);
-        const tag = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
-        if (r.index ? !/content="index,/.test(tag) : !/content="noindex,/.test(tag)) throw new Error('index directive mismatch');
-        if (!html.includes(`rel="canonical" href="${getSiteUrl()}${r.path}"`)) throw new Error('canonical mismatch');
-        if (/^\/(tools|compare|alternatives|pricing|best|guides)\/[^/]+\/$/.test(r.path) && !r.index && !/draft|review pending/i.test(html)) throw new Error('missing review marker');
-      } catch (e) { failures.push(`${r.path}: ${e.message}`); }
-    }
-  }));
+import { getRoutes } from "../lib/routes.mjs";
+import { getSiteUrl } from "../lib/site-config.mjs";
+
+const base = new URL(process.argv.find((arg) => arg.startsWith("--base-url="))?.slice(11) || process.env.SMOKE_BASE_URL || "https://toolpilot.cc");
+if (!["http:", "https:"].includes(base.protocol) || base.username || base.password) throw new Error("Invalid smoke base URL");
+
+const routes = getRoutes();
+const expectedPaths = ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/about/", "/privacy/", "/terms/"];
+const failures = [];
+const escapeHtml = (value) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#x27;");
+if (JSON.stringify(routes.map(({ path }) => path)) !== JSON.stringify(expectedPaths)) failures.push("route registry differs from the eight-page V1 allowlist");
+const get = (path) => fetch(new URL(path, base), { signal: AbortSignal.timeout(20000), redirect: "manual" });
+
+await Promise.all(routes.map(async (route) => {
   try {
-    const toolsQueryPath = '/tools/?category=ai-coding&free=true&api=true';
-    const toolsQuery = await get(toolsQueryPath);
-    const toolsQueryHtml = await toolsQuery.text();
-    const toolsQueryRobots = toolsQueryHtml.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] || '';
-    if (toolsQuery.status !== 200) throw new Error('tools query URL must return HTTP 200');
-    if (!/content="noindex, follow"/.test(toolsQueryRobots)) throw new Error('tools query URL must remain noindex, follow');
-    if (!toolsQueryHtml.includes(`rel="canonical" href="${getSiteUrl()}/tools/"`)) throw new Error('tools query URL canonical mismatch');
-    const sitemap = await get('/sitemap.xml'); const xml = await sitemap.text();
-    if (sitemap.status !== 200) throw new Error('sitemap not HTTP 200');
-    const actual = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).sort();
-    const expected = routes.filter(r => r.index).map(r => getSiteUrl()+r.path).sort();
-    if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error('sitemap differs from this source version');
-    const robots = await get('/robots.txt');
-    if (robots.status !== 200 || !(await robots.text()).includes(`${getSiteUrl()}/sitemap.xml`)) throw new Error('robots mismatch');
-    if ((await get('/nonexistent-toolpilot-smoke/')).status !== 404) throw new Error('unknown URL must return 404');
-  } catch (e) { failures.push(e.message); }
-  if (failures.length) { console.error(failures.join('\n')); process.exitCode=1; }
-  else console.log(`Smoke passed: ${routes.length} pages, robots, sitemap and real 404 (${profile}).`);
+    const response = await get(route.path);
+    const html = await response.text();
+    if (response.status !== 200) throw new Error(`expected 200; got ${response.status}`);
+    if (!html.includes(`rel="canonical" href="${getSiteUrl()}${route.path}"`)) throw new Error("canonical mismatch");
+    const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] ?? "";
+    if (!/content="index, follow"/.test(robots)) throw new Error("expected index, follow");
+    const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+    const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1];
+    if (title !== escapeHtml(route.title) || description !== escapeHtml(route.description)) throw new Error("title or description mismatch");
+  } catch (error) {
+    failures.push(`${route.path}: ${error.message}`);
+  }
+}));
+
+try {
+  const sitemapResponse = await get("/sitemap.xml");
+  const sitemap = await sitemapResponse.text();
+  if (sitemapResponse.status !== 200) throw new Error("sitemap not HTTP 200");
+  const actual = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]).sort();
+  const expected = expectedPaths.map((path) => `${getSiteUrl()}${path}`).sort();
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(`expected exactly ${expected.length} sitemap URLs, received ${actual.length}`);
+
+  const robotsResponse = await get("/robots.txt");
+  const robots = await robotsResponse.text();
+  if (robotsResponse.status !== 200 || !robots.includes(`${getSiteUrl()}/sitemap.xml`)) throw new Error("robots.txt sitemap reference missing");
+  if (!robots.includes("Allow: /") || !robots.includes("/models/") || /Disallow:\s*\/models\//i.test(robots)) throw new Error("robots.txt must allow the Jev model route");
+
+  const removedPaths = ["/tools/", "/tools/cursor/", "/guides/", "/guides/old-guide/", "/best/", "/alternatives/", "/mcp/", "/self-hosted/", "/stacks/", "/models/", "/models/gpt-6-astra/", "/pricing/old-model/", "/compare/old-pair/", "/_not-found/", "/404", "/404.html"];
+  for (const path of removedPaths) {
+    const response = await get(path);
+    if (response.status !== 404) throw new Error(`${path} should return a real 404; got ${response.status}`);
+  }
+} catch (error) {
+  failures.push(error.message);
+}
+
+if (failures.length) {
+  console.error(failures.join("\n"));
+  process.exitCode = 1;
+} else {
+  console.log(`Smoke passed: ${routes.length} indexable pages, exact sitemap, robots access, and removed routes returning real 404.`);
 }

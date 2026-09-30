@@ -68,6 +68,10 @@ test('each static document gets an early, exact, idempotent CSP meta', () => {
   assert.equal((generated.match(/http-equiv="Content-Security-Policy"/g) || []).length, 1);
   assert.match(documentCsp([]), /script-src 'self';/);
   assert.doesNotMatch(documentCsp([]), /frame-ancestors/);
+  const analyticsPolicy = documentCsp([], { googleAnalytics: true });
+  assert.match(analyticsPolicy, /https:\/\/www\.googletagmanager\.com/);
+  assert.match(analyticsPolicy, /https:\/\/www\.google-analytics\.com/);
+  assert.doesNotMatch(analyticsPolicy, /cloudflareinsights/);
 
   const meta = generated.match(/<meta\b[^>]*http-equiv="Content-Security-Policy"[^>]*>/)?.[0];
   assert.throws(() => injectCspMeta(generated.replace('</head>', `${meta}</head>`)), /at most one/);

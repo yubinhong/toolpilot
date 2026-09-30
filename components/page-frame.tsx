@@ -3,12 +3,12 @@ import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import { Breadcrumbs } from "./breadcrumbs";
 
-export function PageFrame({ children, breadcrumbPath }: { children: ReactNode; breadcrumbPath: string | null }) {
+export function PageFrame({ children, path }: { children: ReactNode; path: string }) {
   return (
     <>
       <SiteHeader />
       <main>
-        {breadcrumbPath && <Breadcrumbs path={breadcrumbPath} />}
+        {path !== "/" && <Breadcrumbs path={path} />}
         {children}
       </main>
       <SiteFooter />

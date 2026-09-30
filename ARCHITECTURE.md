@@ -1,173 +1,59 @@
 # ARCHITECTURE.md - ToolPilot
 
-## 文档信息
+## Current Architecture
 
-- 状态：`MVP IMPLEMENTED / ADR PENDING`
-- Owner：`TBD`
-- 最后更新：`2026-09-28`
-- 相关 ADR：`DECISIONS.md`、`docs/adr/0001-static-export-mvp.md`、`docs/adr/0008-cloudflare-pages-git-integration.md`、`docs/adr/0010-static-content-security-policy.md`
-- 证据边界：当前架构事实来自源码、`package.json`、`next.config.mjs`、`npm run build`、`out/`、Cloudflare Pages GitHub check 和公网 smoke；CNAME 切换后的 `toolpilot.cc` 已通过 `SMOKE_PROFILE=current`。
-
-## 当前架构快照（2026-09-28）
-
-- 内容流：content/tools 与 content/decisions JSON → lib/content.mjs 校验/读取 → 服务端模板 → out/。
-- 历史流：lib/catalog.mjs 的 researchTools 原样保留；tools 提供兼容叠加视图。新增产品无伪造旧检查日期。
-- 审核与安全边界：lib/content-policy.mjs 校验来源、修订/digest、依赖、商业关系；客户端只收到 publicTool allowlist DTO。
-- 决策证据块：可选 `pros`、`cons`、`faqs` 记录声明文本和 `{toolSlug, sourceId}` 引用；校验器仅接受本工具或显式依赖工具的来源，详情页渲染链接。未提供来源的陈述不能通过内容校验。
-- 相关内容块：`relatedLinks` 是可选的人工策划目标 `{kind, slug}`，只接受当前存在的结构化内容路由；详情页优先展示人工目标，再补自动关联，按目标去重并限制最多五条。
-- 站内链接发布门槛：生成产物检查每个结构化内容页 `<main>` 中的至少三个唯一结构化内容目标；不把面包屑、信任政策链接或站点分类 Hub 计作内容目标。
-- 路由：lib/routes.mjs 是页面与索引清单，metadata.ts、sitemap、smoke、产物检查共用。site-config 仅管理站点 URL。
-- 商业：Affiliate、Featured、Sponsor 分别记录；只有有效审核和关系证据才能激活商业目的地，未知关系不冒充合作。
-- 维护：独立 HTTPS 域名 allowlist、DNS 全结果公网校验、固定已验证地址连接、3 次重定向限制；不引入任意运行时抓取服务。
-- 当前源码注册 99 个路由；Next 构建日志另计 404/元数据路由，不能混淆计数。没有内容正式审批时 sitemap 为 4 个站点说明入口。
-- 静态 CSP 由构建后 HTML 的可执行 inline-script SHA-256 生成，每个注册页面和 `404.html` 各有一条文档级 CSP meta；Cloudflare Pages `out/_headers` 只保留一条 `/*` 共享规则，提供 `frame-ancestors` 与其他响应头保护，避免静态路由增长消耗每规则配额。
-- 数据和公开接口迁移、批准失效及回滚见 ADR-0009。仍无数据库、API、CMS、账户或分析。
-
-下方既有 MVP 章节保留历史背景；2026-08 构建/部署数字与尚未实现描述不能覆盖上述当前代码边界。生产是否更新仅以部署和公网证据为准。
-
-## 1. 架构目标
-
-- 业务能力：面向开发任务的工具发现、比较、替代方案和技术栈决策页面。
-- 质量属性优先级：`内容可信度 > 安全与隐私 > 可抓取性 > 可靠性 > 性能 > 成本`。
-- 规模假设：`TBD`；当前没有用户、RPS、数据量或流量基线。
-- 主要约束：MVP 使用静态输出；外部工具资料和厂商提交必须经过验证；商业曝光不得影响独立评价。
-
-已验证事实：`next.config.mjs` 配置 `output: "export"`、`trailingSlash: true`；当前源码登记 99 个路由，Node 22 构建和线上 current smoke 均覆盖这些路由。39 条结构化内容仍是审核草稿，因此 sitemap 目前只有 4 个站点说明入口。
-
-## 2. 系统上下文
-
-```mermaid
-flowchart LR
-    U[Developer / Indie Hacker / AI Builder] --> W[ToolPilot Web Pages]
-    W --> V[Vendor Websites]
-    W -. optional, TBD .-> A[Privacy-compliant Analytics]
-    C[content JSON + lib/catalog.mjs research snapshot] --> W
-    S[Cloudflare Pages: toolpilot-git] --> W
-```
-
-- 当前 Web 形态是 Next 静态导出；源码和构建产物均可复核。
-- 厂商站点是出站依赖；Affiliate、Featured 和 Sponsor 的关系必须在页面上披露。
-- 正式结构化内容源是 `content/tools/` 与 `content/decisions/`，共 39 条待审草稿；`lib/catalog.mjs` 保留 50 条历史研究快照及兼容叠加视图。生产由 Cloudflare Pages Git Integration 项目 `toolpilot-git` 承载。应用源码没有分析集成；Pages Web Analytics 是否注入 beacon 尚待 Owner 核实，当前 CSP 会阻止该外部脚本。
-- 交付控制面由 GitHub `.github/workflows/ci.yml`、`.github/workflows/production-monitor.yml` 和 Cloudflare Pages Git Integration 构成；GitHub Actions 负责质量和 current 生产 smoke，Cloudflare 从 `main` 构建/部署 `toolpilot-git`，该项目已承载 `toolpilot.cc`。
-
-## 3. 组件与责任
-
-| 组件 | 路径/服务 | 责任 | 数据所有权 | 上游/下游 | Owner |
-| --- | --- | --- | --- | --- | --- |
-| Web 页面 | `app/`、`components/` | 首页、工具、指南、法律和决策页 | ToolPilot 草稿内容 | Next 配置、目录数据、Cloudflare Pages | `TBD` |
-| 内容模型 | `content/tools/`、`content/decisions/`、`lib/content.mjs`、`lib/content-policy.mjs`、`lib/catalog.mjs` | 结构化工具/决策草稿、来源与版本审核门槛；保留 50 条历史研究快照和兼容视图 | ToolPilot 草稿 | 编辑、公开来源 | `TBD` |
-| 站点配置 | `lib/site-config.mjs` | 默认站点 URL、静态路由和构建时 URL 归一化，供 robots/sitemap 使用 | 无业务数据 | 构建环境、Next 元数据路由 | `TBD` |
-| 构建输出 | `.next/`、`out/` | Next 中间产物和最终静态 HTML/CSS/JS | 不拥有业务数据 | `npm run build` -> Cloudflare Pages | `TBD` |
-| 出站链接 | 页面中的产品官网/研究来源 URL | 将用户带到工具厂商或研究来源，并区分官网、来源和研究商业状态 | 第三方厂商/公开来源 | ToolPilot -> 外部站点 | `TBD` |
-| 分析 | 服务 `TBD` | 记录最小化的决策页浏览和出站点击 | `TBD` | 浏览器 -> 分析服务 | `TBD` |
-| CI/运维控制面 | `.github/workflows/`、`scripts/smoke.mjs`、`scripts/release-readiness.mjs`、Cloudflare Pages Git Integration | 质量门槛、仓库状态检查、生产可用性检查、Git 提交触发 Pages 构建 | 不拥有业务数据；CI/Smoke 只消费 Git 元数据、构建产物和公开 HTTP 响应；正常 Pages 构建不需要仓库 Secret | GitHub -> CI/Cloudflare Pages -> `toolpilot.cc` | `TBD` |
-
-当前未实现独立 API、数据库、CMS、认证服务、后台或任务队列。
-
-## 4. 关键数据流
-
-### 4.1 内容校验与静态发布流（已实现审核门槛；内容审批仍由 Owner 完成）
-
-1. 编辑在 `content/tools/` 与 `content/decisions/` 维护工具事实、来源、依赖和商业关系状态；厂商提交不直接成为独立评价。
-2. `lib/content.mjs` 与 `lib/content-policy.mjs` 校验字段、来源 URL、修订/digest、依赖关系和发布状态；`npm run content:review` 输出精确审核版本但不代替批准。
-3. Node 构建生成静态页面、站点地图和法律页面；草稿保留路径但输出 `noindex`，且不进入 sitemap。
-4. 只有真实 Owner 审核证据匹配当前 revision/digest 后，内容才可发布并参与索引；构建与产物检查验证元数据、链接和公开 DTO 边界。
-
-- 信任边界：提交者/外部来源 -> 审核系统 -> 公开静态页面。
-- 一致性要求：页面事实、来源、更新时间、链接检查、编辑审核和商业标记必须同一版本可追溯。
-- 失败处理：内容校验失败会阻止构建；来源缺失或未知事实必须保持待核实，不使用默认编造值。
-- 幂等/重试：内容版本由稳定 ID/slug、revision 和 digest 绑定；失败发布通过修复提交后重新构建，不自动批准内容。
-
-### 4.2 用户出站与分析流（普通出站链接已实现；分析未获批准）
-
-1. 用户打开 ToolPilot 决策页。
-2. 用户查看工具事实、比较维度、限制和商业关系。
-3. 用户可点击页面展示的普通厂商链接；当前没有应用出站事件采集或实际 Affiliate 链接。
-4. 厂商站点上的注册或购买不由 ToolPilot 观测；未来归因须由已批准的合作方报告确认。
-
-- 信任边界：ToolPilot 公开页面 -> 第三方厂商站点。
-- 一致性要求：页面必须区分 Affiliate、Featured/Sponsor 和普通链接。
-- 失败处理：失效链接进入内容复核；不把跳转成功伪装为转化成功。
-- 分析决策：分析、同意、保留和事件契约仍待批准。生产观察到的 Cloudflare Insights beacon 被 CSP 阻止，按 TODO-308/TODO-315 处理；不得据此宣称零托管数据处理。
-
-## 5. 接口与事件
-
-| 接口/事件 | Producer | Consumer | 契约位置 | 兼容策略 | SLO |
-| --- | --- | --- | --- | --- | --- |
-| 静态页面路由 | Next build | 浏览器/搜索爬虫 | `app/` 路由；构建输出位于 `out/` | 保持稳定 URL，变更需重定向/迁移方案 | `TBD` |
-| `sitemap.xml` | `app/sitemap.ts` | 搜索爬虫 | `out/sitemap.xml`；站点 URL 来自 `NEXT_PUBLIC_SITE_URL` 或默认值 | 只发布真实可用 URL | `TBD` |
-| `robots.txt` | `app/robots.ts` | 搜索爬虫 | `out/robots.txt`；与 sitemap 同源 | 与站点地图和域名保持一致 | `TBD` |
-| `vendor_outbound_click` | 浏览器页面 | 分析平台 `TBD` | 事件契约 `TBD` | 版本化属性，避免敏感数据 | `TBD` |
-| Affiliate/赞助链接 | ToolPilot 页面 | 厂商站点/合作方 | 合作方条款 `TBD` | 页面显式披露，关系变更需审计 | `TBD` |
-
-## 6. 数据架构
-
-| 数据域 | 存储 | 主键/分区 | 保留策略 | 备份/恢复 | 敏感级别 |
-| --- | --- | --- | --- | --- | --- |
-| 工具公开事实 | `content/tools/`、`content/decisions/` JSON；历史快照在 `lib/catalog.mjs` | 工具/决策 slug | 随代码版本发布；审批版本和依赖失效规则见 ADR-0009 | Git/构建产物备份 `TBD` | Public 草稿 / 可能含 Internal 编辑字段 |
-| 来源与编辑记录 | 内容 JSON 的来源、revision/digest 和审核元数据；真实 Owner 决策由仓库审查证据承载 | 内容 ID + revision/digest | 与内容版本共同变更；正式审核频率和责任人见 TODO-006 | Git 历史；额外归档策略 `TBD` | Internal / Public source citations |
-| 厂商提交 | `TBD` | 提交 ID `TBD` | `TBD` | `TBD` | Internal，可能含个人或商务信息 |
-| 分析事件 | `TBD` | 事件 ID/时间 `TBD` | 最小化保留，期限 `TBD` | `TBD` | Internal / Confidential |
-| 密钥与令牌 | 受控密钥存储 `TBD` | 不进入应用数据 | 最短必要期限 | 轮换/吊销 `TBD` | Restricted |
-
-数据库迁移规则：当前没有数据库和迁移文件；确认引入数据层后，必须增加可向前部署的迁移、回滚/前滚说明和备份恢复验证。
-
-## 7. 非功能设计
-
-### 可靠性
-
-- SLO/SLA：`TBD`；仓库已配置每 15 分钟生产 smoke 和手动触发入口，Git Integration 构建已验证；通知路由和 Cloudflare 内部指标仍未确认。
-- 降级策略：静态页面优先；分析不可用不应阻塞页面访问；厂商链接失败应进入内容复核。
-- 灾难恢复：RPO `TBD` / RTO `TBD`；需确认静态产物、内容源和部署平台的备份方式。
-
-### 性能与容量
-
-- 延迟目标：`TBD`；静态输出和缓存是观察到的方向，不是性能承诺。
-- 峰值负载：`TBD`。
-- 扩容方式：由 Cloudflare Pages 边缘静态托管提供；当前没有应用服务端、数据库或 `.wrangler` 项目配置。
-
-### 安全
-
-- 认证授权：当前没有已观察的用户或管理认证；若加入后台，必须单独设计身份、最小权限和审计。
-- 密钥：只允许环境/受控密钥存储，禁止进入源码、`.next`、日志和文档。
-- 加密：生产传输应使用 HTTPS；静态存储、分析和第三方服务加密策略 `TBD`。
-- 审计：内容来源、更新时间、商业标记和管理员动作应可追溯；实现 `TBD`。
-
-### 可观测性
-
-- 日志：当前没有应用日志配置；禁止记录原始个人数据、令牌和厂商敏感信息。
-- 指标：仓库 smoke 覆盖页面可用性、审核标记和 sitemap 完整性；构建成功、链接有效性、内容新鲜度和出站点击仍需独立指标。
-- Trace：`TBD`；静态站点当前没有服务端 Trace 证据。
-- 告警：生产 smoke 失败会使 GitHub Actions workflow 失败；邮件/聊天/PagerDuty 等通知路由为 `TBD`，内容过期和链接失效不由该 smoke 自动判定。
-
-## 8. 部署拓扑
+ToolPilot is a static Next.js App Router site. It has no runtime API, database, CMS, authentication, or user-submitted data. The build exports HTML to `out/` for Cloudflare Pages.
 
 ```mermaid
 flowchart TD
-    R[GitHub main] --> CI[GitHub Actions CI]
-    R --> CF[Cloudflare Pages Git Integration]
-    CF --> B[cloudflare:build]
-    B --> H[toolpilot-git.pages.dev]
-    H --> D[toolpilot.cc]
-    L[legacy Direct Upload toolpilot recovery] -. rollback only .-> D
-    M[GitHub scheduled smoke] --> D
+    M[content/models.json] --> L[lib/models.ts]
+    L --> H[Home discovery]
+    L --> P[Pricing table]
+    L --> C[Calculator]
+    L --> X[Model comparison]
+    L --> J[Jev detail]
+    R[lib/routes.mjs: eight-route allowlist] --> MD[Page metadata]
+    R --> SM[Sitemap]
+    R --> AH[Cloudflare shared security headers]
+    H --> O[out/ static export]
+    P --> O
+    C --> O
+    X --> O
+    J --> O
+    O --> CF[Cloudflare Pages]
+    GA[Optional GA4 events] --> O
 ```
 
-Cloudflare Pages Git Integration 已连接 `yubinhong/toolpilot` 的 `main`，成功运行 `npm run cloudflare:build` 并向 `toolpilot-git.pages.dev` 发布；用户已将 `toolpilot.cc` CNAME 切换至新项目，commit `4fb09bca` 部署至 Pages deployment `76a9ace8-375f-40fd-b31a-acdb22661512`。该 immutable preview 和正式域名 current smoke 均覆盖 88 个页面、robots、sitemap 和真实 404 并通过；production-monitor current-profile run `36299788937` 也通过。旧 Direct Upload 项目保留作恢复目标。
+## Route and Indexing Boundary
 
-## 9. 架构边界与禁止模式
+`lib/routes.mjs` is the explicit list of eight public content routes. `app/sitemap.ts`, per-page metadata, `scripts/check-artifacts.mjs`, and `scripts/smoke.mjs` enforce the same allowlist. There is no dynamic model route or `/models/` index. Only `app/models/jev/page.tsx` is a model detail page. Other model records are used in discovery, pricing, calculator, and comparison UI.
 
-- 不把 `.next`、缓存或 `.wrangler` 状态目录当作源码、内容数据库或部署配置。
-- 不让厂商提交直接成为独立评价，不允许付费修改事实、比较结论或自然排序。
-- 不在没有数据模型、权限、迁移、备份和删除策略前引入用户账户、CMS、支付或分析存储。
-- 旧 Crypto/DeFi 生成内容已按用户确认不迁移；不从构建缓存或外部生成物恢复未经审核的页面。
-- Affiliate、Featured 和 Sponsor 必须在页面、链接和分析中分开处理并清楚披露。
+Unknown and retired routes use the static 404 response. Two exact Pages Functions return a noindex 404 for `/404` and `/404.html`, preventing Cloudflare Pages from serving its own error document as a 200 URL. No broad redirects are configured. HTTP smoke checks cover these aliases and removed product paths.
 
-## 10. 技术债与演进
+## Model Data and Pricing
 
-| 项目 | 当前影响 | 触发改造的阈值 | 目标方向 | 跟踪 |
-| --- | --- | --- | --- | --- |
-| 研究草稿尚未完成正式来源和审核版本 | 不能发布可信工具事实 | 产品/内容 Owner 完成 50 条内容核验和审核清单 | 可追溯的内容版本/审核流程 | `TODO-005`、`TODO-006`、`ADR-006` |
-| Node 22 要求与 Node 20 shell 不一致 | 直接运行命令可能结果不同 | 固定 CI/本地 Node 22 | 统一运行时和工具链 | `TODO-002` |
-| 无数据层和内容版本方案 | 无法维护来源和审核状态 | 内容规模或多人编辑需求出现 | 选择静态数据、CMS 或数据库 | `TODO-006` |
-| GitHub 通知和生产回滚演练未完成 | 仓库质量检查、current smoke 和 Git Integration 已运行 | Owner 配置通知、分支保护并确认生产回滚窗口 | 启用告警通知、部署审计和回滚演练 | `TODO-004`、`TODO-302`、`ADR-007` |
+- `content/models.json` is the single public source for all model facts and token rates.
+- `lib/models.ts` exposes model lookup and effective schedule selection without creating routes.
+- `lib/model-cost.ts` computes request, daily, monthly, and annual estimates from the selected model record.
+- `components/model-tools.tsx` implements search, pricing filters/sort, calculators, and up-to-three-model comparison.
+- `components/ad-slot.tsx` exposes the four approved future ad placements and returns no markup until content is supplied.
+- Every record has one or more official source URLs and `lastVerifiedAt`; `scripts/check-models.mjs` checks source host allowlists, record structure, and the single Jev detail route.
+- Rate schedules retain effective dates, long-context thresholds, cached input, and provider time windows. Calculator estimates use the selected/default schedule and disclose excluded fees.
+
+Client components are statically rendered by Next.js and hydrate for filtering and calculation. Calculator inputs remain in browser state and are not submitted to ToolPilot.
+
+## SEO and Static Artifacts
+
+Every page has unique title, description, self canonical, robots directive, Open Graph title/description/URL, and Twitter card metadata. Homepage structured data uses `WebSite` and `WebApplication`; nested routes include visible breadcrumbs with `BreadcrumbList`. There is no FAQ structured data.
+
+GSC verification metadata and GA4 are build-time optional. Analytics events use a fixed payload allowlist, strip query strings from page locations, and never include calculator counts or raw search text. With the measurement ID unset, no Google Analytics script is emitted.
+
+The sitemap is generated from the route allowlist and must have exactly eight entries. `robots.txt` allows crawling, including `/models/jev/`, and references the sitemap. Static export includes the eight content route documents and a noindex 404 document.
+
+`npm run build` injects a document-specific CSP meta generated from static HTML scripts and writes `out/_headers` with the shared response policy. Static artifact checks verify CSP, metadata, canonical, sitemap, robots, source links, local links, and route count.
+
+## Hosting and Operations
+
+Cloudflare Pages Git Integration project `toolpilot-git` currently serves `toolpilot.cc`; project `toolpilot` is retained as a recovery target. The application has no secrets or runtime external fetches. CI runs lint, typecheck, tests, static build, and local HTTP smoke. Production smoke is read-only and does not deploy.
+
+Current verification and release evidence belongs in `TASK.md` and `RUNBOOK.md`. No build artifact or historical deployment report should be treated as current without checking the present checkout and live target.

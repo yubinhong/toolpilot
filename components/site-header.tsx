@@ -1,15 +1,9 @@
 import Link from "next/link";
-import { ThemeToggle } from "./theme-toggle";
 
 const primaryLinks = [
-  ["Tools", "/tools/"],
-  ["Compare", "/compare/"],
-  ["Alternatives", "/alternatives/"],
   ["Pricing", "/pricing/"],
-  ["Best for", "/best/"],
-  ["MCP", "/mcp/"],
-  ["Self-hosted", "/self-hosted/"],
-  ["Guides", "/guides/"],
+  ["Calculator", "/calculator/"],
+  ["Compare", "/compare/"],
 ] as const;
 
 export function SiteHeader() {
@@ -27,9 +21,8 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <ThemeToggle />
-        <Link className="header-action" href="/about/">
-          About the project
+        <Link className="header-action" href="/calculator/">
+          Estimate API cost
         </Link>
       </div>
     </header>

@@ -1,21 +1,36 @@
 import Link from 'next/link';
-import { breadcrumbList, getBreadcrumbItems, serializeJsonLd } from '../lib/breadcrumbs.mjs';
 import { getSiteUrl } from '../lib/site-config.mjs';
 
-export function Breadcrumbs({ path }: { path: string }) {
-  const items = getBreadcrumbItems(path);
-  if (items.length === 0) return null;
+const labels: Record<string, string> = {
+  "/pricing/": "Pricing",
+  "/calculator/": "Calculator",
+  "/compare/": "Compare",
+  "/models/jev/": "Jev",
+  "/about/": "About",
+  "/privacy/": "Privacy",
+  "/terms/": "Terms",
+};
 
-  const structuredData = breadcrumbList(items, getSiteUrl());
-  return <>
-    <nav className="breadcrumb-nav shell" aria-label="Breadcrumb">
+export function Breadcrumbs({ path }: { path: string }) {
+  const label = labels[path];
+  if (!label) return null;
+  const site = getSiteUrl();
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${site}/` },
+      { "@type": "ListItem", position: 2, name: label, item: `${site}${path}` },
+    ],
+  };
+  return (
+    <div className="shell breadcrumb-wrap"><nav className="breadcrumb-nav" aria-label="Breadcrumb">
       <ol>
-        {items.map((item, index) => <li key={item.href}>
-          {index > 0 && <span className="breadcrumb-separator" aria-hidden="true">/</span>}
-          {index === items.length - 1 ? <span aria-current="page">{item.label}</span> : <Link href={item.href}>{item.label}</Link>}
-        </li>)}
+        <li><Link href="/">Home</Link></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">{label}</li>
       </ol>
     </nav>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }} />
-  </>;
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} /></div>
+  );
 }

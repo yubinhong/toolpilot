@@ -3,37 +3,16 @@ import Link from "next/link";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="shell footer-grid">
+      <div className="shell footer-inner">
         <div>
-          <p className="footer-brand">ToolPilot</p>
-          <p className="footer-copy">
-            A decision workspace for choosing developer tools with clearer trade-offs.
-          </p>
+          <Link className="footer-brand" href="/">ToolPilot</Link>
+          <p>AI model pricing and cost estimates with dated official sources.</p>
         </div>
-        <div>
-          <p className="footer-label">Explore</p>
-          <div className="footer-links">
-            <Link href="/tools/">Tools</Link>
-            <Link href="/compare/">Compare</Link>
-            <Link href="/stacks/">Stacks</Link>
-            <Link href="/guides/">Guides</Link>
-          </div>
-        </div>
-        <div>
-          <p className="footer-label">Trust</p>
-          <div className="footer-links">
-            <Link href="/about/">About</Link>
-            <Link href="/editorial-policy/">Methodology</Link>
-            <Link href="/disclosure/">Affiliate Disclosure</Link>
-            <Link href="/contact/">Contact</Link>
-            <Link href="/privacy/">Privacy</Link>
-            <Link href="/terms/">Terms</Link>
-          </div>
-        </div>
-      </div>
-      <div className="shell footer-bottom">
-        <span>Independent research and editorial work in progress.</span>
-        <span>Read each page’s review status and source dates.</span>
+        <nav className="footer-links" aria-label="Footer navigation">
+          <Link href="/about/">About</Link>
+          <Link href="/privacy/">Privacy</Link>
+          <Link href="/terms/">Terms</Link>
+        </nav>
       </div>
     </footer>
   );

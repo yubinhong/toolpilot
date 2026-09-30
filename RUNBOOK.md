@@ -1,5 +1,9 @@
 # RUNBOOK.md
 
+## TASK-008 Rebuild Status (2026-09-30)
+
+TASK-008 replaces the old public product with the eight-page AI model pricing V1. Local `npm run cloudflare:build` passed (27 tests and exact eight-page artifact checks), and Wrangler smoke verified all eight pages, robots/sitemap, and representative legacy 404s. The user authorized production deployment on 2026-09-30. Release is in progress and remains gated on a high-severity transitive dependency audit finding; no V1 production deployment is yet claimed. The dated 97/99-page release entries below describe the earlier application and do not prove that the new V1 is live. Record immutable-preview and production smoke results here after deployment.
+
 ## 1. 服务概览
 
 - 服务：`ToolPilot` 静态 Web 站点（目标域名 `https://toolpilot.cc`）

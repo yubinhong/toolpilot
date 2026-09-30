@@ -1,4 +1,40 @@
-# PLANS.md - Execution Plan
+# Current Plan: TASK-008 — Eight-Page AI Model Pricing V1
+
+This plan supersedes the developer-tool rebuild scope below. The accepted product contract is `docs/PRD-002-ai-model-pricing.md`; the decision record is `docs/adr/0011-demand-driven-eight-page-v1.md`.
+
+## Goal and constraints
+
+- Replace the developer-tool product with AI model pricing, cost calculation, and model comparison.
+- Keep exactly eight public page routes: `/`, `/pricing/`, `/calculator/`, `/compare/`, `/models/jev/`, `/about/`, `/privacy/`, `/terms/`.
+- Keep static export and Cloudflare Pages; store model facts in validated static JSON.
+- Only Jev has a detail route. Adding model data never generates a route.
+- Remove old product routes/content and let unknown old URLs return 404; do not add catch-all redirects.
+- Use official provider data with `source_url` and `lastVerifiedAt`; preserve price schedules and state calculator assumptions.
+
+## Phases
+
+1. Model data schema/validation, official price/source records, explicit route registry, and rebuilt Pricing page.
+2. Calculator, Jev detail, and up-to-three-model Compare, all reading the same data source.
+3. Homepage discovery, About/Privacy/Terms, unique SEO metadata, robots/sitemap, removed-route 404 checks, and release verification.
+
+## Current checklist
+
+- [x] User confirmed the exact eight-page V1 allowlist and authorized removal of the old product system.
+- [x] Official pricing/model pages reviewed for the first-party providers and Jev.
+- [x] Remove old routes/components/data and replace navigation.
+- [x] Add model data validation and shared data access.
+- [x] Implement pages and interaction flows, with Jev as the only model detail route.
+- [x] Enforce exactly eight indexable/sitemap URLs and test old URL 404s.
+- [x] Run `npm run cloudflare:build` and local Wrangler Pages smoke; all required gates passed.
+- [x] Inspect the final diff and record rollback and remaining risks in TASK.md. No production deployment was performed.
+- [x] Receive explicit authorization to deploy TASK-008 to production.
+- [ ] Clear the current high-severity dependency audit finding, then pass release checks in a clean checkout.
+- [ ] Push the reviewed V1 commit to `main`; verify the immutable Pages preview and `https://toolpilot.cc` against the exact eight-page contract.
+- [ ] Record deployed source and production verification in TASK.md, RUNBOOK.md, and AI_CONTEXT.md.
+
+---
+
+# PLANS.md - Historical plan archive
 
 > 用于跨模块、长时间、高风险或需要阶段交付的任务。顶部为 `DOC-001` 历史计划，`TASK-001` 至 `TASK-004` 的计划与收尾记录在文末。
 
@@ -333,6 +369,8 @@ Compare the 90-day rebuild plan against current source and close the source-veri
 - [x] Reduce TODO-309's Continue distribution/lifecycle ambiguity from current first-party sources: reconcile the acquisition announcement and code-availability statement with the upstream read-only/final-release notice and the JetBrains Marketplace's community-maintained/plugin and CLI guidance. Refresh the Continue profile and its two decision dependents plus their exact TASK-006 manifest (TASK-005 does not contain these records); add channel/source/state regression coverage; retain unknown account pricing, installed version, security response and support commitment; keep drafts in-review/noindex. Release verification is recorded in TASK.md.
 - [x] Narrow the Continue lifecycle conflict with package-specific release evidence: the GitHub Releases page lists v2.1.0-vscode as a pre-release dated 2026-06-19, while the official npm registry lists @continuedev/cli 1.5.47 published 2026-06-18; JetBrains still describes CLI development as active and the README still says the repo is read-only/final. Refresh the Continue record, its two dependent records, exact review manifest, regression and rendered-artifact checks; keep current support, security response, package selection and owner review open. Local and release verification are recorded in TASK.md.
 - [x] Narrow Continue's billing unknown from its official Terms: document credit purchases or subscriptions and account/Service Order pricing scope, while leaving the numeric account quote and separate model-provider charges unknown. Refresh the profile, two dependent decision drafts, their exact TASK-006 digests and manifest, evidence handoff, regression and rendered-artifact checks; keep all three in-review/noindex. Node 22 build passed lint, typecheck, 88 tests, 39-record content validation and 99-page artifact checks; audit found 0 vulnerabilities, exact review passed, freshness remains 28 unverified / 0 overdue, the link scan completed with the Terms URL HTTP 200, local smoke passed 99 pages, and `git diff --check` passed. Exact account/provider amount and Owner review remain open; evidence is in TASK.md.
+- [x] Complete a current official-documentation review of the remaining Lovable, Make, Replit and Windsurf `localModels` fields. Record only bounded facts about what their first-party docs establish and explicitly retain unknown inference support where the docs do not answer it; refresh the 19 declared dependency edges across 14 unique decision records, exact TASK-005/TASK-006 manifests as applicable, evidence handoffs, regression/artifact checks, and freshness snapshot. Preserve `in-review`/noindex, do not infer product incapability from documentation gaps, and do not inspect accounts or test models. Continue's numeric account/model usage price remains an account/Service Order question.
+- Acceptance — 2026-09-29: `npm run content:check`, `npm run content:review`, 102/102 tests, Node 22 lint/typecheck/Cloudflare build and artifact checks (99 pages / 4 indexable URLs), date-pinned freshness (1 unknown / 0 overdue), 225-target source scan and local current smoke passed. The exact manifests cover 39 records, and both evidence handoff inventories match their manifest revisions; all changed drafts remain in-review/noindex/outside the sitemap. The scan reports 191 HTTP-ok, 20 restricted, 11 blocked by policy and 3 temporary errors, no 404/410; new source URLs returned 200. No account, model, endpoint, Owner approval, release or deployment was inspected or claimed.
 - [x] Reduce Continue's source-verifiable local/offline and privacy gaps: record local Ollama models and the documented offline VS Code setup, capture the dated Privacy Notice's log/analytics categories, opt-out wording and processor-role exclusion, and preserve post-acquisition applicability, actual client settings, provider terms and data flow as open gates. Refresh the profile, two dependencies, regression coverage and exact TASK-006 review manifest; all remain in-review/noindex. Validation and release evidence is recorded in TASK.md.
 - [x] Reduce TODO-309's Bolt privacy unknown from the current StackBlitz policy: record prospective training and dataset-licensing scope, the no-earlier-than-2026-10-07/account-Terms timing, the 2026-09-14 Forge consent exception and account exclusions without asserting any account's present eligibility. Refresh all six dependency revisions/digests, TASK-005/TASK-006 manifests and the Bolt evidence pack; add regression coverage and preserve in-review/noindex. Node 22 quality checks, audit, 164-target link scan, local smoke, clean release check, CI, Pages deployment, preview/production smoke and residual account unknowns are recorded in TASK.md.
 - [x] Reduce TODO-309's Lovable model-training ambiguity using the current Privacy Policy, Terms, Business/Enterprise DPA and Security page: preserve the policy effective dates, prospective opt-out, stated exclusions and different Customer Content/Customer Personal Data/Service Data scopes. Refresh seven decision dependencies and TASK-005 exact review handoff, add scope/state regression coverage, and leave account plan, agreement, setting, region and data mapping open; all drafts remain in-review/noindex. Validation and release evidence are recorded in TASK.md.

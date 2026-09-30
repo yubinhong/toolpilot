@@ -1,14 +1,13 @@
-import Link from 'next/link';
-import { ContentSection } from '../../components/content-section';
-import { PageFrame } from '../../components/page-frame';
-import { PageIntro } from '../../components/page-intro';
-import { pageMetadata } from '../../lib/metadata';
-export const metadata = pageMetadata('/about/');
-export default function Page() {
-  return <PageFrame breadcrumbPath="/about/"><PageIntro eyebrow="ToolPilot / Trust" title={"About ToolPilot"} summary={"Tools should be chosen around a job, not a logo."}/>
-      <ContentSection><h2>Who this is for</h2><p>ToolPilot organizes research for developers, indie hackers and AI builders. The first detailed collection focuses on AI coding and app building. The wider developer-tool catalog remains available with per-entry review states.</p></ContentSection>
-      <ContentSection><h2>How to read a page</h2><p>Vendor documentation supports factual claims. Suggested use cases and selection criteria are editorial judgments. A research date means the source was read; it does not mean a hands-on trial was performed. Drafts remain clearly labeled until the site owner approves the exact revision.</p></ContentSection>
-      <ContentSection><h2>Independence</h2><p>Basic inclusion does not require payment. A paid placement cannot buy a factual conclusion, a comparison result or an organic ranking. See the Methodology and Affiliate Disclosure for the boundaries.</p></ContentSection>
-      <ContentSection><p><Link href="/editorial-policy/">Methodology</Link> · <Link href="/disclosure/">Affiliate Disclosure</Link> · <Link href="/contact/">Contact</Link></p></ContentSection>
-    </PageFrame>;
+import { PageFrame } from "../../components/page-frame";
+import { pageMetadata } from "../../lib/metadata";
+
+export const metadata = pageMetadata("/about/");
+
+export default function AboutPage() {
+  return <PageFrame path="/about/"><article className="page-content shell policy-page">
+    <div className="page-heading"><p className="eyebrow">About</p><h1>ToolPilot</h1><p className="lede">AI model pricing and API cost tools for developers and builders.</p></div>
+    <section className="detail-section"><h2>What ToolPilot does</h2><p>ToolPilot organizes public AI model pricing so developers can compare token rates, estimate usage costs, and inspect official model resources in one place.</p><p>The model database is separate from the page list. V1 publishes a single model detail page for Jev; other model records support search, pricing, calculator, and comparison workflows.</p></section>
+    <section className="detail-section"><h2>Sources and updates</h2><p>Model prices and API facts link to provider documentation or announcements. Each record displays its last verification date. A date records when ToolPilot checked the cited source; it is not a guarantee that a provider has not changed its terms since then.</p><p>When a source does not establish a fact, ToolPilot labels it as unavailable or not publicly specified instead of estimating it.</p></section>
+    <section className="detail-section"><h2>Independence</h2><p>V1 does not sell model rankings or sponsored placements. Comparisons show documented information and workload estimates without naming a model as universally best.</p></section>
+  </article></PageFrame>;
 }
