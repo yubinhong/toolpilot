@@ -84,7 +84,8 @@ export function documentCsp(hashes, { googleAnalytics = Boolean(getGoogleAnalyti
 }
 
 export function injectCspMeta(html) {
-  const csp = documentCsp(extractInlineScriptHashes(html));
+  const googleAnalytics = Boolean(getGoogleAnalyticsId()) || /https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-[A-Z0-9]+/i.test(html);
+  const csp = documentCsp(extractInlineScriptHashes(html), { googleAnalytics });
   const escapedCsp = csp.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
   const meta = `<meta http-equiv="Content-Security-Policy" content="${escapedCsp}">`;
   const existingMetas = [...html.matchAll(/<meta\b(?=[^>]*\bhttp-equiv\s*=\s*["']Content-Security-Policy["'])[^>]*>/gi)];

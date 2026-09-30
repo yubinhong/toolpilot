@@ -82,6 +82,16 @@ test('each static document gets an early, exact, idempotent CSP meta', () => {
   assert.throws(() => injectCspMeta('<html><head></head><head></html>'), /one complete head element/);
 });
 
+test('static documents that load Google Analytics receive the required CSP origins', () => {
+  const html = '<!doctype html><html><head><meta charset="utf-8"><link rel="preload" as="script" href="https://www.googletagmanager.com/gtag/js?id=G-VHJ251FCCE"></head><body></body></html>';
+  const generated = injectCspMeta(html);
+  const policy = generated.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)?.[1];
+
+  assert.match(policy ?? '', /script-src[^;]*https:\/\/www\.googletagmanager\.com/);
+  assert.match(policy ?? '', /connect-src[^;]*https:\/\/www\.google-analytics\.com/);
+  assert.match(policy ?? '', /img-src[^;]*https:\/\/www\.google-analytics\.com/);
+});
+
 test('generated Pages rule validates paths and stays within the rule limit as routes grow', () => {
   assert.throws(() => generateHeadersFile([{ path: '/bad*route/' }]), /unsafe or unsupported route path/);
   assert.throws(() => generateHeadersFile([{ path: '/' }, { path: '/' }]), /duplicate route path/);

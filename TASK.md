@@ -35,7 +35,7 @@
 - Environment: Node `v22.23.2`, npm `10.9.8`.
 - `npm run cloudflare:build`: passed; ESLint, TypeScript, 27 tests, static Next export, CSP/header generation, and artifact checks passed. Export contains exactly eight content documents plus the non-indexable `404.html`; sitemap has exactly eight URLs.
 - `npm run smoke` with `SMOKE_BASE_URL=http://127.0.0.1:4180`: passed for all eight canonical/indexable routes, exact sitemap, robots access, representative removed legacy paths, `/models/`, `/404`, and `/404.html` returning real 404s.
-- `git diff --check`: passed. Optional `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_GSC_VERIFICATION` are unset in this build; no Google Analytics script or GSC token is emitted.
+- `git diff --check`: passed. In the initial V1 build, optional `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_GSC_VERIFICATION` were unset, so no Google Analytics script or GSC token was emitted; this predates the GA4 configuration follow-up below.
 - Pricing data: 14 records from OpenAI, Anthropic, Google, DeepSeek, and TypeSafe; every record has an official source URL and `lastVerifiedAt: 2026-09-30`. Jev is the only model with a detail route.
 - Release gates: `npm audit --audit-level=high` reports 0 vulnerabilities. For `b16b940`, `npm run release:check`, `npm ci`, and `npm run cloudflare:build` passed in a clean detached worktree. For `501b726`, `npm run release:check` and GitHub CI passed. `npm run smoke` passed against the local Wrangler Pages runtime and immutable Pages previews.
 - Deployment: commit `b16b940` deployed successfully to Cloudflare Pages. CI smoke initially failed because it used Python's static server for Pages Functions routes; commit `501b726` changed CI to Wrangler Pages runtime, and its GitHub `quality` and Cloudflare Pages checks both passed. Immutable preview `https://14596746.toolpilot-git.pages.dev` passed the complete eight-page/sitemap/robots/404 smoke.
@@ -43,6 +43,14 @@
 - Purge limitation: Wrangler deployment inspection reports that `CLOUDFLARE_API_TOKEN` is absent. DNS and custom-domain bindings were not changed. A Cloudflare cache purge for `toolpilot.cc` and a repeat default-path production smoke are still required before marking TASK-008 complete. Search Console indexing and field traffic remain unchecked.
 - Remaining operational risk: official pricing and provider model catalogs can change; refresh source checks and `lastVerifiedAt` before the next release. Historical evidence and TASK-005/TASK-006 review documents remain as archives, not runtime page content.
 - Rollback: restore the last reviewed Cloudflare Pages deployment if the eight-route smoke, source accuracy, or security artifact checks fail; the previous Direct Upload project remains the recovery target. No database or external resource changes were made.
+
+### GA4 production build configuration — 2026-09-30
+
+- Added the supplied public measurement ID as `NEXT_PUBLIC_GA_ID` in `.env.production`; the existing event allowlist and exclusions are unchanged.
+- Updated CSP generation to recognize the GA script in the exported HTML and allow its script, collection, and image endpoints. The separate Node header-generation process does not inherit Next.js's loaded `.env.production` values.
+- `npm test` passed 28/28. `npm run build` passed model validation, TypeScript compilation, static export, security-header generation, and artifact checks. All eight exported pages contain the GA script and their document CSP allows the required Google endpoints. `git diff --check` passed.
+- No production deployment or Google Analytics property inspection was performed; live collection remains unverified until a reviewed build is deployed.
+- Rollback: remove `.env.production`, revert the CSP detection change and regression test, then rebuild to omit GA. No Cloudflare Dashboard or Analytics property settings were changed.
 
 ---
 

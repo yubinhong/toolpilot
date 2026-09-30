@@ -8,6 +8,7 @@
 - Remove old tools, guides, best, alternatives, MCP, self-hosted, stacks, and generated compare/pricing routes and their content data; retired paths return 404 and are not redirected to the home page.
 - Replace route, model-data, artifact, and HTTP smoke checks with an exact eight-page contract; retired routes return 404 without broad redirects.
 - Add optional minimum-data GA4/GSC integrations and non-rendering AdSlot mounts. Local Cloudflare build, 27 tests, artifact checks, and eight-page Wrangler smoke passed; this change does not deploy or confirm production/indexing state.
+- Configure the supplied GA4 measurement ID for production static builds through `.env.production`, and allow its script and collection endpoints in each generated document CSP. The integration sends only allowlisted page and product events without calculator quantities, raw queries, or URL query strings.
 
 ## Unreleased — TASK-006 implementation (2026-09-27–28)
 
