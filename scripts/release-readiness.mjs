@@ -17,6 +17,8 @@ export const REQUIRED_RELEASE_FILES = Object.freeze([
   "lib/routes.mjs",
   "content/models.json",
   "app/models/jev/page.tsx",
+  "app/models/gemini-4-argon/page.tsx",
+  "components/trend-model-landing-page.tsx",
   "app/pricing/page.tsx",
   "app/calculator/page.tsx",
   "app/compare/page.tsx",

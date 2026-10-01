@@ -4,9 +4,9 @@ import { estimateRequestCost, estimateUsage } from "../lib/model-cost.ts";
 import { getActiveSchedule, getModel, models } from "../lib/models.ts";
 import { getRoutes } from "../lib/routes.mjs";
 
-const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/about/", "/privacy/", "/terms/"];
+const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 
-test("the public route registry is exactly the approved eight pages", () => {
+test("the public route registry is exactly the approved nine pages", () => {
   assert.deepEqual(getRoutes().map(({ path }) => path), allowedRoutes);
 });
 
@@ -14,6 +14,7 @@ test("the shared model database includes official prices and dated official sour
   assert.ok(models.length > 8);
   assert.deepEqual(new Set(models.map((model) => model.provider.id)), new Set(["openai", "anthropic", "google", "deepseek", "typesafe"]));
   for (const model of models) {
+    assert.ok(["public", "announced", "not_public"].includes(model.pricingStatus), model.id);
     assert.deepEqual(model.pricing, { currency: "USD", unit: "1M tokens" }, model.id);
     assert.match(model.lastVerifiedAt, /^\d{4}-\d{2}-\d{2}$/);
     assert.ok(model.sources.some(({ label }) => /pricing/i.test(label)), model.id);
@@ -21,9 +22,10 @@ test("the shared model database includes official prices and dated official sour
   }
 });
 
-test("only Jev model data maps to an independent landing page", () => {
+test("only the two approved trend models map to independent landing pages", () => {
   assert.equal(getModel("jev")?.landingPath, "/models/jev/");
-  assert.ok(models.filter((model) => model.landingPath).every((model) => model.id === "jev"));
+  assert.equal(getModel("gemini-4-argon")?.landingPath, "/models/gemini-4-argon/");
+  assert.deepEqual(models.filter((model) => model.landingPath).map((model) => model.id), ["gemini-4-argon", "jev"]);
   assert.equal(getRoutes().some(({ path }) => path === "/models/"), false);
 });
 
@@ -53,26 +55,58 @@ test("current GPT-6.1 Sol and Gemini 3.8 Flash prices are available to shared mo
   assert.equal(gemini.landingPath, null);
 });
 
-test("Gemini 4 Argon lists official announced schedules without inventing API or context details", () => {
+test("Gemini 4 Argon records official announced rates and the output-token limit without inventing context details", () => {
   const argon = getModel("gemini-4-argon");
   assert.ok(argon);
   assert.equal(argon.apiModelId, null);
+  assert.equal(argon.pricingStatus, "announced");
   assert.equal(argon.contextWindow, null);
-  assert.equal(argon.apiStatus, "Limited Fairwind rollout; broader paid API access pending");
+  assert.equal(argon.outputTokenLimit, 1000000);
+  assert.equal(argon.apiStatus, "Limited Fairwind rollout; generally available developer API not yet launched");
   assert.equal(argon.releaseDate, "2026-09-30");
-  assert.equal(argon.landingPath, null);
+  assert.equal(argon.landingPath, "/models/gemini-4-argon/");
   assert.equal(argon.defaultSchedule, "introductory");
   assert.deepEqual(argon.schedules.map(({ input, cachedInput, output }) => [input, cachedInput, output]), [[2, 0.1, 10], [4, null, 20]]);
   assert.deepEqual(argon.schedules[0].nextPricing, { scheduleId: "standard", validFrom: null });
   assert.match(argon.schedules[0].pricingNotes?.join(" ") ?? "", /effective dates are not published/);
   assert.match(argon.schedules[1].pricingNotes?.join(" ") ?? "", /cached-input price are not published/);
   assert.ok(argon.sources.some(({ label, url }) => /pricing/i.test(label) && url.includes("blog.google")));
+  assert.ok(argon.sources.some(({ label, url }) => /methodology/i.test(label) && url.includes("deepmind.google")));
 
   const introductory = estimateUsage(argon, { inputTokens: 1000000, outputTokens: 1000000, cachedInputPercent: 100, requestsPerDay: 1 });
   const standard = estimateUsage(argon, { inputTokens: 1000000, outputTokens: 1000000, scheduleId: "standard", requestsPerDay: 1 });
   assert.equal(introductory.requestCost, 10.1);
   assert.equal(standard.requestCost, 24);
-  assert.equal(getRoutes().some(({ path }) => path === "/models/gemini-4-argon/"), false);
+  assert.equal(getRoutes().some(({ path }) => path === "/models/gemini-4-argon/"), true);
+});
+
+test("calculator refuses to estimate when pricing is not public", () => {
+  const argon = getModel("gemini-4-argon");
+  assert.ok(argon);
+  const unpriced = { ...argon, pricingStatus: "not_public" as const };
+  const estimate = estimateUsage(unpriced, { inputTokens: 1000000, outputTokens: 1000000, requestsPerDay: 1000 });
+  assert.equal(estimate.available, false);
+  assert.equal(estimate.requestCost, null);
+  assert.equal(estimate.daily, null);
+  assert.match(estimate.unavailableReason ?? "", /not publicly available/i);
+});
+
+test("compare does not produce a monthly estimate when pricing is not public", () => {
+  const argon = getModel("gemini-4-argon");
+  assert.ok(argon);
+  const unpriced = { ...argon, pricingStatus: "not_public" as const };
+  const estimate = estimateUsage(unpriced, { inputTokens: 1000, outputTokens: 500, requestsPerDay: 1000 });
+  assert.equal(estimate.available, false);
+  assert.equal(estimate.monthly, null);
+});
+
+test("an unknown required rate makes only affected estimates unavailable", () => {
+  const model = getModel("gemini-4-argon");
+  assert.ok(model);
+  const unknownCachedRate = { ...model, schedules: model.schedules.map((schedule) => schedule.id === "standard" ? { ...schedule, cachedInput: null } : schedule) };
+  const estimate = estimateRequestCost(unknownCachedRate, { inputTokens: 1000, outputTokens: 500, cachedInputPercent: 25, scheduleId: "standard" });
+  assert.equal(estimate.available, false);
+  assert.equal(estimate.requestCost, null);
 });
 
 test("cached token share and monthly/annual workload estimates use the shared price schedule", () => {
@@ -80,8 +114,8 @@ test("cached token share and monthly/annual workload estimates use the shared pr
   assert.ok(flash);
   const estimate = estimateUsage(flash, { inputTokens: 1000000, outputTokens: 1000000, cachedInputPercent: 50, requestsPerDay: 2 });
   assert.equal(estimate.requestCost, 0.6765);
-  assert.ok(Math.abs(estimate.monthly - 40.59) < 0.000001);
-  assert.ok(Math.abs(estimate.annual - 493.845) < 0.000001);
+  assert.ok(Math.abs(estimate.monthly! - 40.59) < 0.000001);
+  assert.ok(Math.abs(estimate.annual! - 493.845) < 0.000001);
 });
 
 test("DeepSeek peak and off-peak prices remain explicit and calculate independently", () => {

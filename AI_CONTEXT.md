@@ -2,15 +2,16 @@
 
 ## 当前快照 — 2026-10-01
 
-- 用户已将 ToolPilot 产品方向切换为 AI Model Pricing & Cost Tools Platform，并明确 V1 只能有 8 个页面：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/models/jev/`、`/about/`、`/privacy/`、`/terms/`。不得建立 `/models/` 或批量模型详情页；模型数据不自动生成页面。
-- TASK-008 本地实现已完成，替代 TASK-006 的开发者工具产品范围。旧产品路由、组件和运行时数据已移除；8 个页面由单一模型数据层驱动，Jev 是唯一模型详情页。15 个模型记录不会生成额外路由。
-- 已建立 `docs/PRD-002-ai-model-pricing.md` 和 `docs/adr/0011-demand-driven-eight-page-v1.md`。旧 TASK-006、PRD-001 和 ADR-0009 仅作为历史证据。
-- OpenAI、Anthropic、Google、DeepSeek 和 TypeSafe 的官方模型/定价资料均保留来源链接和 `lastVerifiedAt`。原有 14 个模型记录于 2026-09-30 核验；Gemini 4 Argon 于 2026-10-01 根据 Google 官方公告和模型目录复核，目前共 15 个记录。价格、API ID、context window 或日期未知时不推断。
+- 用户最新批准的 V1 共 9 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是需求信号批准的第二个模型落地页；不建立第 10 页或批量模型页，模型数据不自动生成页面。
+- 当前活动任务为 TASK-009：完善 Gemini 4 Argon 数据可信度、共享 unavailable-cost 行为、统一 Jev/Argon landing template，并将 route/build/smoke 契约更新到精确 9 页。TASK-008 的旧 8 页决定已由用户本次批准部分取代。
+- 已建立 `docs/PRD-002-ai-model-pricing.md`；ADR-0011 保留原始 8 页历史决定，ADR-0012 记录 Argon 的有界扩展。旧 TASK-006、PRD-001 和 ADR-0009 仍是历史证据。
+- OpenAI、Anthropic、Google、DeepSeek 和 TypeSafe 的模型/定价资料保留官方来源与 `lastVerifiedAt`。Google 于 2026-09-30 的 Argon 公告明确给出 introductory `$2/$10`、95% cached-input 折扣和 introductory 结束后的 `$4/$20`；API 当前为 Fairwind 有限 rollout。Google 公布的 1M 是 maximum output-token limit，input context window 未公布。Argon 的正式 API ID 和价格有效日期未知，不推断。
 - 2026-09-30 pricing schedule audit: the shared schema now models price type, validity dates, next schedule, time-based rules, and notes. Gemini introductory/future rates and DeepSeek Peak/Off-peak variants are explicit across Pricing, Calculator, and Compare; Jev output uses `not_applicable` and displays “Not token-billed.” Jev's page clarifies its System One structured-decision role. No routes changed. `npm test` passed 29/29, lint/typecheck passed, and the static build/artifact checks passed with exactly eight exported content pages and eight sitemap URLs. Commit `57f0c11` is deployed: CI and Cloudflare Pages checks passed, and the immutable preview passed full smoke. Production content and the eight-URL sitemap are current, while `/tools/` still returns cached legacy noindex HTML for its default URL; its unique-query 404 passes. A Cloudflare API token is unavailable to purge that cache. Details: `TASK.md` and `RUNBOOK.md`.
-- 2026-10-01 catalog follow-up: Gemini 4 Argon is verified on Google's official model overview and Sep 30 announcement. Its record carries announced introductory and post-intro pricing, limited Fairwind rollout, an unpublished API model ID, unknown context window/effective dates, and official sources. It appears in shared discovery/pricing/calculator/compare without adding a model route. Local verification and deployment evidence are recorded in TASK.md.
-- `npm run cloudflare:build`、27 项测试、审计、干净 worktree release checks、GitHub CI 与 Cloudflare Pages 部署均已通过。不可变预览的完整八页/sitemap/robots/404 smoke 通过；正式域名页面、robots 和 8 URL sitemap 已更新，但旧 `/tools/` 普通 URL 仍命中缓存的旧 HTML，最终生产 smoke 待 Cloudflare cache purge。GA4 ID 与 GSC verification token 均未配置。
+- TASK-009 official source check: Google's announcement at `blog.google/.../gemini-4-argon/` explicitly publishes introductory and post-intro rates; `deepmind.google/models/gemini/` confirms model capabilities; the official evaluation-methodology page qualifies vendor benchmark results; `ai.google.dev/gemini-api/docs/models` did not list Argon when checked on 2026-10-01.
+- TASK-009 local verification: Node `v22.23.2`, `npm run cloudflare:build` passed with 34 tests and nine static pages; Wrangler smoke passed exact nine routes/sitemap, robots access, and retired-route 404s. Production release and current edge-cache verification are pending.
+- TASK-008 初始 8 页 release 记录：`npm run cloudflare:build`、27 项测试、审计、CI 与 Cloudflare Pages 部署均通过；其时不可变预览和正式站为八页。普通 `/tools/` 在此前一次生产 smoke 中仍命中缓存旧 HTML，唯一查询参数时返回 404；TASK-009 更新后需重新验证正式边缘缓存。GA4 ID 与 GSC verification token 均未配置。
 - 任务开始前已有 TASK-006 内容审核相关未提交改动；用户明确授权替换旧产品，历史研究/审核文档保留为档案。Cloudflare CLI 缺少 API token，不能从当前环境 purge；未改 DNS 或自定义域绑定。Search Console 数据与真实流量仍未知，发布证据与下一步见 `TASK.md` / `RUNBOOK.md`。
-- 继续阅读：AGENTS.md → 本段 → PROJECT.md → TASK.md (TASK-008) → PRD-002 → ARCHITECTURE.md / TESTING.md / SECURITY.md → PLANS.md (TASK-008) → ADR-0011。
+- 继续阅读：AGENTS.md → 本段 → PROJECT.md → TASK.md (TASK-009) → PRD-002 → ARCHITECTURE.md / TESTING.md / SECURITY.md → PLANS.md (TASK-009) → ADR-0012。
 
 ## 历史快照 — 2026-09-29
 

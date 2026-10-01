@@ -28,8 +28,8 @@ function escapeHtml(value) {
 
 scan("out");
 const routeHtmlPaths = htmlFiles.filter((file) => file.endsWith("/index.html") || file === "index.html").map((file) => file === "index.html" ? "/" : `/${file.slice(0, -"/index.html".length)}/`).sort();
-if (JSON.stringify(routeHtmlPaths) !== JSON.stringify(expectedPaths)) failures.push(`exported content routes differ from the eight-page allowlist: ${routeHtmlPaths.join(", ")}`);
-if (JSON.stringify(sitemapUrls) !== JSON.stringify(expectedSitemap)) failures.push("sitemap.xml must contain exactly the eight allowlisted canonical URLs");
+if (JSON.stringify(routeHtmlPaths) !== JSON.stringify(expectedPaths)) failures.push(`exported content routes differ from the approved allowlist: ${routeHtmlPaths.join(", ")}`);
+if (JSON.stringify(sitemapUrls) !== JSON.stringify(expectedSitemap)) failures.push("sitemap.xml must contain exactly the approved canonical URLs");
 if (htmlFiles.some((file) => file !== "404.html" && file !== "index.html" && !file.endsWith("/index.html"))) failures.push(`unexpected standalone HTML output: ${htmlFiles.filter((file) => file !== "404.html" && file !== "index.html" && !file.endsWith("/index.html")).join(", ")}`);
 if (htmlFiles.some((file) => ["404/index.html", "_not-found/index.html"].includes(file))) failures.push("internal Next.js 404 route artifacts must not be exposed as public paths");
 
@@ -37,7 +37,7 @@ const robotsPath = "out/robots.txt";
 if (!existsSync(robotsPath)) failures.push("missing robots.txt");
 else {
   const robots = readFileSync(robotsPath, "utf8");
-  if (!robots.includes("Allow: /") || !robots.includes("/models/")) failures.push("robots.txt must allow the site and Jev model path");
+  if (!robots.includes("Allow: /") || !robots.includes("/models/")) failures.push("robots.txt must allow the site and approved model paths");
   if (!robots.includes(`${site}/sitemap.xml`)) failures.push("robots.txt must reference sitemap.xml");
   if (/Disallow:\s*\/models\//i.test(robots)) failures.push("robots.txt must not block /models/");
 }
@@ -86,20 +86,31 @@ for (const model of models) {
   const pricingSource = model.sources.find((source) => /pricing/i.test(source.label));
   if (!pricingSource || !pricingHtml.includes(pricingSource.url)) failures.push(`/pricing/: missing official pricing source for ${model.id}`);
 }
-if (!pricingHtml.includes("Gemini 4 Argon") || !pricingHtml.includes("API model ID not published") || !pricingHtml.includes("effective date not announced")) failures.push("/pricing/: Gemini 4 Argon must show its unpublished API ID and unannounced schedule date");
+if (!pricingHtml.includes("Gemini 4 Argon") || !pricingHtml.includes("API model ID not published") || !pricingHtml.includes("effective date not announced") || !pricingHtml.includes("$2.00") || !pricingHtml.includes("$10.00")) failures.push("/pricing/: Gemini 4 Argon must show officially announced rates and its unpublished API ID and schedule date");
+if (!pricingHtml.includes("/models/gemini-4-argon/") || !pricingHtml.includes("Context Not public") || !pricingHtml.includes("Max output 1,000,000 tokens")) failures.push("/pricing/: Argon landing link, unknown context, and documented output-token limit must be visible");
 if (!pricingHtml.includes("Off-peak") || !pricingHtml.includes("Peak window:") || !pricingHtml.includes("all other hours are off-peak")) failures.push("/pricing/: DeepSeek peak and off-peak schedules must be explicit");
 if (!pricingHtml.includes("https://api-docs.deepseek.com/news/news260910/")) failures.push("/pricing/: legacy DeepSeek V4 Pro routing note must link to its official announcement");
 
 const calculatorHtml = readFileSync("out/calculator/index.html", "utf8");
 if (!calculatorHtml.replaceAll("<!-- -->", "").includes("Estimated using the Standard schedule.")) failures.push("/calculator/: estimates must identify their selected pricing schedule");
-if (!calculatorHtml.includes("Gemini 4 Argon")) failures.push("/calculator/: Gemini 4 Argon must be selectable");
+if (!calculatorHtml.includes("Gemini 4 Argon") || !calculatorHtml.includes("How AI API cost is calculated")) failures.push("/calculator/: Argon must be selectable and cost calculation guidance must be present");
 
 const compareHtml = readFileSync("out/compare/index.html", "utf8");
 if (!compareHtml.includes("Pricing schedule") || !compareHtml.includes("DeepSeek Off-peak and Peak rates are separate time-based prices")) failures.push("/compare/: comparison must label pricing schedules and explain DeepSeek time-based rates");
 if (!compareHtml.includes("Gemini 4 Argon")) failures.push("/compare/: Gemini 4 Argon must be selectable for comparison");
 
 const homeHtml = readFileSync("out/index.html", "utf8");
-if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("API model ID not published") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with an accurate calculator link and unpublished API ID");
+if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("API model ID not published") || !homeHtml.includes("Context Not public") || !homeHtml.includes("Max output 1,000,000 tokens") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with unknown input context, official output limit, and calculator link");
+const popularCount = [...homeHtml.matchAll(/class="model-card"/g)].length;
+if (popularCount < 5 || popularCount > 6) failures.push(`/: Popular Models must contain 5-6 records; found ${popularCount}`);
+const latestStart = homeHtml.indexOf("id=\"latest-heading\"");
+const pricingPreviewStart = homeHtml.indexOf("id=\"pricing-preview-heading\"");
+const latestHtml = latestStart >= 0 && pricingPreviewStart > latestStart ? homeHtml.slice(latestStart, pricingPreviewStart) : "";
+const latestCount = [...latestHtml.matchAll(/<article\b/g)].length;
+if (latestCount < 3 || latestCount > 5) failures.push(`/: Latest Models must contain 3-5 records; found ${latestCount}`);
+for (const match of homeHtml.matchAll(/href="(\/models\/[^\"]+)"/g)) {
+  if (!["/models/jev/", "/models/gemini-4-argon/"].includes(match[1])) failures.push(`/: unapproved model detail link ${match[1]}`);
+}
 
 const jevHtml = readFileSync("out/models/jev/index.html", "utf8");
 for (const source of models.find(({ id }) => id === "jev")?.sources ?? []) {
@@ -108,6 +119,20 @@ for (const source of models.find(({ id }) => id === "jev")?.sources ?? []) {
 if (!jevHtml.includes("Not publicly specified") && !jevHtml.includes("Not publicly available")) failures.push("/models/jev/: unknown context or cached pricing should be explicit");
 if (!jevHtml.includes("Not token-billed") || jevHtml.includes("$0.000000")) failures.push("/models/jev/: output-token pricing must not render numeric zero");
 if (!jevHtml.includes("Jev is TypeSafe AI") || !jevHtml.includes("not a traditional generative LLM")) failures.push("/models/jev/: System One product distinction is missing");
+for (const question of ["What is Jev AI?", "Is Jev an LLM?", "How much does the Jev API cost?", "How do I access the Jev API?"]) {
+  if (!jevHtml.includes(question)) failures.push(`/models/jev/: missing FAQ ${question}`);
+}
+
+const argonHtml = readFileSync("out/models/gemini-4-argon/index.html", "utf8");
+for (const source of models.find(({ id }) => id === "gemini-4-argon")?.sources ?? []) {
+  if (!argonHtml.includes(source.url)) failures.push(`/models/gemini-4-argon/: missing official source ${source.url}`);
+}
+for (const answer of ["Gemini 4 Argon Pricing &amp; API Access", "September 30, 2026", "Not publicly listed", "1,000,000 tokens", "Google-reported benchmark results", "$2", "$10"]) {
+  if (!argonHtml.includes(answer)) failures.push(`/models/gemini-4-argon/: missing answer-first model content ${answer}`);
+}
+for (const question of ["What is Gemini 4 Argon?", "Is Gemini 4 Argon available through the Gemini API?", "How much does Gemini 4 Argon cost?", "What is the Gemini 4 Argon token limit?", "How can I access Gemini 4 Argon?", "When will Gemini 4 Argon be publicly available?"]) {
+  if (!argonHtml.includes(question)) failures.push(`/models/gemini-4-argon/: missing FAQ ${question}`);
+}
 
 const notFound = readFileSync("out/404.html", "utf8");
 if (!/name="robots" content="noindex, follow"/.test(notFound)) failures.push("404 page must be noindex, follow");

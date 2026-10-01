@@ -1,6 +1,6 @@
 # ADR-0011: Demand-Driven Eight-Page V1
 
-- Status: Accepted
+- Status: Accepted for the original V1; route-count portion superseded by ADR-0012
 - Date: 2026-09-30
 - Replaces product scope in ADR-0009 where it assumes developer-tool content routes remain active. ADR-0009 remains historical implementation evidence for the removed content system.
 

@@ -2,15 +2,24 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { DEFAULT_SITE_URL, getSiteUrl } from "../lib/site-config.mjs";
 import { getRoutes } from "../lib/routes.mjs";
+import { pageMetadata } from "../lib/metadata.ts";
 
-test("route registry contains the exact eight V1 routes, each indexable", () => {
-  assert.deepEqual(getRoutes().map(({ path }) => path), ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/about/", "/privacy/", "/terms/"]);
+test("route registry contains the exact nine approved routes, each indexable", () => {
+  assert.deepEqual(getRoutes().map(({ path }) => path), ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"]);
   assert.ok(getRoutes().every((route) => route.index));
 });
 
-test("only the approved Jev model landing page is in the registry", () => {
+test("only the two approved trend-model landing pages are in the registry", () => {
   assert.equal(getRoutes().some(({ path }) => path === "/models/"), false);
-  assert.equal(getRoutes().filter(({ path }) => path.startsWith("/models/")).length, 1);
+  assert.deepEqual(getRoutes().filter(({ path }) => path.startsWith("/models/")).map(({ path }) => path), ["/models/jev/", "/models/gemini-4-argon/"]);
+});
+
+test("every approved route has a self-canonical and index-follow metadata", () => {
+  for (const route of getRoutes()) {
+    const metadata = pageMetadata(route.path);
+    assert.equal(metadata.alternates?.canonical, `${DEFAULT_SITE_URL}${route.path}`);
+    assert.deepEqual(metadata.robots, { index: true, follow: true });
+  }
 });
 
 test("site config removes trailing slashes from the canonical origin", () => {

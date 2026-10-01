@@ -1,6 +1,22 @@
-# TASK-008 — ToolPilot AI Model Pricing V1
+## TASK-009 — Argon SEO and Data Accuracy Follow-up
 
-- Status: IN_PROGRESS (V1 deployed; production edge-cache purge and final smoke pending)
+- Status: IN_PROGRESS (implementation and local verification complete; production release/smoke in progress)
+- Date: 2026-10-01
+- Authorization: the product owner explicitly approved Gemini 4 Argon as the ninth public page after a new demand signal. No tenth page or other IA change is authorized.
+- Goal: verify Argon facts against Google sources; render official price/access/token-limit states accurately; share landing-page structure with Jev; update all nine-page SEO/build/test contracts.
+- Required routes: `/`, `/pricing/`, `/calculator/`, `/compare/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, `/terms/`.
+- Source finding: Google's Sep 30 announcement publishes introductory `$2/M` input, `$10/M` output and cached input at 95% off, followed by `$4/M` and `$20/M` rates after the introductory period. The period/effective dates are not stated. The API remains limited to Fairwind rollout; an Argon ID is absent from the public Gemini API catalog checked on Oct 1. The 1M figure is a maximum output-token limit; context window remains unknown.
+- Constraints: no generated model pages, no tenth route, no broad redirects, no third-party pricing sources, no inferred price/context, no CMS/database/server API, no unrelated UI redesign.
+- Acceptance: exact nine indexable routes and sitemap URLs; shared `pricingStatus` fails closed for `not_public`; Argon appears in discovery/Pricing/Calculator/Compare and has an accurate landing page; Jev uses the same template and includes FAQ; all pages self-canonical; old paths remain 404; tests, lint, typecheck, static export, artifacts, and smoke pass.
+- Rollback: revert reviewed TASK-009 changes and redeploy the last reviewed Pages artifact; remove route and page together if Argon page approval is withdrawn. No data-store or Cloudflare setting migration is needed.
+- Progress: official Google announcement, model overview, evaluation methodology, and API catalog checked; exact nine-route allowlist and two explicit landing pages are enforced.
+- Local verification — Node `v22.23.2` / npm `10.9.8`: `npm run cloudflare:build` passed ESLint, TypeScript, 34/34 tests, model/source/schema checks, static Next export, CSP/header generation, and artifact validation. `npm run smoke` against Wrangler Pages at `http://127.0.0.1:4173` passed nine indexable URLs, exact sitemap, robots, and retired-path 404s. `npm audit --audit-level=high` found 0 vulnerabilities; `git diff --check` passed.
+- Static output: exactly nine content pages and nine sitemap URLs; all nine have self-canonical, unique title/description, and `index, follow`. No other public model detail route or `/models/` index was exported.
+- Production deployment and live smoke evidence will be recorded below before closing.
+
+# TASK-008 — ToolPilot AI Model Pricing V1 (historical)
+
+- Status: SUPERSEDED (V1 implementation deployed; legacy edge-cache verification was still pending when TASK-009 began)
 - Date: 2026-09-30–2026-10-01
 - Authorization: product owner confirmed replacement of the old product and exactly eight V1 public pages; remove old product routes, navigation, content, and data.
 - Goal: ship the eight-page AI model pricing platform defined in `docs/PRD-002-ai-model-pricing.md` and `docs/adr/0011-demand-driven-eight-page-v1.md`.

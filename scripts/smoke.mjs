@@ -5,10 +5,10 @@ const base = new URL(process.argv.find((arg) => arg.startsWith("--base-url="))?.
 if (!["http:", "https:"].includes(base.protocol) || base.username || base.password) throw new Error("Invalid smoke base URL");
 
 const routes = getRoutes();
-const expectedPaths = ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/about/", "/privacy/", "/terms/"];
+const expectedPaths = ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 const failures = [];
 const escapeHtml = (value) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#x27;");
-if (JSON.stringify(routes.map(({ path }) => path)) !== JSON.stringify(expectedPaths)) failures.push("route registry differs from the eight-page V1 allowlist");
+if (JSON.stringify(routes.map(({ path }) => path)) !== JSON.stringify(expectedPaths)) failures.push("route registry differs from the exact nine-page approved allowlist");
 const get = (path) => fetch(new URL(path, base), { signal: AbortSignal.timeout(20000), redirect: "manual" });
 
 await Promise.all(routes.map(async (route) => {
@@ -38,7 +38,7 @@ try {
   const robotsResponse = await get("/robots.txt");
   const robots = await robotsResponse.text();
   if (robotsResponse.status !== 200 || !robots.includes(`${getSiteUrl()}/sitemap.xml`)) throw new Error("robots.txt sitemap reference missing");
-  if (!robots.includes("Allow: /") || !robots.includes("/models/") || /Disallow:\s*\/models\//i.test(robots)) throw new Error("robots.txt must allow the Jev model route");
+  if (!robots.includes("Allow: /") || !robots.includes("/models/") || /Disallow:\s*\/models\//i.test(robots)) throw new Error("robots.txt must allow the approved model landing routes");
 
   const removedPaths = ["/tools/", "/tools/cursor/", "/guides/", "/guides/old-guide/", "/best/", "/alternatives/", "/mcp/", "/self-hosted/", "/stacks/", "/models/", "/models/gpt-6-astra/", "/pricing/old-model/", "/compare/old-pair/", "/_not-found/", "/404", "/404.html"];
   for (const path of removedPaths) {

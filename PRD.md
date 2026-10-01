@@ -1,6 +1,6 @@
 # Current Product Requirement
 
-`PRD-001` below is a historical, superseded developer-tools proposal. The current accepted V1 product scope is [PRD-002 — ToolPilot AI Model Pricing Platform](docs/PRD-002-ai-model-pricing.md), which caps the public site at eight URLs and allows only `/models/jev/` as a model landing page.
+`PRD-001` below is a historical, superseded developer-tools proposal. The current accepted V1 product scope is [PRD-002 — ToolPilot AI Model Pricing Platform](docs/PRD-002-ai-model-pricing.md), as amended by [ADR-0012](docs/adr/0012-gemini-4-argon-landing-page.md): exactly nine public URLs, with `/models/jev/` and `/models/gemini-4-argon/` as the only model landing pages.
 
 Implementation and acceptance status are tracked in `TASK.md` under TASK-008. Historical release notes and research evidence remain below for audit history only.
 

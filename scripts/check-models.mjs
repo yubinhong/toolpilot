@@ -9,7 +9,8 @@ const allowedHosts = {
   deepseek: new Set(["api-docs.deepseek.com"]),
   typesafe: new Set(["typesafe.ai", "docs.typesafe.ai"]),
 };
-const expectedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/about/", "/privacy/", "/terms/"];
+const expectedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const landingRoutes = new Map([["jev", "/models/jev/"], ["gemini-4-argon", "/models/gemini-4-argon/"]]);
 const errors = [];
 const ids = new Set();
 
@@ -18,7 +19,7 @@ function validPricingDate(value) {
 }
 
 if (JSON.stringify(getRoutes().map(({ path }) => path)) !== JSON.stringify(expectedRoutes)) {
-  errors.push("route registry must match the exact eight-page V1 allowlist");
+  errors.push("route registry must match the exact nine-page approved allowlist");
 }
 
 for (const model of models) {
@@ -28,19 +29,25 @@ for (const model of models) {
   const hasApiModelId = typeof model.apiModelId === "string" && model.apiModelId.trim().length > 0;
   if (!model.name || !model.provider?.id || !model.provider?.name || (!hasApiModelId && model.apiModelId !== null)) errors.push(`${at}: missing identity fields`);
   if (model.pricing?.currency !== "USD" || model.pricing?.unit !== "1M tokens") errors.push(`${at}: pricing currency and token unit must be explicit`);
+  const pricingStatus = model.pricingStatus;
+  if (!["public", "announced", "not_public"].includes(pricingStatus)) errors.push(`${at}: invalid pricingStatus`);
   if (!Array.isArray(model.schedules) || !model.schedules.length) errors.push(`${at}: no pricing schedules`);
   if (!model.schedules?.some(({ id }) => id === model.defaultSchedule)) errors.push(`${at}: default schedule is missing`);
   if (new Set(model.schedules?.map(({ id }) => id)).size !== model.schedules?.length) errors.push(`${at}: duplicate pricing schedule id`);
   if (!model.sources?.length || !model.sources.some(({ label }) => /pricing/i.test(label))) errors.push(`${at}: official pricing source is missing`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(model.lastVerifiedAt ?? "")) errors.push(`${at}: lastVerifiedAt must be an ISO date`);
   if (model.contextWindow !== null && (!Number.isInteger(model.contextWindow) || model.contextWindow <= 0)) errors.push(`${at}: contextWindow must be a positive integer or null`);
-  if (model.landingPath && model.landingPath !== "/models/jev/") errors.push(`${at}: only Jev may have a detail landing page`);
-  if (model.id === "jev" && model.landingPath !== "/models/jev/") errors.push("Jev must be the only explicit model landing page");
-  if (model.id !== "jev" && model.landingPath !== null) errors.push(`${at}: model records do not generate detail routes`);
+  if (model.outputTokenLimit != null && (!Number.isInteger(model.outputTokenLimit) || model.outputTokenLimit <= 0)) errors.push(`${at}: outputTokenLimit must be a positive integer or null`);
+  if (model.landingPath !== (landingRoutes.get(model.id) ?? null)) errors.push(`${at}: only the explicitly approved Jev and Gemini 4 Argon landing pages may have detail routes`);
+  const landing = model.landing;
+  const validFaq = Array.isArray(landing?.faq) && landing.faq.length > 0 && landing.faq.every((item) => item && typeof item.question === "string" && item.question.trim() && typeof item.answer === "string" && item.answer.trim());
+  const validBenchmarks = landing?.benchmarks == null || (Array.isArray(landing.benchmarks) && landing.benchmarks.every((item) => item && typeof item.name === "string" && item.name.trim() && typeof item.result === "string" && item.result.trim() && typeof item.note === "string" && item.note.trim()));
+  if (model.landingPath && (!landing || [landing.category, landing.heading, landing.summary, landing.apiAccessNote].some((value) => typeof value !== "string" || !value.trim()) || !validFaq || !validBenchmarks)) errors.push(`${at}: an approved landing route requires complete structured content and FAQ answers`);
+  if (!model.landingPath && landing) errors.push(`${at}: landing content is only allowed for an explicitly approved model route`);
 
   for (const schedule of model.schedules ?? []) {
-    if (typeof schedule.input !== "number" || !Number.isFinite(schedule.input) || schedule.input < 0) errors.push(`${at}/${schedule.id}: invalid input rate`);
-    if (schedule.output !== "not_applicable" && (typeof schedule.output !== "number" || !Number.isFinite(schedule.output) || schedule.output < 0)) errors.push(`${at}/${schedule.id}: invalid output rate`);
+    if (schedule.input !== null && (typeof schedule.input !== "number" || !Number.isFinite(schedule.input) || schedule.input < 0)) errors.push(`${at}/${schedule.id}: invalid input rate`);
+    if (schedule.output !== "not_applicable" && schedule.output !== null && (typeof schedule.output !== "number" || !Number.isFinite(schedule.output) || schedule.output < 0)) errors.push(`${at}/${schedule.id}: invalid output rate`);
     for (const key of ["cachedInput", "cacheWrite"]) {
       if (schedule[key] != null && (typeof schedule[key] !== "number" || !Number.isFinite(schedule[key]) || schedule[key] < 0)) errors.push(`${at}/${schedule.id}: invalid ${key} rate`);
     }
@@ -63,11 +70,15 @@ for (const model of models) {
     if ("effectiveFrom" in schedule || "effectiveTo" in schedule || "scheduleNote" in schedule) errors.push(`${at}/${schedule.id}: use validFrom, validUntil, and pricingNotes instead of legacy schedule fields`);
   }
 
+  if (pricingStatus === "not_public" && model.schedules.some((schedule) => [schedule.input, schedule.output, schedule.cachedInput, schedule.cacheWrite, ...(schedule.cacheWriteOptions ?? []).map(({ rate }) => rate), ...(schedule.additionalPrices ?? []).map(({ rate }) => rate), ...(schedule.longContext ? [schedule.longContext.input, schedule.longContext.cachedInput, schedule.longContext.output] : [])].some((value) => typeof value === "number"))) errors.push(`${at}: not_public pricing cannot contain numeric token rates`);
+  if (pricingStatus === "announced" && !model.schedules.some(({ input, output }) => typeof input === "number" || typeof output === "number")) errors.push(`${at}: announced pricing must retain at least one officially announced numeric rate`);
+
   if (model.provider.id === "deepseek") {
     const periods = new Set(model.schedules.map(({ pricingSchedule }) => pricingSchedule?.type === "time_of_day" ? pricingSchedule.period : null));
     if (!periods.has("off_peak") || !periods.has("peak")) errors.push(`${at}: DeepSeek must expose both off_peak and peak schedules`);
   }
   if (model.id === "jev" && model.schedules.some(({ output }) => output !== "not_applicable")) errors.push("Jev output-token pricing must be marked not_applicable, never numeric zero");
+  if (model.id === "gemini-4-argon" && (pricingStatus !== "announced" || model.outputTokenLimit !== 1000000 || model.contextWindow !== null)) errors.push("Gemini 4 Argon must preserve announced pricing, a 1M output limit, and an unknown input context window");
 
   for (const source of model.sources ?? []) {
     try {
@@ -79,7 +90,7 @@ for (const model of models) {
   }
 }
 
-if (models.filter(({ landingPath }) => landingPath).length !== 1) errors.push("exactly one model may have a detail landing page");
+if (models.filter(({ landingPath }) => landingPath).length !== landingRoutes.size) errors.push("only the two approved model landing pages may be registered");
 for (const provider of Object.keys(allowedHosts)) {
   if (!models.some((model) => model.provider.id === provider)) errors.push(`missing provider data: ${provider}`);
 }

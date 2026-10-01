@@ -54,8 +54,8 @@
 
 - ToolPilot 面向 `AI Developer`、`Indie Hacker`、`SaaS Developer`、`API User` 和 `AI Builder`，帮助用户查询模型价格、估算 API 成本和比较模型。
 - 产品定位为 `AI Model Pricing & API Cost Tools Platform`；不得恢复为开发者工具目录或泛用型在线工具站。
-- V1 只允许 `/`、`/pricing/`、`/calculator/`、`/compare/`、`/models/jev/`、`/about/`、`/privacy/`、`/terms/` 八个公开页面。模型记录不等于模型详情页；Jev 是唯一 V1 独立模型页面。
-- 新增第九个及之后的 SEO 页面必须先满足 PRD-002 的趋势、搜索意图、SERP 和官方来源验证，并得到用户明确批准。
+- 当前已批准的公开页面共 9 个：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Jev 和 Gemini 4 Argon 是仅有的两个模型独立页面；模型记录不自动生成页面。
+- 第 10 个及之后的 SEO 页面必须满足 PRD-002 的趋势、搜索意图、SERP 和官方来源验证，并得到用户明确批准。
 - 不建设批量模型详情、批量 VS 页面、blog、providers、best、alternatives、通用工具目录、账户系统、论坛、AI Chat、广告或未批准的商业功能。
 
 ### 4.2 内容可信度与用户信任
@@ -87,11 +87,11 @@
 | 目的 | 当前命令 | 规则 |
 | --- | --- | --- |
 | 格式化 | `TBD` | 当前没有格式化工具或 npm script；不要自行引入格式化器 |
-| 模型校验 | `npm run models:check` | 检查唯一模型数据源、官方来源域、验证日期和八页路由白名单 |
+| 模型校验 | `npm run models:check` | 检查唯一模型数据源、官方来源域、验证日期和九页路由白名单 |
 | 静态检查 | `npm run lint` | 使用仓库中的 ESLint flat config |
 | 类型检查 | `npm run typecheck` | 使用 `tsconfig.json`，禁止绕过错误 |
 | 单元测试 | `npm test` | Node 22 内置 test runner，覆盖路由、来源、费率日期和成本公式 |
-| HTTP smoke | `npm run smoke` | 检查八页 metadata/canonical、robots、精确 sitemap，以及废弃旧 URL 的真实 404 |
+| HTTP smoke | `npm run smoke` | 检查九页 metadata/canonical、robots、精确 sitemap，以及废弃旧 URL 的真实 404 |
 | 发布前检查 | `npm run release:check` | 本地/审核提交时必须在 Node 22、完整 HEAD SHA、无凭据 GitHub origin、干净工作区和发布文件均被跟踪时通过；不替代 Cloudflare Dashboard Git Integration 构建 |
 | Cloudflare Pages 构建 | `npm run cloudflare:build` | Cloudflare Pages Git Integration 使用；执行 lint、typecheck、test 和静态构建 |
 | 集成/E2E | `TBD` | 尚未引入浏览器测试框架；页面 smoke test 用本地 HTTP 检查替代 |
@@ -146,7 +146,7 @@
 ## 9. 模型数据验证机制
 
 - `content/models.json` 是 V1 唯一模型与价格源；模型记录不会自动创建页面。
-- `scripts/check-models.mjs` 校验唯一模型 ID、官方 HTTPS 来源域、pricing source、`lastVerifiedAt`、有效价格档位和 Jev 唯一详情页。
-- `lib/routes.mjs` 的 8 条显式路由是页面、metadata、sitemap、artifact 检查和 HTTP smoke 的边界。
+- `scripts/check-models.mjs` 校验唯一模型 ID、官方 HTTPS 来源域、pricing source/status、`lastVerifiedAt`、有效价格档位和唯一批准的 Jev/Argon 详情页。
+- `lib/routes.mjs` 的 9 条显式路由是页面、metadata、sitemap、artifact 检查和 HTTP smoke 的边界；只有 Jev 和 Gemini 4 Argon 有独立模型页。
 - `npm run build` 在 Next 静态导出前运行模型检查，随后验证 sitemap、robots、canonical、metadata、来源链接和真实 404 产物。
 - 价格记录过期不等于当前价格仍有效；发布前应重核官方来源并运行当前测试、构建、审计和 smoke。

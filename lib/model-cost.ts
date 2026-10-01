@@ -18,12 +18,24 @@ export function estimateRequestCost(
   const cachedPercent = Math.min(100, Math.max(0, Number(cachedInputPercent) || 0));
   const useLongContext = Boolean(schedule.longContext && input > schedule.longContext.threshold);
   const rates = schedule.longContext && input > schedule.longContext.threshold ? schedule.longContext : schedule;
-  const cachedTokens = rates.cachedInput == null ? 0 : input * cachedPercent / 100;
+  const cachedTokens = input * cachedPercent / 100;
   const uncachedTokens = input - cachedTokens;
-  const inputCost = uncachedTokens / TOKEN_UNIT * rates.input + cachedTokens / TOKEN_UNIT * (rates.cachedInput ?? rates.input);
+  const unavailableReason = model.pricingStatus === "not_public"
+    ? "Pricing not publicly available. Cost estimates will be available when the provider publishes token rates."
+    : rates.input == null && uncachedTokens > 0
+      ? "Input pricing is not publicly available for the selected schedule."
+      : cachedPercent > 0 && cachedTokens > 0 && rates.cachedInput == null
+        ? "Cached input pricing is not publicly available for the selected schedule."
+        : rates.output == null && output > 0
+          ? "Output pricing is not publicly available for the selected schedule."
+          : null;
+  if (unavailableReason) {
+    return { schedule, available: false, unavailableReason, usedLongContextRate: Boolean(useLongContext), inputCost: null, outputCost: null, requestCost: null };
+  }
+  const inputCost = uncachedTokens / TOKEN_UNIT * (rates.input ?? 0) + cachedTokens / TOKEN_UNIT * (rates.cachedInput ?? rates.input ?? 0);
   const outputCost = typeof rates.output === "number" ? output / TOKEN_UNIT * rates.output : 0;
 
-  return { schedule, usedLongContextRate: Boolean(useLongContext), inputCost, outputCost, requestCost: inputCost + outputCost };
+  return { schedule, available: true, unavailableReason: null, usedLongContextRate: Boolean(useLongContext), inputCost, outputCost, requestCost: inputCost + outputCost };
 }
 
 export function estimateUsage(
@@ -32,6 +44,6 @@ export function estimateUsage(
 ) {
   const perRequest = estimateRequestCost(model, usage);
   const requests = Math.max(0, Number(usage.requestsPerDay) || 0);
-  const daily = perRequest.requestCost * requests;
-  return { ...perRequest, daily, monthly: daily * 30, annual: daily * 365 };
+  const daily = perRequest.available ? perRequest.requestCost! * requests : null;
+  return { ...perRequest, daily, monthly: daily == null ? null : daily * 30, annual: daily == null ? null : daily * 365 };
 }

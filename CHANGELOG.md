@@ -1,6 +1,14 @@
 # Changelog
 
-## Unreleased — TASK-008 AI Model Pricing V1 (2026-09-30–2026-10-01)
+## Unreleased — TASK-009 Argon SEO and data accuracy (2026-10-01)
+
+- Add `/models/gemini-4-argon/` as the ninth explicitly approved indexable page; keep Jev as the only other model landing page and retain the nine-route cap.
+- Record Google's announced Argon introductory and later token rates, cached-input discount, limited Fairwind rollout, unknown input context, and 1M maximum output-token limit from official Google sources.
+- Add explicit shared pricing state and make `not_public` rates unavailable to Calculator and Compare; show official announced rates as announced rather than generally available.
+- Reuse one data-driven landing template for Jev and Argon, add verified FAQs/benchmark notes, and add Pricing and Calculator cost-method copy.
+- Update canonical, route, sitemap, artifact, and HTTP smoke contracts for exactly nine pages. Verification and release outcome: pending TASK-009 closeout.
+
+## TASK-008 AI Model Pricing V1 (deployed 2026-09-30–2026-10-01)
 
 - Replace the developer-tool catalog with eight allowlisted AI model pricing pages: home, pricing, calculator, compare, Jev detail, about, privacy, and terms.
 - Add a shared official-source model database for 15 OpenAI, Anthropic, Google, DeepSeek, and TypeSafe Jev records, including verification dates and variable price schedules.
@@ -10,7 +18,7 @@
 - Add optional minimum-data GA4/GSC integrations and non-rendering AdSlot mounts. Local Cloudflare build, 27 tests, artifact checks, and eight-page Wrangler smoke passed; this change does not deploy or confirm production/indexing state.
 - Configure the supplied GA4 measurement ID for production static builds through `.env.production`, and allow its script and collection endpoints in each generated document CSP. The integration sends only allowlisted page and product events without calculator quantities, raw queries, or URL query strings.
 - Extend model price schedules with type, validity dates, next-price references, schedule windows, and notes. Show DeepSeek Off-peak and Peak rates explicitly in Pricing, Calculator, and per-model Compare schedule controls; update the legacy V4 Pro ID to its official V4.1-Flash rates. Represent Jev output billing as `not_applicable` and describe its structured-decision model category without showing a zero output rate.
-- Add Google Gemini 4 Argon to shared model discovery, Pricing, Calculator, and Compare data using official announcement and model-catalog sources. Show the announced introductory/cache and later standard rates with unknown effective dates, limited rollout, unpublished API model ID, and unknown context window; no route was added.
+- Add Google Gemini 4 Argon to shared model discovery, Pricing, Calculator, and Compare data using official announcement and model-catalog sources. Show announced rates with limited rollout, unpublished API model ID, and unknown context window; the later TASK-009 amendment adds its approved landing route.
 
 ## Unreleased — TASK-006 implementation (2026-09-27–28)
 

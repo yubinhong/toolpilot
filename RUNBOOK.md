@@ -1,8 +1,12 @@
 # RUNBOOK.md
 
-## TASK-008 Rebuild Status (2026-10-01)
+## TASK-009 Argon SEO and data accuracy (2026-10-01)
 
-TASK-008 replaces the old public product with the eight-page AI model pricing V1. Latest catalog commit `3e42e7b7adce2c8bad70bfa0920006c5640ec647` passed GitHub CI run `36798620833` and Cloudflare Pages check/deployment `654afb6c-bc34-4981-a86f-e94d5af6ec78`. Preview `https://654afb6c.toolpilot-git.pages.dev` passed the exact eight-page, sitemap, robots, and retired-route 404 smoke. `https://toolpilot.cc` serves Gemini 4 Argon on the homepage and Pricing; the registered page metadata/canonicals, robots, and eight-URL sitemap pass. Production smoke remains open: Node fetch receives cached legacy HTML at `/tools/` with HTTP 200 (`Age: 169506`, `Cache-Control: public, s-maxage=604800`), while curl GET to that path returned 404, indicating inconsistent edge responses. `CLOUDFLARE_API_TOKEN` is unavailable here, so the cache could not be purged. No DNS or custom-domain binding was changed. Older entries below describe prior releases and the previous application.
+The approved route contract is now exactly nine pages, including `/models/gemini-4-argon/`; Jev and Argon share a model landing template. Local Node 22 verification passed 34 tests, model validation, lint, typecheck, static export/artifact validation, and Wrangler Pages HTTP smoke. The export has nine indexable documents and exactly nine self-canonical sitemap URLs. Google officially announced Argon's `$2/$10` introductory input/output rates, 95% cached-input discount, and `$4/$20` post-intro rates; access remains limited and effective dates are unannounced. The 1M figure is a maximum output-token limit, while input context remains unknown. Production release and current edge-cache verification are recorded after the release below.
+
+## TASK-008 Initial V1 Release (2026-10-01)
+
+TASK-008 replaced the old public product with the initial eight-page AI model pricing V1. Its latest catalog commit `3e42e7b7adce2c8bad70bfa0920006c5640ec647` passed GitHub CI run `36798620833` and Cloudflare Pages check/deployment `654afb6c-bc34-4981-a86f-e94d5af6ec78`. Preview `https://654afb6c.toolpilot-git.pages.dev` passed the exact eight-page, sitemap, robots, and retired-route 404 smoke. The previous production smoke found inconsistent stale `/tools/` results (cached 200 through Node fetch, 404 through curl); TASK-009 current production smoke supersedes this observation. No DNS or custom-domain binding was changed by that release.
 
 ## 1. 服务概览
 

@@ -6,6 +6,7 @@
     "apiModelId": "gpt-6-astra",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1050000,
     "releaseDate": null,
@@ -38,6 +39,7 @@
     "apiModelId": "gpt-6.1-sol",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1050000,
     "releaseDate": null,
@@ -61,6 +63,7 @@
     "apiModelId": "gpt-6-luna",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1050000,
     "releaseDate": null,
@@ -84,6 +87,7 @@
     "apiModelId": "claude-fable-5-1",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1000000,
     "releaseDate": null,
@@ -107,6 +111,7 @@
     "apiModelId": "claude-opus-5-5",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1000000,
     "releaseDate": null,
@@ -130,6 +135,7 @@
     "apiModelId": "claude-sonnet-5-5",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1000000,
     "releaseDate": "2026-09-28",
@@ -153,6 +159,7 @@
     "apiModelId": "claude-haiku-4-5",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 200000,
     "releaseDate": null,
@@ -174,12 +181,14 @@
     "name": "Gemini 4 Argon",
     "provider": { "id": "google", "name": "Google" },
     "apiModelId": null,
-    "landingPath": null,
-    "apiStatus": "Limited Fairwind rollout; broader paid API access pending",
+    "landingPath": "/models/gemini-4-argon/",
+    "apiStatus": "Limited Fairwind rollout; generally available developer API not yet launched",
+    "pricingStatus": "announced",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": null,
+    "outputTokenLimit": 1000000,
     "releaseDate": "2026-09-30",
-    "capabilities": ["Long-horizon reasoning", "Coding", "Multimodal understanding", "Defensive cybersecurity", "Output limit up to 1M tokens"],
+    "capabilities": ["Complex reasoning across long-horizon workflows", "Software engineering", "Enterprise knowledge work", "Multimodal understanding", "Cybersecurity defense"],
     "useCases": ["Complex software engineering", "Enterprise knowledge work", "Defensive cybersecurity"],
     "officialUrl": "https://deepmind.google/models/gemini/",
     "defaultSchedule": "introductory",
@@ -214,9 +223,31 @@
     "sources": [
       { "label": "Official announced pricing", "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/" },
       { "label": "Official model overview", "url": "https://deepmind.google/models/gemini/" },
+      { "label": "Official evaluation methodology", "url": "https://deepmind.google/models/evals-methodology/gemini-4-argon" },
       { "label": "Gemini API model catalog", "url": "https://ai.google.dev/gemini-api/docs/models" }
     ],
-    "lastVerifiedAt": "2026-10-01"
+    "lastVerifiedAt": "2026-10-01",
+    "landing": {
+      "category": "Frontier model",
+      "heading": "Gemini 4 Argon Pricing & API Access",
+      "dateLabel": "Announced",
+      "summary": "Google announced Gemini 4 Argon on September 30, 2026 as a frontier model. Access is currently limited through the Fairwind Program; Google has not announced a general availability date.",
+      "overview": "Google says Argon is designed for long-horizon reasoning across real-world software engineering, enterprise knowledge work such as legal and finance, multimodal understanding, and cybersecurity defense.",
+      "apiAccessNote": "An announcement is not general API availability. Google says Argon is rolling out to trusted cyber defenders through Fairwind and plans a broader release beginning with paid API customers and Google AI Ultra subscribers. The public Gemini API catalog checked on October 1, 2026 does not list an Argon API model ID.",
+      "faq": [
+        { "question": "What is Gemini 4 Argon?", "answer": "Google describes Gemini 4 Argon as a frontier model for complex, long-horizon workflows in software engineering, enterprise knowledge work, and cybersecurity defense." },
+        { "question": "Is Gemini 4 Argon available through the Gemini API?", "answer": "Google has announced a phased rollout, currently through the Fairwind Program for trusted cyber defenders. As checked on October 1, 2026, the public Gemini API model catalog does not list Argon or an API model ID." },
+        { "question": "How much does Gemini 4 Argon cost?", "answer": "Google announced introductory rates of $2 per million input tokens and $10 per million output tokens, with cached input 95% below the input rate. After the introductory period, Google says $4 input and $20 output per million tokens will apply. The introductory period dates have not been announced." },
+        { "question": "What is the Gemini 4 Argon token limit?", "answer": "Google announced a maximum output-token limit of 1,000,000. The announcement does not specify an input context-window limit." },
+        { "question": "How can I access Gemini 4 Argon?", "answer": "Current access is through Google's Fairwind Program for trusted cyber defenders. Google has said broader access is planned, beginning with paid API customers and Google AI Ultra subscribers, but a public launch date is not announced." },
+        { "question": "When will Gemini 4 Argon be publicly available?", "answer": "Google has not announced a date. Its announcement says it will broaden access after continuing safety work and feedback from early testers." }
+      ],
+      "benchmarks": [
+        { "name": "DeepSWE v1.1", "result": "77.9%", "note": "Google-reported; self-computed with a mini-swe agent harness." },
+        { "name": "AutomationBench", "result": "51.3%", "note": "Google-reported result using Zapier's private benchmark set." },
+        { "name": "LVBench", "result": "91.7%", "note": "Google-reported; self-computed without tools at 1 FPS." }
+      ]
+    }
   },
   {
     "id": "gemini-3-8-flash",
@@ -225,6 +256,7 @@
     "apiModelId": "gemini-3.8-flash",
     "landingPath": null,
     "apiStatus": "Available via Gemini API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1048576,
     "releaseDate": null,
@@ -249,6 +281,7 @@
     "apiModelId": "gemini-3.6-flash",
     "landingPath": null,
     "apiStatus": "Available via Gemini API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": null,
     "releaseDate": null,
@@ -273,6 +306,7 @@
     "apiModelId": "gemini-3.1-pro-preview",
     "landingPath": null,
     "apiStatus": "Preview via Gemini API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1000000,
     "releaseDate": null,
@@ -296,6 +330,7 @@
     "apiModelId": "gemini-3.1-flash-lite",
     "landingPath": null,
     "apiStatus": "Available via Gemini API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1048576,
     "releaseDate": null,
@@ -319,6 +354,7 @@
     "apiModelId": "deepseek-flash",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1000000,
     "releaseDate": null,
@@ -343,6 +379,7 @@
     "apiModelId": "deepseek-v4-pro",
     "landingPath": null,
     "apiStatus": "Available via API",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1000000,
     "releaseDate": null,
@@ -368,6 +405,7 @@
     "apiModelId": "jev-latest",
     "landingPath": "/models/jev/",
     "apiStatus": "Early access",
+    "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": null,
     "releaseDate": "2026-09-15",
@@ -383,6 +421,21 @@
       { "label": "Official documentation", "url": "https://docs.typesafe.ai/introduction" },
       { "label": "API quickstart", "url": "https://docs.typesafe.ai/introduction/quickstart" }
     ],
-    "lastVerifiedAt": "2026-09-30"
+    "lastVerifiedAt": "2026-09-30",
+    "apiEndpoint": "https://api.typesafe.ai/v1/systemone",
+    "landing": {
+      "category": "System One model",
+      "heading": "Jev AI API Pricing & Cost Calculator",
+      "dateLabel": "Release date",
+      "summary": "Jev is TypeSafe AI's System One model for structured decisions, not a traditional generative LLM.",
+      "overview": "Jev returns typed outputs such as choices, scores, and confidence fields rather than free-form generated text. Its output is not token-billed.",
+      "apiAccessNote": "TypeSafe lists Jev as early access. Its official API quickstart explains how developers can request and use access.",
+      "faq": [
+        { "question": "What is Jev AI?", "answer": "Jev is TypeSafe AI's System One model for structured decisions, returning typed outputs such as choices and scores." },
+        { "question": "Is Jev an LLM?", "answer": "TypeSafe describes Jev as a System One model for structured decisions, not a traditional generative LLM." },
+        { "question": "How much does the Jev API cost?", "answer": "TypeSafe lists input pricing at $0.042 per million tokens. Jev's structured output is not token-billed; no separate output-token price applies." },
+        { "question": "How do I access the Jev API?", "answer": "Jev is in early access through TypeSafe. See the official API quickstart for access and integration details." }
+      ]
+    }
   }
 ]

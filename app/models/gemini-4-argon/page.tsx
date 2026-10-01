@@ -3,10 +3,10 @@ import { TrendModelLandingPage } from "../../../components/trend-model-landing-p
 import { pageMetadata } from "../../../lib/metadata";
 import { getModel } from "../../../lib/models";
 
-export const metadata = pageMetadata("/models/jev/");
+export const metadata = pageMetadata("/models/gemini-4-argon/");
 
-export default function JevPage() {
-  const model = getModel("jev");
+export default function Gemini4ArgonPage() {
+  const model = getModel("gemini-4-argon");
   if (!model) return null;
-  return <PageFrame path="/models/jev/"><TrendModelLandingPage model={model} /></PageFrame>;
+  return <PageFrame path="/models/gemini-4-argon/"><TrendModelLandingPage model={model} /></PageFrame>;
 }

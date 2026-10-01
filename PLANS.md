@@ -1,37 +1,51 @@
-# Current Plan: TASK-008 — Eight-Page AI Model Pricing V1
+# Current Plan: TASK-009 — Argon Accuracy and Post-Launch SEO
 
-This plan supersedes the developer-tool rebuild scope below. The accepted product contract is `docs/PRD-002-ai-model-pricing.md`; the decision record is `docs/adr/0011-demand-driven-eight-page-v1.md`.
+This follow-up supersedes only the eight-route limit in TASK-008/ADR-0011. The owner explicitly approved `/models/gemini-4-argon/` as the second demand-driven landing page. No additional SEO route is authorized.
 
 ## Goal and constraints
 
 - Replace the developer-tool product with AI model pricing, cost calculation, and model comparison.
-- Keep exactly eight public page routes: `/`, `/pricing/`, `/calculator/`, `/compare/`, `/models/jev/`, `/about/`, `/privacy/`, `/terms/`.
+- Keep exactly nine public page routes: `/`, `/pricing/`, `/calculator/`, `/compare/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, `/terms/`.
 - Keep static export and Cloudflare Pages; store model facts in validated static JSON.
-- Only Jev has a detail route. Adding model data never generates a route.
+- Jev and Gemini 4 Argon are the only detail routes. Adding model data never generates a route.
 - Remove old product routes/content and let unknown old URLs return 404; do not add catch-all redirects.
-- Use official provider data with `source_url` and `lastVerifiedAt`; preserve price schedules and state calculator assumptions.
+- Use official provider data with `source_url` and `lastVerifiedAt`; preserve price schedules and distinguish announced rates from currently available API access.
+- Gemini 4 Argon official announcement publishes introductory and subsequent token rates; record them as announced pricing, label the limited rollout, and do not describe the API as generally available.
+- Record Google's 1M output-token limit separately from an unknown context/input limit.
+- Make `not_public` pricing unavailable in the shared cost engine and every calculator/comparison surface.
+- Add shared Jev/Argon landing-page structure, accurate answer-first content, visible FAQs, official sources, and links to pricing/calculator/compare.
+- Preserve a maximum of nine indexable pages and nine sitemap URLs; no model-database-driven pages.
 
 ## Phases
 
-1. Model data schema/validation, official price/source records, explicit route registry, and rebuilt Pricing page.
-2. Calculator, Jev detail, and up-to-three-model Compare, all reading the same data source.
-3. Homepage discovery, About/Privacy/Terms, unique SEO metadata, robots/sitemap, removed-route 404 checks, and release verification.
+1. Extend shared pricing/model schema, cost-engine behavior, validation, and route/artifact contracts.
+2. Build the reusable model landing template, Argon page, Jev FAQ, and accurate shared pricing/calculator/compare displays.
+3. Refine homepage/pricing/calculator copy, metadata, sitemap, canonical and robots assertions, then run required tests/build/smoke and review deployment readiness.
 
 ## Current checklist
 
-- [x] User confirmed the exact eight-page V1 allowlist and authorized removal of the old product system.
-- [x] Official pricing/model pages reviewed for the first-party providers and Jev.
-- [x] Remove old routes/components/data and replace navigation.
-- [x] Add model data validation and shared data access.
-- [x] Implement pages and interaction flows, with Jev as the only model detail route.
-- [x] Enforce exactly eight indexable/sitemap URLs and test old URL 404s.
-- [x] Run `npm run cloudflare:build` and local Wrangler Pages smoke; all required gates passed.
-- [x] Inspect the final diff and record rollback and remaining risks in TASK.md.
-- [x] Receive explicit authorization to deploy TASK-008 to production.
-- [x] Fix the high-severity dependency audit finding, then pass release checks in clean checkouts.
-- [x] Push V1 and the Pages-runtime CI correction to `main`; verify CI, Pages deployment, and the immutable preview against the exact eight-page contract.
-- [ ] Purge stale `toolpilot.cc` edge cache and pass the default-path production smoke, including real 404s for retired routes.
-- [x] Record deployed source and current production evidence in TASK.md, RUNBOOK.md, and AI_CONTEXT.md.
+- [x] Reconfirm Google announcement facts: Sep 30, 2026 release; limited Fairwind rollout; published intro/standard rates; 1M output-token limit.
+- [x] Extend schema and validator for explicit pricing status and output token limit.
+- [x] Update shared cost engine and surfaces to refuse estimates for `not_public` pricing.
+- [x] Add Argon as the second explicit landing page and reuse the Jev template.
+- [x] Add model-specific metadata, official sources, FAQ, and cross-links.
+- [x] Update route/sitemap/export/smoke contracts to exactly nine approved pages.
+- [x] Add focused tests for announced/not-public/not-applicable prices and route artifacts.
+- [x] Run `npm run cloudflare:build` and local smoke; all checks passed.
+- [ ] Review final diff, update task/release docs, and deploy under existing explicit authorization.
+
+## Source findings
+
+- Google's official announcement states the Sep 30, 2026 announcement date, Fairwind limited rollout, intro pricing of `$2/M` input and `$10/M` output with cached input at 95% off, and `$4/M` input plus `$20/M` output after the introductory period: `https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/`.
+- The same announcement says the 1M figure is an output-token limit. It does not establish the input/context window.
+- Google's official model page documents long-horizon reasoning, software engineering, enterprise knowledge work, multimodal understanding, and cybersecurity defense: `https://deepmind.google/models/gemini/`.
+- The Gemini API model catalog checked on 2026-10-01 does not list Argon; its current API identifier/access path therefore remains unpublished in that catalog.
+
+---
+
+## TASK-008 — Eight-Page AI Model Pricing V1 (historical)
+
+The original implementation/release plan and verification evidence are retained in TASK.md. Its eight-route constraint is superseded by the owner-approved Argon follow-up above.
 
 ---
 

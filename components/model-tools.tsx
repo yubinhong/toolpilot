@@ -26,6 +26,14 @@ function context(value: number | null) {
   return value == null ? "Not public" : `${new Intl.NumberFormat("en-US").format(value)} tokens`;
 }
 
+function tokenLimit(model: ModelRecord) {
+  const limits = [
+    `Context ${context(model.contextWindow)}`,
+    model.outputTokenLimit == null ? null : `Max output ${context(model.outputTokenLimit)}`,
+  ].filter(Boolean);
+  return limits.length ? limits.join(" · ") : "Not public";
+}
+
 function modelHref(model: ModelRecord) {
   return model.landingPath ?? `/calculator/?model=${encodeURIComponent(model.id)}`;
 }
@@ -120,7 +128,7 @@ export function PopularModels() {
           <div><dt>Input / 1M</dt><dd>{rate(price.input)}</dd></div>
           <div><dt>Output / 1M</dt><dd>{rate(price.output)}</dd></div>
           {model.schedules.length > 1 && <div><dt>Pricing schedule</dt><dd>{model.schedules.map(({ label }) => label).join(" / ")} · default: {price.label}</dd></div>}
-          <div><dt>Context</dt><dd>{context(model.contextWindow)}</dd></div>
+          <div><dt>Context / token limit</dt><dd>{tokenLimit(model)}</dd></div>
           <div><dt>API</dt><dd>{model.apiStatus}</dd></div>
         </dl>
         <div className="model-card-actions"><Link href={`/calculator/?model=${encodeURIComponent(model.id)}`}>Calculate</Link><Link href={`/compare/?models=${encodeURIComponent(model.id)}`}>Compare</Link></div>
@@ -164,12 +172,12 @@ export function PricingTable({ limit }: PricingTableProps) {
     </div>}
     <div className="table-scroll">
       <table className="pricing-table">
-        <thead><tr><th>Model</th><th>Provider</th><th>Input / 1M</th><th>Cached input / 1M</th><th>Output / 1M</th><th>Pricing schedules / other rates</th><th>Context</th><th>API</th><th>Verified</th><th>Source</th></tr></thead>
+        <thead><tr><th>Model</th><th>Provider</th><th>Input / 1M</th><th>Cached input / 1M</th><th>Output / 1M</th><th>Pricing schedules / other rates</th><th>Context / token limit</th><th>API</th><th>Verified</th><th>Source</th></tr></thead>
         <tbody>{shown.map((model) => {
           const selected = getActiveSchedule(model);
           return <tr key={model.id}>
             <th scope="row"><Link href={modelHref(model)} className="model-name">{model.name}</Link><small>{model.apiModelId ?? "API model ID not published"}</small></th>
-            <td>{model.provider.name}</td><td>{rate(selected.input)}</td><td>{rate(selected.cachedInput)}</td><td>{rate(selected.output)}</td><td className="other-pricing">{scheduleDetails(model, selected.id)}</td><td>{context(model.contextWindow)}</td><td>{model.apiStatus}</td><td>{model.lastVerifiedAt}<small>Default: {selected.label}</small></td><td><a href={priceSource(model).url} target="_blank" rel="noreferrer" onClick={() => trackEvent("external_official_link", { model_id: model.id, provider_id: model.provider.id, source_type: "pricing" })}>{priceSource(model).label}</a>{additionalPricingSources(model)}</td>
+            <td>{model.provider.name}</td><td>{rate(selected.input)}</td><td>{rate(selected.cachedInput)}</td><td>{rate(selected.output)}</td><td className="other-pricing">{scheduleDetails(model, selected.id)}</td><td>{tokenLimit(model)}</td><td>{model.apiStatus}</td><td>{model.lastVerifiedAt}<small>Default: {selected.label}</small></td><td><a href={priceSource(model).url} target="_blank" rel="noreferrer" onClick={() => trackEvent("external_official_link", { model_id: model.id, provider_id: model.provider.id, source_type: "pricing" })}>{priceSource(model).label}</a>{additionalPricingSources(model)}</td>
           </tr>;
         })}</tbody>
       </table>
@@ -229,13 +237,13 @@ export function CostCalculator({ initialModelId = "gpt-6-luna", compact = false 
     <div className="estimate-panel" aria-live="polite">
       <div className="estimate-heading"><div><span className="eyebrow">Estimated usage</span><h3>{model.name}</h3></div><span className="estimate-date">Verified {model.lastVerifiedAt}</span></div>
       <dl className="estimate-grid">
-        <div><dt>Cost / request</dt><dd>{money(estimate.requestCost)}</dd></div>
-        <div><dt>Daily cost</dt><dd>{money(estimate.daily)}</dd></div>
-        <div><dt>Monthly cost · 30 days</dt><dd>{money(estimate.monthly)}</dd></div>
-        <div><dt>Annual cost · 365 days</dt><dd>{money(estimate.annual)}</dd></div>
+        <div><dt>Cost / request</dt><dd>{estimate.available ? money(estimate.requestCost!) : "Unavailable"}</dd></div>
+        <div><dt>Daily cost</dt><dd>{estimate.available ? money(estimate.daily!) : "Unavailable"}</dd></div>
+        <div><dt>Monthly cost · 30 days</dt><dd>{estimate.available ? money(estimate.monthly!) : "Unavailable"}</dd></div>
+        <div><dt>Annual cost · 365 days</dt><dd>{estimate.available ? money(estimate.annual!) : "Unavailable"}</dd></div>
       </dl>
-      <p className="estimate-note">{estimate.usedLongContextRate && schedule.longContext ? `This request exceeds ${new Intl.NumberFormat("en-US").format(schedule.longContext.threshold)} input tokens, so the long-context rate is used. ` : ""}Estimated using the {schedule.label} schedule. {scheduleTerms(model, schedule).join(" ")} Cost excludes cache writes, storage, tools, taxes, and provider discounts.</p>
-      <p className="estimate-source"><a href={priceSource(model).url} target="_blank" rel="noreferrer" onClick={() => trackEvent("external_official_link", { model_id: model.id, provider_id: model.provider.id, source_type: "pricing" })}>{priceSource(model).label}</a><span> · </span><Link href={model.landingPath ?? "/pricing/"} className="text-link">{model.landingPath ? "View Jev model details" : "View all model pricing"}</Link></p>
+      <p className="estimate-note">{!estimate.available ? estimate.unavailableReason : <>{estimate.usedLongContextRate && schedule.longContext ? `This request exceeds ${new Intl.NumberFormat("en-US").format(schedule.longContext.threshold)} input tokens, so the long-context rate is used. ` : ""}Estimated using the {schedule.label} schedule. {scheduleTerms(model, schedule).join(" ")} Cost excludes cache writes, storage, tools, taxes, and provider discounts.</>}</p>
+      <p className="estimate-source"><a href={priceSource(model).url} target="_blank" rel="noreferrer" onClick={() => trackEvent("external_official_link", { model_id: model.id, provider_id: model.provider.id, source_type: "pricing" })}>{priceSource(model).label}</a><span> · </span><Link href={model.landingPath ?? "/pricing/"} className="text-link">{model.landingPath ? `View ${model.name} details` : "View all model pricing"}</Link></p>
     </div>
   </div>;
 }
@@ -275,7 +283,8 @@ export function ModelComparison({ initialIds = ["gpt-6-luna", "claude-sonnet-5-5
   const selectedSchedule = (model: ModelRecord) => getSchedule(model, scheduleIds[model.id] ?? getActiveSchedule(model).id);
   const totals = selected.map((model) => estimateUsage(model, { inputTokens, outputTokens, requestsPerDay, scheduleId: selectedSchedule(model).id }));
   const monthly = totals.map((estimate) => estimate.monthly);
-  const spread = monthly.length ? Math.max(...monthly) - Math.min(...monthly) : 0;
+  const availableMonthly = monthly.filter((value): value is number => value != null);
+  const spread = availableMonthly.length > 1 ? Math.max(...availableMonthly) - Math.min(...availableMonthly) : null;
 
   function toggle(id: string, checked: boolean) {
     const nextIds = checked && selectedIds.length < 3 ? [...selectedIds, id] : selectedIds.filter((item) => item !== id);
@@ -303,7 +312,7 @@ export function ModelComparison({ initialIds = ["gpt-6-luna", "claude-sonnet-5-5
       <label className="field"><span>Output tokens / request</span><input type="number" min="0" step="100" value={outputTokens} onChange={(event) => { setOutputTokens(Number(event.target.value)); trackComparisonUse(); }} /></label>
       <label className="field"><span>Requests / day</span><input type="number" min="0" step="100" value={requestsPerDay} onChange={(event) => { setRequestsPerDay(Number(event.target.value)); trackComparisonUse(); }} /></label>
     </div>
-    <div className="comparison-summary"><span>Monthly estimate range for this workload</span><strong>{money(spread)}</strong><small>Difference between the highest and lowest selected estimate; this is a cost comparison only.</small></div>
+    <div className="comparison-summary"><span>Monthly estimate range for this workload</span><strong>{spread == null ? "Unavailable" : money(spread)}</strong><small>Difference between the highest and lowest available estimates; models without public rates are excluded.</small></div>
     <div className="table-scroll">
       <table className="comparison-table">
         <thead><tr><th>Model</th>{selected.map((model) => <th key={model.id}><Link href={modelHref(model)}>{model.name}</Link><small>{model.provider.name}</small>{model.schedules.length > 1 && <label className="comparison-schedule field"><span>Pricing schedule for {model.name}</span><select value={selectedSchedule(model).id} onChange={(event) => setScheduleIds((current) => ({ ...current, [model.id]: event.target.value }))}>{model.schedules.map((schedule) => <option key={schedule.id} value={schedule.id}>{scheduleOptionLabel(schedule)}</option>)}</select></label>}</th>)}</tr></thead>
@@ -313,11 +322,11 @@ export function ModelComparison({ initialIds = ["gpt-6-luna", "claude-sonnet-5-5
           <tr><th>Cached input / 1M</th>{selected.map((model) => <td key={model.id}>{rate(selectedSchedule(model).cachedInput)}</td>)}</tr>
           <tr><th>Output / 1M</th>{selected.map((model) => <td key={model.id}>{rate(selectedSchedule(model).output)}</td>)}</tr>
           <tr><th>Other listed price rates</th>{selected.map((model) => <td key={model.id} className="other-pricing">{otherPricing(selectedSchedule(model))}</td>)}</tr>
-          <tr><th>Context window</th>{selected.map((model) => <td key={model.id}>{context(model.contextWindow)}</td>)}</tr>
+          <tr><th>Context / token limit</th>{selected.map((model) => <td key={model.id}>{tokenLimit(model)}</td>)}</tr>
           <tr><th>API access</th>{selected.map((model) => <td key={model.id}>{model.apiStatus}</td>)}</tr>
           <tr><th>Capabilities</th>{selected.map((model) => <td key={model.id}>{model.capabilities.join(", ")}</td>)}</tr>
           <tr><th>Official price source</th>{selected.map((model) => <td key={model.id}><a href={priceSource(model).url} target="_blank" rel="noreferrer" onClick={() => trackEvent("external_official_link", { model_id: model.id, provider_id: model.provider.id, source_type: "pricing" })}>{priceSource(model).label}</a>{additionalPricingSources(model)}<small>Verified {model.lastVerifiedAt}</small></td>)}</tr>
-          <tr><th>Estimated monthly cost</th>{selected.map((model, index) => <td key={model.id} className="cost-result">{money(totals[index]?.monthly ?? 0)}</td>)}</tr>
+          <tr><th>Estimated monthly cost</th>{selected.map((model, index) => <td key={model.id} className="cost-result">{monthly[index] == null ? "Unavailable" : money(monthly[index]!)}</td>)}</tr>
         </tbody>
       </table>
     </div>
