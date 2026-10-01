@@ -34,7 +34,7 @@ export default function HomePage() {
 
     <section className="content-section shell" aria-labelledby="latest-heading">
       <div className="section-heading"><div><p className="eyebrow">Recently released</p><h2 id="latest-heading">Latest models</h2></div><p>Release dates appear only where official documentation confirms them.</p></div>
-      {recent.length ? <div className="latest-list">{recent.map((model) => <article key={model.id}><div><Link href={model.landingPath ?? `/calculator/?model=${model.id}`} className="model-name">{model.name}</Link><span>{model.provider.name}</span></div><time dateTime={model.releaseDate ?? undefined}>{model.releaseDate}</time><Link href={model.landingPath ?? `/calculator/?model=${model.id}`}>View details</Link></article>)}</div> : <p className="empty-state">No release date is currently confirmed in the model data.</p>}
+      {recent.length ? <div className="latest-list">{recent.map((model) => <article key={model.id}><div><Link href={model.landingPath ?? `/calculator/?model=${model.id}`} className="model-name">{model.name}</Link><span>{model.provider.name}</span></div><time dateTime={model.releaseDate ?? undefined}>{model.releaseDate}</time><Link href={model.landingPath ?? `/calculator/?model=${model.id}`}>{model.landingPath ? "View details" : "Estimate cost"}</Link></article>)}</div> : <p className="empty-state">No release date is currently confirmed in the model data.</p>}
     </section>
 
     <section className="content-section shell" aria-labelledby="pricing-preview-heading">

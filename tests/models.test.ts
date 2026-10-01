@@ -53,6 +53,28 @@ test("current GPT-6.1 Sol and Gemini 3.8 Flash prices are available to shared mo
   assert.equal(gemini.landingPath, null);
 });
 
+test("Gemini 4 Argon lists official announced schedules without inventing API or context details", () => {
+  const argon = getModel("gemini-4-argon");
+  assert.ok(argon);
+  assert.equal(argon.apiModelId, null);
+  assert.equal(argon.contextWindow, null);
+  assert.equal(argon.apiStatus, "Limited Fairwind rollout; broader paid API access pending");
+  assert.equal(argon.releaseDate, "2026-09-30");
+  assert.equal(argon.landingPath, null);
+  assert.equal(argon.defaultSchedule, "introductory");
+  assert.deepEqual(argon.schedules.map(({ input, cachedInput, output }) => [input, cachedInput, output]), [[2, 0.1, 10], [4, null, 20]]);
+  assert.deepEqual(argon.schedules[0].nextPricing, { scheduleId: "standard", validFrom: null });
+  assert.match(argon.schedules[0].pricingNotes?.join(" ") ?? "", /effective dates are not published/);
+  assert.match(argon.schedules[1].pricingNotes?.join(" ") ?? "", /cached-input price are not published/);
+  assert.ok(argon.sources.some(({ label, url }) => /pricing/i.test(label) && url.includes("blog.google")));
+
+  const introductory = estimateUsage(argon, { inputTokens: 1000000, outputTokens: 1000000, cachedInputPercent: 100, requestsPerDay: 1 });
+  const standard = estimateUsage(argon, { inputTokens: 1000000, outputTokens: 1000000, scheduleId: "standard", requestsPerDay: 1 });
+  assert.equal(introductory.requestCost, 10.1);
+  assert.equal(standard.requestCost, 24);
+  assert.equal(getRoutes().some(({ path }) => path === "/models/gemini-4-argon/"), false);
+});
+
 test("cached token share and monthly/annual workload estimates use the shared price schedule", () => {
   const flash = getModel("deepseek-flash");
   assert.ok(flash);

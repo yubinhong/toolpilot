@@ -1,12 +1,13 @@
 # AI_CONTEXT.md
 
-## 当前快照 — 2026-09-30
+## 当前快照 — 2026-10-01
 
 - 用户已将 ToolPilot 产品方向切换为 AI Model Pricing & Cost Tools Platform，并明确 V1 只能有 8 个页面：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/models/jev/`、`/about/`、`/privacy/`、`/terms/`。不得建立 `/models/` 或批量模型详情页；模型数据不自动生成页面。
-- TASK-008 本地实现已完成，替代 TASK-006 的开发者工具产品范围。旧产品路由、组件和运行时数据已移除；8 个页面由单一模型数据层驱动，Jev 是唯一模型详情页。14 个模型记录不会生成额外路由。
+- TASK-008 本地实现已完成，替代 TASK-006 的开发者工具产品范围。旧产品路由、组件和运行时数据已移除；8 个页面由单一模型数据层驱动，Jev 是唯一模型详情页。15 个模型记录不会生成额外路由。
 - 已建立 `docs/PRD-002-ai-model-pricing.md` 和 `docs/adr/0011-demand-driven-eight-page-v1.md`。旧 TASK-006、PRD-001 和 ADR-0009 仅作为历史证据。
-- OpenAI、Anthropic、Google、DeepSeek 和 TypeSafe 的官方模型/定价资料于 2026-09-30 核验；14 个模型记录均保留来源链接和 `lastVerifiedAt`。价格或能力未知时不推断。
+- OpenAI、Anthropic、Google、DeepSeek 和 TypeSafe 的官方模型/定价资料均保留来源链接和 `lastVerifiedAt`。原有 14 个模型记录于 2026-09-30 核验；Gemini 4 Argon 于 2026-10-01 根据 Google 官方公告和模型目录复核，目前共 15 个记录。价格、API ID、context window 或日期未知时不推断。
 - 2026-09-30 pricing schedule audit: the shared schema now models price type, validity dates, next schedule, time-based rules, and notes. Gemini introductory/future rates and DeepSeek Peak/Off-peak variants are explicit across Pricing, Calculator, and Compare; Jev output uses `not_applicable` and displays “Not token-billed.” Jev's page clarifies its System One structured-decision role. No routes changed. `npm test` passed 29/29, lint/typecheck passed, and the static build/artifact checks passed with exactly eight exported content pages and eight sitemap URLs. Commit `57f0c11` is deployed: CI and Cloudflare Pages checks passed, and the immutable preview passed full smoke. Production content and the eight-URL sitemap are current, while `/tools/` still returns cached legacy noindex HTML for its default URL; its unique-query 404 passes. A Cloudflare API token is unavailable to purge that cache. Details: `TASK.md` and `RUNBOOK.md`.
+- 2026-10-01 catalog follow-up: Gemini 4 Argon is verified on Google's official model overview and Sep 30 announcement. Its record carries announced introductory and post-intro pricing, limited Fairwind rollout, an unpublished API model ID, unknown context window/effective dates, and official sources. It appears in shared discovery/pricing/calculator/compare without adding a model route. Local verification and deployment evidence are recorded in TASK.md.
 - `npm run cloudflare:build`、27 项测试、审计、干净 worktree release checks、GitHub CI 与 Cloudflare Pages 部署均已通过。不可变预览的完整八页/sitemap/robots/404 smoke 通过；正式域名页面、robots 和 8 URL sitemap 已更新，但旧 `/tools/` 普通 URL 仍命中缓存的旧 HTML，最终生产 smoke 待 Cloudflare cache purge。GA4 ID 与 GSC verification token 均未配置。
 - 任务开始前已有 TASK-006 内容审核相关未提交改动；用户明确授权替换旧产品，历史研究/审核文档保留为档案。Cloudflare CLI 缺少 API token，不能从当前环境 purge；未改 DNS 或自定义域绑定。Search Console 数据与真实流量仍未知，发布证据与下一步见 `TASK.md` / `RUNBOOK.md`。
 - 继续阅读：AGENTS.md → 本段 → PROJECT.md → TASK.md (TASK-008) → PRD-002 → ARCHITECTURE.md / TESTING.md / SECURITY.md → PLANS.md (TASK-008) → ADR-0011。

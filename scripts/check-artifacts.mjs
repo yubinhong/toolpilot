@@ -86,14 +86,20 @@ for (const model of models) {
   const pricingSource = model.sources.find((source) => /pricing/i.test(source.label));
   if (!pricingSource || !pricingHtml.includes(pricingSource.url)) failures.push(`/pricing/: missing official pricing source for ${model.id}`);
 }
+if (!pricingHtml.includes("Gemini 4 Argon") || !pricingHtml.includes("API model ID not published") || !pricingHtml.includes("effective date not announced")) failures.push("/pricing/: Gemini 4 Argon must show its unpublished API ID and unannounced schedule date");
 if (!pricingHtml.includes("Off-peak") || !pricingHtml.includes("Peak window:") || !pricingHtml.includes("all other hours are off-peak")) failures.push("/pricing/: DeepSeek peak and off-peak schedules must be explicit");
 if (!pricingHtml.includes("https://api-docs.deepseek.com/news/news260910/")) failures.push("/pricing/: legacy DeepSeek V4 Pro routing note must link to its official announcement");
 
 const calculatorHtml = readFileSync("out/calculator/index.html", "utf8");
 if (!calculatorHtml.replaceAll("<!-- -->", "").includes("Estimated using the Standard schedule.")) failures.push("/calculator/: estimates must identify their selected pricing schedule");
+if (!calculatorHtml.includes("Gemini 4 Argon")) failures.push("/calculator/: Gemini 4 Argon must be selectable");
 
 const compareHtml = readFileSync("out/compare/index.html", "utf8");
 if (!compareHtml.includes("Pricing schedule") || !compareHtml.includes("DeepSeek Off-peak and Peak rates are separate time-based prices")) failures.push("/compare/: comparison must label pricing schedules and explain DeepSeek time-based rates");
+if (!compareHtml.includes("Gemini 4 Argon")) failures.push("/compare/: Gemini 4 Argon must be selectable for comparison");
+
+const homeHtml = readFileSync("out/index.html", "utf8");
+if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("API model ID not published") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with an accurate calculator link and unpublished API ID");
 
 const jevHtml = readFileSync("out/models/jev/index.html", "utf8");
 for (const source of models.find(({ id }) => id === "jev")?.sources ?? []) {

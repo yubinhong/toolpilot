@@ -37,8 +37,8 @@ Unknown and retired routes use the static 404 response. Two exact Pages Function
 - `lib/model-cost.ts` computes request, daily, monthly, and annual estimates from the selected model record.
 - `components/model-tools.tsx` implements search, pricing filters/sort, calculators, and up-to-three-model comparison. Pricing lists every schedule; Calculator and Compare allow a schedule to be selected per model and identify the rates used.
 - `components/ad-slot.tsx` exposes the four approved future ad placements and returns no markup until content is supplied.
-- Every record has one or more official source URLs and `lastVerifiedAt`; `scripts/check-models.mjs` checks source host allowlists, record structure, and the single Jev detail route.
-- Rate schedules may retain `priceType`, `validFrom`, `validUntil`, a `nextPricing` schedule reference, `pricingSchedule` window metadata, and `pricingNotes`, alongside long-context thresholds, cached input, and additional rates. Calculator estimates use the selected/default schedule and disclose its validity or time window and excluded fees. Non-applicable output billing uses `not_applicable` and contributes no output-token charge; it is never represented as a numeric zero rate.
+- Every record has one or more official source URLs and `lastVerifiedAt`; an API model ID may be null until the provider publishes one. `scripts/check-models.mjs` checks source host allowlists, record structure, and the single Jev detail route.
+- Rate schedules may retain `priceType`, `validFrom`, `validUntil`, a `nextPricing` schedule reference (whose date may be null until announced), `pricingSchedule` window metadata, and `pricingNotes`, alongside long-context thresholds, cached input, and additional rates. Calculator estimates use the selected/default schedule and disclose its validity or time window and excluded fees. Non-applicable output billing uses `not_applicable` and contributes no output-token charge; it is never represented as a numeric zero rate.
 
 Client components are statically rendered by Next.js and hydrate for filtering and calculation. Calculator inputs remain in browser state and are not submitted to ToolPilot.
 

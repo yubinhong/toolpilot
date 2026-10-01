@@ -5,7 +5,7 @@ const models = JSON.parse(readFileSync(new URL("../content/models.json", import.
 const allowedHosts = {
   openai: new Set(["developers.openai.com"]),
   anthropic: new Set(["platform.claude.com"]),
-  google: new Set(["ai.google.dev"]),
+  google: new Set(["ai.google.dev", "blog.google", "deepmind.google"]),
   deepseek: new Set(["api-docs.deepseek.com"]),
   typesafe: new Set(["typesafe.ai", "docs.typesafe.ai"]),
 };
@@ -25,7 +25,8 @@ for (const model of models) {
   const at = `model ${model.id ?? "(missing id)"}`;
   if (!model.id || ids.has(model.id)) errors.push(`${at}: missing or duplicate id`);
   ids.add(model.id);
-  if (!model.name || !model.provider?.id || !model.provider?.name || !model.apiModelId) errors.push(`${at}: missing identity fields`);
+  const hasApiModelId = typeof model.apiModelId === "string" && model.apiModelId.trim().length > 0;
+  if (!model.name || !model.provider?.id || !model.provider?.name || (!hasApiModelId && model.apiModelId !== null)) errors.push(`${at}: missing identity fields`);
   if (model.pricing?.currency !== "USD" || model.pricing?.unit !== "1M tokens") errors.push(`${at}: pricing currency and token unit must be explicit`);
   if (!Array.isArray(model.schedules) || !model.schedules.length) errors.push(`${at}: no pricing schedules`);
   if (!model.schedules?.some(({ id }) => id === model.defaultSchedule)) errors.push(`${at}: default schedule is missing`);
@@ -50,7 +51,8 @@ for (const model of models) {
     if (schedule.validFrom && schedule.validUntil && Date.parse(schedule.validFrom) > Date.parse(schedule.validUntil)) errors.push(`${at}/${schedule.id}: validFrom is after validUntil`);
     if (schedule.nextPricing != null) {
       const next = model.schedules.find(({ id }) => id === schedule.nextPricing.scheduleId);
-      if (!next || !validPricingDate(schedule.nextPricing.validFrom) || next.validFrom !== schedule.nextPricing.validFrom) errors.push(`${at}/${schedule.id}: nextPricing must reference a schedule with the same validFrom`);
+      const nextValidFrom = schedule.nextPricing.validFrom;
+      if (!next || (nextValidFrom !== null && !validPricingDate(nextValidFrom)) || next.validFrom !== nextValidFrom) errors.push(`${at}/${schedule.id}: nextPricing must reference a schedule with the same validFrom`);
     }
     if (schedule.pricingSchedule != null) {
       const pricingSchedule = schedule.pricingSchedule;

@@ -9,7 +9,7 @@ import type { ModelRecord } from "../lib/model-types";
 
 const modelRows = models as ModelRecord[];
 const providerRows = providers as { id: string; name: string }[];
-const popularIds = ["gpt-6-1-sol", "claude-sonnet-5-5", "gemini-3-8-flash", "deepseek-flash", "jev"];
+const popularIds = ["gpt-6-1-sol", "claude-sonnet-5-5", "gemini-4-argon", "gemini-3-8-flash", "deepseek-flash", "jev"];
 
 function money(value: number) {
   if (value === 0) return "$0.00";
@@ -49,7 +49,7 @@ function scheduleTerms(model: ModelRecord, schedule: ModelRecord["schedules"][nu
   terms.push(...(schedule.pricingNotes ?? []));
   if (schedule.nextPricing) {
     const next = model.schedules.find((item) => item.id === schedule.nextPricing?.scheduleId);
-    if (next) terms.push(`Next pricing: ${next.label} from ${schedule.nextPricing.validFrom} (${rate(next.input)} input / ${rate(next.output)} output per 1M tokens).`);
+    if (next) terms.push(`Next pricing: ${next.label}${schedule.nextPricing.validFrom ? ` from ${schedule.nextPricing.validFrom}` : "; effective date not announced"} (${rate(next.input)} input / ${rate(next.output)} output per 1M tokens).`);
   }
   return terms;
 }
@@ -86,7 +86,7 @@ export function ModelSearch() {
   const results = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     if (!normalized) return [];
-    return modelRows.filter((model) => `${model.name} ${model.provider.name} ${model.apiModelId}`.toLowerCase().includes(normalized)).slice(0, 8);
+    return modelRows.filter((model) => `${model.name} ${model.provider.name} ${model.apiModelId ?? ""}`.toLowerCase().includes(normalized)).slice(0, 8);
   }, [query]);
 
   return (
@@ -115,7 +115,7 @@ export function PopularModels() {
       return <article className="model-card" key={model.id}>
         <div className="model-card-top"><span className={`provider-mark provider-${model.provider.id}`}>{model.provider.name}</span><span className="last-checked">Checked {model.lastVerifiedAt}</span></div>
         <h3><Link href={modelHref(model)}>{model.name}</Link></h3>
-        <p className="api-id">{model.apiModelId}</p>
+        <p className="api-id">{model.apiModelId ?? "API model ID not published"}</p>
         <dl className="mini-specs">
           <div><dt>Input / 1M</dt><dd>{rate(price.input)}</dd></div>
           <div><dt>Output / 1M</dt><dd>{rate(price.output)}</dd></div>
@@ -168,7 +168,7 @@ export function PricingTable({ limit }: PricingTableProps) {
         <tbody>{shown.map((model) => {
           const selected = getActiveSchedule(model);
           return <tr key={model.id}>
-            <th scope="row"><Link href={modelHref(model)} className="model-name">{model.name}</Link><small>{model.apiModelId}</small></th>
+            <th scope="row"><Link href={modelHref(model)} className="model-name">{model.name}</Link><small>{model.apiModelId ?? "API model ID not published"}</small></th>
             <td>{model.provider.name}</td><td>{rate(selected.input)}</td><td>{rate(selected.cachedInput)}</td><td>{rate(selected.output)}</td><td className="other-pricing">{scheduleDetails(model, selected.id)}</td><td>{context(model.contextWindow)}</td><td>{model.apiStatus}</td><td>{model.lastVerifiedAt}<small>Default: {selected.label}</small></td><td><a href={priceSource(model).url} target="_blank" rel="noreferrer" onClick={() => trackEvent("external_official_link", { model_id: model.id, provider_id: model.provider.id, source_type: "pricing" })}>{priceSource(model).label}</a>{additionalPricingSources(model)}</td>
           </tr>;
         })}</tbody>

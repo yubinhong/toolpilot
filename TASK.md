@@ -1,13 +1,13 @@
 # TASK-008 — ToolPilot AI Model Pricing V1
 
 - Status: IN_PROGRESS (V1 deployed; production edge-cache purge and final smoke pending)
-- Date: 2026-09-30
+- Date: 2026-09-30–2026-10-01
 - Authorization: product owner confirmed replacement of the old product and exactly eight V1 public pages; remove old product routes, navigation, content, and data.
 - Goal: ship the eight-page AI model pricing platform defined in `docs/PRD-002-ai-model-pricing.md` and `docs/adr/0011-demand-driven-eight-page-v1.md`.
 - Required routes: `/`, `/pricing/`, `/calculator/`, `/compare/`, `/models/jev/`, `/about/`, `/privacy/`, `/terms/`.
 - Constraints: no `/models/` index, no generated model detail pages, no page-count expansion, no broad redirects, optional GSC/GA4 integrations with minimum-data event payloads, no AdSense runtime (empty reusable placement hooks only), retain static export and official-source-backed pricing.
 - Acceptance: exactly 8 registered/indexable URLs; exact 8-entry sitemap; every unknown legacy path returns a real 404; shared source-backed model data powers all model workflows; lint, typecheck, tests, build/artifact checks and local smoke pass.
-- Current evidence: official provider model/pricing documentation reviewed 2026-09-30. Local implementation, build, generated artifact checks, HTTP smoke, Pages preview, GitHub CI, and Cloudflare Pages deployment passed. Production pages, robots, and sitemap are updated; one ordinary request to a retired path still receives cached legacy HTML, so final production smoke remains open.
+- Current evidence: 15 shared model records have official sources and verification dates; Gemini 4 Argon was checked against Google's announcement, model overview, and Gemini API catalog on 2026-10-01. Local Cloudflare build, 30 tests, artifact checks, and Pages-compatible eight-page smoke pass. Production release of the Argon update is pending; an older retired path still receives cached legacy HTML, so final production smoke remains open.
 - Deployment authorization: user explicitly requested production deployment on 2026-09-30. A high-severity transitive `brace-expansion` advisory was fixed in `package-lock.json`; the release audit now reports zero vulnerabilities.
 - Rollback: revert the reviewed TASK-008 source/docs changes and redeploy the last reviewed Pages deployment; no database or external resource changes.
 
@@ -22,7 +22,7 @@
 - [x] Confirmed target page allowlist and explicit distinction between model data and SEO routes.
 - [x] Reviewed official API pricing/model documentation for OpenAI, Anthropic, Google, DeepSeek, and TypeSafe Jev.
 - [x] Replace legacy routes, navigation, data, and page components.
-- [x] Add model schema/loader and official-source records; 14 models are supported without generating detail pages.
+- [x] Add model schema/loader and official-source records; 15 models are supported without generating detail pages.
 - [x] Implement all eight V1 pages and the four non-rendering ad-slot mounts.
 - [x] Update tests and smoke checks for the exact allowlist and real 404s.
 - [x] Run lint, typecheck, tests, build/artifact checks, and local smoke.
@@ -61,6 +61,14 @@
 - No routes or sitemap entries were added; the eight-route allowlist remains unchanged. Local verification: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` passed. Build artifact checks confirmed exactly eight exported content pages and eight sitemap URLs, plus schedule messaging on Pricing, Calculator, and Compare.
 - Deployment: commit `57f0c1139dd91a70d6b3468eda2e605c3a27e164` was pushed to `main`; GitHub CI run `36740925343` and Cloudflare Pages check/deployment `f7f4f754-d19b-4a77-a4e9-49b2b3fa21a8` passed. Immutable preview `https://f7f4f754.toolpilot-git.pages.dev` passed the complete eight-page, sitemap, robots, and removed-route smoke. Production canonical pages and the eight-URL sitemap pass; direct checks confirmed the updated Pricing, Calculator, Compare, and Jev content. Production smoke still flags `/tools/` returning cached legacy noindex HTML (`Age: 98320`); a unique query string returns the expected 404. `CLOUDFLARE_API_TOKEN` is absent, so the old edge cache could not be purged.
 - Rollback: restore the previous verified Cloudflare Pages deployment if the new pricing data or rendering is incorrect; alternatively revert the scoped pricing schema/data/UI/test/documentation changes, push the revert, and repeat production smoke. No database or external configuration migration is involved.
+
+### Gemini 4 Argon shared catalog follow-up — 2026-10-01
+
+- Added Gemini 4 Argon to the shared Google model data, homepage Popular Models and Latest Models, Pricing, Calculator selection, and Compare selection. No public page or sitemap route was added; Jev remains the sole model detail page.
+- Official Google sources confirm release announcement date 2026-09-30, introductory input/output rates of $2/$10 per 1M tokens, cached introductory input at 95% below input price ($0.10), and post-introductory rates of $4/$20. Google has not published the introductory effective/end date or standard cached-input rate. The announcement describes a limited Fairwind rollout and future broader paid API availability; the public Gemini API catalog does not list an Argon API model ID. The published 1M figure is an output-token limit, so `contextWindow` remains null.
+- Source URLs: [Google announcement](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/), [Google DeepMind model overview](https://deepmind.google/models/gemini/), and [Gemini API model catalog](https://ai.google.dev/gemini-api/docs/models). `lastVerifiedAt` is `2026-10-01`.
+- Local verification — Node `v22.23.2` / npm `10.9.8`: `npm run models:check`, `npm test` (30/30), `npm run lint`, `npm run typecheck`, `npm run cloudflare:build`, `npm audit --audit-level=high` (0 vulnerabilities), and local Wrangler Pages `npm run smoke` all passed. Export has exactly eight content pages and eight sitemap URLs. Production deployment is pending.
+- Rollback: revert the Argon record and associated nullable-ID/date handling, homepage selection/rendering, regression checks, and documentation, then rebuild and deploy through the existing Pages Git Integration. No database or external service state changed.
 
 ---
 

@@ -17,7 +17,7 @@ export type PriceSchedule = PriceRates & {
   priceType?: "standard" | "introductory" | "time_based";
   validFrom?: string | null;
   validUntil?: string | null;
-  nextPricing?: { scheduleId: string; validFrom: string } | null;
+  nextPricing?: { scheduleId: string; validFrom: string | null } | null;
   pricingSchedule?: PricingScheduleRule;
   pricingNotes?: string[];
   cacheWriteOptions?: { label: string; rate: number }[];
@@ -29,7 +29,7 @@ export type ModelRecord = {
   id: string;
   name: string;
   provider: { id: string; name: string };
-  apiModelId: string;
+  apiModelId: string | null;
   landingPath: string | null;
   apiStatus: string;
   pricing: { currency: string; unit: string };

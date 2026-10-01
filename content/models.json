@@ -170,6 +170,55 @@
     "lastVerifiedAt": "2026-09-30"
   },
   {
+    "id": "gemini-4-argon",
+    "name": "Gemini 4 Argon",
+    "provider": { "id": "google", "name": "Google" },
+    "apiModelId": null,
+    "landingPath": null,
+    "apiStatus": "Limited Fairwind rollout; broader paid API access pending",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": null,
+    "releaseDate": "2026-09-30",
+    "capabilities": ["Long-horizon reasoning", "Coding", "Multimodal understanding", "Defensive cybersecurity", "Output limit up to 1M tokens"],
+    "useCases": ["Complex software engineering", "Enterprise knowledge work", "Defensive cybersecurity"],
+    "officialUrl": "https://deepmind.google/models/gemini/",
+    "defaultSchedule": "introductory",
+    "schedules": [
+      {
+        "id": "introductory",
+        "label": "Introductory (announced)",
+        "priceType": "introductory",
+        "validFrom": null,
+        "validUntil": null,
+        "nextPricing": { "scheduleId": "standard", "validFrom": null },
+        "pricingSchedule": { "type": "effective_date" },
+        "pricingNotes": ["Google announced introductory rates of $2 input / $10 output per 1M tokens. The introductory period and effective dates are not published; broader paid API access is pending."],
+        "input": 2,
+        "cachedInput": 0.1,
+        "output": 10
+      },
+      {
+        "id": "standard",
+        "label": "Standard after introductory period",
+        "priceType": "standard",
+        "validFrom": null,
+        "validUntil": null,
+        "nextPricing": null,
+        "pricingSchedule": { "type": "effective_date" },
+        "pricingNotes": ["Google announced $4 input / $20 output per 1M tokens after the introductory period. The effective date and standard cached-input price are not published."],
+        "input": 4,
+        "cachedInput": null,
+        "output": 20
+      }
+    ],
+    "sources": [
+      { "label": "Official announced pricing", "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/" },
+      { "label": "Official model overview", "url": "https://deepmind.google/models/gemini/" },
+      { "label": "Gemini API model catalog", "url": "https://ai.google.dev/gemini-api/docs/models" }
+    ],
+    "lastVerifiedAt": "2026-10-01"
+  },
+  {
     "id": "gemini-3-8-flash",
     "name": "Gemini 3.8 Flash",
     "provider": { "id": "google", "name": "Google" },
