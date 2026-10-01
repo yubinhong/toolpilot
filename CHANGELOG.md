@@ -1,12 +1,14 @@
 # Changelog
 
-## Unreleased — TASK-009 Argon SEO and data accuracy (2026-10-01)
+## TASK-009 — deployed 2026-10-01; production smoke follow-up open
 
 - Add `/models/gemini-4-argon/` as the ninth explicitly approved indexable page; keep Jev as the only other model landing page and retain the nine-route cap.
 - Record Google's announced Argon introductory and later token rates, cached-input discount, limited Fairwind rollout, unknown input context, and 1M maximum output-token limit from official Google sources.
 - Add explicit shared pricing state and make `not_public` rates unavailable to Calculator and Compare; show official announced rates as announced rather than generally available.
 - Reuse one data-driven landing template for Jev and Argon, add verified FAQs/benchmark notes, and add Pricing and Calculator cost-method copy.
-- Update canonical, route, sitemap, artifact, and HTTP smoke contracts for exactly nine pages. Verification and release outcome: pending TASK-009 closeout.
+- Update canonical, route, sitemap, artifact, and HTTP smoke contracts for exactly nine pages.
+- Deploy commit `d7d42e5` through Cloudflare Pages Git Integration; clean-worktree release check, 34 tests, build/artifact checks, zero-vulnerability audit, CI, and Pages deployment passed. Production pages, metadata, canonical URLs, robots, and exact sitemap are verified.
+- Production smoke still detects stale old HTML at `/tools/` through Node fetch, although current Pages, curl, and a unique-query request return 404. A Cloudflare API token is unavailable for cache purge; the full custom-domain smoke remains open.
 
 ## TASK-008 AI Model Pricing V1 (deployed 2026-09-30–2026-10-01)
 

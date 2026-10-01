@@ -32,7 +32,8 @@ This follow-up supersedes only the eight-route limit in TASK-008/ADR-0011. The o
 - [x] Update route/sitemap/export/smoke contracts to exactly nine approved pages.
 - [x] Add focused tests for announced/not-public/not-applicable prices and route artifacts.
 - [x] Run `npm run cloudflare:build` and local smoke; all checks passed.
-- [ ] Review final diff, update task/release docs, and deploy under existing explicit authorization.
+- [x] Review final diff, sync task/release docs, and deploy commit `d7d42e5`; clean release readiness, CI, Cloudflare Pages check, build, audit, and local/preview smoke passed.
+- [ ] Purge or otherwise resolve the `/tools/` response variation at the production custom domain, then rerun `SMOKE_BASE_URL=https://toolpilot.cc npm run smoke`; current Node fetch still gets aged legacy HTML while curl and the Pages alias return 404.
 
 ## Source findings
 
