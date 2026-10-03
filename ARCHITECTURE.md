@@ -44,7 +44,7 @@ Client components are statically rendered by Next.js and hydrate for filtering a
 
 ## SEO and Static Artifacts
 
-Every page has unique title, description, self canonical, robots directive, Open Graph title/description/URL, and Twitter card metadata. Homepage structured data uses `WebSite` and `WebApplication`; nested routes include visible breadcrumbs with `BreadcrumbList`. There is no FAQ structured data.
+Every page has unique title, description, self canonical, robots directive, Open Graph title/description/URL, Twitter card metadata, and the shared branded SVG favicon. The same favicon is used as the header mark and is copied into the static export. Homepage structured data uses `WebSite` and `WebApplication`; nested routes include visible breadcrumbs with `BreadcrumbList`. There is no FAQ structured data.
 
 GSC verification metadata and GA4 are build-time optional. Analytics events use a fixed payload allowlist, strip query strings from page locations, and never include calculator counts or raw search text. With the measurement ID unset, no Google Analytics script is emitted.
 

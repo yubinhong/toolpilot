@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const primaryLinks = [
@@ -11,7 +12,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="shell header-inner">
         <Link className="brand" href="/" aria-label="ToolPilot home">
-          <span className="brand-mark">TP</span>
+          <Image className="brand-mark" src="/favicon.svg" alt="" width={30} height={30} />
           <span>ToolPilot</span>
         </Link>
         <nav className="primary-nav" aria-label="Primary navigation">

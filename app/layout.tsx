@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: { default: "ToolPilot - AI Model Pricing & API Cost Calculator", template: "%s | ToolPilot" },
   description: "Compare AI model API pricing, calculate token costs, and find the right AI model for your application.",
+  icons: { icon: "/favicon.svg" },
   ...(searchConsoleVerification ? { verification: { google: searchConsoleVerification } } : {}),
 };
 

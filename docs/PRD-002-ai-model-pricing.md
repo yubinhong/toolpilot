@@ -60,6 +60,7 @@ Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model land
 ## SEO and URL Migration
 
 - Every allowlisted page has unique title, description, self-canonical, Open Graph metadata, and indexability assertions.
+- All public pages use the shared branded SVG icon in browser metadata and the site header.
 - `sitemap.xml` contains exactly the nine allowlisted URLs. `robots.txt` allows crawling and points to the sitemap.
 - Use `WebSite`, `WebApplication`, and `BreadcrumbList` structured data only where appropriate. Add `FAQPage` only where visible page content contains a real FAQ.
 - Retain `/pricing/` and `/compare/` but replace their content completely.
@@ -73,6 +74,7 @@ No accounts, database, server API, provider integration, user comments, blog, ad
 ## Acceptance
 
 - The explicit route registry has exactly nine page routes; only these are indexable and listed in the sitemap.
+- The branded SVG site icon is exported and referenced by every public page.
 - All models in the data layer have official pricing/source records and a dated verification timestamp, or explicit unknown values where official data is unavailable.
 - Pricing, Calculator, Compare, Jev, and Gemini 4 Argon read the same validated model records.
 - New model data does not create a route.

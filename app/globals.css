@@ -36,7 +36,7 @@ p { margin-bottom: 16px; }
 .site-header { position: relative; z-index: 2; border-bottom: 1px solid var(--line); background: var(--surface); }
 .header-inner { display: flex; min-height: 66px; align-items: center; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 18px; font-weight: 800; }
-.brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid var(--green); color: var(--green); font-size: 11px; }
+.brand-mark { display: block; width: 30px; height: 30px; flex: none; }
 .primary-nav { display: flex; align-items: center; gap: 24px; margin-left: auto; color: var(--muted); font-size: 14px; font-weight: 700; }
 .primary-nav a:hover, .footer-links a:hover, .text-link:hover, .model-card-actions a:hover, .search-actions a:hover { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
 .header-action { padding: 8px 11px; border: 1px solid var(--green); color: var(--green-dark); font-size: 13px; font-weight: 700; }

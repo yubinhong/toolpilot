@@ -97,6 +97,7 @@
 
 ### Added
 
+- Add a branded SVG favicon and use the same mark in the site header; check that the asset and icon link are present on all nine exported pages.
 - Add noindex `/mcp/` and `/self-hosted/` evidence overview routes to global navigation. Render source-bound draft facts, exact official source links and explicit review status; defer deep directories and filters to P2.
 - Extend current-profile smoke coverage for `/tools/` query URLs: require HTTP 200, `noindex, follow`, and canonicalization to the parameter-free directory route. This tests indexing policy only; no filter behavior was added. Commit `32815d6` passed clean release readiness, CI `36485953592`, Pages deployment/check `0cf501cf`, and preview/production current smoke plus direct query/noindex/canonical/sitemap assertions.
 - Record Continue's Cursor acquisition/code-availability statement, CLI access requirements and conflicting README/JetBrains Marketplace lifecycle claims. Refresh its profile and two dependent decision drafts plus the exact TASK-006 review manifest; preserve unresolved package support, security response, billing and data terms. All records remain in-review/noindex.

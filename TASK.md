@@ -16,6 +16,14 @@
 - Production: `https://toolpilot.cc/models/gemini-4-argon/` and `https://toolpilot-git.pages.dev/models/gemini-4-argon/` return HTTP 200. All nine approved routes return HTTP 200 with unique title/description, self-canonical and `index, follow`; the production sitemap has exactly the nine approved URLs and `robots.txt` allows `/models/`.
 - Production smoke: `SMOKE_BASE_URL=https://toolpilot.cc npm run smoke` fails only on `/tools/`, where Node fetch receives the old developer-tool HTML with HTTP 200, `Age: 175451`, and `Cache-Control: public, s-maxage=604800`. The current Pages alias and direct curl requests return the expected 404; a unique-query request through Node fetch also returns 404. This request-path/cache variation matches the previously observed edge-cache issue. `wrangler pages deployment list` could not run because `CLOUDFLARE_API_TOKEN` is unavailable, so the cache could not be inspected or purged. Repeat production smoke after an authorized cache purge; do not mark this gate passed until then.
 
+### Site icon follow-up — 2026-10-02
+
+- Authorization: the user requested a designed website icon.
+- Design: a deep-green square with pale pricing bars and a warm-gold rising route, matching the existing palette and ToolPilot's model-pricing purpose.
+- Implementation: use `public/favicon.svg` in root metadata and the shared site header; artifact checks require the exported file and links on all nine pages.
+- Verification: `npm run cloudflare:build` passed lint, typecheck, 34 tests, model validation, static export, and artifact checks; `git diff --check` passed. `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke` passed all nine routes and retired-path checks, and `/favicon.svg` returned HTTP 200 with `image/svg+xml`.
+- Rollback: revert the favicon, metadata/header references, artifact assertion, and this documentation entry; no route, pricing data, or deployment configuration changes are involved.
+
 # TASK-008 — ToolPilot AI Model Pricing V1 (historical)
 
 - Status: SUPERSEDED (V1 implementation deployed; legacy edge-cache verification was still pending when TASK-009 began)

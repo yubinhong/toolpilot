@@ -23,6 +23,7 @@ Static export does not support `next start`. For a Pages-compatible local HTTP s
 ## Required Invariants
 
 - Exactly nine content routes are registered, exported, indexable, and listed in `sitemap.xml`.
+- The branded `favicon.svg` exists in the static export and every page links to it as the site icon and uses it as the header mark.
 - Model data does not generate detail routes; Jev and Gemini 4 Argon are the only explicitly approved detail routes.
 - `not_public` rates never produce numeric cost estimates; `not_applicable` output billing is not represented as a zero rate.
 - Argon's 1M value is labeled as an output-token limit; no input context window is inferred.

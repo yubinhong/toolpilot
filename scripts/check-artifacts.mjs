@@ -42,6 +42,10 @@ else {
   if (/Disallow:\s*\/models\//i.test(robots)) failures.push("robots.txt must not block /models/");
 }
 
+const faviconPath = "out/favicon.svg";
+if (!existsSync(faviconPath)) failures.push("missing exported favicon.svg");
+else if (!/viewBox="0 0 48 48"/.test(readFileSync(faviconPath, "utf8"))) failures.push("favicon.svg must be a valid 48px vector site icon");
+
 const metadata = [];
 for (const route of routes) {
   const output = join("out", route.path, "index.html");
@@ -50,6 +54,9 @@ for (const route of routes) {
     continue;
   }
   const html = readFileSync(output, "utf8");
+  const iconLink = [...html.matchAll(/<link\b[^>]*>/g)].some(([link]) => /\brel="icon"/.test(link) && /\bhref="\/favicon\.svg(?:\?[^\"]*)?"/.test(link));
+  if (!iconLink) failures.push(`${route.path}: missing favicon link`);
+  if (!html.includes('class="brand-mark"') || !html.includes('src="/favicon.svg"')) failures.push(`${route.path}: missing shared header brand icon`);
   try {
     if (injectCspMeta(html) !== html) failures.push(`${route.path}: missing CSP meta or script hashes do not match this document`);
   } catch (error) {
