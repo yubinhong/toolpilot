@@ -1,6 +1,12 @@
 # RUNBOOK.md
 
-## TASK-009 Argon SEO and data accuracy (2026-10-01)
+## TASK-009 Site icon release (2026-10-03)
+
+Commit `d9f4cbfb699fb6f5f73da834d195b37123e4cc6d` added the branded SVG favicon and shared header mark. Clean-worktree release readiness, `npm ci`, `npm run cloudflare:build` (34 tests), `npm audit --audit-level=high` (0 vulnerabilities), and local Pages smoke passed. GitHub CI run `37084540049` and Cloudflare Pages deployment/check `c5563283-a051-4a4a-b1fe-1ce102bd1fca` succeeded; immutable preview: `https://c5563283.toolpilot-git.pages.dev`.
+
+Production verification: `https://toolpilot.cc/favicon.svg` returns HTTP 200 with `image/svg+xml` and its body matches the committed `public/favicon.svg`. The production homepage references the icon. Full smoke passed on both `https://toolpilot.cc` and the immutable preview for all nine pages, exact sitemap, robots, and retired-path 404s. The stale `/tools/` response observed on 2026-10-01 is no longer present in the current production smoke.
+
+## TASK-009 Argon SEO and data accuracy (initial release 2026-10-01; smoke follow-up passed 2026-10-03)
 
 The approved route contract is exactly nine pages, including `/models/gemini-4-argon/`; Jev and Argon share one model landing template. Commit `d7d42e5f6403881ebb4b6fa59bfe54adc0b65bfa` was pushed to `main`; GitHub CI run `36806593251` and Cloudflare Pages check/deployment `ab9b53b2-0bda-49c6-9ba0-bd7e85a50a88` succeeded. Production Argon and all nine canonical routes return HTTP 200; the sitemap has exactly nine URLs and robots allows `/models/`. Local Node 22 checks passed 34 tests, model validation, lint, typecheck, static export/artifact validation, and Wrangler Pages smoke. The production smoke remains open: Node fetch receives stale legacy HTML at `/tools/` (HTTP 200, `Age: 175451`, `Cache-Control: public, s-maxage=604800`), while the Pages alias and curl return 404 and a unique-query Node request returns 404. No `CLOUDFLARE_API_TOKEN` is available to inspect or purge the response variation; repeat full production smoke after an authorized cache purge. Google officially announced Argon's `$2/$10` introductory input/output rates, 95% cached-input discount, and `$4/$20` post-intro rates; access remains limited and effective dates are unannounced. The 1M figure is a maximum output-token limit, while input context remains unknown.
 

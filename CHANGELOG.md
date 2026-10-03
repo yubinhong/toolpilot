@@ -1,6 +1,6 @@
 # Changelog
 
-## TASK-009 — deployed 2026-10-01; production smoke follow-up open
+## TASK-009 — deployed 2026-10-01; production smoke passed 2026-10-03
 
 - Add `/models/gemini-4-argon/` as the ninth explicitly approved indexable page; keep Jev as the only other model landing page and retain the nine-route cap.
 - Record Google's announced Argon introductory and later token rates, cached-input discount, limited Fairwind rollout, unknown input context, and 1M maximum output-token limit from official Google sources.
@@ -8,7 +8,8 @@
 - Reuse one data-driven landing template for Jev and Argon, add verified FAQs/benchmark notes, and add Pricing and Calculator cost-method copy.
 - Update canonical, route, sitemap, artifact, and HTTP smoke contracts for exactly nine pages.
 - Deploy commit `d7d42e5` through Cloudflare Pages Git Integration; clean-worktree release check, 34 tests, build/artifact checks, zero-vulnerability audit, CI, and Pages deployment passed. Production pages, metadata, canonical URLs, robots, and exact sitemap are verified.
-- Production smoke still detects stale old HTML at `/tools/` through Node fetch, although current Pages, curl, and a unique-query request return 404. A Cloudflare API token is unavailable for cache purge; the full custom-domain smoke remains open.
+- The initial 2026-10-01 production smoke observed a stale `/tools/` response. The 2026-10-03 production smoke passed all nine routes, the exact sitemap, robots, and retired-path 404s.
+- Add and deploy the branded SVG site icon in commit `d9f4cbf`; GitHub CI `37084540049` and Cloudflare Pages deployment/check `c5563283-a051-4a4a-b1fe-1ce102bd1fca` passed. The custom domain and immutable preview both serve the icon and pass full smoke.
 
 ## TASK-008 AI Model Pricing V1 (deployed 2026-09-30–2026-10-01)
 
@@ -97,7 +98,6 @@
 
 ### Added
 
-- Add a branded SVG favicon and use the same mark in the site header; check that the asset and icon link are present on all nine exported pages.
 - Add noindex `/mcp/` and `/self-hosted/` evidence overview routes to global navigation. Render source-bound draft facts, exact official source links and explicit review status; defer deep directories and filters to P2.
 - Extend current-profile smoke coverage for `/tools/` query URLs: require HTTP 200, `noindex, follow`, and canonicalization to the parameter-free directory route. This tests indexing policy only; no filter behavior was added. Commit `32815d6` passed clean release readiness, CI `36485953592`, Pages deployment/check `0cf501cf`, and preview/production current smoke plus direct query/noindex/canonical/sitemap assertions.
 - Record Continue's Cursor acquisition/code-availability statement, CLI access requirements and conflicting README/JetBrains Marketplace lifecycle claims. Refresh its profile and two dependent decision drafts plus the exact TASK-006 review manifest; preserve unresolved package support, security response, billing and data terms. All records remain in-review/noindex.

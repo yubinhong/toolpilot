@@ -1,27 +1,30 @@
 ## TASK-009 — Argon SEO and Data Accuracy Follow-up
 
-- Status: IN_PROGRESS (release deployed; production retired-path smoke remains unresolved)
+- Status: COMPLETED (deployed; production smoke passed 2026-10-03)
 - Date: 2026-10-01
 - Authorization: the product owner explicitly approved Gemini 4 Argon as the ninth public page after a new demand signal. No tenth page or other IA change is authorized.
 - Goal: verify Argon facts against Google sources; render official price/access/token-limit states accurately; share landing-page structure with Jev; update all nine-page SEO/build/test contracts.
 - Required routes: `/`, `/pricing/`, `/calculator/`, `/compare/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, `/terms/`.
 - Source finding: Google's Sep 30 announcement publishes introductory `$2/M` input, `$10/M` output and cached input at 95% off, followed by `$4/M` and `$20/M` rates after the introductory period. The period/effective dates are not stated. The API remains limited to Fairwind rollout; an Argon ID is absent from the public Gemini API catalog checked on Oct 1. The 1M figure is a maximum output-token limit; context window remains unknown.
 - Constraints: no generated model pages, no tenth route, no broad redirects, no third-party pricing sources, no inferred price/context, no CMS/database/server API, no unrelated UI redesign.
-- Acceptance: exact nine indexable routes and sitemap URLs; shared `pricingStatus` fails closed for `not_public`; Argon appears in discovery/Pricing/Calculator/Compare and has an accurate landing page; Jev uses the same template and includes FAQ; all pages self-canonical; old paths return 404 from the current Pages artifact. Local quality gates pass. Production full smoke remains blocked by a stale legacy response for `/tools/`.
+- Acceptance: exact nine indexable routes and sitemap URLs; shared `pricingStatus` fails closed for `not_public`; Argon appears in discovery/Pricing/Calculator/Compare and has an accurate landing page; Jev uses the same template and includes FAQ; all pages self-canonical; old paths return 404 from the current Pages artifact. Local quality gates and production full smoke pass.
 - Rollback: revert reviewed TASK-009 changes and redeploy the last reviewed Pages artifact; remove route and page together if Argon page approval is withdrawn. No data-store or Cloudflare setting migration is needed.
 - Progress: official Google announcement, model overview, evaluation methodology, and API catalog checked; exact nine-route allowlist and two explicit landing pages are enforced.
 - Local verification — Node `v22.23.2` / npm `10.9.8`: `npm run cloudflare:build` passed ESLint, TypeScript, 34/34 tests, model/source/schema checks, static Next export, CSP/header generation, and artifact validation. `npm run smoke` against Wrangler Pages at `http://127.0.0.1:4173` passed nine indexable URLs, exact sitemap, robots, and retired-path 404s. `npm audit --audit-level=high` found 0 vulnerabilities; `git diff --check` passed.
 - Static output: exactly nine content pages and nine sitemap URLs; all nine have self-canonical, unique title/description, and `index, follow`. No other public model detail route or `/models/` index was exported.
 - Release: commit `d7d42e5f6403881ebb4b6fa59bfe54adc0b65bfa` was pushed to `main`. Clean-worktree `npm run release:check`, `npm ci`, `npm run cloudflare:build`, `npm audit --audit-level=high` (0 vulnerabilities), and detached-worktree Wrangler smoke passed. GitHub CI run `36806593251` and Cloudflare Pages check/deployment `ab9b53b2-0bda-49c6-9ba0-bd7e85a50a88` succeeded.
 - Production: `https://toolpilot.cc/models/gemini-4-argon/` and `https://toolpilot-git.pages.dev/models/gemini-4-argon/` return HTTP 200. All nine approved routes return HTTP 200 with unique title/description, self-canonical and `index, follow`; the production sitemap has exactly the nine approved URLs and `robots.txt` allows `/models/`.
-- Production smoke: `SMOKE_BASE_URL=https://toolpilot.cc npm run smoke` fails only on `/tools/`, where Node fetch receives the old developer-tool HTML with HTTP 200, `Age: 175451`, and `Cache-Control: public, s-maxage=604800`. The current Pages alias and direct curl requests return the expected 404; a unique-query request through Node fetch also returns 404. This request-path/cache variation matches the previously observed edge-cache issue. `wrangler pages deployment list` could not run because `CLOUDFLARE_API_TOKEN` is unavailable, so the cache could not be inspected or purged. Repeat production smoke after an authorized cache purge; do not mark this gate passed until then.
+- Historical production smoke (2026-10-01): Node fetch received stale developer-tool HTML at `/tools/` (HTTP 200, `Age: 175451`, `Cache-Control: public, s-maxage=604800`); direct requests and the Pages alias returned 404. The 2026-10-03 production smoke after the icon follow-up passed, including all retired-path checks.
 
 ### Site icon follow-up — 2026-10-02
 
 - Authorization: the user requested a designed website icon.
+- Deployment authorization: the user explicitly requested deployment on 2026-10-03.
 - Design: a deep-green square with pale pricing bars and a warm-gold rising route, matching the existing palette and ToolPilot's model-pricing purpose.
 - Implementation: use `public/favicon.svg` in root metadata and the shared site header; artifact checks require the exported file and links on all nine pages.
 - Verification: `npm run cloudflare:build` passed lint, typecheck, 34 tests, model validation, static export, and artifact checks; `git diff --check` passed. `SMOKE_BASE_URL=http://127.0.0.1:4173 npm run smoke` passed all nine routes and retired-path checks, and `/favicon.svg` returned HTTP 200 with `image/svg+xml`.
+- Release: commit `d9f4cbfb699fb6f5f73da834d195b37123e4cc6d` was pushed to `main`; GitHub CI run `37084540049` and Cloudflare Pages deployment/check `c5563283-a051-4a4a-b1fe-1ce102bd1fca` succeeded. Clean-worktree release readiness, `npm ci`, Cloudflare build (34 tests), high-severity audit (0 vulnerabilities), and immutable-preview smoke passed.
+- Production verification: `https://toolpilot.cc/favicon.svg` returns HTTP 200 as `image/svg+xml` and matches the committed asset. The production homepage references `/favicon.svg`; production and immutable-preview smoke passed all nine pages, exact sitemap, robots, and retired-path 404s.
 - Rollback: revert the favicon, metadata/header references, artifact assertion, and this documentation entry; no route, pricing data, or deployment configuration changes are involved.
 
 # TASK-008 — ToolPilot AI Model Pricing V1 (historical)
