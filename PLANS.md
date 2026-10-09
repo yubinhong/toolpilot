@@ -20,7 +20,7 @@ The product owner explicitly approved the exact comparison route `/compare/gpt-6
 4. [x] Commit only this task's changes and push the feature branch (`bf775f4`, `ea2ba2e`).
 5. [x] Update vulnerable build dependencies to verified patched versions and replace the Next ESLint config with an equivalent maintained flat-config toolchain that does not pull `braces`; keep meaningful TypeScript, React-hooks, and accessibility lint coverage.
 6. [x] Verify the generated `sitemap.xml` contains exactly the ten approved routes; clean install, audit, lint, typecheck, tests, static build, and Wrangler smoke passed. Run clean-worktree release readiness after committing.
-7. [ ] Merge to `main`, push to trigger Cloudflare Pages, and record deployment and production verification evidence.
+7. [x] Fast-forward merge to `main`, push, and record successful GitHub CI, Cloudflare Pages deployment, and production route/sitemap smoke evidence.
 
 ## Source findings
 

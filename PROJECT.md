@@ -13,7 +13,7 @@ ToolPilot helps users answer how much an AI model/API will cost for a workload a
 
 ## V1 Scope
 
-The ten approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The GPT 6.1 Sol vs Astra article is a single owner-approved comparison page; no general or batch comparison pages are generated. The 2026-10-09 production release is in progress; TASK.md and RUNBOOK.md will record its final commit and smoke evidence.
+The ten approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The GPT 6.1 Sol vs Astra article is a single owner-approved comparison page; no general or batch comparison pages are generated. All ten routes are live on production; the TASK-010 merge, deployment, and smoke evidence are recorded in TASK.md and RUNBOOK.md.
 
 The model database lives in `content/models.json`. The homepage, pricing page, calculator, comparison page, GPT 6.1 Sol vs Astra article, and Jev/Argon detail pages read the same records. Each price record includes an official source and verification date; unknown values remain unknown. Model records do not create SEO routes. Jev and Gemini 4 Argon are the only approved detail pages.
 

@@ -1,5 +1,11 @@
 # RUNBOOK.md
 
+## TASK-010 comparison page and dependency security release (2026-10-09)
+
+Commit `7ddda64fe18b6aa97fe3b59d95c104a37977a9eb` fast-forwarded `main` and deployed the approved `/compare/gpt-6-1-sol-vs-astra/` page. It also updates Next.js to 16.3.8, `sharp` to 0.35.5, and `source-map-js` to 1.2.2, and replaces the vulnerable `eslint-config-next` dependency chain with ESLint flat configs for TypeScript, React, React Hooks, and JSX accessibility. No `braces` dependency path remains.
+
+On Node 22.23.2/npm 10.9.8, clean `npm ci`, `npm run release:check`, `npm run cloudflare:build` (34 tests), and `npm audit --audit-level=high` (0 vulnerabilities) passed. GitHub CI run `37874166631` and Cloudflare Pages deployment/check `022f2028-b6e7-452b-957e-41c7ea24620c` succeeded. Local Wrangler and production smoke passed all ten routes, exact ten-URL sitemap, robots, and retired-path 404s. The article renders 866 Han characters and 4.85% keyword density. Wrangler deployment-list inspection was unavailable because no `CLOUDFLARE_API_TOKEN` is configured; the Pages GitHub check and public production smoke confirm deployment.
+
 ## TASK-009 Site icon release (2026-10-03)
 
 Commit `d9f4cbfb699fb6f5f73da834d195b37123e4cc6d` added the branded SVG favicon and shared header mark. Clean-worktree release readiness, `npm ci`, `npm run cloudflare:build` (34 tests), `npm audit --audit-level=high` (0 vulnerabilities), and local Pages smoke passed. GitHub CI run `37084540049` and Cloudflare Pages deployment/check `c5563283-a051-4a4a-b1fe-1ce102bd1fca` succeeded; immutable preview: `https://c5563283.toolpilot-git.pages.dev`.
