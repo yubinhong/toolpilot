@@ -4,11 +4,11 @@ The product owner explicitly approved the exact comparison route `/compare/gpt-6
 
 ## Goal and constraints
 
-- Add one Chinese price and use-case article for the requested keyword, using the existing static App Router and exact sitemap contract.
+- Maintain one English-only price and use-case article for the requested keyword, using the existing static App Router and exact sitemap contract.
 - Keep prices in `content/models.json`; use official OpenAI API pricing and model documentation, and refresh the two records' `lastVerifiedAt` dates.
 - Preserve only two independent model-detail routes. Do not create generic comparison generation or additional SEO pages.
 - Record the release-week demand signal, exact SERP intent, independent discussion signal, official facts, and the absence of a verified search-volume figure.
-- The article has 600–1,000 Han characters, includes the keyword in the metadata title and H1–H6, and targets 3–5% phrase density using the rendered Chinese word count.
+- The article has 600–1,000 English words and no Han characters, includes the keyword in the metadata title and H1–H6, and targets 3–5% phrase density using the rendered English word count.
 - The product owner authorized dependency remediation, merge, push, and production deployment on 2026-10-09. GitHub has no remote `master`; Cloudflare production is connected to `main`.
 - Do not suppress or waive high-severity audit findings. Prefer published upstream fixes; remove the unpatched `braces` development dependency path rather than consuming an unmerged patch.
 
@@ -21,6 +21,7 @@ The product owner explicitly approved the exact comparison route `/compare/gpt-6
 5. [x] Update vulnerable build dependencies to verified patched versions and replace the Next ESLint config with an equivalent maintained flat-config toolchain that does not pull `braces`; keep meaningful TypeScript, React-hooks, and accessibility lint coverage.
 6. [x] Verify the generated `sitemap.xml` contains exactly the ten approved routes; clean install, audit, lint, typecheck, tests, static build, and Wrangler smoke passed. Run clean-worktree release readiness after committing.
 7. [x] Fast-forward merge to `main`, push, and record successful GitHub CI, Cloudflare Pages deployment, and production route/sitemap smoke evidence.
+8. [ ] Replace the article copy with English-only text, enforce the English word-count and density contract, then push and verify the updated production page.
 
 ## Source findings
 

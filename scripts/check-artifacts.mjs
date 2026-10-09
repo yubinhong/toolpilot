@@ -113,12 +113,14 @@ const articleText = articleHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "
 const keyword = "gpt 6.1 sol vs astra";
 const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const keywordCount = [...articleText.matchAll(new RegExp(escapedKeyword, "gi"))].length;
-const hanCount = [...articleText].filter((character) => /\p{Script=Han}/u.test(character)).length;
-const articleWordCount = [...new Intl.Segmenter("zh-CN", { granularity: "word" }).segment(articleText)].filter(({ isWordLike }) => isWordLike).length;
+const articleWordCount = [...new Intl.Segmenter("en-US", { granularity: "word" }).segment(articleText)].filter(({ isWordLike }) => isWordLike).length;
 const keywordWordCount = keyword.split(/\s+/u).length;
 const keywordDensity = articleWordCount ? keywordCount * keywordWordCount / articleWordCount * 100 : 0;
+const articleTitle = solVsAstraHtml.match(/<title>([^<]+)<\/title>/i)?.[1]?.toLowerCase() ?? "";
 if (!articleHtml) failures.push("/compare/gpt-6-1-sol-vs-astra/: missing article content");
-if (hanCount < 600 || hanCount > 1000) failures.push(`/compare/gpt-6-1-sol-vs-astra/: expected 600-1,000 Han characters, found ${hanCount}`);
+if (articleWordCount < 600 || articleWordCount > 1000) failures.push(`/compare/gpt-6-1-sol-vs-astra/: expected 600-1,000 English words, found ${articleWordCount}`);
+if (/\p{Script=Han}/u.test(articleText)) failures.push("/compare/gpt-6-1-sol-vs-astra/: article content must be English without Han characters");
+if (!articleTitle.includes(keyword)) failures.push("/compare/gpt-6-1-sol-vs-astra/: keyword must appear in the HTML title");
 if (keywordDensity < 3 || keywordDensity > 5) failures.push(`/compare/gpt-6-1-sol-vs-astra/: expected 3-5% keyword density, found ${keywordDensity.toFixed(2)}% (${keywordCount}/${articleWordCount} words)`);
 for (let level = 1; level <= 6; level += 1) {
   const headings = [...articleHtml.matchAll(new RegExp(`<h${level}\\b[^>]*>([\\s\\S]*?)<\\/h${level}>`, "gi"))];
@@ -179,5 +181,5 @@ if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Artifact checks passed: ${routes.length} exported content pages, ${sitemapUrls.length} sitemap URLs, dated official pricing sources, canonicals, metadata, robots, and 404 aliases. The GPT 6.1 Sol vs Astra article has ${hanCount} Han characters and ${keywordDensity.toFixed(2)}% keyword density.`);
+  console.log(`Artifact checks passed: ${routes.length} exported content pages, ${sitemapUrls.length} sitemap URLs, dated official pricing sources, canonicals, metadata, robots, and 404 aliases. The GPT 6.1 Sol vs Astra article has ${articleWordCount} English words and ${keywordDensity.toFixed(2)}% keyword density.`);
 }

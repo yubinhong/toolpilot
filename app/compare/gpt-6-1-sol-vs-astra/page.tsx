@@ -36,50 +36,51 @@ export default function Gpt61SolVsAstraPage() {
       <article className="seo-comparison shell">
         <header className="page-heading">
           <p className="eyebrow">OpenAI API price comparison</p>
-          <h1>GPT 6.1 Sol vs Astra: Price and Use Cases</h1>
-          <p className="lede">对比标准 token 价格、缓存输入、长上下文费率，以及何时值得评估更高价的模型。</p>
-          <p className="page-heading last-updated">价格核验日期：{sol.lastVerifiedAt}；单位为每百万 token 的美元价格。</p>
+          <h1>GPT 6.1 Sol vs Astra: API Pricing and Use Cases</h1>
+          <p className="lede">Compare standard, cached-input, cache-write, and long-context rates, then choose a model by workload quality and total cost.</p>
+          <p className="page-heading last-updated">Pricing checked: {sol.lastVerifiedAt}. Rates are in USD per million tokens.</p>
         </header>
 
         <section className="seo-section">
-          <h2>{keyword}：标准 API 价格</h2>
-          <p>标准费率按每百万文本 token 计。Sol 的未缓存输入和输出单价均为 Astra 的五分之一，缓存输入约为十分之一。缓存和长上下文费率也会影响整次请求成本。</p>
+          <h2>{keyword}: Standard API Pricing</h2>
+          <p>OpenAI lists standard rates per million tokens. GPT-6.1 Sol costs $2.00 for input, $0.10 for cached input, $2.50 for cache writes, and $10.00 for output. GPT-6 Astra costs $10.00, $1.00, $12.50, and $50.00 for the same categories. Uncached input, cache writes, and output are five times more expensive on Astra; cached input is ten times more expensive.</p>
           <div className="table-scroll">
             <table className="seo-price-table">
-              <caption>OpenAI 标准文本 token 价格，美元/百万 token</caption>
-              <thead><tr><th scope="col">模型</th><th scope="col">输入</th><th scope="col">缓存输入</th><th scope="col">缓存写入</th><th scope="col">输出</th><th scope="col">上下文窗口</th><th scope="col">最大输出</th></tr></thead>
+              <caption>OpenAI standard text-token prices, USD per million tokens</caption>
+              <thead><tr><th scope="col">Model</th><th scope="col">Input</th><th scope="col">Cached input</th><th scope="col">Cache write</th><th scope="col">Output</th><th scope="col">Context window</th><th scope="col">Maximum output</th></tr></thead>
               <tbody>
                 <tr><th scope="row">{sol.name}</th><td>{price(solPrice.input)}</td><td>{price(solPrice.cachedInput)}</td><td>{price(solPrice.cacheWrite)}</td><td>{price(solPrice.output)}</td><td>{sol.contextWindow?.toLocaleString("en-US")} tokens</td><td>{sol.outputTokenLimit?.toLocaleString("en-US")} tokens</td></tr>
                 <tr><th scope="row">{astra.name}</th><td>{price(astraPrice.input)}</td><td>{price(astraPrice.cachedInput)}</td><td>{price(astraPrice.cacheWrite)}</td><td>{price(astraPrice.output)}</td><td>{astra.contextWindow?.toLocaleString("en-US")} tokens</td><td>{astra.outputTokenLimit?.toLocaleString("en-US")} tokens</td></tr>
               </tbody>
             </table>
           </div>
-          <p className="table-note">两款模型的上下文窗口均为 1,050,000 token，最大输出均为 128,000 token。输入超过 272,000 token 时，整次请求适用单独的长上下文费率。</p>
+          <p className="table-note">Both models list a 1,050,000-token context window and a 128,000-token output limit. Requests with more than 272,000 input tokens use a separate long-context schedule for the request.</p>
         </section>
 
         <section className="seo-section">
-          <h3>{keyword}：单次请求成本示例</h3>
-          <p>以 100,000 个未缓存输入 token 和 20,000 个输出 token 为例，共享费率估算 Sol 为 {requestCost(sol)}、Astra 为 {requestCost(astra)}。计算按输入与输出分别计价，不含工具调用或重试成本；工作量比例变化也会改变账单。多步骤代理还应计入验证失败后的再次调用。</p>
-          <p>符合缓存条件的输入费率分别为 Sol {price(solPrice.cachedInput)}、Astra {price(astraPrice.cachedInput)}。缓存命中取决于提示前缀匹配，不能假设每次请求都适用最低费率；应根据实际缓存 token 数估算成本。</p>
+          <h3>{keyword}: A Per-Request Cost Example</h3>
+          <p>Consider a request with 100,000 uncached input tokens and 20,000 output tokens. Using the shared pricing data, the estimated token charge is {requestCost(sol)} on Sol and {requestCost(astra)} on Astra. The five-to-one difference follows directly from the standard input and output rates. Actual bills also depend on the input-to-output mix, cached tokens, cache writes, and any long-context tier.</p>
+          <p>This estimate excludes tool charges, retries, and application overhead. An agent that calls a model repeatedly can spend more on failed attempts than on its successful response. Compare cost per accepted task, not only cost per request, and include the same validation and retry policy for both models.</p>
         </section>
 
         <section className="seo-section">
-          <h4>{keyword}：适用场景</h4>
-          <p>高频代码生成、代码审查、代理开发、文档理解和日常专业工作可先评估 GPT-6.1 Sol。它的输入、输出单价较低，适合请求量大或提示可复用的流程。OpenAI 的部分编码、电脑操作和专业工作评测显示 Sol 接近 Astra，但这不保证每类提示表现相同，应以自有任务验证。</p>
-          <p>难度最高的推理、复杂代码、电脑操作、研究或文档创建，可评估 GPT-6 Astra，前提是质量提升足以抵消更高费用。常规任务交给 Sol，仅在验证失败或难度升高时升级，再比较完成质量、重试、延迟和成本。</p>
+          <h4>{keyword}: Best-Fit Workloads</h4>
+          <p>Start with GPT-6.1 Sol for high-volume coding, code review, computer-use workflows, document analysis, and routine professional tasks. Its lower input and output rates make it a practical baseline when prompts repeat, requests are frequent, or an automated check can catch mistakes. Sol also accepts text and image input and supports tool calling through the Responses API, according to its model documentation.</p>
+          <p>Evaluate GPT-6 Astra for unusually difficult reasoning, complex software changes, long research tasks, or computer-use work where a stronger result could avoid expensive rework. Its rate is higher in every listed category, so the quality gain must matter to the application. OpenAI reports results near Astra on selected coding, computer-use, and professional-work evaluations for Sol, but those vendor benchmarks do not establish equal performance on every prompt.</p>
         </section>
 
         <section className="seo-section">
-          <h5>{keyword}：开发者的选择规则</h5>
-          <p>调用频繁、上下文可复用或有自动验收条件时，先测 Sol 更容易控制预算；只有在任务困难且质量优先时再测试 Astra。双模型工作流应设可观察的升级条件，例如测试或结构校验失败。</p>
-          <p>做 gpt 6.1 sol vs astra 实测时，应固定提示、工具和验收标准，并记录 token、延迟、重试及人工修正。只比单价会漏掉失败后的重复成本。可将“每个通过验收的任务成本”和完成率作为主指标，再判断 Astra 的质量提升是否值得额外费用。</p>
-          <p>OpenAI 的 DeepSWE v1.1 软件工程评测称，Sol 在该项测试中以约五分之一的每任务成本匹配 Astra。结论仅适用于该基准设置。用相同工具和成功标准重放自有任务，再比较每个成功结果的成本。</p>
+          <h5>{keyword}: A Practical Routing Rule</h5>
+          <p>For a single-model deployment, benchmark both candidates on representative production tasks before choosing. Keep the system prompt, tools, token budget, and acceptance tests fixed. Record input and output tokens, cache use, latency, retries, human corrections, and whether each result passes the same quality gate. This reveals whether a nominally cheaper request actually finishes the work more economically.</p>
+          <p>A two-model workflow can use Sol as the default and send only difficult or failed tasks to Astra. Make escalation observable: a test failure, incomplete structured output, or an explicit high-stakes task can trigger the second attempt. Set limits on retries and escalation so a fallback cannot multiply spend silently.</p>
+          <p>The DeepSWE v1.1 software-engineering evaluation from OpenAI reports that Sol matched Astra at about one-fifth of the per-task cost in that benchmark. Treat this as a vendor-reported result for that setup, not a general guarantee. Reproduce the comparison with your own repository, tools, and pass criteria.</p>
         </section>
 
         <section className="seo-section">
-          <h6>{keyword}：上下文、缓存和信息边界</h6>
-          <p>输入超过 272,000 token 后，长上下文费率为 Sol {price(solPrice.longContext?.input)}/{price(solPrice.longContext?.cachedInput)}/{price(solPrice.longContext?.output)}，Astra {price(astraPrice.longContext?.input)}/{price(astraPrice.longContext?.cachedInput)}/{price(astraPrice.longContext?.output)}，依次代表输入、缓存输入和输出。此费率影响整次请求；服务档位、区域处理和工具费用也会改变总价。两款模型虽都列有 1,050,000 token 上下文，接近窗口上限的请求仍需按长上下文档位计价。</p>
-          <p>价格和限制于 {sol.lastVerifiedAt} 按 OpenAI 官方价格页与模型文档核验。本文整理厂商公开信息，不代表独立实测，也不预设通用赢家；接入前应重新检查来源。</p>
+          <h6>{keyword}: Context, Caching, and Limits</h6>
+          <p>Above 272,000 input tokens, long-context input, cached-input, and output rates are {price(solPrice.longContext?.input)}, {price(solPrice.longContext?.cachedInput)}, and {price(solPrice.longContext?.output)} for Sol, compared with {price(astraPrice.longContext?.input)}, {price(astraPrice.longContext?.cachedInput)}, and {price(astraPrice.longContext?.output)} for Astra. This tier raises the cost of large prompts even though both models list the same context window. Check the applicable schedule before sending a request near that threshold.</p>
+          <p>Prompt caching can reduce repeated-input charges when the provider recognizes a reusable prefix. Sol lists cached input at {price(solPrice.cachedInput)} per million tokens and Astra at {price(astraPrice.cachedInput)}. Do not apply those rates to every token by assumption: estimate using the cached-token share actually returned for your workload. Cache writes are billed separately at {price(solPrice.cacheWrite)} for Sol and {price(astraPrice.cacheWrite)} for Astra.</p>
+          <p>Prices and published limits below were checked against OpenAI documentation on {sol.lastVerifiedAt}. This comparison organizes provider information; it is not an independent benchmark or a claim that one model wins every task. Recheck the official sources before budgeting or deployment.</p>
           <ul className="seo-sources">
             <li><OfficialLink href={solPricingSource.url} modelId={sol.id} providerId={sol.provider.id} sourceType="pricing">OpenAI API pricing</OfficialLink></li>
             <li><OfficialLink href={solModelSource.url} modelId={sol.id} providerId={sol.provider.id} sourceType="model_documentation">GPT-6.1 Sol model documentation</OfficialLink></li>
