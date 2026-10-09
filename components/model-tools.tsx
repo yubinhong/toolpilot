@@ -301,7 +301,7 @@ export function ModelComparison({ initialIds = ["gpt-6-luna", "claude-sonnet-5-5
       <legend>Select up to three models <span>{selectedIds.length}/3 selected</span></legend>
       <div className="model-picker-list">{modelRows.map((model) => {
         const checked = selectedIds.includes(model.id);
-        return <label key={model.id} className={checked ? "model-picker-option selected" : "model-picker-option"}>
+        return <label key={model.id} aria-label={`${model.name} by ${model.provider.name}`} className={checked ? "model-picker-option selected" : "model-picker-option"}>
           <input type="checkbox" checked={checked} disabled={!checked && selectedIds.length >= 3} onChange={(event) => toggle(model.id, event.target.checked)} />
           <span><strong>{model.name}</strong><small>{model.provider.name}</small></span>
         </label>;

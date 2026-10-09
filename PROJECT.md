@@ -2,7 +2,7 @@
 
 ## Current Product Baseline
 
-- Status: ToolPilot AI Model Pricing V1; TASK-010 adds one approved comparison route on a feature branch
+- Status: ToolPilot AI Model Pricing V1; TASK-010 adds one approved comparison route and dependency security remediation
 - Last updated: 2026-10-09
 - Product: AI Model Pricing & API Cost Tools Platform
 - Primary users: AI developers, indie hackers, SaaS developers, API users, and AI builders
@@ -13,7 +13,7 @@ ToolPilot helps users answer how much an AI model/API will cost for a workload a
 
 ## V1 Scope
 
-The ten approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The new comparison route is on the TASK-010 feature branch; current production remains on the nine-route `main` build until a separately authorized release. `/models/` and provider/model detail routes are not generated from data. The GPT 6.1 Sol vs Astra article is a single owner-approved comparison page; no general or batch comparison pages are generated.
+The ten approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The GPT 6.1 Sol vs Astra article is a single owner-approved comparison page; no general or batch comparison pages are generated. The 2026-10-09 production release is in progress; TASK.md and RUNBOOK.md will record its final commit and smoke evidence.
 
 The model database lives in `content/models.json`. The homepage, pricing page, calculator, comparison page, GPT 6.1 Sol vs Astra article, and Jev/Argon detail pages read the same records. Each price record includes an official source and verification date; unknown values remain unknown. Model records do not create SEO routes. Jev and Gemini 4 Argon are the only approved detail pages.
 
@@ -30,7 +30,7 @@ V1 does not include accounts, API services, a database, a blog, AdSense scripts,
 | Route allowlist | Explicit ten-route registry in `lib/routes.mjs` |
 | Hosting | Cloudflare Pages Git Integration; `toolpilot-git` is the current project for `toolpilot.cc` |
 | Runtime | Node.js 22 (`.nvmrc`), npm with lockfile v3 |
-| Quality | ESLint 9, TypeScript 5.9, Node test runner, static artifact checks, HTTP smoke |
+| Quality | ESLint 9 flat config, TypeScript 5.9, Node test runner, static artifact checks, HTTP smoke |
 
 There is no application server, database, CMS, account system, or pricing API. User calculator inputs are processed in the browser.
 

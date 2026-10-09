@@ -54,7 +54,7 @@ for (const route of routes) {
     continue;
   }
   const html = readFileSync(output, "utf8");
-  const iconLink = [...html.matchAll(/<link\b[^>]*>/g)].some(([link]) => /\brel="icon"/.test(link) && /\bhref="\/favicon\.svg(?:\?[^\"]*)?"/.test(link));
+  const iconLink = [...html.matchAll(/<link\b[^>]*>/g)].some(([link]) => /\brel="icon"/.test(link) && /\bhref="\/favicon\.svg(?:\?[^"]*)?"/.test(link));
   if (!iconLink) failures.push(`${route.path}: missing favicon link`);
   if (!html.includes('class="brand-mark"') || !html.includes('src="/favicon.svg"')) failures.push(`${route.path}: missing shared header brand icon`);
   try {
@@ -146,7 +146,7 @@ const pricingPreviewStart = homeHtml.indexOf("id=\"pricing-preview-heading\"");
 const latestHtml = latestStart >= 0 && pricingPreviewStart > latestStart ? homeHtml.slice(latestStart, pricingPreviewStart) : "";
 const latestCount = [...latestHtml.matchAll(/<article\b/g)].length;
 if (latestCount < 3 || latestCount > 5) failures.push(`/: Latest Models must contain 3-5 records; found ${latestCount}`);
-for (const match of homeHtml.matchAll(/href="(\/models\/[^\"]+)"/g)) {
+for (const match of homeHtml.matchAll(/href="(\/models\/[^"]+)"/g)) {
   if (!["/models/jev/", "/models/gemini-4-argon/"].includes(match[1])) failures.push(`/: unapproved model detail link ${match[1]}`);
 }
 

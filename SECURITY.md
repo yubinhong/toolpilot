@@ -2,6 +2,13 @@
 
 ## TASK-009 V1 Boundary and TASK-010 Route Extension (2026-10-09)
 
+### Dependency security update (2026-10-09)
+
+- Updated Next.js from 16.3.6 to 16.3.8 and `sharp` from 0.35.4 to 0.35.5, and refreshed the patched `source-map-js` 1.2.2 resolution.
+- Removed `eslint-config-next` because its transitive `fast-glob` dependency brought in `braces`, for which the current advisory had no published patched release. Replaced the preset with ESLint flat configs for TypeScript, React, React Hooks, and JSX accessibility; lint remains enabled in the Cloudflare build gate.
+- `npm audit --audit-level=high` reported 0 vulnerabilities after remediation. Do not add a suppression or consume an unpublished patch; re-run `npm audit` on every release because advisories and upstream releases change.
+- Final clean-install, release check, CI, and deployed production evidence are recorded in TASK-010 and RUNBOOK.md.
+
 - The new application has no accounts, forms, API, database, or pricing backend. Optional GA4 is loaded only when a valid `NEXT_PUBLIC_GA_ID` is supplied at build time; event properties are allowlisted and exclude calculator quantities and raw search text. GSC verification is an optional metadata token. `content/models.json` contains public pricing facts and official source URLs; its checker limits source hosts to the model providers.
 - Calculator and comparison values remain in browser state. Model selection may appear in a query string; token counts and request volumes are not sent to ToolPilot by application code.
 - External source links are rendered as ordinary HTTPS anchors with `rel="noreferrer"`. Provider source data is reviewed before it is added; URLs are not fetched at runtime.

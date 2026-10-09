@@ -1,8 +1,10 @@
 # AI_CONTEXT.md
 
-## 当前快照 — 2026-10-03
+## 当前快照 — 2026-10-09
 
-- 用户最新批准的 V1 共 9 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是需求信号批准的第二个模型落地页；不建立第 10 页或批量模型页，模型数据不自动生成页面。
+- 用户最新批准的 V1 共 10 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是第二个模型落地页；GPT 6.1 Sol vs Astra 是唯一批准的比较文章，不建立批量模型页或比较页。
+- TASK-010 的文章已推送至 feature branch；用户于 2026-10-09 明确授权合并到 `main`、推送并部署，发布核验正在进行。生成的 `sitemap.xml` 包含十条获批路由。
+- 2026-10-09 依赖安全修复升级 Next.js 至 16.3.8、sharp 至 0.35.5 和 source-map-js 至 1.2.2；移除引入未修复 `braces` 的 `eslint-config-next` 依赖链，保留 TypeScript、React、Hooks 和 JSX accessibility flat-config lint。当前 npm audit 为 0 vulnerabilities；最终干净安装和部署记录见 TASK.md/RUNBOOK.md。
 - TASK-009 的 Argon 数据、landing template 和九页契约已完成；2026-10-03 图标跟进发布后，生产 `/favicon.svg` 与共享页头图标正常，正式站和不可变预览的完整 smoke 均通过。TASK-008 的旧 8 页决定已由用户批准的 Argon 扩展部分取代。
 - 已建立 `docs/PRD-002-ai-model-pricing.md`；ADR-0011 保留原始 8 页历史决定，ADR-0012 记录 Argon 的有界扩展。旧 TASK-006、PRD-001 和 ADR-0009 仍是历史证据。
 - OpenAI、Anthropic、Google、DeepSeek 和 TypeSafe 的模型/定价资料保留官方来源与 `lastVerifiedAt`。Google 于 2026-09-30 的 Argon 公告明确给出 introductory `$2/$10`、95% cached-input 折扣和 introductory 结束后的 `$4/$20`；API 当前为 Fairwind 有限 rollout。Google 公布的 1M 是 maximum output-token limit，input context window 未公布。Argon 的正式 API ID 和价格有效日期未知，不推断。

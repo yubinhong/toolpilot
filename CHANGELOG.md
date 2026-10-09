@@ -5,6 +5,8 @@
 - Add one source-backed `/compare/gpt-6-1-sol-vs-astra/` page with standard, cached-input, cache-write, and long-context price comparisons; link it from the general comparison tool.
 - Refresh the shared GPT-6.1 Sol and GPT-6 Astra verification dates and record official output limits; retain the exact ten-route allowlist and the two-model-detail-page boundary.
 - Add artifact checks for the article's Chinese character count, keyword density, H1–H6 coverage, official links, and verification dates.
+- Update Next.js to 16.3.8, `sharp` to 0.35.5, and `source-map-js` to 1.2.2; replace the vulnerable `eslint-config-next`/`braces` chain with flat-config TypeScript, React, React Hooks, and accessibility lint rules. The high-severity npm audit reports 0 vulnerabilities.
+- Generated `out/sitemap.xml` contains exactly the ten approved routes, including the new comparison article; it remains generated from the shared route registry.
 
 ## TASK-009 — deployed 2026-10-01; production smoke passed 2026-10-03
 

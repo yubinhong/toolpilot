@@ -9,14 +9,18 @@ The product owner explicitly approved the exact comparison route `/compare/gpt-6
 - Preserve only two independent model-detail routes. Do not create generic comparison generation or additional SEO pages.
 - Record the release-week demand signal, exact SERP intent, independent discussion signal, official facts, and the absence of a verified search-volume figure.
 - The article has 600–1,000 Han characters, includes the keyword in the metadata title and H1–H6, and targets 3–5% phrase density using the rendered Chinese word count.
-- Push the reviewed change to a feature branch; `main` is connected to production deployment and was not explicitly authorized for release.
+- The product owner authorized dependency remediation, merge, push, and production deployment on 2026-10-09. GitHub has no remote `master`; Cloudflare production is connected to `main`.
+- Do not suppress or waive high-severity audit findings. Prefer published upstream fixes; remove the unpatched `braces` development dependency path rather than consuming an unmerged patch.
 
 ## Phases
 
 1. [x] Verify current OpenAI prices/model capabilities, trend signal, search intent, SERP results, and explicit page approval.
 2. [x] Add the page, contextual internal link, route metadata, and ten-page build/smoke contracts; refresh shared record verification dates.
 3. [x] Update product policy, architecture/testing/task/changelog context, run available non-test quality checks, and review the final diff.
-4. [x] Commit only this task's changes and push the feature branch as `bf775f4`; record that production release remains separate.
+4. [x] Commit only this task's changes and push the feature branch (`bf775f4`, `ea2ba2e`).
+5. [x] Update vulnerable build dependencies to verified patched versions and replace the Next ESLint config with an equivalent maintained flat-config toolchain that does not pull `braces`; keep meaningful TypeScript, React-hooks, and accessibility lint coverage.
+6. [x] Verify the generated `sitemap.xml` contains exactly the ten approved routes; clean install, audit, lint, typecheck, tests, static build, and Wrangler smoke passed. Run clean-worktree release readiness after committing.
+7. [ ] Merge to `main`, push to trigger Cloudflare Pages, and record deployment and production verification evidence.
 
 ## Source findings
 
