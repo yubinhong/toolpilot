@@ -5,6 +5,7 @@ const labels: Record<string, string> = {
   "/pricing/": "Pricing",
   "/calculator/": "Calculator",
   "/compare/": "Compare",
+  "/compare/gpt-6-1-sol-vs-astra/": "GPT 6.1 Sol vs Astra",
   "/models/jev/": "Jev",
   "/models/gemini-4-argon/": "Gemini 4 Argon",
   "/about/": "About",

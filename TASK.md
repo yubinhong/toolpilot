@@ -1,3 +1,16 @@
+## TASK-010 — GPT 6.1 Sol vs Astra Comparison Page
+
+- Status: IMPLEMENTED (local checks passed; feature branch push pending).
+- Date: 2026-10-09.
+- Authorization: the product owner explicitly requested one new comparison page targeting `gpt 6.1 sol vs astra`, including the HTML title, H1–H6, a 600–1,000-character Chinese article, 3–5% keyword density, pricing/use-case analysis, and a push.
+- Demand review: the release-week trend signal is OpenAI's [GPT-6.1 Sol announcement](https://openai.com/index/introducing-gpt-6-1-sol/). On 2026-10-09, exact/close SERPs included current price/benchmark/use-case comparisons such as [No Code MBA](https://www.nocode.mba/articles/gpt-6-1-sol-vs-gpt-6-astra) and [LLM Metric](https://www.llmmetric.com/compare/gpt-6-1-sol-vs-gpt-6-astra); independent developer discussion includes [Reddit's Sol/Astra cost and task comparison](https://www.reddit.com/r/OpenAI/comments/1wu4fxh/61_sol_so_far_pretty_impressed/). These support current comparison intent, not a search-volume estimate; no reliable search-volume figure was found or inferred.
+- Official sources: OpenAI's [GPT-6.1 Sol announcement](https://openai.com/index/introducing-gpt-6-1-sol/), [Sol API model page](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [Astra API model page](https://developers.openai.com/api/docs/models/gpt-6-astra), [API pricing page](https://developers.openai.com/api/docs/pricing), and [prompt caching guide](https://developers.openai.com/api/docs/guides/prompt-caching). The standard USD rates are Sol `$2/$0.10/$2.50/$10` and Astra `$10/$1/$12.50/$50` per million input/cached-input/cache-write/output tokens; both pages show a 1,050,000 context window, 128,000 output limit, and higher rates above 272,000 input tokens. The source records were rechecked on 2026-10-09.
+- Goal: add exactly `/compare/gpt-6-1-sol-vs-astra/`, use shared source-backed model records, expose the source URLs and verification date, link from `/compare/`, and update the ten-route sitemap/export/smoke contracts. Keep the two-model-detail limit and prohibit generic or generated comparisons.
+- Content acceptance: Chinese article with 600–1,000 Han characters; requested phrase in the metadata title and H1–H6; rendered 3–5% density, counting the five space-separated keyword terms for each phrase match over `Intl.Segmenter("zh-CN")` word counts. The artifact check enforces these conditions.
+- Rollback: revert the TASK-010 commit, remove the exact comparison route and its page/link/contracts, and restore the route total to nine. Shared source-backed model data can remain available in general discovery.
+- Verification: Node 22.23.2 `npm run models:check`, `npm run lint`, `npm run typecheck`, `npm run build` (static route export and artifact checks) passed. The built article has 866 Han characters and 4.85% keyword density; ten pages and ten sitemap entries were exported. `npm test` and HTTP smoke were not run in this turn.
+- Release: feature branch push pending. Production deployment was not requested; the change is kept off `main`.
+
 ## TASK-009 — Argon SEO and Data Accuracy Follow-up
 
 - Status: COMPLETED (deployed; production smoke passed 2026-10-03)

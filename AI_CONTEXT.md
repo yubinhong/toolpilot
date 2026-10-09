@@ -132,3 +132,7 @@
 ## 历史部署证据边界
 
 2026-09-27 的 Git-integrated Pages `main` 部署、CNAME 切换后的 `toolpilot.cc` current smoke 已核验；旧 Direct Upload 项目仍须保留，直至生产回滚演练完成。
+
+## 当前页面扩展 — 2026-10-09
+
+TASK-010 adds the explicitly approved `/compare/gpt-6-1-sol-vs-astra/` as the tenth route on `feature/gpt-61-sol-vs-astra-seo`. Its article uses the existing official OpenAI model records, which were rechecked on 2026-10-09. The branch is separate from `main`, so the production route count remains nine until a separately authorized release.

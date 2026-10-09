@@ -105,6 +105,37 @@ if (!calculatorHtml.includes("Gemini 4 Argon") || !calculatorHtml.includes("How 
 const compareHtml = readFileSync("out/compare/index.html", "utf8");
 if (!compareHtml.includes("Pricing schedule") || !compareHtml.includes("DeepSeek Off-peak and Peak rates are separate time-based prices")) failures.push("/compare/: comparison must label pricing schedules and explain DeepSeek time-based rates");
 if (!compareHtml.includes("Gemini 4 Argon")) failures.push("/compare/: Gemini 4 Argon must be selectable for comparison");
+if (!compareHtml.includes("/compare/gpt-6-1-sol-vs-astra/")) failures.push("/compare/: focused GPT 6.1 Sol vs Astra article must have an internal link");
+
+const solVsAstraHtml = readFileSync("out/compare/gpt-6-1-sol-vs-astra/index.html", "utf8");
+const articleHtml = solVsAstraHtml.match(/<article\b[^>]*class="[^"]*\bseo-comparison\b[^"]*"[\s\S]*?<\/article>/)?.[0] ?? "";
+const articleText = articleHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+const keyword = "gpt 6.1 sol vs astra";
+const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const keywordCount = [...articleText.matchAll(new RegExp(escapedKeyword, "gi"))].length;
+const hanCount = [...articleText].filter((character) => /\p{Script=Han}/u.test(character)).length;
+const articleWordCount = [...new Intl.Segmenter("zh-CN", { granularity: "word" }).segment(articleText)].filter(({ isWordLike }) => isWordLike).length;
+const keywordWordCount = keyword.split(/\s+/u).length;
+const keywordDensity = articleWordCount ? keywordCount * keywordWordCount / articleWordCount * 100 : 0;
+if (!articleHtml) failures.push("/compare/gpt-6-1-sol-vs-astra/: missing article content");
+if (hanCount < 600 || hanCount > 1000) failures.push(`/compare/gpt-6-1-sol-vs-astra/: expected 600-1,000 Han characters, found ${hanCount}`);
+if (keywordDensity < 3 || keywordDensity > 5) failures.push(`/compare/gpt-6-1-sol-vs-astra/: expected 3-5% keyword density, found ${keywordDensity.toFixed(2)}% (${keywordCount}/${articleWordCount} words)`);
+for (let level = 1; level <= 6; level += 1) {
+  const headings = [...articleHtml.matchAll(new RegExp(`<h${level}\\b[^>]*>([\\s\\S]*?)<\\/h${level}>`, "gi"))];
+  const text = headings[0]?.[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").toLowerCase() ?? "";
+  if (headings.length !== 1 || !text.includes(keyword)) failures.push(`/compare/gpt-6-1-sol-vs-astra/: keyword must appear in one H${level} heading`);
+}
+const solModel = models.find(({ id }) => id === "gpt-6-1-sol");
+const astraModel = models.find(({ id }) => id === "gpt-6-astra");
+for (const model of [solModel, astraModel]) {
+  for (const source of model?.sources ?? []) {
+    if (!solVsAstraHtml.includes(source.url)) failures.push(`/compare/gpt-6-1-sol-vs-astra/: missing official source ${source.url}`);
+  }
+  if (model && !solVsAstraHtml.includes(model.lastVerifiedAt)) failures.push(`/compare/gpt-6-1-sol-vs-astra/: missing verification date for ${model.id}`);
+}
+for (const source of ["https://openai.com/index/introducing-gpt-6-1-sol/", "https://developers.openai.com/api/docs/guides/prompt-caching"]) {
+  if (!solVsAstraHtml.includes(source)) failures.push(`/compare/gpt-6-1-sol-vs-astra/: missing official source ${source}`);
+}
 
 const homeHtml = readFileSync("out/index.html", "utf8");
 if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("API model ID not published") || !homeHtml.includes("Context Not public") || !homeHtml.includes("Max output 1,000,000 tokens") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with unknown input context, official output limit, and calculator link");
@@ -148,5 +179,5 @@ if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Artifact checks passed: ${routes.length} exported content pages, ${sitemapUrls.length} sitemap URLs, dated official pricing sources, canonicals, metadata, robots, and 404 aliases.`);
+  console.log(`Artifact checks passed: ${routes.length} exported content pages, ${sitemapUrls.length} sitemap URLs, dated official pricing sources, canonicals, metadata, robots, and 404 aliases. The GPT 6.1 Sol vs Astra article has ${hanCount} Han characters and ${keywordDensity.toFixed(2)}% keyword density.`);
 }

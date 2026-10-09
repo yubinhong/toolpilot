@@ -12,7 +12,7 @@
     "releaseDate": null,
     "capabilities": ["Text input and output", "Long-context prompts"],
     "useCases": ["Complex reasoning", "Long-context tasks"],
-    "officialUrl": "https://openai.com/",
+    "officialUrl": "https://developers.openai.com/api/docs/models/gpt-6-astra",
     "defaultSchedule": "standard",
     "schedules": [
       {
@@ -30,7 +30,8 @@
       { "label": "Official pricing", "url": "https://developers.openai.com/api/docs/pricing" },
       { "label": "Model documentation", "url": "https://developers.openai.com/api/docs/models/gpt-6-astra" }
     ],
-    "lastVerifiedAt": "2026-09-30"
+    "outputTokenLimit": 128000,
+    "lastVerifiedAt": "2026-10-09"
   },
   {
     "id": "gpt-6-1-sol",
@@ -45,7 +46,7 @@
     "releaseDate": null,
     "capabilities": ["Text and image input", "Reasoning", "Responses API tool calling"],
     "useCases": ["Complex coding", "Computer use", "Professional work"],
-    "officialUrl": "https://openai.com/",
+    "officialUrl": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
     "defaultSchedule": "standard",
     "schedules": [
       { "id": "standard", "label": "Standard", "input": 2, "cachedInput": 0.1, "cacheWrite": 2.5, "cacheWriteOptions": [{ "label": "Cache write", "rate": 2.5 }], "output": 10, "longContext": { "threshold": 272000, "input": 4, "cachedInput": 0.2, "output": 15 } }
@@ -54,7 +55,8 @@
       { "label": "Official pricing", "url": "https://developers.openai.com/api/docs/pricing" },
       { "label": "Model documentation", "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol" }
     ],
-    "lastVerifiedAt": "2026-09-30"
+    "outputTokenLimit": 128000,
+    "lastVerifiedAt": "2026-10-09"
   },
   {
     "id": "gpt-6-luna",

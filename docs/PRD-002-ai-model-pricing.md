@@ -2,9 +2,9 @@
 
 ## Status
 
-- Status: Accepted on 2026-09-30; route scope amended by explicit product-owner approval on 2026-10-01
+- Status: Accepted on 2026-09-30; route scope amended by explicit product-owner approval on 2026-10-01 and 2026-10-09
 - Replaces: PRD-001 / TASK-005 / TASK-006 product scope
-- Implementation task: TASK-008
+- Implementation tasks: TASK-008, TASK-010
 - Primary architecture: Next.js App Router static export on Cloudflare Pages
 
 ## Product Goal
@@ -15,19 +15,20 @@ V1 is an AI Model Pricing & API Cost Tools Platform. It is not a general online-
 
 ## Public Page Allowlist
 
-V1 has exactly nine public content URLs:
+The approved public content URLs are:
 
 1. `/`
 2. `/pricing/`
 3. `/calculator/`
 4. `/compare/`
-5. `/models/jev/`
-6. `/models/gemini-4-argon/`
-7. `/about/`
-8. `/privacy/`
-9. `/terms/`
+5. `/compare/gpt-6-1-sol-vs-astra/`
+6. `/models/jev/`
+7. `/models/gemini-4-argon/`
+8. `/about/`
+9. `/privacy/`
+10. `/terms/`
 
-The route registry and sitemap must contain exactly these nine URLs. A model record does not create a page. Gemini 4 Argon is the second explicitly approved trend-driven landing page under ADR-0012. Do not create `/models/`, provider pages, blogs, guides, alternatives, best pages, or bulk model-comparison pages. No tenth page is approved by this amendment.
+The route registry and sitemap must contain exactly these ten URLs. A model record does not create a page. Gemini 4 Argon is the second explicitly approved trend-driven model landing page under ADR-0012. `/compare/gpt-6-1-sol-vs-astra/` is the one explicitly approved, source-backed model-comparison article under TASK-010. Any further SEO route still requires documented trend, independent demand, search-intent/SERP, official-source validation, and explicit product-owner approval before implementation. Do not create `/models/`, provider pages, blogs, guides, alternatives, best pages, or bulk/generated model-comparison pages.
 
 ## Core Workflows
 
@@ -47,7 +48,7 @@ Price schedules must preserve provider pricing variants when they materially aff
 
 ## Landing Page Growth
 
-Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model landing page after official-source verification. Any additional landing page requires a documented trend signal, independent demand validation, search-intent and SERP validation, official-source verification, and explicit product-owner approval recorded before adding the route, metadata, internal links, or sitemap entry. Model data alone never creates a route.
+Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model landing page after official-source verification. The owner approved `/compare/gpt-6-1-sol-vs-astra/` on 2026-10-09 after a release-week trend signal, comparison-intent SERP review, independent developer-discussion signal, and official OpenAI price/model-source verification; no quantified search volume was available. Any further SEO route requires the same validation and explicit product-owner approval recorded before adding its route, metadata, internal links, or sitemap entry. Model data alone never creates a route.
 
 ## Analytics
 
@@ -61,7 +62,7 @@ Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model land
 
 - Every allowlisted page has unique title, description, self-canonical, Open Graph metadata, and indexability assertions.
 - All public pages use the shared branded SVG icon in browser metadata and the site header.
-- `sitemap.xml` contains exactly the nine allowlisted URLs. `robots.txt` allows crawling and points to the sitemap.
+- `sitemap.xml` contains exactly the ten allowlisted URLs. `robots.txt` allows crawling and points to the sitemap.
 - Use `WebSite`, `WebApplication`, and `BreadcrumbList` structured data only where appropriate. Add `FAQPage` only where visible page content contains a real FAQ.
 - Retain `/pricing/` and `/compare/` but replace their content completely.
 - Remove old product routes and links. Unknown old paths return a real 404; do not redirect every removed path to `/`.
@@ -69,14 +70,14 @@ Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model land
 
 ## Out of Scope
 
-No accounts, database, server API, provider integration, user comments, blog, advertising runtime, AdSense script, affiliate integration, provider pages, generic model-detail pages, or generated model-vs-model pages. Reusable empty `AdSlot` mount points may exist at the approved placements; they render nothing without supplied content, so V1 has no ad requests, blank space, or layout shift. GA4/GSC support is limited to the optional integrations above; Cloudflare Pages Web Analytics is not enabled by this application.
+No accounts, database, server API, provider integration, user comments, blog, advertising runtime, AdSense script, affiliate integration, provider pages, generic model-detail pages, or generated/bulk model-vs-model pages. The sole comparison-article exception is `/compare/gpt-6-1-sol-vs-astra/`. Reusable empty `AdSlot` mount points may exist at the approved placements; they render nothing without supplied content, so V1 has no ad requests, blank space, or layout shift. GA4/GSC support is limited to the optional integrations above; Cloudflare Pages Web Analytics is not enabled by this application.
 
 ## Acceptance
 
-- The explicit route registry has exactly nine page routes; only these are indexable and listed in the sitemap.
+- The explicit route registry has exactly ten page routes; only these are indexable and listed in the sitemap.
 - The branded SVG site icon is exported and referenced by every public page.
 - All models in the data layer have official pricing/source records and a dated verification timestamp, or explicit unknown values where official data is unavailable.
-- Pricing, Calculator, Compare, Jev, and Gemini 4 Argon read the same validated model records.
+- Pricing, Calculator, Compare, Jev, Gemini 4 Argon, and the GPT 6.1 Sol vs Astra article read the same validated model records.
 - New model data does not create a route.
 - Removed legacy paths return a real 404 and are absent from internal links and sitemap.
 - Tests, typecheck, lint, production static build, generated artifact checks, and local HTTP smoke pass.

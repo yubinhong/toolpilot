@@ -116,6 +116,25 @@ p { margin-bottom: 16px; }
 .pricing-detail small { line-height: 1.45; }
 .table-note, .data-policy { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
 .data-policy { max-width: 850px; margin-top: 18px; }
+.comparison-guide-link { margin-top: 14px; color: var(--green-dark); font-size: 14px; font-weight: 700; }
+.comparison-guide-link a { text-decoration: underline; text-underline-offset: 3px; }
+.seo-comparison { max-width: 980px; padding-block: 32px 20px; }
+.seo-comparison .page-heading { margin-bottom: 30px; }
+.seo-comparison .page-heading .last-updated { margin-top: 12px; }
+.seo-comparison p { max-width: 880px; }
+.seo-section { padding-block: 24px; border-top: 1px solid var(--line); }
+.seo-section h2, .seo-section h3, .seo-section h4, .seo-section h5, .seo-section h6 { max-width: 900px; margin-bottom: 12px; }
+.seo-section h2 { font-size: 25px; }
+.seo-section h3 { font-size: 21px; }
+.seo-section h4 { font-size: 18px; }
+.seo-section h5 { font-size: 16px; }
+.seo-section h6 { font-size: 14px; }
+.seo-price-table { width: 100%; min-width: 740px; border-collapse: collapse; text-align: left; font-size: 13px; }
+.seo-price-table caption { padding: 10px 12px; color: var(--muted); text-align: left; font-size: 12px; }
+.seo-price-table th, .seo-price-table td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; white-space: nowrap; }
+.seo-price-table thead th { background: #edf3f1; color: #344d49; font-size: 11px; }
+.seo-sources { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 14px 0 0; padding-left: 19px; color: var(--blue); font-size: 13px; font-weight: 700; }
+.seo-sources a { text-decoration: underline; text-underline-offset: 2px; }
 
 .calculator { display: grid; grid-template-columns: minmax(0, 1fr) minmax(310px, .8fr); gap: 18px; align-items: start; }
 .calculator-inputs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; padding: 17px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); }
@@ -236,6 +255,10 @@ p { margin-bottom: 16px; }
   .footer-inner { align-items: start; flex-direction: column; padding-block: 20px; }
   .footer-links { flex-wrap: wrap; }
   .page-content { padding-top: 24px; }
+  .seo-comparison { padding-top: 24px; }
+  .seo-section { padding-block: 20px; }
+  .seo-section h2 { font-size: 22px; }
+  .seo-section h3 { font-size: 19px; }
   .section-heading { gap: 10px; }
   .verified-label, .status-label { white-space: normal; }
 }

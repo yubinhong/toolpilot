@@ -12,7 +12,7 @@ flowchart TD
     L --> C[Calculator]
     L --> X[Model comparison]
     L --> J[Trend model detail template: Jev and Argon]
-    R[lib/routes.mjs: nine-route allowlist] --> MD[Page metadata]
+    R[lib/routes.mjs: ten-route allowlist] --> MD[Page metadata]
     R --> SM[Sitemap]
     R --> AH[Cloudflare shared security headers]
     H --> O[out/ static export]
@@ -26,7 +26,7 @@ flowchart TD
 
 ## Route and Indexing Boundary
 
-`lib/routes.mjs` is the explicit list of nine public content routes. `app/sitemap.ts`, per-page metadata, `scripts/check-artifacts.mjs`, and `scripts/smoke.mjs` enforce the same allowlist. There is no dynamic model route or `/models/` index. Jev and Gemini 4 Argon are the only model detail pages and share `components/trend-model-landing-page.tsx`. Other model records are used in discovery, pricing, calculator, and comparison UI.
+`lib/routes.mjs` is the explicit list of ten public content routes. `app/sitemap.ts`, per-page metadata, `scripts/check-artifacts.mjs`, and `scripts/smoke.mjs` enforce the same allowlist. There is no dynamic model route or `/models/` index. Jev and Gemini 4 Argon are the only model detail pages and share `components/trend-model-landing-page.tsx`. `/compare/gpt-6-1-sol-vs-astra/` is a separately authored, explicitly approved static article that reads its pricing from the shared model records; it does not enable generated model comparisons.
 
 Unknown and retired routes use the static 404 response. Two exact Pages Functions return a noindex 404 for `/404` and `/404.html`, preventing Cloudflare Pages from serving its own error document as a 200 URL. No broad redirects are configured. HTTP smoke checks cover these aliases and removed product paths.
 
@@ -48,7 +48,7 @@ Every page has unique title, description, self canonical, robots directive, Open
 
 GSC verification metadata and GA4 are build-time optional. Analytics events use a fixed payload allowlist, strip query strings from page locations, and never include calculator counts or raw search text. With the measurement ID unset, no Google Analytics script is emitted.
 
-The sitemap is generated from the route allowlist and must have exactly nine entries. `robots.txt` allows crawling under `/models/` and references the sitemap. Static export includes the nine content route documents and a noindex 404 document.
+The sitemap is generated from the route allowlist and must have exactly ten entries. `robots.txt` allows crawling under `/models/` and references the sitemap. Static export includes the ten content route documents and a noindex 404 document.
 
 `npm run build` injects a document-specific CSP meta generated from static HTML scripts and writes `out/_headers` with the shared response policy. Static artifact checks verify CSP, metadata, canonical, sitemap, robots, source links, local links, and route count.
 

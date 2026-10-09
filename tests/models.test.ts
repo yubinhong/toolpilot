@@ -4,9 +4,9 @@ import { estimateRequestCost, estimateUsage } from "../lib/model-cost.ts";
 import { getActiveSchedule, getModel, models } from "../lib/models.ts";
 import { getRoutes } from "../lib/routes.mjs";
 
-const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 
-test("the public route registry is exactly the approved nine pages", () => {
+test("the public route registry is exactly the approved ten pages", () => {
   assert.deepEqual(getRoutes().map(({ path }) => path), allowedRoutes);
 });
 

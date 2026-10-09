@@ -1,4 +1,33 @@
-# Current Plan: TASK-009 — Argon Accuracy and Post-Launch SEO
+# Current Plan: TASK-010 — GPT 6.1 Sol vs Astra Comparison Page
+
+The product owner explicitly approved the exact comparison route `/compare/gpt-6-1-sol-vs-astra/` on 2026-10-09. This is one researched exception to the existing nine-page set; it does not authorize generated or bulk model comparisons.
+
+## Goal and constraints
+
+- Add one Chinese price and use-case article for the requested keyword, using the existing static App Router and exact sitemap contract.
+- Keep prices in `content/models.json`; use official OpenAI API pricing and model documentation, and refresh the two records' `lastVerifiedAt` dates.
+- Preserve only two independent model-detail routes. Do not create generic comparison generation or additional SEO pages.
+- Record the release-week demand signal, exact SERP intent, independent discussion signal, official facts, and the absence of a verified search-volume figure.
+- The article has 600–1,000 Han characters, includes the keyword in the metadata title and H1–H6, and targets 3–5% phrase density using the rendered Chinese word count.
+- Push the reviewed change to a feature branch; `main` is connected to production deployment and was not explicitly authorized for release.
+
+## Phases
+
+1. [x] Verify current OpenAI prices/model capabilities, trend signal, search intent, SERP results, and explicit page approval.
+2. [x] Add the page, contextual internal link, route metadata, and ten-page build/smoke contracts; refresh shared record verification dates.
+3. [x] Update product policy, architecture/testing/task/changelog context, run available non-test quality checks, and review the final diff.
+4. [ ] Commit only this task's changes and push the feature branch; record the resulting status and remaining risk.
+
+## Source findings
+
+- OpenAI's GPT-6.1 Sol announcement and API model page state standard input/cached-input/output prices of `$2.00/$0.10/$10.00` per million tokens; the API page also documents cache writes and the long-context threshold: `https://openai.com/index/introducing-gpt-6-1-sol/` and `https://developers.openai.com/api/docs/models/gpt-6.1-sol`.
+- OpenAI's GPT-6 Astra API model page states standard input/cached-input/output prices of `$10.00/$1.00/$50.00` per million tokens, a 1,050,000-token context window, 128,000 maximum output, and the same long-context threshold: `https://developers.openai.com/api/docs/models/gpt-6-astra`.
+- The exact and close comparison SERPs on 2026-10-09 return multiple recent price/benchmark/use-case comparison pages, including `https://www.nocode.mba/articles/gpt-6-1-sol-vs-gpt-6-astra` and `https://www.llmmetric.com/compare/gpt-6-1-sol-vs-gpt-6-astra`. A recent developer discussion comparing cost and task outcomes is at `https://www.reddit.com/r/OpenAI/comments/1wu4fxh/61_sol_so_far_pretty_impressed/`. These establish current comparison intent, not a search-volume estimate.
+- OpenAI's release announcement describes GPT-6.1 Sol as near-Astra on selected coding, computer-use, and professional-work evaluations at lower cost. Those are vendor-reported results; the article will recommend workload-specific evaluation rather than promise universal parity.
+
+---
+
+# Completed Plan: TASK-009 — Argon Accuracy and Post-Launch SEO
 
 This follow-up supersedes only the eight-route limit in TASK-008/ADR-0011. The owner explicitly approved `/models/gemini-4-argon/` as the second demand-driven landing page. No additional SEO route is authorized.
 

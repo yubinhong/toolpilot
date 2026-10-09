@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — TASK-010
+
+- Add one source-backed `/compare/gpt-6-1-sol-vs-astra/` page with standard, cached-input, cache-write, and long-context price comparisons; link it from the general comparison tool.
+- Refresh the shared GPT-6.1 Sol and GPT-6 Astra verification dates and record official output limits; retain the exact ten-route allowlist and the two-model-detail-page boundary.
+- Add artifact checks for the article's Chinese character count, keyword density, H1–H6 coverage, official links, and verification dates.
+
 ## TASK-009 — deployed 2026-10-01; production smoke passed 2026-10-03
 
 - Add `/models/gemini-4-argon/` as the ninth explicitly approved indexable page; keep Jev as the only other model landing page and retain the nine-route cap.
