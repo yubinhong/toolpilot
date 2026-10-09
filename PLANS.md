@@ -21,7 +21,7 @@ The product owner explicitly approved the exact comparison route `/compare/gpt-6
 5. [x] Update vulnerable build dependencies to verified patched versions and replace the Next ESLint config with an equivalent maintained flat-config toolchain that does not pull `braces`; keep meaningful TypeScript, React-hooks, and accessibility lint coverage.
 6. [x] Verify the generated `sitemap.xml` contains exactly the ten approved routes; clean install, audit, lint, typecheck, tests, static build, and Wrangler smoke passed. Run clean-worktree release readiness after committing.
 7. [x] Fast-forward merge to `main`, push, and record successful GitHub CI, Cloudflare Pages deployment, and production route/sitemap smoke evidence.
-8. [ ] Replace the article copy with English-only text, enforce the English word-count and density contract, then push and verify the updated production page.
+8. [x] Replace the article copy with English-only text, enforce the English word-count and density contract, push to `main`, and verify the updated production page.
 
 ## Source findings
 

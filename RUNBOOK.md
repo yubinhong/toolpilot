@@ -1,5 +1,11 @@
 # RUNBOOK.md
 
+## TASK-010 English article update (2026-10-09)
+
+Commit `1c0d907534a4486465255a091091f7ad6140929d` replaces the Chinese article copy with an English-only comparison and enforces 600–1,000 English words, no Han characters, title/H1–H6 keyword coverage, and 3–5% density. The live article has 810 words and 3.70% density.
+
+GitHub CI run `37875417147` and Cloudflare Pages deployment/check `14dc9cd0-4c04-40ae-bc74-b252d293a672` succeeded. Production smoke passed all ten routes, the exact ten-URL sitemap, robots, and retired-path 404s. A direct production HTML check confirmed the English-only content and keyword requirements. `npm run cloudflare:build` passed 34 tests and all artifact checks; `npm audit --audit-level=high` found 0 vulnerabilities.
+
 ## TASK-010 comparison page and dependency security release (2026-10-09)
 
 Commit `7ddda64fe18b6aa97fe3b59d95c104a37977a9eb` fast-forwarded `main` and deployed the approved `/compare/gpt-6-1-sol-vs-astra/` page. It also updates Next.js to 16.3.8, `sharp` to 0.35.5, and `source-map-js` to 1.2.2, and replaces the vulnerable `eslint-config-next` dependency chain with ESLint flat configs for TypeScript, React, React Hooks, and JSX accessibility. No `braces` dependency path remains.

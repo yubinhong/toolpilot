@@ -4,7 +4,7 @@
 
 - 用户最新批准的 V1 共 10 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是第二个模型落地页；GPT 6.1 Sol vs Astra 是唯一批准的比较文章，不建立批量模型页或比较页。
 - TASK-010 于 2026-10-09 合并并部署到 `main`，线上目标页、十条 sitemap、robots 和完整路由 smoke 均通过。发布证据见 TASK.md/RUNBOOK.md。
-- The requested English-only article revision now replaces the previous Chinese copy; its build contract requires 600–1,000 English words, no Han characters, and 3–5% keyword density. The main deployment is pending.
+- The English-only article revision is live; it contains 810 English words, no Han characters, and 3.70% keyword density. Its build contract enforces 600–1,000 words, keyword coverage in the title and H1–H6, and 3–5% density.
 - 2026-10-09 依赖安全修复升级 Next.js 至 16.3.8、sharp 至 0.35.5 和 source-map-js 至 1.2.2；移除引入未修复 `braces` 的 `eslint-config-next` 依赖链，保留 TypeScript、React、Hooks 和 JSX accessibility flat-config lint。npm audit 为 0 vulnerabilities；干净安装、CI 和部署均通过。
 - TASK-009 的 Argon 数据、landing template 和九页契约已完成；2026-10-03 图标跟进发布后，生产 `/favicon.svg` 与共享页头图标正常，正式站和不可变预览的完整 smoke 均通过。TASK-008 的旧 8 页决定已由用户批准的 Argon 扩展部分取代。
 - 已建立 `docs/PRD-002-ai-model-pricing.md`；ADR-0011 保留原始 8 页历史决定，ADR-0012 记录 Argon 的有界扩展。旧 TASK-006、PRD-001 和 ADR-0009 仍是历史证据。

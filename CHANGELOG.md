@@ -8,7 +8,7 @@
 - Update Next.js to 16.3.8, `sharp` to 0.35.5, and `source-map-js` to 1.2.2; replace the vulnerable `eslint-config-next`/`braces` chain with flat-config TypeScript, React, React Hooks, and accessibility lint rules. The high-severity npm audit reports 0 vulnerabilities.
 - Generated `out/sitemap.xml` contains exactly the ten approved routes, including the new comparison article; it remains generated from the shared route registry.
 - Merge and deploy commit `7ddda64` to `main`; clean release readiness, GitHub CI run `37874166631`, Cloudflare Pages deployment/check `022f2028-b6e7-452b-957e-41c7ea24620c`, and production smoke all passed. Production serves the comparison route and exact ten-URL sitemap.
-- Rewrite the article in English only and update artifact validation to require 600–1,000 English words, zero Han characters, and 3–5% keyword density. Local build reports 810 words and 3.70%; production release evidence is pending.
+- Rewrite the article in English only and update artifact validation to require 600–1,000 English words, zero Han characters, and 3–5% keyword density. Commit `1c0d907` passed clean release readiness, GitHub CI run `37875417147`, Cloudflare Pages deployment/check `14dc9cd0-4c04-40ae-bc74-b252d293a672`, and production smoke; the live article has 810 words and 3.70% density.
 
 ## TASK-009 — deployed 2026-10-01; production smoke passed 2026-10-03
 
