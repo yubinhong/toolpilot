@@ -1,5 +1,11 @@
 # Changelog
 
+## TASK-013 — 2026-10-09
+
+- Add an English Opus 5.5 vs Astra API pricing and workload article as the fourth approved comparison route; extend the exact 13-route sitemap, source, artifact, and HTTP smoke contracts.
+- Replace the horizontal comparison-article list with a compact disclosure menu that stays height-limited as approved articles grow. Record Astra's official long-context cache-write rate in the shared model data.
+- The article has 835 English words, no Han characters, and 3.83% keyword density; the exported title and H1–H6 contain the target phrase. Release evidence is recorded in `TASK.md` and `RUNBOOK.md`.
+
 ## TASK-012 — deployed 2026-10-09
 
 - Add an English Fable 5.1 vs Opus 5.5 price/use-case article and the third approved entry in the `/compare/` article menu.

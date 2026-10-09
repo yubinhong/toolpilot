@@ -9,7 +9,7 @@ const allowedHosts = {
   deepseek: new Set(["api-docs.deepseek.com"]),
   typesafe: new Set(["typesafe.ai", "docs.typesafe.ai"]),
 };
-const expectedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const expectedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 const landingRoutes = new Map([["jev", "/models/jev/"], ["gemini-4-argon", "/models/gemini-4-argon/"]]);
 const errors = [];
 const ids = new Set();
@@ -19,7 +19,7 @@ function validPricingDate(value) {
 }
 
 if (JSON.stringify(getRoutes().map(({ path }) => path)) !== JSON.stringify(expectedRoutes)) {
-  errors.push("route registry must match the exact twelve-page approved allowlist");
+  errors.push("route registry must match the exact thirteen-page approved allowlist");
 }
 
 for (const model of models) {

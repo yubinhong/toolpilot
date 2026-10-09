@@ -5,10 +5,10 @@ const base = new URL(process.argv.find((arg) => arg.startsWith("--base-url="))?.
 if (!["http:", "https:"].includes(base.protocol) || base.username || base.password) throw new Error("Invalid smoke base URL");
 
 const routes = getRoutes();
-const expectedPaths = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const expectedPaths = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 const failures = [];
 const escapeHtml = (value) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#x27;");
-if (JSON.stringify(routes.map(({ path }) => path)) !== JSON.stringify(expectedPaths)) failures.push("route registry differs from the exact twelve-page approved allowlist");
+if (JSON.stringify(routes.map(({ path }) => path)) !== JSON.stringify(expectedPaths)) failures.push("route registry differs from the exact thirteen-page approved allowlist");
 const get = (path) => fetch(new URL(path, base), { signal: AbortSignal.timeout(20000), redirect: "manual" });
 
 await Promise.all(routes.map(async (route) => {

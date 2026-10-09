@@ -116,13 +116,19 @@ p { margin-bottom: 16px; }
 .pricing-detail small { line-height: 1.45; }
 .table-note, .data-policy { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
 .data-policy { max-width: 850px; margin-top: 18px; }
-.comparison-articles-nav { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 14px 24px; align-items: center; margin: 22px 0 24px; padding-block: 14px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.comparison-articles-nav h2 { margin: 0; font-size: 15px; }
-.comparison-articles-nav ul { display: flex; flex-wrap: wrap; gap: 0; margin: 0; padding: 0; list-style: none; }
-.comparison-articles-nav li { min-width: 0; padding: 0 20px; border-left: 1px solid var(--line); }
-.comparison-articles-nav li:first-child { padding-left: 0; border-left: 0; }
-.comparison-articles-nav a { display: grid; gap: 2px; color: var(--green-dark); font-size: 14px; font-weight: 750; }
-.comparison-articles-nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.comparison-articles-nav { display: flex; align-items: start; justify-content: space-between; gap: 16px; margin: 22px 0 24px; padding-block: 14px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.comparison-articles-nav h2 { margin: 0; padding-top: 10px; font-size: 15px; }
+.comparison-articles-nav details { width: min(100%, 360px); }
+.comparison-articles-nav summary { display: flex; min-height: 42px; align-items: center; gap: 10px; padding: 8px 12px; border: 1px solid #aebfba; border-radius: 4px; background: var(--surface); color: var(--green-dark); cursor: pointer; font-size: 13px; font-weight: 750; list-style: none; }
+.comparison-articles-nav summary::-webkit-details-marker { display: none; }
+.comparison-articles-nav summary::after { width: 7px; height: 7px; flex: none; margin-left: auto; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; content: ""; transform: rotate(45deg); }
+.comparison-articles-nav details[open] summary::after { transform: rotate(225deg); }
+.comparison-articles-nav summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.comparison-articles-nav summary span { color: var(--muted); font-size: 11px; font-weight: 500; }
+.comparison-articles-nav ul { display: grid; max-height: 280px; gap: 2px; overflow-y: auto; margin: 5px 0 0; padding: 5px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); list-style: none; }
+.comparison-articles-nav li { min-width: 0; }
+.comparison-articles-nav a { display: grid; gap: 2px; padding: 8px 10px; border-radius: 3px; color: var(--green-dark); font-size: 14px; font-weight: 750; }
+.comparison-articles-nav a:hover, .comparison-articles-nav a:focus-visible { background: var(--green-wash); text-decoration: underline; text-underline-offset: 3px; }
 .comparison-articles-nav a span { color: var(--muted); font-size: 11px; font-weight: 500; }
 .seo-comparison { max-width: 980px; padding-block: 32px 20px; }
 .seo-comparison .page-heading { margin-bottom: 30px; }
@@ -141,6 +147,9 @@ p { margin-bottom: 16px; }
 .seo-price-table thead th { background: #edf3f1; color: #344d49; font-size: 11px; }
 .seo-sources { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 14px 0 0; padding-left: 19px; color: var(--blue); font-size: 13px; font-weight: 700; }
 .seo-sources a { text-decoration: underline; text-underline-offset: 2px; }
+.seo-faq { margin: 0 0 20px; }
+.seo-faq dt { margin-top: 14px; font-weight: 750; }
+.seo-faq dd { margin: 4px 0 0; color: var(--muted); }
 
 .calculator { display: grid; grid-template-columns: minmax(0, 1fr) minmax(310px, .8fr); gap: 18px; align-items: start; }
 .calculator-inputs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; padding: 17px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); }
@@ -261,9 +270,9 @@ p { margin-bottom: 16px; }
   .footer-inner { align-items: start; flex-direction: column; padding-block: 20px; }
   .footer-links { flex-wrap: wrap; }
   .page-content { padding-top: 24px; }
-  .comparison-articles-nav { grid-template-columns: 1fr; gap: 10px; margin-block: 18px 20px; }
-  .comparison-articles-nav ul { display: grid; gap: 10px; }
-  .comparison-articles-nav li, .comparison-articles-nav li:first-child { padding: 0; border: 0; }
+  .comparison-articles-nav { flex-direction: column; gap: 10px; margin-block: 18px 20px; }
+  .comparison-articles-nav h2 { padding-top: 0; }
+  .comparison-articles-nav details { width: 100%; }
   .seo-comparison { padding-top: 24px; }
   .seo-section { padding-block: 20px; }
   .seo-section h2 { font-size: 22px; }

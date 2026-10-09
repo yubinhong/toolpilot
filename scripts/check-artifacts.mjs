@@ -145,7 +145,7 @@ if (!pricingHtml.includes("Claude Haiku 5.5") || !pricingHtml.includes("100,000 
 
 const articleMenu = compareHtml.match(/<nav\b[^>]*aria-label="Comparison articles"[^>]*>[\s\S]*?<\/nav>/i)?.[0] ?? "";
 const articleMenuLinks = [...articleMenu.matchAll(/href="(\/compare\/[^"]+)"/g)].map((match) => match[1]);
-if (!articleMenu.includes("comparison-articles-nav") || JSON.stringify(articleMenuLinks) !== JSON.stringify(["/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/"])) failures.push("/compare/: the dedicated article menu must list exactly all three approved comparison pages");
+if (!articleMenu.includes("comparison-articles-nav") || !articleMenu.includes("<details>") || !articleMenu.includes("<summary>Browse articles") || JSON.stringify(articleMenuLinks) !== JSON.stringify(["/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/"])) failures.push("/compare/: the collapsed article menu must list exactly all four approved comparison pages");
 
 const haikuVsLunaHtml = readFileSync("out/compare/haiku-5-5-vs-luna-6/index.html", "utf8");
 const haikuArticle = haikuVsLunaHtml.match(/<article\b[^>]*class="[^"]*\bseo-comparison\b[^"]*"[\s\S]*?<\/article>/)?.[0] ?? "";
@@ -205,6 +205,37 @@ for (const value of ["$10.00", "$50.00", "$0.25", "$12.50", "$20.00", "$4.00", "
   if (!fableVsOpusHtml.includes(value)) failures.push("/compare/fable-5-1-vs-opus-5-5/: missing official rate, sample estimate, or token limit " + value);
 }
 
+const opusVsAstraHtml = readFileSync("out/compare/opus-5-5-vs-astra/index.html", "utf8");
+const opusVsAstraArticle = opusVsAstraHtml.match(/<article\b[^>]*class="[^"]*\bseo-comparison\b[^"]*"[\s\S]*?<\/article>/)?.[0] ?? "";
+const opusVsAstraText = opusVsAstraArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+const opusVsAstraKeyword = "opus 5.5 vs astra";
+const opusVsAstraCount = (opusVsAstraText.match(/opus 5\.5 vs astra/gi) ?? []).length;
+const opusVsAstraWords = [...new Intl.Segmenter("en-US", { granularity: "word" }).segment(opusVsAstraText)].filter(({ isWordLike }) => isWordLike).length;
+const opusVsAstraDensity = opusVsAstraWords ? opusVsAstraCount * 4 / opusVsAstraWords * 100 : 0;
+const opusVsAstraTitle = opusVsAstraHtml.match(/<title>([^<]+)<\/title>/i)?.[1]?.toLowerCase() ?? "";
+if (!opusVsAstraArticle) failures.push("/compare/opus-5-5-vs-astra/: missing article content");
+if (opusVsAstraWords < 600 || opusVsAstraWords > 1000) failures.push("/compare/opus-5-5-vs-astra/: expected 600-1,000 English words, found " + opusVsAstraWords);
+if (/\p{Script=Han}/u.test(opusVsAstraText)) failures.push("/compare/opus-5-5-vs-astra/: article content must be English without Han characters");
+if (!opusVsAstraTitle.includes(opusVsAstraKeyword)) failures.push("/compare/opus-5-5-vs-astra/: keyword must appear in the HTML title");
+if (opusVsAstraDensity < 3 || opusVsAstraDensity > 5) failures.push("/compare/opus-5-5-vs-astra/: expected 3-5% keyword density, found " + opusVsAstraDensity.toFixed(2) + "% (" + opusVsAstraCount + "/" + opusVsAstraWords + " words)");
+for (let level = 1; level <= 6; level += 1) {
+  const headings = [...opusVsAstraArticle.matchAll(new RegExp("<h" + level + "\\b[^>]*>([\\s\\S]*?)<\\/h" + level + ">", "gi"))];
+  const text = headings[0]?.[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").toLowerCase() ?? "";
+  if (headings.length !== 1 || !text.includes(opusVsAstraKeyword)) failures.push("/compare/opus-5-5-vs-astra/: keyword must appear in one H" + level + " heading");
+}
+for (const model of [opusRecord, astraModel]) {
+  for (const source of model?.sources ?? []) {
+    if (!opusVsAstraHtml.includes(source.url)) failures.push("/compare/opus-5-5-vs-astra/: missing official source " + source.url);
+  }
+  if (model && !opusVsAstraHtml.includes(model.lastVerifiedAt)) failures.push("/compare/opus-5-5-vs-astra/: missing verification date for " + model.id);
+}
+for (const value of ["$4.00", "$20.00", "$0.20", "$5.00", "$8.00", "$10.00", "$50.00", "$1.00", "$12.50", "$2.00", "$25.00", "$75.00", "$0.80", "$9.00", "272,000", "1,000,000", "1,050,000", "128,000"]) {
+  if (!opusVsAstraHtml.includes(value)) failures.push("/compare/opus-5-5-vs-astra/: missing official rate, sample estimate, or token limit " + value);
+}
+for (const question of ["Is Opus always cheaper for the same task?", "Does Astra charge only the input above 272,000 tokens at the higher rate?", "Which model should handle coding agents?"]) {
+  if (!opusVsAstraHtml.includes(question)) failures.push("/compare/opus-5-5-vs-astra/: missing practical question " + question);
+}
+
 const homeHtml = readFileSync("out/index.html", "utf8");
 if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("API model ID not published") || !homeHtml.includes("Context Not public") || !homeHtml.includes("Max output 1,000,000 tokens") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with unknown input context, official output limit, and calculator link");
 const popularCount = [...homeHtml.matchAll(/class="model-card"/g)].length;
@@ -249,5 +280,6 @@ if (failures.length) {
 } else {
   console.log("Haiku 5.5 vs Luna 6 article: " + haikuArticleWordCount + " English words and " + haikuKeywordDensity.toFixed(2) + "% keyword density.");
   console.log("Fable 5.1 vs Opus 5.5 article: " + fableArticleWordCount + " English words and " + fableKeywordDensity.toFixed(2) + "% keyword density.");
+  console.log("Opus 5.5 vs Astra article: " + opusVsAstraWords + " English words and " + opusVsAstraDensity.toFixed(2) + "% keyword density.");
   console.log(`Artifact checks passed: ${routes.length} exported content pages, ${sitemapUrls.length} sitemap URLs, dated official pricing sources, canonicals, metadata, robots, and 404 aliases. The GPT 6.1 Sol vs Astra article has ${articleWordCount} English words and ${keywordDensity.toFixed(2)}% keyword density.`);
 }

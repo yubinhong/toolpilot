@@ -10,8 +10,8 @@
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1050000,
     "releaseDate": null,
-    "capabilities": ["Text input and output", "Long-context prompts"],
-    "useCases": ["Complex reasoning", "Long-context tasks"],
+    "capabilities": ["Text and image input", "Reasoning", "Responses API tool calling"],
+    "useCases": ["Complex reasoning", "Coding", "Computer use", "Research", "Document creation"],
     "officialUrl": "https://developers.openai.com/api/docs/models/gpt-6-astra",
     "defaultSchedule": "standard",
     "schedules": [
@@ -23,7 +23,7 @@
         "cacheWrite": 12.5,
         "cacheWriteOptions": [{ "label": "Cache write", "rate": 12.5 }],
         "output": 50,
-        "longContext": { "threshold": 272000, "input": 20, "cachedInput": 2, "output": 75 }
+        "longContext": { "threshold": 272000, "input": 20, "cachedInput": 2, "cacheWrite": 25, "cacheWriteOptions": [{ "label": "Cache write", "rate": 25 }], "output": 75 }
       }
     ],
     "sources": [

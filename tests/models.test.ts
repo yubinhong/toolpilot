@@ -4,9 +4,9 @@ import { estimateRequestCost, estimateUsage } from "../lib/model-cost.ts";
 import { getActiveSchedule, getModel, models } from "../lib/models.ts";
 import { getRoutes } from "../lib/routes.mjs";
 
-const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 
-test("the public route registry is exactly the approved twelve pages", () => {
+test("the public route registry is exactly the approved thirteen pages", () => {
   assert.deepEqual(getRoutes().map(({ path }) => path), allowedRoutes);
 });
 
@@ -104,6 +104,24 @@ test("Fable 5.1 and Opus 5.5 preserve current official prices, cache rates, and 
   ]);
   assert.equal(estimateRequestCost(fable, { inputTokens: 50000, outputTokens: 10000 }).requestCost, 1);
   assert.equal(estimateRequestCost(opus, { inputTokens: 50000, outputTokens: 10000 }).requestCost, 0.4);
+});
+
+test("Opus 5.5 and GPT-6 Astra use the official standard and long-context rates", () => {
+  const opus = getModel("claude-opus-5-5");
+  const astra = getModel("gpt-6-astra");
+  assert.ok(opus);
+  assert.ok(astra);
+  assert.equal(astra.schedules[0].longContext?.threshold, 272000);
+  assert.equal(astra.schedules[0].longContext?.cacheWrite, 25);
+  assert.deepEqual(astra.schedules[0].longContext?.cacheWriteOptions, [{ label: "Cache write", rate: 25 }]);
+  assert.equal(estimateRequestCost(opus, { inputTokens: 100000, outputTokens: 20000 }).requestCost, 0.8);
+  assert.equal(estimateRequestCost(astra, { inputTokens: 100000, outputTokens: 20000 }).requestCost, 2);
+  const longOpus = estimateRequestCost(opus, { inputTokens: 300000, outputTokens: 40000 });
+  const longAstra = estimateRequestCost(astra, { inputTokens: 300000, outputTokens: 40000 });
+  assert.equal(longOpus.usedLongContextRate, false);
+  assert.equal(longOpus.requestCost, 2);
+  assert.equal(longAstra.usedLongContextRate, true);
+  assert.equal(longAstra.requestCost, 9);
 });
 
 test("current GPT-6.1 Sol and Gemini 3.8 Flash prices are available to shared model workflows", () => {

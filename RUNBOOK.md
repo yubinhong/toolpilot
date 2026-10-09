@@ -1,5 +1,11 @@
 # RUNBOOK.md
 
+## TASK-013 Opus 5.5 vs Astra article and comparison menu (2026-10-09)
+
+The approved 13th route is `/compare/opus-5-5-vs-astra/`; `/compare/` now uses a native disclosure with four article links and a height-limited expanded list. The article has 835 English words, no Han characters, and 3.83% keyword density; its exported title and H1–H6 include the target phrase. Astra's shared record now includes the official long-context cache-write rate.
+
+Node 22.23.2/npm 10.9.8 `npm run cloudflare:build` passed lint, typecheck, 38 tests, static export, and artifact checks. `npm audit --audit-level=high` found 0 vulnerabilities. Local Wrangler Pages smoke passed all 13 routes, exact sitemap, robots, and retired-route 404 checks. Chromium checks at 1440px, 390px, and 320px found no horizontal overflow on the article; its table scrolls on narrow screens. The `/compare/` disclosure opens with four links, with the model picker below it on desktop and mobile. This release changes no dependencies, Cloudflare settings, DNS, or custom-domain bindings. Production evidence is pending deployment.
+
 ## TASK-012 Fable 5.1 vs Opus 5.5 article (2026-10-09)
 
 Commit `2a75f3a1901804d3c8b215844c2dee5c31cc6074` added `/compare/fable-5-1-vs-opus-5-5/`, refreshed the shared official Anthropic records, and added the third link in the dedicated `/compare/` article menu. The article has 857 English words, no Han characters, and 4.67% keyword density; its exported title and H1–H6 contain the target phrase.

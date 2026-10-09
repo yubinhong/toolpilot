@@ -1,3 +1,28 @@
+# Current Plan: TASK-013 — Opus 5.5 vs Astra Article and Comparison Menu
+
+The product owner requested an English `opus 5.5 vs astra` comparison page and a compact navigation control for the growing comparison-article list. This explicitly approves the 13th public route and continues the previously authorized `main` release process.
+
+## Article brief and source review
+
+- Reader: developers choosing an API model for coding, research, and long-running agents. Format: 600–1,000-word, evidence-led English comparison; restrained tone, no claimed first-hand tests. Keyword: `opus 5.5 vs astra` in the HTML title and H1–H6, with 3–5% rendered word density.
+- Current comparison-intent SERPs include [MindStudio](https://www.mindstudio.ai/blog/opus-5-5-astra-api-pricing), [Digital Applied](https://www.digitalapplied.com/blog/claude-opus-5-5-vs-gpt-6-astra-comparison), and [No Code MBA](https://www.nocode.mba/articles/opus-5-5-vs-gpt-6-astra). [Developer discussion](https://www.reddit.com/r/codex/comments/1wpveoe/astra_vs_opus_55_my_impressions_on_hard_project/) adds independent interest. These establish comparison intent, not measured search volume or authoritative model facts.
+- Official facts checked 2026-10-09: [Anthropic Opus model](https://platform.claude.com/docs/en/models/opus-5-5/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing); [OpenAI Astra model](https://developers.openai.com/api/docs/models/gpt-6-astra) and [pricing](https://developers.openai.com/api/docs/pricing). Standard input/output per MTok: Opus `$4/$20`; Astra `$10/$50`. Cached input: `$0.20/$1`. Opus 5-minute/1-hour writes: `$5/$8`. Astra standard cache write: `$12.50`; above 272K input, its entire request uses `$20/$2/$25/$75` input/cache-read/cache-write/output. Opus retains standard rates across 1M context; Astra lists 1,050,000 context and both list 128K max output.
+
+## Phases
+
+1. [x] Confirm exact user approval, comparison intent, and official pricing/model guidance.
+2. [x] Add the exact route and English article with source-backed examples, useful FAQ, and rendered title/H1–H6, length, and density checks.
+3. [x] Replace the horizontal article list with an accessible, one-row disclosure and a scrollable list on desktop and mobile.
+4. [x] Complete shared Astra long-context cache-write data, focused cost/menu contracts, sitemap/route/smoke updates, and relevant documentation.
+5. [x] Run Node 22 quality gates, dependency audit, local Pages smoke, and visual/layout review; inspect the complete diff.
+6. [ ] Commit and push to `main`, verify CI and Cloudflare Pages, then smoke the immutable preview and production site.
+
+## Rollback
+
+Revert the TASK-013 feature commit to restore the previous twelve-route registry, static article menu, and Astra model metadata. No user data, DNS, or Cloudflare configuration changes are planned.
+
+---
+
 # Completed Plan: TASK-012 — Fable 5.1 vs Opus 5.5 Comparison Article
 
 The product owner explicitly requested `/compare/fable-5-1-vs-opus-5-5/` on 2026-10-09 and asked to use the same English article and release process as TASK-011. This authorizes the 12th public route after current demand/SERP review and official-source validation.

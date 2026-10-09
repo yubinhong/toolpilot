@@ -17,8 +17,9 @@ test("release readiness accepts an immutable clean GitHub checkout", () => {
   assert.deepEqual(evaluateReleaseReadiness(readyState), []);
 });
 
-test("release readiness requires the approved Fable vs Opus article to be tracked", () => {
+test("release readiness requires the approved comparison articles to be tracked", () => {
   assert.ok(REQUIRED_RELEASE_FILES.includes("app/compare/fable-5-1-vs-opus-5-5/page.tsx"));
+  assert.ok(REQUIRED_RELEASE_FILES.includes("app/compare/opus-5-5-vs-astra/page.tsx"));
 });
 
 test("release readiness accepts the standard GitHub SSH remote", () => {

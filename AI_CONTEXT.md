@@ -2,7 +2,8 @@
 
 ## 当前快照 — 2026-10-09
 
-- 用户最新批准的 V1 共 12 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/compare/fable-5-1-vs-opus-5-5/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是第二个模型落地页；三篇获批比较文章由 `/compare/` 专用菜单列出，不建立批量模型页或比较页。
+- 用户最新批准的 V1 共 13 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/compare/fable-5-1-vs-opus-5-5/`、`/compare/opus-5-5-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是第二个模型落地页；四篇获批比较文章由 `/compare/` 的可展开菜单列出，不建立批量模型页或比较页。
+- TASK-013 已获批准；Opus 5.5 vs Astra 页面在本地构建中有 835 个英文词、无 Han 字符、关键词密度 3.83%，title 与 H1–H6 都包含关键词。十三页构建、38 项测试与产物检查通过；发布状态及线上验证见 `TASK.md` 和 `RUNBOOK.md`。
 - TASK-010 到 TASK-012 均已于 2026-10-09 推送并部署到 `main`。TASK-012 新增 Fable 5.1 vs Opus 5.5 文章及第三个 `/compare/` 菜单项；TASK.md 和 RUNBOOK.md 记录 CI、Pages 部署及正式站验证证据。
 - Haiku 5.5 vs Luna 6 文章有 912 个英文词、无 Han 字符，关键词密度 3.29%；不可变 Pages 预览和 `https://toolpilot.cc` 均通过 11 页 smoke，精确 sitemap、robots 和废弃路径 404 检查通过。
 - Fable 5.1 vs Opus 5.5 文章已部署，857 个英文词、无 Han 字符、关键词密度 4.67%；不可变预览和 `https://toolpilot.cc` 均通过 12 页 smoke、精确 sitemap、robots 和废弃路径 404 检查。线上 HTML 的 title、H1–H6 和 `/compare/` 菜单均已直接确认。
@@ -140,4 +141,4 @@
 
 ## 当前页面扩展 — 2026-10-09
 
-TASK-010 added `/compare/gpt-6-1-sol-vs-astra/` as the tenth route, TASK-011 added `/compare/haiku-5-5-vs-luna-6/` as route eleven, and TASK-012 deployed `/compare/fable-5-1-vs-opus-5-5/` as route twelve. The dedicated `/compare/` menu lists all three approved comparison articles. Anthropic pricing and model guidance was checked on 2026-10-09; commit `2a75f3a`, CI, Pages deployment, and preview/production smoke passed.
+TASK-010 added `/compare/gpt-6-1-sol-vs-astra/` as the tenth route, TASK-011 added `/compare/haiku-5-5-vs-luna-6/` as route eleven, TASK-012 added `/compare/fable-5-1-vs-opus-5-5/` as route twelve, and TASK-013 approves `/compare/opus-5-5-vs-astra/` as route thirteen. The `/compare/` disclosure lists the four approved, separately authored articles. Source and release evidence is recorded in the corresponding `TASK.md` entries.
