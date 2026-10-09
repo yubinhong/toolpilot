@@ -16,7 +16,7 @@ The product owner explicitly approved the exact comparison route `/compare/gpt-6
 1. [x] Verify current OpenAI prices/model capabilities, trend signal, search intent, SERP results, and explicit page approval.
 2. [x] Add the page, contextual internal link, route metadata, and ten-page build/smoke contracts; refresh shared record verification dates.
 3. [x] Update product policy, architecture/testing/task/changelog context, run available non-test quality checks, and review the final diff.
-4. [ ] Commit only this task's changes and push the feature branch; record the resulting status and remaining risk.
+4. [x] Commit only this task's changes and push the feature branch as `bf775f4`; record that production release remains separate.
 
 ## Source findings
 
