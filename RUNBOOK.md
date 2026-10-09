@@ -1,5 +1,11 @@
 # RUNBOOK.md
 
+## TASK-012 Fable 5.1 vs Opus 5.5 article (2026-10-09)
+
+Commit `2a75f3a1901804d3c8b215844c2dee5c31cc6074` added `/compare/fable-5-1-vs-opus-5-5/`, refreshed the shared official Anthropic records, and added the third link in the dedicated `/compare/` article menu. The article has 857 English words, no Han characters, and 4.67% keyword density; its exported title and H1–H6 contain the target phrase.
+
+On Node 22.23.2/npm 10.9.8, `npm run cloudflare:build` passed lint, typecheck, 37 tests, static export, and artifact checks. `npm audit --audit-level=high` found 0 vulnerabilities, and clean-worktree `npm run release:check` passed. GitHub CI run `37888802655` and Cloudflare Pages check/deployment `0514aa49-871e-4fd6-b099-0b476ae563c0` succeeded. Immutable preview `https://0514aa49.toolpilot-git.pages.dev` and production `https://toolpilot.cc` passed the full 12-route smoke, exact sitemap, robots, and retired-route 404 checks. Direct HTML checks on both domains confirmed the title, H1–H6 keyword coverage, and article menu. No dependency, Cloudflare, DNS, or custom-domain changes were needed.
+
 ## TASK-011 Haiku 5.5 vs Luna 6 article (2026-10-09)
 
 Commit `e1c4b44c99c960139a443d7c7784b3c9184a1628` added `/compare/haiku-5-5-vs-luna-6/` and a dedicated comparison-article menu on `/compare/`. The article has 912 English words, no Han characters, and 3.29% keyword density. Its metadata title and all six heading levels contain the target phrase; the artifact contract checks its source URLs, pricing, limits, and word-count requirements.

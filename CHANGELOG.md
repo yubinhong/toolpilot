@@ -1,9 +1,11 @@
 # Changelog
 
-## Unreleased — TASK-012
+## TASK-012 — deployed 2026-10-09
 
 - Add an English Fable 5.1 vs Opus 5.5 price/use-case article and the third approved entry in the `/compare/` article menu.
 - Refresh Anthropic's shared Fable/Opus source metadata and output limits; extend the exact route, sitemap, artifact, and HTTP smoke contracts to twelve approved routes.
+- The article has 857 English words, no Han characters, and 4.67% keyword density; all published rates, limits, and recommendations link to official Anthropic sources.
+- Push commit `2a75f3a` to `main`; GitHub CI run `37888802655` and Cloudflare Pages check/deployment `0514aa49-871e-4fd6-b099-0b476ae563c0` succeeded. Immutable preview and production smoke passed all twelve routes, exact sitemap, robots, and retired-route 404s; direct HTML confirmed the article title/H1–H6 and the third menu entry.
 
 ## TASK-011 — deployed 2026-10-09
 

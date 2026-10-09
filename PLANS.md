@@ -1,4 +1,4 @@
-# Current Plan: TASK-012 — Fable 5.1 vs Opus 5.5 Comparison Article
+# Completed Plan: TASK-012 — Fable 5.1 vs Opus 5.5 Comparison Article
 
 The product owner explicitly requested `/compare/fable-5-1-vs-opus-5-5/` on 2026-10-09 and asked to use the same English article and release process as TASK-011. This authorizes the 12th public route after current demand/SERP review and official-source validation.
 
@@ -6,7 +6,7 @@ The product owner explicitly requested `/compare/fable-5-1-vs-opus-5-5/` on 2026
 
 - Add the 12th explicit public route and keep the route registry, static export, metadata, and sitemap allowlists exact.
 - Add an English-only 600–1,000-word price/use-case article for `fable 5.1 vs opus 5.5`; include the keyword in the HTML title and H1–H6 and enforce 3–5% density with the existing rendered-word contract.
-- Use the shared Anthropic model records and official pricing/model pages. Both records currently contain rates last verified on 2026-09-30; recheck, update source URLs/date, and record the official output-token limits.
+- Use the shared Anthropic model records and official pricing/model pages. Recheck both records, update source URLs/date, and record the official output-token limits.
 - Extend `/compare/`'s dedicated article menu to the three explicitly approved comparison pages. Do not create generated comparisons or new model-detail pages.
 - Separate provider-documented workload guidance from independent benchmark claims; recommend workload-specific evaluation and do not infer search volume.
 - Prior user authorization to push to `main` and deploy remains applicable to this requested change.
@@ -20,11 +20,18 @@ The product owner explicitly requested `/compare/fable-5-1-vs-opus-5-5/` on 2026
 ## Phases
 
 1. [x] Verify current comparison intent, current SERP, and official model, price, limits, and workload guidance.
-2. [ ] Refresh shared Fable/Opus records, add tested output limits, and update the 12-route/menu contracts.
-3. [ ] Add the authored article, route metadata, breadcrumb, and title/H1–H6, source, rate, word-count, and keyword-density artifact checks.
-4. [ ] Synchronize PRD, architecture, testing, security route facts, project/current context, task, changelog, TODO, and runbook/release records.
-5. [ ] Run Node 22 quality gates, audit, release readiness, local and production smoke; review the complete diff.
-6. [ ] Commit and push to `main`; verify CI, Cloudflare Pages deployment, and immutable-preview/production output.
+2. [x] Refresh shared Fable/Opus records, add tested output limits, and update the 12-route/menu contracts.
+3. [x] Add the authored article, route metadata, breadcrumb, and title/H1–H6, source, rate, word-count, and keyword-density artifact checks.
+4. [x] Synchronize PRD, architecture, testing, security route facts, project/current context, task, changelog, TODO, and runbook/release records.
+5. [x] Run Node 22 quality gates, audit, release readiness, local and production smoke; review the complete diff.
+6. [x] Commit and push to `main`; verify CI, Cloudflare Pages deployment, and immutable-preview/production output.
+
+## Release evidence
+
+- Node 22.23.2/npm 10.9.8: `npm run cloudflare:build` passed lint, typecheck, 37/37 tests, static export, and artifact checks. The article contains 857 English words, no Han characters, and 4.67% keyword density. `npm audit --audit-level=high` found 0 vulnerabilities; `npm run release:check` passed on the clean feature commit.
+- Commit `2a75f3a1901804d3c8b215844c2dee5c31cc6074` was pushed to `main`. GitHub CI run `37888802655` and Cloudflare Pages check/deployment `0514aa49-871e-4fd6-b099-0b476ae563c0` succeeded.
+- Immutable preview `https://0514aa49.toolpilot-git.pages.dev` and production `https://toolpilot.cc` passed the full 12-route smoke, exact sitemap, robots, and retired-route 404 checks. Direct HTML checks on both domains confirmed title and H1–H6 keyword coverage and the dedicated article menu link.
+- Rollback remains a revert of the feature commit; no user data, Cloudflare settings, DNS, or custom-domain bindings changed.
 
 ## Rollback
 

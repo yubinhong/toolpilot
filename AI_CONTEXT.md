@@ -3,9 +3,9 @@
 ## 当前快照 — 2026-10-09
 
 - 用户最新批准的 V1 共 12 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/compare/fable-5-1-vs-opus-5-5/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是第二个模型落地页；三篇获批比较文章由 `/compare/` 专用菜单列出，不建立批量模型页或比较页。
-- TASK-010 和 TASK-011 均已于 2026-10-09 合并并部署到 `main`。TASK-011 新增 Haiku 5.5 vs Luna 6 文章及 `/compare/` 专用菜单；TASK.md 和 RUNBOOK.md 记录 CI、Pages 部署及正式站验证证据。
+- TASK-010 到 TASK-012 均已于 2026-10-09 推送并部署到 `main`。TASK-012 新增 Fable 5.1 vs Opus 5.5 文章及第三个 `/compare/` 菜单项；TASK.md 和 RUNBOOK.md 记录 CI、Pages 部署及正式站验证证据。
 - Haiku 5.5 vs Luna 6 文章有 912 个英文词、无 Han 字符，关键词密度 3.29%；不可变 Pages 预览和 `https://toolpilot.cc` 均通过 11 页 smoke，精确 sitemap、robots 和废弃路径 404 检查通过。
-- TASK-012 已获批新增 `/compare/fable-5-1-vs-opus-5-5/`。Anthropic 官方价格和模型资料于 2026-10-09 复核；英文文章及第三个菜单项正在实现，发布记录待完成。
+- Fable 5.1 vs Opus 5.5 文章已部署，857 个英文词、无 Han 字符、关键词密度 4.67%；不可变预览和 `https://toolpilot.cc` 均通过 12 页 smoke、精确 sitemap、robots 和废弃路径 404 检查。线上 HTML 的 title、H1–H6 和 `/compare/` 菜单均已直接确认。
 - The English-only article revision is live; it contains 810 English words, no Han characters, and 3.70% keyword density. Its build contract enforces 600–1,000 words, keyword coverage in the title and H1–H6, and 3–5% density.
 - 2026-10-09 依赖安全修复升级 Next.js 至 16.3.8、sharp 至 0.35.5 和 source-map-js 至 1.2.2；移除引入未修复 `braces` 的 `eslint-config-next` 依赖链，保留 TypeScript、React、Hooks 和 JSX accessibility flat-config lint。npm audit 为 0 vulnerabilities；干净安装、CI 和部署均通过。
 - TASK-009 的 Argon 数据、landing template 和九页契约已完成；2026-10-03 图标跟进发布后，生产 `/favicon.svg` 与共享页头图标正常，正式站和不可变预览的完整 smoke 均通过。TASK-008 的旧 8 页决定已由用户批准的 Argon 扩展部分取代。
@@ -140,4 +140,4 @@
 
 ## 当前页面扩展 — 2026-10-09
 
-TASK-010 added `/compare/gpt-6-1-sol-vs-astra/` as the tenth route and is deployed. TASK-011 added `/compare/haiku-5-5-vs-luna-6/` as route eleven. TASK-012 is adding the owner-approved `/compare/fable-5-1-vs-opus-5-5/` as route twelve and extending the dedicated `/compare/` menu to three articles. Anthropic's current pricing and model guidance was checked on 2026-10-09; release verification is pending.
+TASK-010 added `/compare/gpt-6-1-sol-vs-astra/` as the tenth route, TASK-011 added `/compare/haiku-5-5-vs-luna-6/` as route eleven, and TASK-012 deployed `/compare/fable-5-1-vs-opus-5-5/` as route twelve. The dedicated `/compare/` menu lists all three approved comparison articles. Anthropic pricing and model guidance was checked on 2026-10-09; commit `2a75f3a`, CI, Pages deployment, and preview/production smoke passed.

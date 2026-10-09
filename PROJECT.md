@@ -2,7 +2,7 @@
 
 ## Current Product Baseline
 
-- Status: ToolPilot AI Model Pricing V1; TASK-012 adds a third approved comparison article
+- Status: ToolPilot AI Model Pricing V1; TASK-012 added and deployed the third approved comparison article
 - Last updated: 2026-10-09
 - Product: AI Model Pricing & API Cost Tools Platform
 - Primary users: AI developers, indie hackers, SaaS developers, API users, and AI builders
@@ -13,7 +13,7 @@ ToolPilot helps users answer how much an AI model/API will cost for a workload a
 
 ## V1 Scope
 
-The twelve approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/compare/haiku-5-5-vs-luna-6/`, `/compare/fable-5-1-vs-opus-5-5/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The three owner-approved comparison articles are listed in a dedicated menu on `/compare/`; no general or batch comparison pages are generated. TASK-010 and TASK-011 are live; TASK-012 is in progress.
+The twelve approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/compare/haiku-5-5-vs-luna-6/`, `/compare/fable-5-1-vs-opus-5-5/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The three owner-approved comparison articles are listed in a dedicated menu on `/compare/`; no general or batch comparison pages are generated. TASK-010 through TASK-012 are live.
 
 The model database lives in `content/models.json`. The homepage, pricing page, calculator, comparison page, all three comparison articles, and Jev/Argon detail pages read the same records. Each price record includes an official source and verification date; unknown values remain unknown. Model records do not create SEO routes. Jev and Gemini 4 Argon are the only approved detail pages.
 
@@ -38,7 +38,7 @@ There is no application server, database, CMS, account system, or pricing API. U
 
 - Local: `npm run dev`; synthetic/public model data only.
 - Static build: `npm run build` writes `out/`, validates source records, creates shared security headers, and checks the exported pages.
-- Production: Cloudflare Pages Git Integration on `main`; TASK-010 and TASK-011 are deployed and passed preview and production smoke. TASK-012 release is pending.
+- Production: Cloudflare Pages Git Integration on `main`; TASK-010 through TASK-012 are deployed and passed preview and production smoke.
 - Previous Direct Upload Pages project `toolpilot` remains an operational recovery target; it is not part of the application architecture.
 
 Current source, build, smoke, and deployment evidence is recorded in `TASK.md` and `RUNBOOK.md`. A source route or successful local export is not evidence of Google indexing or search traffic.

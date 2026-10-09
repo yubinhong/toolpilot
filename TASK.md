@@ -1,6 +1,6 @@
 ## TASK-012 — Fable 5.1 vs Opus 5.5 Comparison Article
 
-- Status: IN_PROGRESS (owner-approved implementation and release).
+- Status: COMPLETED (pushed to `main`, deployed, and verified on preview and production).
 - Date: 2026-10-09.
 - Authorization: the product owner requested an English comparison page for `fable 5.1 vs opus 5.5` using the prior article and release handling. This explicitly approves the 12th public route and extends the `/compare/` article menu.
 - Demand review: current comparison-intent results include [Chudi.dev's Opus 5.5 vs Fable 5.1 price/benchmark comparison](https://chudi.dev/blog/claude-opus-5-5-vs-fable-5-1) and [Respan's Fable 5.1 vs Opus 5.5 guide](https://www.respan.ai/articles/claude-fable-vs-opus). A recent [Claude Code developer discussion](https://www.reddit.com/r/claude/comments/1wy2ojw/switched_claude_code_from_fable_51_to_opus_55/) compares model switching, cost, and workload fit. These sources support current search intent, not official model facts; no search-volume figure is claimed.
@@ -9,7 +9,7 @@
 - Content acceptance: English-only, 600–1,000 English words, no Han characters, target phrase in the HTML title and H1–H6, 3–5% phrase density using the existing rendered English-word contract.
 - Goal: add `/compare/fable-5-1-vs-opus-5-5/`, refresh the two shared model records and official verification dates, and list all three approved comparison articles in the dedicated `/compare/` menu.
 - Rollback: revert the TASK-012 feature commit and restore the previous 11-route allowlist/menu and Fable/Opus model source metadata; no user data or Cloudflare/DNS configuration is changed.
-- Verification: pending implementation and release.
+- Verification: On Node 22.23.2/npm 10.9.8, `npm run cloudflare:build` passed lint, typecheck, 37/37 tests, static export, and artifact checks. The English article has 857 words, no Han characters, and 4.67% keyword density; build checks enforce title/H1–H6 coverage, word count, density, official source URLs, verification dates, rates, output limits, and sample estimates. `npm audit --audit-level=high` found 0 vulnerabilities; `npm run release:check` passed on the clean commit. Local Wrangler smoke passed all 12 routes, exact sitemap, robots, and retired-route 404s. Commit `2a75f3a1901804d3c8b215844c2dee5c31cc6074` was pushed to `main`; GitHub CI run `37888802655` and Cloudflare Pages check/deployment `0514aa49-871e-4fd6-b099-0b476ae563c0` succeeded. Immutable preview `https://0514aa49.toolpilot-git.pages.dev` and production `https://toolpilot.cc` passed the full 12-route smoke. Direct HTML checks on both domains confirmed the article title, H1–H6 keyword coverage, and the `/compare/` menu link. No dependency changes, Cloudflare settings, DNS, or custom-domain bindings were needed.
 
 ## TASK-011 — Haiku 5.5 vs Luna 6 Comparison Article
 
