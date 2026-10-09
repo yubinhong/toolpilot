@@ -1,10 +1,11 @@
 # Changelog
 
-## TASK-013 — 2026-10-09
+## TASK-013 — deployed 2026-10-09
 
 - Add an English Opus 5.5 vs Astra API pricing and workload article as the fourth approved comparison route; extend the exact 13-route sitemap, source, artifact, and HTTP smoke contracts.
 - Replace the horizontal comparison-article list with a compact disclosure menu that stays height-limited as approved articles grow. Record Astra's official long-context cache-write rate in the shared model data.
 - The article has 835 English words, no Han characters, and 3.83% keyword density; the exported title and H1–H6 contain the target phrase. Release evidence is recorded in `TASK.md` and `RUNBOOK.md`.
+- Push feature commit `703c049` to `main`; GitHub CI run `37896072977` and Cloudflare Pages check/deployment `cfda0acb-5166-4ad4-be3c-2bc4b882538d` succeeded. Immutable preview and production passed all thirteen routes, exact sitemap, robots, retired-route 404s, and direct article/menu HTML checks.
 
 ## TASK-012 — deployed 2026-10-09
 

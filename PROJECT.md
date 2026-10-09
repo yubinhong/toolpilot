@@ -2,7 +2,7 @@
 
 ## Current Product Baseline
 
-- Status: ToolPilot AI Model Pricing V1; TASK-013 adds the fourth approved comparison article and compact article menu
+- Status: ToolPilot AI Model Pricing V1; TASK-013 deployed the fourth approved comparison article and compact article menu
 - Last updated: 2026-10-09
 - Product: AI Model Pricing & API Cost Tools Platform
 - Primary users: AI developers, indie hackers, SaaS developers, API users, and AI builders

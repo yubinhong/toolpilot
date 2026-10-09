@@ -1,4 +1,4 @@
-# Current Plan: TASK-013 — Opus 5.5 vs Astra Article and Comparison Menu
+# Completed Plan: TASK-013 — Opus 5.5 vs Astra Article and Comparison Menu
 
 The product owner requested an English `opus 5.5 vs astra` comparison page and a compact navigation control for the growing comparison-article list. This explicitly approves the 13th public route and continues the previously authorized `main` release process.
 
@@ -15,7 +15,7 @@ The product owner requested an English `opus 5.5 vs astra` comparison page and a
 3. [x] Replace the horizontal article list with an accessible, one-row disclosure and a scrollable list on desktop and mobile.
 4. [x] Complete shared Astra long-context cache-write data, focused cost/menu contracts, sitemap/route/smoke updates, and relevant documentation.
 5. [x] Run Node 22 quality gates, dependency audit, local Pages smoke, and visual/layout review; inspect the complete diff.
-6. [ ] Commit and push to `main`, verify CI and Cloudflare Pages, then smoke the immutable preview and production site.
+6. [x] Commit and push to `main`, verify CI and Cloudflare Pages, then smoke the immutable preview and production site.
 
 ## Rollback
 
