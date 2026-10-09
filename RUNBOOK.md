@@ -1,5 +1,11 @@
 # RUNBOOK.md
 
+## TASK-011 Haiku 5.5 vs Luna 6 article (2026-10-09)
+
+Commit `e1c4b44c99c960139a443d7c7784b3c9184a1628` added `/compare/haiku-5-5-vs-luna-6/` and a dedicated comparison-article menu on `/compare/`. The article has 912 English words, no Han characters, and 3.29% keyword density. Its metadata title and all six heading levels contain the target phrase; the artifact contract checks its source URLs, pricing, limits, and word-count requirements.
+
+On Node 22.23.2/npm 10.9.8, `npm run cloudflare:build`, `npm audit --audit-level=high` (0 vulnerabilities), and `npm run release:check` passed. GitHub CI run `37879419603` and Cloudflare Pages check/deployment `b30f5bbe-edda-4f84-a8a1-9978b2525ced` succeeded. The immutable preview `https://b30f5bbe.toolpilot-git.pages.dev` and `https://toolpilot.cc` passed all eleven routes, the exact sitemap, robots, and retired-route 404 smoke. Production HTML confirmed the article title/H1–H6 and both article-menu links. Wrangler deployment-list inspection was unavailable because `CLOUDFLARE_API_TOKEN` is not configured; no Cloudflare settings, DNS, or custom-domain bindings were changed.
+
 ## TASK-010 English article update (2026-10-09)
 
 Commit `1c0d907534a4486465255a091091f7ad6140929d` replaces the Chinese article copy with an English-only comparison and enforces 600–1,000 English words, no Han characters, title/H1–H6 keyword coverage, and 3–5% density. The live article has 810 words and 3.70% density.

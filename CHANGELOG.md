@@ -1,9 +1,10 @@
 # Changelog
 
-## Unreleased — TASK-011
+## TASK-011 — deployed 2026-10-09
 
 - Add an English Haiku 5.5 vs Luna 6 price/use-case article and a dedicated comparison-article menu on `/compare/`.
 - Add source-backed Haiku 5.5 pricing, including its 100,000-token prompt tier, and update exact route, metadata, breadcrumb, sitemap, artifact, and HTTP smoke contracts for eleven approved routes.
+- Push commit `e1c4b44` to `main`; GitHub CI run `37879419603` and Cloudflare Pages check/deployment `b30f5bbe-edda-4f84-a8a1-9978b2525ced` succeeded. Preview and production smoke passed all eleven routes, exact sitemap, robots, and retired-route 404s; direct production HTML confirmed the article title/H1–H6 and both menu entries.
 
 ## TASK-010 — deployed 2026-10-09
 

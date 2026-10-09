@@ -13,7 +13,7 @@ ToolPilot helps users answer how much an AI model/API will cost for a workload a
 
 ## V1 Scope
 
-The eleven approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/compare/haiku-5-5-vs-luna-6/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The two owner-approved comparison articles are listed in a dedicated menu on `/compare/`; no general or batch comparison pages are generated. TASK-010 is live; TASK-011's deployment evidence will be recorded in TASK.md and RUNBOOK.md.
+The eleven approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/compare/haiku-5-5-vs-luna-6/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The two owner-approved comparison articles are listed in a dedicated menu on `/compare/`; no general or batch comparison pages are generated. TASK-010 and TASK-011 are live; release evidence is recorded in TASK.md and RUNBOOK.md.
 
 The model database lives in `content/models.json`. The homepage, pricing page, calculator, comparison page, both comparison articles, and Jev/Argon detail pages read the same records. Each price record includes an official source and verification date; unknown values remain unknown. Model records do not create SEO routes. Jev and Gemini 4 Argon are the only approved detail pages.
 
@@ -38,7 +38,7 @@ There is no application server, database, CMS, account system, or pricing API. U
 
 - Local: `npm run dev`; synthetic/public model data only.
 - Static build: `npm run build` writes `out/`, validates source records, creates shared security headers, and checks the exported pages.
-- Production: Cloudflare Pages Git Integration on `main`; TASK-010 is deployed. TASK-011 is in progress and will be released to `main` after the required checks pass.
+- Production: Cloudflare Pages Git Integration on `main`; TASK-010 and TASK-011 are deployed and passed preview and production smoke.
 - Previous Direct Upload Pages project `toolpilot` remains an operational recovery target; it is not part of the application architecture.
 
 Current source, build, smoke, and deployment evidence is recorded in `TASK.md` and `RUNBOOK.md`. A source route or successful local export is not evidence of Google indexing or search traffic.

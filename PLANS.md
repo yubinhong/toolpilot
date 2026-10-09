@@ -18,7 +18,13 @@ The product owner explicitly approved `/compare/haiku-5-5-vs-luna-6/` on 2026-10
 2. [x] Add the shared Haiku model record and context-tier pricing representation; update validators and focused cost tests.
 3. [x] Add the comparison article, dedicated article menu, route metadata, breadcrumb, and exact 11-route sitemap/artifact/smoke contracts.
 4. [x] Synchronize PRD, architecture, project, current-context, task, changelog, and release records; run Node 22 quality gates and review the diff.
-5. [ ] Commit, push/merge to `main`, verify CI and Cloudflare Pages production deployment, then run production smoke and direct article checks.
+5. [x] Commit `e1c4b44`, push to `main`, verify GitHub CI and Cloudflare Pages deployment, and run full immutable-preview/production smoke plus direct production article checks.
+
+## Release evidence
+
+- GitHub CI run `37879419603` passed; Cloudflare Pages check/deployment `b30f5bbe-edda-4f84-a8a1-9978b2525ced` reported success for commit `e1c4b44`.
+- Immutable preview `https://b30f5bbe.toolpilot-git.pages.dev` and production `https://toolpilot.cc` passed the full 11-route smoke, exact sitemap, robots, and retired-route 404 checks. Direct production HTML confirmed the title and H1–H6 keyword coverage and both comparison-menu links.
+- `npm run release:check` passed before the feature commit was pushed. Wrangler deployment-list inspection could not run because no `CLOUDFLARE_API_TOKEN` is configured; the Pages GitHub check and public HTTP smoke confirmed the successful deployment.
 
 ## Official source findings
 
