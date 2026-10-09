@@ -9,7 +9,7 @@ const allowedHosts = {
   deepseek: new Set(["api-docs.deepseek.com"]),
   typesafe: new Set(["typesafe.ai", "docs.typesafe.ai"]),
 };
-const expectedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const expectedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 const landingRoutes = new Map([["jev", "/models/jev/"], ["gemini-4-argon", "/models/gemini-4-argon/"]]);
 const errors = [];
 const ids = new Set();
@@ -19,7 +19,7 @@ function validPricingDate(value) {
 }
 
 if (JSON.stringify(getRoutes().map(({ path }) => path)) !== JSON.stringify(expectedRoutes)) {
-  errors.push("route registry must match the exact ten-page approved allowlist");
+  errors.push("route registry must match the exact eleven-page approved allowlist");
 }
 
 for (const model of models) {
@@ -52,6 +52,27 @@ for (const model of models) {
       if (schedule[key] != null && (typeof schedule[key] !== "number" || !Number.isFinite(schedule[key]) || schedule[key] < 0)) errors.push(`${at}/${schedule.id}: invalid ${key} rate`);
     }
     if (schedule.priceType != null && !["standard", "introductory", "time_based"].includes(schedule.priceType)) errors.push(`${at}/${schedule.id}: invalid priceType`);
+    if (schedule.cacheWriteOptions != null) {
+      if (!Array.isArray(schedule.cacheWriteOptions)) errors.push(at + "/" + schedule.id + ": cacheWriteOptions must be an array");
+      else for (const option of schedule.cacheWriteOptions) {
+        if (!option || typeof option.label !== "string" || !option.label.trim() || typeof option.rate !== "number" || !Number.isFinite(option.rate) || option.rate < 0) errors.push(at + "/" + schedule.id + ": invalid cache write option");
+      }
+    }
+    if (schedule.longContext) {
+      const tier = schedule.longContext;
+      if (!Number.isInteger(tier.threshold) || tier.threshold <= 0) errors.push(at + "/" + schedule.id + ": longContext threshold must be a positive integer");
+      if (tier.input !== null && (typeof tier.input !== "number" || !Number.isFinite(tier.input) || tier.input < 0)) errors.push(at + "/" + schedule.id + ": invalid longContext input rate");
+      if (tier.output !== "not_applicable" && tier.output !== null && (typeof tier.output !== "number" || !Number.isFinite(tier.output) || tier.output < 0)) errors.push(at + "/" + schedule.id + ": invalid longContext output rate");
+      for (const key of ["cachedInput", "cacheWrite"]) {
+        if (tier[key] != null && (typeof tier[key] !== "number" || !Number.isFinite(tier[key]) || tier[key] < 0)) errors.push(at + "/" + schedule.id + ": invalid longContext " + key + " rate");
+      }
+      if (tier.cacheWriteOptions != null) {
+        if (!Array.isArray(tier.cacheWriteOptions)) errors.push(at + "/" + schedule.id + ": longContext cacheWriteOptions must be an array");
+        else for (const option of tier.cacheWriteOptions) {
+          if (!option || typeof option.label !== "string" || !option.label.trim() || typeof option.rate !== "number" || !Number.isFinite(option.rate) || option.rate < 0) errors.push(at + "/" + schedule.id + ": invalid longContext cache write option");
+        }
+      }
+    }
     for (const key of ["validFrom", "validUntil"]) {
       if (schedule[key] != null && !validPricingDate(schedule[key])) errors.push(`${at}/${schedule.id}: ${key} must be an ISO date or UTC timestamp`);
     }
@@ -71,6 +92,7 @@ for (const model of models) {
   }
 
   if (pricingStatus === "not_public" && model.schedules.some((schedule) => [schedule.input, schedule.output, schedule.cachedInput, schedule.cacheWrite, ...(schedule.cacheWriteOptions ?? []).map(({ rate }) => rate), ...(schedule.additionalPrices ?? []).map(({ rate }) => rate), ...(schedule.longContext ? [schedule.longContext.input, schedule.longContext.cachedInput, schedule.longContext.output] : [])].some((value) => typeof value === "number"))) errors.push(`${at}: not_public pricing cannot contain numeric token rates`);
+  if (pricingStatus === "not_public" && model.schedules.some((schedule) => typeof schedule.longContext?.cacheWrite === "number" || (Array.isArray(schedule.longContext?.cacheWriteOptions) && schedule.longContext.cacheWriteOptions.some((option) => typeof option?.rate === "number")))) errors.push(at + ": not_public pricing cannot contain numeric prompt-tier cache-write rates");
   if (pricingStatus === "announced" && !model.schedules.some(({ input, output }) => typeof input === "number" || typeof output === "number")) errors.push(`${at}: announced pricing must retain at least one officially announced numeric rate`);
 
   if (model.provider.id === "deepseek") {

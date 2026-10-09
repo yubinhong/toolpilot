@@ -116,8 +116,14 @@ p { margin-bottom: 16px; }
 .pricing-detail small { line-height: 1.45; }
 .table-note, .data-policy { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
 .data-policy { max-width: 850px; margin-top: 18px; }
-.comparison-guide-link { margin-top: 14px; color: var(--green-dark); font-size: 14px; font-weight: 700; }
-.comparison-guide-link a { text-decoration: underline; text-underline-offset: 3px; }
+.comparison-articles-nav { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 14px 24px; align-items: center; margin: 22px 0 24px; padding-block: 14px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.comparison-articles-nav h2 { margin: 0; font-size: 15px; }
+.comparison-articles-nav ul { display: flex; flex-wrap: wrap; gap: 0; margin: 0; padding: 0; list-style: none; }
+.comparison-articles-nav li { min-width: 0; padding: 0 20px; border-left: 1px solid var(--line); }
+.comparison-articles-nav li:first-child { padding-left: 0; border-left: 0; }
+.comparison-articles-nav a { display: grid; gap: 2px; color: var(--green-dark); font-size: 14px; font-weight: 750; }
+.comparison-articles-nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.comparison-articles-nav a span { color: var(--muted); font-size: 11px; font-weight: 500; }
 .seo-comparison { max-width: 980px; padding-block: 32px 20px; }
 .seo-comparison .page-heading { margin-bottom: 30px; }
 .seo-comparison .page-heading .last-updated { margin-top: 12px; }
@@ -255,6 +261,9 @@ p { margin-bottom: 16px; }
   .footer-inner { align-items: start; flex-direction: column; padding-block: 20px; }
   .footer-links { flex-wrap: wrap; }
   .page-content { padding-top: 24px; }
+  .comparison-articles-nav { grid-template-columns: 1fr; gap: 10px; margin-block: 18px 20px; }
+  .comparison-articles-nav ul { display: grid; gap: 10px; }
+  .comparison-articles-nav li, .comparison-articles-nav li:first-child { padding: 0; border: 0; }
   .seo-comparison { padding-top: 24px; }
   .seo-section { padding-block: 20px; }
   .seo-section h2 { font-size: 22px; }

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — TASK-011
+
+- Add an English Haiku 5.5 vs Luna 6 price/use-case article and a dedicated comparison-article menu on `/compare/`.
+- Add source-backed Haiku 5.5 pricing, including its 100,000-token prompt tier, and update exact route, metadata, breadcrumb, sitemap, artifact, and HTTP smoke contracts for eleven approved routes.
+
 ## TASK-010 — deployed 2026-10-09
 
 - Add one source-backed `/compare/gpt-6-1-sol-vs-astra/` page with standard, cached-input, cache-write, and long-context price comparisons; link it from the general comparison tool.

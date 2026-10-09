@@ -1,3 +1,17 @@
+## TASK-011 — Haiku 5.5 vs Luna 6 Comparison Article
+
+- Status: IN_PROGRESS (implementation and local verification complete; commit, CI, deployment, and production verification pending).
+- Date: 2026-10-09.
+- Authorization: the product owner requested an English article for `haiku 5.5 vs luna 6` using the prior comparison-page handling, plus a dedicated menu for comparison articles on `/compare/`. Prior explicit authorization to merge to `main`, push, and deploy applies to this release flow.
+- Demand review: current comparison-intent results include [OpenRouter's Haiku 5.5 vs GPT-6 Luna comparison](https://openrouter.ai/compare/anthropic/claude-haiku-5.5/openai/gpt-6-luna) and [ToolColumn's same-price/use-case guide](https://www.toolcolumn.com/learn/claude-haiku-5-5-vs-gpt-6-luna). A current [Reddit developer discussion](https://www.reddit.com/r/ClaudeAI/comments/1x0agoh/claude_haiku_55_cost_12x_more_than_gpt6_luna_for/) compares the pair on cost. These support search intent and independent interest, not model facts or quantified search volume; no volume figure is claimed.
+- Official sources: Anthropic's [Haiku 5.5 model overview](https://platform.claude.com/docs/en/models/haiku-5-5/overview) and [API pricing](https://platform.claude.com/docs/en/about-claude/pricing); OpenAI's [GPT-6 Luna model page](https://developers.openai.com/api/docs/models/gpt-6-luna) and [API pricing](https://developers.openai.com/api/docs/pricing). Checked 2026-10-09.
+- Goal: add `/compare/haiku-5-5-vs-luna-6/`, preserve official rates in `content/models.json`, update the exact route and sitemap contracts, and replace the lone inline guide link with a dedicated comparison-article menu containing both approved pages.
+- Content acceptance: English-only, 600–1,000 English words, no Han characters, exact keyword in HTML title and H1–H6, and 3–5% phrase density based on `Intl.Segmenter("en-US")` English words.
+- Pricing facts: Haiku 5.5 standard rates are `$0.10` input, `$0.01` cache read, `$0.125` five-minute cache write, `$0.20` one-hour cache write, `$0.50` output per million tokens; above 100,000 input tokens rates are `$0.50/$0.05/$0.625/$1.00/$2.50`. GPT-6 Luna standard rates are `$0.10/$0.01/$0.125/$0.50` and its rates above 272,000 input tokens are `$0.20/$0.02/$0.25/$0.75`. Both list 128,000 output tokens; their documented context windows are 1,000,000 (Haiku) and 1,050,000 (Luna).
+- Rollback: revert the TASK-011 release commit and restore the exact ten-route registry/menu and prior model-rate schema; no user data or external configuration is changed.
+- Documentation review also aligned the stale `AGENTS.md` Next.js baseline (16.3.6) with the installed 16.3.8 release already present in `package.json` and `package-lock.json`.
+- Verification: On Node 22.23.2/npm 10.9.8, `npm run cloudflare:build` passed lint, typecheck, 35/35 tests, static export, and artifact checks. The article has 912 English words, no Han characters, and 3.29% keyword density; the artifact contract also checked exact title/H1–H6 coverage, official links, model verification dates, price tiers, and sample estimates. Wrangler local smoke passed eleven indexable routes, exact sitemap, robots access, and retired-route 404s. `npm audit --audit-level=high` reported 0 vulnerabilities. Release readiness and live deployment checks remain pending.
+
 ## TASK-010 — GPT 6.1 Sol vs Astra Comparison Page
 
 - Status: COMPLETED (English-only revision merged and deployed; production verification passed 2026-10-09).

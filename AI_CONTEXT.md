@@ -2,8 +2,8 @@
 
 ## 当前快照 — 2026-10-09
 
-- 用户最新批准的 V1 共 10 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是第二个模型落地页；GPT 6.1 Sol vs Astra 是唯一批准的比较文章，不建立批量模型页或比较页。
-- TASK-010 于 2026-10-09 合并并部署到 `main`，线上目标页、十条 sitemap、robots 和完整路由 smoke 均通过。发布证据见 TASK.md/RUNBOOK.md。
+- 用户最新批准的 V1 共 11 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是第二个模型落地页；两篇获批比较文章由 `/compare/` 专用菜单列出，不建立批量模型页或比较页。
+- TASK-010 于 2026-10-09 合并并部署到 `main`。TASK-011 当前在 `main` 的干净发布工作区实现中，新增 Haiku 5.5 vs Luna 6 文章及 `/compare/` 专用菜单；发布证据完成后记录在 TASK.md/RUNBOOK.md。
 - The English-only article revision is live; it contains 810 English words, no Han characters, and 3.70% keyword density. Its build contract enforces 600–1,000 words, keyword coverage in the title and H1–H6, and 3–5% density.
 - 2026-10-09 依赖安全修复升级 Next.js 至 16.3.8、sharp 至 0.35.5 和 source-map-js 至 1.2.2；移除引入未修复 `braces` 的 `eslint-config-next` 依赖链，保留 TypeScript、React、Hooks 和 JSX accessibility flat-config lint。npm audit 为 0 vulnerabilities；干净安装、CI 和部署均通过。
 - TASK-009 的 Argon 数据、landing template 和九页契约已完成；2026-10-03 图标跟进发布后，生产 `/favicon.svg` 与共享页头图标正常，正式站和不可变预览的完整 smoke 均通过。TASK-008 的旧 8 页决定已由用户批准的 Argon 扩展部分取代。
@@ -138,4 +138,4 @@
 
 ## 当前页面扩展 — 2026-10-09
 
-TASK-010 adds the explicitly approved `/compare/gpt-6-1-sol-vs-astra/` as the tenth route on `feature/gpt-61-sol-vs-astra-seo`. Its article uses the existing official OpenAI model records, which were rechecked on 2026-10-09. The branch is separate from `main`, so the production route count remains nine until a separately authorized release.
+TASK-010 added `/compare/gpt-6-1-sol-vs-astra/` as the tenth route and is deployed. TASK-011 adds the explicitly approved `/compare/haiku-5-5-vs-luna-6/` as route eleven and a dedicated article menu on `/compare/`. Official Anthropic and OpenAI pricing/model sources were checked on 2026-10-09; deployment remains pending until implementation and release checks complete.

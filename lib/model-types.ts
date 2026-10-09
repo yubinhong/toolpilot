@@ -5,6 +5,7 @@ export type PriceRates = {
   input: number | null;
   cachedInput?: number | null;
   cacheWrite?: number | null;
+  cacheWriteOptions?: { label: string; rate: number }[];
   output: PriceRate;
 };
 
@@ -21,7 +22,6 @@ export type PriceSchedule = PriceRates & {
   nextPricing?: { scheduleId: string; validFrom: string | null } | null;
   pricingSchedule?: PricingScheduleRule;
   pricingNotes?: string[];
-  cacheWriteOptions?: { label: string; rate: number }[];
   additionalPrices?: { label: string; unit: string; rate: number }[];
   longContext?: PriceRates & { threshold: number };
 };

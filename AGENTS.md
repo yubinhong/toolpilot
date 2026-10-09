@@ -54,7 +54,7 @@
 
 - ToolPilot 面向 `AI Developer`、`Indie Hacker`、`SaaS Developer`、`API User` 和 `AI Builder`，帮助用户查询模型价格、估算 API 成本和比较模型。
 - 产品定位为 `AI Model Pricing & API Cost Tools Platform`；不得恢复为开发者工具目录或泛用型在线工具站。
-- 当前已批准的公开页面共 10 个：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Jev 和 Gemini 4 Argon 是仅有的两个模型独立页面；GPT 6.1 Sol vs Astra 是唯一获批的模型比较文章。模型记录不自动生成页面。
+- 当前已批准的公开页面共 11 个：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Jev 和 Gemini 4 Argon 是仅有的两个模型独立页面；上述两个 VS 页面是仅有的获批模型比较文章。模型记录不自动生成页面。
 - 第 11 个及之后的 SEO 页面必须满足 PRD-002 的趋势、搜索意图、SERP 和官方来源验证，并得到用户明确批准。
 - 不建设批量模型详情、批量 VS 页面、blog、providers、best、alternatives、通用工具目录、账户系统、论坛、AI Chat、广告或未批准的商业功能。
 
@@ -77,7 +77,7 @@
 ### 5.1 已确认的技术基线
 
 - 主语言与版本：`TypeScript/TSX`，`typescript@5.9.3`；页面源码位于 `app/`，共享 UI 位于 `components/`，模型数据位于 `content/models.json`，读取接口位于 `lib/models.ts`。
-- Web 框架：`Next.js 16.3.6 App Router`；`next.config.mjs` 已确认 `output: export`、`trailingSlash: true`，当前没有独立服务端、API 或数据库。
+- Web 框架：`Next.js 16.3.8 App Router`；`next.config.mjs` 已确认 `output: export`、`trailingSlash: true`，当前没有独立服务端、API 或数据库。
 - 运行时要求：`Node.js 22`，由根目录 `.nvmrc` 固定；依赖由 npm 管理，锁文件为 `package-lock.json` lockfile v3。
 - 包管理器与质量工具：`npm`；脚本为 `dev`、`build`、`start`、`lint`、`typecheck`、`test`、`smoke`、`release:check`、`cloudflare:build`、`models:check`、`artifacts:check`，ESLint 为 `9.39.5`。
 - 域名配置：`.env.example` 提供 `NEXT_PUBLIC_SITE_URL=https://toolpilot.cc`；生产域名 CNAME 已切换到 Git-integrated Pages 项目 `toolpilot-git`，正式域名 current smoke 已验证。旧 Direct Upload 项目 `toolpilot` 保留为恢复目标；生产监控使用 current profile。
@@ -87,7 +87,7 @@
 | 目的 | 当前命令 | 规则 |
 | --- | --- | --- |
 | 格式化 | `TBD` | 当前没有格式化工具或 npm script；不要自行引入格式化器 |
-| 模型校验 | `npm run models:check` | 检查唯一模型数据源、官方来源域、验证日期和九页路由白名单 |
+| 模型校验 | `npm run models:check` | 检查唯一模型数据源、官方来源域、验证日期和 11 页路由白名单 |
 | 静态检查 | `npm run lint` | 使用仓库中的 ESLint flat config |
 | 类型检查 | `npm run typecheck` | 使用 `tsconfig.json`，禁止绕过错误 |
 | 单元测试 | `npm test` | Node 22 内置 test runner，覆盖路由、来源、费率日期和成本公式 |
@@ -147,6 +147,6 @@
 
 - `content/models.json` 是 V1 唯一模型与价格源；模型记录不会自动创建页面。
 - `scripts/check-models.mjs` 校验唯一模型 ID、官方 HTTPS 来源域、pricing source/status、`lastVerifiedAt`、有效价格档位和唯一批准的 Jev/Argon 详情页。
-- `lib/routes.mjs` 的 10 条显式路由是页面、metadata、sitemap、artifact 检查和 HTTP smoke 的边界；只有 Jev 和 Gemini 4 Argon 有独立模型页，GPT 6.1 Sol vs Astra 是唯一明确批准的比较文章。
+- `lib/routes.mjs` 的 11 条显式路由是页面、metadata、sitemap、artifact 检查和 HTTP smoke 的边界；只有 Jev 和 Gemini 4 Argon 有独立模型页，GPT 6.1 Sol vs Astra 与 Haiku 5.5 vs Luna 6 是仅有的明确批准比较文章。
 - `npm run build` 在 Next 静态导出前运行模型检查，随后验证 sitemap、robots、canonical、metadata、来源链接和真实 404 产物。
 - 价格记录过期不等于当前价格仍有效；发布前应重核官方来源并运行当前测试、构建、审计和 smoke。

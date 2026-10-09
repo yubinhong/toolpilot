@@ -80,7 +80,17 @@ function otherPricing(schedule: ModelRecord["schedules"][number]) {
     ...(schedule.cacheWriteOptions ?? []).map((item) => `${item.label}: ${rate(item.rate)} / 1M tokens`),
     ...(schedule.additionalPrices ?? []).map((item) => `${item.label}: ${rate(item.rate)} ${item.unit}`),
   ];
-  if (schedule.longContext) details.push(`Input > ${new Intl.NumberFormat("en-US").format(schedule.longContext.threshold)} tokens: ${rate(schedule.longContext.input)} input / ${rate(schedule.longContext.output)} output`);
+  if (schedule.longContext) {
+    const tier = schedule.longContext;
+    const tierDetails = [
+      `Input > ${new Intl.NumberFormat("en-US").format(tier.threshold)} tokens`,
+      `Input ${rate(tier.input)}`,
+      ...(tier.cachedInput == null ? [] : [`cached input ${rate(tier.cachedInput)}`]),
+      `output ${rate(tier.output)}`,
+      ...(tier.cacheWriteOptions ?? []).map((item) => `${item.label}: ${rate(item.rate)} / 1M tokens`),
+    ];
+    details.push(tierDetails.join(" / "));
+  }
   return details.length ? details.join("; ") : "See official pricing source";
 }
 

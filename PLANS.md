@@ -1,4 +1,34 @@
-# Current Plan: TASK-010 — GPT 6.1 Sol vs Astra Comparison Page
+# Current Plan: TASK-011 — Haiku 5.5 vs Luna 6 Comparison Article
+
+The product owner explicitly approved `/compare/haiku-5-5-vs-luna-6/` on 2026-10-09, including an English article and a dedicated comparison-article menu on `/compare/`.
+
+## Goal and constraints
+
+- Add the 11th explicit public route and keep the static route/sitemap allowlist exact.
+- Add an English-only 600–1,000-word article for `haiku 5.5 vs luna 6`, with the phrase in the HTML title and H1–H6 and 3–5% density by the existing word-count contract.
+- Compare standard and context-tier API prices and practical use cases using current official Anthropic and OpenAI sources; preserve rates and verification dates in the shared model records.
+- Model Anthropic's >100,000 input-token rates alongside GPT-6 Luna's >272,000 input-token rates so all shared pricing surfaces describe the source schedules accurately.
+- Replace the single inline comparison-guide link with an accessible, compact menu listing the two approved authored comparison pages.
+- Keep only Jev and Gemini 4 Argon as independent model detail pages; do not add generated comparisons or infer search volume.
+- The product owner previously authorized merge to `main`, push, and production deployment; use the existing Git-integrated Cloudflare Pages release path.
+
+## Phases
+
+1. [x] Confirm current comparison intent and official Anthropic/OpenAI model, pricing, limits, and use-case sources.
+2. [x] Add the shared Haiku model record and context-tier pricing representation; update validators and focused cost tests.
+3. [x] Add the comparison article, dedicated article menu, route metadata, breadcrumb, and exact 11-route sitemap/artifact/smoke contracts.
+4. [x] Synchronize PRD, architecture, project, current-context, task, changelog, and release records; run Node 22 quality gates and review the diff.
+5. [ ] Commit, push/merge to `main`, verify CI and Cloudflare Pages production deployment, then run production smoke and direct article checks.
+
+## Official source findings
+
+- Anthropic's [Claude Haiku 5.5 model overview](https://platform.claude.com/docs/en/models/haiku-5-5/overview) and [API pricing](https://platform.claude.com/docs/en/about-claude/pricing) were checked on 2026-10-09. Haiku 5.5 lists a 1,000,000-token context window and 128,000 maximum output. Standard prices per million tokens are `$0.10` input, `$0.01` cache read, `$0.125` five-minute cache write, `$0.20` one-hour cache write, and `$0.50` output for prompts up to 100,000 tokens. Above that input threshold the corresponding rates are `$0.50`, `$0.05`, `$0.625`, `$1.00`, and `$2.50`.
+- OpenAI's [GPT-6 Luna model page](https://developers.openai.com/api/docs/models/gpt-6-luna) and [API pricing](https://developers.openai.com/api/docs/pricing) were checked on 2026-10-09. Standard prices per million tokens are `$0.10` input, `$0.01` cached input, `$0.125` cache write, and `$0.50` output; above 272,000 input tokens they are `$0.20`, `$0.02`, `$0.25`, and `$0.75`. The documented context window is 1,050,000 tokens and maximum output is 128,000.
+- Current exact/close-match results include [OpenRouter's model comparison](https://openrouter.ai/compare/anthropic/claude-haiku-5.5/openai/gpt-6-luna) and [ToolColumn's same-price/use-case guide](https://www.toolcolumn.com/learn/claude-haiku-5-5-vs-gpt-6-luna); [developer discussion](https://www.reddit.com/r/ClaudeAI/comments/1x0agoh/claude_haiku_55_cost_12x_more_than_gpt6_luna_for/) also compares the pair on cost. These are search-intent/interest signals only, not model facts. No reliable search-volume number was found or inferred.
+
+---
+
+# Completed Plan: TASK-010 — GPT 6.1 Sol vs Astra Comparison Page
 
 The product owner explicitly approved the exact comparison route `/compare/gpt-6-1-sol-vs-astra/` on 2026-10-09. This is one researched exception to the existing nine-page set; it does not authorize generated or bulk model comparisons.
 

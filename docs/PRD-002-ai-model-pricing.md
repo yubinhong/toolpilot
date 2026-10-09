@@ -2,9 +2,9 @@
 
 ## Status
 
-- Status: Accepted on 2026-09-30; route scope amended by explicit product-owner approval on 2026-10-01 and 2026-10-09
+- Status: Accepted on 2026-09-30; route scope amended by explicit product-owner approvals on 2026-10-01 and 2026-10-09 (TASK-010 and TASK-011)
 - Replaces: PRD-001 / TASK-005 / TASK-006 product scope
-- Implementation tasks: TASK-008, TASK-010
+- Implementation tasks: TASK-008, TASK-010, TASK-011
 - Primary architecture: Next.js App Router static export on Cloudflare Pages
 
 ## Product Goal
@@ -22,13 +22,14 @@ The approved public content URLs are:
 3. `/calculator/`
 4. `/compare/`
 5. `/compare/gpt-6-1-sol-vs-astra/`
-6. `/models/jev/`
-7. `/models/gemini-4-argon/`
-8. `/about/`
-9. `/privacy/`
-10. `/terms/`
+6. `/compare/haiku-5-5-vs-luna-6/`
+7. `/models/jev/`
+8. `/models/gemini-4-argon/`
+9. `/about/`
+10. `/privacy/`
+11. `/terms/`
 
-The route registry and sitemap must contain exactly these ten URLs. A model record does not create a page. Gemini 4 Argon is the second explicitly approved trend-driven model landing page under ADR-0012. `/compare/gpt-6-1-sol-vs-astra/` is the one explicitly approved, source-backed model-comparison article under TASK-010. Any further SEO route still requires documented trend, independent demand, search-intent/SERP, official-source validation, and explicit product-owner approval before implementation. Do not create `/models/`, provider pages, blogs, guides, alternatives, best pages, or bulk/generated model-comparison pages.
+The route registry and sitemap must contain exactly these eleven URLs. A model record does not create a page. Gemini 4 Argon is the second explicitly approved trend-driven model landing page under ADR-0012. The two explicitly approved, source-backed model-comparison articles are listed in the dedicated article menu on `/compare/`. TASK-011 adds Haiku 5.5 vs Luna 6 after current comparison-intent and official-source review, with explicit product-owner approval. Any further SEO route still requires documented trend, independent demand, search-intent/SERP, official-source validation, and explicit product-owner approval before implementation. Do not create `/models/`, provider pages, blogs, guides, alternatives, best pages, or bulk/generated model-comparison pages.
 
 ## Core Workflows
 
@@ -36,6 +37,8 @@ The route registry and sitemap must contain exactly these ten URLs. A model reco
 - Filter and sort an official-source-backed pricing table.
 - Calculate per-request, daily, monthly, and annual costs from the shared model database.
 - Compare up to three selected models using the same workload assumptions.
+- Browse the two approved model-comparison articles from a dedicated menu on `/compare/`.
+- Read the approved Haiku 5.5 vs Luna 6 article with official pricing tiers, workload guidance, source links, and verification dates.
 - Read the Jev or Gemini 4 Argon overview, pricing state, API access, capabilities, calculator, official sources, and verification date.
 
 All visible model prices, capabilities, API identifiers, and links must be supported by official provider sources. Store the source URL and `lastVerifiedAt` with each model. Unknown facts stay unknown; do not infer unlisted prices or context limits.
@@ -44,11 +47,11 @@ All visible model prices, capabilities, API identifiers, and links must be suppo
 
 Use one static model data layer for homepage discovery, Pricing, Calculator, Compare, and both approved detail pages. Each model record includes stable ID/slug, public name, provider, official API model ID when published, API availability, `pricingStatus` (`public`, `announced`, or `not_public`), input/output/cache rates, unit/currency, context window, output-token limit when published, capabilities, release date, official URLs, source records, and `lastVerifiedAt`. An unpublished API model ID stays null and is labeled as unknown in the UI. A price schedule may include `priceType`, `validFrom`, `validUntil`, `nextPricing`, `pricingSchedule`, and `pricingNotes` so introductory, future-effective, and time-of-day prices remain explicit; an unannounced schedule date remains null and must be called out. `not_public` rates must never produce a numeric cost estimate.
 
-Price schedules must preserve provider pricing variants when they materially affect cost, including effective dates, context tiers, caching, or peak/off-peak rates. Pricing lists all applicable schedule variants; Calculator and Compare identify the selected schedule and calculate against that schedule. In particular, DeepSeek Off-peak and Peak rates must not be presented as unqualified equivalents to another provider's standard rate. An output rate that does not apply must use `not_applicable`, never numeric zero, and render as not token-billed. Do not label a cached-input estimate as a guaranteed cache hit or include cache-write/storage/tool-call charges unless the input model supports those costs.
+Price schedules must preserve provider pricing variants when they materially affect cost, including effective dates, prompt-length tiers, caching, or peak/off-peak rates. Pricing lists all applicable schedule variants; Calculator and Compare identify the selected schedule and calculate against the applicable prompt-length tier. In particular, DeepSeek Off-peak and Peak rates must not be presented as unqualified equivalents to another provider's standard rate. An output rate that does not apply must use `not_applicable`, never numeric zero, and render as not token-billed. Do not label a cached-input estimate as a guaranteed cache hit or include cache-write/storage/tool-call charges unless the input model supports those costs.
 
 ## Landing Page Growth
 
-Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model landing page after official-source verification. The owner approved `/compare/gpt-6-1-sol-vs-astra/` on 2026-10-09 after a release-week trend signal, comparison-intent SERP review, independent developer-discussion signal, and official OpenAI price/model-source verification; no quantified search volume was available. Any further SEO route requires the same validation and explicit product-owner approval recorded before adding its route, metadata, internal links, or sitemap entry. Model data alone never creates a route.
+Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model landing page after official-source verification. The owner approved `/compare/gpt-6-1-sol-vs-astra/` on 2026-10-09 after a release-week trend signal, comparison-intent SERP review, independent developer-discussion signal, and official OpenAI price/model-source verification. On 2026-10-09 the owner approved `/compare/haiku-5-5-vs-luna-6/` after current comparison-intent review and official Anthropic/OpenAI price/model-source verification. No quantified search volume is available for either comparison. Any further SEO route requires the same validation and explicit product-owner approval recorded before adding its route, metadata, internal links, or sitemap entry. Model data alone never creates a route.
 
 ## Analytics
 
@@ -62,7 +65,7 @@ Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model land
 
 - Every allowlisted page has unique title, description, self-canonical, Open Graph metadata, and indexability assertions.
 - All public pages use the shared branded SVG icon in browser metadata and the site header.
-- `sitemap.xml` contains exactly the ten allowlisted URLs. `robots.txt` allows crawling and points to the sitemap.
+- `sitemap.xml` contains exactly the eleven allowlisted URLs. `robots.txt` allows crawling and points to the sitemap.
 - Use `WebSite`, `WebApplication`, and `BreadcrumbList` structured data only where appropriate. Add `FAQPage` only where visible page content contains a real FAQ.
 - Retain `/pricing/` and `/compare/` but replace their content completely.
 - Remove old product routes and links. Unknown old paths return a real 404; do not redirect every removed path to `/`.
@@ -70,14 +73,15 @@ Gemini 4 Argon was approved on 2026-10-01 as a demand-signaled second model land
 
 ## Out of Scope
 
-No accounts, database, server API, provider integration, user comments, blog, advertising runtime, AdSense script, affiliate integration, provider pages, generic model-detail pages, or generated/bulk model-vs-model pages. The sole comparison-article exception is `/compare/gpt-6-1-sol-vs-astra/`. Reusable empty `AdSlot` mount points may exist at the approved placements; they render nothing without supplied content, so V1 has no ad requests, blank space, or layout shift. GA4/GSC support is limited to the optional integrations above; Cloudflare Pages Web Analytics is not enabled by this application.
+No accounts, database, server API, provider integration, user comments, blog, advertising runtime, AdSense script, affiliate integration, provider pages, generic model-detail pages, or generated/bulk model-vs-model pages. The only comparison-article routes are `/compare/gpt-6-1-sol-vs-astra/` and `/compare/haiku-5-5-vs-luna-6/`. Reusable empty `AdSlot` mount points may exist at the approved placements; they render nothing without supplied content, so V1 has no ad requests, blank space, or layout shift. GA4/GSC support is limited to the optional integrations above; Cloudflare Pages Web Analytics is not enabled by this application.
 
 ## Acceptance
 
-- The explicit route registry has exactly ten page routes; only these are indexable and listed in the sitemap.
+- The explicit route registry has exactly eleven page routes; only these are indexable and listed in the sitemap.
 - The branded SVG site icon is exported and referenced by every public page.
 - All models in the data layer have official pricing/source records and a dated verification timestamp, or explicit unknown values where official data is unavailable.
-- Pricing, Calculator, Compare, Jev, Gemini 4 Argon, and the GPT 6.1 Sol vs Astra article read the same validated model records.
+- Pricing, Calculator, Compare, Jev, Gemini 4 Argon, and both comparison articles read the same validated model records.
+- The Haiku 5.5 vs Luna 6 article is English-only, 600–1,000 English words, contains its target phrase in the title and H1–H6, and has 3–5% phrase density; `/compare/` exposes both approved articles through a dedicated menu.
 - New model data does not create a route.
 - Removed legacy paths return a real 404 and are absent from internal links and sitemap.
 - Tests, typecheck, lint, production static build, generated artifact checks, and local HTTP smoke pass.

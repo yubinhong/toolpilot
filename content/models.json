@@ -68,10 +68,11 @@
     "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1050000,
+    "outputTokenLimit": 128000,
     "releaseDate": null,
     "capabilities": ["Text input and output", "Long-context prompts"],
     "useCases": ["Lower-cost text workloads", "High-volume requests"],
-    "officialUrl": "https://openai.com/",
+    "officialUrl": "https://developers.openai.com/api/docs/models/gpt-6-luna",
     "defaultSchedule": "standard",
     "schedules": [
       { "id": "standard", "label": "Standard", "input": 0.1, "cachedInput": 0.01, "cacheWrite": 0.125, "cacheWriteOptions": [{ "label": "Cache write", "rate": 0.125 }], "output": 0.5, "longContext": { "threshold": 272000, "input": 0.2, "cachedInput": 0.02, "output": 0.75 } }
@@ -80,7 +81,7 @@
       { "label": "Official pricing", "url": "https://developers.openai.com/api/docs/pricing" },
       { "label": "Model documentation", "url": "https://developers.openai.com/api/docs/models/gpt-6-luna" }
     ],
-    "lastVerifiedAt": "2026-09-30"
+    "lastVerifiedAt": "2026-10-09"
   },
   {
     "id": "claude-fable-5-1",
@@ -177,6 +178,47 @@
       { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/overview" }
     ],
     "lastVerifiedAt": "2026-09-30"
+  },
+  {
+    "id": "claude-haiku-5-5",
+    "name": "Claude Haiku 5.5",
+    "provider": { "id": "anthropic", "name": "Anthropic" },
+    "apiModelId": "claude-haiku-5-5",
+    "landingPath": null,
+    "apiStatus": "Available via API",
+    "pricingStatus": "public",
+    "pricing": { "currency": "USD", "unit": "1M tokens" },
+    "contextWindow": 1000000,
+    "outputTokenLimit": 128000,
+    "releaseDate": "2026-10-07",
+    "capabilities": ["Text and image input", "Adaptive thinking"],
+    "useCases": ["High-volume classification", "Information extraction", "Routing and subagent tasks"],
+    "officialUrl": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+    "defaultSchedule": "standard",
+    "schedules": [
+      {
+        "id": "standard",
+        "label": "Standard",
+        "input": 0.1,
+        "cachedInput": 0.01,
+        "cacheWrite": 0.125,
+        "cacheWriteOptions": [{ "label": "5-minute cache write", "rate": 0.125 }, { "label": "1-hour cache write", "rate": 0.2 }],
+        "output": 0.5,
+        "longContext": {
+          "threshold": 100000,
+          "input": 0.5,
+          "cachedInput": 0.05,
+          "cacheWrite": 0.625,
+          "cacheWriteOptions": [{ "label": "5-minute cache write", "rate": 0.625 }, { "label": "1-hour cache write", "rate": 1 }],
+          "output": 2.5
+        }
+      }
+    ],
+    "sources": [
+      { "label": "Official pricing", "url": "https://platform.claude.com/docs/en/about-claude/pricing" },
+      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview" }
+    ],
+    "lastVerifiedAt": "2026-10-09"
   },
   {
     "id": "gemini-4-argon",

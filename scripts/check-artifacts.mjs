@@ -139,6 +139,42 @@ for (const source of ["https://openai.com/index/introducing-gpt-6-1-sol/", "http
   if (!solVsAstraHtml.includes(source)) failures.push(`/compare/gpt-6-1-sol-vs-astra/: missing official source ${source}`);
 }
 
+const haikuRecord = models.find(({ id }) => id === "claude-haiku-5-5");
+const lunaRecord = models.find(({ id }) => id === "gpt-6-luna");
+if (!pricingHtml.includes("Claude Haiku 5.5") || !pricingHtml.includes("100,000 tokens") || !pricingHtml.includes("5-minute cache write: $0.6250") || !pricingHtml.includes("1-hour cache write: $1.00")) failures.push("/pricing/: Haiku 5.5 prompt-length and cache-write prices must be visible");
+
+const articleMenu = compareHtml.match(/<nav\b[^>]*aria-label="Comparison articles"[^>]*>[\s\S]*?<\/nav>/i)?.[0] ?? "";
+const articleMenuLinks = [...articleMenu.matchAll(/href="(\/compare\/[^"]+)"/g)].map((match) => match[1]);
+if (!articleMenu.includes("comparison-articles-nav") || JSON.stringify(articleMenuLinks) !== JSON.stringify(["/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/"])) failures.push("/compare/: the dedicated article menu must list exactly both approved comparison pages");
+
+const haikuVsLunaHtml = readFileSync("out/compare/haiku-5-5-vs-luna-6/index.html", "utf8");
+const haikuArticle = haikuVsLunaHtml.match(/<article\b[^>]*class="[^"]*\bseo-comparison\b[^"]*"[\s\S]*?<\/article>/)?.[0] ?? "";
+const haikuArticleText = haikuArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+const haikuKeyword = "haiku 5.5 vs luna 6";
+const haikuKeywordCount = (haikuArticleText.match(/haiku 5\.5 vs luna 6/gi) ?? []).length;
+const haikuArticleWordCount = [...new Intl.Segmenter("en-US", { granularity: "word" }).segment(haikuArticleText)].filter(({ isWordLike }) => isWordLike).length;
+const haikuKeywordDensity = haikuArticleWordCount ? haikuKeywordCount * 5 / haikuArticleWordCount * 100 : 0;
+const haikuTitle = haikuVsLunaHtml.match(/<title>([^<]+)<\/title>/i)?.[1]?.toLowerCase() ?? "";
+if (!haikuArticle) failures.push("/compare/haiku-5-5-vs-luna-6/: missing article content");
+if (haikuArticleWordCount < 600 || haikuArticleWordCount > 1000) failures.push("/compare/haiku-5-5-vs-luna-6/: expected 600-1,000 English words, found " + haikuArticleWordCount);
+if (/\p{Script=Han}/u.test(haikuArticleText)) failures.push("/compare/haiku-5-5-vs-luna-6/: article content must be English without Han characters");
+if (!haikuTitle.includes(haikuKeyword)) failures.push("/compare/haiku-5-5-vs-luna-6/: keyword must appear in the HTML title");
+if (haikuKeywordDensity < 3 || haikuKeywordDensity > 5) failures.push("/compare/haiku-5-5-vs-luna-6/: expected 3-5% keyword density, found " + haikuKeywordDensity.toFixed(2) + "% (" + haikuKeywordCount + "/" + haikuArticleWordCount + " words)");
+for (let level = 1; level <= 6; level += 1) {
+  const headings = [...haikuArticle.matchAll(new RegExp("<h" + level + "\\b[^>]*>([\\s\\S]*?)<\\/h" + level + ">", "gi"))];
+  const text = headings[0]?.[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").toLowerCase() ?? "";
+  if (headings.length !== 1 || !text.includes(haikuKeyword)) failures.push("/compare/haiku-5-5-vs-luna-6/: keyword must appear in one H" + level + " heading");
+}
+for (const model of [haikuRecord, lunaRecord]) {
+  for (const source of model?.sources ?? []) {
+    if (!haikuVsLunaHtml.includes(source.url)) failures.push("/compare/haiku-5-5-vs-luna-6/: missing official source " + source.url);
+  }
+  if (model && !haikuVsLunaHtml.includes(model.lastVerifiedAt)) failures.push("/compare/haiku-5-5-vs-luna-6/: missing verification date for " + model.id);
+}
+for (const value of ["$0.10", "$0.01", "$0.50", "$0.05", "$2.50", "$0.625", "$1.00", "$0.20", "$0.75", "$0.012", "$0.15", "$0.03", "$0.30", "$0.105", "100,000", "272,000", "1,000,000", "1,050,000", "128,000"]) {
+  if (!haikuVsLunaHtml.includes(value)) failures.push("/compare/haiku-5-5-vs-luna-6/: missing displayed official pricing or token limit " + value);
+}
+
 const homeHtml = readFileSync("out/index.html", "utf8");
 if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("API model ID not published") || !homeHtml.includes("Context Not public") || !homeHtml.includes("Max output 1,000,000 tokens") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with unknown input context, official output limit, and calculator link");
 const popularCount = [...homeHtml.matchAll(/class="model-card"/g)].length;
@@ -181,5 +217,6 @@ if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
 } else {
+  console.log("Haiku 5.5 vs Luna 6 article: " + haikuArticleWordCount + " English words and " + haikuKeywordDensity.toFixed(2) + "% keyword density.");
   console.log(`Artifact checks passed: ${routes.length} exported content pages, ${sitemapUrls.length} sitemap URLs, dated official pricing sources, canonicals, metadata, robots, and 404 aliases. The GPT 6.1 Sol vs Astra article has ${articleWordCount} English words and ${keywordDensity.toFixed(2)}% keyword density.`);
 }
