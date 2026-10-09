@@ -145,7 +145,7 @@ if (!pricingHtml.includes("Claude Haiku 5.5") || !pricingHtml.includes("100,000 
 
 const articleMenu = compareHtml.match(/<nav\b[^>]*aria-label="Comparison articles"[^>]*>[\s\S]*?<\/nav>/i)?.[0] ?? "";
 const articleMenuLinks = [...articleMenu.matchAll(/href="(\/compare\/[^"]+)"/g)].map((match) => match[1]);
-if (!articleMenu.includes("comparison-articles-nav") || JSON.stringify(articleMenuLinks) !== JSON.stringify(["/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/"])) failures.push("/compare/: the dedicated article menu must list exactly both approved comparison pages");
+if (!articleMenu.includes("comparison-articles-nav") || JSON.stringify(articleMenuLinks) !== JSON.stringify(["/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/"])) failures.push("/compare/: the dedicated article menu must list exactly all three approved comparison pages");
 
 const haikuVsLunaHtml = readFileSync("out/compare/haiku-5-5-vs-luna-6/index.html", "utf8");
 const haikuArticle = haikuVsLunaHtml.match(/<article\b[^>]*class="[^"]*\bseo-comparison\b[^"]*"[\s\S]*?<\/article>/)?.[0] ?? "";
@@ -173,6 +173,36 @@ for (const model of [haikuRecord, lunaRecord]) {
 }
 for (const value of ["$0.10", "$0.01", "$0.50", "$0.05", "$2.50", "$0.625", "$1.00", "$0.20", "$0.75", "$0.012", "$0.15", "$0.03", "$0.30", "$0.105", "100,000", "272,000", "1,000,000", "1,050,000", "128,000"]) {
   if (!haikuVsLunaHtml.includes(value)) failures.push("/compare/haiku-5-5-vs-luna-6/: missing displayed official pricing or token limit " + value);
+}
+
+const fableRecord = models.find(({ id }) => id === "claude-fable-5-1");
+const opusRecord = models.find(({ id }) => id === "claude-opus-5-5");
+const fableVsOpusHtml = readFileSync("out/compare/fable-5-1-vs-opus-5-5/index.html", "utf8");
+const fableArticle = fableVsOpusHtml.match(/<article\b[^>]*class="[^"]*\bseo-comparison\b[^"]*"[\s\S]*?<\/article>/)?.[0] ?? "";
+const fableArticleText = fableArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+const fableKeyword = "fable 5.1 vs opus 5.5";
+const fableKeywordCount = [...fableArticleText.matchAll(new RegExp(fableKeyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"))].length;
+const fableArticleWordCount = [...new Intl.Segmenter("en-US", { granularity: "word" }).segment(fableArticleText)].filter(({ isWordLike }) => isWordLike).length;
+const fableKeywordDensity = fableArticleWordCount ? fableKeywordCount * fableKeyword.split(/\s+/u).length / fableArticleWordCount * 100 : 0;
+const fableTitle = fableVsOpusHtml.match(/<title>([^<]+)<\/title>/i)?.[1]?.toLowerCase() ?? "";
+if (!fableArticle) failures.push("/compare/fable-5-1-vs-opus-5-5/: missing article content");
+if (fableArticleWordCount < 600 || fableArticleWordCount > 1000) failures.push("/compare/fable-5-1-vs-opus-5-5/: expected 600-1,000 English words, found " + fableArticleWordCount);
+if (/\p{Script=Han}/u.test(fableArticleText)) failures.push("/compare/fable-5-1-vs-opus-5-5/: article content must be English without Han characters");
+if (!fableTitle.includes(fableKeyword)) failures.push("/compare/fable-5-1-vs-opus-5-5/: keyword must appear in the HTML title");
+if (fableKeywordDensity < 3 || fableKeywordDensity > 5) failures.push("/compare/fable-5-1-vs-opus-5-5/: expected 3-5% keyword density, found " + fableKeywordDensity.toFixed(2) + "% (" + fableKeywordCount + "/" + fableArticleWordCount + " words)");
+for (let level = 1; level <= 6; level += 1) {
+  const headings = [...fableArticle.matchAll(new RegExp("<h" + level + "\\b[^>]*>([\\s\\S]*?)<\\/h" + level + ">", "gi"))];
+  const text = headings[0]?.[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").toLowerCase() ?? "";
+  if (headings.length !== 1 || !text.includes(fableKeyword)) failures.push("/compare/fable-5-1-vs-opus-5-5/: keyword must appear in one H" + level + " heading");
+}
+for (const model of [fableRecord, opusRecord]) {
+  for (const source of model?.sources ?? []) {
+    if (!fableVsOpusHtml.includes(source.url)) failures.push("/compare/fable-5-1-vs-opus-5-5/: missing official source " + source.url);
+  }
+  if (model && !fableVsOpusHtml.includes(model.lastVerifiedAt)) failures.push("/compare/fable-5-1-vs-opus-5-5/: missing verification date for " + model.id);
+}
+for (const value of ["$10.00", "$50.00", "$0.25", "$12.50", "$20.00", "$4.00", "$0.20", "$5.00", "$8.00", "$1.00", "$0.40", "$6.50", "$2.60", "1,000,000", "128,000"]) {
+  if (!fableVsOpusHtml.includes(value)) failures.push("/compare/fable-5-1-vs-opus-5-5/: missing official rate, sample estimate, or token limit " + value);
 }
 
 const homeHtml = readFileSync("out/index.html", "utf8");
@@ -218,5 +248,6 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   console.log("Haiku 5.5 vs Luna 6 article: " + haikuArticleWordCount + " English words and " + haikuKeywordDensity.toFixed(2) + "% keyword density.");
+  console.log("Fable 5.1 vs Opus 5.5 article: " + fableArticleWordCount + " English words and " + fableKeywordDensity.toFixed(2) + "% keyword density.");
   console.log(`Artifact checks passed: ${routes.length} exported content pages, ${sitemapUrls.length} sitemap URLs, dated official pricing sources, canonicals, metadata, robots, and 404 aliases. The GPT 6.1 Sol vs Astra article has ${articleWordCount} English words and ${keywordDensity.toFixed(2)}% keyword density.`);
 }

@@ -4,8 +4,8 @@ import { DEFAULT_SITE_URL, getSiteUrl } from "../lib/site-config.mjs";
 import { getRoutes } from "../lib/routes.mjs";
 import { pageMetadata } from "../lib/metadata.ts";
 
-test("route registry contains the exact eleven approved routes, each indexable", () => {
-  assert.deepEqual(getRoutes().map(({ path }) => path), ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"]);
+test("route registry contains the exact twelve approved routes, each indexable", () => {
+  assert.deepEqual(getRoutes().map(({ path }) => path), ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"]);
   assert.ok(getRoutes().every((route) => route.index));
 });
 

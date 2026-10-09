@@ -23,6 +23,7 @@ export const REQUIRED_RELEASE_FILES = Object.freeze([
   "app/calculator/page.tsx",
   "app/compare/page.tsx",
   "app/compare/gpt-6-1-sol-vs-astra/page.tsx",
+  "app/compare/fable-5-1-vs-opus-5-5/page.tsx",
   "functions/404.ts",
   "functions/404.html.ts",
   "functions/_not-found.ts",

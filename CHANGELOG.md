@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — TASK-012
+
+- Add an English Fable 5.1 vs Opus 5.5 price/use-case article and the third approved entry in the `/compare/` article menu.
+- Refresh Anthropic's shared Fable/Opus source metadata and output limits; extend the exact route, sitemap, artifact, and HTTP smoke contracts to twelve approved routes.
+
 ## TASK-011 — deployed 2026-10-09
 
 - Add an English Haiku 5.5 vs Luna 6 price/use-case article and a dedicated comparison-article menu on `/compare/`.

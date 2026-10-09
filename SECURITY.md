@@ -1,6 +1,6 @@
 # SECURITY.md
 
-## TASK-009 V1 Boundary and TASK-010 Route Extension (2026-10-09)
+## TASK-009 V1 Boundary and TASK-012 Route Extension (2026-10-09)
 
 ### Dependency security update (2026-10-09)
 
@@ -12,8 +12,8 @@
 - The new application has no accounts, forms, API, database, or pricing backend. Optional GA4 is loaded only when a valid `NEXT_PUBLIC_GA_ID` is supplied at build time; event properties are allowlisted and exclude calculator quantities and raw search text. GSC verification is an optional metadata token. `content/models.json` contains public pricing facts and official source URLs; its checker limits source hosts to the model providers.
 - Calculator and comparison values remain in browser state. Model selection may appear in a query string; token counts and request volumes are not sent to ToolPilot by application code.
 - External source links are rendered as ordinary HTTPS anchors with `rel="noreferrer"`. Provider source data is reviewed before it is added; URLs are not fetched at runtime.
-- Static output retains the generated CSP meta and shared Cloudflare Pages security headers. Build artifact checks verify those policies in the ten page documents and 404 output.
-- The public route allowlist is the ten approved URLs in TASK-010 and PRD-002. The GPT 6.1 Sol vs Astra article reads public pricing from the shared OpenAI model records and sends no calculator or user data. Gemini 4 Argon uses announced Google pricing and limited-access status from official sources. `not_public` pricing must not generate a cost estimate; calculator inputs remain browser-only.
+- Static output retains the generated CSP meta and shared Cloudflare Pages security headers. Build artifact checks verify those policies in all twelve page documents and 404 output.
+- The public route allowlist is the twelve approved URLs in TASK-010 through TASK-012 and PRD-002. The GPT 6.1 Sol vs Astra article reads shared OpenAI model data; the Haiku 5.5 vs Luna 6 and Fable 5.1 vs Opus 5.5 articles read shared Anthropic model data. These static articles send no calculator or user data. Gemini 4 Argon uses announced Google pricing and limited-access status from official sources. `not_public` pricing must not generate a cost estimate; calculator inputs remain browser-only.
 - Cloudflare Pages can process request metadata and may inject its own analytics beacon when enabled in its Dashboard. This task does not inspect or change that external setting; the generated CSP continues to block that beacon. Do not claim zero hosting or third-party processing.
 - The rest of this file records historical security reviews and deployments for the superseded developer-tool application. Its TASK-007 references are not the active TASK-009 product follow-up.
 

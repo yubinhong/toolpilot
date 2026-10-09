@@ -1,3 +1,16 @@
+## TASK-012 — Fable 5.1 vs Opus 5.5 Comparison Article
+
+- Status: IN_PROGRESS (owner-approved implementation and release).
+- Date: 2026-10-09.
+- Authorization: the product owner requested an English comparison page for `fable 5.1 vs opus 5.5` using the prior article and release handling. This explicitly approves the 12th public route and extends the `/compare/` article menu.
+- Demand review: current comparison-intent results include [Chudi.dev's Opus 5.5 vs Fable 5.1 price/benchmark comparison](https://chudi.dev/blog/claude-opus-5-5-vs-fable-5-1) and [Respan's Fable 5.1 vs Opus 5.5 guide](https://www.respan.ai/articles/claude-fable-vs-opus). A recent [Claude Code developer discussion](https://www.reddit.com/r/claude/comments/1wy2ojw/switched_claude_code_from_fable_51_to_opus_55/) compares model switching, cost, and workload fit. These sources support current search intent, not official model facts; no search-volume figure is claimed.
+- Official sources: Anthropic's [Fable 5.1 model overview](https://platform.claude.com/docs/en/models/fable-5-1/overview), [Opus 5.5 model overview](https://platform.claude.com/docs/en/models/opus-5-5/overview), [API pricing](https://platform.claude.com/docs/en/about-claude/pricing), and [model selection guide](https://platform.claude.com/docs/en/about-claude/models/choosing-a-model). Checked 2026-10-09.
+- Verified standard rates per million tokens: Fable 5.1 input/output `$10/$50`, cached input `$0.25`, five-minute cache write `$12.50`, one-hour cache write `$20`; Opus 5.5 input/output `$4/$20`, cached input `$0.20`, five-minute cache write `$5`, one-hour cache write `$8`. Both list a 1,000,000-token context and 128,000-token max output. Anthropic recommends starting with Opus 5.5 for most workloads and considering Fable 5.1 when demanding reasoning or long-horizon agentic tasks still fail on Opus at higher effort.
+- Content acceptance: English-only, 600–1,000 English words, no Han characters, target phrase in the HTML title and H1–H6, 3–5% phrase density using the existing rendered English-word contract.
+- Goal: add `/compare/fable-5-1-vs-opus-5-5/`, refresh the two shared model records and official verification dates, and list all three approved comparison articles in the dedicated `/compare/` menu.
+- Rollback: revert the TASK-012 feature commit and restore the previous 11-route allowlist/menu and Fable/Opus model source metadata; no user data or Cloudflare/DNS configuration is changed.
+- Verification: pending implementation and release.
+
 ## TASK-011 — Haiku 5.5 vs Luna 6 Comparison Article
 
 - Status: COMPLETED (merged to `main`, deployed, and verified on the preview and production domains).

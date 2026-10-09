@@ -1,4 +1,38 @@
-# Current Plan: TASK-011 — Haiku 5.5 vs Luna 6 Comparison Article
+# Current Plan: TASK-012 — Fable 5.1 vs Opus 5.5 Comparison Article
+
+The product owner explicitly requested `/compare/fable-5-1-vs-opus-5-5/` on 2026-10-09 and asked to use the same English article and release process as TASK-011. This authorizes the 12th public route after current demand/SERP review and official-source validation.
+
+## Goal and constraints
+
+- Add the 12th explicit public route and keep the route registry, static export, metadata, and sitemap allowlists exact.
+- Add an English-only 600–1,000-word price/use-case article for `fable 5.1 vs opus 5.5`; include the keyword in the HTML title and H1–H6 and enforce 3–5% density with the existing rendered-word contract.
+- Use the shared Anthropic model records and official pricing/model pages. Both records currently contain rates last verified on 2026-09-30; recheck, update source URLs/date, and record the official output-token limits.
+- Extend `/compare/`'s dedicated article menu to the three explicitly approved comparison pages. Do not create generated comparisons or new model-detail pages.
+- Separate provider-documented workload guidance from independent benchmark claims; recommend workload-specific evaluation and do not infer search volume.
+- Prior user authorization to push to `main` and deploy remains applicable to this requested change.
+
+## Demand and source review
+
+- Current comparison-intent SERPs include [Chudi.dev's Opus 5.5 vs Fable 5.1 price/benchmark comparison](https://chudi.dev/blog/claude-opus-5-5-vs-fable-5-1) and [Respan's Fable 5.1 vs Opus 5.5 guide](https://www.respan.ai/articles/claude-fable-vs-opus). A recent [Claude Code developer discussion](https://www.reddit.com/r/claude/comments/1wy2ojw/switched_claude_code_from_fable_51_to_opus_55/) compares switching, cost, and task fit. These are current intent and interest signals, not authoritative model facts; no search-volume figure is claimed.
+- Anthropic's [Fable 5.1 overview](https://platform.claude.com/docs/en/models/fable-5-1/overview), [Opus 5.5 overview](https://platform.claude.com/docs/en/models/opus-5-5/overview), [API pricing](https://platform.claude.com/docs/en/about-claude/pricing), and [choosing a model guide](https://platform.claude.com/docs/en/about-claude/models/choosing-a-model) were checked on 2026-10-09.
+- Official standard USD rates per million tokens: Fable 5.1 input/output `$10/$50`, cached input `$0.25`, five-minute cache write `$12.50`, one-hour cache write `$20`; Opus 5.5 input/output `$4/$20`, cached input `$0.20`, five-minute cache write `$5`, one-hour cache write `$8`. Both list 1,000,000 context and 128,000 max output. Anthropic positions Opus 5.5 as a starting point for most workloads and Fable 5.1 for demanding reasoning/long-horizon agentic work when Opus at higher effort still falls short.
+
+## Phases
+
+1. [x] Verify current comparison intent, current SERP, and official model, price, limits, and workload guidance.
+2. [ ] Refresh shared Fable/Opus records, add tested output limits, and update the 12-route/menu contracts.
+3. [ ] Add the authored article, route metadata, breadcrumb, and title/H1–H6, source, rate, word-count, and keyword-density artifact checks.
+4. [ ] Synchronize PRD, architecture, testing, security route facts, project/current context, task, changelog, TODO, and runbook/release records.
+5. [ ] Run Node 22 quality gates, audit, release readiness, local and production smoke; review the complete diff.
+6. [ ] Commit and push to `main`; verify CI, Cloudflare Pages deployment, and immutable-preview/production output.
+
+## Rollback
+
+Revert the TASK-012 feature commit to remove the exact 12th route, third menu entry, article, and related contracts. Restore the previous Fable/Opus source metadata and route allowlist; no user data, domain configuration, or Cloudflare settings are changed.
+
+---
+
+# Completed Plan: TASK-011 — Haiku 5.5 vs Luna 6 Comparison Article
 
 The product owner explicitly approved `/compare/haiku-5-5-vs-luna-6/` on 2026-10-09, including an English article and a dedicated comparison-article menu on `/compare/`.
 

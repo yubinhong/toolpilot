@@ -4,9 +4,9 @@ import { estimateRequestCost, estimateUsage } from "../lib/model-cost.ts";
 import { getActiveSchedule, getModel, models } from "../lib/models.ts";
 import { getRoutes } from "../lib/routes.mjs";
 
-const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 
-test("the public route registry is exactly the approved eleven pages", () => {
+test("the public route registry is exactly the approved twelve pages", () => {
   assert.deepEqual(getRoutes().map(({ path }) => path), allowedRoutes);
 });
 
@@ -75,6 +75,35 @@ test("Haiku 5.5 and GPT-6 Luna preserve their official prompt-length price tiers
   assert.ok(Math.abs(atLunaThreshold.requestCost! - 0.0372) < 1e-12);
   assert.equal(aboveLunaThreshold.usedLongContextRate, true);
   assert.ok(Math.abs(aboveLunaThreshold.requestCost! - 0.0694002) < 1e-12);
+});
+
+test("Fable 5.1 and Opus 5.5 preserve current official prices, cache rates, and output limits", () => {
+  const fable = getModel("claude-fable-5-1");
+  const opus = getModel("claude-opus-5-5");
+  assert.ok(fable);
+  assert.ok(opus);
+  assert.equal(fable.contextWindow, 1000000);
+  assert.equal(fable.outputTokenLimit, 128000);
+  assert.equal(fable.releaseDate, "2026-09-01");
+  assert.equal(fable.schedules[0].input, 10);
+  assert.equal(fable.schedules[0].cachedInput, 0.25);
+  assert.equal(fable.schedules[0].output, 50);
+  assert.deepEqual(fable.schedules[0].cacheWriteOptions, [
+    { label: "5-minute cache write", rate: 12.5 },
+    { label: "1-hour cache write", rate: 20 },
+  ]);
+  assert.equal(opus.contextWindow, 1000000);
+  assert.equal(opus.outputTokenLimit, 128000);
+  assert.equal(opus.releaseDate, "2026-09-22");
+  assert.equal(opus.schedules[0].input, 4);
+  assert.equal(opus.schedules[0].cachedInput, 0.2);
+  assert.equal(opus.schedules[0].output, 20);
+  assert.deepEqual(opus.schedules[0].cacheWriteOptions, [
+    { label: "5-minute cache write", rate: 5 },
+    { label: "1-hour cache write", rate: 8 },
+  ]);
+  assert.equal(estimateRequestCost(fable, { inputTokens: 50000, outputTokens: 10000 }).requestCost, 1);
+  assert.equal(estimateRequestCost(opus, { inputTokens: 50000, outputTokens: 10000 }).requestCost, 0.4);
 });
 
 test("current GPT-6.1 Sol and Gemini 3.8 Flash prices are available to shared model workflows", () => {

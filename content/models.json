@@ -93,19 +93,20 @@
     "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1000000,
-    "releaseDate": null,
-    "capabilities": ["Text and image input", "Text output"],
-    "useCases": ["Complex analysis", "Long-context tasks"],
-    "officialUrl": "https://www.anthropic.com/",
+    "outputTokenLimit": 128000,
+    "releaseDate": "2026-09-01",
+    "capabilities": ["Text and image input", "Text output", "Adaptive thinking"],
+    "useCases": ["Demanding reasoning", "Long-horizon agentic work", "Multi-step research", "Document and spreadsheet work"],
+    "officialUrl": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
     "defaultSchedule": "standard",
     "schedules": [
       { "id": "standard", "label": "Standard", "input": 10, "cachedInput": 0.25, "cacheWrite": 12.5, "cacheWriteOptions": [{ "label": "5-minute cache write", "rate": 12.5 }, { "label": "1-hour cache write", "rate": 20 }], "output": 50 }
     ],
     "sources": [
       { "label": "Official pricing", "url": "https://platform.claude.com/docs/en/about-claude/pricing" },
-      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/overview" }
+      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview" }
     ],
-    "lastVerifiedAt": "2026-09-30"
+    "lastVerifiedAt": "2026-10-09"
   },
   {
     "id": "claude-opus-5-5",
@@ -117,19 +118,20 @@
     "pricingStatus": "public",
     "pricing": { "currency": "USD", "unit": "1M tokens" },
     "contextWindow": 1000000,
-    "releaseDate": null,
-    "capabilities": ["Text and image input", "Text output"],
-    "useCases": ["Complex analysis", "Agent workflows"],
-    "officialUrl": "https://www.anthropic.com/",
+    "outputTokenLimit": 128000,
+    "releaseDate": "2026-09-22",
+    "capabilities": ["Text and image input", "Text output", "Adaptive thinking"],
+    "useCases": ["Long-running agentic coding", "Knowledge work", "Complex systems engineering"],
+    "officialUrl": "https://platform.claude.com/docs/en/models/opus-5-5/overview",
     "defaultSchedule": "standard",
     "schedules": [
       { "id": "standard", "label": "Standard", "input": 4, "cachedInput": 0.2, "cacheWrite": 5, "cacheWriteOptions": [{ "label": "5-minute cache write", "rate": 5 }, { "label": "1-hour cache write", "rate": 8 }], "output": 20 }
     ],
     "sources": [
       { "label": "Official pricing", "url": "https://platform.claude.com/docs/en/about-claude/pricing" },
-      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/overview" }
+      { "label": "Model overview", "url": "https://platform.claude.com/docs/en/models/opus-5-5/overview" }
     ],
-    "lastVerifiedAt": "2026-09-30"
+    "lastVerifiedAt": "2026-10-09"
   },
   {
     "id": "claude-sonnet-5-5",

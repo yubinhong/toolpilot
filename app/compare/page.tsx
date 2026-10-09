@@ -13,6 +13,7 @@ export default function ComparePage() {
       <ul>
         <li><Link href="/compare/gpt-6-1-sol-vs-astra/">GPT 6.1 Sol vs Astra <span>Pricing and use cases</span></Link></li>
         <li><Link href="/compare/haiku-5-5-vs-luna-6/">Haiku 5.5 vs Luna 6 <span>Pricing and use cases</span></Link></li>
+        <li><Link href="/compare/fable-5-1-vs-opus-5-5/">Fable 5.1 vs Opus 5.5 <span>Pricing and use cases</span></Link></li>
       </ul>
     </nav>
     <ModelComparison />
