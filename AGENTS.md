@@ -54,7 +54,7 @@
 
 - ToolPilot 面向 `AI Developer`、`Indie Hacker`、`SaaS Developer`、`API User` 和 `AI Builder`，帮助用户查询模型价格、估算 API 成本和比较模型。
 - 产品定位为 `AI Model Pricing & API Cost Tools Platform`；不得恢复为开发者工具目录或泛用型在线工具站。
-- 当前已批准的公开页面共 13 个：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/compare/fable-5-1-vs-opus-5-5/`、`/compare/opus-5-5-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Jev 和 Gemini 4 Argon 是仅有的两个模型独立页面；上述四个 VS 页面是仅有的获批模型比较文章。模型记录不自动生成页面。
+- 当前已批准的公开页面共 13 个：`/`、`/pricing/`、`/api-cost-calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/compare/fable-5-1-vs-opus-5-5/`、`/compare/opus-5-5-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。旧 `/calculator/` 仅通过精确 301 迁移，不索引也不进入 sitemap。Jev 和 Gemini 4 Argon 是仅有的两个模型独立页面；上述四个 VS 页面是仅有的获批模型比较文章。模型记录不自动生成页面。
 - 第 11 个及之后的 SEO 页面必须满足 PRD-002 的趋势、搜索意图、SERP 和官方来源验证，并得到用户明确批准。
 - 不建设批量模型详情、批量 VS 页面、blog、providers、best、alternatives、通用工具目录、账户系统、论坛、AI Chat、广告或未批准的商业功能。
 

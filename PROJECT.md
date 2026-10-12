@@ -2,8 +2,8 @@
 
 ## Current Product Baseline
 
-- Status: ToolPilot AI Model Pricing V1; TASK-013 deployed the fourth approved comparison article and compact article menu
-- Last updated: 2026-10-09
+- Status: ToolPilot AI Model Pricing V1; TASK-014 focuses the homepage on AI Model Pricing and moves the calculator to its dedicated API cost URL
+- Last updated: 2026-10-13
 - Product: AI Model Pricing & API Cost Tools Platform
 - Primary users: AI developers, indie hackers, SaaS developers, API users, and AI builders
 - Domain: `https://toolpilot.cc`
@@ -13,7 +13,7 @@ ToolPilot helps users answer how much an AI model/API will cost for a workload a
 
 ## V1 Scope
 
-The thirteen approved target content routes are `/`, `/pricing/`, `/calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/compare/haiku-5-5-vs-luna-6/`, `/compare/fable-5-1-vs-opus-5-5/`, `/compare/opus-5-5-vs-astra/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The four owner-approved comparison articles appear in a compact, expandable menu on `/compare/`; no general or batch comparison pages are generated.
+The thirteen approved target content routes are `/`, `/pricing/`, `/api-cost-calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/compare/haiku-5-5-vs-luna-6/`, `/compare/fable-5-1-vs-opus-5-5/`, `/compare/opus-5-5-vs-astra/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The old `/calculator/` path is redirected exactly to `/api-cost-calculator/` and is not indexable or listed in the sitemap. The four owner-approved comparison articles appear in a compact, expandable menu on `/compare/`; no general or batch comparison pages are generated.
 
 The model database lives in `content/models.json`. The homepage, pricing page, calculator, comparison page, all four comparison articles, and Jev/Argon detail pages read the same records. Each price record includes an official source and verification date; unknown values remain unknown. Model records do not create SEO routes. Jev and Gemini 4 Argon are the only approved detail pages.
 
@@ -27,7 +27,7 @@ V1 does not include accounts, API services, a database, a blog, AdSense scripts,
 | Rendering | Static export using `output: "export"` and trailing slashes |
 | Model data | Static JSON in `content/models.json`, loaded through `lib/models.ts` |
 | Pricing math | Shared pure functions in `lib/model-cost.ts` |
-| Route allowlist | Explicit thirteen-route registry in `lib/routes.mjs` |
+| Route allowlist | Explicit thirteen-route registry in `lib/routes.mjs`; old calculator path redirects to `/api-cost-calculator/` |
 | Hosting | Cloudflare Pages Git Integration; `toolpilot-git` is the current project for `toolpilot.cc` |
 | Runtime | Node.js 22 (`.nvmrc`), npm with lockfile v3 |
 | Quality | ESLint 9 flat config, TypeScript 5.9, Node test runner, static artifact checks, HTTP smoke |

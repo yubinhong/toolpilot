@@ -4,7 +4,7 @@
 
 - Status: Accepted on 2026-09-30; route scope amended by explicit product-owner approvals on 2026-10-01 and 2026-10-09 (TASK-010 through TASK-013)
 - Replaces: PRD-001 / TASK-005 / TASK-006 product scope
-- Implementation tasks: TASK-008, TASK-010, TASK-011, TASK-012, TASK-013
+- Implementation tasks: TASK-008, TASK-010, TASK-011, TASK-012, TASK-013, TASK-014
 - Primary architecture: Next.js App Router static export on Cloudflare Pages
 
 ## Product Goal
@@ -19,7 +19,7 @@ The approved public content URLs are:
 
 1. `/`
 2. `/pricing/`
-3. `/calculator/`
+3. `/api-cost-calculator/`
 4. `/compare/`
 5. `/compare/gpt-6-1-sol-vs-astra/`
 6. `/compare/haiku-5-5-vs-luna-6/`
@@ -31,7 +31,7 @@ The approved public content URLs are:
 12. `/privacy/`
 13. `/terms/`
 
-The route registry and sitemap must contain exactly these thirteen URLs. A model record does not create a page. Gemini 4 Argon is the second explicitly approved trend-driven model landing page under ADR-0012. The four explicitly approved, source-backed model-comparison articles are listed in the expandable article menu on `/compare/`. TASK-011 added Haiku 5.5 vs Luna 6; TASK-012 added Fable 5.1 vs Opus 5.5; TASK-013 adds Opus 5.5 vs Astra after current comparison-intent and official-source review, with explicit product-owner approval. Any further SEO route still requires documented trend, independent demand, search-intent/SERP, official-source validation, and explicit product-owner approval before implementation. Do not create `/models/`, provider pages, blogs, guides, alternatives, best pages, or bulk/generated model-comparison pages.
+The route registry and sitemap must contain exactly these thirteen URLs. A model record does not create a page. Gemini 4 Argon is the second explicitly approved trend-driven model landing page under ADR-0012. The four explicitly approved, source-backed model-comparison articles are listed in the expandable article menu on `/compare/`. TASK-011 added Haiku 5.5 vs Luna 6; TASK-012 added Fable 5.1 vs Opus 5.5; TASK-013 adds Opus 5.5 vs Astra after current comparison-intent and official-source review, with explicit product-owner approval. TASK-014 moves the calculator route from `/calculator/` to `/api-cost-calculator/`; the old path is an exact 301 migration and is not a sitemap or indexable URL. Any further SEO route still requires documented trend, independent demand, search-intent/SERP, official-source validation, and explicit product-owner approval before implementation. Do not create `/models/`, provider pages, blogs, guides, alternatives, best pages, or bulk/generated model-comparison pages.
 
 ## Core Workflows
 

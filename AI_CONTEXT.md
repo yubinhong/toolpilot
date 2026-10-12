@@ -1,8 +1,9 @@
 # AI_CONTEXT.md
 
-## 当前快照 — 2026-10-09
+## 当前快照 — 2026-10-13
 
-- 用户最新批准的 V1 共 13 个公开 URL：`/`、`/pricing/`、`/calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/compare/fable-5-1-vs-opus-5-5/`、`/compare/opus-5-5-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。Argon 是第二个模型落地页；四篇获批比较文章由 `/compare/` 的可展开菜单列出，不建立批量模型页或比较页。
+- 当前 V1 有 13 个公开 URL：`/`、`/pricing/`、`/api-cost-calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/compare/fable-5-1-vs-opus-5-5/`、`/compare/opus-5-5-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。旧 `/calculator/` 仅精确 301 到新路径，不索引也不进入 sitemap。Argon 是第二个模型落地页；四篇获批比较文章由 `/compare/` 的可展开菜单列出，不建立批量模型页或比较页。
+- TASK-014 将首页主题明确为 AI Model Pricing，并将独立计算器移至 `/api-cost-calculator/`。Node 22 Cloudflare 构建通过 39 项测试、静态产物检查和 13 页导出；新旧计算器路径、查询参数保留、sitemap、robots 和退役路径的 Wrangler Pages smoke 全部通过。`npm audit --audit-level=high` 为 0 vulnerabilities。发布和正式站复验状态见 TASK.md / RUNBOOK.md。
 - TASK-013 已部署；Opus 5.5 vs Astra 页面有 835 个英文词、无 Han 字符、关键词密度 3.83%，title 与 H1–H6 都包含关键词。十三页构建、38 项测试、依赖审计及产物检查通过；GitHub CI、Cloudflare Pages check、不可变预览和正式站 smoke 均通过，详见 `TASK.md` 和 `RUNBOOK.md`。
 - TASK-010 到 TASK-012 均已于 2026-10-09 推送并部署到 `main`。TASK-012 新增 Fable 5.1 vs Opus 5.5 文章及第三个 `/compare/` 菜单项；TASK.md 和 RUNBOOK.md 记录 CI、Pages 部署及正式站验证证据。
 - Haiku 5.5 vs Luna 6 文章有 912 个英文词、无 Han 字符，关键词密度 3.29%；不可变 Pages 预览和 `https://toolpilot.cc` 均通过 11 页 smoke，精确 sitemap、robots 和废弃路径 404 检查通过。

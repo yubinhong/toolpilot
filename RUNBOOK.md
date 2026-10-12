@@ -1,5 +1,11 @@
 # RUNBOOK.md
 
+## TASK-014 Homepage pricing SEO and calculator URL migration (2026-10-13)
+
+The release candidate keeps the current thirteen-route inventory and replaces the indexable calculator path with `/api-cost-calculator/`. `/calculator` and `/calculator/` redirect exactly to the new URL with query parameters preserved. The homepage title/H1 and guidance focus on AI Model Pricing; all thirteen pages expose the branded 1200x630 share image.
+
+Node 22.23.2 `npm ci`, `npm run cloudflare:build` (39 tests), `npm audit --audit-level=high` (0 vulnerabilities), and Wrangler Pages local smoke passed. The local smoke checked all thirteen routes, exact sitemap, robots, both calculator redirects, and retired-route 404s. Production deployment and verification are pending. Rollback by restoring `/calculator/` as the page and route and removing the exact redirect rules, new social metadata/asset, and updated links; no model data, pricing, DNS, or Cloudflare settings change.
+
 ## TASK-013 Opus 5.5 vs Astra article and comparison menu (2026-10-09)
 
 The approved 13th route is `/compare/opus-5-5-vs-astra/`; `/compare/` now uses a native disclosure with four article links and a height-limited expanded list. The article has 835 English words, no Han characters, and 3.83% keyword density; its exported title and H1–H6 include the target phrase. Astra's shared record now includes the official long-context cache-write rate.

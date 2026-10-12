@@ -14,7 +14,7 @@ Use Node.js 22 from `.nvmrc` and the npm lockfile v3. Reproduce dependencies wit
 | `npm test` | Test the thirteen-route contract, source-backed model data, date and prompt-length tier selection, calculator formulas and unavailable pricing, GA4/GSC configuration and event payload allowlists; also cover CSP and release-readiness utilities. |
 | `npm run build` | Model validation, Next.js static export, generated CSP/Pages headers, and output artifact checks. |
 | `npm run artifacts:check` | Validate the current `out/` directory; does not rebuild it. |
-| `npm run smoke` | HTTP checks for all thirteen routes, canonical/metadata/index directives, exact sitemap, robots access, and real 404s for retired routes. |
+| `npm run smoke` | HTTP checks for all thirteen routes, canonical/metadata/index directives, exact sitemap, robots access, exact calculator migration redirects with query preservation, and real 404s for retired routes. |
 | `npm run cloudflare:build` | CI sequence: lint, typecheck, test, and build. |
 | `npm run release:check` | Require Node 22, full HEAD SHA, credential-free GitHub origin, clean worktree, and tracked release files. |
 
@@ -23,6 +23,7 @@ Static export does not support `next start`. For a Pages-compatible local HTTP s
 ## Required Invariants
 
 - Exactly thirteen content routes are registered, exported, indexable, and listed in `sitemap.xml`.
+- `/calculator` and `/calculator/` return exact 301 redirects to `/api-cost-calculator/`; they are absent from internal links, canonicals, and the sitemap.
 - The compact comparison menu links to exactly the four approved comparison articles; each article's HTML title, H1–H6 keyword coverage, word count, and keyword density are checked in exported artifacts.
 - The branded `favicon.svg` exists in the static export and every page links to it as the site icon and uses it as the header mark.
 - Model data does not generate detail routes; Jev and Gemini 4 Argon are the only explicitly approved detail routes.

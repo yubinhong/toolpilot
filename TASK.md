@@ -1,3 +1,14 @@
+## TASK-014 — Homepage Pricing Intent and API Cost Calculator URL
+
+- Status: IN_PROGRESS (implementation committed locally; production release and smoke pending).
+- Date: 2026-10-13.
+- Authorization: the product owner asked to implement the supplied SEO recommendations, then explicitly requested commit and production deployment.
+- Goal: make the homepage focus on AI Model Pricing and move the calculator landing page from `/calculator/` to `/api-cost-calculator/`, without increasing the existing thirteen-page route count or changing pricing data.
+- Implementation: update homepage title/H1, pricing guidance and calculator CTA; update internal links and metadata; add an exact 301 migration for `/calculator` and `/calculator/` preserving query strings; add a shared 1200x630 Open Graph image; retain all existing model and comparison routes.
+- Verification — Node 22.23.2/npm 10.9.8: `npm ci` passed; `npm run cloudflare:build` passed lint, typecheck, 39/39 tests, model validation, static export, and artifact checks with exactly thirteen content pages and sitemap URLs; `npm audit --audit-level=high` found 0 vulnerabilities. Wrangler Pages smoke passed all thirteen routes, exact sitemap, robots, both redirects with `model=jev` preserved, and retired-path 404s.
+- Rollback: restore `/calculator/` as the registered route and page, remove the two exact redirects and social image metadata/asset, restore internal links and the prior home metadata, then redeploy the last reviewed artifact.
+- Production deployment and live smoke evidence will be added after the `main` deployment completes.
+
 ## TASK-013 — Opus 5.5 vs Astra Comparison Article and Menu
 
 - Status: COMPLETED (pushed to `main`, deployed, and verified on preview and production).

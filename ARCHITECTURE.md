@@ -28,7 +28,7 @@ flowchart TD
 
 `lib/routes.mjs` is the explicit list of thirteen public content routes. `app/sitemap.ts`, per-page metadata, `scripts/check-artifacts.mjs`, and `scripts/smoke.mjs` enforce the same allowlist. There is no dynamic model route or `/models/` index. Jev and Gemini 4 Argon are the only model detail pages and share `components/trend-model-landing-page.tsx`. The four approved comparison articles are separately authored static pages that read their prices from shared model records; they do not enable generated model comparisons. `/compare/` lists these articles in a native, keyboard-accessible disclosure with a height-limited expanded list.
 
-Unknown and retired routes use the static 404 response. Two exact Pages Functions return a noindex 404 for `/404` and `/404.html`, preventing Cloudflare Pages from serving its own error document as a 200 URL. No broad redirects are configured. HTTP smoke checks cover these aliases and removed product paths.
+Unknown and retired routes use the static 404 response. Two exact Pages Functions return a noindex 404 for `/404` and `/404.html`, preventing Cloudflare Pages from serving its own error document as a 200 URL. The legacy `/calculator` and `/calculator/` paths have exact 301 rules to `/api-cost-calculator/`; no broad redirects are configured. HTTP smoke checks cover these aliases and removed product paths.
 
 ## Model Data and Pricing
 
