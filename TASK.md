@@ -1,13 +1,13 @@
 ## TASK-014 — Homepage Pricing Intent and API Cost Calculator URL
 
-- Status: IN_PROGRESS (implementation committed locally; production release and smoke pending).
+- Status: COMPLETED (pushed to `main`, deployed, and verified on the Pages project hostname and production domain).
 - Date: 2026-10-13.
 - Authorization: the product owner asked to implement the supplied SEO recommendations, then explicitly requested commit and production deployment.
 - Goal: make the homepage focus on AI Model Pricing and move the calculator landing page from `/calculator/` to `/api-cost-calculator/`, without increasing the existing thirteen-page route count or changing pricing data.
 - Implementation: update homepage title/H1, pricing guidance and calculator CTA; update internal links and metadata; add an exact 301 migration for `/calculator` and `/calculator/` preserving query strings; add a shared 1200x630 Open Graph image; retain all existing model and comparison routes.
 - Verification — Node 22.23.2/npm 10.9.8: `npm ci` passed; `npm run cloudflare:build` passed lint, typecheck, 39/39 tests, model validation, static export, and artifact checks with exactly thirteen content pages and sitemap URLs; `npm audit --audit-level=high` found 0 vulnerabilities. Wrangler Pages smoke passed all thirteen routes, exact sitemap, robots, both redirects with `model=jev` preserved, and retired-path 404s.
 - Rollback: restore `/calculator/` as the registered route and page, remove the two exact redirects and social image metadata/asset, restore internal links and the prior home metadata, then redeploy the last reviewed artifact.
-- Production deployment and live smoke evidence will be added after the `main` deployment completes.
+- Release: implementation commit `d39a7b3` and release/documentation commit `5bbd81b02221ba7598af28775159357e3c087b74` were pushed to `main`; GitHub CI run `38317761578` passed audit, lint, typecheck, tests, static build, and Pages smoke. The stable Pages hostname `https://toolpilot-git.pages.dev` and production `https://toolpilot.cc` both passed the full thirteen-route smoke, including the exact sitemap, robots, both 301 redirects with `model=jev` preserved, and retired-path 404s. The new calculator URL returns HTTP 200 in both environments. Wrangler deployment-list inspection was unavailable because `CLOUDFLARE_API_TOKEN` is not configured; live Pages and production smoke verified the deployment.
 
 ## TASK-013 — Opus 5.5 vs Astra Comparison Article and Menu
 

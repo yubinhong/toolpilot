@@ -4,7 +4,7 @@
 
 The release candidate keeps the current thirteen-route inventory and replaces the indexable calculator path with `/api-cost-calculator/`. `/calculator` and `/calculator/` redirect exactly to the new URL with query parameters preserved. The homepage title/H1 and guidance focus on AI Model Pricing; all thirteen pages expose the branded 1200x630 share image.
 
-Node 22.23.2 `npm ci`, `npm run cloudflare:build` (39 tests), `npm audit --audit-level=high` (0 vulnerabilities), and Wrangler Pages local smoke passed. The local smoke checked all thirteen routes, exact sitemap, robots, both calculator redirects, and retired-route 404s. Production deployment and verification are pending. Rollback by restoring `/calculator/` as the page and route and removing the exact redirect rules, new social metadata/asset, and updated links; no model data, pricing, DNS, or Cloudflare settings change.
+Node 22.23.2 `npm ci`, `npm run cloudflare:build` (39 tests), `npm audit --audit-level=high` (0 vulnerabilities), `npm run release:check`, and Wrangler Pages local smoke passed. GitHub CI run `38317761578` succeeded. Both `https://toolpilot-git.pages.dev` and `https://toolpilot.cc` passed full smoke for all thirteen routes, exact sitemap, robots, both 301 redirects with `model=jev` preserved, and retired-route 404s; `/api-cost-calculator/` returns HTTP 200. Wrangler deployment-list inspection was unavailable because `CLOUDFLARE_API_TOKEN` is not configured. Rollback by restoring `/calculator/` as the page and route and removing the exact redirect rules, new social metadata/asset, and updated links; no model data, pricing, DNS, or Cloudflare settings changed.
 
 ## TASK-013 Opus 5.5 vs Astra article and comparison menu (2026-10-09)
 

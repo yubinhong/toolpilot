@@ -2,7 +2,7 @@
 
 ## Current Product Baseline
 
-- Status: ToolPilot AI Model Pricing V1; TASK-014 focuses the homepage on AI Model Pricing and moves the calculator to its dedicated API cost URL
+- Status: ToolPilot AI Model Pricing V1; TASK-014 is deployed with the homepage focused on AI Model Pricing and the calculator at its dedicated API cost URL
 - Last updated: 2026-10-13
 - Product: AI Model Pricing & API Cost Tools Platform
 - Primary users: AI developers, indie hackers, SaaS developers, API users, and AI builders
