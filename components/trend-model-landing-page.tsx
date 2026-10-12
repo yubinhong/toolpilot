@@ -97,7 +97,7 @@ export function TrendModelLandingPage({ model }: { model: ModelRecord }) {
     </section>}
 
     <section className="detail-section" aria-labelledby="calculator-heading">
-      <div className="section-heading"><h2 id="calculator-heading">{model.name} cost calculator</h2><Link href={`/calculator/?model=${model.id}`} className="text-link">Open full calculator</Link></div>
+      <div className="section-heading"><h2 id="calculator-heading">{model.name} cost calculator</h2><Link href={`/api-cost-calculator/?model=${model.id}`} className="text-link">Open full calculator</Link></div>
       <CostCalculator initialModelId={model.id} />
     </section>
 
@@ -108,7 +108,7 @@ export function TrendModelLandingPage({ model }: { model: ModelRecord }) {
 
     <section className="detail-section" aria-labelledby="related-heading">
       <h2 id="related-heading">Pricing, calculator, and comparison</h2>
-      <p className="related-links"><Link href="/pricing/">AI API pricing</Link><Link href={`/calculator/?model=${model.id}`}>Cost calculator</Link><Link href={`/compare/?models=${model.id}`}>Compare models</Link></p>
+      <p className="related-links"><Link href="/pricing/">AI API pricing</Link><Link href={`/api-cost-calculator/?model=${model.id}`}>Cost calculator</Link><Link href={`/compare/?models=${model.id}`}>Compare models</Link></p>
     </section>
 
     <section className="detail-section source-list" aria-labelledby="sources-heading">

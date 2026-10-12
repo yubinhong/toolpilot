@@ -20,6 +20,12 @@
 - Add source-backed Haiku 5.5 pricing, including its 100,000-token prompt tier, and update exact route, metadata, breadcrumb, sitemap, artifact, and HTTP smoke contracts for eleven approved routes.
 - Push commit `e1c4b44` to `main`; GitHub CI run `37879419603` and Cloudflare Pages check/deployment `b30f5bbe-edda-4f84-a8a1-9978b2525ced` succeeded. Preview and production smoke passed all eleven routes, exact sitemap, robots, and retired-route 404s; direct production HTML confirmed the article title/H1–H6 and both menu entries.
 
+## Unreleased — Homepage pricing SEO
+
+- Refocus the homepage title, H1, primary CTA, pricing preview, and concise comparison guidance on AI Model Pricing.
+- Replace the indexable `/calculator/` route with `/api-cost-calculator/`, retain exact legacy-path 301 redirects, and update navigation, pricing, model landing, and calculator links.
+- Add a shared 1200x630 Open Graph PNG and expose it in route metadata; extend route, artifact, canonical, sitemap, and smoke checks while preserving the existing approved page inventory.
+
 ## TASK-010 — deployed 2026-10-09
 
 - Add one source-backed `/compare/gpt-6-1-sol-vs-astra/` page with standard, cached-input, cache-write, and long-context price comparisons; link it from the general comparison tool.

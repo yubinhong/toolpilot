@@ -3,7 +3,7 @@ import { getSiteUrl } from '../lib/site-config.mjs';
 
 const labels: Record<string, string> = {
   "/pricing/": "Pricing",
-  "/calculator/": "Calculator",
+  "/api-cost-calculator/": "API Cost Calculator",
   "/compare/": "Compare",
   "/compare/gpt-6-1-sol-vs-astra/": "GPT 6.1 Sol vs Astra",
   "/compare/haiku-5-5-vs-luna-6/": "Haiku 5.5 vs Luna 6",

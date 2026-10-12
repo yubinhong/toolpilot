@@ -11,9 +11,15 @@ const searchConsoleVerification = getSearchConsoleVerification();
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
-  title: { default: "ToolPilot - AI Model Pricing & API Cost Calculator", template: "%s | ToolPilot" },
-  description: "Compare AI model API pricing, calculate token costs, and find the right AI model for your application.",
+  title: { default: "AI Model Pricing Comparison – Compare API Costs | ToolPilot", template: "%s | ToolPilot" },
+  description: "Compare AI model input, cached-input, and output prices from official sources. Check pricing schedules, then estimate API costs for your workload.",
   icons: { icon: "/favicon.svg" },
+  openGraph: {
+    title: "AI Model Pricing Comparison – Compare API Costs | ToolPilot",
+    description: "Compare official AI model token prices and estimate API costs for your workload.",
+    images: [{ url: "/og-toolpilot.png", width: 1200, height: 630, alt: "ToolPilot AI model pricing comparison" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og-toolpilot.png"] },
   ...(searchConsoleVerification ? { verification: { google: searchConsoleVerification } } : {}),
 };
 

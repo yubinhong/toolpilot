@@ -11,7 +11,13 @@ export function pageMetadata(path: string): Metadata {
     description: route.description,
     alternates: { canonical },
     robots: { index: true, follow: true },
-    openGraph: { title: route.title, description: route.description, url: canonical, type: 'website' },
-    twitter: { card: 'summary', title: route.title, description: route.description },
+    openGraph: {
+      title: route.title,
+      description: route.description,
+      url: canonical,
+      type: 'website',
+      images: [{ url: `${getSiteUrl()}/og-toolpilot.png`, width: 1200, height: 630, alt: 'ToolPilot AI model pricing comparison' }],
+    },
+    twitter: { card: 'summary_large_image', title: route.title, description: route.description, images: [`${getSiteUrl()}/og-toolpilot.png`] },
   };
 }

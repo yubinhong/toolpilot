@@ -15,7 +15,7 @@ test("tracking is disabled without GA4 configuration", () => {
   const previousWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
   const calls: unknown[][] = [];
   process.env.NEXT_PUBLIC_GA_ID = "";
-  Object.defineProperty(globalThis, "window", { configurable: true, value: { location: { origin: "https://toolpilot.cc", pathname: "/calculator/" }, gtag: (...args: unknown[]) => calls.push(args) } });
+  Object.defineProperty(globalThis, "window", { configurable: true, value: { location: { origin: "https://toolpilot.cc", pathname: "/api-cost-calculator/" }, gtag: (...args: unknown[]) => calls.push(args) } });
   try {
     trackEvent("calculator_use", { model_id: "jev" });
     assert.deepEqual(calls, []);
@@ -32,11 +32,11 @@ test("tracking allowlists event fields and does not send calculator quantities",
   const previousWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
   const calls: unknown[][] = [];
   process.env.NEXT_PUBLIC_GA_ID = "G-ABC12345";
-  Object.defineProperty(globalThis, "window", { configurable: true, value: { location: { origin: "https://toolpilot.cc", pathname: "/calculator/" }, gtag: (...args: unknown[]) => calls.push(args) } });
+  Object.defineProperty(globalThis, "window", { configurable: true, value: { location: { origin: "https://toolpilot.cc", pathname: "/api-cost-calculator/" }, gtag: (...args: unknown[]) => calls.push(args) } });
   try {
     const parameters = { model_id: "jev", input_tokens: 12000, requests_per_day: 45 };
     trackEvent("calculator_use", parameters);
-    assert.deepEqual(calls, [["event", "calculator_use", { model_id: "jev", page_location: "https://toolpilot.cc/calculator/" }]]);
+    assert.deepEqual(calls, [["event", "calculator_use", { model_id: "jev", page_location: "https://toolpilot.cc/api-cost-calculator/" }]]);
   } finally {
     if (previousId === undefined) delete process.env.NEXT_PUBLIC_GA_ID;
     else process.env.NEXT_PUBLIC_GA_ID = previousId;

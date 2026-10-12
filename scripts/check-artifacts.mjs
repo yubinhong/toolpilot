@@ -30,6 +30,19 @@ scan("out");
 const routeHtmlPaths = htmlFiles.filter((file) => file.endsWith("/index.html") || file === "index.html").map((file) => file === "index.html" ? "/" : `/${file.slice(0, -"/index.html".length)}/`).sort();
 if (JSON.stringify(routeHtmlPaths) !== JSON.stringify(expectedPaths)) failures.push(`exported content routes differ from the approved allowlist: ${routeHtmlPaths.join(", ")}`);
 if (JSON.stringify(sitemapUrls) !== JSON.stringify(expectedSitemap)) failures.push("sitemap.xml must contain exactly the approved canonical URLs");
+if (sitemap.includes("/calculator/")) failures.push("sitemap.xml must not contain the legacy calculator URL");
+
+const redirectRules = existsSync("out/_redirects") ? readFileSync("out/_redirects", "utf8").trim().split(/\r?\n/) : [];
+if (JSON.stringify(redirectRules) !== JSON.stringify(["/calculator /api-cost-calculator/ 301", "/calculator/ /api-cost-calculator/ 301"])) failures.push("_redirects must preserve only the exact legacy calculator paths with 301 redirects");
+if (existsSync("out/calculator/index.html")) failures.push("legacy /calculator/ must not be exported as an indexable page");
+
+const ogImagePath = "out/og-toolpilot.png";
+if (!existsSync(ogImagePath)) failures.push("missing exported og-toolpilot.png");
+else {
+  const image = readFileSync(ogImagePath);
+  if (image.toString("hex", 0, 8) !== "89504e470d0a1a0a") failures.push("og-toolpilot.png must have a valid PNG signature");
+  if (image.readUInt32BE(16) !== 1200 || image.readUInt32BE(20) !== 630) failures.push("og-toolpilot.png must be 1200x630");
+}
 if (htmlFiles.some((file) => file !== "404.html" && file !== "index.html" && !file.endsWith("/index.html"))) failures.push(`unexpected standalone HTML output: ${htmlFiles.filter((file) => file !== "404.html" && file !== "index.html" && !file.endsWith("/index.html")).join(", ")}`);
 if (htmlFiles.some((file) => ["404/index.html", "_not-found/index.html"].includes(file))) failures.push("internal Next.js 404 route artifacts must not be exposed as public paths");
 
@@ -66,6 +79,9 @@ for (const route of routes) {
   if (!canonical.includes(`href="${site}${route.path}"`)) failures.push(`${route.path}: incorrect canonical`);
   const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] ?? "";
   if (!/content="index, follow"/.test(robots)) failures.push(`${route.path}: page must be index, follow`);
+  if (!html.includes('property="og:image" content="https://toolpilot.cc/og-toolpilot.png"')) failures.push(`${route.path}: missing branded Open Graph image`);
+  if (!html.includes('name="twitter:card" content="summary_large_image"')) failures.push(`${route.path}: Twitter card must use a large image`);
+  if (!html.includes('name="twitter:image" content="https://toolpilot.cc/og-toolpilot.png"')) failures.push(`${route.path}: missing Twitter share image`);
   const title = html.match(/<title>([^<]+)<\/title>/)?.[1] ?? "";
   const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1] ?? "";
   if (title !== escapeHtml(route.title)) failures.push(`${route.path}: title does not match route registry (${title})`);
@@ -98,9 +114,9 @@ if (!pricingHtml.includes("/models/gemini-4-argon/") || !pricingHtml.includes("C
 if (!pricingHtml.includes("Off-peak") || !pricingHtml.includes("Peak window:") || !pricingHtml.includes("all other hours are off-peak")) failures.push("/pricing/: DeepSeek peak and off-peak schedules must be explicit");
 if (!pricingHtml.includes("https://api-docs.deepseek.com/news/news260910/")) failures.push("/pricing/: legacy DeepSeek V4 Pro routing note must link to its official announcement");
 
-const calculatorHtml = readFileSync("out/calculator/index.html", "utf8");
-if (!calculatorHtml.replaceAll("<!-- -->", "").includes("Estimated using the Standard schedule.")) failures.push("/calculator/: estimates must identify their selected pricing schedule");
-if (!calculatorHtml.includes("Gemini 4 Argon") || !calculatorHtml.includes("How AI API cost is calculated")) failures.push("/calculator/: Argon must be selectable and cost calculation guidance must be present");
+const calculatorHtml = readFileSync("out/api-cost-calculator/index.html", "utf8");
+if (!calculatorHtml.replaceAll("<!-- -->", "").includes("Estimated using the Standard schedule.")) failures.push("/api-cost-calculator/: estimates must identify their selected pricing schedule");
+if (!calculatorHtml.includes("Gemini 4 Argon") || !calculatorHtml.includes("How API cost is calculated")) failures.push("/api-cost-calculator/: Argon must be selectable and cost calculation guidance must be present");
 
 const compareHtml = readFileSync("out/compare/index.html", "utf8");
 if (!compareHtml.includes("Pricing schedule") || !compareHtml.includes("DeepSeek Off-peak and Peak rates are separate time-based prices")) failures.push("/compare/: comparison must label pricing schedules and explain DeepSeek time-based rates");
@@ -237,6 +253,8 @@ for (const question of ["Is Opus always cheaper for the same task?", "Does Astra
 }
 
 const homeHtml = readFileSync("out/index.html", "utf8");
+if (!homeHtml.includes("Compare AI Model Pricing") || !homeHtml.includes("AI Model Pricing by Provider") || !homeHtml.includes("Compare Input and Output Token Prices") || !homeHtml.includes("How to Choose a Cost-Effective AI Model")) failures.push("/: pricing comparison intent and useful price guidance must be visible");
+if (!homeHtml.includes("/api-cost-calculator/")) failures.push("/: primary call to action must link to the standalone API Cost Calculator");
 if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("API model ID not published") || !homeHtml.includes("Context Not public") || !homeHtml.includes("Max output 1,000,000 tokens") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with unknown input context, official output limit, and calculator link");
 const popularCount = [...homeHtml.matchAll(/class="model-card"/g)].length;
 if (popularCount < 5 || popularCount > 6) failures.push(`/: Popular Models must contain 5-6 records; found ${popularCount}`);

@@ -4,7 +4,7 @@ import { estimateRequestCost, estimateUsage } from "../lib/model-cost.ts";
 import { getActiveSchedule, getModel, models } from "../lib/models.ts";
 import { getRoutes } from "../lib/routes.mjs";
 
-const allowedRoutes = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const allowedRoutes = ["/", "/pricing/", "/api-cost-calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 
 test("the public route registry is exactly the approved thirteen pages", () => {
   assert.deepEqual(getRoutes().map(({ path }) => path), allowedRoutes);

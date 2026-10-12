@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const primaryLinks = [
   ["Pricing", "/pricing/"],
-  ["Calculator", "/calculator/"],
+  ["Calculator", "/api-cost-calculator/"],
   ["Compare", "/compare/"],
 ] as const;
 
@@ -22,8 +22,8 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link className="header-action" href="/calculator/">
-          Estimate API cost
+        <Link className="header-action" href="/api-cost-calculator/">
+          API cost calculator
         </Link>
       </div>
     </header>

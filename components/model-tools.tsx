@@ -35,7 +35,7 @@ function tokenLimit(model: ModelRecord) {
 }
 
 function modelHref(model: ModelRecord) {
-  return model.landingPath ?? `/calculator/?model=${encodeURIComponent(model.id)}`;
+  return model.landingPath ?? `/api-cost-calculator/?model=${encodeURIComponent(model.id)}`;
 }
 
 function priceSource(model: ModelRecord) {
@@ -115,7 +115,7 @@ export function ModelSearch() {
         {results.length ? results.map((model) => <article className="search-result" key={model.id}>
           <div><Link href={modelHref(model)} className="model-name" onClick={() => trackEvent("model_search", { model_id: model.id, provider_id: model.provider.id })}>{model.name}</Link><span>{model.provider.name} · {model.apiStatus}</span></div>
           <div className="search-actions">
-            <Link href={`/calculator/?model=${encodeURIComponent(model.id)}`} onClick={() => trackEvent("model_search", { model_id: model.id, provider_id: model.provider.id })}>Calculator</Link>
+            <Link href={`/api-cost-calculator/?model=${encodeURIComponent(model.id)}`} onClick={() => trackEvent("model_search", { model_id: model.id, provider_id: model.provider.id })}>Calculator</Link>
             <Link href={`/compare/?models=${encodeURIComponent(model.id)}`} onClick={() => trackEvent("model_search", { model_id: model.id, provider_id: model.provider.id })}>Compare</Link>
             <Link href="/pricing/">Pricing</Link>
           </div>
@@ -141,7 +141,7 @@ export function PopularModels() {
           <div><dt>Context / token limit</dt><dd>{tokenLimit(model)}</dd></div>
           <div><dt>API</dt><dd>{model.apiStatus}</dd></div>
         </dl>
-        <div className="model-card-actions"><Link href={`/calculator/?model=${encodeURIComponent(model.id)}`}>Calculate</Link><Link href={`/compare/?models=${encodeURIComponent(model.id)}`}>Compare</Link></div>
+        <div className="model-card-actions"><Link href={`/api-cost-calculator/?model=${encodeURIComponent(model.id)}`}>Calculate</Link><Link href={`/compare/?models=${encodeURIComponent(model.id)}`}>Compare</Link></div>
       </article>;
     })}
   </div>;

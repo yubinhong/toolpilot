@@ -1,12 +1,18 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import { DEFAULT_SITE_URL, getSiteUrl } from "../lib/site-config.mjs";
 import { getRoutes } from "../lib/routes.mjs";
 import { pageMetadata } from "../lib/metadata.ts";
 
 test("route registry contains the exact thirteen approved routes, each indexable", () => {
-  assert.deepEqual(getRoutes().map(({ path }) => path), ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"]);
+  assert.deepEqual(getRoutes().map(({ path }) => path), ["/", "/pricing/", "/api-cost-calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"]);
   assert.ok(getRoutes().every((route) => route.index));
+});
+
+test("the old calculator URL is only an exact redirect and is not an indexable route", () => {
+  assert.equal(getRoutes().some(({ path }) => path === "/calculator/"), false);
+  assert.equal(readFileSync(new URL("../public/_redirects", import.meta.url), "utf8"), "/calculator /api-cost-calculator/ 301\n/calculator/ /api-cost-calculator/ 301\n");
 });
 
 test("only the two approved trend-model landing pages are in the registry", () => {
@@ -19,6 +25,8 @@ test("every approved route has a self-canonical and index-follow metadata", () =
     const metadata = pageMetadata(route.path);
     assert.equal(metadata.alternates?.canonical, `${DEFAULT_SITE_URL}${route.path}`);
     assert.deepEqual(metadata.robots, { index: true, follow: true });
+    assert.deepEqual(metadata.openGraph?.images, [{ url: `${DEFAULT_SITE_URL}/og-toolpilot.png`, width: 1200, height: 630, alt: "ToolPilot AI model pricing comparison" }]);
+    assert.equal((metadata.twitter as { card?: string } | undefined)?.card, "summary_large_image");
   }
 });
 

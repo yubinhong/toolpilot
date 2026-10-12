@@ -5,7 +5,7 @@ const base = new URL(process.argv.find((arg) => arg.startsWith("--base-url="))?.
 if (!["http:", "https:"].includes(base.protocol) || base.username || base.password) throw new Error("Invalid smoke base URL");
 
 const routes = getRoutes();
-const expectedPaths = ["/", "/pricing/", "/calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
+const expectedPaths = ["/", "/pricing/", "/api-cost-calculator/", "/compare/", "/compare/gpt-6-1-sol-vs-astra/", "/compare/haiku-5-5-vs-luna-6/", "/compare/fable-5-1-vs-opus-5-5/", "/compare/opus-5-5-vs-astra/", "/models/jev/", "/models/gemini-4-argon/", "/about/", "/privacy/", "/terms/"];
 const failures = [];
 const escapeHtml = (value) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#x27;");
 if (JSON.stringify(routes.map(({ path }) => path)) !== JSON.stringify(expectedPaths)) failures.push("route registry differs from the exact thirteen-page approved allowlist");
@@ -17,6 +17,7 @@ await Promise.all(routes.map(async (route) => {
     const html = await response.text();
     if (response.status !== 200) throw new Error(`expected 200; got ${response.status}`);
     if (!html.includes(`rel="canonical" href="${getSiteUrl()}${route.path}"`)) throw new Error("canonical mismatch");
+    if (!html.includes('property="og:image" content="https://toolpilot.cc/og-toolpilot.png"')) throw new Error("Open Graph image missing");
     const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0] ?? "";
     if (!/content="index, follow"/.test(robots)) throw new Error("expected index, follow");
     const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
@@ -34,6 +35,15 @@ try {
   const actual = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]).sort();
   const expected = expectedPaths.map((path) => `${getSiteUrl()}${path}`).sort();
   if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(`expected exactly ${expected.length} sitemap URLs, received ${actual.length}`);
+  if (sitemap.includes("/calculator/")) throw new Error("legacy calculator URL must not appear in sitemap");
+
+  for (const path of ["/calculator/", "/calculator"]) {
+    const response = await get(`${path}?model=jev`);
+    const location = response.headers.get("location");
+    if (response.status !== 301 || !location) throw new Error(`${path} should return a 301 to the new calculator URL; got ${response.status}`);
+    const target = new URL(location, base);
+    if (target.pathname !== "/api-cost-calculator/" || target.searchParams.get("model") !== "jev") throw new Error(`${path} must preserve model query parameters in its 301 destination`);
+  }
 
   const robotsResponse = await get("/robots.txt");
   const robots = await robotsResponse.text();
@@ -53,5 +63,5 @@ if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Smoke passed: ${routes.length} indexable pages, exact sitemap, robots access, and removed routes returning real 404.`);
+  console.log(`Smoke passed: ${routes.length} indexable pages, calculator migration redirects, exact sitemap, robots access, and removed routes returning real 404.`);
 }
