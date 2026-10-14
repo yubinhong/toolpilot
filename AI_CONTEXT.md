@@ -2,7 +2,7 @@
 
 ## 当前快照 — 2026-10-14
 
-- TASK-015 正在更新 Gemini 4 Argon 的官方价格与 API 状态。Google 于 2026-10-13 发布稳定 API ID `gemini-4-argon`，付费 API 已可用；Standard 费率至 11 月 30 日为 `$2/$0.10/$10`（输入/缓存输入/输出，每百万 tokens），12 月 1 日起为 `$4/$0.20/$20`；Batch、Flex、Priority 档位及对应日期也由官方价格表公开。源码与发布证据见 `TASK.md`。
+- TASK-015 已通过提交 `4e1a9e8` 更新 Gemini 4 Argon 的官方价格与 API 状态并部署；CI、Cloudflare Pages、正式域名和 Pages 域名验证均通过。Google 于 2026-10-13 发布稳定 API ID `gemini-4-argon`，付费 API 已可用；Standard 费率至 11 月 30 日为 `$2/$0.10/$10`（输入/缓存输入/输出，每百万 tokens），12 月 1 日起为 `$4/$0.20/$20`；Batch、Flex、Priority 档位及对应日期也由官方价格表公开。源码与发布证据见 `TASK.md`。
 - 当前 V1 有 13 个公开 URL：`/`、`/pricing/`、`/api-cost-calculator/`、`/compare/`、`/compare/gpt-6-1-sol-vs-astra/`、`/compare/haiku-5-5-vs-luna-6/`、`/compare/fable-5-1-vs-opus-5-5/`、`/compare/opus-5-5-vs-astra/`、`/models/jev/`、`/models/gemini-4-argon/`、`/about/`、`/privacy/`、`/terms/`。旧 `/calculator/` 仅精确 301 到新路径，不索引也不进入 sitemap。Argon 是第二个模型落地页；四篇获批比较文章由 `/compare/` 的可展开菜单列出，不建立批量模型页或比较页。
 - TASK-014 已推送到 `main` 并部署：首页主题明确为 AI Model Pricing，独立计算器路径为 `/api-cost-calculator/`。Node 22 Cloudflare 构建通过 39 项测试、静态产物检查和 13 页导出；`npm audit --audit-level=high` 为 0 vulnerabilities，GitHub CI `38317761578` 成功。`toolpilot-git.pages.dev` 与 `toolpilot.cc` 的完整 smoke 均通过，涵盖新旧计算器路径、查询参数保留、精确 sitemap、robots 和退役路径 404。Wrangler 部署列表因未配置 `CLOUDFLARE_API_TOKEN` 未读取部署 ID；发布与线上复验证据见 TASK.md / RUNBOOK.md。
 - TASK-013 已部署；Opus 5.5 vs Astra 页面有 835 个英文词、无 Han 字符、关键词密度 3.83%，title 与 H1–H6 都包含关键词。十三页构建、38 项测试、依赖审计及产物检查通过；GitHub CI、Cloudflare Pages check、不可变预览和正式站 smoke 均通过，详见 `TASK.md` 和 `RUNBOOK.md`。

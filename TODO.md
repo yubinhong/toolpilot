@@ -1,6 +1,6 @@
 # TODO.md
 
-> Current owner-authorized work is TASK-015; see `TASK.md`. The older TASK-006 review entries below are archives, not the active product task.
+> TASK-015 is complete; see `TASK.md`. The older TASK-006 review entries below are archives, not the active product task.
 
 - By 2026-12-01, rebuild and recheck the static export against Google's scheduled Argon standard-rate change so server-rendered HTML and client estimates agree after the boundary.
 

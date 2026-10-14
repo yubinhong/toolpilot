@@ -1,4 +1,4 @@
-# Current Plan: TASK-015 — Gemini 4 Argon Pricing Refresh
+# Completed Plan: TASK-015 — Gemini 4 Argon Pricing Refresh
 
 The owner requested an official-source-backed Argon data update, commit, and push on 2026-10-14. Work is based on clean `main`; the dirty feature checkout is preserved.
 
@@ -13,7 +13,7 @@ The owner requested an official-source-backed Argon data update, commit, and pus
 2. [x] Update the single Argon record with dated service-tier schedules, current API status and model limits; update shared landing wording where needed.
 3. [x] Replace stale Argon assertions with date-boundary, service-tier cost, source, and rendered-page checks; synchronize relevant product, task, security, and release docs.
 4. [x] Run Node 22 quality gates, dependency audit, local Pages smoke, and focused page review; inspect the diff.
-5. [ ] Commit and push to `main`, then verify the automatic Pages build and live data without changing Cloudflare settings.
+5. [x] Commit and push to `main`, then verify the automatic Pages build and live data without changing Cloudflare settings.
 
 ## Rollback
 
