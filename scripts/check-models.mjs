@@ -42,7 +42,7 @@ for (const model of models) {
   const landing = model.landing;
   const validFaq = Array.isArray(landing?.faq) && landing.faq.length > 0 && landing.faq.every((item) => item && typeof item.question === "string" && item.question.trim() && typeof item.answer === "string" && item.answer.trim());
   const validBenchmarks = landing?.benchmarks == null || (Array.isArray(landing.benchmarks) && landing.benchmarks.every((item) => item && typeof item.name === "string" && item.name.trim() && typeof item.result === "string" && item.result.trim() && typeof item.note === "string" && item.note.trim()));
-  if (model.landingPath && (!landing || [landing.category, landing.heading, landing.summary, landing.apiAccessNote].some((value) => typeof value !== "string" || !value.trim()) || !validFaq || !validBenchmarks)) errors.push(`${at}: an approved landing route requires complete structured content and FAQ answers`);
+  if (model.landingPath && (!landing || [landing.category, landing.heading, landing.summary, landing.apiAccessNote].some((value) => typeof value !== "string" || !value.trim()) || (landing.tokenLimitNote != null && (typeof landing.tokenLimitNote !== "string" || !landing.tokenLimitNote.trim())) || !validFaq || !validBenchmarks)) errors.push(`${at}: an approved landing route requires complete structured content and FAQ answers`);
   if (!model.landingPath && landing) errors.push(`${at}: landing content is only allowed for an explicitly approved model route`);
 
   for (const schedule of model.schedules ?? []) {
@@ -100,7 +100,7 @@ for (const model of models) {
     if (!periods.has("off_peak") || !periods.has("peak")) errors.push(`${at}: DeepSeek must expose both off_peak and peak schedules`);
   }
   if (model.id === "jev" && model.schedules.some(({ output }) => output !== "not_applicable")) errors.push("Jev output-token pricing must be marked not_applicable, never numeric zero");
-  if (model.id === "gemini-4-argon" && (pricingStatus !== "announced" || model.outputTokenLimit !== 1000000 || model.contextWindow !== null)) errors.push("Gemini 4 Argon must preserve announced pricing, a 1M output limit, and an unknown input context window");
+  if (model.id === "gemini-4-argon" && (pricingStatus !== "public" || model.apiModelId !== "gemini-4-argon" || model.outputTokenLimit !== 1048576 || model.contextWindow !== 1048576)) errors.push("Gemini 4 Argon must preserve public API pricing, its published ID, and the unified 1,048,576-token limit");
 
   for (const source of model.sources ?? []) {
     try {

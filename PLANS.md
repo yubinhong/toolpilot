@@ -1,3 +1,26 @@
+# Current Plan: TASK-015 — Gemini 4 Argon Pricing Refresh
+
+The owner requested an official-source-backed Argon data update, commit, and push on 2026-10-14. Work is based on clean `main`; the dirty feature checkout is preserved.
+
+## Source facts
+
+- [Google's current pricing table](https://ai.google.dev/gemini-api/docs/pricing) gives paid Standard input/cached/output per 1M tokens of `$2/$0.10/$10` through 2026-11-30 and `$4/$0.20/$20` from 2026-12-01. Batch and Flex are `$1/$0.05/$5` then `$2/$0.10/$10`; Priority is `$3.60/$0.18/$18` then `$7.20/$0.36/$36`. These are separate service tiers, not interchangeable estimates.
+- [Google's October 13 model guide](https://ai.google.dev/gemini-api/docs/latest-model) and [model page](https://ai.google.dev/gemini-api/docs/models/gemini-4-argon) confirm paid Gemini API availability, ID `gemini-4-argon`, a unified 1,048,576-token input/thinking/output window, implicit-only caching, and up to 1,048,576 output tokens with background long decode (65,536 default synchronous output).
+
+## Execution
+
+1. [x] Reconcile the checkout with current `main` and confirm official pricing/model facts.
+2. [x] Update the single Argon record with dated service-tier schedules, current API status and model limits; update shared landing wording where needed.
+3. [x] Replace stale Argon assertions with date-boundary, service-tier cost, source, and rendered-page checks; synchronize relevant product, task, security, and release docs.
+4. [x] Run Node 22 quality gates, dependency audit, local Pages smoke, and focused page review; inspect the diff.
+5. [ ] Commit and push to `main`, then verify the automatic Pages build and live data without changing Cloudflare settings.
+
+## Rollback
+
+Revert the TASK-015 change and redeploy the previous reviewed artifact. No data migration or cloud configuration change is involved. Recheck official Google rates before any rollback because the prior Argon record is stale.
+
+---
+
 # Completed Plan: TASK-013 — Opus 5.5 vs Astra Article and Comparison Menu
 
 The product owner requested an English `opus 5.5 vs astra` comparison page and a compact navigation control for the growing comparison-article list. This explicitly approves the 13th public route and continues the previously authorized `main` release process.

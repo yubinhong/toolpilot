@@ -4,6 +4,8 @@
 - Date: 2026-10-01
 - Supersedes: The eight-URL limit in ADR-0011 for this single approved Argon route only
 
+The page-approval decision remains accepted. Its October 1 pricing, API-access, and token-limit facts are a dated snapshot superseded by Google's October 13 Gemini API release and TASK-015; use the current shared model record and official sources for present-day facts.
+
 ## Context
 
 After the initial AI pricing launch, the product owner identified a clear search-demand signal for Gemini 4 Argon and explicitly approved `/models/gemini-4-argon/`. The current public route count is therefore nine. The original rule remains: model records do not automatically create pages, and no tenth route is approved.

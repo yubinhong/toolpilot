@@ -1,6 +1,8 @@
 # TODO.md
 
-> TASK-013 已完成并部署，验证记录见 `TASK.md`。本文件中后续 TASK-006 项仅保留作历史研究/审核档案，不是当前产品范围或执行任务。
+> Current owner-authorized work is TASK-015; see `TASK.md`. The older TASK-006 review entries below are archives, not the active product task.
+
+- By 2026-12-01, rebuild and recheck the static export against Google's scheduled Argon standard-rate change so server-rendered HTML and client estimates agree after the boundary.
 
 ### TASK-006 当前审核/新鲜度复核 — 2026-09-29
 

@@ -1,3 +1,14 @@
+## TASK-015 — Gemini 4 Argon Pricing Refresh
+
+- Status: IN_PROGRESS.
+- Date: 2026-10-14.
+- Authorization: the owner requested the Argon pricing update, commit, and push. The current `main` branch automatically deploys through Cloudflare Pages; no Cloudflare setting or DNS change is requested.
+- Goal: reflect Google’s October 13 GA pricing table and API model facts in the shared Argon record, then verify all dependent pages and estimates. Keep the 13-route allowlist and other model data unchanged.
+- Official sources: [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing), [Argon model page](https://ai.google.dev/gemini-api/docs/models/gemini-4-argon), and [Argon update guide](https://ai.google.dev/gemini-api/docs/latest-model), checked 2026-10-14.
+- Acceptance: paid Standard, Batch, Flex, and Priority rates have their published November 30/December 1 dates; Argon has its published API ID, paid availability, unified context/output limits, current source links, and truthful cache wording. Pricing, Calculator, Compare, and the Argon landing page use the same record. Date-boundary and service-tier estimates, artifacts, local smoke, audit, and clean release checks pass before push.
+- Rollback: revert the TASK-015 commit and redeploy the prior reviewed Pages artifact after rechecking Google’s terms. No database, DNS, or Cloudflare configuration migration is needed.
+- Verification before push: Node 22 `npm run cloudflare:build` passed lint, typecheck, 39 tests, model validation, 13-page static export, and artifact checks. `npm audit --audit-level=high` found 0 vulnerabilities. Local Pages `npm run smoke` passed all 13 routes, redirects, sitemap, robots, and retired-path 404 checks. Headless Chromium confirmed the Argon pricing page at 1440/390/320 px with no horizontal overflow, and the calculator changed from introductory Priority to future Standard estimates as selected. `git diff --check` passed; production deployment verification remains pending.
+
 ## TASK-014 — Homepage Pricing Intent and API Cost Calculator URL
 
 - Status: COMPLETED (pushed to `main`, deployed, and verified on the Pages project hostname and production domain).

@@ -52,6 +52,7 @@ export type ModelRecord = {
     summary: string;
     overview?: string;
     apiAccessNote: string;
+    tokenLimitNote?: string;
     faq: { question: string; answer: string }[];
     benchmarks?: { name: string; result: string; note: string }[];
   };

@@ -28,7 +28,8 @@ Static export does not support `next start`. For a Pages-compatible local HTTP s
 - The branded `favicon.svg` exists in the static export and every page links to it as the site icon and uses it as the header mark.
 - Model data does not generate detail routes; Jev and Gemini 4 Argon are the only explicitly approved detail routes.
 - `not_public` rates never produce numeric cost estimates; `not_applicable` output billing is not represented as a zero rate.
-- Argon's 1M value is labeled as an output-token limit; no input context window is inferred.
+- Argon's published API ID, paid status, unified 1,048,576-token context/output ceiling, implicit-only caching, and 65,536-token synchronous output default are shown accurately.
+- Argon's Standard, Batch, Flex, and Priority token rates retain the 2026-11-30/2026-12-01 boundary; regression tests check the active Standard rate and tier-specific cost estimates on both sides.
 - GA4 is absent without a valid ID; when enabled, event payloads exclude calculator quantities, raw search text, and query strings.
 - Every model has an official pricing source and verification date; every source uses HTTPS and an approved official host.
 - Missing context, cached rates, release dates, or API facts remain explicitly unknown.

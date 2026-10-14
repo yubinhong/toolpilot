@@ -4,6 +4,7 @@ import { CostCalculator } from "./model-tools";
 import { ModelPageAnalytics } from "./model-page-analytics";
 import { OfficialLink } from "./official-link";
 import type { ModelRecord } from "../lib/model-types";
+import { getActiveSchedule } from "../lib/models";
 
 function formatRate(value: number | null | "not_applicable" | undefined) {
   if (value === "not_applicable") return "Not token-billed";
@@ -20,7 +21,7 @@ function pricingStatus(model: ModelRecord) {
 export function TrendModelLandingPage({ model }: { model: ModelRecord }) {
   const landing = model.landing;
   if (!landing) return null;
-  const defaultSchedule = model.schedules.find(({ id }) => id === model.defaultSchedule) ?? model.schedules[0];
+  const activeSchedule = getActiveSchedule(model);
 
   return <article className="page-content shell model-detail">
     <ModelPageAnalytics modelId={model.id} providerId={model.provider.id} />
@@ -37,7 +38,7 @@ export function TrendModelLandingPage({ model }: { model: ModelRecord }) {
         <div><dt>{landing.dateLabel ?? "Release date"}</dt><dd>{model.releaseDate ?? "Not publicly specified"}</dd></div>
         <div><dt>API access</dt><dd>{model.apiStatus}</dd></div>
         <div><dt>Pricing</dt><dd>{pricingStatus(model)}</dd></div>
-        <div><dt>Context window</dt><dd>{model.contextWindow == null ? "Not publicly specified" : `${new Intl.NumberFormat("en-US").format(model.contextWindow)} input tokens`}</dd></div>
+        <div><dt>Context window</dt><dd>{model.contextWindow == null ? "Not publicly specified" : `${new Intl.NumberFormat("en-US").format(model.contextWindow)} tokens`}</dd></div>
         <div><dt>Maximum output</dt><dd>{model.outputTokenLimit == null ? "Not publicly specified" : `${new Intl.NumberFormat("en-US").format(model.outputTokenLimit)} tokens`}</dd></div>
         <div><dt>Official website</dt><dd><OfficialLink href={model.officialUrl} modelId={model.id} providerId={model.provider.id} sourceType="website">{new URL(model.officialUrl).hostname}</OfficialLink></dd></div>
       </dl>
@@ -64,13 +65,14 @@ export function TrendModelLandingPage({ model }: { model: ModelRecord }) {
       <div className="section-heading"><h2 id="pricing-heading">{model.name} pricing</h2><span className="verified-label">Verified {model.lastVerifiedAt}</span></div>
       {model.pricingStatus === "not_public" ? <p>API pricing has not been publicly announced. No numeric cost estimate is available.</p> : <>
         <div className="price-summary">
-          <div><span>Input / 1M tokens · {defaultSchedule.label}</span><strong>{formatRate(defaultSchedule.input)}</strong></div>
-          <div><span>Cached input / 1M tokens</span><strong>{formatRate(defaultSchedule.cachedInput)}</strong></div>
-          <div><span>Output / 1M tokens</span><strong>{formatRate(defaultSchedule.output)}</strong></div>
+          <div><span>Input / 1M tokens · {activeSchedule.label}</span><strong>{formatRate(activeSchedule.input)}</strong></div>
+          <div><span>Cached input / 1M tokens</span><strong>{formatRate(activeSchedule.cachedInput)}</strong></div>
+          <div><span>Output / 1M tokens</span><strong>{formatRate(activeSchedule.output)}</strong></div>
         </div>
         {model.schedules.map((schedule) => <div className="pricing-detail" key={schedule.id}>
           <strong>{schedule.label}</strong>
           <span>Input {formatRate(schedule.input)} · Cached input {formatRate(schedule.cachedInput)} · Output {formatRate(schedule.output)} / 1M tokens</span>
+          {(schedule.validFrom || schedule.validUntil) && <small>{schedule.validFrom ? `From ${schedule.validFrom}` : ""}{schedule.validFrom && schedule.validUntil ? " · " : ""}{schedule.validUntil ? `Through ${schedule.validUntil}` : ""}</small>}
           {schedule.pricingNotes?.map((note) => <small key={note}>{note}</small>)}
         </div>)}
       </>}
@@ -78,7 +80,7 @@ export function TrendModelLandingPage({ model }: { model: ModelRecord }) {
 
     <section className="detail-section" aria-labelledby="limits-heading">
       <h2 id="limits-heading">Context and token limits</h2>
-      <p>{model.contextWindow == null ? `${model.provider.name} has not publicly specified an input context-window limit.` : `The documented context window is ${new Intl.NumberFormat("en-US").format(model.contextWindow)} input tokens.`} {model.outputTokenLimit == null ? "The cited sources do not list a separate maximum output-token limit." : `${model.provider.name} documents a maximum output-token limit of ${new Intl.NumberFormat("en-US").format(model.outputTokenLimit)} tokens.`}</p>
+      <p>{model.contextWindow == null ? `${model.provider.name} has not publicly specified a context-window limit.` : `The documented context window is ${new Intl.NumberFormat("en-US").format(model.contextWindow)} tokens.`} {model.outputTokenLimit == null ? "The cited sources do not list a separate maximum output-token limit." : `${model.provider.name} documents a maximum output-token limit of ${new Intl.NumberFormat("en-US").format(model.outputTokenLimit)} tokens.`} {landing.tokenLimitNote}</p>
     </section>
 
     <section className="detail-section" aria-labelledby="capabilities-heading">

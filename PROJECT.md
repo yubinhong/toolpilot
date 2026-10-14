@@ -2,8 +2,8 @@
 
 ## Current Product Baseline
 
-- Status: ToolPilot AI Model Pricing V1; TASK-014 is deployed with the homepage focused on AI Model Pricing and the calculator at its dedicated API cost URL
-- Last updated: 2026-10-13
+- Status: ToolPilot AI Model Pricing V1; TASK-015 updates Gemini 4 Argon pricing and API facts on the existing 13-page site
+- Last updated: 2026-10-14
 - Product: AI Model Pricing & API Cost Tools Platform
 - Primary users: AI developers, indie hackers, SaaS developers, API users, and AI builders
 - Domain: `https://toolpilot.cc`
@@ -15,7 +15,7 @@ ToolPilot helps users answer how much an AI model/API will cost for a workload a
 
 The thirteen approved target content routes are `/`, `/pricing/`, `/api-cost-calculator/`, `/compare/`, `/compare/gpt-6-1-sol-vs-astra/`, `/compare/haiku-5-5-vs-luna-6/`, `/compare/fable-5-1-vs-opus-5-5/`, `/compare/opus-5-5-vs-astra/`, `/models/jev/`, `/models/gemini-4-argon/`, `/about/`, `/privacy/`, and `/terms/`. The old `/calculator/` path is redirected exactly to `/api-cost-calculator/` and is not indexable or listed in the sitemap. The four owner-approved comparison articles appear in a compact, expandable menu on `/compare/`; no general or batch comparison pages are generated.
 
-The model database lives in `content/models.json`. The homepage, pricing page, calculator, comparison page, all four comparison articles, and Jev/Argon detail pages read the same records. Each price record includes an official source and verification date; unknown values remain unknown. Model records do not create SEO routes. Jev and Gemini 4 Argon are the only approved detail pages.
+The model database lives in `content/models.json`. The homepage, pricing page, calculator, comparison page, all four comparison articles, and Jev/Argon detail pages read the same records. Each price record includes an official source and verification date; unknown values remain unknown. Argon's dated Standard, Batch, Flex, and Priority prices and paid API status are maintained in that shared record. Model records do not create SEO routes. Jev and Gemini 4 Argon are the only approved detail pages.
 
 V1 does not include accounts, API services, a database, a blog, AdSense scripts, affiliate links, or sponsored placement. Reusable empty ad-slot mount points render nothing until content is supplied. GSC verification metadata and GA4 are optional build-time integrations; when enabled, the event allowlist excludes calculator quantities and raw search text.
 

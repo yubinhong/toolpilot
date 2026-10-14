@@ -142,28 +142,38 @@ test("current GPT-6.1 Sol and Gemini 3.8 Flash prices are available to shared mo
   assert.equal(gemini.landingPath, null);
 });
 
-test("Gemini 4 Argon records official announced rates and the output-token limit without inventing context details", () => {
+test("Gemini 4 Argon preserves Google's dated paid API and service-tier rates", () => {
   const argon = getModel("gemini-4-argon");
   assert.ok(argon);
-  assert.equal(argon.apiModelId, null);
-  assert.equal(argon.pricingStatus, "announced");
-  assert.equal(argon.contextWindow, null);
-  assert.equal(argon.outputTokenLimit, 1000000);
-  assert.equal(argon.apiStatus, "Limited Fairwind rollout; generally available developer API not yet launched");
+  assert.equal(argon.apiModelId, "gemini-4-argon");
+  assert.equal(argon.pricingStatus, "public");
+  assert.equal(argon.contextWindow, 1048576);
+  assert.equal(argon.outputTokenLimit, 1048576);
+  assert.equal(argon.apiStatus, "Available via paid Gemini API");
   assert.equal(argon.releaseDate, "2026-09-30");
   assert.equal(argon.landingPath, "/models/gemini-4-argon/");
   assert.equal(argon.defaultSchedule, "introductory");
-  assert.deepEqual(argon.schedules.map(({ input, cachedInput, output }) => [input, cachedInput, output]), [[2, 0.1, 10], [4, null, 20]]);
-  assert.deepEqual(argon.schedules[0].nextPricing, { scheduleId: "standard", validFrom: null });
-  assert.match(argon.schedules[0].pricingNotes?.join(" ") ?? "", /effective dates are not published/);
-  assert.match(argon.schedules[1].pricingNotes?.join(" ") ?? "", /cached-input price are not published/);
-  assert.ok(argon.sources.some(({ label, url }) => /pricing/i.test(label) && url.includes("blog.google")));
+  assert.deepEqual(argon.schedules.map(({ id, input, cachedInput, output }) => [id, input, cachedInput, output]), [
+    ["introductory", 2, 0.1, 10], ["standard", 4, 0.2, 20],
+    ["batch-introductory", 1, 0.05, 5], ["batch-standard", 2, 0.1, 10],
+    ["flex-introductory", 1, 0.05, 5], ["flex-standard", 2, 0.1, 10],
+    ["priority-introductory", 3.6, 0.18, 18], ["priority-standard", 7.2, 0.36, 36],
+  ]);
+  for (const schedule of argon.schedules) {
+    if (schedule.priceType === "introductory") {
+      assert.equal(schedule.validUntil, "2026-11-30");
+      assert.equal(schedule.nextPricing?.validFrom, "2026-12-01");
+    } else assert.equal(schedule.validFrom, "2026-12-01");
+  }
+  assert.equal(getActiveSchedule(argon, "2026-11-30").id, "introductory");
+  assert.equal(getActiveSchedule(argon, "2026-12-01").id, "standard");
+  assert.ok(argon.sources.some(({ label, url }) => /pricing/i.test(label) && url === "https://ai.google.dev/gemini-api/docs/pricing"));
+  assert.ok(argon.sources.some(({ url }) => url === "https://ai.google.dev/gemini-api/docs/models/gemini-4-argon"));
   assert.ok(argon.sources.some(({ label, url }) => /methodology/i.test(label) && url.includes("deepmind.google")));
-
-  const introductory = estimateUsage(argon, { inputTokens: 1000000, outputTokens: 1000000, cachedInputPercent: 100, requestsPerDay: 1 });
-  const standard = estimateUsage(argon, { inputTokens: 1000000, outputTokens: 1000000, scheduleId: "standard", requestsPerDay: 1 });
-  assert.equal(introductory.requestCost, 10.1);
-  assert.equal(standard.requestCost, 24);
+  const request = { inputTokens: 100000, outputTokens: 20000, cachedInputPercent: 50 };
+  for (const [scheduleId, expected] of [["introductory", 0.305], ["standard", 0.61], ["batch-introductory", 0.1525], ["batch-standard", 0.305], ["flex-introductory", 0.1525], ["flex-standard", 0.305], ["priority-introductory", 0.549], ["priority-standard", 1.098]] as const) {
+    assert.ok(Math.abs(estimateRequestCost(argon, { ...request, scheduleId }).requestCost! - expected) < 1e-12, scheduleId);
+  }
   assert.equal(getRoutes().some(({ path }) => path === "/models/gemini-4-argon/"), true);
 });
 

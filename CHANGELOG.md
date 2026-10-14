@@ -1,5 +1,11 @@
 # Changelog
 
+## TASK-015 — 2026-10-14
+
+- Refresh Gemini 4 Argon from Google's current paid API pricing and model pages: stable API ID, public availability, unified token window, implicit caching, and dated Standard, Batch, Flex, and Priority rates.
+- Replace stale Argon landing-page and metadata copy, show effective dates, and extend cost, source, model-validation, and exported-page checks without changing the 13-route sitemap.
+- Release evidence and rollback are recorded in `TASK.md` and `RUNBOOK.md`.
+
 ## TASK-013 — deployed 2026-10-09
 
 - Add an English Opus 5.5 vs Astra API pricing and workload article as the fourth approved comparison route; extend the exact 13-route sitemap, source, artifact, and HTTP smoke contracts.

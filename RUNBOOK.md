@@ -1,5 +1,13 @@
 # RUNBOOK.md
 
+## TASK-015 Gemini 4 Argon official pricing refresh (2026-10-14)
+
+Google's [current Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing), [Argon model page](https://ai.google.dev/gemini-api/docs/models/gemini-4-argon), and [release guide](https://ai.google.dev/gemini-api/docs/latest-model) were checked on 2026-10-14. The shared Argon record now lists paid Standard, Batch, Flex, and Priority rates through 2026-11-30 and from 2026-12-01, along with the stable API ID, public API status, unified token limit, and implicit-only caching. The 13-page route/sitemap boundary is unchanged. The dirty feature checkout at `/home/syin/toolpilot` was not edited; release work uses the clean `main` worktree.
+
+Before push, the Node 22 Cloudflare build passed 39 tests and all 13-route artifact checks; dependency audit found 0 vulnerabilities. Local Pages smoke passed, and the Argon page and calculator were reviewed in Chromium at desktop and mobile widths. Production verification is recorded in `TASK.md` after deployment.
+
+For rollback, revert the TASK-015 pricing change and redeploy the previous reviewed Pages artifact after confirming Google's live terms. No database, DNS, or Cloudflare settings change. Because the site is statically exported, rebuild before 2026-12-01 and rerun the full preview/production smoke so the server HTML selects the successor rates.
+
 ## TASK-014 Homepage pricing SEO and calculator URL migration (2026-10-13)
 
 The release candidate keeps the current thirteen-route inventory and replaces the indexable calculator path with `/api-cost-calculator/`. `/calculator` and `/calculator/` redirect exactly to the new URL with query parameters preserved. The homepage title/H1 and guidance focus on AI Model Pricing; all thirteen pages expose the branded 1200x630 share image.

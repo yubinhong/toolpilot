@@ -87,11 +87,11 @@
 | 目的 | 当前命令 | 规则 |
 | --- | --- | --- |
 | 格式化 | `TBD` | 当前没有格式化工具或 npm script；不要自行引入格式化器 |
-| 模型校验 | `npm run models:check` | 检查唯一模型数据源、官方来源域、验证日期和 11 页路由白名单 |
+| 模型校验 | `npm run models:check` | 检查唯一模型数据源、官方来源域、验证日期和 13 页路由白名单 |
 | 静态检查 | `npm run lint` | 使用仓库中的 ESLint flat config |
 | 类型检查 | `npm run typecheck` | 使用 `tsconfig.json`，禁止绕过错误 |
 | 单元测试 | `npm test` | Node 22 内置 test runner，覆盖路由、来源、费率日期和成本公式 |
-| HTTP smoke | `npm run smoke` | 检查九页 metadata/canonical、robots、精确 sitemap，以及废弃旧 URL 的真实 404 |
+| HTTP smoke | `npm run smoke` | 检查 13 页 metadata/canonical、robots、精确 sitemap、旧计算器路径的 301，以及其他废弃旧 URL 的真实 404 |
 | 发布前检查 | `npm run release:check` | 本地/审核提交时必须在 Node 22、完整 HEAD SHA、无凭据 GitHub origin、干净工作区和发布文件均被跟踪时通过；不替代 Cloudflare Dashboard Git Integration 构建 |
 | Cloudflare Pages 构建 | `npm run cloudflare:build` | Cloudflare Pages Git Integration 使用；执行 lint、typecheck、test 和静态构建 |
 | 集成/E2E | `TBD` | 尚未引入浏览器测试框架；页面 smoke test 用本地 HTTP 检查替代 |
@@ -99,7 +99,7 @@
 | 依赖安装 | `nvm use 22 && npm ci` | 使用锁文件恢复可复现依赖，不升级版本 |
 | 依赖审计 | `nvm use 22 && npm audit --audit-level=high` | 发布前必须通过；以当前执行结果为准，历史审计结果不可复用 |
 | Cloudflare Pages Git Integration | Cloudflare Dashboard | 项目连接 `yubinhong/toolpilot`，生产分支 `main`，构建命令 `npm run cloudflare:build`，输出目录 `out` |
-| Cloudflare 部署检查 | `npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot` | 迁移前后只读核对部署来源；不得输出令牌 |
+| Cloudflare 部署检查 | `npx --yes wrangler@4.124.0 pages deployment list --project-name toolpilot-git` | 只读核对当前 Pages 部署；不得输出令牌 |
 
 代码要求：
 

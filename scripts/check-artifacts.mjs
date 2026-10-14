@@ -109,8 +109,10 @@ for (const model of models) {
   const pricingSource = model.sources.find((source) => /pricing/i.test(source.label));
   if (!pricingSource || !pricingHtml.includes(pricingSource.url)) failures.push(`/pricing/: missing official pricing source for ${model.id}`);
 }
-if (!pricingHtml.includes("Gemini 4 Argon") || !pricingHtml.includes("API model ID not published") || !pricingHtml.includes("effective date not announced") || !pricingHtml.includes("$2.00") || !pricingHtml.includes("$10.00")) failures.push("/pricing/: Gemini 4 Argon must show officially announced rates and its unpublished API ID and schedule date");
-if (!pricingHtml.includes("/models/gemini-4-argon/") || !pricingHtml.includes("Context Not public") || !pricingHtml.includes("Max output 1,000,000 tokens")) failures.push("/pricing/: Argon landing link, unknown context, and documented output-token limit must be visible");
+for (const fact of ["Gemini 4 Argon", "gemini-4-argon", "Standard · introductory", "Standard · from Dec 1", "Batch · introductory", "Batch · from Dec 1", "Flex · introductory", "Flex · from Dec 1", "Priority · introductory", "Priority · from Dec 1", "2026-11-30", "2026-12-01", "https://ai.google.dev/gemini-api/docs/pricing"]) {
+  if (!pricingHtml.includes(fact)) failures.push(`/pricing/: missing current Argon pricing fact ${fact}`);
+}
+if (!pricingHtml.includes("/models/gemini-4-argon/") || !pricingHtml.includes("Context 1,048,576 tokens") || !pricingHtml.includes("Max output 1,048,576 tokens")) failures.push("/pricing/: Argon landing link and published unified token limit must be visible");
 if (!pricingHtml.includes("Off-peak") || !pricingHtml.includes("Peak window:") || !pricingHtml.includes("all other hours are off-peak")) failures.push("/pricing/: DeepSeek peak and off-peak schedules must be explicit");
 if (!pricingHtml.includes("https://api-docs.deepseek.com/news/news260910/")) failures.push("/pricing/: legacy DeepSeek V4 Pro routing note must link to its official announcement");
 
@@ -255,7 +257,7 @@ for (const question of ["Is Opus always cheaper for the same task?", "Does Astra
 const homeHtml = readFileSync("out/index.html", "utf8");
 if (!homeHtml.includes("Compare AI Model Pricing") || !homeHtml.includes("AI Model Pricing by Provider") || !homeHtml.includes("Compare Input and Output Token Prices") || !homeHtml.includes("How to Choose a Cost-Effective AI Model")) failures.push("/: pricing comparison intent and useful price guidance must be visible");
 if (!homeHtml.includes("/api-cost-calculator/")) failures.push("/: primary call to action must link to the standalone API Cost Calculator");
-if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("API model ID not published") || !homeHtml.includes("Context Not public") || !homeHtml.includes("Max output 1,000,000 tokens") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with unknown input context, official output limit, and calculator link");
+if (!homeHtml.includes("Gemini 4 Argon") || !homeHtml.includes("gemini-4-argon") || !homeHtml.includes("Context 1,048,576 tokens") || !homeHtml.includes("Max output 1,048,576 tokens") || !homeHtml.includes("Estimate cost")) failures.push("/: Gemini 4 Argon must appear in discovery with its published API ID and unified token limit");
 const popularCount = [...homeHtml.matchAll(/class="model-card"/g)].length;
 if (popularCount < 5 || popularCount > 6) failures.push(`/: Popular Models must contain 5-6 records; found ${popularCount}`);
 const latestStart = homeHtml.indexOf("id=\"latest-heading\"");
@@ -282,10 +284,10 @@ const argonHtml = readFileSync("out/models/gemini-4-argon/index.html", "utf8");
 for (const source of models.find(({ id }) => id === "gemini-4-argon")?.sources ?? []) {
   if (!argonHtml.includes(source.url)) failures.push(`/models/gemini-4-argon/: missing official source ${source.url}`);
 }
-for (const answer of ["Gemini 4 Argon Pricing &amp; API Access", "September 30, 2026", "Not publicly listed", "1,000,000 tokens", "Google-reported benchmark results", "$2", "$10"]) {
+for (const answer of ["Gemini 4 Argon Pricing &amp; API Access", "October 13, 2026", "Available via paid Gemini API", "gemini-4-argon", "1,048,576 tokens", "65,536 tokens", "2026-11-30", "2026-12-01", "Batch · introductory", "Batch · from Dec 1", "Flex · introductory", "Flex · from Dec 1", "Priority · introductory", "Priority · from Dec 1", "Google-reported benchmark results", "$2", "$10", "$3.60", "$7.20", "$36.00"]) {
   if (!argonHtml.includes(answer)) failures.push(`/models/gemini-4-argon/: missing answer-first model content ${answer}`);
 }
-for (const question of ["What is Gemini 4 Argon?", "Is Gemini 4 Argon available through the Gemini API?", "How much does Gemini 4 Argon cost?", "What is the Gemini 4 Argon token limit?", "How can I access Gemini 4 Argon?", "When will Gemini 4 Argon be publicly available?"]) {
+for (const question of ["What is Gemini 4 Argon?", "Is Gemini 4 Argon available through the Gemini API?", "How much does Gemini 4 Argon cost?", "What is the Gemini 4 Argon token limit?", "How can I access Gemini 4 Argon?", "When does Gemini 4 Argon introductory pricing end?"]) {
   if (!argonHtml.includes(question)) failures.push(`/models/gemini-4-argon/: missing FAQ ${question}`);
 }
 
